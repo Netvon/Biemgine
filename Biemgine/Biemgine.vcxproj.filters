@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="bmBase">
+      <UniqueIdentifier>{1102e1e8-c7d2-48e3-b2f7-d4cc680b373f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{3175867a-483f-454d-abdc-e8a45e03af47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics">
+      <UniqueIdentifier>{d9fc2de9-aea6-4e0f-934a-584f2dfc380a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdlWindow.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmVector2.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmLoop.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmInputManager.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bmColor.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmComponent.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmRectangle.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmScene.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="bmPlanetScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BiemSdlTest01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bmLoop.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="bmInputManager.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="bmVector2.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="sdlWindow.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="bmEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bmComponent.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="bmRectangle.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmScene.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
