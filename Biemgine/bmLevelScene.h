@@ -1,13 +1,16 @@
 #pragma once
 #include "bmScene.h"
-class bmPlanetScene :
+#include "bmRectangle.h"
+
+class bmLevelScene :
 	public bmScene
 {
 public:
+
 	void update() override;
 	void created() override;
 
 private:
-	//void sierpinski(int levels, float x, float y, float width, float height);
+
 };
 

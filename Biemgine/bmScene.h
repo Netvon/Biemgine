@@ -1,18 +1,24 @@
 #pragma once
 #include "bmLoop.h"
+#include "bmSystemManager.h"
+#include "bmEntityManager.h"
 class bmScene :
 	public bmLoop
 {
 public:
-	void addComponent(bmComponent * newComponent);
+	void addComponent(bmDrawable * newComponent);
 
 	bmScene();
 
-private:
-	std::vector<bmComponent*> components;
+protected:
+	std::vector<bmDrawable*> components;
 
 	GLuint vao;
 	GLuint vbo;
+
+	bmSystemManager* systemManager = new bmSystemManager();
+	bmEntityManager* entityManager = new bmEntityManager();
+
 private:
 
 	virtual void update() override { }

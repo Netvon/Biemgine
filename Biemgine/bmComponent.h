@@ -3,14 +3,11 @@
 class bmComponent
 {
 public:
-	bmComponent(int x, int y, int width, int height);
-	~bmComponent();
+	bmComponent() {};
+	virtual ~bmComponent() {};
 
-public:
-	int x, y;
-	int width, height;
+private:
 
-	virtual void init() { };
-	virtual void draw(SDL_Renderer* renderer) { };
+
 };
 
