@@ -19,7 +19,7 @@ void bmScene::draw()
 	drawBeforeComponents();
 
 	for (auto* c : components) {
-		c->draw(renderer);
+		c->draw();
 	}
 
 	drawAfterComponents();

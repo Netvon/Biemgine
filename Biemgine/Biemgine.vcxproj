@@ -73,22 +73,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\Win32;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\Win32;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -185,7 +185,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BiemSdlTest01.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
     <ClCompile Include="bmDrawable.cpp" />
     <ClCompile Include="bmEngine.cpp" />

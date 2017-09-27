@@ -6,9 +6,9 @@ bmSceneManager* bmSceneManager::smInstance = 0;
 
 bmSceneManager* bmSceneManager::instance()
 {
-		if (smInstance == 0) smInstance = new bmSceneManager();
+	if (smInstance == 0) smInstance = new bmSceneManager();
 
-		return smInstance;
+	return smInstance;
 }
 
 void bmSceneManager::setWindow(SdlWindow* window)

@@ -7,7 +7,7 @@ class bmLevelScene :
 {
 public:
 
-	void update() override;
+	void update(float deltaTime) override;
 	void created() override;
 
 private:

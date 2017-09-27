@@ -21,7 +21,7 @@ protected:
 
 private:
 
-	virtual void update() override { }
+	virtual void update(float deltaTime) override { }
 	virtual void created() override { }
 
 	virtual void drawBeforeComponents() { };

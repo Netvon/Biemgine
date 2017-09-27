@@ -18,7 +18,7 @@ void bmMenuScene::created()
 	cout << "MenuScene created" << endl;
 }
 
-void bmMenuScene::update()
+void bmMenuScene::update(float deltaTime)
 {
 	if (im.isKeyDown("Q")) {
 		signalQuit();

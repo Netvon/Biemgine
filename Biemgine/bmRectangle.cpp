@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmRectangle.h"
 
-void bmRectangle::draw(SDL_Renderer * renderer)
+void bmRectangle::draw()
 {
 	/*SDL_Rect r{ x, y, width, height };
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);

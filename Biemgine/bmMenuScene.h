@@ -8,7 +8,7 @@ class bmMenuScene :
 public:
 	bmMenuScene();
 
-	void update() override;
+	void update(float deltaTime) override;
 	void created() override;
 
 private:

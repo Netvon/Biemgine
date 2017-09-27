@@ -119,9 +119,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BiemSdlTest01.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bmVector2.cpp">
       <Filter>bmBase</Filter>
     </ClCompile>
@@ -181,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="bmPositionComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ void bmLevelScene::created()
 
 }
 
-void bmLevelScene::update()
+void bmLevelScene::update(float deltaTime)
 {
 	if (im.isKeyDown("Q")) {
 		signalQuit();

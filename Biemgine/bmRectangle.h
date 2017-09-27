@@ -6,7 +6,7 @@ class bmRectangle :
 public:
 	bmRectangle(int x, int y, int width, int height) : bmDrawable(x, y, width, height) { };
 
-	void draw(SDL_Renderer* renderer) override;
+	void draw() override;
 	void init() override;
 
 private:

@@ -11,6 +11,6 @@ public:
 	int width, height;
 
 	virtual void init() { };
-	virtual void draw(SDL_Renderer* renderer) { };
+	virtual void draw() { };
 };
 

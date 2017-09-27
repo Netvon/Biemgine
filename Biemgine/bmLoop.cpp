@@ -7,10 +7,6 @@ void bmLoop::start(const SdlWindow* sdlwindow)
 		window = sdlwindow->window;
 	}
 
-	if (sdlwindow->renderer != nullptr) {
-		renderer = sdlwindow->renderer;
-	}
-
 	created();
 	startLoop();
 }
@@ -20,9 +16,18 @@ void bmLoop::signalQuit()
 	quit = true;
 }
 
+void bmLoop::updateDeltaTime()
+{
+	float currentFrame = static_cast<float>(SDL_GetTicks());
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+}
+
 void bmLoop::startLoop()
 {
 	while (!quit) {
+
+		updateDeltaTime();
 
 		pollEvents();
 		globalUpdate();
@@ -47,7 +52,7 @@ void bmLoop::globalUpdate()
 {
 	im.update();
 
-	update();
+	update(deltaTime);
 }
 
 void bmLoop::globalDraw()
@@ -55,15 +60,11 @@ void bmLoop::globalDraw()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	draw();
-
-	SDL_RenderPresent(renderer);
 }
 
 void bmLoop::globalEnd()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	SDL_RenderPresent(renderer);
+	//glClear(GL_COLOR_BUFFER_BIT);
 }
 
 
