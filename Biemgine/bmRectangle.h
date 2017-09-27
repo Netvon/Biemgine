@@ -1,10 +1,10 @@
 #pragma once
-#include "bmComponent.h"
+#include "bmDrawable.h"
 class bmRectangle :
-	public bmComponent
+	public bmDrawable
 {
 public:
-	bmRectangle(int x, int y, int width, int height) : bmComponent(x, y, width, height) { };
+	bmRectangle(int x, int y, int width, int height) : bmDrawable(x, y, width, height) { };
 
 	void draw(SDL_Renderer* renderer) override;
 	void init() override;

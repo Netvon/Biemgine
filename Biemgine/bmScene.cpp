@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmScene.h"
 
-void bmScene::addComponent(bmComponent * newComponent)
+void bmScene::addComponent(bmDrawable * newComponent)
 {
 	components.push_back(newComponent);
 	newComponent->init();

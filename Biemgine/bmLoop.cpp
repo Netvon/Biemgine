@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
-void bmLoop::start(const SdlWindow & sdlwindow)
+void bmLoop::start(const SdlWindow* sdlwindow)
 {
-	if (sdlwindow.window != nullptr) {
-		window = sdlwindow.window;
+	if (sdlwindow->window != nullptr) {
+		window = sdlwindow->window;
 	}
 
-	if (sdlwindow.renderer != nullptr) {
-		renderer = sdlwindow.renderer;
+	if (sdlwindow->renderer != nullptr) {
+		renderer = sdlwindow->renderer;
 	}
 
 	created();
@@ -20,25 +20,20 @@ void bmLoop::signalQuit()
 	quit = true;
 }
 
-//void bmLoop::addComponent(bmComponent * newComponent)
-//{
-//	components.push_back(newComponent);
-//}
-
 void bmLoop::startLoop()
 {
 	while (!quit) {
 
 		pollEvents();
-
 		globalUpdate();
-		globalDraw();
 
+		globalDraw();
 		SDL_GL_SwapWindow(window);
+
 	}
 
+	globalEnd();
 	end();
-	//globalEnd();
 }
 
 void bmLoop::pollEvents()
@@ -57,19 +52,19 @@ void bmLoop::globalUpdate()
 
 void bmLoop::globalDraw()
 {
-	SDL_SetRenderDrawColor(renderer, 0x93, 0xCC, 0xEA, 0xFF);
-	SDL_RenderClear(renderer);
+	glClear(GL_COLOR_BUFFER_BIT);
 
-	//drawComponents();
 	draw();
 
 	SDL_RenderPresent(renderer);
 }
 
-//void bmLoop::drawComponents()
-//{
-//	for (auto* c : components) {
-//		c->draw(renderer);
-//	}
-//}
+void bmLoop::globalEnd()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	SDL_RenderPresent(renderer);
+}
+
+
 

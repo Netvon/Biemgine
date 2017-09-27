@@ -2,7 +2,7 @@
 
 #include "sdlWindow.h"
 #include "bmInputManager.h"
-#include "bmComponent.h"
+#include "bmDrawable.h"
 #include <vector>
 
 class bmLoop
@@ -14,7 +14,7 @@ public:
 
 	bmInputManager im;
 
-	void start(const SdlWindow & sldwindow);
+	void start(const SdlWindow * sldwindow);
 	void signalQuit();
 
 private:
@@ -25,6 +25,7 @@ private:
 
 	void globalUpdate();
 	void globalDraw();
+	void globalEnd();
 
 	virtual void update() { }
 	virtual void draw() { }
