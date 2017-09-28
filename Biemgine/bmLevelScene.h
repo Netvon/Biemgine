@@ -6,11 +6,9 @@ class bmLevelScene :
 	public bmScene
 {
 public:
-
 	void update(float deltaTime) override;
 	void created() override;
 
-private:
-
+	bmLevelScene(bmSceneManager* manager) : bmScene(manager) {};
 };
 

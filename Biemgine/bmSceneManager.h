@@ -7,19 +7,16 @@
 class bmSceneManager
 {
 public:
-	static bmSceneManager* instance();
 
 	void setWindow(SdlWindow*);
 	void changeScene(bmSceneType);
 	bool checkNextScene();
 
+	bmSceneManager() {};
+
 private:
 	bmScene* currentScene = nullptr;
 	SdlWindow* currentWindow;
-	static bmSceneManager* smInstance;
 	int nextScene;
-
-
-	bmSceneManager() {};
 };
 

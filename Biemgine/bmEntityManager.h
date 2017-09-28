@@ -18,6 +18,8 @@ public:
 	// Function that fills each inputcomponent with the input data.
 	void fillInput();
 
+	void clear();
+
 private:
 
 

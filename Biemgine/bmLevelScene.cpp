@@ -31,7 +31,7 @@ void bmLevelScene::update(float deltaTime)
 	}
 
 	if (im.isKeyDown("A")) {
-		bmSceneManager::instance()->changeScene(bmScene_menu);
+		sceneManager->changeScene(bmScene_menu);
 	}
 
 

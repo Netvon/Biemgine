@@ -25,3 +25,13 @@ void bmSystemManager::updateAll(std::vector<bmEntity*> entities)
 
 
 }
+
+void bmSystemManager::clear()
+{
+	for (auto it = systems.begin(); it != systems.end(); ++it)
+	{
+		delete (*it);
+	}
+
+	systems.clear();
+}

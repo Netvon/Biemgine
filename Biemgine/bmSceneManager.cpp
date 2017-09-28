@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "bmSceneManager.h"
 
-
-bmSceneManager* bmSceneManager::smInstance = 0;
-
-bmSceneManager* bmSceneManager::instance()
-{
-	if (smInstance == 0) smInstance = new bmSceneManager();
-
-	return smInstance;
-}
-
 void bmSceneManager::setWindow(SdlWindow* window)
 {
 	currentWindow = window;
@@ -31,7 +21,6 @@ bool bmSceneManager::checkNextScene()
 
 	if (currentScene != nullptr) {
 		delete currentScene;
-		currentScene = NULL;
 	}
 
 	switch (nextScene) {
@@ -39,7 +28,7 @@ bool bmSceneManager::checkNextScene()
 
 		nextScene = bmScene_NULL;
 
-		currentScene = new bmLevelScene();
+		currentScene = new bmLevelScene(this);
 		currentScene->start(currentWindow);
 
 		break;
@@ -47,7 +36,7 @@ bool bmSceneManager::checkNextScene()
 
 		nextScene = bmScene_NULL;
 
-		currentScene = new bmMenuScene();
+		currentScene = new bmMenuScene(this);
 		currentScene->start(currentWindow);
 
 		break;

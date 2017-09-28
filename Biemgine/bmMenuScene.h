@@ -6,12 +6,9 @@ class bmMenuScene :
 	public bmScene
 {
 public:
-	bmMenuScene();
-
 	void update(float deltaTime) override;
 	void created() override;
 
-private:
-
+	bmMenuScene(bmSceneManager* manager) : bmScene(manager) {};
 };
 

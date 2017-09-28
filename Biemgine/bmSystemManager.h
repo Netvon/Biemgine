@@ -14,7 +14,7 @@ public:
 
 	void updateAll(std::vector<bmEntity*>);
 
-private:
+	void clear();
 
 };
 

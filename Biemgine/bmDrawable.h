@@ -4,7 +4,6 @@ class bmDrawable
 {
 public:
 	bmDrawable(int x, int y, int width, int height);
-	~bmDrawable();
 
 public:
 	int x, y;
@@ -12,5 +11,6 @@ public:
 
 	virtual void init() { };
 	virtual void draw() { };
+	virtual void clear() { };
 };
 

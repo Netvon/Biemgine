@@ -12,7 +12,7 @@ void bmRectangle::draw()
 
 void bmRectangle::init()
 {
-	vertexSource = R"glsl(
+	auto vertexSource = R"glsl(
 		#version 330 core
 		layout (location = 0) in vec3 position;
 		layout (location = 1) in vec3 aColor;
@@ -25,7 +25,7 @@ void bmRectangle::init()
 		}
 	)glsl";
 
-	fragmentSource = R"glsl(
+	auto fragmentSource = R"glsl(
 		#version 330 core
 		in vec3 color;
 		out vec4 outColor;
@@ -35,12 +35,10 @@ void bmRectangle::init()
 		}
 	)glsl";
 
-	GLuint vao;
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
 	// Create a Vertex Buffer Object and copy the vertex data to it
-	GLuint vbo;
 	glGenBuffers(1, &vbo);
 
 	GLfloat vertices[] = {
@@ -55,7 +53,6 @@ void bmRectangle::init()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// Create an element array
-	GLuint ebo;
 	glGenBuffers(1, &ebo);
 
 	GLuint elements[] = {
@@ -77,12 +74,15 @@ void bmRectangle::init()
 	glCompileShader(fragmentShader);
 
 	// Link the vertex and fragment shader into a shader program
-	GLuint shaderProgram = glCreateProgram();
+	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glBindFragDataLocation(shaderProgram, 0, "outColor");
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
+
+	glDeleteShader(fragmentShader);
+	glDeleteShader(vertexShader);
 
 	// Specify the layout of the vertex data
 	/*GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
@@ -99,4 +99,13 @@ void bmRectangle::init()
 	// color attribute
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+}
+
+void bmRectangle::clear()
+{
+	glDeleteProgram(shaderProgram);
+	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &ebo);
+
+	glDeleteVertexArrays(1, &vao);
 }

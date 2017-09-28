@@ -8,9 +8,16 @@ public:
 
 	void draw() override;
 	void init() override;
+	void clear() override;
 
 private:
-	const GLchar* vertexSource;
-	const GLchar* fragmentSource;
+	GLint shaderProgram;
+	GLuint vao;
+	GLuint vbo;
+	GLuint ebo;
+
+//private:
+//	const std::string vertexSource;
+//	const std::string fragmentSource;
 };
 

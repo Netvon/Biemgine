@@ -12,15 +12,19 @@ bmEngine::bmEngine()
 		SDL_RENDERER_ACCELERATED
 	);
 
-	bmSceneManager::instance()->setWindow(&window);
-	bmSceneManager::instance()->changeScene(bmScene_menu);
+	bmSceneManager* manager = new bmSceneManager();
+
+	manager->setWindow(&window);
+	manager->changeScene(bmScene_menu);
 
 
 	while (true) {
 
 		// The engine should keep running until there is no next scene.
-		if (!bmSceneManager::instance()->checkNextScene()) break;
+		if (!manager->checkNextScene()) break;
 
 	}
+
+	delete manager;
 
 }

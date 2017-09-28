@@ -3,13 +3,6 @@
 #include "bmSceneManager.h"
 
 
-bmMenuScene::bmMenuScene()
-{
-
-
-
-}
-
 void bmMenuScene::created()
 {
 	/*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
@@ -25,6 +18,6 @@ void bmMenuScene::update(float deltaTime)
 	}
 
 	if (im.isKeyDown("S")) {
-		bmSceneManager::instance()->changeScene(bmScene_level);
+		sceneManager->changeScene(bmScene_level);
 	}
 }

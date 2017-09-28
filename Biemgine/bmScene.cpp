@@ -7,11 +7,9 @@ void bmScene::addComponent(bmDrawable * newComponent)
 	newComponent->init();
 }
 
-bmScene::bmScene()
+void bmScene::created()
 {
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glGenBuffers(1, &vbo);
+	
 }
 
 void bmScene::draw()
@@ -27,7 +25,15 @@ void bmScene::draw()
 
 void bmScene::end()
 {
+
 	for (auto* c : components) {
+		c->clear();
 		delete c;
 	}
+
+	systemManager->clear();
+	delete systemManager;
+
+	entityManager->clear();
+	delete entityManager;
 }

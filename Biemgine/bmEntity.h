@@ -13,6 +13,8 @@ public:
 	std::map<std::string, bmComponent*> getComponentHM();
 	int id;
 
+	void clear();
+
 protected:
 
 	std::map<std::string, bmComponent*> componentHashmap;

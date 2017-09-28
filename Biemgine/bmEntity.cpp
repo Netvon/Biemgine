@@ -13,3 +13,12 @@ std::map<std::string, bmComponent*> bmEntity::getComponentHM()
 
 
 }
+
+void bmEntity::clear()
+{
+	for (std::pair<std::string, bmComponent*> pair : componentHashmap) {
+		delete pair.second;
+	}
+
+	componentHashmap.clear();
+}

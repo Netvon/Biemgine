@@ -9,7 +9,3 @@ bmDrawable::bmDrawable(int x, int y, int width, int height)
 	this->width = width;
 	this->height = height;
 }
-
-bmDrawable::~bmDrawable()
-{
-}
