@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "bmScene.h"
 
-void bmScene::addComponent(bmDrawable * newComponent)
+
+void bmScene::updateEntities()
 {
-	components.push_back(newComponent);
-	newComponent->init();
+	entityManager->updateEntities(systemManager);
 }
 
 void bmScene::created()
@@ -12,25 +12,8 @@ void bmScene::created()
 	
 }
 
-void bmScene::draw()
-{
-	drawBeforeComponents();
-
-	for (auto* c : components) {
-		c->draw();
-	}
-
-	drawAfterComponents();
-}
-
 void bmScene::end()
 {
-
-	for (auto* c : components) {
-		c->clear();
-		delete c;
-	}
-
 	systemManager->clear();
 	delete systemManager;
 

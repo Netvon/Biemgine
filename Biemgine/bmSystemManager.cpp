@@ -13,17 +13,11 @@ bmSystemManager::bmSystemManager()
 
 }
 
-void bmSystemManager::updateAll(std::vector<bmEntity*> entities)
+void bmSystemManager::acceptForUpdate(const bmEntity & entity)
 {
-
 	for (auto* s : systems) {
-		for (auto* e : entities) {
-
-			s->update(e);
-		}
+		s->update(entity);
 	}
-
-
 }
 
 void bmSystemManager::clear()

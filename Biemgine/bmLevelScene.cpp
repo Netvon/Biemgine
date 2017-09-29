@@ -6,17 +6,17 @@
 
 void bmLevelScene::created()
 {
-	bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
-	addComponent(c1);
+	//bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
+	//addComponent(c1);
 
 	cout << "LevelScene created" << endl;
 
 
 	// Setup the scene with entities
 
-	entityManager->AddEntity(new bmPlayerEntity());
-	entityManager->AddEntity(new bmPlayerEntity());
-	entityManager->AddEntity(new bmPlayerEntity());
+	entityManager->addEntity(new bmPlayerEntity());
+	entityManager->addEntity(new bmPlayerEntity());
+	entityManager->addEntity(new bmPlayerEntity());
 
 	// Create and add Player
 	// Create and add Planets
@@ -39,7 +39,5 @@ void bmLevelScene::update(float deltaTime)
 
 
 	// Update everything...
-	systemManager->updateAll(entityManager->entities);
-	
-	
+	updateEntities();
 }

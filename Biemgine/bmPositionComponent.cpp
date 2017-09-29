@@ -1,10 +1,18 @@
 #include "stdafx.h"
 #include "bmPositionComponent.h"
 
-bmPositionComponent::bmPositionComponent(int x, int y)
+
+float bmPositionComponent::getX() const
 {
+	return location.x;
+}
 
-	this->x = x;
-	this->y = y;
+float bmPositionComponent::getY() const
+{
+	return location.y;
+}
 
+float bmPositionComponent::getZ() const
+{
+	return location.z;
 }

@@ -10,10 +10,6 @@
 class bmSystem
 {
 public:
-	virtual void update(bmEntity*) { };
-
-private:
-
-
+	virtual void update(const bmEntity& entity) { };
 };
 

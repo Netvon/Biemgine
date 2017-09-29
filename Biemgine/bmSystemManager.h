@@ -9,12 +9,11 @@ class bmSystemManager
 public:
 	
 	bmSystemManager();
-
-	std::vector<bmSystem*> systems;
-
-	void updateAll(std::vector<bmEntity*>);
+	void acceptForUpdate(const bmEntity& entity);
 
 	void clear();
+private:
+	std::vector<bmSystem*> systems;
 
 };
 

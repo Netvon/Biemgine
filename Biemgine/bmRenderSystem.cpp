@@ -5,20 +5,22 @@
 
 
 
-void bmRenderSystem::update(bmEntity* entity) {
+void bmRenderSystem::update(const bmEntity& entity) {
 
 	// Get the components
-	std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
+	// std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
+	auto pc = entity.getComponent<bmPositionComponent*>("position");
 
 	// Check if the entity has the right components
-	if (componentHM.find("position") == componentHM.end()) return;
+	if (entity.hasComponent("position"))
+		return;
 
 	// Parse the base component to the right derived component
-	bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
+	//bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
 	
 
 	// Action!
-	std::cout << "Rendering id:" << entity->id << " at x:" << pc->x << " and y:" << pc->y << std::endl;
+	std::cout << "Rendering id:" << entity.getId() << " at x:" << pc->getX() << " and y:" << pc->getY() << std::endl;
 
 
 

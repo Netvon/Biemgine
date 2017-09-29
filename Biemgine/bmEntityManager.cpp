@@ -1,11 +1,10 @@
 #include "stdafx.h"
 #include "bmEntityManager.h"
 
-void bmEntityManager::AddEntity(bmEntity* entity)
+int bmEntityManager::addEntity(bmEntity* entity)
 {
-
 	entities.push_back(entity);
-
+	return entity->getId();
 }
 
 void bmEntityManager::clear()
@@ -20,4 +19,11 @@ void bmEntityManager::clear()
 	}
 
 	entities.clear();
+}
+
+void bmEntityManager::updateEntities(bmSystemManager * manager)
+{
+	for (bmEntity * e : entities) {
+		manager->acceptForUpdate(*e);
+	}
 }

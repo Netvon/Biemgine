@@ -9,12 +9,12 @@ class bmScene :
 	public bmLoop
 {
 public:
-	void addComponent(bmDrawable * newComponent);
+	//void addComponent(bmDrawable * newComponent);
 
 	bmScene(bmSceneManager* manager) : sceneManager(manager) {};
+	void updateEntities();
 
 protected:
-	std::vector<bmDrawable*> components;
 
 	bmSystemManager* systemManager = new bmSystemManager();
 	bmEntityManager* entityManager = new bmEntityManager();
@@ -26,10 +26,10 @@ private:
 	virtual void update(float deltaTime) override { }
 	virtual void created();
 
-	virtual void drawBeforeComponents() { };
-	virtual void drawAfterComponents() { };
+	//virtual void drawBeforeComponents() { };
+	//virtual void drawAfterComponents() { };
 
-	void draw() override;
+	//void draw() override;
 	void end() override;
 };
 

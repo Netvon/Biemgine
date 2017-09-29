@@ -6,10 +6,6 @@ class bmRenderSystem : public bmSystem
 {
 public:
 
-	void update(bmEntity*) override;
-
-
-private:
-
+	void update(const bmEntity& entity) override;
 };
 

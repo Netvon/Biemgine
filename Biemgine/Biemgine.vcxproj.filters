@@ -125,9 +125,6 @@
     <ClCompile Include="sdlWindow.cpp">
       <Filter>bmBase</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>graphics</Filter>
-    </ClCompile>
     <ClCompile Include="bmEngine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -181,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

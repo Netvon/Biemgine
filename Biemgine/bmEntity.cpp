@@ -2,21 +2,14 @@
 #include "bmEntity.h"
 
 bmEntity::bmEntity()
-{
-	id = rand() % 100;
+{	
+	id = std::rand() % 100;
 }
 
-std::map<std::string, bmComponent*> bmEntity::getComponentHM()
-{
-
-	return componentHashmap;
-
-
-}
 
 void bmEntity::clear()
 {
-	for (std::pair<std::string, bmComponent*> pair : componentHashmap) {
+	for (std::pair<std::string, const bmComponent*> pair : componentHashmap) {
 		delete pair.second;
 	}
 

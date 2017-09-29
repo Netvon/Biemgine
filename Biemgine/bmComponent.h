@@ -5,9 +5,5 @@ class bmComponent
 public:
 	bmComponent() {};
 	virtual ~bmComponent() {};
-
-private:
-
-
 };
 

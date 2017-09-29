@@ -1,16 +1,19 @@
 #pragma once
 
 #include "bmComponent.h"
+#include <glm/glm.hpp>
 
 class bmPositionComponent: public bmComponent
 {
 public:
-	int x;
-	int y;
 
-	bmPositionComponent(int x=0, int y=0);
+	bmPositionComponent(float x = 0, float y = 0, float z = 0) : location(x, y, z) {};
+
+	float getX() const;
+	float getY() const;
+	float getZ() const;
 
 private:
-	
+	glm::vec3 location;
 };
 

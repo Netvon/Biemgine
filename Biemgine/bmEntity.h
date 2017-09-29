@@ -6,19 +6,33 @@
 #include <iostream>
 #include <cassert>
 
+using namespace std;
+
 class bmEntity
 {
 public:
 	bmEntity();
-	std::map<std::string, bmComponent*> getComponentHM();
-	int id;
+
+	template <typename TComponent>
+	TComponent getComponent(const string name) const {
+		return dynamic_cast<TComponent>(componentHashmap.at(name));
+	}
+
+	bool hasComponent(const string name) const {
+		return componentHashmap.find(name) == componentHashmap.end();
+	}
+
+	void addComponent(const string name, bmComponent * component) {
+		componentHashmap.insert(pair<string, bmComponent*>(name, component));
+	}
 
 	void clear();
 
-protected:
+	int getId() const {
+		return id;
+	}
 
-	std::map<std::string, bmComponent*> componentHashmap;
-
-
+private:
+	int id;
+	map<string, bmComponent*> componentHashmap;
 };
-
