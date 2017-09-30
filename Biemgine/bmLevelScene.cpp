@@ -14,9 +14,9 @@ void bmLevelScene::created()
 
 	// Setup the scene with entities
 
-	entityManager->addEntity(new bmPlayerEntity());
-	entityManager->addEntity(new bmPlayerEntity());
-	entityManager->addEntity(new bmPlayerEntity());
+	getEntityManager().addEntity(new bmPlayerEntity());
+	getEntityManager().addEntity(new bmPlayerEntity());
+	getEntityManager().addEntity(new bmPlayerEntity());
 
 	// Create and add Player
 	// Create and add Planets
@@ -31,7 +31,7 @@ void bmLevelScene::update(float deltaTime)
 	}
 
 	if (im.isKeyDown("A")) {
-		sceneManager->changeScene(bmScene_menu);
+		getSceneManager().changeScene(bmScene_menu);
 	}
 
 

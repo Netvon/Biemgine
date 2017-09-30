@@ -172,19 +172,23 @@
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRectangle.h" />
     <ClInclude Include="bmRenderSystem.h" />
+    <ClInclude Include="bmResourceManager.h" />
     <ClInclude Include="bmScene.h" />
     <ClInclude Include="bmSceneType.h" />
     <ClInclude Include="bmSystem.h" />
     <ClInclude Include="bmSystemManager.h" />
+    <ClInclude Include="bmTexture2d.h" />
     <ClInclude Include="bmVector2.h" />
     <ClInclude Include="bmSceneManager.h" />
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="sdlWindow.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="bmShader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmResourceManager.cpp" />
+    <ClCompile Include="bmTexture2d.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
     <ClCompile Include="bmDrawable.cpp" />
@@ -205,7 +209,7 @@
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
     <ClCompile Include="sdlWindow.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="bmShader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

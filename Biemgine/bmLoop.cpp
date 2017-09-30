@@ -32,7 +32,7 @@ void bmLoop::startLoop()
 		pollEvents();
 		globalUpdate();
 
-		globalDraw();
+		//globalDraw();
 		SDL_GL_SwapWindow(window);
 
 	}
@@ -55,12 +55,12 @@ void bmLoop::globalUpdate()
 	update(deltaTime);
 }
 
-void bmLoop::globalDraw()
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	draw();
-}
+//void bmLoop::globalDraw()
+//{
+//	glClear(GL_COLOR_BUFFER_BIT);
+//
+//	draw();
+//}
 
 void bmLoop::globalEnd()
 {

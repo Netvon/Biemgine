@@ -18,6 +18,6 @@ void bmMenuScene::update(float deltaTime)
 	}
 
 	if (im.isKeyDown("S")) {
-		sceneManager->changeScene(bmScene_level);
+		getSceneManager().changeScene(bmScene_level);
 	}
 }

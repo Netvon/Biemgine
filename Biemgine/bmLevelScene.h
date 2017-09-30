@@ -9,6 +9,7 @@ public:
 	void update(float deltaTime) override;
 	void created() override;
 
-	bmLevelScene(bmSceneManager* manager) : bmScene(manager) {};
+	bmLevelScene(bmSceneManager* manager, bmResourceManager* resourceManager) 
+		: bmScene(manager, resourceManager) {};
 };
 

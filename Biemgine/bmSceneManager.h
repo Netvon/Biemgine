@@ -3,6 +3,7 @@
 #include "bmSceneType.h"
 #include "bmLevelScene.h"
 #include "bmMenuScene.h"
+#include "bmResourceManager.h"
 
 class bmSceneManager
 {
@@ -17,6 +18,8 @@ public:
 private:
 	bmScene* currentScene = nullptr;
 	SdlWindow* currentWindow;
+	bmResourceManager resourceManager;
+
 	int nextScene;
 };
 

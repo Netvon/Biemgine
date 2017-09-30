@@ -28,12 +28,13 @@ private:
 	void pollEvents();
 
 	void globalUpdate();
-	void globalDraw();
+	//void globalDraw();
 	void globalEnd();
 
 	virtual void update(float deltaTime) { }
-	virtual void draw() { }
 	virtual void created() { }
 	virtual void end() { }
 };
+
+
 
