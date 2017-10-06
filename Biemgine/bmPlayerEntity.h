@@ -6,7 +6,7 @@ class bmPlayerEntity : public bmEntity
 {
 public:
 
-	bmPlayerEntity();
+	bmPlayerEntity(int x, int y, int r, int g, int b);
 
 
 private:

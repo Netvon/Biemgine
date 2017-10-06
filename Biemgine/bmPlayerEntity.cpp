@@ -1,16 +1,10 @@
 #include "stdafx.h"
 #include "bmPlayerEntity.h"
+#include "bmColorComponent.h"
 
 
-
-bmPlayerEntity::bmPlayerEntity() : bmEntity()
+bmPlayerEntity::bmPlayerEntity(int x, int y, int r, int g, int b)
 {
-	// Add in each specific entity the right components.
-	addComponent("position", new bmPositionComponent(50, 50));
-	// Renderable component...
-	// Movable component...
-	// Collision component...
-
-
-
+	addComponent("position", new bmPositionComponent(x, y));
+	addComponent("color", new bmColorComponent(r, g, b));
 }

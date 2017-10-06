@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmSceneManager.h"
 
-void bmSceneManager::setWindow(SdlWindow* window)
+void bmSceneManager::setWindow(Window* window)
 {
 	currentWindow = window;
 }

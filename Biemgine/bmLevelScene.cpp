@@ -4,7 +4,7 @@
 #include "bmPlayerEntity.h"
 
 
-void bmLevelScene::created()
+void bmLevelScene::sceneCreated()
 {
 	//bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
 	//addComponent(c1);
@@ -14,9 +14,9 @@ void bmLevelScene::created()
 
 	// Setup the scene with entities
 
-	getEntityManager().addEntity(new bmPlayerEntity());
-	getEntityManager().addEntity(new bmPlayerEntity());
-	getEntityManager().addEntity(new bmPlayerEntity());
+	getEntityManager().addEntity(new bmPlayerEntity(0, 0, 255, 0, 0));
+	getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0));
+	getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255));
 
 	// Create and add Player
 	// Create and add Planets

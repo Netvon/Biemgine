@@ -23,7 +23,11 @@ void bmEntityManager::clear()
 
 void bmEntityManager::updateEntities(bmSystemManager * manager)
 {
+	manager->preUpdate();
+
 	for (bmEntity * e : entities) {
 		manager->acceptForUpdate(*e);
 	}
+
+	manager->postUpdate();
 }

@@ -1,26 +1,26 @@
 #include "stdafx.h"
-#include "sdlWindow.h"
+#include "Window.h"
+#include "SDLGraphicsDevice.h"
 
-SdlWindow::SdlWindow(
+Window::Window(
 	const string & title,
 	const int32_t & width,
 	const int32_t & height,
 	const int32_t& options,
 	const int32_t& renderOptions)
 {
-	if (initSdl()) {
+	if (init()) {
 
 		initWindow(title, width, height, options);
-		 
-		if ((renderOptions & SDL_WINDOW_OPENGL) == 0) {
-			initRenderer(renderOptions);
-		}
+		//initRenderer(renderOptions);
+
+		gd = new SDLGraphicsDevice(window);
 	}
 }
 
-SdlWindow::~SdlWindow()
+Window::~Window()
 {
-	SDL_DestroyRenderer(renderer);
+	//SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
 	if (glContext != nullptr) {
@@ -30,7 +30,12 @@ SdlWindow::~SdlWindow()
 	SDL_Quit();
 }
 
-bool SdlWindow::initSdl()
+GraphicsDevice * Window::getGraphicsDevice() const
+{
+	return gd;
+}
+
+bool Window::init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
@@ -41,7 +46,7 @@ bool SdlWindow::initSdl()
 	return true;
 }
 
-SdlWindow & SdlWindow::initWindow(
+void Window::initWindow(
 	const string & title,
 	const int32_t & width,
 	const int32_t & height,
@@ -58,33 +63,9 @@ SdlWindow & SdlWindow::initWindow(
 
 	if (window == nullptr)
 		std::cout << "Failed to initialize Window\n" << SDL_GetError() << "\n";
-	else {
-		if ((options & SDL_WINDOW_OPENGL) == SDL_WINDOW_OPENGL) {
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-			SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-
-			glContext = SDL_GL_CreateContext(window);
-
-			SDL_GL_SetSwapInterval(0);
-
-			if (glContext != nullptr) {
-				glewExperimental = GL_TRUE;
-				glewInit();
-
-				GLuint vertexBuffer;
-				glGenBuffers(1, &vertexBuffer);
-
-				printf("%s\n", glGetString(GL_VERSION));
-			}
-		}
-	}
-
-	return *this;
 }
 
-SdlWindow & SdlWindow::initRenderer(
+void Window::initRenderer(
 	const int32_t & renderOptions)
 {
 	renderer = SDL_CreateRenderer(
@@ -93,6 +74,4 @@ SdlWindow & SdlWindow::initRenderer(
 
 	if (renderer == nullptr)
 		std::cout << "Failed to initialize Renderer\n" << SDL_GetError() << "\n";
-
-	return *this;
 }

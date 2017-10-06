@@ -48,9 +48,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdlWindow.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmVector2.h">
       <Filter>bmBase</Filter>
     </ClInclude>
@@ -114,11 +111,20 @@
     <ClInclude Include="bmResourceManager.h">
       <Filter>graphics</Filter>
     </ClInclude>
-    <ClInclude Include="bmShader.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
     <ClInclude Include="bmTexture2d.h">
       <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDevice.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLGraphicsDevice.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="bmColorComponent.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,9 +132,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bmVector2.cpp">
-      <Filter>bmBase</Filter>
-    </ClCompile>
-    <ClCompile Include="sdlWindow.cpp">
       <Filter>bmBase</Filter>
     </ClCompile>
     <ClCompile Include="bmEngine.cpp">
@@ -185,14 +188,20 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bmShader.cpp">
-      <Filter>graphics</Filter>
-    </ClCompile>
     <ClCompile Include="bmResourceManager.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
     <ClCompile Include="bmTexture2d.cpp">
       <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLGraphicsDevice.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="bmColorComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

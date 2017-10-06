@@ -3,7 +3,7 @@
 #include "bmSceneManager.h"
 
 
-void bmMenuScene::created()
+void bmMenuScene::sceneCreated()
 {
 	/*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
 	addComponent(c1);*/

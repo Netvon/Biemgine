@@ -1,11 +1,9 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
-void bmLoop::start(const SdlWindow* sdlwindow)
+void bmLoop::start(const Window* bmwindow)
 {
-	if (sdlwindow->window != nullptr) {
-		window = sdlwindow->window;
-	}
+	window = bmwindow;
 
 	created();
 	startLoop();
@@ -33,7 +31,6 @@ void bmLoop::startLoop()
 		globalUpdate();
 
 		//globalDraw();
-		SDL_GL_SwapWindow(window);
 
 	}
 

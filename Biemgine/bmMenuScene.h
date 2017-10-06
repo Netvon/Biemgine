@@ -7,7 +7,7 @@ class bmMenuScene :
 {
 public:
 	void update(float deltaTime) override;
-	void created() override;
+	void sceneCreated() override;
 
 	bmMenuScene(bmSceneManager* manager, bmResourceManager* resourceManager)
 		: bmScene(manager, resourceManager) {};

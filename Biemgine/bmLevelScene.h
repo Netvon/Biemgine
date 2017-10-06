@@ -7,7 +7,7 @@ class bmLevelScene :
 {
 public:
 	void update(float deltaTime) override;
-	void created() override;
+	void sceneCreated() override;
 
 	bmLevelScene(bmSceneManager* manager, bmResourceManager* resourceManager) 
 		: bmScene(manager, resourceManager) {};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sdlWindow.h"
+#include "Window.h"
 #include "bmInputManager.h"
 #include "bmDrawable.h"
 #include <vector>
@@ -10,12 +10,16 @@ class bmLoop
 public:
 	bmInputManager im;
 
-	void start(const SdlWindow * sldwindow);
+	void start(const Window * window);
 	void signalQuit();
+
+	const Window* getWindow() const {
+		return window;
+	}
 
 private:
 	SDL_Event event;
-	SDL_Window* window = nullptr;
+	const Window* window;
 
 	bool quit = false;
 
