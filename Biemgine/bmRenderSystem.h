@@ -7,7 +7,7 @@ class bmRenderSystem
 	: public bmSystem
 {
 public:
-	void setGraphicsDevice(const GraphicsDevice* graphicsDevice) {
+	void setGraphicsDevice(GraphicsDevice* graphicsDevice) {
 		this->graphicsDevice = graphicsDevice;
 	}
 
@@ -18,6 +18,6 @@ public:
 	void after() override;
 
 private:
-	const GraphicsDevice* graphicsDevice;
+	GraphicsDevice* graphicsDevice;
 };
 

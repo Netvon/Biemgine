@@ -96,9 +96,6 @@
     <ClInclude Include="bmDrawable.h">
       <Filter>bmBase</Filter>
     </ClInclude>
-    <ClInclude Include="bmRectangle.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmComponent.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -109,9 +106,6 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="bmResourceManager.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="bmTexture2d.h">
       <Filter>graphics</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
@@ -173,9 +167,6 @@
     <ClCompile Include="bmDrawable.cpp">
       <Filter>bmBase</Filter>
     </ClCompile>
-    <ClCompile Include="bmRectangle.cpp">
-      <Filter>bmBase</Filter>
-    </ClCompile>
     <ClCompile Include="bmComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -189,9 +180,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bmResourceManager.cpp">
-      <Filter>graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="bmTexture2d.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">

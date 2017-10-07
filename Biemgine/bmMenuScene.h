@@ -1,6 +1,5 @@
 #pragma once
 #include "bmScene.h"
-#include "bmRectangle.h"
 
 class bmMenuScene :
 	public bmScene

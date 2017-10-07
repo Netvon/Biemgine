@@ -23,12 +23,17 @@ void bmRenderSystem::update(const bmEntity& entity) {
 	// Action!
 	std::cout << "Rendering id:" << entity.getId() << " at x:" << pc->getX() << " and y:" << pc->getY() << std::endl;
 
-	float offsetX = static_cast<float>(rand() % 2) / 10.0;
+	/*float offsetX = static_cast<float>(rand() % 2) / 10.0;
 	float offsetY = static_cast<float>(rand() % 2) / 10.0;
 
-	pc->add(offsetX, offsetY);
+	pc->add(offsetX, offsetY);*/
 
-	graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
+	float angle = 0;//static_cast<float>(rand() % 360);
+	bmColor color = { rand() % 255, rand() % 255, rand() % 255 };
+
+	//graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
+	//graphicsDevice->drawTexture("../../Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56);
+	graphicsDevice->drawTexture("C:/Users/tom/source/repos/Biemgine/Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56, angle, color);
 }
 
 void bmRenderSystem::onSceneSwitch()
