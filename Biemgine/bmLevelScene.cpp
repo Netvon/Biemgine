@@ -14,9 +14,9 @@ void bmLevelScene::sceneCreated()
 
 	// Setup the scene with entities
 
-	getEntityManager().addEntity(new bmPlayerEntity(0, 0, 255, 0, 0));
-	getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0));
-	getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255));
+	getEntityManager().addEntity(new bmPlayerEntity(0, 0, 255, 0, 0, 15, 25));
+	getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
+	getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
 
 	// Create and add Player
 	// Create and add Planets

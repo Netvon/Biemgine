@@ -126,6 +126,12 @@
     <ClInclude Include="bmTextureComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="bmPhysicsSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmPhysicsComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -198,6 +204,12 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="bmTextureComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPhysicsSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPhysicsComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,8 +9,6 @@ class bmRenderSystem
 public:
 	void setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
-	~bmRenderSystem();
-
 	void update(const bmEntity& entity) override;
 	void onSceneSwitch() override;
 	void before() override;

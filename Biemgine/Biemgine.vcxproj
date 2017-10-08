@@ -167,6 +167,8 @@
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
+    <ClInclude Include="bmPhysicsComponent.h" />
+    <ClInclude Include="bmPhysicsSystem.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRenderSystem.h" />
@@ -188,6 +190,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmPhysicsComponent.cpp" />
+    <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
