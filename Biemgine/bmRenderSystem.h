@@ -7,9 +7,9 @@ class bmRenderSystem
 	: public bmSystem
 {
 public:
-	void setGraphicsDevice(GraphicsDevice* graphicsDevice) {
-		this->graphicsDevice = graphicsDevice;
-	}
+	void setGraphicsDevice(GraphicsDevice* graphicsDevice);
+
+	~bmRenderSystem();
 
 	void update(const bmEntity& entity) override;
 	void onSceneSwitch() override;
@@ -17,7 +17,9 @@ public:
 
 	void after() override;
 
+	void destroy() override;
+
 private:
-	GraphicsDevice* graphicsDevice;
+	GraphicsDevice* graphicsDevice = nullptr;
 };
 

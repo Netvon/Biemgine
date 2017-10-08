@@ -14,8 +14,8 @@ class bmScene :
 public:
 	//void addComponent(bmDrawable * newComponent);
 
-	bmScene(bmSceneManager* manager, bmResourceManager* resourceManager)
-		: sceneManager(manager), resourceManager(resourceManager) { }
+	bmScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
+		: sceneManager(manager)/*, resourceManager(resourceManager)*/ { }
 
 
 	void init() {
@@ -41,9 +41,9 @@ public:
 		return *systemManager;
 	}
 
-	bmResourceManager& getResourceManager() const {
+	/*bmResourceManager& getResourceManager() const {
 		return *resourceManager;
-	}
+	}*/
 
 private:
 
@@ -51,7 +51,7 @@ private:
 	bmEntityManager* entityManager = new bmEntityManager();
 
 	bmSceneManager* sceneManager;
-	bmResourceManager* resourceManager;
+	//bmResourceManager* resourceManager;
 
 	virtual void update(float deltaTime) override = 0;
 	void created() override {

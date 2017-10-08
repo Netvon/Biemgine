@@ -2,8 +2,14 @@
 #include "bmRenderSystem.h"
 #include "bmPositionComponent.h"
 #include "bmColorComponent.h"
+#include "bmTextureComponent.h"
 #include "bmEntity.h"
 
+
+void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice) 
+{
+	this->graphicsDevice = graphicsDevice;
+}
 
 void bmRenderSystem::update(const bmEntity& entity) {
 
@@ -11,6 +17,7 @@ void bmRenderSystem::update(const bmEntity& entity) {
 	// std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
 	auto pc = entity.getComponent<bmPositionComponent*>("position");
 	auto cc = entity.getComponent<bmColorComponent*>("color");
+	auto tc = entity.getComponent<bmTextureComponent*>("texture");
 
 	// Check if the entity has the right components
 	if (entity.hasComponent("position"))
@@ -29,16 +36,21 @@ void bmRenderSystem::update(const bmEntity& entity) {
 	pc->add(offsetX, offsetY);*/
 
 	float angle = 0;//static_cast<float>(rand() % 360);
-	bmColor color = { rand() % 255, rand() % 255, rand() % 255 };
+	// bmColor color = { rand() % 255, rand() % 255, rand() % 255 };
 
 	//graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
 	//graphicsDevice->drawTexture("../../Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56);
-	graphicsDevice->drawTexture("C:/Users/tom/source/repos/Biemgine/Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56, angle, color);
+	graphicsDevice->drawTexture(
+		tc->getPath(),
+		static_cast<int>(pc->getX()),
+		static_cast<int>(pc->getY())
+	);
 }
 
 void bmRenderSystem::onSceneSwitch()
 {
-	graphicsDevice->clear();
+	if(graphicsDevice != nullptr)
+		graphicsDevice->clear();
 }
 
 void bmRenderSystem::before()
@@ -49,4 +61,9 @@ void bmRenderSystem::before()
 void bmRenderSystem::after()
 {
 	graphicsDevice->present();
+}
+
+void bmRenderSystem::destroy()
+{
+	//graphicsDevice->destroy();
 }

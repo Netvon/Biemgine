@@ -29,12 +29,11 @@ private:
 		const int32_t& options
 	);
 
-	void initRenderer(const int32_t& renderOptions);
+	//void initRenderer(const int32_t& renderOptions);
 
 	SDL_Window* window = nullptr;
-	SDL_Renderer* renderer = nullptr;
+	//SDL_Renderer* renderer = nullptr;
 
-	SDL_GLContext glContext = nullptr;
-	GraphicsDevice* gd;
+	GraphicsDevice* gd = nullptr;
 };
 

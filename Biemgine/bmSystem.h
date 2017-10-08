@@ -17,5 +17,6 @@ public:
 	virtual void after() = 0;
 
 	virtual void onSceneSwitch() = 0;
+	virtual void destroy() = 0;
 };
 

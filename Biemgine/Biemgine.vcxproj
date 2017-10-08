@@ -175,11 +175,13 @@
     <ClInclude Include="bmSceneType.h" />
     <ClInclude Include="bmSystem.h" />
     <ClInclude Include="bmSystemManager.h" />
+    <ClInclude Include="bmTextureComponent.h" />
     <ClInclude Include="bmVector2.h" />
     <ClInclude Include="bmSceneManager.h" />
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
+    <ClInclude Include="TextureFlip.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -187,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
+    <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
     <ClCompile Include="bmDrawable.cpp" />

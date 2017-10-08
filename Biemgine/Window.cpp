@@ -23,8 +23,9 @@ Window::~Window()
 	//SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
-	if (glContext != nullptr) {
-		SDL_GL_DeleteContext(glContext);
+	if (gd != nullptr) {
+		gd->destroy();
+		delete gd;
 	}
 
 	SDL_Quit();
@@ -65,13 +66,13 @@ void Window::initWindow(
 		std::cout << "Failed to initialize Window\n" << SDL_GetError() << "\n";
 }
 
-void Window::initRenderer(
-	const int32_t & renderOptions)
-{
-	renderer = SDL_CreateRenderer(
-		window, -1, renderOptions
-	);
-
-	if (renderer == nullptr)
-		std::cout << "Failed to initialize Renderer\n" << SDL_GetError() << "\n";
-}
+//void Window::initRenderer(
+//	const int32_t & renderOptions)
+//{
+//	renderer = SDL_CreateRenderer(
+//		window, -1, renderOptions
+//	);
+//
+//	if (renderer == nullptr)
+//		std::cout << "Failed to initialize Renderer\n" << SDL_GetError() << "\n";
+//}

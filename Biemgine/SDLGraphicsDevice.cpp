@@ -5,15 +5,39 @@
 
 SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 {
-	this->window = window;
 	renderer = SDL_CreateRenderer(window, -1, 0);
+
+	if (IMG_Init(IMG_INIT_PNG) == 0) {
+		std::cout << IMG_GetError() << std::endl;
+	}
+
+	SDL_Rect viewport = { 0, 0, 0, 0 };
+
+	SDL_GetWindowSize(window, &viewport.w, &viewport.h);
+	SDL_RenderSetViewport(renderer, &viewport);
 }
 
-SDLGraphicsDevice::~SDLGraphicsDevice()
+void SDLGraphicsDevice::destroy()
 {
+	/*for (std::pair<std::string, SDL_Surface*> pair : surfaces) {
+		SDL_FreeSurface(pair.second);
+	}
+
+	surfaces.clear();*/
+
+	for (std::pair<std::string, SDL_Texture*> pair : textures) {
+		SDL_Texture* texture = pair.second;
+		SDL_DestroyTexture(texture);
+	}
+
+	textures.clear();
+
+
 	if (renderer != nullptr) {
 		SDL_DestroyRenderer(renderer);
 	}
+
+	IMG_Quit();
 }
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
@@ -27,25 +51,30 @@ void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, fl
 	SDL_RenderFillRect(renderer, &rect);
 }
 
-void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h, float angle, bmColor color)
+void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h, float angle, bmColor color, TextureFlip flip)
 {
 	auto texture = getTexture(path);
 
 	if (texture != nullptr) {
+		if (w == -1 && h == -1) {
+			SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+		}
+
 		SDL_Rect rec = { x, y, w, h };
 
 		SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
-
-		//SDL_RenderCopy(renderer, texture, nullptr, &rec);
-		SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, nullptr, SDL_FLIP_NONE);
+		
+		SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, nullptr, static_cast<SDL_RendererFlip>(flip));
 		
 	}
 }
 
 void SDLGraphicsDevice::clear() const
 {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+	if (renderer != nullptr) {
+		SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255);
+		SDL_RenderClear(renderer);
+	}
 }
 
 void SDLGraphicsDevice::present() const
@@ -59,42 +88,25 @@ SDL_Texture * SDLGraphicsDevice::getTexture(std::string path)
 		return textures.at(path);
 	}
 
-	auto surface = getSurface(path);
+	SDL_Surface* surface = IMG_Load(path.c_str());
+
+	//auto err = IMG_GetError();
 
 	if (surface != nullptr) {
-		auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+		// SDL_Surface* texture = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_ABGR8888, 0);
 
-		textures.insert_or_assign(path, tex);
-
-		SDL_FreeSurface(surface);
-
-		return tex;
-	}
-}
-
-SDL_Surface * SDLGraphicsDevice::getSurface(std::string path)
-{
-	if (surfaces.find(path) != surfaces.end()) {
-		return surfaces.at(path);
-	}
-
-	SDL_Surface* surface = nullptr;
-	surface = IMG_Load(path.c_str());
-
-	auto err = IMG_GetError();
-
-	if (surface != nullptr) {
-		SDL_Surface* texture = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_ABGR8888, 0);
-
-		if (texture != nullptr) {
+		if (surface != nullptr) {
 			//SDL_FreeSurface(texture);
 
-			surfaces.insert_or_assign(path, texture);
-			return texture;
-		}
+			auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+			textures.insert_or_assign(path, tex);
 
-		surfaces.insert_or_assign(path, surface);
-		return surface;
+			//SDL_FreeSurface(texture);
+			SDL_FreeSurface(surface);
+
+			return tex;
+		}
+		
 	}
 
 	return nullptr;

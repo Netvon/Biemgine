@@ -8,7 +8,7 @@ public:
 	void update(float deltaTime) override;
 	void sceneCreated() override;
 
-	bmMenuScene(bmSceneManager* manager, bmResourceManager* resourceManager)
-		: bmScene(manager, resourceManager) {};
+	bmMenuScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
+		: bmScene(manager/*, resourceManager*/) {};
 };
 

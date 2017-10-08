@@ -18,7 +18,6 @@ public:
 private:
 	bmScene* currentScene = nullptr;
 	Window* currentWindow;
-	bmResourceManager resourceManager;
 
 	int nextScene;
 };

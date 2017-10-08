@@ -28,7 +28,7 @@ bool bmSceneManager::checkNextScene()
 
 		nextScene = bmScene_NULL;
 
-		currentScene = new bmLevelScene(this, &resourceManager);
+		currentScene = new bmLevelScene(this/*, &resourceManager*/);
 		currentScene->start(currentWindow);
 
 		break;
@@ -36,7 +36,7 @@ bool bmSceneManager::checkNextScene()
 
 		nextScene = bmScene_NULL;
 
-		currentScene = new bmMenuScene(this, &resourceManager);
+		currentScene = new bmMenuScene(this/*, &resourceManager*/);
 		currentScene->start(currentWindow);
 
 		break;

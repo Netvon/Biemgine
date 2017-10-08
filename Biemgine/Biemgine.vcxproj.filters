@@ -120,6 +120,12 @@
     <ClInclude Include="bmColorComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="TextureFlip.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="bmTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -189,6 +195,9 @@
       <Filter>graphics</Filter>
     </ClCompile>
     <ClCompile Include="bmColorComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
