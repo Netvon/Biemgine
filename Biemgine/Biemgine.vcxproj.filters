@@ -48,9 +48,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bmVector2.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmColor.h">
       <Filter>bmBase</Filter>
     </ClInclude>
@@ -93,9 +90,6 @@
     <ClInclude Include="bmSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="bmDrawable.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmComponent.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -132,13 +126,25 @@
     <ClInclude Include="bmPhysicsComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsComponentShape.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmSurfaceEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmRectangleComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmSpriteEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmTransformComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bmVector2.cpp">
-      <Filter>bmBase</Filter>
     </ClCompile>
     <ClCompile Include="bmEngine.cpp">
       <Filter>Engine</Filter>
@@ -175,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="bmSystem.cpp">
       <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmDrawable.cpp">
-      <Filter>bmBase</Filter>
     </ClCompile>
     <ClCompile Include="bmComponent.cpp">
       <Filter>components</Filter>

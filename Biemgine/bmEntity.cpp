@@ -3,7 +3,7 @@
 
 bmEntity::bmEntity()
 {	
-	id = std::rand() % 100;
+	id = std::rand() % 1000;
 }
 
 

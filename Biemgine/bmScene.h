@@ -2,6 +2,7 @@
 #include "bmLoop.h"
 #include "bmSystemManager.h"
 #include "bmEntityManager.h"
+#include "bmPhysicsSystem.h"
 #include "bmRenderSystem.h"
 
 class bmSceneManager;
@@ -59,7 +60,12 @@ private:
 		auto renderSystem = new bmRenderSystem();
 		renderSystem->setGraphicsDevice(gd);
 
+
+		auto physicsSystem = new bmPhysicsSystem();
+
 		systemManager->addSystem(renderSystem);
+		systemManager->addSystem(physicsSystem);
+
 		sceneCreated();
 	}
 

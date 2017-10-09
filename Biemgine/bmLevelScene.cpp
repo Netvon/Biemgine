@@ -2,6 +2,7 @@
 #include "bmLevelScene.h"
 #include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
+#include "bmSurfaceEntity.h"
 
 
 void bmLevelScene::sceneCreated()
@@ -14,9 +15,40 @@ void bmLevelScene::sceneCreated()
 
 	// Setup the scene with entities
 
-	getEntityManager().addEntity(new bmPlayerEntity(0, 0, 255, 0, 0, 15, 25));
-	getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
-	getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
+	/*for (size_t i = 0; i < 6; i++)
+	{
+		int x = (i * 30) + 300;
+
+		for (size_t z = 0; z < 3; z++) 
+		{
+			int y = (z * 50);
+			getEntityManager().addEntity(new bmPlayerEntity(x, y, 255, 255, 255, 15 * 2, 25 * 2));
+		}
+		
+	}*/
+
+	getEntityManager().addEntity(new bmPlayerEntity(300, 25, 255, 255, 255, 15 * 2, 25 * 2));
+
+	getEntityManager().addEntity(new bmPlayerEntity(400, 25, 255, 255, 255, 15 * 2, 25 * 2));
+
+	
+	//getEntityManager().addEntity(new bmPlayerEntity(10, 25, 255, 255, 255, 15, 25));
+	//getEntityManager().addEntity(new bmPlayerEntity(20, 50, 255, 255, 255, 15, 25));
+	//getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
+	//getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
+
+
+	//bottom
+	getEntityManager().addEntity(new bmSurfaceEntity(0, 580, 255, 255, 255, 800, 20));
+
+	//top
+	getEntityManager().addEntity(new bmSurfaceEntity(0, 0, 255, 255, 255, 800, 20));
+
+	//left
+	getEntityManager().addEntity(new bmSurfaceEntity(0, 0, 255, 255, 255, 20, 600));
+
+	//right
+	getEntityManager().addEntity(new bmSurfaceEntity(780, 0, 255, 255, 255, 20, 600));
 
 	// Create and add Player
 	// Create and add Planets
@@ -33,10 +65,6 @@ void bmLevelScene::update(float deltaTime)
 	if (im.isKeyDown("A")) {
 		getSceneManager().changeScene(bmScene_menu);
 	}
-
-
-	// Give the input data to the entitymanager, so he can fill the inputcomponents
-
 
 	// Update everything...
 	updateEntities();

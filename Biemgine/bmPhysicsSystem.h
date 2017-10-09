@@ -1,5 +1,6 @@
 #pragma once
 #include "bmSystem.h"
+#include <Box2D/Box2D.h>
 #include <vector>
 class bmPhysicsSystem :
 	public bmSystem
@@ -19,7 +20,7 @@ private:
 	b2Vec2* gravity = nullptr;
 	b2World* world = nullptr;
 
-	std::map<const bmEntity&, b2Body*> bodies;
+	std::map<int, b2Body*> bodies;
 
 	b2Body* createBody(const bmEntity & entity);
 };

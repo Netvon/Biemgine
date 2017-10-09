@@ -14,7 +14,6 @@
 // TODO: reference additional headers your program requires here
 
 #include <SDL.h>
-#include <Box2D/Box2D.h>
 
 // https://docs.microsoft.com/en-us/visualstudio/debugger/finding-memory-leaks-using-the-crt-library
 #define _CRTDBG_MAP_ALLOC  

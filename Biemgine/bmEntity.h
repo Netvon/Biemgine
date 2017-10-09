@@ -19,7 +19,7 @@ public:
 	}
 
 	bool hasComponent(const string name) const {
-		return componentHashmap.find(name) == componentHashmap.end();
+		return componentHashmap.find(name) != componentHashmap.end();
 	}
 
 	void addComponent(const string name, bmComponent * component) {

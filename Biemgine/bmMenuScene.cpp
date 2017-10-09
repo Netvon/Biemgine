@@ -1,12 +1,16 @@
 #include "stdafx.h"
 #include "bmMenuScene.h"
 #include "bmSceneManager.h"
+#include "bmSpriteEntity.h"
 
 
 void bmMenuScene::sceneCreated()
 {
 	/*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
 	addComponent(c1);*/
+
+	getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", 800 / 2 - 50, 600 / 2 - 56/2, { 0, 0, 0 }, -1, -1));
+
 
 	cout << "MenuScene created" << endl;
 }
@@ -20,4 +24,6 @@ void bmMenuScene::update(float deltaTime)
 	if (im.isKeyDown("S")) {
 		getSceneManager().changeScene(bmScene_level);
 	}
+
+	updateEntities();
 }

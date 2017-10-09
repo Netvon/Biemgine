@@ -160,7 +160,6 @@
     <ClInclude Include="bmColor.h" />
     <ClInclude Include="bmColorComponent.h" />
     <ClInclude Include="bmComponent.h" />
-    <ClInclude Include="bmDrawable.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
     <ClInclude Include="bmInputManager.h" />
@@ -171,17 +170,21 @@
     <ClInclude Include="bmPhysicsSystem.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
+    <ClInclude Include="bmRectangleComponent.h" />
     <ClInclude Include="bmRenderSystem.h" />
     <ClInclude Include="bmResourceManager.h" />
     <ClInclude Include="bmScene.h" />
     <ClInclude Include="bmSceneType.h" />
+    <ClInclude Include="bmSpriteEntity.h" />
+    <ClInclude Include="bmSurfaceEntity.h" />
     <ClInclude Include="bmSystem.h" />
     <ClInclude Include="bmSystemManager.h" />
     <ClInclude Include="bmTextureComponent.h" />
-    <ClInclude Include="bmVector2.h" />
     <ClInclude Include="bmSceneManager.h" />
     <ClInclude Include="bmEntityManager.h" />
+    <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="PhysicsComponentShape.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureFlip.h" />
     <ClInclude Include="Window.h" />
@@ -196,7 +199,6 @@
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
-    <ClCompile Include="bmDrawable.cpp" />
     <ClCompile Include="bmEngine.cpp" />
     <ClCompile Include="bmEntity.cpp" />
     <ClCompile Include="bmInputManager.cpp" />
@@ -209,7 +211,6 @@
     <ClCompile Include="bmScene.cpp" />
     <ClCompile Include="bmSystem.cpp" />
     <ClCompile Include="bmSystemManager.cpp" />
-    <ClCompile Include="bmVector2.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />

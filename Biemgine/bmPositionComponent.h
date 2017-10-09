@@ -13,6 +13,9 @@ public:
 	float getY() const;
 	float getZ() const;
 
+	void setX(float x);
+	void setY(float y);
+
 	void add(float x, float y) {
 		location += glm::vec3(x, y, 0);
 	}

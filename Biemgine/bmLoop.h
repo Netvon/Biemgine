@@ -2,7 +2,6 @@
 
 #include "Window.h"
 #include "bmInputManager.h"
-#include "bmDrawable.h"
 #include <vector>
 
 class bmLoop
