@@ -26,8 +26,7 @@ void SDLGraphicsDevice::destroy()
 	surfaces.clear();*/
 
 	for (std::pair<std::string, SDL_Texture*> pair : textures) {
-		SDL_Texture* texture = pair.second;
-		SDL_DestroyTexture(texture);
+		SDL_DestroyTexture(pair.second);
 	}
 
 	textures.clear();
@@ -38,6 +37,8 @@ void SDLGraphicsDevice::destroy()
 	}
 
 	IMG_Quit();
+
+	
 }
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
