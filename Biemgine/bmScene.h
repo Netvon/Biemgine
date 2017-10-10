@@ -18,6 +18,18 @@ public:
 	bmScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
 		: sceneManager(manager)/*, resourceManager(resourceManager)*/ { }
 
+	virtual ~bmScene()
+	{
+		systemManager->onSceneSwitch();
+
+		sceneEnd();
+
+		//systemManager->clear();
+		delete systemManager;
+
+		//entityManager->clear();
+		delete entityManager;
+	}
 
 	void init() {
 
@@ -77,15 +89,7 @@ private:
 
 	//void draw() override;
 	void end() {
-		systemManager->onSceneSwitch();
-
-		sceneEnd();
-
-		systemManager->clear();
-		delete systemManager;
-
-		entityManager->clear();
-		delete entityManager;
+		
 	}
 };
 

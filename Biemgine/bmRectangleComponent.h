@@ -6,14 +6,14 @@ class bmRectangleComponent :
 	public bmComponent
 {
 public:
-	bmRectangleComponent(int width, int height, bmColor color) 
+	bmRectangleComponent(float width, float height, bmColor color) 
 		: color({ color.r, color.g, color.b, color.a }), width(width), height(height) { }
 
-	int getWidth() const {
+	float getWidth() const {
 		return width;
 	}
 
-	int getHeight() const {
+	float getHeight() const {
 		return height;
 	}
 
@@ -22,6 +22,6 @@ public:
 	}
 
 private:
-	int width, height;
+	float width, height;
 	bmColorComponent color;
 };

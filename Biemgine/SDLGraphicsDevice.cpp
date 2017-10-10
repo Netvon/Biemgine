@@ -17,10 +17,10 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 	SDL_RenderSetViewport(renderer, &viewport);
 }
 
-void SDLGraphicsDevice::destroy()
+SDLGraphicsDevice::~SDLGraphicsDevice()
 {
 	/*for (std::pair<std::string, SDL_Surface*> pair : surfaces) {
-		SDL_FreeSurface(pair.second);
+	SDL_FreeSurface(pair.second);
 	}
 
 	surfaces.clear();*/
@@ -37,8 +37,6 @@ void SDLGraphicsDevice::destroy()
 	}
 
 	IMG_Quit();
-
-	
 }
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const

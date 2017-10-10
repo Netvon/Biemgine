@@ -9,10 +9,10 @@
 class bmSurfaceEntity : public bmEntity
 {
 public:
-	bmSurfaceEntity(int x, int y, int r, int g, int b, int w, int h) {
+	bmSurfaceEntity(float x, float y, bmColor color, float w, float h) {
 		addComponent("position", new bmPositionComponent(x, y));
-		addComponent("rectangle", new bmRectangleComponent(w, h, { r,g,b,255 }));
-		addComponent("physics", new bmPhysicsComponent(static_cast<float>(w), static_cast<float>(h), true, RECTANGLE));
+		addComponent("rectangle", new bmRectangleComponent(w, h, color));
+		addComponent("physics", new bmPhysicsComponent(w, h, true, RECTANGLE));
 	}
 };
 

@@ -6,8 +6,7 @@ bmEntity::bmEntity()
 	id = std::rand() % 1000;
 }
 
-
-void bmEntity::clear()
+bmEntity::~bmEntity()
 {
 	for (std::pair<std::string, const bmComponent*> pair : componentHashmap) {
 		delete pair.second;

@@ -12,6 +12,19 @@ bmPhysicsSystem::bmPhysicsSystem()
 	world = new b2World(*gravity);
 }
 
+bmPhysicsSystem::~bmPhysicsSystem()
+{
+    if (bodies.size() > 0) {
+
+        for (auto pair : bodies) {
+            world->DestroyBody(pair.second);
+        }
+    }
+
+    delete gravity;
+    delete world;
+}
+
 void bmPhysicsSystem::update(const bmEntity & entity)
 {
 	if (!entity.hasComponent("physics"))
@@ -40,16 +53,16 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
 void bmPhysicsSystem::onSceneSwitch()
 {
-	for (auto pair : bodies) {
+	//for (auto pair : *bodies) {
 
-		/*b2Fixture* f = pair.second->GetFixtureList();
-		pair.second->DestroyFixture(f);*/
+	//	/*b2Fixture* f = pair.second->GetFixtureList();
+	//	pair.second->DestroyFixture(f);*/
 
-		world->DestroyBody(pair.second);
-		pair.second = nullptr;
-	}
+	//	world->DestroyBody(pair.second);
+	//	pair.second = nullptr;
+	//}
 
-	bodies.clear();
+    //destroy();
 }
 
 void bmPhysicsSystem::before()
@@ -59,21 +72,6 @@ void bmPhysicsSystem::before()
 void bmPhysicsSystem::after()
 {
 	world->Step(1.f / 30.0f, 10, 10);
-}
-
-void bmPhysicsSystem::destroy()
-{
-	for (auto pair : bodies) {
-		for (b2Fixture* f = pair.second->GetFixtureList(); f; f = f->GetNext())
-		{
-			pair.second->DestroyFixture(f);
-		}
-
-		world->DestroyBody(pair.second);
-	}
-
-	delete gravity;
-	delete world;
 }
 
 b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {

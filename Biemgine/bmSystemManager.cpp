@@ -9,8 +9,15 @@ bmSystemManager::bmSystemManager()
 	// Push all the different systems here in the array.
 	// Keep the priority of systems in mind!
 	//systems.push_back(new bmRenderSystem());
-	
 
+}
+
+bmSystemManager::~bmSystemManager()
+{
+	for (auto it = systems.begin(); it != systems.end(); ++it)
+	{
+		delete (*it);
+	}
 }
 
 void bmSystemManager::preUpdate()
@@ -44,18 +51,4 @@ void bmSystemManager::onSceneSwitch()
 	for (auto* s : systems) {
 		s->onSceneSwitch();
 	}
-}
-
-void bmSystemManager::clear()
-{
-	for (auto* s : systems) {
-		s->destroy();
-	}
-
-	for (auto it = systems.begin(); it != systems.end(); ++it)
-	{
-		delete (*it);
-	}
-
-	systems.clear();
 }
