@@ -53,10 +53,6 @@ void bmSystemManager::onSceneSwitch()
 
 void bmSystemManager::clear()
 {
-	for (auto* s : *systems) {
-		s->destroy();
-	}
-
 	for (auto it = systems->begin(); it != systems->end(); ++it)
 	{
 		delete (*it);

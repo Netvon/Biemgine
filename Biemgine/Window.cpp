@@ -24,7 +24,6 @@ Window::~Window()
 	SDL_DestroyWindow(window);
 
 	if (gd != nullptr) {
-		gd->destroy();
 		delete gd;
 	}
 

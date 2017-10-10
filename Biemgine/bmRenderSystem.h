@@ -7,6 +7,12 @@ class bmRenderSystem
 	: public bmSystem
 {
 public:
+
+	~bmRenderSystem()
+	{
+		cout << "Render System is being deleted" << endl;
+	};
+
 	void setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
 	void update(const bmEntity& entity) override;
@@ -14,8 +20,6 @@ public:
 	void before() override;
 
 	void after() override;
-
-	void destroy() override;
 
 private:
 	GraphicsDevice* graphicsDevice = nullptr;

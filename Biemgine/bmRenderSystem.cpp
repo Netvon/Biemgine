@@ -86,8 +86,3 @@ void bmRenderSystem::after()
 {
 	graphicsDevice->present();
 }
-
-void bmRenderSystem::destroy()
-{
-	//graphicsDevice->destroy();
-}

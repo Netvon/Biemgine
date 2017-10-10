@@ -10,8 +10,19 @@ bmPhysicsSystem::bmPhysicsSystem()
 {
 	gravity = new b2Vec2(0, 1);
 	world = new b2World(*gravity);
+}
 
-	bodies = new std::map<int, b2Body*>();
+bmPhysicsSystem::~bmPhysicsSystem()
+{
+    if (bodies.size() > 0) {
+
+        for (auto pair : bodies) {
+            world->DestroyBody(pair.second);
+        }
+    }
+
+    delete gravity;
+    delete world;
 }
 
 void bmPhysicsSystem::update(const bmEntity & entity)
@@ -19,14 +30,14 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 	if (!entity.hasComponent("physics"))
 		return;
 
-	if (bodies->find(entity.getId()) == bodies->end()) {
-		bodies->insert_or_assign(entity.getId(), createBody(entity));
+	if (bodies.find(entity.getId()) == bodies.end()) {
+		bodies.insert_or_assign(entity.getId(), createBody(entity));
 	}
 
 	auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 	auto position = entity.getComponent<bmPositionComponent*>("position");
 
-	auto body = bodies->at(entity.getId());
+	auto body = bodies.at(entity.getId());
 
 	position->setX(body->GetPosition().x);
 	position->setY(body->GetPosition().y);
@@ -61,20 +72,6 @@ void bmPhysicsSystem::before()
 void bmPhysicsSystem::after()
 {
 	world->Step(1.f / 30.0f, 10, 10);
-}
-
-void bmPhysicsSystem::destroy()
-{
-	if (bodies->size() > 0) {
-
-		for (auto pair : *bodies) {
-			world->DestroyBody(pair.second);
-		}
-	}
-
-	delete gravity;
-	delete world;
-    delete bodies;
 }
 
 b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
