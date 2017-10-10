@@ -5,6 +5,7 @@
 
 SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 {
+    textures = new std::map<std::string, SDL_Texture*>();
 	renderer = SDL_CreateRenderer(window, -1, 0);
 
 	if (IMG_Init(IMG_INIT_PNG) == 0) {
@@ -25,11 +26,11 @@ void SDLGraphicsDevice::destroy()
 
 	surfaces.clear();*/
 
-	for (std::pair<std::string, SDL_Texture*> pair : textures) {
+	for (std::pair<std::string, SDL_Texture*> pair : *textures) {
 		SDL_DestroyTexture(pair.second);
 	}
 
-	textures.clear();
+	textures->clear();
 
 
 	if (renderer != nullptr) {
@@ -37,6 +38,8 @@ void SDLGraphicsDevice::destroy()
 	}
 
 	IMG_Quit();
+
+    delete textures;
 
 	
 }
@@ -85,8 +88,8 @@ void SDLGraphicsDevice::present() const
 
 SDL_Texture * SDLGraphicsDevice::getTexture(std::string path)
 {
-	if (textures.find(path) != textures.end()) {
-		return textures.at(path);
+	if (textures->find(path) != textures->end()) {
+		return textures->at(path);
 	}
 
 	SDL_Surface* surface = IMG_Load(path.c_str());
@@ -100,7 +103,7 @@ SDL_Texture * SDLGraphicsDevice::getTexture(std::string path)
 			//SDL_FreeSurface(texture);
 
 			auto tex = SDL_CreateTextureFromSurface(renderer, surface);
-			textures.insert_or_assign(path, tex);
+			textures->insert_or_assign(path, tex);
 
 			//SDL_FreeSurface(texture);
 			SDL_FreeSurface(surface);

@@ -20,7 +20,7 @@ private:
 	b2Vec2* gravity = nullptr;
 	b2World* world = nullptr;
 
-	std::map<int, b2Body*> bodies;
+	std::map<int, b2Body*>* bodies = nullptr;
 
 	b2Body* createBody(const bmEntity & entity);
 };

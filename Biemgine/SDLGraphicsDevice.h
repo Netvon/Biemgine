@@ -19,7 +19,7 @@ public:
 private:
 	SDL_Renderer* renderer = nullptr;
 
-	std::map<std::string, SDL_Texture*> textures;
+	std::map<std::string, SDL_Texture*>* textures = nullptr;
 
 	SDL_Texture* getTexture(std::string path);
 

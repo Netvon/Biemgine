@@ -10,6 +10,8 @@ bmPhysicsSystem::bmPhysicsSystem()
 {
 	gravity = new b2Vec2(0, 1);
 	world = new b2World(*gravity);
+
+	bodies = new std::map<int, b2Body*>();
 }
 
 void bmPhysicsSystem::update(const bmEntity & entity)
@@ -17,14 +19,14 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 	if (!entity.hasComponent("physics"))
 		return;
 
-	if (bodies.find(entity.getId()) == bodies.end()) {
-		bodies.insert_or_assign(entity.getId(), createBody(entity));
+	if (bodies->find(entity.getId()) == bodies->end()) {
+		bodies->insert_or_assign(entity.getId(), createBody(entity));
 	}
 
 	auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 	auto position = entity.getComponent<bmPositionComponent*>("position");
 
-	auto body = bodies.at(entity.getId());
+	auto body = bodies->at(entity.getId());
 
 	position->setX(body->GetPosition().x);
 	position->setY(body->GetPosition().y);
@@ -40,16 +42,16 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
 void bmPhysicsSystem::onSceneSwitch()
 {
-	for (auto pair : bodies) {
+	//for (auto pair : *bodies) {
 
-		/*b2Fixture* f = pair.second->GetFixtureList();
-		pair.second->DestroyFixture(f);*/
+	//	/*b2Fixture* f = pair.second->GetFixtureList();
+	//	pair.second->DestroyFixture(f);*/
 
-		world->DestroyBody(pair.second);
-		pair.second = nullptr;
-	}
+	//	world->DestroyBody(pair.second);
+	//	pair.second = nullptr;
+	//}
 
-	bodies.clear();
+    //destroy();
 }
 
 void bmPhysicsSystem::before()
@@ -63,17 +65,16 @@ void bmPhysicsSystem::after()
 
 void bmPhysicsSystem::destroy()
 {
-	for (auto pair : bodies) {
-		for (b2Fixture* f = pair.second->GetFixtureList(); f; f = f->GetNext())
-		{
-			pair.second->DestroyFixture(f);
-		}
+	if (bodies->size() > 0) {
 
-		world->DestroyBody(pair.second);
+		for (auto pair : *bodies) {
+			world->DestroyBody(pair.second);
+		}
 	}
 
 	delete gravity;
 	delete world;
+    delete bodies;
 }
 
 b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
