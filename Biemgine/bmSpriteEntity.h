@@ -9,7 +9,7 @@
 class bmSpriteEntity : public bmEntity
 {
 public:
-	bmSpriteEntity(std::string texture, int x, int y, bmColor color, int w, int h) {
+	bmSpriteEntity(std::string texture, float x, float y, bmColor color, float w, float h) {
 
 		addComponent("position", new bmPositionComponent(x, y));
 		addComponent("texture", new bmTextureComponent(texture, w, h));

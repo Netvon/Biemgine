@@ -9,6 +9,8 @@ class bmLoop
 public:
 	bmInputManager im;
 
+	virtual ~bmLoop() {};
+
 	void start(const Window * window);
 	void signalQuit();
 

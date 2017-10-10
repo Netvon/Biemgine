@@ -10,7 +10,7 @@ public:
 	
 	bmSystemManager();
 
-    ~bmSystemManager();
+	~bmSystemManager();
 
 	void preUpdate();
 	void postUpdate();
@@ -19,9 +19,8 @@ public:
 	void addSystem(bmSystem* system);
 
 	void onSceneSwitch();
-	void clear();
 private:
-	std::vector<bmSystem*>* systems = nullptr;
+	std::vector<bmSystem*> systems;
 
 };
 

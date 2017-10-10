@@ -44,8 +44,8 @@ void bmRenderSystem::update(const bmEntity& entity) {
 		graphicsDevice->drawSquare(
 			static_cast<int>(pc->getX()),
 			static_cast<int>(pc->getY()),
-			rectangle->getWidth(),
-			rectangle->getHeight(),
+			static_cast<int>(rectangle->getWidth()),
+			static_cast<int>(rectangle->getHeight()),
 			rectangle->getColor().getColor()
 		);
 	}

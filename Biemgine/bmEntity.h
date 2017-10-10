@@ -12,6 +12,7 @@ class bmEntity
 {
 public:
 	bmEntity();
+	virtual ~bmEntity();
 
 	template <typename TComponent>
 	TComponent getComponent(const string name) const {
@@ -25,8 +26,6 @@ public:
 	void addComponent(const string name, bmComponent * component) {
 		componentHashmap.insert(pair<string, bmComponent*>(name, component));
 	}
-
-	void clear();
 
 	int getId() const {
 		return id;
