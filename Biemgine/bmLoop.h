@@ -7,38 +7,38 @@
 class bmLoop
 {
 public:
-	bmInputManager im;
+    bmInputManager im;
 
-	virtual ~bmLoop() {};
+    virtual ~bmLoop() {};
 
-	void start(const Window * window);
-	void signalQuit();
+    void start(const Window * window);
+    void signalQuit();
 
-	const Window* getWindow() const {
-		return window;
-	}
+    const Window* getWindow() const {
+        return window;
+    }
 
 private:
-	SDL_Event event;
-	const Window* window;
+    SDL_Event event;
+    const Window* window;
 
-	bool quit = false;
+    bool quit = false;
 
     float previousTime = static_cast<float>(SDL_GetTicks());
     float lagTime = 0.0f;
 
-	void startLoop();
-	void pollEvents();
+    void startLoop();
+    void pollEvents();
 
-	void globalUpdate();
+    void globalUpdate();
     void globalRender(const float deltaTime);
     void globalEnd();
 
     virtual void input() { }
-	virtual void update() { }
+    virtual void update() { }
     virtual void render(const float deltaTime) { }
-	virtual void created() { }
-	virtual void end() { }
+    virtual void created() { }
+    virtual void end() { }
 };
 
 

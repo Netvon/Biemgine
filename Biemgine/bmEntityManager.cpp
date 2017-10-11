@@ -3,29 +3,29 @@
 
 bmEntityManager::~bmEntityManager()
 {
-	for (auto it = entities.begin(); it != entities.end(); ++it)
-	{
-		delete (*it);
-	}
+    for (auto it = entities.begin(); it != entities.end(); ++it)
+    {
+        delete (*it);
+    }
 
-	entities.clear();
+    entities.clear();
 }
 
 int bmEntityManager::addEntity(bmEntity* entity)
 {
-	entities.push_back(entity);
-	return entity->getId();
+    entities.push_back(entity);
+    return entity->getId();
 }
 
 void bmEntityManager::updateEntities(bmSystemManager * manager)
 {
-	manager->preUpdate();
+    manager->preUpdate();
 
-	for (bmEntity * e : entities) {
-		manager->acceptForUpdate(*e);
-	}
+    for (bmEntity * e : entities) {
+        manager->acceptForUpdate(*e);
+    }
 
-	manager->postUpdate();
+    manager->postUpdate();
 }
 
 void bmEntityManager::updateEntities(bmSystemManager * manager, const float deltaTime)

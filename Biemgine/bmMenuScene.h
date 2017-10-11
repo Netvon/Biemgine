@@ -2,15 +2,15 @@
 #include "bmScene.h"
 
 class bmMenuScene :
-	public bmScene
+    public bmScene
 {
 public:
     void input() override;
     void update() override;
     void render(const float deltaTime) override;
-	void sceneCreated() override;
+    void sceneCreated() override;
 
-	bmMenuScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
-		: bmScene(manager/*, resourceManager*/) {};
+    bmMenuScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
+        : bmScene(manager/*, resourceManager*/) {};
 };
 

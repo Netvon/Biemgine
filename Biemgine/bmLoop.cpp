@@ -7,15 +7,15 @@ const float BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
 void bmLoop::start(const Window* bmwindow)
 {
-	window = bmwindow;
+    window = bmwindow;
 
-	created();
-	startLoop();
+    created();
+    startLoop();
 }
 
 void bmLoop::signalQuit()
 {
-	quit = true;
+    quit = true;
 }
 
 void bmLoop::startLoop()
@@ -23,10 +23,10 @@ void bmLoop::startLoop()
 
     while (!quit) {
 
-        float currentTime = static_cast<float>(SDL_GetTicks());	// Actuele tijd.
-        float elapsedTime = currentTime - previousTime;			// Tijd tussen de vorige loop en de actuele tijd.
-        previousTime = currentTime;								// De tijd van de vorige loop de actuele tijd zetten, zodat de volgende loop dat kan gebruiken.
-        lagTime += elapsedTime;        							// Nu dat verschil aan de lagTime toevoegen, zodat we daarmee kunnen beslissen of we alles willen updaten.
+        float currentTime = static_cast<float>(SDL_GetTicks());    // Actuele tijd.
+        float elapsedTime = currentTime - previousTime;            // Tijd tussen de vorige loop en de actuele tijd.
+        previousTime = currentTime;                                // De tijd van de vorige loop de actuele tijd zetten, zodat de volgende loop dat kan gebruiken.
+        lagTime += elapsedTime;                                    // Nu dat verschil aan de lagTime toevoegen, zodat we daarmee kunnen beslissen of we alles willen updaten.
 
         while (lagTime >= BM_GAMELOOP_UPDATE_MS)
         {
@@ -37,17 +37,17 @@ void bmLoop::startLoop()
 
         globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
 
-	}
+    }
 
-	globalEnd();
-	end();
+    globalEnd();
+    end();
 }
 
 void bmLoop::pollEvents()
 {
-	while (SDL_PollEvent(&event)) {
-		quit = event.type == SDL_QUIT;
-	}
+    while (SDL_PollEvent(&event)) {
+        quit = event.type == SDL_QUIT;
+    }
 }
 
 

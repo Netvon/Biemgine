@@ -2,6 +2,6 @@
 class bmEngine
 {
 public:
-	bmEngine();
+    bmEngine();
 };
 

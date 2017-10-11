@@ -6,7 +6,7 @@ class bmSystem
 {
 public:
 
-	virtual ~bmSystem() { };
+    virtual ~bmSystem() { };
     virtual void before() {};
     virtual void before(const float deltaTime) {};
     virtual void update(const bmEntity& entity) {};
@@ -14,6 +14,6 @@ public:
     virtual void after() {};
     virtual void after(const float deltaTime) {};
 
-	virtual void onSceneSwitch() = 0;
+    virtual void onSceneSwitch() = 0;
 };
 

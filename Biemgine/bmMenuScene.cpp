@@ -6,13 +6,13 @@
 
 void bmMenuScene::sceneCreated()
 {
-	/*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
-	addComponent(c1);*/
+    /*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
+    addComponent(c1);*/
 
-	getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", 800 / 2 - 50, 600 / 2 - 56/2, { 255, 255, 255 }, -1, -1));
+    getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", 800 / 2 - 50, 600 / 2 - 56/2, { 255, 255, 255 }, -1, -1));
 
 
-	cout << "MenuScene created" << endl;
+    cout << "MenuScene created" << endl;
 }
 
 
@@ -30,7 +30,7 @@ void bmMenuScene::input()
 void bmMenuScene::update()
 {
 
-	updateEntities();
+    updateEntities();
 }
 
 void bmMenuScene::render(const float deltaTime)

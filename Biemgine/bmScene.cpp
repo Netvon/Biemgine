@@ -4,7 +4,7 @@
 
 void bmScene::updateEntities()
 {
-	entityManager->updateEntities(systemManager);
+    entityManager->updateEntities(systemManager);
 }
 
 void bmScene::updateEntities(const float deltaTime)

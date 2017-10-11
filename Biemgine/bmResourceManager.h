@@ -7,6 +7,6 @@ class bmResourceManager
 {
 public:
 
-	void loadTexture(const string & name, const string& vspath, const string& fspath);
+    void loadTexture(const string & name, const string& vspath, const string& fspath);
 };
 

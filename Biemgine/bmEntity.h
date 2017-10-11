@@ -11,27 +11,27 @@ using namespace std;
 class bmEntity
 {
 public:
-	bmEntity();
-	virtual ~bmEntity();
+    bmEntity();
+    virtual ~bmEntity();
 
-	template <typename TComponent>
-	TComponent getComponent(const string name) const {
-		return dynamic_cast<TComponent>(componentHashmap.at(name));
-	}
+    template <typename TComponent>
+    TComponent getComponent(const string name) const {
+        return dynamic_cast<TComponent>(componentHashmap.at(name));
+    }
 
-	bool hasComponent(const string name) const {
-		return componentHashmap.find(name) != componentHashmap.end();
-	}
+    bool hasComponent(const string name) const {
+        return componentHashmap.find(name) != componentHashmap.end();
+    }
 
-	void addComponent(const string name, bmComponent * component) {
-		componentHashmap.insert(pair<string, bmComponent*>(name, component));
-	}
+    void addComponent(const string name, bmComponent * component) {
+        componentHashmap.insert(pair<string, bmComponent*>(name, component));
+    }
 
-	int getId() const {
-		return id;
-	}
+    int getId() const {
+        return id;
+    }
 
 private:
-	int id;
-	map<string, bmComponent*> componentHashmap;
+    int id;
+    map<string, bmComponent*> componentHashmap;
 };

@@ -9,16 +9,16 @@ class bmSceneManager
 {
 public:
 
-	void setWindow(Window*);
-	void changeScene(bmSceneType);
-	bool checkNextScene();
+    void setWindow(Window*);
+    void changeScene(bmSceneType);
+    bool checkNextScene();
 
-	bmSceneManager() {};
+    bmSceneManager() {};
 
 private:
-	bmScene* currentScene = nullptr;
-	Window* currentWindow;
+    bmScene* currentScene = nullptr;
+    Window* currentWindow;
 
-	int nextScene;
+    int nextScene;
 };
 

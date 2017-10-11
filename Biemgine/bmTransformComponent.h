@@ -3,29 +3,29 @@
 #include "bmPositionComponent.h"
 #include <glm\glm.hpp>
 class bmTransformComponent :
-	public bmComponent
+    public bmComponent
 {
-	bmTransformComponent(float x, float y, float rotation = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f) 
-		: position(x, y, 0), rotation(rotation), scale(scaleX, scaleY) { }
+    bmTransformComponent(float x, float y, float rotation = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f) 
+        : position(x, y, 0), rotation(rotation), scale(scaleX, scaleY) { }
 
-	float getRotation() const {
-		return rotation;
-	}
+    float getRotation() const {
+        return rotation;
+    }
 
-	bmPositionComponent& getPosition() {
-		return position;
-	}
+    bmPositionComponent& getPosition() {
+        return position;
+    }
 
-	float getScaleX() const {
-		return scale.x;
-	}
+    float getScaleX() const {
+        return scale.x;
+    }
 
-	float getScaleY() const {
-		return scale.y;
-	}
+    float getScaleY() const {
+        return scale.y;
+    }
 
 private:
-	float rotation;
-	bmPositionComponent position;
-	glm::vec2 scale;
+    float rotation;
+    bmPositionComponent position;
+    glm::vec2 scale;
 };

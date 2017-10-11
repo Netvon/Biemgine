@@ -1,5 +1,5 @@
 #pragma once
 enum PhysicsComponentShape
 {
-	CIRCLE, RECTANGLE, PILL
+    CIRCLE, RECTANGLE, PILL
 };

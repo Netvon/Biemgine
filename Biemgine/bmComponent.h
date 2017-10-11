@@ -3,7 +3,7 @@
 class bmComponent
 {
 public:
-	bmComponent() {};
-	virtual ~bmComponent() {};
+    bmComponent() {};
+    virtual ~bmComponent() {};
 };
 

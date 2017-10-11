@@ -5,26 +5,26 @@
 
 bmSystemManager::bmSystemManager()
 {
-	// systems.clear();
-	// Push all the different systems here in the array.
-	// Keep the priority of systems in mind!
-	//systems.push_back(new bmRenderSystem());
+    // systems.clear();
+    // Push all the different systems here in the array.
+    // Keep the priority of systems in mind!
+    //systems.push_back(new bmRenderSystem());
 
 }
 
 bmSystemManager::~bmSystemManager()
 {
-	for (auto it = systems.begin(); it != systems.end(); ++it)
-	{
-		delete (*it);
-	}
+    for (auto it = systems.begin(); it != systems.end(); ++it)
+    {
+        delete (*it);
+    }
 }
 
 void bmSystemManager::preUpdate()
 {
-	for (auto* s : systems) {
-		s->before();
-	}
+    for (auto* s : systems) {
+        s->before();
+    }
 }
 
 void bmSystemManager::preUpdate(const float deltaTime)
@@ -36,9 +36,9 @@ void bmSystemManager::preUpdate(const float deltaTime)
 
 void bmSystemManager::postUpdate()
 {
-	for (auto* s : systems) {
-		s->after();
-	}
+    for (auto* s : systems) {
+        s->after();
+    }
 }
 
 void bmSystemManager::postUpdate(const float deltaTime)
@@ -51,9 +51,9 @@ void bmSystemManager::postUpdate(const float deltaTime)
 
 void bmSystemManager::acceptForUpdate(const bmEntity & entity)
 {
-	for (auto* s : systems) {
-		s->update(entity);
-	}
+    for (auto* s : systems) {
+        s->update(entity);
+    }
 }
 
 void bmSystemManager::acceptForUpdate(const bmEntity & entity, const float deltaTime)
@@ -65,12 +65,12 @@ void bmSystemManager::acceptForUpdate(const bmEntity & entity, const float delta
 
 void bmSystemManager::addSystem(bmSystem * system)
 {
-	systems.push_back(system);
+    systems.push_back(system);
 }
 
 void bmSystemManager::onSceneSwitch()
 {
-	for (auto* s : systems) {
-		s->onSceneSwitch();
-	}
+    for (auto* s : systems) {
+        s->onSceneSwitch();
+    }
 }

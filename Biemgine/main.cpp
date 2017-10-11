@@ -6,8 +6,8 @@ using namespace std;
 
 int main(int argc, char* args[])
 {
-	bmEngine engine;
+    bmEngine engine;
 
-	return _CrtDumpMemoryLeaks();
+    return _CrtDumpMemoryLeaks();
 }
 

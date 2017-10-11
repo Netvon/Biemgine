@@ -7,10 +7,10 @@
 class bmSystemManager 
 {
 public:
-	
-	bmSystemManager();
+    
+    bmSystemManager();
 
-	~bmSystemManager();
+    ~bmSystemManager();
 
     void preUpdate();
     void preUpdate(const float deltaTime);
@@ -21,11 +21,11 @@ public:
     void acceptForUpdate(const bmEntity& entity);
     void acceptForUpdate(const bmEntity& entity, const float deltaTime);
 
-	void addSystem(bmSystem* system);
+    void addSystem(bmSystem* system);
 
-	void onSceneSwitch();
+    void onSceneSwitch();
 private:
-	std::vector<bmSystem*> systems;
+    std::vector<bmSystem*> systems;
 
 };
 
