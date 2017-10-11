@@ -7,6 +7,7 @@ class bmColorComponent :
 {
 public:
 	bmColorComponent(int r, int g, int b, int a = 255);
+	bmColorComponent(bmColor bmColor);
 
 	int getR() const { return color.r; };
 	int getG() const { return color.g; };

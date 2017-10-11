@@ -35,7 +35,7 @@ void bmRenderSystem::update(const bmEntity& entity) {
 			static_cast<int>(pc->getY()),
 			tc->getWidth(),
 			tc->getHeight(),
-			0, cc->getColor()
+			pc->getRotation(), cc->getColor()
 		);
 	}
 	else {
@@ -46,7 +46,7 @@ void bmRenderSystem::update(const bmEntity& entity) {
 			static_cast<int>(pc->getY()),
 			static_cast<int>(rectangle->getWidth()),
 			static_cast<int>(rectangle->getHeight()),
-			rectangle->getColor().getColor()
+			rectangle->getColor().getColor(), pc->getRotation()
 		);
 	}
 		

@@ -3,6 +3,7 @@
 #include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
+#include "bmPlanetEntity.h"
 
 
 void bmLevelScene::sceneCreated()
@@ -27,9 +28,25 @@ void bmLevelScene::sceneCreated()
 		
 	}*/
 
-	getEntityManager().addEntity(new bmPlayerEntity(300, 25, 255, 255, 255, 15 * 2, 25 * 2));
+	float width = 15;
+	float height = 25;
 
-	getEntityManager().addEntity(new bmPlayerEntity(400, 25, 255, 255, 255, 15 * 2, 25 * 2));
+	for (float x = 100; x < 700; x += width + width/4.0f)
+	{
+		for (float y = -height * 3; y < 50; y += height + height / 4.0f)
+		{
+			getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255 }, width, height));
+		}
+		
+	}
+
+
+	
+	/*getEntityManager().addEntity(new bmPlayerEntity(300, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
+
+	getEntityManager().addEntity(new bmPlayerEntity(400, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
+	getEntityManager().addEntity(new bmPlayerEntity(500, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
+	getEntityManager().addEntity(new bmPlayerEntity(600, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));*/
 
 	
 	//getEntityManager().addEntity(new bmPlayerEntity(10, 25, 255, 255, 255, 15, 25));
@@ -39,16 +56,20 @@ void bmLevelScene::sceneCreated()
 
 
 	//bottom
-    getEntityManager().addEntity(new bmSurfaceEntity(0, 580, { 255, 255, 255 }, 800, 20));
+	//getEntityManager().addEntity(new bmSurfaceEntity(0, 580, { 255, 255, 255 }, 800, 20));
 
 	//top
-    getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 800, 20));
+	//getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 800, 20));
 
 	//left
-    getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 20, 600));
+	//getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 20, 600));
 
 	//right
-    getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
+	//getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
+
+	float p_size = 400.f;
+	float p_size_h = p_size * 0.5f;
+	getEntityManager().addEntity(new bmPlanetEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
 
 	// Create and add Player
 	// Create and add Planets

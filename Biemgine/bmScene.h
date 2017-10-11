@@ -63,7 +63,7 @@ private:
 	bmSystemManager* systemManager = new bmSystemManager();
 	bmEntityManager* entityManager = new bmEntityManager();
 
-	bmSceneManager* sceneManager;
+	bmSceneManager* sceneManager = nullptr;
 	//bmResourceManager* resourceManager;
 
 	virtual void update(float deltaTime) override = 0;

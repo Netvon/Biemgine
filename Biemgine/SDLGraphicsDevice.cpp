@@ -15,6 +15,7 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 
 	SDL_GetWindowSize(window, &viewport.w, &viewport.h);
 	SDL_RenderSetViewport(renderer, &viewport);
+	//SDL_RenderSetScale(renderer, 2.f, 2.f);
 }
 
 SDLGraphicsDevice::~SDLGraphicsDevice()
@@ -60,10 +61,11 @@ void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h
 		}
 
 		SDL_Rect rec = { x, y, w, h };
+		SDL_Point center = { 0,0 };
 
 		SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
 		
-		SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, nullptr, static_cast<SDL_RendererFlip>(flip));
+		SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, &center, static_cast<SDL_RendererFlip>(flip));
 		
 	}
 }
@@ -71,7 +73,8 @@ void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h
 void SDLGraphicsDevice::clear() const
 {
 	if (renderer != nullptr) {
-		SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255);
+		//SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	}
 }

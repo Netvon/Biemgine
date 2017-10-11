@@ -7,7 +7,7 @@ class bmRectangleComponent :
 {
 public:
 	bmRectangleComponent(float width, float height, bmColor color) 
-		: color({ color.r, color.g, color.b, color.a }), width(width), height(height) { }
+		: color(color), width(width), height(height) { }
 
 	float getWidth() const {
 		return width;

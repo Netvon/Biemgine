@@ -5,24 +5,30 @@
 #include "PhysicsComponentShape.h"
 
 #include <random>
+#include <math.h>
+
+
+
+#define RAD_TO_DEGREE (180.0f / M_PI)
+#define DEGREE_TO_RAD (M_PI / 180.0f)
 
 bmPhysicsSystem::bmPhysicsSystem()
 {
-	gravity = new b2Vec2(0, 1);
+	gravity = new b2Vec2(0, 0);
 	world = new b2World(*gravity);
 }
 
 bmPhysicsSystem::~bmPhysicsSystem()
 {
-    if (bodies.size() > 0) {
+	if (bodies.size() > 0) {
 
-        for (auto pair : bodies) {
-            world->DestroyBody(pair.second);
-        }
-    }
+		for (auto pair : bodies) {
+			world->DestroyBody(pair.second);
+		}
+	}
 
-    delete gravity;
-    delete world;
+	delete gravity;
+	delete world;
 }
 
 void bmPhysicsSystem::update(const bmEntity & entity)
@@ -41,12 +47,20 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
 	position->setX(body->GetPosition().x);
 	position->setY(body->GetPosition().y);
+	position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
-	b2Vec2 force = { static_cast<float>(rand() % 10000 - 5000), static_cast<float>(rand() % 10000 - 5000) };
+	//b2Vec2 force = { static_cast<float>(rand() % 10000 - 5000), static_cast<float>(rand() % 10000 - 5000) };
 
-	std::cout << "x:" << force.x << "y:" << force.y << std::endl;
+	b2Vec2 center = { 400, 300 };
+	b2Vec2 toCenter = center - body->GetPosition();
 
-	body->ApplyForceToCenter(force, true);
+	toCenter.Normalize();
+	toCenter *= 9000.0f;
+	
+
+	//std::cout << "x:" << force.x << "y:" << force.y << std::endl;
+
+	body->ApplyForceToCenter(toCenter, true);
 
 	physics->resetForce();
 }
@@ -62,7 +76,7 @@ void bmPhysicsSystem::onSceneSwitch()
 	//	pair.second = nullptr;
 	//}
 
-    //destroy();
+	//destroy();
 }
 
 void bmPhysicsSystem::before()
@@ -71,7 +85,7 @@ void bmPhysicsSystem::before()
 
 void bmPhysicsSystem::after()
 {
-	world->Step(1.f / 30.0f, 10, 10);
+	world->Step(1.f / 30.0f, 6, 2);
 }
 
 b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
@@ -86,7 +100,9 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 	else
 		newBodyDef.type = b2_staticBody;
 
+	//newBodyDef.fixedRotation = true;
 	newBodyDef.position.Set(pc->getX(), pc->getY());
+	newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
 
 	b2Body* body = world->CreateBody(&newBodyDef);
 	b2Fixture* fixture = nullptr;
@@ -100,13 +116,14 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 	}
 	else if (physics->getShape() == CIRCLE) {
 		b2CircleShape circleshape;
-		circleshape.m_p.Set(0, 0);
+		circleshape.m_p.Set(physics->getColliderW()/2, physics->getColliderH()/2);
 		circleshape.m_radius = physics->getColliderW() / 2.0f;
 
 		fixture = body->CreateFixture(&circleshape, physics->getMass());
 	}
 
-	fixture->SetRestitution(.5f);
+
+	fixture->SetRestitution(1.f);
 
 	return body;
 }

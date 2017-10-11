@@ -13,7 +13,7 @@ public:
 
 		addComponent("position", new bmPositionComponent(x, y));
 		addComponent("texture", new bmTextureComponent(texture, w, h));
-		addComponent("color", new bmColorComponent(color.r, color.g, color.b));
+		addComponent("color", new bmColorComponent(color));
 	}
 };
 
