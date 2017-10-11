@@ -12,5 +12,8 @@ public:
 
 	bmLevelScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/) 
 		: bmScene(manager/*, resourceManager*/) {};
+
+private:
+    bool isPaused = false;
 };
 

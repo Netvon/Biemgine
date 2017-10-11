@@ -87,12 +87,20 @@ void bmLevelScene::input()
         getSceneManager().changeScene(bmScene_menu);
     }
 
+    if (im.isKeyDown(",")) {
+        isPaused = true;
+    }
+    if (im.isKeyDown(".")) {
+        isPaused = false;
+    }
+
 }
 
 void bmLevelScene::update()
 {
-
-    updateEntities();
+    if (!isPaused) {
+        updateEntities();
+    }
 }
 
 void bmLevelScene::render(const float deltaTime)
