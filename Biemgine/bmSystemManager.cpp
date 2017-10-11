@@ -5,12 +5,33 @@
 
 bmSystemManager::bmSystemManager()
 {
-
+	// systems.clear();
 	// Push all the different systems here in the array.
 	// Keep the priority of systems in mind!
-	systems.push_back(new bmRenderSystem());
+	//systems.push_back(new bmRenderSystem());
 
+}
 
+bmSystemManager::~bmSystemManager()
+{
+	for (auto it = systems.begin(); it != systems.end(); ++it)
+	{
+		delete (*it);
+	}
+}
+
+void bmSystemManager::preUpdate()
+{
+	for (auto* s : systems) {
+		s->before();
+	}
+}
+
+void bmSystemManager::postUpdate()
+{
+	for (auto* s : systems) {
+		s->after();
+	}
 }
 
 void bmSystemManager::acceptForUpdate(const bmEntity & entity)
@@ -20,12 +41,14 @@ void bmSystemManager::acceptForUpdate(const bmEntity & entity)
 	}
 }
 
-void bmSystemManager::clear()
+void bmSystemManager::addSystem(bmSystem * system)
 {
-	for (auto it = systems.begin(); it != systems.end(); ++it)
-	{
-		delete (*it);
-	}
+	systems.push_back(system);
+}
 
-	systems.clear();
+void bmSystemManager::onSceneSwitch()
+{
+	for (auto* s : systems) {
+		s->onSceneSwitch();
+	}
 }

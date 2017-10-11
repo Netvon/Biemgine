@@ -1,16 +1,14 @@
 #include "stdafx.h"
 #include "bmPlayerEntity.h"
+#include "bmColorComponent.h"
+#include "bmTextureComponent.h"
+#include "bmPhysicsComponent.h"
 
 
-
-bmPlayerEntity::bmPlayerEntity() : bmEntity()
+bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h, float mass)
 {
-	// Add in each specific entity the right components.
-	addComponent("position", new bmPositionComponent(50, 50));
-	// Renderable component...
-	// Movable component...
-	// Collision component...
-
-
-
+	addComponent("position", new bmPositionComponent(x, y));
+	addComponent("color", new bmColorComponent(color));
+	addComponent("texture", new bmTextureComponent("textures/lucas.png", w, h));
+	addComponent("physics", new bmPhysicsComponent(w, h, false, RECTANGLE, mass));
 }

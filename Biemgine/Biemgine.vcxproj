@@ -73,23 +73,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\Win32;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\libs\SDL_image\lib\x86;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\Win32;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\libs\SDL_image\lib\x86;$(SolutionDir)\libs\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\glew\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\libs\glew\lib\Release\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,12 +111,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,7 +133,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,14 +144,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,38 +158,48 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmColor.h" />
+    <ClInclude Include="bmColorComponent.h" />
     <ClInclude Include="bmComponent.h" />
-    <ClInclude Include="bmDrawable.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
     <ClInclude Include="bmInputManager.h" />
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
+    <ClInclude Include="bmPhysicsComponent.h" />
+    <ClInclude Include="bmPhysicsSystem.h" />
+    <ClInclude Include="bmPlanetEntity.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
-    <ClInclude Include="bmRectangle.h" />
+    <ClInclude Include="bmRectangleComponent.h" />
     <ClInclude Include="bmRenderSystem.h" />
     <ClInclude Include="bmResourceManager.h" />
     <ClInclude Include="bmScene.h" />
     <ClInclude Include="bmSceneType.h" />
+    <ClInclude Include="bmSpriteEntity.h" />
+    <ClInclude Include="bmSurfaceEntity.h" />
     <ClInclude Include="bmSystem.h" />
     <ClInclude Include="bmSystemManager.h" />
-    <ClInclude Include="bmTexture2d.h" />
-    <ClInclude Include="bmVector2.h" />
+    <ClInclude Include="bmTextureComponent.h" />
     <ClInclude Include="bmSceneManager.h" />
     <ClInclude Include="bmEntityManager.h" />
-    <ClInclude Include="sdlWindow.h" />
-    <ClInclude Include="bmShader.h" />
+    <ClInclude Include="bmTransformComponent.h" />
+    <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="PhysicsComponentShape.h" />
+    <ClInclude Include="SDLGraphicsDevice.h" />
+    <ClInclude Include="TextureFlip.h" />
+    <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmPhysicsComponent.cpp" />
+    <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
-    <ClCompile Include="bmTexture2d.cpp" />
+    <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
-    <ClCompile Include="bmDrawable.cpp" />
     <ClCompile Include="bmEngine.cpp" />
     <ClCompile Include="bmEntity.cpp" />
     <ClCompile Include="bmInputManager.cpp" />
@@ -200,16 +208,14 @@
     <ClCompile Include="bmMenuScene.cpp" />
     <ClCompile Include="bmPlayerEntity.cpp" />
     <ClCompile Include="bmPositionComponent.cpp" />
-    <ClCompile Include="bmRectangle.cpp" />
     <ClCompile Include="bmRenderSystem.cpp" />
     <ClCompile Include="bmScene.cpp" />
     <ClCompile Include="bmSystem.cpp" />
     <ClCompile Include="bmSystemManager.cpp" />
-    <ClCompile Include="bmVector2.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
-    <ClCompile Include="sdlWindow.cpp" />
-    <ClCompile Include="bmShader.cpp" />
+    <ClCompile Include="SDLGraphicsDevice.cpp" />
+    <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

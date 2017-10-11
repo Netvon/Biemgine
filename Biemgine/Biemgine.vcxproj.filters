@@ -48,12 +48,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdlWindow.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
-    <ClInclude Include="bmVector2.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmColor.h">
       <Filter>bmBase</Filter>
     </ClInclude>
@@ -96,12 +90,6 @@
     <ClInclude Include="bmSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="bmDrawable.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
-    <ClInclude Include="bmRectangle.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
     <ClInclude Include="bmComponent.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -114,22 +102,52 @@
     <ClInclude Include="bmResourceManager.h">
       <Filter>graphics</Filter>
     </ClInclude>
-    <ClInclude Include="bmShader.h">
+    <ClInclude Include="Window.h">
+      <Filter>bmBase</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDevice.h">
       <Filter>graphics</Filter>
     </ClInclude>
-    <ClInclude Include="bmTexture2d.h">
+    <ClInclude Include="SDLGraphicsDevice.h">
       <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="bmColorComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureFlip.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="bmTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmPhysicsSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmPhysicsComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponentShape.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmSurfaceEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmRectangleComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmSpriteEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmTransformComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmPlanetEntity.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bmVector2.cpp">
-      <Filter>bmBase</Filter>
-    </ClCompile>
-    <ClCompile Include="sdlWindow.cpp">
-      <Filter>bmBase</Filter>
     </ClCompile>
     <ClCompile Include="bmEngine.cpp">
       <Filter>Engine</Filter>
@@ -167,12 +185,6 @@
     <ClCompile Include="bmSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="bmDrawable.cpp">
-      <Filter>bmBase</Filter>
-    </ClCompile>
-    <ClCompile Include="bmRectangle.cpp">
-      <Filter>bmBase</Filter>
-    </ClCompile>
     <ClCompile Include="bmComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -185,14 +197,26 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bmShader.cpp">
-      <Filter>graphics</Filter>
-    </ClCompile>
     <ClCompile Include="bmResourceManager.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
-    <ClCompile Include="bmTexture2d.cpp">
+    <ClCompile Include="Window.cpp">
+      <Filter>bmBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLGraphicsDevice.cpp">
       <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="bmColorComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmTextureComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPhysicsSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPhysicsComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

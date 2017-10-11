@@ -9,7 +9,7 @@ class bmSceneManager
 {
 public:
 
-	void setWindow(SdlWindow*);
+	void setWindow(Window*);
 	void changeScene(bmSceneType);
 	bool checkNextScene();
 
@@ -17,8 +17,7 @@ public:
 
 private:
 	bmScene* currentScene = nullptr;
-	SdlWindow* currentWindow;
-	bmResourceManager resourceManager;
+	Window* currentWindow;
 
 	int nextScene;
 };

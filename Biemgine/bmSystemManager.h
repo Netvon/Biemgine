@@ -9,9 +9,16 @@ class bmSystemManager
 public:
 	
 	bmSystemManager();
+
+	~bmSystemManager();
+
+	void preUpdate();
+	void postUpdate();
 	void acceptForUpdate(const bmEntity& entity);
 
-	void clear();
+	void addSystem(bmSystem* system);
+
+	void onSceneSwitch();
 private:
 	std::vector<bmSystem*> systems;
 
