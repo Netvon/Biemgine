@@ -12,7 +12,7 @@ void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
 	this->graphicsDevice = graphicsDevice;
 }
 
-void bmRenderSystem::update(const bmEntity& entity) {
+void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
 
 	if (!entity.hasComponent("position"))
 		return;
@@ -77,12 +77,12 @@ void bmRenderSystem::onSceneSwitch()
 		graphicsDevice->clear();
 }
 
-void bmRenderSystem::before()
+void bmRenderSystem::before(const float deltaTime)
 {
 	graphicsDevice->clear();
 }
 
-void bmRenderSystem::after()
+void bmRenderSystem::after(const float deltaTime)
 {
 	graphicsDevice->present();
 }

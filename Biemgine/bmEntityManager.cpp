@@ -27,3 +27,14 @@ void bmEntityManager::updateEntities(bmSystemManager * manager)
 
 	manager->postUpdate();
 }
+
+void bmEntityManager::updateEntities(bmSystemManager * manager, const float deltaTime)
+{
+    manager->preUpdate(deltaTime);
+
+    for (bmEntity * e : entities) {
+        manager->acceptForUpdate(*e, deltaTime);
+    }
+
+    manager->postUpdate(deltaTime);
+}

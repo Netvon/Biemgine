@@ -27,6 +27,13 @@ void bmSystemManager::preUpdate()
 	}
 }
 
+void bmSystemManager::preUpdate(const float deltaTime)
+{
+    for (auto* s : systems) {
+        s->before(deltaTime);
+    }
+}
+
 void bmSystemManager::postUpdate()
 {
 	for (auto* s : systems) {
@@ -34,11 +41,26 @@ void bmSystemManager::postUpdate()
 	}
 }
 
+void bmSystemManager::postUpdate(const float deltaTime)
+{
+    for (auto* s : systems) {
+        s->after(deltaTime);
+    }
+}
+
+
 void bmSystemManager::acceptForUpdate(const bmEntity & entity)
 {
 	for (auto* s : systems) {
 		s->update(entity);
 	}
+}
+
+void bmSystemManager::acceptForUpdate(const bmEntity & entity, const float deltaTime)
+{
+    for (auto* s : systems) {
+        s->update(entity, deltaTime);
+    }
 }
 
 void bmSystemManager::addSystem(bmSystem * system)

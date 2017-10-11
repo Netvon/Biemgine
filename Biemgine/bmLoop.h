@@ -24,19 +24,19 @@ private:
 
 	bool quit = false;
 
-	float deltaTime = 0.0f;
-	float lastFrame = 0.0f;
-
-	void updateDeltaTime();
+    float previousTime = static_cast<float>(SDL_GetTicks());
+    float lagTime = 0.0f;
 
 	void startLoop();
 	void pollEvents();
 
 	void globalUpdate();
-	//void globalDraw();
-	void globalEnd();
+    void globalRender(const float deltaTime);
+    void globalEnd();
 
-	virtual void update(float deltaTime) { }
+    virtual void input() { }
+	virtual void update() { }
+    virtual void render(const float deltaTime) { }
 	virtual void created() { }
 	virtual void end() { }
 };

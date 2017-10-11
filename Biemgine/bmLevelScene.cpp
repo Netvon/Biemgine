@@ -77,16 +77,26 @@ void bmLevelScene::sceneCreated()
 
 }
 
-void bmLevelScene::update(float deltaTime)
+void bmLevelScene::input()
 {
-	if (im.isKeyDown("Q")) {
-		signalQuit();
-	}
+    if (im.isKeyDown("Q")) {
+        signalQuit();
+    }
 
-	if (im.isKeyDown("A")) {
-		getSceneManager().changeScene(bmScene_menu);
-	}
+    if (im.isKeyDown("A")) {
+        getSceneManager().changeScene(bmScene_menu);
+    }
 
-	// Update everything...
-	updateEntities();
+}
+
+void bmLevelScene::update()
+{
+
+    updateEntities();
+}
+
+void bmLevelScene::render(const float deltaTime)
+{
+
+    updateEntities(deltaTime);
 }

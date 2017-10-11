@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
+
+const int BM_GAMELOOP_FPS = 60;
+const float BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
+
 void bmLoop::start(const Window* bmwindow)
 {
 	window = bmwindow;
@@ -14,23 +18,24 @@ void bmLoop::signalQuit()
 	quit = true;
 }
 
-void bmLoop::updateDeltaTime()
-{
-	float currentFrame = static_cast<float>(SDL_GetTicks());
-	deltaTime = currentFrame - lastFrame;
-	lastFrame = currentFrame;
-}
-
 void bmLoop::startLoop()
 {
-	while (!quit) {
 
-		updateDeltaTime();
+    while (!quit) {
 
-		pollEvents();
-		globalUpdate();
+        float currentTime = static_cast<float>(SDL_GetTicks());	// Actuele tijd.
+        float elapsedTime = currentTime - previousTime;			// Tijd tussen de vorige loop en de actuele tijd.
+        previousTime = currentTime;								// De tijd van de vorige loop de actuele tijd zetten, zodat de volgende loop dat kan gebruiken.
+        lagTime += elapsedTime;        							// Nu dat verschil aan de lagTime toevoegen, zodat we daarmee kunnen beslissen of we alles willen updaten.
 
-		//globalDraw();
+        while (lagTime >= BM_GAMELOOP_UPDATE_MS)
+        {
+            pollEvents();
+            globalUpdate();
+            lagTime = lagTime - BM_GAMELOOP_UPDATE_MS;
+        }
+
+        globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
 
 	}
 
@@ -45,23 +50,24 @@ void bmLoop::pollEvents()
 	}
 }
 
+
 void bmLoop::globalUpdate()
 {
-	im.update();
+    im.update();
+    input();
 
-	update(deltaTime);
+    update();
 }
 
-//void bmLoop::globalDraw()
-//{
-//	glClear(GL_COLOR_BUFFER_BIT);
-//
-//	draw();
-//}
+void bmLoop::globalRender(const float deltaTime)
+{
+
+    render(deltaTime);
+}
 
 void bmLoop::globalEnd()
 {
-	//glClear(GL_COLOR_BUFFER_BIT);
+
 }
 
 
