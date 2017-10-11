@@ -12,9 +12,14 @@ public:
 
 	~bmSystemManager();
 
-	void preUpdate();
-	void postUpdate();
-	void acceptForUpdate(const bmEntity& entity);
+    void preUpdate();
+    void preUpdate(const float deltaTime);
+
+    void postUpdate();
+    void postUpdate(const float deltaTime);
+
+    void acceptForUpdate(const bmEntity& entity);
+    void acceptForUpdate(const bmEntity& entity, const float deltaTime);
 
 	void addSystem(bmSystem* system);
 

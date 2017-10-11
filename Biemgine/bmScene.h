@@ -41,6 +41,7 @@ public:
 	}
 
 	void updateEntities();
+    void updateEntities(const float deltaTime);
 
 	bmSceneManager& getSceneManager() const {
 		return *sceneManager;
@@ -66,8 +67,11 @@ private:
 	bmSceneManager* sceneManager = nullptr;
 	//bmResourceManager* resourceManager;
 
-	virtual void update(float deltaTime) override = 0;
-	void created() override {
+    virtual void input() override { }
+    virtual void update() override = 0;
+    virtual void render(float deltaTime) override { }
+
+    void created() override {
 		auto gd = getWindow()->getGraphicsDevice();
 		auto renderSystem = new bmRenderSystem();
 		renderSystem->setGraphicsDevice(gd);

@@ -15,11 +15,10 @@ public:
 
 	void setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
-	void update(const bmEntity& entity) override;
+	void update(const bmEntity& entity, const float deltaTime) override;
 	void onSceneSwitch() override;
-	void before() override;
-
-	void after() override;
+	void before(const float deltaTime) override;
+	void after(const float deltaTime) override;
 
 private:
 	GraphicsDevice* graphicsDevice = nullptr;

@@ -15,7 +15,8 @@ public:
 	// Function that fills each inputcomponent with the input data.
 	void fillInput();
 
-	void updateEntities(bmSystemManager * manager);	
+    void updateEntities(bmSystemManager * manager);
+    void updateEntities(bmSystemManager * manager, const float deltaTime);
 
 private:
 

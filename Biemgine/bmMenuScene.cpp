@@ -15,15 +15,26 @@ void bmMenuScene::sceneCreated()
 	cout << "MenuScene created" << endl;
 }
 
-void bmMenuScene::update(float deltaTime)
-{
-	if (im.isKeyDown("Q")) {
-		signalQuit();
-	}
 
-	if (im.isKeyDown("S")) {
-		getSceneManager().changeScene(bmScene_level);
-	}
+void bmMenuScene::input()
+{
+    if (im.isKeyDown("Q")) {
+        signalQuit();
+    }
+
+    if (im.isKeyDown("S")) {
+        getSceneManager().changeScene(bmScene_level);
+    }
+}
+
+void bmMenuScene::update()
+{
 
 	updateEntities();
+}
+
+void bmMenuScene::render(const float deltaTime)
+{
+
+    updateEntities(deltaTime);
 }
