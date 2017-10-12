@@ -8,7 +8,7 @@
 #include "bmRectangleComponent.h"
 #include "bmAtmosphereComponent.h"
 #include "bmGravityComponent.h"
-#include "bmEntityTypeComponent.h"
+#include "bmGroundComponent.h"
 
 class bmPlanetEarthEntity : public bmEntity
 {
@@ -22,6 +22,6 @@ public:
         addComponent("physics", new bmPhysicsComponent(w  , h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
         addComponent("atmosphere", new bmAtmosphereComponent(x+(w/2), y+(h/2), w));
-        addComponent("entityType", new bmEntityTypeComponent(PLANET_EARTH));
+        addComponent("ground", new bmGroundComponent());
     }
 };

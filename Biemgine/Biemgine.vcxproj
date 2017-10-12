@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -163,6 +163,8 @@
     <ClInclude Include="bmComponent.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
+    <ClInclude Include="bmGroundComponent.h" />
+    <ClInclude Include="bmGroundedComponent.h" />
     <ClInclude Include="bmInputManager.h" />
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="bmSceneManager.h" />
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="bmTransformComponent.h" />
+    <ClInclude Include="bmContactListener.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="bmOxygenComponent.h" />
     <ClInclude Include="bmOxygenUIEntity.h" />
@@ -203,8 +206,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmGroundComponent.cpp" />
     <ClCompile Include="bmRenderOxygenSystem.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
+    <ClCompile Include="bmGroundedComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
@@ -212,6 +217,7 @@
     <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
+    <ClCompile Include="bmContactListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bmComponent.cpp" />
     <ClCompile Include="bmEngine.cpp" />

@@ -19,8 +19,8 @@ public:
     void setY(float y);
     void setRotation(float newRotation);
 
-    void add(float x, float y) {
-        location += glm::vec3(x, y, 0);
+    void add(float x, float y, float z = 0) {
+        location += glm::vec3(x, y, z);
     }
 
 private:

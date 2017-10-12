@@ -3,10 +3,12 @@
 #include "bmPositionComponent.h"
 #include "bmPhysicsComponent.h"
 #include "PhysicsComponentShape.h"
+#include "bmGroundedComponent.h"
+
+#include "bmContactListener.h"
 
 #include <random>
 #include <math.h>
-
 
 
 #define RAD_TO_DEGREE (180.0f / M_PI)
@@ -16,6 +18,7 @@ bmPhysicsSystem::bmPhysicsSystem()
 {
     gravity = new b2Vec2(0, 0);
     world = new b2World(*gravity);
+    world->SetContactListener(new bmContactListener());
 }
 
 bmPhysicsSystem::~bmPhysicsSystem()
@@ -56,14 +59,27 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     toCenter.Normalize();
     toCenter *= 9000.0f;
-    
+
+    if (entity.hasComponent("grounded")) {
+        auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
+
+        if (grounded->isGrounded()) {
+            toCenter = -toCenter;
+
+            body->ApplyForceToCenter(toCenter, true);
+
+            return;
+        }
+    }
 
     //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
     body->ApplyForceToCenter(toCenter, true);
 
-    physics->resetForce();
+    float angle = atan2f(-toCenter.x, toCenter.y);
+    body->SetTransform(body->GetPosition(), angle);
 
+    physics->resetForce();
 }
 
 void bmPhysicsSystem::onSceneSwitch()
@@ -101,29 +117,44 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
     else
         newBodyDef.type = b2_staticBody;
 
-    //newBodyDef.fixedRotation = true;
+    if (entity.hasComponent("grounded")) {
+        newBodyDef.fixedRotation = true;
+    }
+
     newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
     newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
 
     b2Body* body = world->CreateBody(&newBodyDef);
+    body->SetUserData((void*)&entity);
     b2Fixture* fixture = nullptr;
 
     if (physics->getShape() == RECTANGLE) {
-
         b2PolygonShape polygonshape;
         polygonshape.SetAsBox(physics->getColliderW() / 2.f, physics->getColliderH() / 2.f, { 0,0/*physics->getColliderW() / 2.f, physics->getColliderH() / 2.f*/ }, 0);
 
         fixture = body->CreateFixture(&polygonshape, physics->getMass());
     }
     else if (physics->getShape() == CIRCLE) {
-        b2CircleShape circleshape;
-        circleshape.m_p.Set(0, 0);
-        circleshape.m_radius = physics->getColliderW() / 2.0f;
+        b2CircleShape circleShape;
+        circleShape.m_p.Set(0, 0);
+        circleShape.m_radius = physics->getColliderW() / 2.0f;
 
-        fixture = body->CreateFixture(&circleshape, physics->getMass());
+        fixture = body->CreateFixture(&circleShape, physics->getMass());
     }
 
     fixture->SetRestitution(1.f);
+
+    if (entity.hasComponent("grounded")) {
+        b2PolygonShape groundShape;
+        groundShape.SetAsBox(physics->getColliderW(), physics->getColliderH(), { 0, 0 }, 0);
+
+        b2FixtureDef groundFixtureDef;
+        groundFixtureDef.shape = &groundShape;
+        groundFixtureDef.density = 0.f;
+        groundFixtureDef.isSensor = true;
+
+        b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
+    }
 
     return body;
 }
