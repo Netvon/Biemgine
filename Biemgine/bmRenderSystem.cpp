@@ -12,8 +12,8 @@ void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
     this->graphicsDevice = graphicsDevice;
 }
 
-void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
-{
+void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
+
     if (!entity.hasComponent("position"))
         return;
 
@@ -22,7 +22,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     auto pc = entity.getComponent<bmPositionComponent*>("position");
 
     // Check if the entity has the right components
-    if (entity.hasComponent("texture")) {        
+    if (entity.hasComponent("texture")) {
         auto cc = entity.getComponent<bmColorComponent*>("color");
         auto tc = entity.getComponent<bmTextureComponent*>("texture");
 
@@ -46,16 +46,15 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
             rectangle->getColor().getColor(), pc->getRotation()
         );
     }
-       
+
     // Parse the base component to the right derived component
     //bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
-    
+
     // Action!
     //std::cout << "Rendering id:" << entity.getId() << " at x:" << pc->getX() << " and y:" << pc->getY() << std::endl;
 
     /*float offsetX = static_cast<float>(rand() % 2) / 10.0;
     float offsetY = static_cast<float>(rand() % 2) / 10.0;
-
     pc->add(offsetX, offsetY);*/
 
     float angle = 0;//static_cast<float>(rand() % 360);
@@ -64,6 +63,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     //graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
     //graphicsDevice->drawTexture("../../Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56);
 }
+
 
 void bmRenderSystem::onSceneSwitch()
 {

@@ -187,6 +187,7 @@
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
+    <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
