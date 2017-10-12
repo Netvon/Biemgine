@@ -12,21 +12,18 @@ void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
     this->graphicsDevice = graphicsDevice;
 }
 
-void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
-
+void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
+{
     if (!entity.hasComponent("position"))
         return;
 
     // Get the components
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
     auto pc = entity.getComponent<bmPositionComponent*>("position");
-    
 
     // Check if the entity has the right components
-    if (entity.hasComponent("texture")) {
-        
+    if (entity.hasComponent("texture")) {        
         auto cc = entity.getComponent<bmColorComponent*>("color");
-
         auto tc = entity.getComponent<bmTextureComponent*>("texture");
 
         graphicsDevice->drawTexture(
@@ -49,12 +46,10 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
             rectangle->getColor().getColor(), pc->getRotation()
         );
     }
-        
-
+       
     // Parse the base component to the right derived component
     //bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
     
-
     // Action!
     //std::cout << "Rendering id:" << entity.getId() << " at x:" << pc->getX() << " and y:" << pc->getY() << std::endl;
 
@@ -68,12 +63,11 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
 
     //graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
     //graphicsDevice->drawTexture("../../Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56);
-    
 }
 
 void bmRenderSystem::onSceneSwitch()
 {
-    if(graphicsDevice != nullptr)
+    if (graphicsDevice != nullptr)
         graphicsDevice->clear();
 }
 

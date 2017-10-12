@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SDLGraphicsDevice.h"
-
+#include <SDL_ttf.h>
 #include <SDL_image.h>
 
 SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
@@ -11,7 +11,13 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
         std::cout << IMG_GetError() << std::endl;
     }
 
-    SDL_Rect viewport = { 0, 0, 0, 0 };
+    if (TTF_Init() < 0) {
+        std::cout << TTF_GetError() << std::endl;
+    }
+
+    font = TTF_OpenFont("consolas.ttf", 20);
+
+	SDL_Rect viewport = { 0, 0, 0, 0 };
 
     SDL_GetWindowSize(window, &viewport.w, &viewport.h);
     SDL_RenderSetViewport(renderer, &viewport);
@@ -32,12 +38,14 @@ SDLGraphicsDevice::~SDLGraphicsDevice()
 
     textures.clear();
 
-
     if (renderer != nullptr) {
         SDL_DestroyRenderer(renderer);
     }
 
-    IMG_Quit();
+    TTF_CloseFont(font);
+
+    TTF_Quit();
+	IMG_Quit();
 }
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
@@ -49,6 +57,24 @@ void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, fl
     SDL_Rect rect = { x, y, w, h };
 
     SDL_RenderFillRect(renderer, &rect);
+}
+
+void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, int ptSize) {
+
+    SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
+    SDL_Surface *textSurface = TTF_RenderText_Solid(font, text.c_str(), convertedColor);
+    SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+
+    SDL_Rect textRect = { x, y };
+
+    SDL_QueryTexture(textTexture, nullptr, nullptr, &textRect.w, &textRect.h);
+
+    SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
+
+    SDL_FreeSurface(textSurface);
+
+    // TODO: Destory texture
+    SDL_DestroyTexture(textTexture);
 }
 
 void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h, float angle, bmColor color, TextureFlip flip)

@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL2_ttf\include;$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)libs\SDL2_ttf\lib\x64;$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -115,7 +115,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
