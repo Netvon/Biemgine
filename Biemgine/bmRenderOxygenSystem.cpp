@@ -47,9 +47,6 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
         else return;
     }
 
-    cout << oRef->getOxygenAmount() << endl;
-
-
 
     // Now draw!
     graphicsDevice->drawSquare(
