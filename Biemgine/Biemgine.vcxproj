@@ -167,6 +167,8 @@
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
+    <ClInclude Include="bmRenderOxygenSystem.h" />
+    <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
     <ClInclude Include="bmPlanetGravityComponent.h" />
@@ -186,6 +188,9 @@
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="bmOxygenComponent.h" />
+    <ClInclude Include="bmOxygenUIEntity.h" />
+    <ClInclude Include="bmOxygenSystem.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
     <ClInclude Include="bmPlanetAtmosphereComponent.h" />
     <ClInclude Include="bmPlanetComponentType.h" />
@@ -199,6 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmRenderOxygenSystem.cpp" />
+    <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
@@ -222,6 +229,8 @@
     <ClCompile Include="bmSystemManager.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
+    <ClCompile Include="bmOxygenComponent.cpp" />
+    <ClCompile Include="bmOxygenSystem.cpp" />
     <ClCompile Include="bmPlanetAtmosphereComponent.cpp" />
     <ClCompile Include="bmPlanettypeComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />

@@ -3,7 +3,9 @@
 #include "bmSystemManager.h"
 #include "bmEntityManager.h"
 #include "bmPhysicsSystem.h"
+#include "bmOxygenSystem.h"
 #include "bmRenderSystem.h"
+#include "bmRenderOxygenSystem.h"
 
 class bmSceneManager;
 class bmResourceManager;
@@ -71,19 +73,7 @@ private:
     virtual void update() override = 0;
     virtual void render(float deltaTime) override { }
 
-    void created() override {
-        auto gd = getWindow()->getGraphicsDevice();
-        auto renderSystem = new bmRenderSystem();
-        renderSystem->setGraphicsDevice(gd);
-
-
-        auto physicsSystem = new bmPhysicsSystem();
-
-        systemManager->addSystem(renderSystem);
-        systemManager->addSystem(physicsSystem);
-
-        sceneCreated();
-    }
+    void created() override;
 
     virtual void sceneCreated() = 0;
     virtual void sceneEnd() { };

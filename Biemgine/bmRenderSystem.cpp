@@ -18,6 +18,9 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     if (!entity.hasComponent("position"))
         return;
 
+	if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle")) 
+		return;
+
 
     // Get the components
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();

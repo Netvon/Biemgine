@@ -156,6 +156,21 @@
     <ClInclude Include="bmPlanetGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="bmOxygenSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenUIEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmUIComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmRenderOxygenSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -230,6 +245,15 @@
     <ClCompile Include="bmPhysicsComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="bmOxygenSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmOxygenComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmUIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
     <ClCompile Include="bmPlanetAtmosphereComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -244,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="bmPlanetGravityComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmRenderOxygenSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
