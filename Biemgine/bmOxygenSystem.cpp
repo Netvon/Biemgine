@@ -8,6 +8,7 @@ void bmOxygenSystem::before()
 void bmOxygenSystem::update(const bmEntity & entity)
 {
     if (!entity.hasComponent("oxygen")) return;
+    if (entity.hasComponent("ui")) return;
 
     auto oc = entity.getComponent<bmOxygenComponent*>("oxygen");
 
@@ -37,7 +38,4 @@ void bmOxygenSystem::onSceneSwitch()
 {
 }
 
-void bmOxygenSystem::setTransitionManager(bmTransitionManager * pManager)
-{
-    transitionManager = pManager;
-}
+

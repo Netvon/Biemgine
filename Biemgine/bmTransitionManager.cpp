@@ -19,3 +19,13 @@ void bmTransitionManager::startLevelTransition()
 {
     sceneManager->changeScene(bmScene_level);
 }
+
+int bmTransitionManager::getWindowWidth() const
+{    
+    return window->getWidth();
+}
+
+int bmTransitionManager::getWindowHeight() const
+{
+    return window->getHeight();
+}

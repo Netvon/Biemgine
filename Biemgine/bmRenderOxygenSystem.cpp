@@ -54,7 +54,7 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
     graphicsDevice->drawSquare(
         static_cast<int>(pc->getX()),
         static_cast<int>(pc->getY()),
-        static_cast<int>(800 * oBar),
+        static_cast<int>(transitionManager->getWindowWidth() * oBar),
         static_cast<int>(10),
         cc->getColor(),
         pc->getRotation()
