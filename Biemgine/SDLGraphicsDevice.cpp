@@ -60,12 +60,12 @@ void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, fl
     SDL_RenderFillRect(renderer, &rect);
 }
 
-void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, int ptSize, float angle, TextureFlip flip) {
+void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, int ptSize, TextureFlip flip) {
 
     if (textTextures.find(text) == textTextures.end()) {
         // If text doesn't exist in list
         SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
-        SDL_Surface *textSurface = TTF_RenderText_Solid(font, text.c_str(), convertedColor);
+        SDL_Surface *textSurface = TTF_RenderText_Blended(font, text.c_str(), convertedColor);
         SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
         SDL_FreeSurface(textSurface);
