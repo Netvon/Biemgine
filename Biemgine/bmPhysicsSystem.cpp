@@ -77,10 +77,7 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
-   
-
-    body->ApplyForceToCenter(toCenter, true);
-
+    body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
 
     physics->resetForce();
 }

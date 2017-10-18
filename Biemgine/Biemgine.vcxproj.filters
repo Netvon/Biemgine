@@ -187,6 +187,12 @@
     <ClInclude Include="bmPlanetGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="bmGravitySystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmAffectedByGravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -299,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="bmGroundComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmGravitySystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

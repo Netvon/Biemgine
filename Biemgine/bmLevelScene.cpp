@@ -42,6 +42,11 @@ void bmLevelScene::sceneCreated()
     getEntityManager().addEntity(new bmOxygenUIEntity());
 
     getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+
+    getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+
+    // Create and add Player
+    // Create and add Planets
 }
 
 void bmLevelScene::input()
