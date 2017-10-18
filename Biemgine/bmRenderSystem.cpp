@@ -51,14 +51,16 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         auto pac = entity.getComponent<bmPlanetAtmosphereComponent*>("atmosphere");
         auto tc = pac->getTextureComponent();
 
-        graphicsDevice->drawTexture(
+        drawList.push_back(DrawTexture(
             tc.getPath(),
             static_cast<int>(pc->getX() + tc.getOffsetX()),
             static_cast<int>(pc->getY() + tc.getOffsetY()),
             tc.getWidth(),
             tc.getHeight(),
-            pc->getRotation(), cc->getColor()
-        );
+            pc->getRotation(),
+            cc->getColor(),
+            tc.getLayer()
+        ));
     }
 
     // Check if the entity has the right components
