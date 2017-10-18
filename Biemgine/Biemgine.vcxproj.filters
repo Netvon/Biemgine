@@ -184,6 +184,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bmGroundComponent.h">
+    <ClInclude Include="bmPlanetGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -267,6 +268,9 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="bmUIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetAtmosphereComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="bmPlanetEarthEntity.h">
