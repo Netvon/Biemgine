@@ -73,8 +73,6 @@ void bmLevelScene::sceneCreated()
 
     // Create and add Player
     // Create and add Planets
-
-
 }
 
 void bmLevelScene::input()
