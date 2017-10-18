@@ -29,8 +29,8 @@ void bmLevelScene::sceneCreated()
         
     }*/
 
-    float width = 15;
-    float height = 25;
+    float width = 45 / 2;
+    float height = 45 / 2;
 
     for (float x = 100; x < 700; x += width + width/4.0f)
     {

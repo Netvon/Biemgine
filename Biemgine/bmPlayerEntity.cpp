@@ -8,6 +8,6 @@ bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h
 {
     addComponent("position", new bmPositionComponent(x, y));
     addComponent("color", new bmColorComponent(color));
-    addComponent("texture", new bmTextureComponent("textures/lucas.png", 0, 0, w, h, 1u));
+    addComponent("texture", new bmTextureComponent("textures/lucas_hmm.png", 0, 0, w, h, 1u));
     addComponent("physics", new bmPhysicsComponent(w, h, false, RECTANGLE, mass));
 }
