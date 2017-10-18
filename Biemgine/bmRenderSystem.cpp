@@ -7,13 +7,13 @@
 #include "bmEntity.h"
 
 
-void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice) 
+void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
 {
     this->graphicsDevice = graphicsDevice;
 }
 
-void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
-
+void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
+{
     if (!entity.hasComponent("position"))
         return;
 
@@ -34,8 +34,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
             tc->getHeight(),
             pc->getRotation(), cc->getColor()
         );
-    }
-    else {
+    } else {
         auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
 
         graphicsDevice->drawSquare(
@@ -55,6 +54,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
 
     /*float offsetX = static_cast<float>(rand() % 2) / 10.0;
     float offsetY = static_cast<float>(rand() % 2) / 10.0;
+
     pc->add(offsetX, offsetY);*/
 
     float angle = 0;//static_cast<float>(rand() % 360);
@@ -62,8 +62,8 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime) {
 
     //graphicsDevice->drawSquare(pc->getX(), pc->getY(), 50, 50, cc->getColor());
     //graphicsDevice->drawTexture("../../Biemgine/textures/biemlogo.png", pc->getX(), pc->getY(), 100, 56);
-}
 
+}
 
 void bmRenderSystem::onSceneSwitch()
 {
