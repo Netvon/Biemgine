@@ -168,7 +168,6 @@
     <ClInclude Include="bmMenuScene.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
-    <ClInclude Include="bmPlanetEntity.h" />
     <ClInclude Include="bmPlanetGravityComponent.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />

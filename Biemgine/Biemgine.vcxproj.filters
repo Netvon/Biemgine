@@ -153,12 +153,6 @@
     <ClInclude Include="bmPlanettypeComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmPlanetEntity.h">
-      <Filter>Entities\PlanetEntities</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureAndUsage.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
     <ClInclude Include="bmPlanetGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>

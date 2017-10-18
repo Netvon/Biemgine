@@ -3,7 +3,6 @@
 #include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
-#include "bmPlanetEntity.h"
 #include "bmPlanetEarthEntity.h"
 
 
