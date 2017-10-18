@@ -18,6 +18,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     if (!entity.hasComponent("position"))
         return;
 
+
     // Get the components
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
     auto pc = entity.getComponent<bmPositionComponent*>("position");
@@ -25,31 +26,41 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         auto pac = entity.getComponent<bmPlanetAtmosphereComponent*>("atmosphere");
         auto tc = pac->getTextureComponent();
 
-        graphicsDevice->drawTexture(
+        drawList.push_back(DrawTexture(
             tc.getPath(),
             static_cast<int>(pc->getX() + tc.getOffsetX()),
             static_cast<int>(pc->getY() + tc.getOffsetY()),
             tc.getWidth(),
             tc.getHeight(),
-            pc->getRotation(), cc->getColor()
-        );
+            pc->getRotation(),
+            cc->getColor(),
+            tc.getLayer()
+        ));
     }
 
     // Check if the entity has the right components
     if (entity.hasComponent("texture")) {
         auto cc = entity.getComponent<bmColorComponent*>("color");
-        auto tc = entity.getComponent<bmTextureComponent*>("texture");
 
-        graphicsDevice->drawTexture(
-            tc->getPath(),
-            static_cast<int>(pc->getX() + tc->getOffsetX()),
-            static_cast<int>(pc->getY() + tc->getOffsetY()),
-            tc->getWidth(),
-            tc->getHeight(),
-            pc->getRotation(), cc->getColor()
-        );
-    } else {
-        auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
+        auto tc = entity.getComponents<bmTextureComponent*>("texture");
+
+        for (auto tex : tc) {
+            drawList.push_back(DrawTexture(
+                tex->getPath(),
+                static_cast<int>(pc->getX() + tex->getOffsetX()),
+                static_cast<int>(pc->getY() + tex->getOffsetY()),
+                tex->getWidth(),
+                tex->getHeight(),
+                pc->getRotation(),
+                cc->getColor(),
+                tex->getLayer()
+            ));
+        }
+
+        
+    }
+    else {
+       /* auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
 
         graphicsDevice->drawSquare(
             static_cast<int>(pc->getX()),
@@ -57,7 +68,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
             static_cast<int>(rectangle->getWidth()),
             static_cast<int>(rectangle->getHeight()),
             rectangle->getColor().getColor(), pc->getRotation()
-        );
+        );*/
     }
 
    
@@ -91,7 +102,29 @@ void bmRenderSystem::before(const float deltaTime)
     graphicsDevice->clear();
 }
 
+bool sortByLayer(DrawTexture first, DrawTexture second)
+{
+    return first.layer < second.layer;
+}
+
 void bmRenderSystem::after(const float deltaTime)
 {
+    drawList.sort(sortByLayer);
+
+    for (auto texture : drawList)
+    {
+        graphicsDevice->drawTexture(
+            texture.path,
+            texture.x,
+            texture.y,
+            texture.w,
+            texture.h,
+            texture.angle,
+            texture.color
+        );
+    }
+
     graphicsDevice->present();
+
+    drawList.clear();
 }

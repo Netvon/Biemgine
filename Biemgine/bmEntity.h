@@ -6,6 +6,8 @@
 #include <iostream>
 #include <cassert>
 
+#include <vector>
+
 using namespace std;
 
 class bmEntity
@@ -16,7 +18,26 @@ public:
 
     template <typename TComponent>
     TComponent getComponent(const string name) const {
-        return dynamic_cast<TComponent>(componentHashmap.at(name));
+        auto find = componentHashmap.equal_range(name);
+
+        for (auto it = find.first; it != find.second; ++it) {
+            return dynamic_cast<TComponent>(it->second);
+        }
+    }
+
+    // pair <multimap<string,bmComponent*>::iterator, multimap<string,bmComponent*>::iterator>
+
+    template <typename TComponent>
+    vector<TComponent> getComponents(const string name) const {
+
+        vector<TComponent> vec;
+        auto find = componentHashmap.equal_range(name);
+
+        for (auto it = find.first; it != find.second; ++it) {
+            vec.push_back(dynamic_cast<TComponent>(it->second));
+        }
+
+        return vec;
     }
 
     bool hasComponent(const string name) const {
@@ -33,5 +54,5 @@ public:
 
 private:
     int id;
-    map<string, bmComponent*> componentHashmap;
+    multimap<string, bmComponent*> componentHashmap;
 };
