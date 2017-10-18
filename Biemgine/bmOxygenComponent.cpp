@@ -8,7 +8,7 @@ int bmOxygenComponent::getOxygenAmount() const
 
 void bmOxygenComponent::setOxygenAmount(int pOxygen)
 {
-    if (pOxygen >= 0) {
+    if (pOxygen >= 0 && pOxygen <= oxygenMax) {
         oxygenAmount = pOxygen;
     }
 }

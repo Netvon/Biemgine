@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "stdafx.h"
 #include "bmOxygenSystem.h"
 
@@ -7,23 +9,46 @@ void bmOxygenSystem::before()
 
 void bmOxygenSystem::update(const bmEntity & entity)
 {
+
+    if (entity.hasComponent("atmosphere")) {
+        auto ac = entity.getComponent<bmAtmosphereComponent*>("atmosphere");
+        if (find(atmospheres.begin(), atmospheres.end(), ac) == atmospheres.end()) {
+            atmospheres.push_back(ac);
+        }
+    }
+
     if (!entity.hasComponent("oxygen")) return;
     if (entity.hasComponent("ui")) return;
 
     auto oc = entity.getComponent<bmOxygenComponent*>("oxygen");
 
+    bmAtmosphereComponent* currentAtmosphere = nullptr;
+    if (entity.hasComponent("position")) {
+        auto pc = entity.getComponent<bmPositionComponent*>("position");
+        for (auto atmos : atmospheres)
+        {
+            int xA = atmos->getX();
+            int yA = atmos->getY();
+            int rA = atmos->getRadius();
+            int x = pc->getX();
+            int y = pc->getY();
 
-    // check if it is on a planet without atmosphere
-    // Then:
+            // Kei skône pietjegras theorie
+            if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
+                currentAtmosphere = atmos;
+                break;
+            }
+        }
+    }
+    
     int oAmount = oc->getOxygenAmount();
-    oAmount -= oc->getOxygenDecrease();
+    if (currentAtmosphere == nullptr) {
+        oAmount -= oc->getOxygenDecrease();
+    }
+    else {
+        oAmount += oc->getOxygenIncrease();
+    }
     oc->setOxygenAmount(oAmount);
-
-    // Else: TODO Add oxygen to the component
-
-
-    // Do something more later with modifiers and upgrades (0.5 decrease if mask upgraded)
-
 
     if (oAmount <= 0) {
         transitionManager->gameOverTransition();

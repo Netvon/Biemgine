@@ -4,8 +4,8 @@
 #include "bmColorComponent.h"
 #include "bmRectangleComponent.h"
 #include "bmTextureComponent.h"
-#include "bmPlanetAtmosphereComponent.h"
-#include "bmPlanetGravityComponent.h"
+#include "bmAtmosphereComponent.h"
+#include "bmGravityComponent.h"
 #include "bmEntity.h"
 
 

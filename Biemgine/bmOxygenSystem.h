@@ -2,6 +2,8 @@
 
 #include "bmSystem.h"
 #include "bmOxygenComponent.h"
+#include "bmAtmosphereComponent.h"
+#include "bmPositionComponent.h"
 
 class bmOxygenSystem : public bmSystem
 {
@@ -18,7 +20,7 @@ public:
 
 
 private:
-
+    vector<bmAtmosphereComponent*> atmospheres;
 
 };
 

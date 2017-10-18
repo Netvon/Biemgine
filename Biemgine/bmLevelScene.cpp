@@ -38,7 +38,7 @@ void bmLevelScene::sceneCreated()
         
     }*/
 
-    getEntityManager().addEntity(new bmPlayerEntity(100, 50, { 255, 255, 255 }, width, height));
+    getEntityManager().addEntity(new bmPlayerEntity(200, 100, { 255, 255, 255, 255 }, width, height));
 
     float p_size = 400.f;
     float p_size_h = p_size * 0.5f;
@@ -47,11 +47,6 @@ void bmLevelScene::sceneCreated()
 
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
-    
-    //getEntityManager().addEntity(new bmPlayerEntity(10, 25, 255, 255, 255, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(20, 50, 255, 255, 255, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
 
 
     //bottom
