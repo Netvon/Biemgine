@@ -22,7 +22,6 @@ public:
         addComponent("physics", new bmPhysicsComponent(w  , h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
         addComponent("planettype", new bmPlanettypeComponent(EARTH));
-        //addComponent("atmosphere", new bmPlanetAtmosphereComponent(bmTextureComponent("textures/atmosphere.png", w / -2, h / -2, w * 2, h * 2)));
+        addComponent("atmosphere", new bmPlanetAtmosphereComponent(w / -2, h / -2, w * 2, h * 2));
     }
 };
-

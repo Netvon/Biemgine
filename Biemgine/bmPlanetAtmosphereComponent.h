@@ -1,20 +1,30 @@
 #pragma once
 
 #include "bmComponent.h"
-#include "bmTextureComponent.h"
 
 class bmPlanetAtmosphereComponent :
     public bmComponent
 {
 public:
-    bmPlanetAtmosphereComponent(bmTextureComponent pTextureComponent) : textureComponent(pTextureComponent){};
+    bmPlanetAtmosphereComponent(float offsetX, float offsetY, float w, float h) : offsetX(offsetX), offsetY(offsetY), w(w), h(h) {};
 
-    bmTextureComponent& getTextureComponent() {
-        return textureComponent;
-    };
+    float getX() {
+        return offsetX;
+    }
 
- 
+    float getY() {
+        return offsetY;
+    }
+
+    float getWidth() {
+        return w;
+    }
+
+    float getHeight() {
+        return h;
+    }
+
 private:
-    bmTextureComponent textureComponent;
+    float offsetX, offsetY, w, h;
 };
 
