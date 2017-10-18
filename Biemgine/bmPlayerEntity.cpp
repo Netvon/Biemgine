@@ -4,7 +4,6 @@
 #include "bmTextureComponent.h"
 #include "bmPhysicsComponent.h"
 
-
 bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h, float mass)
 {
     addComponent("position", new bmPositionComponent(x, y));

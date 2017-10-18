@@ -169,6 +169,7 @@
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
     <ClInclude Include="bmPlanetEntity.h" />
+    <ClInclude Include="bmPlanetGravityComponent.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRectangleComponent.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
+    <ClCompile Include="bmPlanetGravityComponent.cpp" />
     <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />

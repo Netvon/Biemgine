@@ -159,6 +159,9 @@
     <ClInclude Include="TextureAndUsage.h">
       <Filter>graphics</Filter>
     </ClInclude>
+    <ClInclude Include="bmPlanetGravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="bmPlanetMoonEntity.cpp">
       <Filter>Entities\PlanetEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetGravityComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
