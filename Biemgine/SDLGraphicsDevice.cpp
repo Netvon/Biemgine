@@ -81,7 +81,7 @@ void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, 
 
     SDL_QueryTexture(textFromKey.texture, nullptr, nullptr, &textRect.w, &textRect.h);
 
-    SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, angle, nullptr, static_cast<SDL_RendererFlip>(flip));
+    SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, 0, nullptr, static_cast<SDL_RendererFlip>(flip));
 
     // SDL_DestroyTexture(textTexture);
 }
