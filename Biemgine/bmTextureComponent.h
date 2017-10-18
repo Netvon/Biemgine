@@ -4,7 +4,7 @@ class bmTextureComponent :
     public bmComponent
 {
 public:
-    bmTextureComponent(std::string path, int w = -1, int h = -1) : path(path), width(w), height(h) { };
+    bmTextureComponent(std::string path, float offsetX, float offsetY, int w = -1, int h = -1) : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h) { };
 
     std::string& getPath() { return path; };
 
@@ -16,8 +16,17 @@ public:
         return height;
     }
 
+    int getOffsetX() const {
+        return offsetX;
+    }
+
+    int getOffsetY() const {
+        return offsetY;
+    }
+
 private:
     std::string path;
     int width, height;
+    float offsetX, offsetY;
 };
 

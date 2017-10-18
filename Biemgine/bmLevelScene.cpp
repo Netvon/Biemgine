@@ -4,6 +4,7 @@
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
 #include "bmPlanetEntity.h"
+#include "bmPlanetEarthEntity.h"
 
 
 void bmLevelScene::sceneCreated()
@@ -69,7 +70,7 @@ void bmLevelScene::sceneCreated()
 
     float p_size = 300.f;
     float p_size_h = p_size * 0.5f;
-    getEntityManager().addEntity(new bmPlanetEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 128 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
 
     // Create and add Player
     // Create and add Planets

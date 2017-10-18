@@ -4,6 +4,7 @@
 #include "bmColorComponent.h"
 #include "bmRectangleComponent.h"
 #include "bmTextureComponent.h"
+#include "bmPlanetAtmosphereComponent.h"
 #include "bmEntity.h"
 
 
@@ -21,6 +22,19 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
     auto pc = entity.getComponent<bmPositionComponent*>("position");
 
+        auto pac = entity.getComponent<bmPlanetAtmosphereComponent*>("atmosphere");
+        auto tc = pac->getTextureComponent();
+
+        graphicsDevice->drawTexture(
+            tc.getPath(),
+            static_cast<int>(pc->getX() + tc.getOffsetX()),
+            static_cast<int>(pc->getY() + tc.getOffsetY()),
+            tc.getWidth(),
+            tc.getHeight(),
+            pc->getRotation(), cc->getColor()
+        );
+    }
+
     // Check if the entity has the right components
     if (entity.hasComponent("texture")) {
         auto cc = entity.getComponent<bmColorComponent*>("color");
@@ -28,8 +42,8 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
 
         graphicsDevice->drawTexture(
             tc->getPath(),
-            static_cast<int>(pc->getX()),
-            static_cast<int>(pc->getY()),
+            static_cast<int>(pc->getX() + tc->getOffsetX()),
+            static_cast<int>(pc->getY() + tc->getOffsetY()),
             tc->getWidth(),
             tc->getHeight(),
             pc->getRotation(), cc->getColor()
@@ -46,6 +60,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         );
     }
 
+   
     // Parse the base component to the right derived component
     //bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
 

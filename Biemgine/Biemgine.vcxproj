@@ -186,6 +186,9 @@
     <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
+    <ClInclude Include="bmPlanetAtmosphereComponent.h" />
+    <ClInclude Include="bmPlanetComponentType.h" />
+    <ClInclude Include="bmPlanettypeComponent.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
@@ -197,6 +200,8 @@
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
+    <ClCompile Include="bmPlanetEarthEntity.h" />
+    <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
@@ -215,6 +220,8 @@
     <ClCompile Include="bmSystemManager.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
+    <ClCompile Include="bmPlanetAtmosphereComponent.cpp" />
+    <ClCompile Include="bmPlanettypeComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">
