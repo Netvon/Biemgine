@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "bmLevelScene.h"
-#include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
 #include "bmPlanetEarthEntity.h"
@@ -82,7 +81,7 @@ void bmLevelScene::input()
     }
 
     if (im.isKeyDown("A")) {
-        getSceneManager().changeScene(bmScene_menu);
+        getTransitionManager().quitLevelTransition();
     }
 
     if (im.isKeyDown(",")) {

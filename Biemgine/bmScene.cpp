@@ -18,6 +18,8 @@ void bmScene::created()
     auto physicsSystem = new bmPhysicsSystem();
     auto oxygenSystem = new bmOxygenSystem();
 
+    oxygenSystem->setTransitionManager(transitionManager);
+
     systemManager->addSystem(physicsSystem);
     systemManager->addSystem(oxygenSystem);
 

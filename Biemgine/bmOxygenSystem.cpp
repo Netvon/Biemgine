@@ -23,6 +23,10 @@ void bmOxygenSystem::update(const bmEntity & entity)
 
     // Do something more later with modifiers and upgrades (0.5 decrease if mask upgraded)
 
+
+    if (oAmount <= 0) {
+        transitionManager->gameOverTransition();
+    }
 }
 
 void bmOxygenSystem::after()
@@ -31,4 +35,9 @@ void bmOxygenSystem::after()
 
 void bmOxygenSystem::onSceneSwitch()
 {
+}
+
+void bmOxygenSystem::setTransitionManager(bmTransitionManager * pManager)
+{
+    transitionManager = pManager;
 }

@@ -198,6 +198,7 @@
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
+    <ClInclude Include="bmTransitionManager.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="bmPlanetAtmosphereComponent.cpp" />
     <ClCompile Include="bmPlanettypeComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />
+    <ClCompile Include="bmTransitionManager.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

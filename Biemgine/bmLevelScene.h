@@ -10,7 +10,7 @@ public:
     void render(const float deltaTime) override;
     void sceneCreated() override;
 
-    bmLevelScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/) 
+    bmLevelScene(bmTransitionManager* manager/*, bmResourceManager* resourceManager*/)
         : bmScene(manager/*, resourceManager*/) {};
 
 private:

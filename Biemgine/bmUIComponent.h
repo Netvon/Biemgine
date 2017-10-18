@@ -13,7 +13,6 @@ public:
     }
 
     void setComponentReference(bmComponent* component);
-    //bmComponent* getComponentReference();
 
 private:
 

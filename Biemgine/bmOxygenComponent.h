@@ -6,7 +6,7 @@ class bmOxygenComponent : public bmComponent
 {
 public:
 
-    bmOxygenComponent(int pOxygenMax = 800, int pOxigenDecrease = 2, int pOxygenIncrease = 1):
+    bmOxygenComponent(int pOxygenMax = 800, int pOxigenDecrease = 6, int pOxygenIncrease = 1):
         oxygenAmount(pOxygenMax),
         oxygenMax(pOxygenMax),
         oxygenDecrease(pOxigenDecrease),

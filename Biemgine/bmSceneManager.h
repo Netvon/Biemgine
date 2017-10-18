@@ -1,5 +1,5 @@
 #pragma once
-#include "bmScene.h"
+#include "bmTransitionManager.h"
 #include "bmSceneType.h"
 #include "bmLevelScene.h"
 #include "bmMenuScene.h"
@@ -14,10 +14,12 @@ public:
     bool checkNextScene();
 
     bmSceneManager() {};
+    ~bmSceneManager();
 
 private:
     bmScene* currentScene = nullptr;
     Window* currentWindow;
+    bmTransitionManager* transitionManager;
 
     int nextScene;
 };

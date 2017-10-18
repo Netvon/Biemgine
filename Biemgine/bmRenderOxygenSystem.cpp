@@ -48,11 +48,13 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
     }
 
 
+    float oBar = (float)oRef->getOxygenAmount() / (float)oRef->getOxygenMax();
+
     // Now draw!
     graphicsDevice->drawSquare(
         static_cast<int>(pc->getX()),
         static_cast<int>(pc->getY()),
-        static_cast<int>(oRef->getOxygenAmount()),
+        static_cast<int>(800 * oBar),
         static_cast<int>(10),
         cc->getColor(),
         pc->getRotation()

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "bmMenuScene.h"
-#include "bmSceneManager.h"
 #include "bmSpriteEntity.h"
 
 
@@ -23,7 +22,7 @@ void bmMenuScene::input()
     }
 
     if (im.isKeyDown("S")) {
-        getSceneManager().changeScene(bmScene_level);
+        getTransitionManager().startLevelTransition();
     }
 }
 
