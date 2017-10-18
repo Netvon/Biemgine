@@ -14,7 +14,7 @@ class bmPlanetEarthEntity : public bmEntity
 {
 public:
     bmPlanetEarthEntity(float x, float y, bmColor color, float w, float h) {
-        addComponent("position", new bmPositionComponent(x, y));
+        addComponent("position", new bmPositionComponent(x, y, 0.f, 25.f));
         addComponent("texture", new bmTextureComponent("textures/planet.png", 0, 0, w, h, 1u));
         addComponent("texture", new bmTextureComponent("textures/atmosphere_clouds.png", w / -2, h / -2, w * 2, h * 2, 9999u));
         addComponent("texture", new bmTextureComponent("textures/atmosphere.png", w / -2, h / -2, w * 2, h * 2));
