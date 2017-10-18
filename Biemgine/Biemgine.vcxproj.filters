@@ -163,7 +163,7 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="bmOxygenUIEntity.h">
-      <Filter>Entities</Filter>
+      <Filter>Entities\PlanetEntities</Filter>
     </ClInclude>
     <ClInclude Include="bmUIComponent.h">
       <Filter>components</Filter>
@@ -271,6 +271,12 @@
     </ClCompile>
     <ClCompile Include="bmRenderOxygenSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetEarthEntity.h">
+      <Filter>Entities\PlanetEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetMoonEntity.cpp">
+      <Filter>Entities\PlanetEntities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -48,6 +48,31 @@ void bmLevelScene::sceneCreated()
 
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
+    
+    //getEntityManager().addEntity(new bmPlayerEntity(10, 25, 255, 255, 255, 15, 25));
+    //getEntityManager().addEntity(new bmPlayerEntity(20, 50, 255, 255, 255, 15, 25));
+    //getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
+    //getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
+
+
+    //bottom
+    //getEntityManager().addEntity(new bmSurfaceEntity(0, 580, { 255, 255, 255 }, 800, 20));
+
+    //top
+    //getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 800, 20));
+
+    //left
+    //getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 20, 600));
+
+    //right
+    //getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
+
+    float p_size = 400.f;
+    float p_size_h = p_size * 0.5f;
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
+
+    // Create and add Player
+    // Create and add Planets
 
 
 }
@@ -80,6 +105,5 @@ void bmLevelScene::update()
 
 void bmLevelScene::render(const float deltaTime)
 {
-
     updateEntities(deltaTime);
 }

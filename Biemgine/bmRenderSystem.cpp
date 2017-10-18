@@ -25,6 +25,23 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     // Get the components
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
     auto pc = entity.getComponent<bmPositionComponent*>("position");
+    
+    if (entity.hasComponent("atmosphere")) {
+
+        auto cc = entity.getComponent<bmColorComponent*>("color");
+
+        auto pac = entity.getComponent<bmPlanetAtmosphereComponent*>("atmosphere");
+        auto tc = pac->getTextureComponent();
+
+        graphicsDevice->drawTexture(
+            tc.getPath(),
+            static_cast<int>(pc->getX() + tc.getOffsetX()),
+            static_cast<int>(pc->getY() + tc.getOffsetY()),
+            tc.getWidth(),
+            tc.getHeight(),
+            pc->getRotation(), cc->getColor()
+        );
+    }
 
     // Check if the entity has the right components
     if (entity.hasComponent("texture")) {
