@@ -80,6 +80,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)libs\SDL2_ttf\include;$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2_ttf\lib\x64;$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+	<CustomBuildBeforeTargets>Rebuild</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

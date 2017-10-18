@@ -103,7 +103,7 @@ void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h
 
         SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
         
-        SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, &center, static_cast<SDL_RendererFlip>(flip));
+        SDL_RenderCopyEx(renderer, texture, nullptr, &rec, static_cast<double>(angle), nullptr, static_cast<SDL_RendererFlip>(flip));
         
     }
 }
