@@ -98,9 +98,12 @@ void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h
         SDL_Rect rec = { x, y, w, h };
         SDL_Point center = { 0,0 };
 
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(texture, color.a);
+
         SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
         
-        SDL_RenderCopyEx(renderer, texture, nullptr, &rec, angle, &center, static_cast<SDL_RendererFlip>(flip));
+        SDL_RenderCopyEx(renderer, texture, nullptr, &rec, static_cast<double>(angle), nullptr, static_cast<SDL_RendererFlip>(flip));
         
     }
 }
@@ -160,6 +163,8 @@ SDL_Texture * SDLGraphicsDevice::getTexture(std::string path)
             //SDL_FreeSurface(texture);
 
             auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+
+            
             textures.insert_or_assign(path, tex);
 
             //SDL_FreeSurface(texture);

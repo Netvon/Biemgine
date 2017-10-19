@@ -3,7 +3,7 @@
 #include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
-#include "bmPlanetEntity.h"
+#include "bmPlanetEarthEntity.h"
 
 
 void bmLevelScene::sceneCreated()
@@ -28,14 +28,14 @@ void bmLevelScene::sceneCreated()
         
     }*/
 
-    float width = 15;
-    float height = 25;
+    float width = 45 / 2;
+    float height = 45 / 2;
 
     for (float x = 100; x < 700; x += width + width/4.0f)
     {
         for (float y = -height * 3; y < 50; y += height + height / 4.0f)
         {
-            getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255 }, width, height));
+            getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
         }
         
     }
@@ -67,14 +67,13 @@ void bmLevelScene::sceneCreated()
     //right
     //getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
 
-    float p_size = 400.f;
+    float p_size = 300.f;
     float p_size_h = p_size * 0.5f;
-    getEntityManager().addEntity(new bmPlanetEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
+
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
     // Create and add Player
     // Create and add Planets
-
-
 }
 
 void bmLevelScene::input()

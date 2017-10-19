@@ -3,6 +3,21 @@
 #include "bmEntity.h"
 #include "GraphicsDevice.h"
 
+#include <list>
+
+using namespace std;
+
+struct DrawTexture {
+    string path;
+    int x, y, w, h;
+    bmColor color;
+    float angle;
+    unsigned int layer;
+
+    DrawTexture(string path, int x, int y, int w, int h, float angle, bmColor color, unsigned int layer) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {};
+};
+
 class bmRenderSystem 
     : public bmSystem
 {
@@ -21,8 +36,6 @@ public:
     void after(const float deltaTime) override;
 
 private:
-
     GraphicsDevice* graphicsDevice = nullptr;
-
+    list<DrawTexture> drawList;
 };
-

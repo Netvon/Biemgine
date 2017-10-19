@@ -80,6 +80,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)libs\SDL2_ttf\include;$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2_ttf\lib\x64;$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+	<CustomBuildBeforeTargets>Rebuild</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -168,7 +169,7 @@
     <ClInclude Include="bmMenuScene.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
-    <ClInclude Include="bmPlanetEntity.h" />
+    <ClInclude Include="bmPlanetGravityComponent.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRectangleComponent.h" />
@@ -186,6 +187,9 @@
     <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
+    <ClInclude Include="bmPlanetAtmosphereComponent.h" />
+    <ClInclude Include="bmPlanetComponentType.h" />
+    <ClInclude Include="bmPlanettypeComponent.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
@@ -197,6 +201,9 @@
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
+    <ClCompile Include="bmPlanetEarthEntity.h" />
+    <ClCompile Include="bmPlanetGravityComponent.cpp" />
+    <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
@@ -215,6 +222,8 @@
     <ClCompile Include="bmSystemManager.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
+    <ClCompile Include="bmPlanetAtmosphereComponent.cpp" />
+    <ClCompile Include="bmPlanettypeComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">

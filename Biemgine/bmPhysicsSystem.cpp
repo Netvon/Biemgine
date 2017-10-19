@@ -45,8 +45,8 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     auto body = bodies.at(entity.getId());
 
-    position->setX(body->GetPosition().x);
-    position->setY(body->GetPosition().y);
+    position->setX(body->GetPosition().x - physics->getColliderW() / 2.f);
+    position->setY(body->GetPosition().y - physics->getColliderH() / 2.f);
     position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
     //b2Vec2 force = { static_cast<float>(rand() % 10000 - 5000), static_cast<float>(rand() % 10000 - 5000) };
@@ -63,6 +63,7 @@ void bmPhysicsSystem::update(const bmEntity & entity)
     body->ApplyForceToCenter(toCenter, true);
 
     physics->resetForce();
+
 }
 
 void bmPhysicsSystem::onSceneSwitch()
@@ -101,7 +102,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
         newBodyDef.type = b2_staticBody;
 
     //newBodyDef.fixedRotation = true;
-    newBodyDef.position.Set(pc->getX(), pc->getY());
+    newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
     newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
 
     b2Body* body = world->CreateBody(&newBodyDef);
@@ -110,13 +111,13 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
     if (physics->getShape() == RECTANGLE) {
 
         b2PolygonShape polygonshape;
-        polygonshape.SetAsBox(physics->getColliderW() / 2.f, physics->getColliderH() / 2.f, { physics->getColliderW() / 2.f, physics->getColliderH() / 2.f }, 0);
+        polygonshape.SetAsBox(physics->getColliderW() / 2.f, physics->getColliderH() / 2.f, { 0,0/*physics->getColliderW() / 2.f, physics->getColliderH() / 2.f*/ }, 0);
 
         fixture = body->CreateFixture(&polygonshape, physics->getMass());
     }
     else if (physics->getShape() == CIRCLE) {
         b2CircleShape circleshape;
-        circleshape.m_p.Set(physics->getColliderW()/2, physics->getColliderH()/2);
+        circleshape.m_p.Set(0, 0);
         circleshape.m_radius = physics->getColliderW() / 2.0f;
 
         fixture = body->CreateFixture(&circleshape, physics->getMass());
