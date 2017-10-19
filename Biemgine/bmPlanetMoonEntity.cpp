@@ -6,6 +6,7 @@
 #include "bmTextureComponent.h"
 #include "bmPhysicsComponent.h"
 #include "bmRectangleComponent.h"
+#include "bmEntityTypeComponent.h"
 
 class bmPlanetMoonEntity : public bmEntity
 {
@@ -15,6 +16,7 @@ public:
         addComponent("texture", new bmTextureComponent("textures/moonPlanet.png", w, h));
         addComponent("physics", new bmPhysicsComponent(w, h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
+        addComponent("entityType", new bmEntityTypeComponent(PLANET_MOON));
     }
 };
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "bmComponent.h"
+#include "bmEntityType.h"
+#include "bmEntityTypeComponent.h"
 
 #include <map>
 #include <iostream>
@@ -50,6 +52,13 @@ public:
 
     int getId() const {
         return id;
+    }
+
+    bool isType(const bmEntityType entityType) const
+    {
+        auto etc = this->getComponent<bmEntityTypeComponent*>("entityType");
+
+        return etc->isType(entityType);
     }
 
 private:

@@ -123,7 +123,6 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
         fixture = body->CreateFixture(&circleshape, physics->getMass());
     }
 
-
     fixture->SetRestitution(1.f);
 
     return body;
