@@ -5,7 +5,7 @@
 #include "bmPositionComponent.h"
 #include "bmPhysicsComponent.h"
 
-#include <Box2D\Box2D.h>
+using namespace glm;
 
 void bmGravitySystem::update(const bmEntity & entity)
 {
@@ -25,7 +25,7 @@ void bmGravitySystem::after()
         auto gravPosition = point->getComponent<bmPositionComponent*>("position");
         auto gravity = point->getComponent<bmPlanetGravityComponent*>("gravity");
 
-        b2Vec2 centerOfGravity = {
+        vec2 centerOfGravity = {
             (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
             (gravPosition->getY() + gravity->getX()) + gravity->getHeight() / 2.0f
         };
@@ -34,20 +34,18 @@ void bmGravitySystem::after()
             auto satPosition = satalite->getComponent<bmPositionComponent*>("position");
             auto satPhysics = satalite->getComponent<bmPhysicsComponent*>("physics");
 
-
-            b2Vec2 centerOfSatalite = {
+            vec2 centerOfSatalite = {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,
                 satPosition->getY() + satPhysics->getColliderH() / 2.0f
             };
 
-
-            auto distance = b2Distance(centerOfGravity, centerOfSatalite);
+            auto distance = glm::distance(centerOfGravity, centerOfSatalite);
 
             if (distance <= gravity->getWidth()) {
 
                 auto force = centerOfGravity - centerOfSatalite;
 
-                force.Normalize();
+                force = glm::normalize(force);
                 force *= 9000.0f;
 
                 satPhysics->addForce(force.x, force.y);
