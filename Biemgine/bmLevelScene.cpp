@@ -81,6 +81,7 @@ void bmLevelScene::update()
 
 void bmLevelScene::render(const float deltaTime)
 {
+    getTransitionManager().drawBackground();
     updateEntities(deltaTime);
     getTransitionManager().drawOverlay();
 }

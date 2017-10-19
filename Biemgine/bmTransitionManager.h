@@ -20,6 +20,7 @@ public:
     bool isPaused();
 
     void drawOverlay();
+    void drawBackground();
 
 private:
     bmSceneManager* sceneManager = nullptr;

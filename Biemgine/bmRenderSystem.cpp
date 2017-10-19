@@ -88,7 +88,6 @@ void bmRenderSystem::onSceneSwitch()
 
 void bmRenderSystem::before(const float deltaTime)
 {
-    graphicsDevice->clear();
 }
 
 bool sortByLayer(DrawTexture first, DrawTexture second)

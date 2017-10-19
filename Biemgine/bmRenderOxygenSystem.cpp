@@ -8,7 +8,6 @@ void bmRenderOxygenSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
 
 void bmRenderOxygenSystem::before(const float deltaTime)
 {
-    graphicsDevice->clear();
 }
 
 void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime)

@@ -61,6 +61,7 @@ void bmLoop::globalUpdate()
 
 void bmLoop::globalRender(const float deltaTime)
 {
+    window->getGraphicsDevice()->clear();
     render(deltaTime);
     window->getGraphicsDevice()->present();
 }

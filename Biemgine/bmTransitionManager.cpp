@@ -58,3 +58,11 @@ void bmTransitionManager::drawOverlay()
         gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20);
     }
 }
+
+void bmTransitionManager::drawBackground() {
+
+    auto gd = window->getGraphicsDevice();
+
+    gd->drawTexture("textures/space.png", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
+
+}
