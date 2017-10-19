@@ -64,7 +64,6 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
 
 void bmRenderOxygenSystem::after(const float deltaTime)
 {
-    graphicsDevice->present();
 }
 
 void bmRenderOxygenSystem::onSceneSwitch()

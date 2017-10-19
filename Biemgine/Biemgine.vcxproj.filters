@@ -168,6 +168,9 @@
     <ClInclude Include="bmGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="TextureAndUsage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -251,12 +254,6 @@
     <ClCompile Include="bmUIComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmPlanetAtmosphereComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="bmPlanettypeComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="bmPlanetEarthEntity.h">
       <Filter>Entities\PlanetEntities</Filter>
     </ClCompile>
@@ -271,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="bmRenderOxygenSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmTransitionManager.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

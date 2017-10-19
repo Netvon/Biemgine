@@ -14,6 +14,6 @@ public:
         : bmScene(manager/*, resourceManager*/) {};
 
 private:
-    bool isPaused = false;
+    bool isPauseButtonDown = false;
 };
 

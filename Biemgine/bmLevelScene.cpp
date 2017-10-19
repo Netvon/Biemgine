@@ -57,18 +57,24 @@ void bmLevelScene::input()
         getTransitionManager().quitLevelTransition();
     }
 
-    if (im.isKeyDown(",")) {
-        isPaused = true;
-    }
+    if (im.isKeyDown("P")) {
+        if (!isPauseButtonDown) {
 
-    if (im.isKeyDown(".")) {
-        isPaused = false;
+            if (getTransitionManager().isPaused()) getTransitionManager().resumeGame();
+            else getTransitionManager().pauseGame();
+            
+            isPauseButtonDown = true;
+        }
     }
+    else {
+        isPauseButtonDown = false;
+    }
+    
 }
 
 void bmLevelScene::update()
 {
-    if (!isPaused) {
+    if (!getTransitionManager().isPaused()) {
         updateEntities();
     }
 }
@@ -76,4 +82,5 @@ void bmLevelScene::update()
 void bmLevelScene::render(const float deltaTime)
 {
     updateEntities(deltaTime);
+    getTransitionManager().drawOverlay();
 }
