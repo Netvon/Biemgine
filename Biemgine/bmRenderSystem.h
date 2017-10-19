@@ -21,6 +21,8 @@ public:
     void after(const float deltaTime) override;
 
 private:
+
     GraphicsDevice* graphicsDevice = nullptr;
+
 };
 
