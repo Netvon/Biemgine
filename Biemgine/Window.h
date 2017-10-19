@@ -18,6 +18,9 @@ public:
 
     ~Window();
 
+    int getWidth() { return SDL_GetWindowSurface(window)->w; };
+    int getHeight() { return SDL_GetWindowSurface(window)->h; };
+
     GraphicsDevice* getGraphicsDevice() const;
 
 private:

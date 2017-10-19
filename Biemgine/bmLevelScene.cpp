@@ -1,15 +1,13 @@
 #include "stdafx.h"
 #include "bmLevelScene.h"
-#include "bmSceneManager.h"
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
 #include "bmPlanetEarthEntity.h"
+#include "bmOxygenUIEntity.h"
 
 
 void bmLevelScene::sceneCreated()
 {
-    //bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
-    //addComponent(c1);
 
     cout << "LevelScene created" << endl;
 
@@ -31,28 +29,24 @@ void bmLevelScene::sceneCreated()
     float width = 45 / 2;
     float height = 45 / 2;
 
-    for (float x = 100; x < 700; x += width + width/4.0f)
+    /*for (float x = 100; x < 700; x += width + width/4.0f)
     {
         for (float y = -height * 3; y < 50; y += height + height / 4.0f)
         {
             getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
         }
         
-    }
+    }*/
+
+    getEntityManager().addEntity(new bmPlayerEntity(200, 100, { 255, 255, 255, 255 }, width, height));
+
+    float p_size = 400.f;
+    float p_size_h = p_size * 0.5f;
+
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
 
-    
-    /*getEntityManager().addEntity(new bmPlayerEntity(300, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
-
-    getEntityManager().addEntity(new bmPlayerEntity(400, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
-    getEntityManager().addEntity(new bmPlayerEntity(500, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));
-    getEntityManager().addEntity(new bmPlayerEntity(600, 25, { 255, 255, 255 }, 15 * 2, 25 * 2));*/
-
-    
-    //getEntityManager().addEntity(new bmPlayerEntity(10, 25, 255, 255, 255, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(20, 50, 255, 255, 255, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(100, 100, 0, 255, 0, 15, 25));
-    //getEntityManager().addEntity(new bmPlayerEntity(200, 200, 0, 0, 255, 15, 25));
+    getEntityManager().addEntity(new bmOxygenUIEntity());
 
 
     //bottom
@@ -67,10 +61,9 @@ void bmLevelScene::sceneCreated()
     //right
     //getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
 
-    float p_size = 300.f;
+    float p_size = 400.f;
     float p_size_h = p_size * 0.5f;
-
-    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
 
     // Create and add Player
     // Create and add Planets
@@ -83,7 +76,7 @@ void bmLevelScene::input()
     }
 
     if (im.isKeyDown("A")) {
-        getSceneManager().changeScene(bmScene_menu);
+        getTransitionManager().quitLevelTransition();
     }
 
     if (im.isKeyDown(",")) {
@@ -104,6 +97,5 @@ void bmLevelScene::update()
 
 void bmLevelScene::render(const float deltaTime)
 {
-
     updateEntities(deltaTime);
 }

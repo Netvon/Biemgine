@@ -144,16 +144,28 @@
     <ClInclude Include="bmTransformComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmPlanetAtmosphereComponent.h">
+    <ClInclude Include="bmOxygenSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmPlanetComponentType.h">
+    <ClInclude Include="bmOxygenUIEntity.h">
+      <Filter>Entities\PlanetEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmUIComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmPlanettypeComponent.h">
+    <ClInclude Include="bmRenderOxygenSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmTransitionManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="bmAtmosphereComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmPlanetGravityComponent.h">
+    <ClInclude Include="bmGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -230,6 +242,15 @@
     <ClCompile Include="bmPhysicsComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="bmOxygenSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmOxygenComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmUIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
     <ClCompile Include="bmPlanetAtmosphereComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -242,8 +263,14 @@
     <ClCompile Include="bmPlanetMoonEntity.cpp">
       <Filter>Entities\PlanetEntities</Filter>
     </ClCompile>
-    <ClCompile Include="bmPlanetGravityComponent.cpp">
+    <ClCompile Include="bmAtmosphereComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmGravityComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmRenderOxygenSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

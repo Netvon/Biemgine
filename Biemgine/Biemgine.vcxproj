@@ -167,9 +167,11 @@
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
+    <ClInclude Include="bmRenderOxygenSystem.h" />
+    <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
-    <ClInclude Include="bmPlanetGravityComponent.h" />
+    <ClInclude Include="bmGravityComponent.h" />
     <ClInclude Include="bmPlayerEntity.h" />
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRectangleComponent.h" />
@@ -186,23 +188,27 @@
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="bmOxygenComponent.h" />
+    <ClInclude Include="bmOxygenUIEntity.h" />
+    <ClInclude Include="bmOxygenSystem.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
-    <ClInclude Include="bmPlanetAtmosphereComponent.h" />
-    <ClInclude Include="bmPlanetComponentType.h" />
-    <ClInclude Include="bmPlanettypeComponent.h" />
+    <ClInclude Include="bmAtmosphereComponent.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
+    <ClInclude Include="bmTransitionManager.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmRenderOxygenSystem.cpp" />
+    <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
-    <ClCompile Include="bmPlanetGravityComponent.cpp" />
+    <ClCompile Include="bmGravityComponent.cpp" />
     <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
@@ -222,9 +228,11 @@
     <ClCompile Include="bmSystemManager.cpp" />
     <ClCompile Include="bmSceneManager.cpp" />
     <ClCompile Include="bmEntityManager.cpp" />
-    <ClCompile Include="bmPlanetAtmosphereComponent.cpp" />
-    <ClCompile Include="bmPlanettypeComponent.cpp" />
+    <ClCompile Include="bmOxygenComponent.cpp" />
+    <ClCompile Include="bmOxygenSystem.cpp" />
+    <ClCompile Include="bmAtmosphereComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />
+    <ClCompile Include="bmTransitionManager.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

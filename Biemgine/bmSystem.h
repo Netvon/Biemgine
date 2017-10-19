@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bmEntity.h"
+#include "bmTransitionManager.h"
 
 class bmSystem
 {
@@ -15,5 +16,11 @@ public:
     virtual void after(const float deltaTime) {};
 
     virtual void onSceneSwitch() = 0;
+
+    void setTransitionManager(bmTransitionManager* pManager);
+
+protected:
+    bmTransitionManager* transitionManager = nullptr;
+
 };
 

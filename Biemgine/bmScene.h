@@ -3,9 +3,11 @@
 #include "bmSystemManager.h"
 #include "bmEntityManager.h"
 #include "bmPhysicsSystem.h"
+#include "bmOxygenSystem.h"
 #include "bmRenderSystem.h"
+#include "bmRenderOxygenSystem.h"
 
-class bmSceneManager;
+
 class bmResourceManager;
 class GraphicsDevice;
 
@@ -15,8 +17,8 @@ class bmScene :
 public:
     //void addComponent(bmDrawable * newComponent);
 
-    bmScene(bmSceneManager* manager/*, bmResourceManager* resourceManager*/)
-        : sceneManager(manager)/*, resourceManager(resourceManager)*/ { }
+    bmScene(bmTransitionManager* manager/*, bmResourceManager* resourceManager*/)
+        : transitionManager(manager)/*, resourceManager(resourceManager)*/ { }
 
     virtual ~bmScene()
     {
@@ -43,8 +45,8 @@ public:
     void updateEntities();
     void updateEntities(const float deltaTime);
 
-    bmSceneManager& getSceneManager() const {
-        return *sceneManager;
+    bmTransitionManager& getTransitionManager() const {
+        return *transitionManager;
     }
 
     bmEntityManager& getEntityManager() const {
@@ -64,26 +66,14 @@ private:
     bmSystemManager* systemManager = new bmSystemManager();
     bmEntityManager* entityManager = new bmEntityManager();
 
-    bmSceneManager* sceneManager = nullptr;
+    bmTransitionManager* transitionManager = nullptr;
     //bmResourceManager* resourceManager;
 
     virtual void input() override { }
     virtual void update() override = 0;
     virtual void render(float deltaTime) override { }
 
-    void created() override {
-        auto gd = getWindow()->getGraphicsDevice();
-        auto renderSystem = new bmRenderSystem();
-        renderSystem->setGraphicsDevice(gd);
-
-
-        auto physicsSystem = new bmPhysicsSystem();
-
-        systemManager->addSystem(renderSystem);
-        systemManager->addSystem(physicsSystem);
-
-        sceneCreated();
-    }
+    void created() override;
 
     virtual void sceneCreated() = 0;
     virtual void sceneEnd() { };

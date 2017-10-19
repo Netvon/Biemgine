@@ -4,7 +4,8 @@
 #include "bmColorComponent.h"
 #include "bmRectangleComponent.h"
 #include "bmTextureComponent.h"
-#include "bmPlanetAtmosphereComponent.h"
+#include "bmAtmosphereComponent.h"
+#include "bmGravityComponent.h"
 #include "bmEntity.h"
 
 
@@ -17,6 +18,9 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
 {
     if (!entity.hasComponent("position"))
         return;
+
+	if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle")) 
+		return;
 
 
     // Get the components

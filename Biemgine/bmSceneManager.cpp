@@ -4,6 +4,7 @@
 void bmSceneManager::setWindow(Window* window)
 {
     currentWindow = window;
+    transitionManager = new bmTransitionManager(this, window);
 }
 
 
@@ -28,7 +29,7 @@ bool bmSceneManager::checkNextScene()
 
         nextScene = bmScene_NULL;
 
-        currentScene = new bmLevelScene(this/*, &resourceManager*/);
+        currentScene = new bmLevelScene(transitionManager);
         currentScene->start(currentWindow);
 
         break;
@@ -36,7 +37,7 @@ bool bmSceneManager::checkNextScene()
 
         nextScene = bmScene_NULL;
 
-        currentScene = new bmMenuScene(this/*, &resourceManager*/);
+        currentScene = new bmMenuScene(transitionManager);
         currentScene->start(currentWindow);
 
         break;
@@ -46,5 +47,10 @@ bool bmSceneManager::checkNextScene()
     }
 
     return true;
+}
+
+bmSceneManager::~bmSceneManager()
+{
+    delete transitionManager;
 }
 
