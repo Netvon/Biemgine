@@ -171,6 +171,12 @@
     <ClInclude Include="TextureAndUsage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bmEntityType.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmEntityTypeComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -271,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="bmTransitionManager.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="bmEntityTypeComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

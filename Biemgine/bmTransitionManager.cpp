@@ -2,8 +2,6 @@
 #include "bmTransitionManager.h"
 #include "bmSceneManager.h"
 
-
-
 void bmTransitionManager::gameOverTransition()
 {
     cout << "GAME OVER" << endl;
@@ -58,7 +56,5 @@ void bmTransitionManager::drawOverlay()
 
         gd->drawText("The game is paused.", x, y, { 255, 255, 255, 255 }, 20);
         gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20);
-
-
     }
 }
