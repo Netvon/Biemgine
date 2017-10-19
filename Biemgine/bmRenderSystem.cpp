@@ -113,7 +113,6 @@ void bmRenderSystem::after(const float deltaTime)
         );
     }
 
-    graphicsDevice->present();
 
     drawList.clear();
 }

@@ -15,10 +15,17 @@ public:
     int getWindowWidth() const;
     int getWindowHeight() const;
 
+    void pauseGame();
+    void resumeGame();
+    bool isPaused();
+
+    void drawOverlay();
+
 private:
     bmSceneManager* sceneManager = nullptr;
     Window* window = nullptr;
 
+    bool paused = false;
 
 };
 
