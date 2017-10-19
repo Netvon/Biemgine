@@ -8,9 +8,7 @@
 
 void bmLevelScene::sceneCreated()
 {
-
     cout << "LevelScene created" << endl;
-
 
     // Setup the scene with entities
 
@@ -18,12 +16,11 @@ void bmLevelScene::sceneCreated()
     {
         int x = (i * 30) + 300;
 
-        for (size_t z = 0; z < 3; z++) 
+        for (size_t z = 0; z < 3; z++)
         {
             int y = (z * 50);
             getEntityManager().addEntity(new bmPlayerEntity(x, y, 255, 255, 255, 15 * 2, 25 * 2));
         }
-        
     }*/
 
     float width = 45 / 2;
@@ -34,39 +31,20 @@ void bmLevelScene::sceneCreated()
         for (float y = -height * 3; y < 50; y += height + height / 4.0f)
         {
             getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
+        }        
+    }
+
         }
-        
     }*/
 
     getEntityManager().addEntity(new bmPlayerEntity(200, 100, { 255, 255, 255, 255 }, width, height));
 
-    float p_size = 400.f;
+    float p_size = 150.f;
     float p_size_h = p_size * 0.5f;
-
-    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
-
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
 
-
-    //bottom
-    //getEntityManager().addEntity(new bmSurfaceEntity(0, 580, { 255, 255, 255 }, 800, 20));
-
-    //top
-    //getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 800, 20));
-
-    //left
-    //getEntityManager().addEntity(new bmSurfaceEntity(0, 0, { 255, 255, 255 }, 20, 600));
-
-    //right
-    //getEntityManager().addEntity(new bmSurfaceEntity(780, 0, { 255, 255, 255 }, 20, 600));
-
-    float p_size = 400.f;
-    float p_size_h = p_size * 0.5f;
-    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255 }, p_size, p_size));
-
-    // Create and add Player
-    // Create and add Planets
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 }
 
 void bmLevelScene::input()
@@ -82,10 +60,10 @@ void bmLevelScene::input()
     if (im.isKeyDown(",")) {
         isPaused = true;
     }
+
     if (im.isKeyDown(".")) {
         isPaused = false;
     }
-
 }
 
 void bmLevelScene::update()
