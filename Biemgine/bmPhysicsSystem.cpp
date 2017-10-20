@@ -58,15 +58,15 @@ void bmPhysicsSystem::update(const bmEntity & entity)
     b2Vec2 toCenter = center - body->GetPosition();
 
     toCenter.Normalize();
-    toCenter *= 9000.0f;
+    toCenter *= 12000.0f;
 
     if (entity.hasComponent("grounded")) {
         auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
 
         if (grounded->isGrounded()) {
-            toCenter = -toCenter;
+            //toCenter += -toCenter;
 
-            body->ApplyForceToCenter(toCenter, true);
+            //body->ApplyForceToCenter(toCenter, true);
 
             return;
         }
@@ -74,10 +74,11 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
+   /*     float angle = atan2f(-toCenter.x, toCenter.y);
+    body->SetTransform(body->GetPosition(), angle);*/
+
     body->ApplyForceToCenter(toCenter, true);
 
-    float angle = atan2f(-toCenter.x, toCenter.y);
-    body->SetTransform(body->GetPosition(), angle);
 
     physics->resetForce();
 }
@@ -142,7 +143,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
         fixture = body->CreateFixture(&circleShape, physics->getMass());
     }
 
-    fixture->SetRestitution(1.f);
+    fixture->SetRestitution(0.5f);
 
     if (entity.hasComponent("grounded")) {
         b2PolygonShape groundShape;
@@ -150,7 +151,6 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
         b2FixtureDef groundFixtureDef;
         groundFixtureDef.shape = &groundShape;
-        groundFixtureDef.density = 0.f;
         groundFixtureDef.isSensor = true;
 
         b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
