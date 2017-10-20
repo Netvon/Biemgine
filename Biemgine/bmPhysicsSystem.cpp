@@ -61,21 +61,23 @@ void bmPhysicsSystem::update(const bmEntity & entity)
     toCenter *= 12000.0f;
 
     if (entity.hasComponent("grounded")) {
-        auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
+        //auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
 
-        if (grounded->isGrounded()) {
-            //toCenter += -toCenter;
+        //if (grounded->isGrounded()) {
+        //    //toCenter += -toCenter;
 
-            //body->ApplyForceToCenter(toCenter, true);
+        //    //body->ApplyForceToCenter(toCenter, true);
 
-            return;
-        }
+        //    return;
+        //}
+
+        float angle = atan2f(-toCenter.x, toCenter.y);
+        body->SetTransform(body->GetPosition(), angle);
     }
 
     //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
-   /*     float angle = atan2f(-toCenter.x, toCenter.y);
-    body->SetTransform(body->GetPosition(), angle);*/
+   
 
     body->ApplyForceToCenter(toCenter, true);
 
@@ -143,7 +145,8 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
         fixture = body->CreateFixture(&circleShape, physics->getMass());
     }
 
-    fixture->SetRestitution(0.5f);
+    fixture->SetRestitution(0.15f);
+    fixture->SetFriction(1.f);
 
     if (entity.hasComponent("grounded")) {
         b2PolygonShape groundShape;
