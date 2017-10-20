@@ -37,6 +37,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{07aa0c24-bcf1-4fd4-9a1b-39502195bed0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Listeners">
+      <UniqueIdentifier>{edf99bd3-d9a7-47ed-b1f2-d2b81bb4d96f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Entities\PlanetEntities">
       <UniqueIdentifier>{21d0653c-4e5a-4f94-832d-ebc3893a6ade}</UniqueIdentifier>
     </Filter>
@@ -168,13 +171,19 @@
     <ClInclude Include="bmGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="bmGroundedComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmContactListener.h">
+      <Filter>Listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAndUsage.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
     <ClInclude Include="TextureAndUsage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bmEntityType.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmEntityTypeComponent.h">
+    <ClInclude Include="bmGroundComponent.h">
       <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -272,13 +281,19 @@
     <ClCompile Include="bmGravityComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="bmContactListener.cpp">
+      <Filter>Listeners</Filter>
+    </ClCompile>
     <ClCompile Include="bmRenderOxygenSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="bmTransitionManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="bmEntityTypeComponent.cpp">
+    <ClCompile Include="bmGroundedComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmGroundComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>

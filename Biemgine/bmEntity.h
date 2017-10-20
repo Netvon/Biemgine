@@ -1,8 +1,6 @@
 #pragma once
 
 #include "bmComponent.h"
-#include "bmEntityType.h"
-#include "bmEntityTypeComponent.h"
 
 #include <map>
 #include <iostream>
@@ -46,19 +44,13 @@ public:
         return componentHashmap.find(name) != componentHashmap.end();
     }
 
-    void addComponent(const string name, bmComponent * component) {
+    void addComponent(const string name, bmComponent* component) {
         componentHashmap.insert(pair<string, bmComponent*>(name, component));
     }
 
-    int getId() const {
-        return id;
-    }
-
-    bool isType(const bmEntityType entityType) const
+    int getId() const
     {
-        auto etc = this->getComponent<bmEntityTypeComponent*>("entityType");
-
-        return etc->isType(entityType);
+        return this->id;
     }
 
 private:
