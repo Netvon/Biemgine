@@ -15,6 +15,6 @@ public:
 
 private:
     vector<const bmEntity*> gravityPoints;
-    vector<const bmEntity*> satalites;
+    vector<const bmEntity*> satellites;
 };
 

@@ -23,16 +23,16 @@ void bmLevelScene::sceneCreated()
         }
     }*/
 
-    float width = 15 * 2;
+    float width = 25 * 2;
     float height = 25 * 2;
 
-    //for (float x = 100; x < 700; x += width + width/4.0f)
-    //{
-    //    for (float y = -height * 3; y < 50; y += height + height / 4.0f)
-    //    {
-    //        getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
-    //    }        
-    //}
+    for (float x = 100; x < 700; x += width + width/4.0f)
+    {
+        for (float y = -height * 3; y < 50; y += height + height / 4.0f)
+        {
+            getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
+        }        
+    }
 
     getEntityManager().addEntity(new bmPlayerEntity(200, 100, { 255, 255, 255, 255 }, width, height));
 
@@ -43,7 +43,7 @@ void bmLevelScene::sceneCreated()
 
     getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
-    //getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
     // Create and add Player
     // Create and add Planets

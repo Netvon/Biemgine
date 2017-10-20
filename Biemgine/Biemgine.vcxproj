@@ -164,6 +164,7 @@
     <ClInclude Include="bmComponent.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
+    <ClInclude Include="bmGravitySystem.h" />
     <ClInclude Include="bmGroundComponent.h" />
     <ClInclude Include="bmGroundedComponent.h" />
     <ClInclude Include="bmInputManager.h" />
