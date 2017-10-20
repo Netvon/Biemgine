@@ -170,6 +170,9 @@
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
     <ClInclude Include="bmRenderOxygenSystem.h" />
+    <ClInclude Include="bmScoreComponent.h" />
+    <ClInclude Include="bmScoreSystem.h" />
+    <ClInclude Include="bmScoreUIEntity.h" />
     <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
@@ -208,6 +211,9 @@
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
     <ClCompile Include="bmRenderOxygenSystem.cpp" />
+    <ClCompile Include="bmScoreComponent.cpp" />
+    <ClCompile Include="bmScoreSystem.cpp" />
+    <ClCompile Include="bmScoreUIEntity.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />

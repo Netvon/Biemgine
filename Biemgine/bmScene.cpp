@@ -17,9 +17,11 @@ void bmScene::created()
     // Update systems
     auto physicsSystem = new bmPhysicsSystem();
     auto oxygenSystem = new bmOxygenSystem();
+    auto scoreSystem = new bmScoreSystem();
 
     systemManager->addSystem(physicsSystem);
     systemManager->addSystem(oxygenSystem);
+    systemManager->addSystem(scoreSystem);
 
 
     // Render systems

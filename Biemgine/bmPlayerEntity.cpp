@@ -5,6 +5,7 @@
 #include "bmTextureComponent.h"
 #include "bmPhysicsComponent.h"
 #include "bmOxygenComponent.h"
+#include "bmScoreComponent.h"
 
 bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h, float mass)
 {
@@ -14,4 +15,5 @@ bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h
     addComponent("physics", new bmPhysicsComponent(w, h, false, RECTANGLE, mass));
     addComponent("oxygen", new bmOxygenComponent());
     addComponent("grounded", new bmGroundedComponent(false));
+    addComponent("score", new bmScoreComponent());
 }

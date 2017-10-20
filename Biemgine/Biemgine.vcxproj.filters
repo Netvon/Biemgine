@@ -186,6 +186,15 @@
     <ClInclude Include="bmGroundComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="bmScoreComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmScoreUIEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmScoreSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -295,6 +304,15 @@
     </ClCompile>
     <ClCompile Include="bmGroundComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmScoreComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmScoreUIEntity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="bmScoreSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

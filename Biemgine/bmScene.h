@@ -6,6 +6,7 @@
 #include "bmOxygenSystem.h"
 #include "bmRenderSystem.h"
 #include "bmRenderOxygenSystem.h"
+#include "bmScoreSystem.h"
 
 
 class bmResourceManager;
