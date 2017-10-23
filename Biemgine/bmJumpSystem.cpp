@@ -7,6 +7,8 @@
 
 #include <glm\glm.hpp>
 
+#define RAD_TO_DEGREE (180.0f / M_PI)
+
 using namespace glm;
 
 void bmJumpSystem::before()
@@ -37,11 +39,13 @@ void bmJumpSystem::update(const bmEntity & entity)
 
         vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
-        vec2 diff = centerOfGravity - centerOfGravity;
+        vec2 diff = centerOfGravity - centerOfSatellite;
 
-        float angle = atan2f(-diff.x, diff.y);
+        diff *= -1;
+        diff = glm::normalize(diff) * 90000.f;
+
         
-        physics->addForce(-90000, -90000);
+        physics->addForce(diff.x, diff.y);
 
         shouldJump = false;
     }

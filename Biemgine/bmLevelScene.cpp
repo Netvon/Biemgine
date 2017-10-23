@@ -36,7 +36,7 @@ void bmLevelScene::sceneCreated()
     //    }        
     //}
 
-    getEntityManager().addEntity(new bmPlayerEntity(400, 100, { 255, 255, 255, 255 }, width, height));
+    getEntityManager().addEntity(new bmPlayerEntity(800, 100, { 255, 255, 255, 255 }, width, height));
 
     float p_size = 300.f;
     float p_size_h = p_size * 0.5f;
