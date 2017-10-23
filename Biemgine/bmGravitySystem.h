@@ -13,7 +13,7 @@ public:
     void update(const bmEntity& entity) override;
     void after() override;
 
-    void applyForce(glm::vec2 &centerOfGravity, glm::vec2 &centerOfSatellite, bmPhysicsComponent * satPhysics);
+    void applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics);
 
     void onSceneSwitch() override {};
     

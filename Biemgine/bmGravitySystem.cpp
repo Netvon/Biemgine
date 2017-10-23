@@ -22,14 +22,14 @@ void bmGravitySystem::update(const bmEntity & entity)
 
 struct DistanceInfo
 {
-    glm::vec2 &centerOfGravity;
-    glm::vec2 &centerOfSatellite;
+    glm::vec2 centerOfGravity;
+    glm::vec2 centerOfSatellite;
     bmPhysicsComponent * satPhysics;
 };
 
 void bmGravitySystem::after()
 {
-    for (auto& satellite : satellites) {
+    for (auto satellite : satellites) {
         auto satPosition = satellite->getComponent<bmPositionComponent*>("position");
         auto satPhysics = satellite->getComponent<bmPhysicsComponent*>("physics");
 
@@ -74,12 +74,12 @@ void bmGravitySystem::after()
     satellites.clear();
 }
 
-void bmGravitySystem::applyForce(glm::vec2 &centerOfGravity, glm::vec2 &centerOfSatellite, bmPhysicsComponent * satPhysics)
+void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics)
 {
     auto force = centerOfGravity - centerOfSatellite;
 
     force = glm::normalize(force);
-    force *= 9000.0f;
+    force *= 29000.0f;
 
     satPhysics->addForce(force.x, force.y);
 }
