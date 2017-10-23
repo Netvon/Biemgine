@@ -4,7 +4,7 @@
 #include "bmGravitySystem.h"
 #include "bmPhysicsSystem.h"
 #include "bmRenderSystem.h"
-#include "bmRenderOxygenSystem.h"
+#include "bmOxygenUISystem.h"
 #include "bmOxygenSystem.h"
 
 void bmScene::updateEntities()
