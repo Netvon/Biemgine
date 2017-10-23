@@ -49,7 +49,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         
     }
     else {
-       /* auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
+        auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
 
         graphicsDevice->drawSquare(
             static_cast<int>(pc->getX()),
@@ -57,7 +57,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
             static_cast<int>(rectangle->getWidth()),
             static_cast<int>(rectangle->getHeight()),
             rectangle->getColor().getColor(), pc->getRotation()
-        );*/
+        );
     }
 
    

@@ -7,14 +7,14 @@
 #include "bmColorComponent.h"
 #include "GraphicsDevice.h"
 
-class bmRenderOxygenSystem : public bmSystem
+class bmOxygenUISystem : public bmSystem
 {
 public:
 
-    bmRenderOxygenSystem() {};
-    ~bmRenderOxygenSystem() {};
+    bmOxygenUISystem() {};
+    ~bmOxygenUISystem() {};
 
-    void bmRenderOxygenSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
+    void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
     void before(const float deltaTime) override;
     void update(const bmEntity& entity, const float deltaTime) override;

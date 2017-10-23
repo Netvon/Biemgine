@@ -17,6 +17,14 @@ public:
         return height;
     }
 
+    void setWidth(float pWidth) {
+        width = pWidth;
+    }
+
+    void setHeight(float pHeight) {
+        height = pHeight;
+    }
+
     bmColorComponent getColor() const {
         return color;
     }

@@ -159,9 +159,6 @@
     <ClInclude Include="bmUIComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmRenderOxygenSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="bmTransitionManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -185,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="bmGroundComponent.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenUISystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +284,6 @@
     <ClCompile Include="bmContactListener.cpp">
       <Filter>Listeners</Filter>
     </ClCompile>
-    <ClCompile Include="bmRenderOxygenSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="bmTransitionManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -295,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="bmGroundComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmOxygenUISystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "bmPhysicsSystem.h"
 #include "bmOxygenSystem.h"
 #include "bmRenderSystem.h"
-#include "bmRenderOxygenSystem.h"
+#include "bmOxygenUISystem.h"
 
 
 class bmResourceManager;
