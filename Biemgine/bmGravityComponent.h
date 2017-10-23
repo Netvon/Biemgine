@@ -2,11 +2,11 @@
 
 #include "bmComponent.h"
 
-class bmPlanetGravityComponent :
+class bmGravityComponent :
     public bmComponent
 {
 public:
-    bmPlanetGravityComponent(float offsetX, float offsetY, float w, float h) : offsetX(offsetX), offsetY(offsetY), w(w), h(h) {};
+    bmGravityComponent(float offsetX, float offsetY, float w, float h) : offsetX(offsetX), offsetY(offsetY), w(w), h(h) {};
 
     float getX() {
         return offsetX;

@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "bmScene.h"
 
+#include "bmGravitySystem.h"
+#include "bmPhysicsSystem.h"
+#include "bmRenderSystem.h"
+#include "bmRenderOxygenSystem.h"
+#include "bmOxygenSystem.h"
 
 void bmScene::updateEntities()
 {
@@ -15,9 +20,11 @@ void bmScene::updateEntities(const float deltaTime)
 void bmScene::created()
 {
     // Update systems
+    auto gravitySystem = new bmGravitySystem();
     auto physicsSystem = new bmPhysicsSystem();
     auto oxygenSystem = new bmOxygenSystem();
 
+    systemManager->addSystem(gravitySystem);
     systemManager->addSystem(physicsSystem);
     systemManager->addSystem(oxygenSystem);
 
@@ -34,7 +41,7 @@ void bmScene::created()
     systemManager->addSystem(renderSystem);
     systemManager->addSystem(oxygenUISystem);
 
-
+    gravitySystem->setTransitionManager(transitionManager);
     oxygenSystem->setTransitionManager(transitionManager);
     physicsSystem->setTransitionManager(transitionManager);
     renderSystem->setTransitionManager(transitionManager);
