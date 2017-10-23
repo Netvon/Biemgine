@@ -158,11 +158,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmAffectedByGravityComponent.h" />
     <ClInclude Include="bmColor.h" />
     <ClInclude Include="bmColorComponent.h" />
     <ClInclude Include="bmComponent.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
+    <ClInclude Include="bmGravitySystem.h" />
     <ClInclude Include="bmGroundComponent.h" />
     <ClInclude Include="bmGroundedComponent.h" />
     <ClInclude Include="bmInputManager.h" />
@@ -210,6 +212,7 @@
     <ClCompile Include="bmRenderOxygenSystem.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
+    <ClCompile Include="bmGravitySystem.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
