@@ -51,21 +51,23 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     position->setX(body->GetPosition().x - physics->getColliderW() / 2.f);
     position->setY(body->GetPosition().y - physics->getColliderH() / 2.f);
-    position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
-
-    b2Vec2 center = { 400, 300 };
-    b2Vec2 toCenter = center - body->GetPosition();
-
-    toCenter.Normalize();
-    toCenter *= 12000.0f;
 
     if (entity.hasComponent("grounded")) {
-        float x = affectedByGravity->getFallingTowardsX();
-        float y = affectedByGravity->getFallingTowardsY();
+        b2Vec2 ding = {
+            affectedByGravity->getFallingTowardsX(),
+            affectedByGravity->getFallingTowardsY()
+        };
 
-        float angle = atan2f(-x, y);
-        body->SetTransform(body->GetPosition(), angle);
+        b2Vec2 target = ding - body->GetPosition();
+
+        target.Normalize();
+        target *= 12000.0f;
+
+        float angle = atan2f(-target.x, target.y);
+        body->SetTransform(body->GetPosition(), angle);        
     }
+
+    position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
     body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
 
