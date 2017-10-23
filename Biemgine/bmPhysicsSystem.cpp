@@ -122,6 +122,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
     newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
     newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
+    newBodyDef.linearDamping = 0.2f;
 
     b2Body* body = world->CreateBody(&newBodyDef);
     body->SetUserData((void*)&entity);
