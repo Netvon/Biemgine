@@ -1,5 +1,6 @@
 #pragma once
 #include "bmScene.h"
+#include "bmStateManager.h"
 
 class bmLevelScene :
     public bmScene
@@ -10,7 +11,7 @@ public:
     void render(const float deltaTime) override;
     void sceneCreated() override;
 
-    bmLevelScene(bmTransitionManager* manager/*, bmResourceManager* resourceManager*/)
+    bmLevelScene(bmStateManager* manager/*, bmResourceManager* resourceManager*/)
         : bmScene(manager/*, resourceManager*/) {};
 
 private:

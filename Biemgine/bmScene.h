@@ -4,7 +4,9 @@
 #include "bmEntityManager.h"
 #include "bmPhysicsSystem.h"
 #include "bmRenderSystem.h"
-#include "bmRenderOxygenSystem.h"
+#include "bmScoreSystem.h"
+#include "bmScoreUISystem.h"
+#include "bmOxygenUISystem.h"
 
 
 class bmResourceManager;
@@ -16,7 +18,7 @@ class bmScene :
 public:
     //void addComponent(bmDrawable * newComponent);
 
-    bmScene(bmTransitionManager* manager/*, bmResourceManager* resourceManager*/)
+    bmScene(bmStateManager* manager/*, bmResourceManager* resourceManager*/)
         : transitionManager(manager)/*, resourceManager(resourceManager)*/ { }
 
     virtual ~bmScene()
@@ -44,7 +46,7 @@ public:
     void updateEntities();
     void updateEntities(const float deltaTime);
 
-    bmTransitionManager& getTransitionManager() const {
+    bmStateManager& getTransitionManager() const {
         return *transitionManager;
     }
 
@@ -65,7 +67,7 @@ private:
     bmSystemManager* systemManager = new bmSystemManager();
     bmEntityManager* entityManager = new bmEntityManager();
 
-    bmTransitionManager* transitionManager = nullptr;
+    bmStateManager* transitionManager = nullptr;
     //bmResourceManager* resourceManager;
 
     virtual void input() override { }

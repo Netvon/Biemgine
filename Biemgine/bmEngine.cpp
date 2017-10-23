@@ -14,7 +14,7 @@ bmEngine::bmEngine()
 
     bmSceneManager* manager = new bmSceneManager();
 
-    manager->setWindow(&window);
+    manager->createStateManager(&window);
     manager->changeScene(bmScene_menu);
 
 

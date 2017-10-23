@@ -168,10 +168,16 @@
     <ClInclude Include="bmGroundComponent.h" />
     <ClInclude Include="bmGroundedComponent.h" />
     <ClInclude Include="bmInputManager.h" />
+    <ClInclude Include="bmJumpSystem.h" />
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
-    <ClInclude Include="bmRenderOxygenSystem.h" />
+    <ClInclude Include="bmScoreComponent.h" />
+    <ClInclude Include="bmScoreSystem.h" />
+    <ClInclude Include="bmScoreUIEntity.h" />
+    <ClInclude Include="bmScoreUISystem.h" />
+    <ClInclude Include="bmTextComponent.h" />
+    <ClInclude Include="bmOxygenUISystem.h" />
     <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
@@ -201,7 +207,7 @@
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
-    <ClInclude Include="bmTransitionManager.h" />
+    <ClInclude Include="bmStateManager.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -209,7 +215,13 @@
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
-    <ClCompile Include="bmRenderOxygenSystem.cpp" />
+    <ClCompile Include="bmScoreComponent.cpp" />
+    <ClCompile Include="bmScoreSystem.cpp" />
+    <ClCompile Include="bmScoreUIEntity.cpp" />
+    <ClCompile Include="bmScoreUISystem.cpp" />
+    <ClCompile Include="bmTextComponent.cpp" />
+    <ClCompile Include="bmOxygenUISystem.cpp" />
+    <ClCompile Include="bmJumpSystem.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
     <ClCompile Include="bmGravitySystem.cpp" />
@@ -241,7 +253,7 @@
     <ClCompile Include="bmOxygenSystem.cpp" />
     <ClCompile Include="bmAtmosphereComponent.cpp" />
     <ClCompile Include="SDLGraphicsDevice.cpp" />
-    <ClCompile Include="bmTransitionManager.cpp" />
+    <ClCompile Include="bmStateManager.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

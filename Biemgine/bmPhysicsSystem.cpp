@@ -4,6 +4,7 @@
 #include "bmPhysicsComponent.h"
 #include "PhysicsComponentShape.h"
 #include "bmGroundedComponent.h"
+#include "bmAffectedByGravityComponent.h"
 
 #include <random>
 #include <math.h>
@@ -42,6 +43,7 @@ void bmPhysicsSystem::update(const bmEntity & entity)
         bodies.insert_or_assign(entity.getId(), createBody(entity));
     }
 
+    auto affectedByGravity = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
     auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
     auto position = entity.getComponent<bmPositionComponent*>("position");
 
@@ -51,8 +53,6 @@ void bmPhysicsSystem::update(const bmEntity & entity)
     position->setY(body->GetPosition().y - physics->getColliderH() / 2.f);
     position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
-    //b2Vec2 force = { static_cast<float>(rand() % 10000 - 5000), static_cast<float>(rand() % 10000 - 5000) };
-
     b2Vec2 center = { 400, 300 };
     b2Vec2 toCenter = center - body->GetPosition();
 
@@ -60,21 +60,12 @@ void bmPhysicsSystem::update(const bmEntity & entity)
     toCenter *= 12000.0f;
 
     if (entity.hasComponent("grounded")) {
-        //auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
+        float x = affectedByGravity->getFallingTowardsX();
+        float y = affectedByGravity->getFallingTowardsY();
 
-        //if (grounded->isGrounded()) {
-        //    //toCenter += -toCenter;
-
-        //    //body->ApplyForceToCenter(toCenter, true);
-
-        //    return;
-        //}
-
-        float angle = atan2f(-toCenter.x, toCenter.y);
+        float angle = atan2f(-x, y);
         body->SetTransform(body->GetPosition(), angle);
     }
-
-    //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
     body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
 
@@ -122,6 +113,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
     newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
     newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
+    newBodyDef.linearDamping = 0.2f;
 
     b2Body* body = world->CreateBody(&newBodyDef);
     body->SetUserData((void*)&entity);

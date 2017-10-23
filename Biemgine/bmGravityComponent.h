@@ -6,7 +6,7 @@ class bmGravityComponent :
     public bmComponent
 {
 public:
-    bmGravityComponent(float offsetX, float offsetY, float w, float h) : offsetX(offsetX), offsetY(offsetY), w(w), h(h) {};
+    bmGravityComponent(float offsetX, float offsetY, float w, float h, float r) : offsetX(offsetX), offsetY(offsetY), w(w), h(h), r(r) {};
 
     float getX() {
         return offsetX;
@@ -24,7 +24,11 @@ public:
         return h;
     }
 
+    float getRadius() {
+        return r;
+    }
+
 private:
-    float offsetX, offsetY, w, h;
+    float offsetX, offsetY, w, h, r;
 };
 

@@ -1,20 +1,21 @@
 #pragma once
 
 #include "bmSystem.h"
-#include "bmOxygenComponent.h"
+#include "bmScoreComponent.h"
+#include "bmTextComponent.h"
 #include "bmPositionComponent.h"
 #include "bmUIComponent.h"
 #include "bmColorComponent.h"
 #include "GraphicsDevice.h"
 
-class bmRenderOxygenSystem : public bmSystem
+class bmScoreUISystem : public bmSystem
 {
 public:
 
-    bmRenderOxygenSystem() {};
-    ~bmRenderOxygenSystem() {};
+    bmScoreUISystem() {};
+    ~bmScoreUISystem() {};
 
-    void bmRenderOxygenSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
+    void bmScoreUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
     void before(const float deltaTime) override;
     void update(const bmEntity& entity, const float deltaTime) override;
@@ -25,7 +26,7 @@ public:
 private:
     GraphicsDevice* graphicsDevice = nullptr;
 
-    std::map<bmOxygenComponent*, bool> oxygenMap;
+    std::map<bmScoreComponent*, bool> scoreMap;
 
 };
 

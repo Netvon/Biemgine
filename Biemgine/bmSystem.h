@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bmEntity.h"
-#include "bmTransitionManager.h"
+#include "bmStateManager.h"
 
 class bmSystem
 {
@@ -17,10 +17,10 @@ public:
 
     virtual void onSceneSwitch() = 0;
 
-    void setTransitionManager(bmTransitionManager* pManager);
+    void setTransitionManager(bmStateManager* pManager);
 
 protected:
-    bmTransitionManager* transitionManager = nullptr;
+    bmStateManager* transitionManager = nullptr;
 
 };
 

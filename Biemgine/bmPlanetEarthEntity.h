@@ -24,6 +24,6 @@ public:
         addComponent("color", new bmColorComponent(color));
         addComponent("atmosphere", new bmAtmosphereComponent(x+(w/2), y+(h/2), w));
         addComponent("ground", new bmGroundComponent());
-		addComponent("gravity", new bmGravityComponent(w / -2, h / -2, w * 2, h * 2));
+		addComponent("gravity", new bmGravityComponent(w / -2, h / -2, w * 2, h * 2, w));
     }
 };
