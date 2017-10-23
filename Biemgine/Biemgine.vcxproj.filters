@@ -11,7 +11,6 @@
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
     <ClCompile Include="bmGravityComponent.cpp" />
-    <ClCompile Include="bmPlanetMoonEntity.cpp" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="bmContactListener.cpp" />
@@ -38,6 +37,7 @@
     <ClCompile Include="bmTransitionManager.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="bmPlanetMoonEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmAffectedByGravityComponent.h" />
