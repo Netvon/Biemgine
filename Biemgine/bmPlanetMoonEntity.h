@@ -21,7 +21,7 @@ public:
         addComponent("physics", new bmPhysicsComponent(w, h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
         addComponent("ground", new bmGroundComponent());
-        addComponent("gravity", new bmGravityComponent(w / -2, h / -2, w * 2, h * 2));
+        addComponent("gravity", new bmGravityComponent(w / -2, h / -2, w * 2, h * 2, w));
     }
 };
 

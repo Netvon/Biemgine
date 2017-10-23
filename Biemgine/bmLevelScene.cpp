@@ -48,7 +48,6 @@ void bmLevelScene::sceneCreated()
 
     getEntityManager().addEntity(new bmPlanetMoonEntity(1000 - p_size_h, 400 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
-    getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 600 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
     // Create and add Player
     // Create and add Planets
