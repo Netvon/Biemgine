@@ -51,6 +51,7 @@ void bmMovementSystem::update(const bmEntity & entity)
         if (shouldRight) {
             vec2 centerOfGravity = { affected->getFallingTowardsX(), -affected->getFallingTowardsY() };
             vec2 diff = centerOfGravity - centerOfSatellite;
+
             diff = glm::normalize(diff) * 90000.f;
 
             physics->addForce(diff.x, diff.y);
