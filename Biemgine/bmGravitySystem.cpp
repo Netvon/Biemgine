@@ -43,6 +43,10 @@ void bmGravitySystem::after()
         bool forceApplied = false;
 
         for (auto point : gravityPoints) {
+            if (!point->hasComponent("atmosphere") || !point->hasComponent("gravity")) {
+                continue;
+            }
+
             auto atmosphere = point->getComponent<bmAtmosphereComponent*>("atmosphere");
             auto gravPosition = point->getComponent<bmPositionComponent*>("position");
             auto gravity = point->getComponent<bmGravityComponent*>("gravity");
