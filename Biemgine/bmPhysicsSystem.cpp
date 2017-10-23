@@ -5,20 +5,18 @@
 #include "PhysicsComponentShape.h"
 #include "bmGroundedComponent.h"
 
-#include "bmContactListener.h"
-
 #include <random>
 #include <math.h>
-
 
 #define RAD_TO_DEGREE (180.0f / M_PI)
 #define DEGREE_TO_RAD (M_PI / 180.0f)
 
 bmPhysicsSystem::bmPhysicsSystem()
 {
+    contactListener = new bmContactListener();
     gravity = new b2Vec2(0, 0);
     world = new b2World(*gravity);
-    world->SetContactListener(new bmContactListener());
+    world->SetContactListener(contactListener);
 }
 
 bmPhysicsSystem::~bmPhysicsSystem()
@@ -30,6 +28,7 @@ bmPhysicsSystem::~bmPhysicsSystem()
         }
     }
 
+    delete contactListener;
     delete gravity;
     delete world;
 }
