@@ -1,16 +1,15 @@
 #include "stdafx.h"
 #include "bmSceneManager.h"
 
-void bmSceneManager::setWindow(Window* window)
+void bmSceneManager::createStateManager(Window* window)
 {
     currentWindow = window;
-    transitionManager = new bmTransitionManager(this, window);
+    transitionManager = new bmStateManager(this, window);
 }
 
 
 void bmSceneManager::changeScene(bmSceneType changingScene)
 {
-    
     nextScene = changingScene;
 
     if (currentScene != nullptr) currentScene->signalQuit();
@@ -30,7 +29,6 @@ bool bmSceneManager::checkNextScene()
         nextScene = bmScene_NULL;
 
         currentScene = new bmLevelScene(transitionManager);
-        currentScene->start(currentWindow);
 
         break;
     case bmScene_menu:
@@ -38,13 +36,14 @@ bool bmSceneManager::checkNextScene()
         nextScene = bmScene_NULL;
 
         currentScene = new bmMenuScene(transitionManager);
-        currentScene->start(currentWindow);
 
         break;
     default:
         return false;
-        break;
     }
+
+    transitionManager->setInputManager(currentScene->getInputManager());
+    currentScene->start(currentWindow);
 
     return true;
 }

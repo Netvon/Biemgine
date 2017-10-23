@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmSystem.h"
 
-void bmSystem::setTransitionManager(bmTransitionManager * pManager)
+void bmSystem::setTransitionManager(bmStateManager * pManager)
 {
     transitionManager = pManager;
 }
