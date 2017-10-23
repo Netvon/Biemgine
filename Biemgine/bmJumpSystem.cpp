@@ -3,6 +3,7 @@
 #include "bmPhysicsComponent.h"
 #include "bmGroundedComponent.h"
 #include "bmAffectedByGravityComponent.h"
+#include "bmPositionComponent.h"
 
 #include <glm\glm.hpp>
 
@@ -24,24 +25,23 @@ void bmJumpSystem::update(const bmEntity & entity)
         auto position = entity.getComponent<bmPositionComponent*>("position");
         auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
         auto affected = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
-
-        affected->getFallingTowardsX
+        auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
         if (!grounded->isGrounded() && !affected->getIsAffected())
             return;
 
         vec2 centerOfSatellite = {
-            satPosition->getX() + satPhysics->getColliderW() / 2.0f,
-            satPosition->getY() + satPhysics->getColliderH() / 2.0f
+            position->getX() + physics->getColliderW() / 2.0f,
+            position->getY() + physics->getColliderH() / 2.0f
         };
 
         vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
         vec2 diff = centerOfGravity - centerOfGravity;
 
-        float angle = atan2f(-toCenter.x, toCenter.y);
+        float angle = atan2f(-diff.x, diff.y);
 
-        auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
+        
         physics->addForce(-90000, -90000);
 
         shouldJump = false;
