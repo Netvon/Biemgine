@@ -42,7 +42,6 @@ void bmGravitySystem::after()
         bool forceApplied = false;
 
         for (auto point : gravityPoints) {
-            auto atmosphere = point->getComponent<bmAtmosphereComponent*>("atmosphere");
             auto gravPosition = point->getComponent<bmPositionComponent*>("position");
             auto gravity = point->getComponent<bmGravityComponent*>("gravity");
 
@@ -58,7 +57,7 @@ void bmGravitySystem::after()
                 satPhysics
             }));
 
-            if (distance <= atmosphere->getRadius()) {
+            if (distance <= gravity->getRadius()) {
                 applyForce(centerOfGravity, centerOfSatellite, satPhysics);
                 forceApplied = true;
             }
