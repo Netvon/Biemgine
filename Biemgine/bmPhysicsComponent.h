@@ -2,7 +2,7 @@
 #include "bmComponent.h"
 #include "PhysicsComponentShape.h"
 #include <glm\glm.hpp>
-
+#include <vector>
 
 class bmPhysicsComponent :
     public bmComponent
@@ -31,11 +31,23 @@ public:
     }
 
     float getForceX() const {
-        return force.x;
+        glm::vec2 f = { 0,0 };
+
+        for (auto force : forces) {
+            f += force;
+        }
+
+        return f.x;
     }
 
     float getForceY() const {
-        return force.y;
+        glm::vec2 f = { 0,0 };
+
+        for (auto force : forces) {
+            f += force;
+        }
+
+        return f.y;
     }
 
     float getMass() const {
@@ -43,16 +55,16 @@ public:
     }
 
     void addForce(float x, float y) {
-        force = { x, y };
+        forces.push_back({ x, y });
     }
 
     void resetForce() {
-        force = { 0.0f, 0.0f };
+        forces.clear();
     }
 
 private:
     glm::vec2 colliderSize;
-    glm::vec2 force;
+    std::vector<glm::vec2> forces;
     float mass = 1.0f;
     PhysicsComponentShape shape;
     bool isStatic;

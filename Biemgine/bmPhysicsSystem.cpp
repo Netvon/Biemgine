@@ -5,20 +5,18 @@
 #include "PhysicsComponentShape.h"
 #include "bmGroundedComponent.h"
 
-#include "bmContactListener.h"
-
 #include <random>
 #include <math.h>
-
 
 #define RAD_TO_DEGREE (180.0f / M_PI)
 #define DEGREE_TO_RAD (M_PI / 180.0f)
 
 bmPhysicsSystem::bmPhysicsSystem()
 {
+    contactListener = new bmContactListener();
     gravity = new b2Vec2(0, 0);
     world = new b2World(*gravity);
-    world->SetContactListener(new bmContactListener());
+    world->SetContactListener(contactListener);
 }
 
 bmPhysicsSystem::~bmPhysicsSystem()
@@ -30,6 +28,7 @@ bmPhysicsSystem::~bmPhysicsSystem()
         }
     }
 
+    delete contactListener;
     delete gravity;
     delete world;
 }
@@ -77,10 +76,7 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
     //std::cout << "x:" << force.x << "y:" << force.y << std::endl;
 
-   
-
-    body->ApplyForceToCenter(toCenter, true);
-
+    body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
 
     physics->resetForce();
 }
@@ -126,6 +122,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
     newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
     newBodyDef.angle = pc->getRotation() * DEGREE_TO_RAD;
+    newBodyDef.linearDamping = 0.2f;
 
     b2Body* body = world->CreateBody(&newBodyDef);
     body->SetUserData((void*)&entity);

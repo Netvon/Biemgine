@@ -3,11 +3,10 @@
 #include "bmSystemManager.h"
 #include "bmEntityManager.h"
 #include "bmPhysicsSystem.h"
-#include "bmOxygenSystem.h"
 #include "bmRenderSystem.h"
-#include "bmRenderOxygenSystem.h"
 #include "bmScoreSystem.h"
 #include "bmScoreUISystem.h"
+#include "bmOxygenUISystem.h"
 
 
 class bmResourceManager;

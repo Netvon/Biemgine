@@ -23,6 +23,8 @@ public:
         for (auto it = find.first; it != find.second; ++it) {
             return dynamic_cast<TComponent>(it->second);
         }
+
+        return nullptr;
     }
 
     // pair <multimap<string,bmComponent*>::iterator, multimap<string,bmComponent*>::iterator>

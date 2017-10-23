@@ -1,16 +1,17 @@
 #include "stdafx.h"
-#include "bmRenderOxygenSystem.h"
+#include "bmOxygenUISystem.h"
+#include "bmRectangleComponent.h"
 
-void bmRenderOxygenSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
+void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
 {
     this->graphicsDevice = graphicsDevice;
 }
 
-void bmRenderOxygenSystem::before(const float deltaTime)
+void bmOxygenUISystem::before(const float deltaTime)
 {
 }
 
-void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime)
+void bmOxygenUISystem::update(const bmEntity & entity, const float deltaTime)
 {
     if (!entity.hasComponent("oxygen")) return;
 
@@ -25,6 +26,7 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
 
     if (!entity.hasComponent("position")) return;
     if (!entity.hasComponent("color")) return;
+    if (!entity.hasComponent("rectangle")) return;
 
     auto pc = entity.getComponent<bmPositionComponent*>("position");
     auto uc = entity.getComponent<bmUIComponent*>("ui");
@@ -49,23 +51,17 @@ void bmRenderOxygenSystem::update(const bmEntity & entity, const float deltaTime
 
     float oBar = (float)oRef->getOxygenAmount() / (float)oRef->getOxygenMax();
 
-    // Now draw!
-    graphicsDevice->drawSquare(
-        static_cast<int>(pc->getX()),
-        static_cast<int>(pc->getY()),
-        static_cast<int>(transitionManager->getWindowWidth() * oBar),
-        static_cast<int>(10),
-        cc->getColor(),
-        pc->getRotation()
-    );
+
+    auto rc = entity.getComponent<bmRectangleComponent*>("rectangle");
+    rc->setWidth(transitionManager->getWindowWidth() * oBar);
 
 }
 
-void bmRenderOxygenSystem::after(const float deltaTime)
+void bmOxygenUISystem::after(const float deltaTime)
 {
 }
 
-void bmRenderOxygenSystem::onSceneSwitch()
+void bmOxygenUISystem::onSceneSwitch()
 {
     if (graphicsDevice != nullptr)
         graphicsDevice->clear();

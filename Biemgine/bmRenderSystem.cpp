@@ -30,12 +30,6 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
 		return;
 
 
-
-    // Get the components
-    // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
-   
-
-    // Check if the entity has the right components
     if (entity.hasComponent("texture")) {
         auto cc = entity.getComponent<bmColorComponent*>("color");
 
@@ -57,7 +51,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         
     }
     else {
-       /* auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
+        auto rectangle = entity.getComponent<bmRectangleComponent*>("rectangle");
 
         graphicsDevice->drawSquare(
             static_cast<int>(pc->getX()),
@@ -65,7 +59,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
             static_cast<int>(rectangle->getWidth()),
             static_cast<int>(rectangle->getHeight()),
             rectangle->getColor().getColor(), pc->getRotation()
-        );*/
+        );
     }
 
     // Parse the base component to the right derived component

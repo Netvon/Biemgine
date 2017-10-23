@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -159,9 +159,6 @@
     <ClInclude Include="bmUIComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmRenderOxygenSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="bmTransitionManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -199,7 +196,10 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="bmScoreUISystem.h">
-      <Filter>Systems</Filter>
+        <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenUISystem.h">
+        <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,9 +299,6 @@
     <ClCompile Include="bmContactListener.cpp">
       <Filter>Listeners</Filter>
     </ClCompile>
-    <ClCompile Include="bmRenderOxygenSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="bmTransitionManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -324,6 +321,9 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="bmScoreUISystem.cpp">
+        <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmOxygenUISystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>

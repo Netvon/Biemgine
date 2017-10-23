@@ -158,23 +158,25 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmAffectedByGravityComponent.h" />
     <ClInclude Include="bmColor.h" />
     <ClInclude Include="bmColorComponent.h" />
     <ClInclude Include="bmComponent.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
+    <ClInclude Include="bmGravitySystem.h" />
     <ClInclude Include="bmGroundComponent.h" />
     <ClInclude Include="bmGroundedComponent.h" />
     <ClInclude Include="bmInputManager.h" />
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
-    <ClInclude Include="bmRenderOxygenSystem.h" />
     <ClInclude Include="bmScoreComponent.h" />
     <ClInclude Include="bmScoreSystem.h" />
     <ClInclude Include="bmScoreUIEntity.h" />
     <ClInclude Include="bmScoreUISystem.h" />
     <ClInclude Include="bmTextComponent.h" />
+    <ClInclude Include="bmOxygenUISystem.h" />
     <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
@@ -212,14 +214,15 @@
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
-    <ClCompile Include="bmRenderOxygenSystem.cpp" />
     <ClCompile Include="bmScoreComponent.cpp" />
     <ClCompile Include="bmScoreSystem.cpp" />
     <ClCompile Include="bmScoreUIEntity.cpp" />
     <ClCompile Include="bmScoreUISystem.cpp" />
     <ClCompile Include="bmTextComponent.cpp" />
+    <ClCompile Include="bmOxygenUISystem.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
+    <ClCompile Include="bmGravitySystem.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
