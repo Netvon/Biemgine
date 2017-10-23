@@ -2,7 +2,7 @@
 #include "bmComponent.h"
 #include "PhysicsComponentShape.h"
 #include <glm\glm.hpp>
-
+#include <vector>
 
 class bmPhysicsComponent :
     public bmComponent
