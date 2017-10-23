@@ -171,7 +171,7 @@
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
-    <ClInclude Include="bmRenderOxygenSystem.h" />
+    <ClInclude Include="bmOxygenUISystem.h" />
     <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
@@ -209,7 +209,7 @@
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
-    <ClCompile Include="bmRenderOxygenSystem.cpp" />
+    <ClCompile Include="bmOxygenUISystem.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
     <ClCompile Include="bmGravitySystem.cpp" />

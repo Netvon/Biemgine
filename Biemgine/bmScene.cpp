@@ -4,7 +4,7 @@
 #include "bmGravitySystem.h"
 #include "bmPhysicsSystem.h"
 #include "bmRenderSystem.h"
-#include "bmRenderOxygenSystem.h"
+#include "bmOxygenUISystem.h"
 #include "bmOxygenSystem.h"
 
 void bmScene::updateEntities()
@@ -33,19 +33,19 @@ void bmScene::created()
     auto gd = getWindow()->getGraphicsDevice();
 
     auto renderSystem = new bmRenderSystem();
-    auto renderOxygenSystem = new bmRenderOxygenSystem();
+    auto oxygenUISystem = new bmOxygenUISystem();
 
     renderSystem->setGraphicsDevice(gd);
-    renderOxygenSystem->setGraphicsDevice(gd);
+    oxygenUISystem->setGraphicsDevice(gd);
 
     systemManager->addSystem(renderSystem);
-    systemManager->addSystem(renderOxygenSystem);
+    systemManager->addSystem(oxygenUISystem);
 
     gravitySystem->setTransitionManager(transitionManager);
     oxygenSystem->setTransitionManager(transitionManager);
     physicsSystem->setTransitionManager(transitionManager);
     renderSystem->setTransitionManager(transitionManager);
-    renderOxygenSystem->setTransitionManager(transitionManager);
+    oxygenUISystem->setTransitionManager(transitionManager);
 
 
     sceneCreated();
