@@ -10,22 +10,21 @@ public:
         offsetX(offsetX),
         offsetY(offsetY),
         r(r)
-    {};
+    { };
 
-    float getX() {
+    float getX() const {
         return offsetX;
     }
 
-    float getY() {
+    float getY() const {
         return offsetY;
     }
 
-    float getRadius() {
+    float getRadius() const {
         return r;
     }
 
 private:
     float offsetX, offsetY, r;
-
 };
 

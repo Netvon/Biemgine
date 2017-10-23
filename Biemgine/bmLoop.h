@@ -22,6 +22,10 @@ public:
         return window;
     }
 
+    bmInputManager* getInputManager() {
+        return &im;
+    }
+
 private:
     SDL_Event event;
     const Window* window;
