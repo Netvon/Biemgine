@@ -229,7 +229,7 @@
     <ClCompile Include="bmPhysicsSystem.cpp" />
     <ClCompile Include="bmPlanetEarthEntity.h" />
     <ClCompile Include="bmGravityComponent.cpp" />
-    <ClCompile Include="bmPlanetMoonEntity.cpp" />
+    <ClCompile Include="bmPlanetMoonEntity.h" />
     <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="bmContactListener.cpp" />

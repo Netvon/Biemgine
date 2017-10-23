@@ -153,14 +153,8 @@
     <ClInclude Include="bmOxygenComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmOxygenUIEntity.h">
-      <Filter>Entities\PlanetEntities</Filter>
-    </ClInclude>
     <ClInclude Include="bmUIComponent.h">
       <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmTransitionManager.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="bmAtmosphereComponent.h">
       <Filter>components</Filter>
@@ -196,10 +190,25 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="bmScoreUISystem.h">
-        <Filter>Systems</Filter>
+      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="bmOxygenUISystem.h">
-        <Filter>Systems</Filter>
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmAffectedByGravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmGravitySystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmJumpSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="bmOxygenUIEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="bmStateManager.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +296,6 @@
     <ClCompile Include="bmPlanetEarthEntity.h">
       <Filter>Entities\PlanetEntities</Filter>
     </ClCompile>
-    <ClCompile Include="bmPlanetMoonEntity.cpp">
-      <Filter>Entities\PlanetEntities</Filter>
-    </ClCompile>
     <ClCompile Include="bmAtmosphereComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -298,9 +304,6 @@
     </ClCompile>
     <ClCompile Include="bmContactListener.cpp">
       <Filter>Listeners</Filter>
-    </ClCompile>
-    <ClCompile Include="bmTransitionManager.cpp">
-      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="bmGroundedComponent.cpp">
       <Filter>components</Filter>
@@ -321,10 +324,22 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="bmScoreUISystem.cpp">
-        <Filter>Systems</Filter>
+      <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="bmOxygenUISystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmJumpSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmGravitySystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmPlanetMoonEntity.h">
+      <Filter>Entities\PlanetEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="bmStateManager.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

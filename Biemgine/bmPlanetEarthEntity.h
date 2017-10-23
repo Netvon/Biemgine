@@ -16,7 +16,7 @@ public:
     bmPlanetEarthEntity(float x, float y, bmColor color, float w, float h) {
         addComponent("position", new bmPositionComponent(x, y));
         addComponent("texture", new bmTextureComponent("textures/earth-plain.png", 0, 0, w, h, 2u));
-        addComponent("texture", new bmTextureComponent("textures/atmosphere_clouds.png", w / -2, h / -2, w * 2, h * 2, 9999u));
+        addComponent("texture", new bmTextureComponent("textures/atmosphere_clouds.png", 0 - ((w*2.5f / 2) - w / 2), 0 - ((h*2.5f / 2) - h / 2), w*2.5f, h*2.5f, 9999u));
         addComponent("texture", new bmTextureComponent("textures/earth-TypeA.png",0- ((w*1.19f/2)-w/2), 0-((h*1.19f/2) - h/2), w*1.19f, h*1.19f, 1u));
         addComponent("texture", new bmTextureComponent("textures/atmosphere.png", w / -2, h / -2, w * 2, h * 2));
         addComponent("texture", new bmTextureComponent("textures/gravityField.png", w / -2, h / -2, w * 2, h * 2));

@@ -3,6 +3,7 @@
 #include "bmPlayerEntity.h"
 #include "bmSurfaceEntity.h"
 #include "bmPlanetEarthEntity.h"
+#include "bmPlanetMoonEntity.h"
 #include "bmOxygenUIEntity.h"
 #include "bmScoreUIEntity.h"
 
@@ -23,6 +24,7 @@ void bmLevelScene::sceneCreated()
         }
     }*/
 
+
     float width = 15 * 2;
     float height = 25 * 2;
 
@@ -36,15 +38,15 @@ void bmLevelScene::sceneCreated()
 
     getEntityManager().addEntity(new bmPlayerEntity(800, 100, { 255, 255, 255, 255 }, width, height));
 
-    float p_size = 150.f;
+    float p_size = 300.f;
     float p_size_h = p_size * 0.5f;
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
     getEntityManager().addEntity(new bmScoreUIEntity());
 
-    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 400 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
-    getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetMoonEntity(1000 - p_size_h, 400 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
     getEntityManager().addEntity(new bmPlanetEarthEntity(1000 - p_size_h, 600 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 
