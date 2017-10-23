@@ -61,8 +61,8 @@ void Window::initWindow(
         options
     );
 
-    if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) < 0)
-        cout << "Failed to Set Fullscreen\n" << SDL_GetError() << endl;
+   /* if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) < 0)
+        cout << "Failed to Set Fullscreen\n" << SDL_GetError() << endl;*/
 
     if (window == nullptr)
         cout << "Failed to initialize Window\n" << SDL_GetError() << endl;

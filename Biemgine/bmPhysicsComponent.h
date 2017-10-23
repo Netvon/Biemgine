@@ -31,7 +31,7 @@ public:
     }
 
     float getForceX() const {
-        glm::vec2 f;
+        glm::vec2 f = { 0,0 };
 
         for (auto force : forces) {
             f += force;
@@ -41,7 +41,7 @@ public:
     }
 
     float getForceY() const {
-        glm::vec2 f;
+        glm::vec2 f = { 0,0 };
 
         for (auto force : forces) {
             f += force;
