@@ -210,6 +210,9 @@
     <ClInclude Include="bmStateManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="bmMovementSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="bmStateManager.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="bmMovementSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

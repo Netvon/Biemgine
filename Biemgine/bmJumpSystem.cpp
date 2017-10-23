@@ -7,8 +7,6 @@
 
 #include <glm\glm.hpp>
 
-#define RAD_TO_DEGREE (180.0f / M_PI)
-
 using namespace glm;
 
 void bmJumpSystem::before()
@@ -43,7 +41,6 @@ void bmJumpSystem::update(const bmEntity & entity)
 
         diff *= -1;
         diff = glm::normalize(diff) * 90000.f * 1500.f;
-
         
         physics->addTimedForce("jump", diff.x, diff.y, 100, true);
 
