@@ -7,7 +7,7 @@ bmEngine::bmEngine()
 {
     Window window(
         "Biem Test 01",
-        1280, 720,
+        1920, 1080,
         SDL_WINDOW_OPENGL,
         SDL_RENDERER_ACCELERATED
     );
