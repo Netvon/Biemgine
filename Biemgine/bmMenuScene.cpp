@@ -10,9 +10,9 @@ void bmMenuScene::sceneCreated()
     addComponent(c1);*/
 
     getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", 800 / 2 - 50, 200, { 255, 255, 255, 255 }, -1, -1));
-    getEntityManager().addEntity(new bmScoreUIEntity(0, 50, 100));
-    getEntityManager().addEntity(new bmScoreUIEntity(0, 70, 80));
-    getEntityManager().addEntity(new bmScoreUIEntity(0, 90, 60));
+    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50, 50, 100));
+    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50, 70, 80));
+    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50 , 90, 60));
 
 
     cout << "MenuScene created" << endl;

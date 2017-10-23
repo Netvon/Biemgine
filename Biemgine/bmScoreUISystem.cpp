@@ -44,11 +44,12 @@ void bmScoreUISystem::update(const bmEntity & entity, const float deltaTime)
     }
 
     auto tx = entity.getComponent<bmTextComponent*>("text");
-    tx->setText("Score: " + std::to_string(oRef->getScore()));
+    tx->setText("Score: " + std::to_string((int)oRef->getScore()));
 }
 
 void bmScoreUISystem::after(const float deltaTime)
 {
+
 }
 
 void bmScoreUISystem::onSceneSwitch()

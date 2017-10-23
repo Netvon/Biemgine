@@ -7,6 +7,7 @@
 class bmLoop
 {
 public:
+
     bmInputManager im;
 
     virtual ~bmLoop() {};
