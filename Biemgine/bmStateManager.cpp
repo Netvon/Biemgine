@@ -1,50 +1,55 @@
 #include "stdafx.h"
-#include "bmTransitionManager.h"
+#include "bmStateManager.h"
 #include "bmSceneManager.h"
 
-void bmTransitionManager::gameOverTransition()
+bmStateManager::~bmStateManager()
+{
+    delete inputManager;
+}
+
+void bmStateManager::gameOverTransition()
 {
     cout << "GAME OVER" << endl;
     sceneManager->changeScene(bmScene_menu);
 }
 
-void bmTransitionManager::quitLevelTransition()
+void bmStateManager::quitLevelTransition()
 {
     sceneManager->changeScene(bmScene_menu);
 }
 
-void bmTransitionManager::startLevelTransition()
+void bmStateManager::startLevelTransition()
 {
     sceneManager->changeScene(bmScene_level);
 }
 
-int bmTransitionManager::getWindowWidth() const
+int bmStateManager::getWindowWidth() const
 {    
     return window->getWidth();
 }
 
-int bmTransitionManager::getWindowHeight() const
+int bmStateManager::getWindowHeight() const
 {
     return window->getHeight();
 }
 
-void bmTransitionManager::pauseGame()
+void bmStateManager::pauseGame()
 {
     paused = true;
 
 }
 
-void bmTransitionManager::resumeGame()
+void bmStateManager::resumeGame()
 {
     paused = false;
 }
 
-bool bmTransitionManager::isPaused()
+bool bmStateManager::isPaused()
 {
     return paused;
 }
 
-void bmTransitionManager::drawOverlay()
+void bmStateManager::drawOverlay()
 {
     if (paused) {
         auto gd = window->getGraphicsDevice();
@@ -59,7 +64,7 @@ void bmTransitionManager::drawOverlay()
     }
 }
 
-void bmTransitionManager::drawBackground() {
+void bmStateManager::drawBackground() {
 
     auto gd = window->getGraphicsDevice();
 

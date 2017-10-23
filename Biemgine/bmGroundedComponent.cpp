@@ -3,12 +3,12 @@
 
 bool bmGroundedComponent::isGrounded() const
 {
-    return this->grounded;
+    return grounded;
 }
 
-bmGroundedComponent* bmGroundedComponent::setGrounded(bool grounded)
+bmGroundedComponent* bmGroundedComponent::setGrounded(bool pGrounded)
 {
-    this->grounded = grounded;
+    grounded = pGrounded;
 
     return this;
 }

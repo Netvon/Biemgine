@@ -14,5 +14,5 @@ public:
     bmGroundedComponent* bmGroundedComponent::setGrounded(bool grounded = false);
 
 private:
-    bool grounded;
+    bool grounded = false;
 };
