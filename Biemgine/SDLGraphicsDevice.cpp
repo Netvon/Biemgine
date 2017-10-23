@@ -20,6 +20,10 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 	SDL_Rect viewport = { 0, 0, 0, 0 };
 
     SDL_GetWindowSize(window, &viewport.w, &viewport.h);
+
+    int w = 1920;
+    int h = 1080;
+    SDL_RenderGetLogicalSize(renderer, &w, &h);
     SDL_RenderSetViewport(renderer, &viewport);
     //SDL_RenderSetScale(renderer, 2.f, 2.f);
 }

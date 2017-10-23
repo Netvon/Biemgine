@@ -4,7 +4,7 @@
 
 bmStateManager::~bmStateManager()
 {
-    delete inputManager;
+
 }
 
 void bmStateManager::gameOverTransition()

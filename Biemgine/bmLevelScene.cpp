@@ -38,19 +38,18 @@ void bmLevelScene::sceneCreated()
 
     getEntityManager().addEntity(new bmPlayerEntity(800, 100, { 255, 255, 255, 255 }, width, height));
 
-    float p_size = 300.f;
-    float p_size_h = p_size * 0.5f;
+    int wW = getTransitionManager().getWindowWidth();
+    int wH = getTransitionManager().getWindowHeight();
+    int xMarge = 60;
+    float p_size = (wW/4)-(xMarge/2);
+    int yMarge = (wH-(p_size*2))/2;
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
     getEntityManager().addEntity(new bmScoreUIEntity());
 
-    getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 400 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager().addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
 
-    getEntityManager().addEntity(new bmPlanetMoonEntity(1000 - p_size_h, 400 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
-
-
-    // Create and add Player
-    // Create and add Planets
 }
 
 void bmLevelScene::input()
