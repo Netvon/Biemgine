@@ -3,7 +3,6 @@
 #include "bmScoreComponent.h"
 #include "bmLoop.h"
 
-extern const float BM_GAMELOOP_UPDATE_MS;
 
 bmScoreSystem::bmScoreSystem()
 {
@@ -13,13 +12,13 @@ bmScoreSystem::~bmScoreSystem()
 {
 }
 
-void bmScoreSystem::update(const bmEntity& entity, const float deltaTime)
+void bmScoreSystem::update(const bmEntity& entity)
 {
     if (!entity.hasComponent("score")) return;
     if (entity.hasComponent("ui")) return;
     auto sc = entity.getComponent<bmScoreComponent*>("score");
 
-    sc->addScore(deltaTime / 600);
+    sc->addScore(bmLoop::BM_GAMELOOP_UPDATE_MS/100);
 }
 
 void bmScoreSystem::onSceneSwitch()

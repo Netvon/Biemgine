@@ -7,7 +7,7 @@ public:
 	bmScoreSystem();
 	~bmScoreSystem();
 
-    void update(const bmEntity& entity, const float deltaTime) override;
+    void update(const bmEntity& entity) override;
     void onSceneSwitch() override;
 };
 

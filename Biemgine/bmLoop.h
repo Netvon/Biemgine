@@ -8,6 +8,9 @@ class bmLoop
 {
 public:
 
+    static const int BM_GAMELOOP_FPS;
+    static const float BM_GAMELOOP_UPDATE_MS;
+
     bmInputManager im;
 
     virtual ~bmLoop() {};

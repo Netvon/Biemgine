@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
-extern const int BM_GAMELOOP_FPS = 60;
-extern const float BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
+
+const int bmLoop::BM_GAMELOOP_FPS = 60;
+const float bmLoop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
 void bmLoop::start(const Window* bmwindow)
 {
