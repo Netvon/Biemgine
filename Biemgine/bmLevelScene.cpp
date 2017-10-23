@@ -26,13 +26,13 @@ void bmLevelScene::sceneCreated()
     float width = 25 * 2;
     float height = 25 * 2;
 
-    for (float x = 100; x < 700; x += width + width/4.0f)
-    {
-        for (float y = -height * 3; y < 50; y += height + height / 4.0f)
-        {
-            getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
-        }        
-    }
+    //for (float x = 100; x < 700; x += width + width/4.0f)
+    //{
+    //    for (float y = -height * 3; y < 50; y += height + height / 4.0f)
+    //    {
+    //        getEntityManager().addEntity(new bmPlayerEntity(x, y, { 255, 255, 255, 255 }, width, height));
+    //    }        
+    //}
 
     getEntityManager().addEntity(new bmPlayerEntity(200, 100, { 255, 255, 255, 255 }, width, height));
 
