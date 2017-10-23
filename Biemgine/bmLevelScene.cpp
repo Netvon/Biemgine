@@ -4,7 +4,7 @@
 #include "bmSurfaceEntity.h"
 #include "bmPlanetEarthEntity.h"
 #include "bmOxygenUIEntity.h"
-
+#include "bmScoreUIEntity.h"
 
 void bmLevelScene::sceneCreated()
 {
@@ -40,6 +40,7 @@ void bmLevelScene::sceneCreated()
     float p_size_h = p_size * 0.5f;
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
+    getEntityManager().addEntity(new bmScoreUIEntity());
 
     getEntityManager().addEntity(new bmPlanetEarthEntity(400 - p_size_h, 300 - p_size_h, { 255, 255, 255, 255 }, p_size, p_size));
 

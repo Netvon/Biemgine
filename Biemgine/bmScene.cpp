@@ -23,10 +23,14 @@ void bmScene::created()
     auto gravitySystem = new bmGravitySystem();
     auto physicsSystem = new bmPhysicsSystem();
     auto oxygenSystem = new bmOxygenSystem();
+    auto scoreSystem = new bmScoreSystem();
+    auto scoreUISystem = new bmScoreUISystem();
 
     systemManager->addSystem(gravitySystem);
     systemManager->addSystem(physicsSystem);
     systemManager->addSystem(oxygenSystem);
+    systemManager->addSystem(scoreSystem);
+    systemManager->addSystem(scoreUISystem);
 
 
     // Render systems

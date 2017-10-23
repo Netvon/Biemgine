@@ -4,6 +4,8 @@
 #include "bmEntityManager.h"
 #include "bmPhysicsSystem.h"
 #include "bmRenderSystem.h"
+#include "bmScoreSystem.h"
+#include "bmScoreUISystem.h"
 #include "bmOxygenUISystem.h"
 
 
