@@ -32,6 +32,7 @@ void bmGravitySystem::after()
     for (auto satellite : satellites) {
         auto satPosition = satellite->getComponent<bmPositionComponent*>("position");
         auto satPhysics = satellite->getComponent<bmPhysicsComponent*>("physics");
+        auto satAffected = satellite->getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
 
         vec2 centerOfSatellite = {
             satPosition->getX() + satPhysics->getColliderW() / 2.0f,
@@ -59,14 +60,14 @@ void bmGravitySystem::after()
             }));
 
             if (distance <= atmosphere->getRadius()) {
-                applyForce(centerOfGravity, centerOfSatellite, satPhysics);
+                applyForce(centerOfGravity, centerOfSatellite, satPhysics, satAffected);
                 forceApplied = true;
             }
         }
 
         if (!forceApplied) {
             auto distanceInfo = distances.begin()->second;
-            applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics);
+            applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
         }
     }
 
@@ -74,7 +75,7 @@ void bmGravitySystem::after()
     satellites.clear();
 }
 
-void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics)
+void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics, bmAffectedByGravityComponent* affected)
 {
     auto force = centerOfGravity - centerOfSatellite;
 
@@ -82,4 +83,6 @@ void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSa
     force *= 29000.0f;
 
     satPhysics->addForce(force.x, force.y);
+    affected->setFallingTowardsX(centerOfGravity.x);
+    affected->setFallingTowardsY(centerOfGravity.y);
 }
