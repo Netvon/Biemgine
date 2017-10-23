@@ -27,7 +27,7 @@ void bmJumpSystem::update(const bmEntity & entity)
         auto affected = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
         auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
-        if (!grounded->isGrounded() && !affected->getIsAffected())
+        if (!grounded->isGrounded() || !affected->getIsAffected())
             return;
 
         vec2 centerOfSatellite = {
@@ -40,7 +40,6 @@ void bmJumpSystem::update(const bmEntity & entity)
         vec2 diff = centerOfGravity - centerOfGravity;
 
         float angle = atan2f(-diff.x, diff.y);
-
         
         physics->addForce(-90000, -90000);
 
