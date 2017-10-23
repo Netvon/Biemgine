@@ -5,8 +5,8 @@ class bmScoreComponent :
     public bmComponent
 {
 public:
-    bmScoreComponent();
-    ~bmScoreComponent();
+    bmScoreComponent(float pScore = 0) : score(pScore) {};
+    ~bmScoreComponent() {};
 
     bmScoreComponent* setScore(const float pScore)
     {
@@ -26,5 +26,5 @@ public:
     }
 
 private:
-    float score = 0;
+    float score;
 };

@@ -173,6 +173,8 @@
     <ClInclude Include="bmScoreComponent.h" />
     <ClInclude Include="bmScoreSystem.h" />
     <ClInclude Include="bmScoreUIEntity.h" />
+    <ClInclude Include="bmScoreUISystem.h" />
+    <ClInclude Include="bmTextComponent.h" />
     <ClInclude Include="bmUIComponent.h" />
     <ClInclude Include="bmPhysicsComponent.h" />
     <ClInclude Include="bmPhysicsSystem.h" />
@@ -214,6 +216,8 @@
     <ClCompile Include="bmScoreComponent.cpp" />
     <ClCompile Include="bmScoreSystem.cpp" />
     <ClCompile Include="bmScoreUIEntity.cpp" />
+    <ClCompile Include="bmScoreUISystem.cpp" />
+    <ClCompile Include="bmTextComponent.cpp" />
     <ClCompile Include="bmUIComponent.cpp" />
     <ClCompile Include="bmGroundedComponent.cpp" />
     <ClCompile Include="bmPhysicsComponent.cpp" />

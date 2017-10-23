@@ -195,6 +195,12 @@
     <ClInclude Include="bmScoreSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="bmTextComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="bmScoreUISystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -312,6 +318,12 @@
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="bmScoreSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="bmTextComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="bmScoreUISystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>

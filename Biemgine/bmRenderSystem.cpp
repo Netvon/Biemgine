@@ -19,13 +19,21 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
     if (!entity.hasComponent("position"))
         return;
 
+    auto pc = entity.getComponent<bmPositionComponent*>("position");
+
+    if (entity.hasComponent("text")) {
+        auto tx = entity.getComponent<bmTextComponent*>("text");
+        graphicsDevice->drawText(tx->getText(), pc->getX(), pc->getY(), { 255,255,255,255 }, 0);
+    }
+
 	if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle")) 
 		return;
 
 
+
     // Get the components
     // std::map<std::string, bmComponent*> componentHM = entity->getComponentHM();
-    auto pc = entity.getComponent<bmPositionComponent*>("position");
+   
 
     // Check if the entity has the right components
     if (entity.hasComponent("texture")) {
@@ -60,7 +68,6 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
         );*/
     }
 
-   
     // Parse the base component to the right derived component
     //bmPositionComponent* pc = dynamic_cast<bmPositionComponent*>(componentHM["position"]);
 
