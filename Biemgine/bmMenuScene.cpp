@@ -9,10 +9,17 @@ void bmMenuScene::sceneCreated()
     /*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
     addComponent(c1);*/
 
-    getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", 800 / 2 - 50, 200, { 255, 255, 255, 255 }, -1, -1));
-    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50, 50, 100));
-    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50, 70, 80));
-    getEntityManager().addEntity(new bmScoreUIEntity(800 / 2 - 50 , 90, 60));
+    int w = 50;
+    int x = getTransitionManager().getWindowWidth() / 2 - w;
+
+
+    getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
+
+
+    for (int y = 200; y < 500; y += 25) {
+        getEntityManager().addEntity(new bmScoreUIEntity(x, y, 60));
+    }
+
 
 
     cout << "MenuScene created" << endl;

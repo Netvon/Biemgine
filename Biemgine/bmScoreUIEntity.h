@@ -4,7 +4,7 @@ class bmScoreUIEntity :
 	public bmEntity
 {
 public:
-	bmScoreUIEntity(int x = 0, int y = 50, float score = 0);
+	bmScoreUIEntity(int x = 20, int y = 30, float score = 0);
 	~bmScoreUIEntity();
 };
 

@@ -50,7 +50,7 @@ void bmTransitionManager::drawOverlay()
         auto gd = window->getGraphicsDevice();
 
         int x = 20;
-        int y = 30;
+        int y = 60;
 
         //gd->drawSquare(0,0,getWindowWidth()/2,getWindowHeight()/2, { 0, 0, 0, 20 });
 
