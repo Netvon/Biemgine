@@ -221,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="bmFileHandler.h">
       <Filter>Engine</Filter>
+     </ClInclude>
+    <ClInclude Include="bmMovementSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -364,5 +367,8 @@
     <None Include="highscores.csv">
       <Filter>Resource Files</Filter>
     </None>
+    <ClCompile Include="bmMovementSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

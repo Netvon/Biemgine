@@ -173,6 +173,7 @@
     <ClInclude Include="bmLevelScene.h" />
     <ClInclude Include="bmLoop.h" />
     <ClInclude Include="bmMenuScene.h" />
+    <ClInclude Include="bmMovementSystem.h" />
     <ClInclude Include="bmScoreComponent.h" />
     <ClInclude Include="bmScoreSystem.h" />
     <ClInclude Include="bmScoreUIEntity.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="bmColorComponent.cpp" />
     <ClCompile Include="bmFileHandler.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
+    <ClCompile Include="bmMovementSystem.cpp" />
     <ClCompile Include="bmScoreComponent.cpp" />
     <ClCompile Include="bmScoreSystem.cpp" />
     <ClCompile Include="bmScoreUIEntity.cpp" />

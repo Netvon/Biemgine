@@ -37,7 +37,7 @@ void bmLevelScene::sceneCreated()
     //    }        
     //}
 
-    getEntityManager().addEntity(new bmPlayerEntity(800, 100, { 255, 255, 255, 255 }, width, height));
+    getEntityManager().addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();

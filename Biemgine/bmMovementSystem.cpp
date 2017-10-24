@@ -1,17 +1,18 @@
 #include "stdafx.h"
-#include "bmJumpSystem.h"
 #include "bmPhysicsComponent.h"
 #include "bmGroundedComponent.h"
 #include "bmAffectedByGravityComponent.h"
 #include "bmPositionComponent.h"
+#include "bmMovementSystem.h"
 
 #include <glm\glm.hpp>
 
 using namespace glm;
 
-void bmJumpSystem::update(const bmEntity & entity)
+void bmMovementSystem::update(const bmEntity & entity)
 {
-    if (!transitionManager->getInputManager()->isKeyDown("Space"))
+    if (!transitionManager->getInputManager()->isKeyDown("Left")
+        && !transitionManager->getInputManager()->isKeyDown("Right"))
         return;
 
     if (entity.hasComponent("affectedByGravity")
@@ -32,12 +33,21 @@ void bmJumpSystem::update(const bmEntity & entity)
         };
 
         vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
-
         vec2 diff = centerOfGravity - centerOfSatellite;
 
-        diff *= -1;
-        diff = glm::normalize(diff) * 90000.f * 1500.f;
-        
-        physics->addTimedForce("jump", diff.x, diff.y, 100, true);
+        if (transitionManager->getInputManager()->isKeyDown("Left")) {
+            vec2 left = { -diff.y, diff.x };
+            left = glm::normalize(left) * 90000.f * 1500.f;
+
+            physics->addForce("left", left.x, left.y);
+        }
+
+        if (transitionManager->getInputManager()->isKeyDown("Right")) {
+            vec2 right = { diff.y, -diff.x };
+            right = glm::normalize(right) * 90000.f * 1500.f;
+
+            physics->addForce("right", right.x, right.y);
+
+        }
     }
 }

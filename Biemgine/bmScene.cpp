@@ -7,6 +7,7 @@
 #include "bmOxygenUISystem.h"
 #include "bmOxygenSystem.h"
 #include "bmJumpSystem.h"
+#include "bmMovementSystem.h"
 
 void bmScene::updateEntities()
 {
@@ -27,6 +28,7 @@ void bmScene::created()
     auto jumpSystem = new bmJumpSystem();
     auto scoreSystem = new bmScoreSystem();
     auto scoreUISystem = new bmScoreUISystem();
+    auto movementSystem = new bmMovementSystem();
 
     systemManager->addSystem(jumpSystem);
     systemManager->addSystem(gravitySystem);
@@ -34,7 +36,7 @@ void bmScene::created()
     systemManager->addSystem(oxygenSystem);
     systemManager->addSystem(scoreSystem);
     systemManager->addSystem(scoreUISystem);
-
+    systemManager->addSystem(movementSystem);
 
     // Render systems
     auto gd = getWindow()->getGraphicsDevice();
@@ -54,6 +56,7 @@ void bmScene::created()
     renderSystem->setTransitionManager(transitionManager);
     oxygenUISystem->setTransitionManager(transitionManager);
     jumpSystem->setTransitionManager(transitionManager);
+    movementSystem->setTransitionManager(transitionManager);
 
     sceneCreated();
 }
