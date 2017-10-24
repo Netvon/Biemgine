@@ -7,7 +7,7 @@ class bmTextComponent :
     public bmComponent
 {
 public:
-    bmTextComponent(std::string pText) : text{pText} {};
+    bmTextComponent(std::string pText = "") : text{pText} {};
 
     std::string getText() const{
         return text;

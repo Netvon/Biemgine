@@ -6,6 +6,7 @@
 #include "bmPlanetMoonEntity.h"
 #include "bmOxygenUIEntity.h"
 #include "bmScoreUIEntity.h"
+#include "bmScoreUIFactory.h"
 
 void bmLevelScene::sceneCreated()
 {
@@ -51,6 +52,14 @@ void bmLevelScene::sceneCreated()
     getEntityManager().addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
 
 }
+
+void bmLevelScene::sceneEnd() {
+
+    bmScoreUIFactory sf;
+    sf.sceneEnd(getEntityManager().getEntities());
+
+}
+
 
 void bmLevelScene::input()
 {

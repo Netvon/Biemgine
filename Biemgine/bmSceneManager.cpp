@@ -20,6 +20,7 @@ bool bmSceneManager::checkNextScene()
 {
 
     if (currentScene != nullptr) {
+        currentScene->sceneEnd();
         delete currentScene;
     }
 
