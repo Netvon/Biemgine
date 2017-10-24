@@ -9,21 +9,15 @@
 
 using namespace glm;
 
-void bmMovementSystem::before()
-{
-    if (transitionManager->getInputManager()->isKeyDown("Left") && !shouldLeft)
-        shouldLeft = true;
-
-    if (transitionManager->getInputManager()->isKeyDown("Right") && !shouldRight)
-        shouldRight = true;
-}
-
 void bmMovementSystem::update(const bmEntity & entity)
 {
+    if (!transitionManager->getInputManager()->isKeyDown("Left")
+        && !transitionManager->getInputManager()->isKeyDown("Right"))
+        return;
+
     if (entity.hasComponent("affectedByGravity")
         && entity.hasComponent("grounded")
-        && entity.hasComponent("physics")
-        && (shouldLeft || shouldRight))
+        && entity.hasComponent("physics"))
     {
         auto position = entity.getComponent<bmPositionComponent*>("position");
         auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
@@ -41,20 +35,19 @@ void bmMovementSystem::update(const bmEntity & entity)
         vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
         vec2 diff = centerOfGravity - centerOfSatellite;
 
-        if (shouldLeft) {
+        if (transitionManager->getInputManager()->isKeyDown("Left")) {
             vec2 left = { -diff.y, diff.x };
             left = glm::normalize(left) * 90000.f * 1500.f;
 
             physics->addForce("left", left.x, left.y);
-            shouldLeft = false;
         }
 
-        if (shouldRight) {
+        if (transitionManager->getInputManager()->isKeyDown("Right")) {
             vec2 right = { diff.y, -diff.x };
             right = glm::normalize(right) * 90000.f * 1500.f;
 
             physics->addForce("right", right.x, right.y);
-            shouldRight = false;
+
         }
     }
 }
