@@ -64,14 +64,15 @@ void bmPhysicsSystem::update(const bmEntity & entity)
         target *= 12000.0f;
 
         float angle = atan2f(-target.x, target.y);
-        body->SetTransform(body->GetPosition(), angle);        
+        body->SetTransform(body->GetPosition(), angle);
     }
 
     position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
     body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
+    body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
 
-    physics->resetForce();
+    physics->decreaseTimedForces();
 }
 
 void bmPhysicsSystem::onSceneSwitch()
@@ -140,7 +141,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
     if (entity.hasComponent("grounded")) {
         b2PolygonShape groundShape;
-        groundShape.SetAsBox(physics->getColliderW(), physics->getColliderH(), { 0, 0 }, 0);
+        groundShape.SetAsBox(physics->getColliderW() * 0.5f, physics->getColliderH() * 0.5f, { 0, 0.25f }, 0);
 
         b2FixtureDef groundFixtureDef;
         groundFixtureDef.shape = &groundShape;

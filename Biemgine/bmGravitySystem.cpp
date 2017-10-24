@@ -81,7 +81,7 @@ void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSa
     force = glm::normalize(force);
     force *= 29000.0f;
 
-    satPhysics->addForce(force.x, force.y);
+    satPhysics->addForce("gravity", force.x, force.y);
     affected->setFallingTowardsX(centerOfGravity.x);
     affected->setFallingTowardsY(centerOfGravity.y);
 }
