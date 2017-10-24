@@ -9,14 +9,15 @@
 using namespace std;
 using namespace glm;
 
-class bmTimedForce {
+class bmTimedForce
+{
 private:
     vec2 force;
     bool isImpulse;
-    size_t ticksLeft;
+    float ticksLeft;
 
 public:
-    bmTimedForce(float px, float py, size_t pticksLeft, bool pisImpulse = false) :
+    bmTimedForce(float px, float py, float pticksLeft, bool pisImpulse = false) :
         force(px, py), ticksLeft(pticksLeft), isImpulse(pisImpulse) {}
 
     vec2 getForce() const { return force; }
@@ -31,7 +32,6 @@ public:
         return false;
     }
 };
-
 
 class bmPhysicsComponent :
     public bmComponent

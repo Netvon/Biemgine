@@ -262,3 +262,6 @@ __pycache__/
 
 # annoying git commit --amend folder
 enc_temp_folder/
+
+# game highscores
+Biemgine/highscores.csv

@@ -17,11 +17,11 @@ public:
         return height;
     }
 
-    int getOffsetX() const {
+    float getOffsetX() const {
         return offsetX;
     }
 
-    int getOffsetY() const {
+    float getOffsetY() const {
         return offsetY;
     }
 

@@ -12,8 +12,5 @@ public:
     ~bmScoreUIFactory() { };
     vector<bmEntity*> sceneStart(int windowW, int windowH) override;
     void sceneEnd(vector<bmEntity*> entities) override;
-
-protected:
-
 };
 

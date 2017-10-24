@@ -25,8 +25,8 @@ void bmOxygenSystem::update(const bmEntity & entity)
     bmAtmosphereComponent* currentAtmosphere = nullptr;
     if (entity.hasComponent("position")) {
         auto pc = entity.getComponent<bmPositionComponent*>("position");
-        for (auto atmos : atmospheres)
-        {
+
+        for (auto atmos : atmospheres) {
             int xA = atmos->getX();
             int yA = atmos->getY();
             int rA = atmos->getRadius();

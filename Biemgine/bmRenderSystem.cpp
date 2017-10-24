@@ -23,7 +23,7 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
 
     if (entity.hasComponent("text")) {
         auto tx = entity.getComponent<bmTextComponent*>("text");
-        graphicsDevice->drawText(tx->getText(), pc->getX(), pc->getY(), { 255,255,255,255 }, 0);
+        graphicsDevice->drawText(tx->getText(), pc->getX(), pc->getY(), { 255, 255 ,255, 255 }, 0);
     }
 
 	if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle")) 

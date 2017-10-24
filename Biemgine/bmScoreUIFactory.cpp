@@ -14,6 +14,7 @@ vector<bmEntity*> bmScoreUIFactory::sceneStart(int windowW, int windowH)
     int dY = 30;
 
     bmFileHandler fh;
+
     for (auto const& score : fh.scoresContent()) {
         if (y + (dY * 4) > windowH) break;
         entities.push_back(new bmScoreUIEntity(x, y, score.second, score.first));
@@ -30,6 +31,7 @@ void bmScoreUIFactory::sceneEnd(vector<bmEntity*> entities)
     TCHAR user[UNLEN + 1];
     DWORD size = UNLEN + 1;
     string name = "Mr. NoName";
+
     if (GetUserName((TCHAR*)user, &size)) {
         wstring test(&user[0]);
         string stringName(test.begin(), test.end());
@@ -42,5 +44,4 @@ void bmScoreUIFactory::sceneEnd(vector<bmEntity*> entities)
             fh.writeScore(name, sc->getScore());
         }
     }
-
 }

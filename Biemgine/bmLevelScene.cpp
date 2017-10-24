@@ -42,8 +42,8 @@ void bmLevelScene::sceneCreated()
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();
     int xMarge = 60;
-    float p_size = (wW/4)-(xMarge/2);
-    int yMarge = (wH-(p_size*2))/2;
+    float p_size = (wW / 4) - (xMarge / 2);
+    int yMarge = (wH - (p_size * 2)) / 2;
 
     getEntityManager().addEntity(new bmOxygenUIEntity());
     getEntityManager().addEntity(new bmScoreUIEntity());

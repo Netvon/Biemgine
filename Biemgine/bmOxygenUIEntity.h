@@ -16,8 +16,6 @@ public:
         addComponent("ui", new bmUIComponent());
         addComponent("oxygen", new bmOxygenComponent());
         addComponent("rectangle", new bmRectangleComponent(0, 10, { 185, 238, 253, 255 }));
-        // Maybe a texture around the oxygenbar
-
     };
 };
 

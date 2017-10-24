@@ -32,10 +32,9 @@ public:
         inputManager = manager;
     }
 
-    bmInputManager* getInputManager() const {
-
-        if(inputManager != nullptr)
-            return inputManager;
+    bmInputManager* getInputManager() const
+    {
+        return inputManager;
     }
 
 private:
@@ -44,6 +43,5 @@ private:
     Window* window = nullptr;
 
     bool paused = false;
-
 };
 
