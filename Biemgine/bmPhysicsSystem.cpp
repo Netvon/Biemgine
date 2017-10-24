@@ -64,14 +64,17 @@ void bmPhysicsSystem::update(const bmEntity & entity)
         target *= 12000.0f;
 
         float angle = atan2f(-target.x, target.y);
-        body->SetTransform(body->GetPosition(), angle);        
+        body->SetTransform(body->GetPosition(), angle);
+
+        cout << "mass: " << body->GetMass() << endl;
     }
 
     position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
 
     body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
+    body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
 
-    physics->resetForce();
+    physics->decreaseTimedForces();
 }
 
 void bmPhysicsSystem::onSceneSwitch()

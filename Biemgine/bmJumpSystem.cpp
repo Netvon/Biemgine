@@ -42,10 +42,10 @@ void bmJumpSystem::update(const bmEntity & entity)
         vec2 diff = centerOfGravity - centerOfSatellite;
 
         diff *= -1;
-        diff = glm::normalize(diff) * 90000.f;
+        diff = glm::normalize(diff) * 90000.f * 1500.f;
 
         
-        physics->addForce(diff.x, diff.y);
+        physics->addTimedForce("jump", diff.x, diff.y, 100, true);
 
         shouldJump = false;
     }
