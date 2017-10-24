@@ -164,6 +164,7 @@
     <ClInclude Include="bmComponent.h" />
     <ClInclude Include="bmEngine.h" />
     <ClInclude Include="bmEntity.h" />
+    <ClInclude Include="bmFileHandler.h" />
     <ClInclude Include="bmGravitySystem.h" />
     <ClInclude Include="bmGroundComponent.h" />
     <ClInclude Include="bmGroundedComponent.h" />
@@ -199,12 +200,14 @@
     <ClInclude Include="bmEntityManager.h" />
     <ClInclude Include="bmTransformComponent.h" />
     <ClInclude Include="bmContactListener.h" />
+    <ClInclude Include="bmEntityFactory.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="bmOxygenComponent.h" />
     <ClInclude Include="bmOxygenUIEntity.h" />
     <ClInclude Include="bmOxygenSystem.h" />
     <ClInclude Include="PhysicsComponentShape.h" />
     <ClInclude Include="bmAtmosphereComponent.h" />
+    <ClInclude Include="bmScoreUIFactory.h" />
     <ClInclude Include="SDLGraphicsDevice.h" />
     <ClInclude Include="TextureAndUsage.h" />
     <ClInclude Include="TextureFlip.h" />
@@ -215,11 +218,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmColorComponent.cpp" />
+    <ClCompile Include="bmFileHandler.cpp" />
     <ClCompile Include="bmGroundComponent.cpp" />
     <ClCompile Include="bmMovementSystem.cpp" />
     <ClCompile Include="bmScoreComponent.cpp" />
     <ClCompile Include="bmScoreSystem.cpp" />
     <ClCompile Include="bmScoreUIEntity.cpp" />
+    <ClCompile Include="bmScoreUIFactory.cpp" />
     <ClCompile Include="bmScoreUISystem.cpp" />
     <ClCompile Include="bmTextComponent.cpp" />
     <ClCompile Include="bmOxygenUISystem.cpp" />
@@ -263,6 +268,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="highscores.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

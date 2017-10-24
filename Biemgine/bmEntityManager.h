@@ -18,6 +18,10 @@ public:
     void updateEntities(bmSystemManager * manager);
     void updateEntities(bmSystemManager * manager, const float deltaTime);
 
+    std::vector<bmEntity*> getEntities() const {
+        return entities;
+    }
+
 private:
 
     std::vector<bmEntity*> entities;

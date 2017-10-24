@@ -43,6 +43,9 @@
     <Filter Include="Entities\PlanetEntities">
       <UniqueIdentifier>{21d0653c-4e5a-4f94-832d-ebc3893a6ade}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EntityFactories">
+      <UniqueIdentifier>{bbd95f82-ea26-4ff0-af0c-2ae26dda3aaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -210,6 +213,15 @@
     <ClInclude Include="bmStateManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="bmEntityFactory.h">
+      <Filter>EntityFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="bmScoreUIFactory.h">
+      <Filter>EntityFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="bmFileHandler.h">
+      <Filter>Engine</Filter>
+     </ClInclude>
     <ClInclude Include="bmMovementSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -344,6 +356,17 @@
     <ClCompile Include="bmStateManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="bmScoreUIFactory.cpp">
+      <Filter>EntityFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="bmFileHandler.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="highscores.csv">
+      <Filter>Resource Files</Filter>
+    </None>
     <ClCompile Include="bmMovementSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>

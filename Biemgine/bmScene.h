@@ -25,7 +25,6 @@ public:
     {
         systemManager->onSceneSwitch();
 
-        sceneEnd();
 
         //systemManager->clear();
         delete systemManager;
@@ -62,6 +61,9 @@ public:
         return *resourceManager;
     }*/
 
+    virtual void sceneEnd() { };
+
+
 private:
 
     bmSystemManager* systemManager = new bmSystemManager();
@@ -77,7 +79,6 @@ private:
     void created() override;
 
     virtual void sceneCreated() = 0;
-    virtual void sceneEnd() { };
 
     //virtual void drawBeforeComponents() { };
     //virtual void drawAfterComponents() { };

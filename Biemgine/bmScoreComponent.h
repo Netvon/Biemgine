@@ -1,11 +1,13 @@
 #pragma once
 #include "bmComponent.h"
 
+using namespace std;
+
 class bmScoreComponent :
     public bmComponent
 {
 public:
-    bmScoreComponent(float pScore = 0) : score(pScore) {};
+    bmScoreComponent(float pScore = 0, string pName= "Score") : score(pScore), name(pName) {};
     ~bmScoreComponent() {};
 
     bmScoreComponent* setScore(const float pScore)
@@ -24,7 +26,12 @@ public:
     {
         return score;
     }
+    string getName() const
+    {
+        return name;
+    }
 
 private:
     float score;
+    string name;
 };
