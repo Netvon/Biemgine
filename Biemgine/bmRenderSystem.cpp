@@ -29,7 +29,6 @@ void bmRenderSystem::update(const bmEntity& entity, const float deltaTime)
 	if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle")) 
 		return;
 
-
     if (entity.hasComponent("texture")) {
         auto cc = entity.getComponent<bmColorComponent*>("color");
 
@@ -95,7 +94,6 @@ void bmRenderSystem::after(const float deltaTime)
             texture.color
         );
     }
-
 
     drawList.clear();
 }

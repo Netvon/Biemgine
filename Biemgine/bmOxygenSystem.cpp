@@ -9,7 +9,6 @@ void bmOxygenSystem::before()
 
 void bmOxygenSystem::update(const bmEntity & entity)
 {
-
     if (entity.hasComponent("atmosphere")) {
         auto ac = entity.getComponent<bmAtmosphereComponent*>("atmosphere");
         if (find(atmospheres.begin(), atmospheres.end(), ac) == atmospheres.end()) {
