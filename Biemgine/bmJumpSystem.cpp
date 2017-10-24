@@ -18,13 +18,14 @@ void bmJumpSystem::update(const bmEntity & entity)
         && entity.hasComponent("grounded")
         && entity.hasComponent("physics"))
     {
-        auto position = entity.getComponent<bmPositionComponent*>("position");
         auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
         auto affected = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
-        auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
         if (!grounded->isGrounded() || !affected->getIsAffected())
             return;
+
+        auto position = entity.getComponent<bmPositionComponent*>("position");
+        auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
         vec2 centerOfSatellite = {
             position->getX() + physics->getColliderW() / 2.0f,
