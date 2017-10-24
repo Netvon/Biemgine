@@ -9,18 +9,14 @@
 
 using namespace glm;
 
-void bmJumpSystem::before()
-{
-    if (transitionManager->getInputManager()->isKeyDown("Space") && !shouldJump)
-        shouldJump = true;
-}
-
 void bmJumpSystem::update(const bmEntity & entity)
 {
+    if (!transitionManager->getInputManager()->isKeyDown("Space"))
+        return;
+
     if (entity.hasComponent("affectedByGravity")
         && entity.hasComponent("grounded")
-        && entity.hasComponent("physics")
-        && shouldJump)
+        && entity.hasComponent("physics"))
     {
         auto position = entity.getComponent<bmPositionComponent*>("position");
         auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
@@ -43,7 +39,5 @@ void bmJumpSystem::update(const bmEntity & entity)
         diff = glm::normalize(diff) * 90000.f * 1500.f;
         
         physics->addTimedForce("jump", diff.x, diff.y, 100, true);
-
-        shouldJump = false;
     }
 }

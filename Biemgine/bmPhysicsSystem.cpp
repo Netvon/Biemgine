@@ -141,7 +141,7 @@ b2Body* bmPhysicsSystem::createBody(const bmEntity & entity) {
 
     if (entity.hasComponent("grounded")) {
         b2PolygonShape groundShape;
-        groundShape.SetAsBox(physics->getColliderW(), physics->getColliderH(), { 0, 0 }, 0);
+        groundShape.SetAsBox(physics->getColliderW() * 0.5f, physics->getColliderH() * 0.5f, { 0, 0.25f }, 0);
 
         b2FixtureDef groundFixtureDef;
         groundFixtureDef.shape = &groundShape;
