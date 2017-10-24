@@ -12,7 +12,6 @@ Window::Window(
     if (init()) {
 
         initWindow(title, width, height, options);
-        //initRenderer(renderOptions);
 
         gd = new SDLGraphicsDevice(window);
     }
@@ -20,7 +19,6 @@ Window::Window(
 
 Window::~Window()
 {
-    //SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
     if (gd != nullptr) {
@@ -69,14 +67,3 @@ void Window::initWindow(
     if (window == nullptr)
         cout << "Failed to initialize Window\n" << SDL_GetError() << endl;
 }
-
-//void Window::initRenderer(
-//    const int32_t & renderOptions)
-//{
-//    renderer = SDL_CreateRenderer(
-//        window, -1, renderOptions
-//    );
-//
-//    if (renderer == nullptr)
-//        std::cout << "Failed to initialize Renderer\n" << SDL_GetError() << "\n";
-//}

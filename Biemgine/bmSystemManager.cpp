@@ -5,10 +5,6 @@
 
 bmSystemManager::bmSystemManager()
 {
-    // systems.clear();
-    // Push all the different systems here in the array.
-    // Keep the priority of systems in mind!
-    //systems.push_back(new bmRenderSystem());
 
 }
 

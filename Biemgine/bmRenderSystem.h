@@ -26,7 +26,6 @@ public:
 
     ~bmRenderSystem()
     {
-        cout << "Render System is being deleted" << endl;
     };
 
     void setGraphicsDevice(GraphicsDevice* graphicsDevice);

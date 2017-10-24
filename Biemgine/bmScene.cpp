@@ -21,7 +21,6 @@ void bmScene::updateEntities(const float deltaTime)
 
 void bmScene::created()
 {
-    // Update systems
     auto gravitySystem = new bmGravitySystem();
     auto physicsSystem = new bmPhysicsSystem();
     auto oxygenSystem = new bmOxygenSystem();
@@ -29,6 +28,7 @@ void bmScene::created()
     auto scoreSystem = new bmScoreSystem();
     auto scoreUISystem = new bmScoreUISystem();
     auto movementSystem = new bmMovementSystem();
+    auto oxygenUISystem = new bmOxygenUISystem();
 
     systemManager->addSystem(jumpSystem);
     systemManager->addSystem(gravitySystem);
@@ -37,18 +37,15 @@ void bmScene::created()
     systemManager->addSystem(scoreSystem);
     systemManager->addSystem(scoreUISystem);
     systemManager->addSystem(movementSystem);
+    systemManager->addSystem(oxygenUISystem);
 
-    // Render systems
     auto gd = getWindow()->getGraphicsDevice();
 
     auto renderSystem = new bmRenderSystem();
-    auto oxygenUISystem = new bmOxygenUISystem();
 
     renderSystem->setGraphicsDevice(gd);
-    oxygenUISystem->setGraphicsDevice(gd);
 
     systemManager->addSystem(renderSystem);
-    systemManager->addSystem(oxygenUISystem);
 
     gravitySystem->setTransitionManager(transitionManager);
     oxygenSystem->setTransitionManager(transitionManager);

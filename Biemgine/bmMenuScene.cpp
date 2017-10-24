@@ -7,8 +7,6 @@
 
 void bmMenuScene::sceneCreated()
 {
-    /*bmRectangle* c1 = new bmRectangle(0, 0, 100, 100);
-    addComponent(c1);*/
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();
@@ -24,10 +22,6 @@ void bmMenuScene::sceneCreated()
         getEntityManager().addEntity(e);
     }
     
-
-
-
-    cout << "MenuScene created" << endl;
 }
 
 
@@ -37,7 +31,7 @@ void bmMenuScene::input()
         signalQuit();
     }
 
-    if (im.isKeyDown("S")) {
+    if (im.isKeyDown("Return")) {
         getTransitionManager().startLevelTransition();
     }
 }

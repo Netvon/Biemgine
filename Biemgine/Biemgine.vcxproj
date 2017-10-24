@@ -188,7 +188,6 @@
     <ClInclude Include="bmPositionComponent.h" />
     <ClInclude Include="bmRectangleComponent.h" />
     <ClInclude Include="bmRenderSystem.h" />
-    <ClInclude Include="bmResourceManager.h" />
     <ClInclude Include="bmScene.h" />
     <ClInclude Include="bmSceneType.h" />
     <ClInclude Include="bmSpriteEntity.h" />
@@ -237,7 +236,6 @@
     <ClCompile Include="bmPlanetEarthEntity.h" />
     <ClCompile Include="bmGravityComponent.cpp" />
     <ClCompile Include="bmPlanetMoonEntity.h" />
-    <ClCompile Include="bmResourceManager.cpp" />
     <ClCompile Include="bmTextureComponent.cpp" />
     <ClCompile Include="bmContactListener.cpp" />
     <ClCompile Include="main.cpp" />

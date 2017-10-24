@@ -108,9 +108,6 @@
     <ClInclude Include="bmPositionComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="bmResourceManager.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>bmBase</Filter>
     </ClInclude>
@@ -221,7 +218,7 @@
     </ClInclude>
     <ClInclude Include="bmFileHandler.h">
       <Filter>Engine</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="bmMovementSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -277,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bmResourceManager.cpp">
-      <Filter>graphics</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>bmBase</Filter>

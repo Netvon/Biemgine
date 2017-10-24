@@ -23,7 +23,7 @@ public:
         int w, h = 0;
         SDL_RenderGetLogicalSize(renderer, &w, &h);
 
-        return w;//SDL_GetWindowSurface(window)->w;
+        return w;
     };
 
     int getHeight() {
@@ -31,7 +31,7 @@ public:
         int w, h = 0;
         SDL_RenderGetLogicalSize(renderer, &w, &h);
 
-        return h;//SDL_GetWindowSurface(window)->h;
+        return h;
     };
 
     GraphicsDevice* getGraphicsDevice() const;
@@ -45,10 +45,8 @@ private:
         const int32_t& options
     );
 
-    //void initRenderer(const int32_t& renderOptions);
 
     SDL_Window* window = nullptr;
-    //SDL_Renderer* renderer = nullptr;
 
     GraphicsDevice* gd = nullptr;
 };

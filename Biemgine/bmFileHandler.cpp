@@ -10,7 +10,7 @@ bool sortbysec(const pair<string, int> &a, const pair<string, int> &b)
 vector<pair<string, int>> bmFileHandler::scoresContent()
 {
     vector<pair<string, int>> scoreMap;
-    ifstream file("highscores.csv"); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
+    ifstream file("highscores.csv"); 
     string name;
 
     while (getline(file, name, ',') && name != "\n") {

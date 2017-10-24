@@ -30,11 +30,6 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 
 SDLGraphicsDevice::~SDLGraphicsDevice()
 {
-    /*for (std::pair<std::string, SDL_Surface*> pair : surfaces) {
-    SDL_FreeSurface(pair.second);
-    }
-
-    surfaces.clear();*/
 
     for (std::pair<std::string, TextureAndUsage> pair : textTextures) {
         SDL_DestroyTexture(pair.second.texture);
@@ -55,9 +50,6 @@ SDLGraphicsDevice::~SDLGraphicsDevice()
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
 {
-    /*SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);*/
-
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_Rect rect = { x, y, w, h };
 
@@ -67,7 +59,6 @@ void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, fl
 void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, int ptSize, TextureFlip flip) {
 
     if (textTextures.find(text) == textTextures.end()) {
-        // If text doesn't exist in list
         SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
         SDL_Surface *textSurface = TTF_RenderText_Blended(font, text.c_str(), convertedColor);
         SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
@@ -87,7 +78,6 @@ void SDLGraphicsDevice::drawText(std::string text, int x, int y, bmColor color, 
 
     SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, 0, nullptr, static_cast<SDL_RendererFlip>(flip));
 
-    // SDL_DestroyTexture(textTexture);
 }
 
 void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h, float angle, bmColor color, TextureFlip flip)
@@ -115,7 +105,6 @@ void SDLGraphicsDevice::drawTexture(std::string path, int x, int y, int w, int h
 void SDLGraphicsDevice::clear() const
 {
     if (renderer != nullptr) {
-        //SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
     }
@@ -125,15 +114,6 @@ void SDLGraphicsDevice::present()
 {
 	SDL_RenderPresent(renderer);
 
-    //for (std::pair<std::string, TextureAndUsage> texturePair:textTextures) {
-    //    texturePair.second.usageCount--;
-    //    if (texturePair.second.usageCount < 0) {
-    //        SDL_DestroyTexture(texturePair.second.texture);
-    //        textTextures.insert_or_assign(texturePair.first, nullptr);
-    //        //textTextures.erase(texturePair.first);
-    //    }
-    //}
-
     for (auto it = textTextures.begin(); it != textTextures.end();)
     {
         it->second.usageCount--;
@@ -141,7 +121,7 @@ void SDLGraphicsDevice::present()
         if (it->second.usageCount < 0)
         {
             SDL_DestroyTexture(it->second.texture);
-            it = textTextures.erase(it);    // or "it = m.erase(it)" since C++11
+            it = textTextures.erase(it); 
         }
         else
         {
@@ -158,20 +138,16 @@ SDL_Texture * SDLGraphicsDevice::getTexture(std::string path)
 
     SDL_Surface* surface = IMG_Load(path.c_str());
 
-    //auto err = IMG_GetError();
 
     if (surface != nullptr) {
-        // SDL_Surface* texture = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_ABGR8888, 0);
 
         if (surface != nullptr) {
-            //SDL_FreeSurface(texture);
 
             auto tex = SDL_CreateTextureFromSurface(renderer, surface);
 
             
             textures.insert_or_assign(path, tex);
 
-            //SDL_FreeSurface(texture);
             SDL_FreeSurface(surface);
 
             return tex;

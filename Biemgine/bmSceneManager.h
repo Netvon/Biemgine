@@ -3,7 +3,6 @@
 #include "bmSceneType.h"
 #include "bmLevelScene.h"
 #include "bmMenuScene.h"
-#include "bmResourceManager.h"
 
 class bmSceneManager
 {

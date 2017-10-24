@@ -27,8 +27,6 @@ public:
         return nullptr;
     }
 
-    // pair <multimap<string,bmComponent*>::iterator, multimap<string,bmComponent*>::iterator>
-
     template <typename TComponent>
     vector<TComponent> getComponents(const string name) const {
 

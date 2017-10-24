@@ -9,7 +9,7 @@ bmEntity::bmEntity()
     rng.seed(std::random_device()());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(1, INT_MAX);
 
-    id = dist6(rng);//std::rand() % 1000;
+    id = dist6(rng);
 }
 
 bmEntity::~bmEntity()

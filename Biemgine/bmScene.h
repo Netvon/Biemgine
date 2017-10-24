@@ -16,30 +16,21 @@ class bmScene :
     public bmLoop
 {
 public:
-    //void addComponent(bmDrawable * newComponent);
 
-    bmScene(bmStateManager* manager/*, bmResourceManager* resourceManager*/)
-        : transitionManager(manager)/*, resourceManager(resourceManager)*/ { }
+    bmScene(bmStateManager* manager)
+        : transitionManager(manager) { }
 
     virtual ~bmScene()
     {
         systemManager->onSceneSwitch();
 
-
-        //systemManager->clear();
         delete systemManager;
-
-        //entityManager->clear();
         delete entityManager;
     }
 
     void init() {
 
-        //auto gd = getWindow()->getGraphicsDevice();
-        //bmRenderSystem renderSystem;
-        ////renderSystem.setGraphicsDevice(gd);
 
-        // systemManager->addSystem(new bmRenderSystem());
     }
 
     void updateEntities();
@@ -57,10 +48,6 @@ public:
         return *systemManager;
     }
 
-    /*bmResourceManager& getResourceManager() const {
-        return *resourceManager;
-    }*/
-
     virtual void sceneEnd() { };
 
 
@@ -70,7 +57,6 @@ private:
     bmEntityManager* entityManager = new bmEntityManager();
 
     bmStateManager* transitionManager = nullptr;
-    //bmResourceManager* resourceManager;
 
     virtual void input() override { }
     virtual void update() override = 0;
@@ -80,12 +66,5 @@ private:
 
     virtual void sceneCreated() = 0;
 
-    //virtual void drawBeforeComponents() { };
-    //virtual void drawAfterComponents() { };
-
-    //void draw() override;
-    void end() {
-        
-    }
 };
 

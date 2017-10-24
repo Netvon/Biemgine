@@ -12,8 +12,8 @@ public:
     void sceneCreated() override;
     void sceneEnd() override;
 
-    bmLevelScene(bmStateManager* manager/*, bmResourceManager* resourceManager*/)
-        : bmScene(manager/*, resourceManager*/) {};
+    bmLevelScene(bmStateManager* manager)
+        : bmScene(manager) {};
 
 private:
     bool isPauseButtonDown = false;

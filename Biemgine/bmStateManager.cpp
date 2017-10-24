@@ -9,7 +9,6 @@ bmStateManager::~bmStateManager()
 
 void bmStateManager::gameOverTransition()
 {
-    cout << "GAME OVER" << endl;
     sceneManager->changeScene(bmScene_menu);
 }
 
@@ -56,8 +55,6 @@ void bmStateManager::drawOverlay()
 
         int x = 20;
         int y = 60;
-
-        //gd->drawSquare(0,0,getWindowWidth()/2,getWindowHeight()/2, { 0, 0, 0, 20 });
 
         gd->drawText("The game is paused.", x, y, { 255, 255, 255, 255 }, 20);
         gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20);
