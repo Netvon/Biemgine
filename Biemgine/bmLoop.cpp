@@ -2,7 +2,7 @@
 #include "bmLoop.h"
 
 
-const int bmLoop::BM_GAMELOOP_FPS = 60;
+const int bmLoop::BM_GAMELOOP_FPS = 200;
 const float bmLoop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
 void bmLoop::start(const Window* bmwindow)
