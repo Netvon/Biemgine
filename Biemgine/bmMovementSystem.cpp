@@ -38,23 +38,22 @@ void bmMovementSystem::update(const bmEntity & entity)
             position->getY() + physics->getColliderH() / 2.0f
         };
 
+        vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+        vec2 diff = centerOfGravity - centerOfSatellite;
+
         if (shouldLeft) {
-            vec2 centerOfGravity = { -affected->getFallingTowardsX(), affected->getFallingTowardsY() };
-            vec2 diff = centerOfGravity - centerOfSatellite;
+            vec2 left = { -diff.y, diff.x };
+            left = glm::normalize(left) * 90000.f * 1500.f;
 
-            diff = glm::normalize(diff) * 90000.f;
-
-            physics->addForce(diff.x, diff.y);
+            physics->addForce("left", left.x, left.y);
             shouldLeft = false;
         }
-        
+
         if (shouldRight) {
-            vec2 centerOfGravity = { affected->getFallingTowardsX(), -affected->getFallingTowardsY() };
-            vec2 diff = centerOfGravity - centerOfSatellite;
+            vec2 right = { diff.y, -diff.x };
+            right = glm::normalize(right) * 90000.f * 1500.f;
 
-            diff = glm::normalize(diff) * 90000.f;
-
-            physics->addForce(diff.x, diff.y);
+            physics->addForce("right", right.x, right.y);
             shouldRight = false;
         }
     }

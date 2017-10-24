@@ -65,8 +65,6 @@ void bmPhysicsSystem::update(const bmEntity & entity)
 
         float angle = atan2f(-target.x, target.y);
         body->SetTransform(body->GetPosition(), angle);
-
-        cout << "mass: " << body->GetMass() << endl;
     }
 
     position->setRotation(body->GetAngle() * RAD_TO_DEGREE);
