@@ -107,15 +107,15 @@ public:
         return f.y;
     }
 
-    void addForce(string id, float x, float y) {
+    void addForce(const string id, float x, float y) {
         addTimedForce(id, x, y, 1);
     }
 
-    void addImpulse(string id, float x, float y) {
+    void addImpulse(const string id, float x, float y) {
         addTimedForce(id, x, y, 1, true);
     }
 
-    void addTimedForce(string id, float forceX, float forceY, size_t doForTicks, bool isImpulse = false)
+    void addTimedForce(const string id, float forceX, float forceY, size_t doForTicks, bool isImpulse = false)
     {
         if (hasTimedForce(id))
             return;
@@ -147,7 +147,7 @@ private:
     PhysicsComponentShape shape;
     bool isStatic;
 
-    bool hasTimedForce(string id) const {
+    bool hasTimedForce(const string id) const {
         return timedForces.find(id) != timedForces.end();
     }
 };

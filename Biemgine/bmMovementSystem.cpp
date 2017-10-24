@@ -47,7 +47,6 @@ void bmMovementSystem::update(const bmEntity & entity)
             right = glm::normalize(right) * 90000.f * 1500.f;
 
             physics->addForce("right", right.x, right.y);
-
         }
     }
 }
