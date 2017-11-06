@@ -1,10 +1,12 @@
 #pragma once
+
+#include "..\components\bmPositionComponent.h"
+#include "..\components\bmColorComponent.h"
+#include "..\components\bmTextureComponent.h"
+#include "..\components\bmPhysicsComponent.h"
+#include "..\components\bmRectangleComponent.h"
+#include "..\primitives\bmColor.h"
 #include "bmEntity.h"
-#include "bmPositionComponent.h"
-#include "bmColorComponent.h"
-#include "bmTextureComponent.h"
-#include "bmPhysicsComponent.h"
-#include "bmRectangleComponent.h"
 
 class bmSpriteEntity : public bmEntity
 {
