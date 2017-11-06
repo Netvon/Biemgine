@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "bmSceneManager.h"
 
-bmEngine::bmEngine()
+void bmEngine::start()
 {
     Window window(
         "Biem Test 01",
@@ -12,19 +12,14 @@ bmEngine::bmEngine()
         SDL_RENDERER_ACCELERATED
     );
 
-    bmSceneManager* manager = new bmSceneManager();
-
-    manager->createStateManager(&window);
-    manager->changeScene(bmScene_menu);
+    manager.createStateManager(&window);
+    manager.changeScene(bmScene_menu);
 
 
     while (true) {
 
         // The engine should keep running until there is no next scene.
-        if (!manager->checkNextScene()) break;
+        if (!manager.checkNextScene()) break;
 
     }
-
-    delete manager;
-
 }

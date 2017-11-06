@@ -1,7 +1,12 @@
 #pragma once
+#include "bmSceneManager.h"
+
 class bmEngine
 {
 public:
-    bmEngine();
+    void start();
+
+private:
+    bmSceneManager manager;
 };
 

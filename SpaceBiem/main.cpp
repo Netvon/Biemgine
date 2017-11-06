@@ -1,7 +1,10 @@
-#include "stdafx.h"
-#include "bmEngine.h"
+// SpaceBiem.cpp : Defines the entry point for the console application.
+//
 
-int main(int argc, char* args[])
+#include "stdafx.h"
+
+
+int main()
 {
     bmEngine* engine = nullptr;
 

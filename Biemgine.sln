@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Biemgine", "Biemgine\Biemgine.vcxproj", "{E83A57D4-482A-420A-A132-4D44A04827D5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpaceBiem", "SpaceBiem\SpaceBiem.vcxproj", "{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{E83A57D4-482A-420A-A132-4D44A04827D5}.Release|x64.Build.0 = Release|x64
 		{E83A57D4-482A-420A-A132-4D44A04827D5}.Release|x86.ActiveCfg = Release|Win32
 		{E83A57D4-482A-420A-A132-4D44A04827D5}.Release|x86.Build.0 = Release|Win32
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Debug|x64.ActiveCfg = Debug|x64
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Debug|x64.Build.0 = Debug|x64
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Debug|x86.ActiveCfg = Debug|Win32
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Debug|x86.Build.0 = Debug|Win32
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Release|x64.ActiveCfg = Release|x64
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Release|x64.Build.0 = Release|x64
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Release|x86.ActiveCfg = Release|Win32
+		{89902DA7-D2EC-4C69-9FFD-69EF1E0C4ECC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
