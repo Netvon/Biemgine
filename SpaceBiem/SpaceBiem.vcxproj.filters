@@ -1,33 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="systems">
+      <UniqueIdentifier>{9309bb1e-7c93-4d66-a4e1-4a500dce4f5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="entities">
+      <UniqueIdentifier>{f20d5781-fc59-4fe5-831f-9838f78d8b7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="scenes">
+      <UniqueIdentifier>{741502bf-3b7d-4fde-8e96-0d5a8f6f1dc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{cc5e0541-952d-4cbe-a456-c03969ae8c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factories">
+      <UniqueIdentifier>{45e250cf-c590-4fd8-a595-cd8630d0b927}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="systems\bmOxygenSystem.h">
+      <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="entities\bmPlanetMoonEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\bmLevelScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmGravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmMovementSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmPlayerEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\bmMenuScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\bmEntityFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmSurfaceEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmGravitySystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmScoreUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmJumpSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmScoreUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmPlanetEarthEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmOxygenUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmOxygenUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmOxygenComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmAtmosphereComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmScoreComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\bmScoreUIFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmScoreSystem.h">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="components\bmGravityComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="scenes\bmLevelScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmScoreUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmJumpSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmScoreUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmOxygenSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmOxygenComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmAtmosphereComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmScoreComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\bmScoreUIFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmScoreSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmOxygenUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\bmEntityFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmPlayerEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmGravitySystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\bmMovementSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\bmMenuScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

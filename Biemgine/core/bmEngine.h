@@ -1,5 +1,5 @@
 #pragma once
-#include "bmSceneManager.h"
+#include "..\managers\bmSceneManager.h"
 
 class bmEngine
 {

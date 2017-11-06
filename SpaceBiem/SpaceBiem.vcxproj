@@ -147,17 +147,57 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bmFileHandler.h" />
+    <ClInclude Include="components\bmAtmosphereComponent.h" />
+    <ClInclude Include="components\bmGravityComponent.h" />
+    <ClInclude Include="components\bmOxygenComponent.h" />
+    <ClInclude Include="components\bmScoreComponent.h" />
+    <ClInclude Include="entities\bmOxygenUIEntity.h" />
+    <ClInclude Include="entities\bmPlanetEarthEntity.h" />
+    <ClInclude Include="entities\bmPlanetMoonEntity.h" />
+    <ClInclude Include="entities\bmPlayerEntity.h" />
+    <ClInclude Include="entities\bmScoreUIEntity.h" />
+    <ClInclude Include="entities\bmSurfaceEntity.h" />
+    <ClInclude Include="factories\bmEntityFactory.h" />
+    <ClInclude Include="factories\bmScoreUIFactory.h" />
+    <ClInclude Include="scenes\bmLevelScene.h" />
+    <ClInclude Include="scenes\bmMenuScene.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="systems\bmGravitySystem.h" />
+    <ClInclude Include="systems\bmJumpSystem.h" />
+    <ClInclude Include="systems\bmMovementSystem.h" />
+    <ClInclude Include="systems\bmOxygenSystem.h" />
+    <ClInclude Include="systems\bmOxygenUISystem.h" />
+    <ClInclude Include="systems\bmScoreSystem.h" />
+    <ClInclude Include="systems\bmScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmFileHandler.cpp" />
+    <ClCompile Include="components\bmAtmosphereComponent.cpp" />
+    <ClCompile Include="components\bmGravityComponent.cpp" />
+    <ClCompile Include="components\bmOxygenComponent.cpp" />
+    <ClCompile Include="components\bmScoreComponent.cpp" />
+    <ClCompile Include="entities\bmPlayerEntity.cpp" />
+    <ClCompile Include="entities\bmScoreUIEntity.cpp" />
+    <ClCompile Include="factories\bmEntityFactory.cpp" />
+    <ClCompile Include="factories\bmScoreUIFactory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scenes\bmLevelScene.cpp" />
+    <ClCompile Include="scenes\bmMenuScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="systems\bmGravitySystem.cpp" />
+    <ClCompile Include="systems\bmJumpSystem.cpp" />
+    <ClCompile Include="systems\bmMovementSystem.cpp" />
+    <ClCompile Include="systems\bmOxygenSystem.cpp" />
+    <ClCompile Include="systems\bmOxygenUISystem.cpp" />
+    <ClCompile Include="systems\bmScoreSystem.cpp" />
+    <ClCompile Include="systems\bmScoreUISystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">

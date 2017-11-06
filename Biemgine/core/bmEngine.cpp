@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmEngine.h"
 #include "Window.h"
-#include "bmSceneManager.h"
+#include "..\managers\bmSceneManager.h"
 
 void bmEngine::start()
 {
