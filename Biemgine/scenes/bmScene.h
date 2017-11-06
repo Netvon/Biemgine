@@ -15,7 +15,7 @@ class bmResourceManager;
 class GraphicsDevice;
 
 class bmScene :
-    public bmLoop
+    public core::bmLoop
 {
 public:
 

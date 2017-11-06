@@ -25,7 +25,7 @@ namespace core {
             return window;
         }
 
-        bmInputManager* getInputManager() {
+        const bmInputManager* getInputManager() const {
             return &im;
         }
 

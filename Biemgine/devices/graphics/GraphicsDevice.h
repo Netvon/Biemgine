@@ -1,20 +1,23 @@
 #pragma once
 
-#include "..\..\primitives\bmColor.h"
+#include "..\..\stdafx.h"
+#include "..\..\primitives\bmPrimitives.h"
 #include "TextureFlip.h"
 
 #include <string>
+
+using primitives::bmColor;
 
 class GraphicsDevice
 {
 public:
 
-	virtual ~GraphicsDevice() { }
-	virtual void drawSquare(int x, int y, int w, int h, bmColor color, float angle = 0) const = 0;
-	virtual void drawTexture(std::string path, int x, int y, int w = -1, int h = -1, float angle = 0, bmColor color = { 255, 255, 255 }, TextureFlip flip = NONE) = 0;
+    virtual ~GraphicsDevice() { }
+    virtual void drawSquare(int x, int y, int w, int h, bmColor color, float angle = 0) const = 0;
+    virtual void drawTexture(std::string path, int x, int y, int w = -1, int h = -1, float angle = 0, bmColor color = { 255, 255, 255 }, TextureFlip flip = NONE) = 0;
     virtual void drawText(std::string text, int x, int y, bmColor color, int ptSize, TextureFlip flip = NONE) = 0;
 
-	virtual void clear() const = 0;
-	virtual void present() = 0;
+    virtual void clear() const = 0;
+    virtual void present() = 0;
 
 };

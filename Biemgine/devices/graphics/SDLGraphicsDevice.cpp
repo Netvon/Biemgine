@@ -17,7 +17,7 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 
     font = TTF_OpenFont("consolas.ttf", 20);
 
-	SDL_Rect viewport = { 0, 0, 0, 0 };
+    SDL_Rect viewport = { 0, 0, 0, 0 };
 
     SDL_GetWindowSize(window, &viewport.w, &viewport.h);
     SDL_RenderSetViewport(renderer, &viewport);
@@ -35,7 +35,7 @@ SDLGraphicsDevice::~SDLGraphicsDevice()
         SDL_DestroyTexture(pair.second.texture);
     }
 
-	textures.clear();
+    textures.clear();
     textTextures.clear();
 
     if (renderer != nullptr) {
@@ -45,7 +45,7 @@ SDLGraphicsDevice::~SDLGraphicsDevice()
     TTF_CloseFont(font);
 
     TTF_Quit();
-	IMG_Quit();
+    IMG_Quit();
 }
 
 void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
@@ -112,7 +112,7 @@ void SDLGraphicsDevice::clear() const
 
 void SDLGraphicsDevice::present()
 {
-	SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer);
 
     for (auto it = textTextures.begin(); it != textTextures.end();)
     {

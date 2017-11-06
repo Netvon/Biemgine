@@ -193,17 +193,11 @@
     <ClCompile Include="systems\physics\bmContactListener.cpp">
       <Filter>systems\physics</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmGroundComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="components\bmTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="managers\bmSystemManager.cpp">
       <Filter>managers</Filter>
-    </ClCompile>
-    <ClCompile Include="components\bmComponent.cpp">
-      <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="core\bmLoop.cpp">
       <Filter>core</Filter>

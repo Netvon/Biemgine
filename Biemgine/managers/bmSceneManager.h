@@ -2,8 +2,6 @@
 #include "../scenes/bmScene.h"
 #include "../scenes/bmSceneType.h"
 #include "bmStateManager.h"
-//#include "bmLevelScene.h"
-//#include "bmMenuScene.h"
 #include <map>
 #include <vector>
 
@@ -15,7 +13,6 @@ class bmSceneManager
 public:
 
     void createStateManager(Window* window);
-    void changeScene(bmSceneType);
     bool checkNextScene();
 
     bmSceneManager() {};
@@ -26,28 +23,23 @@ public:
     }
 
     template<class TScene>
-    void addScene(const string& sceneName);
-
-    void navigateTo(const string& name, const string& parameter = nullptr);
+    void navigateTo(const string& parameter = nullptr);
 
 private:
     bmScene* currentScene = nullptr;
     Window* currentWindow;
     bmStateManager* transitionManager;
 
-    std::map<const string, const bmScene*> scenes;
+    bmScene* nextScene = nullptr;
 
-    int nextScene;
+    //int nextScene;
 };
 
 template<class TScene>
-void bmSceneManager::addScene(const string & sceneName)
+void bmSceneManager::navigateTo(const string & parameter)
 {
-    if (std::is_base_of<bmScene, TScene>) {
-        scenes.insert(sceneName, new TScene(transitionManager));
-    }
-    else {
-        // exception
-    }
-    
+    nextScene = new TScene(transitionManager);
+
+    if(currentScene != nullptr)
+        currentScene->signalQuit();
 }

@@ -58,8 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\bmColorComponent.cpp" />
-    <ClCompile Include="components\bmComponent.cpp" />
-    <ClCompile Include="components\bmGroundComponent.cpp" />
     <ClCompile Include="components\bmGroundedComponent.cpp" />
     <ClCompile Include="components\bmPhysicsComponent.cpp" />
     <ClCompile Include="components\bmPositionComponent.cpp" />

@@ -3,9 +3,9 @@
 #include "bmComponent.h"
 
 class bmGroundComponent :
-	public bmComponent
+    public bmComponent
 {
 public:
-    bmGroundComponent();
-    ~bmGroundComponent();
+    bmGroundComponent() {};
+    ~bmGroundComponent() {};
 };

@@ -14,7 +14,7 @@ namespace core {
         );
 
         manager.createStateManager(&window);
-        manager.changeScene(bmScene_menu);
+        //manager.changeScene(bmScene_menu);
 
 
         while (true) {

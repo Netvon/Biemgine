@@ -1,4 +1,5 @@
 #pragma once
+#include "..\stdafx.h"
 #include "..\core\Window.h"
 #include "bmInputManager.h"
 
@@ -7,8 +8,8 @@ class bmStateManager
 {
 public:
     bmStateManager(
-        bmSceneManager* pSceneManager,
-        Window* pWindow
+        const bmSceneManager* pSceneManager,
+        const Window* pWindow
     ): sceneManager(pSceneManager), window(pWindow) {};
 
     ~bmStateManager();
@@ -28,19 +29,19 @@ public:
     void drawOverlay();
     void drawBackground();
 
-    void setInputManager(bmInputManager* manager) {
+    void setInputManager(const bmInputManager* manager) {
         inputManager = manager;
     }
 
-    bmInputManager* getInputManager() const
+    const bmInputManager* getInputManager() const
     {
         return inputManager;
     }
 
 private:
-    bmSceneManager* sceneManager = nullptr;
-    bmInputManager* inputManager = nullptr;
-    Window* window = nullptr;
+    const bmSceneManager* sceneManager = nullptr;
+    const bmInputManager* inputManager = nullptr;
+    const Window* window = nullptr;
 
     bool paused = false;
 };
