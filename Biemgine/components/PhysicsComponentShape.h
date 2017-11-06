@@ -1,5 +1,9 @@
 #pragma once
-enum PhysicsComponentShape
+
+namespace components
 {
-    CIRCLE, RECTANGLE, PILL
-};
+    enum PhysicsComponentShape
+    {
+        CIRCLE, RECTANGLE, PILL
+    };
+}

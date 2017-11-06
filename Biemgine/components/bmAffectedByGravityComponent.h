@@ -1,34 +1,37 @@
 #pragma once
 #include "bmComponent.h"
 
-class bmAffectedByGravityComponent
-    : public bmComponent
+namespace components
 {
-public:
-    bmAffectedByGravityComponent(bool isAffected) : isAffected(isAffected) {};
+    class bmAffectedByGravityComponent
+        : public bmComponent
+    {
+    public:
+        bmAffectedByGravityComponent(bool isAffected) : isAffected(isAffected) {};
 
-    bool getIsAffected() const {
-        return isAffected;
-    }
+        bool getIsAffected() const {
+            return isAffected;
+        }
 
-    float getFallingTowardsX() const {
-        return fallingTowardsX;
-    }
+        float getFallingTowardsX() const {
+            return fallingTowardsX;
+        }
 
-    float getFallingTowardsY() const {
-        return fallingTowardsY;
-    }
+        float getFallingTowardsY() const {
+            return fallingTowardsY;
+        }
 
-    void setFallingTowardsX(float value) {
-        fallingTowardsX = value;
-    }
+        void setFallingTowardsX(float value) {
+            fallingTowardsX = value;
+        }
 
-    void setFallingTowardsY(float value) {
-        fallingTowardsY = value;
-    }
+        void setFallingTowardsY(float value) {
+            fallingTowardsY = value;
+        }
 
-private:
-    bool isAffected;
+    private:
+        bool isAffected;
 
-    float fallingTowardsX, fallingTowardsY = 0.0f;
-};
+        float fallingTowardsX, fallingTowardsY = 0.0f;
+    };
+}

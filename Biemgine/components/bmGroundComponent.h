@@ -2,10 +2,9 @@
 
 #include "bmComponent.h"
 
-class bmGroundComponent :
-    public bmComponent
+namespace components
 {
-public:
-    bmGroundComponent() {};
-    ~bmGroundComponent() {};
-};
+    class bmGroundComponent :
+        public bmComponent
+    {};
+}

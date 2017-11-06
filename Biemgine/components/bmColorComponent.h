@@ -1,22 +1,30 @@
 #pragma once
+
 #include "bmComponent.h"
-#include "bmColor.h"
+#include "../primitives/bmPrimitives.h"
 
-class bmColorComponent :
-    public bmComponent
+using primitives::bmColor;
+
+namespace components
 {
-public:
-    bmColorComponent(int r, int g, int b, int a = 255);
-    bmColorComponent(bmColor bmColor);
+    class bmColorComponent :
+        public components::bmComponent
+    {
+    public:
+        bmColorComponent::bmColorComponent(int r, int g, int b, int a = 255)
+            : color({ r, g, b, a }) {}
 
-    int getR() const { return color.r; };
-    int getG() const { return color.g; };
-    int getB() const { return color.b; };
-    int getA() const { return color.a; };
+        bmColorComponent::bmColorComponent(bmColor bmColor)
+            : color(bmColor) {}
 
-    bmColor getColor() const { return color; }
+        int getR() const { return color.r; };
+        int getG() const { return color.g; };
+        int getB() const { return color.b; };
+        int getA() const { return color.a; };
 
-private:
-    bmColor color;
-};
+        bmColor getColor() const { return color; }
 
+    private:
+        bmColor color;
+    };
+}

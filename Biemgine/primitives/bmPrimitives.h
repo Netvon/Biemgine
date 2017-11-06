@@ -1,6 +1,7 @@
 #pragma once
 
-namespace primitives {
+namespace primitives
+{
     struct bmColor {
         int r, g, b, a;
     };

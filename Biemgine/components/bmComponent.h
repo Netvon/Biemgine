@@ -1,9 +1,11 @@
 #pragma once
 
-class bmComponent
+namespace components
 {
-public:
-    bmComponent() {};
-    virtual ~bmComponent() {};
-};
-
+    class bmComponent
+    {
+    public:
+        bmComponent() {};
+        virtual ~bmComponent() {};
+    };
+}
