@@ -1,13 +1,15 @@
 #pragma once
-#include "bmLoop.h"
-#include "bmSystemManager.h"
-#include "bmEntityManager.h"
-#include "bmPhysicsSystem.h"
-#include "bmRenderSystem.h"
-#include "bmScoreSystem.h"
-#include "bmScoreUISystem.h"
-#include "bmOxygenUISystem.h"
 
+#include "..\stdafx.h"
+#include "..\core\bmLoop.h"
+#include "..\managers\bmSystemManager.h"
+#include "..\managers\bmEntityManager.h"
+#include "..\managers\bmStateManager.h"
+#include "..\systems\physics\bmPhysicsSystem.h"
+#include "..\systems\bmRenderSystem.h"
+//#include "bmScoreSystem.h"
+//#include "bmScoreUISystem.h"
+//#include "bmOxygenUISystem.h"
 
 class bmResourceManager;
 class GraphicsDevice;
@@ -18,7 +20,7 @@ class bmScene :
 public:
 
     bmScene(bmStateManager* manager)
-        : transitionManager(manager) { }
+        : transitionManager(manager) {}
 
     virtual ~bmScene()
     {
@@ -28,10 +30,7 @@ public:
         delete entityManager;
     }
 
-    void init() {
-
-
-    }
+    void init() {}
 
     void updateEntities();
     void updateEntities(const float deltaTime);
@@ -48,11 +47,9 @@ public:
         return *systemManager;
     }
 
-    virtual void sceneEnd() { };
-
+    virtual void sceneEnd() {};
 
 private:
-
     bmSystemManager* systemManager = new bmSystemManager();
     bmEntityManager* entityManager = new bmEntityManager();
 
@@ -65,6 +62,5 @@ private:
     void created() override;
 
     virtual void sceneCreated() = 0;
-
 };
 

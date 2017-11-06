@@ -1,7 +1,8 @@
-#include "..\stdafx.h"
-#include "bmEntity.h"
-
 #include <random>
+
+#include "..\stdafx.h"
+#include "..\components\bmComponent.h"
+#include "bmEntity.h"
 
 bmEntity::bmEntity()
 {

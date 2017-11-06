@@ -1,12 +1,11 @@
 #pragma once
 
-#include "bmComponent.h"
-
 #include <map>
 #include <iostream>
 #include <cassert>
-
 #include <vector>
+
+#include "..\components\bmComponent.h"
 
 using namespace std;
 
