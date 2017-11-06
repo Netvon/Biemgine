@@ -1,6 +1,8 @@
 #include "..\..\stdafx.h"
 #include "bmSceneManager.h"
 
+using std::pair;
+
 void bmSceneManager::createStateManager(Window* window)
 {
     currentWindow = window;
@@ -51,6 +53,23 @@ bool bmSceneManager::checkNextScene()
 
 bmSceneManager::~bmSceneManager()
 {
+    for (pair<const string, const bmScene*> pair : scenes) {
+        delete pair.second;
+    }
+
     delete transitionManager;
+}
+
+void bmSceneManager::navigateTo(const string & name, const string & parameter)
+{
+    const bmScene* scene = scenes.at(name);
+
+    if (scene != nullptr) {
+        transitionManager->setInputManager(scene->getInputManager());
+        currentScene->start(currentWindow);
+    }
+    else {
+        // exception
+    }
 }
 
