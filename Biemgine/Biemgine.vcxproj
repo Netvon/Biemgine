@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -57,13 +57,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="components\bmColorComponent.cpp" />
     <ClCompile Include="components\bmGroundedComponent.cpp" />
-    <ClCompile Include="components\bmPhysicsComponent.cpp" />
     <ClCompile Include="components\bmPositionComponent.cpp" />
-    <ClCompile Include="components\bmTextComponent.cpp" />
-    <ClCompile Include="components\bmTextureComponent.cpp" />
-    <ClCompile Include="components\bmUIComponent.cpp" />
     <ClCompile Include="core\bmEngine.cpp" />
     <ClCompile Include="core\bmLoop.cpp" />
     <ClCompile Include="core\Window.cpp" />
