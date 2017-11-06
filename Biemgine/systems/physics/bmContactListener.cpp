@@ -3,6 +3,8 @@
 #include "..\..\entities\bmEntity.h"
 #include "..\..\components\bmGroundedComponent.h"
 
+using components::bmGroundedComponent;
+
 void bmContactListener::BeginContact(b2Contact* contact)
 {
     if (contact->GetFixtureA()->IsSensor() || contact->GetFixtureB()->IsSensor()) {

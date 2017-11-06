@@ -8,6 +8,7 @@
 #include "..\components\bmComponent.h"
 
 using namespace std;
+using components::bmComponent;
 
 class bmEntity
 {

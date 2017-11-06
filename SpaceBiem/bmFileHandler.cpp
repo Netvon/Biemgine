@@ -20,7 +20,7 @@ vector<pair<string, int>> bmFileHandler::scoresContent()
     }
     std::sort(scoreMap.begin(), scoreMap.end(), sortbysec);
 
-	return scoreMap;
+    return scoreMap;
 }
 
 void bmFileHandler::writeScore(string name, int score)
