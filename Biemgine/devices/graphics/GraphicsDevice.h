@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\..\stdafx.h"
 #include "..\..\primitives\bmPrimitives.h"
 #include "TextureFlip.h"
 

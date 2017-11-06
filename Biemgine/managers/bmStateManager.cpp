@@ -1,4 +1,4 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "bmStateManager.h"
 #include "bmSceneManager.h"
 
@@ -9,17 +9,17 @@ bmStateManager::~bmStateManager()
 
 void bmStateManager::gameOverTransition()
 {
-    sceneManager->changeScene(bmScene_menu);
+    //sceneManager->changeScene(bmScene_menu);
 }
 
 void bmStateManager::quitLevelTransition()
 {
-    sceneManager->changeScene(bmScene_menu);
+    //sceneManager->changeScene(bmScene_menu);
 }
 
 void bmStateManager::startLevelTransition()
 {
-    sceneManager->changeScene(bmScene_level);
+    //sceneManager->changeScene(bmScene_level);
 }
 
 int bmStateManager::getWindowWidth() const

@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "bmPhysicsSystem.h"
 #include "../../components/bmPositionComponent.h"
 #include "../../components/bmPhysicsComponent.h"
@@ -11,6 +11,8 @@
 
 #define RAD_TO_DEGREE (180.0f / M_PI)
 #define DEGREE_TO_RAD (M_PI / 180.0f)
+
+using namespace components;
 
 bmPhysicsSystem::bmPhysicsSystem()
 {

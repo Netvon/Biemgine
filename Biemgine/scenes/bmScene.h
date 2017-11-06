@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\stdafx.h"
 #include "..\core\bmLoop.h"
 #include "..\managers\bmSystemManager.h"
 #include "..\managers\bmEntityManager.h"

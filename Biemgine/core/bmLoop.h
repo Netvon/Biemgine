@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../managers/bmInputManager.h"
-#include "../stdafx.h"
 #include "Window.h"
 #include <vector>
 

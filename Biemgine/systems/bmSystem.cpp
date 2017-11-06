@@ -1,4 +1,4 @@
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "..\systems\bmSystem.h"
 #include "..\managers\bmStateManager.h"
 

@@ -1,4 +1,4 @@
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "bmScene.h"
 
 //#include "..\systems\bmgravitysystem.h"
@@ -9,10 +9,6 @@
 //#include "..\systems\bmjumpsystem.h"
 //#include "..\systems\bmmovementsystem.h"
 
-bmScene::bmScene()
-{
-
-}
 
 void bmScene::updateEntities()
 {

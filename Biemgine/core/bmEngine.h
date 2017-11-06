@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\stdafx.h"
 #include "..\managers\bmSceneManager.h"
 
 namespace core {

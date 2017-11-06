@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "bmLoop.h"
 
 namespace core {

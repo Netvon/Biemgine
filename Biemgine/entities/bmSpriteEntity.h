@@ -3,10 +3,11 @@
 #include "..\components\bmPositionComponent.h"
 #include "..\components\bmColorComponent.h"
 #include "..\components\bmTextureComponent.h"
-#include "..\components\bmPhysicsComponent.h"
-#include "..\components\bmRectangleComponent.h"
-#include "..\primitives\bmColor.h"
+#include "..\primitives\bmPrimitives.h"
 #include "bmEntity.h"
+
+using primitives::bmColor;
+using namespace components;
 
 class bmSpriteEntity : public bmEntity
 {

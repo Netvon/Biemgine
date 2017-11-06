@@ -1,4 +1,4 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "bmContactListener.h"
 #include "..\..\entities\bmEntity.h"
 #include "..\..\components\bmGroundedComponent.h"

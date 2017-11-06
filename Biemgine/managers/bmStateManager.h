@@ -1,5 +1,4 @@
 #pragma once
-#include "..\stdafx.h"
 #include "..\core\Window.h"
 #include "bmInputManager.h"
 

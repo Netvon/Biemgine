@@ -1,6 +1,5 @@
 #pragma once
 #include "../devices/graphics/GraphicsDevice.h"
-#include "../stdafx.h"
 #include <string>
 
 using namespace std;
@@ -19,7 +18,7 @@ public:
 
     ~Window();
 
-    int getWidth() {
+    int getWidth() const {
         auto renderer = SDL_GetRenderer(window);
         int w, h = 0;
         SDL_RenderGetLogicalSize(renderer, &w, &h);
@@ -27,7 +26,7 @@ public:
         return w;
     };
 
-    int getHeight() {
+    int getHeight() const {
         auto renderer = SDL_GetRenderer(window);
         int w, h = 0;
         SDL_RenderGetLogicalSize(renderer, &w, &h);

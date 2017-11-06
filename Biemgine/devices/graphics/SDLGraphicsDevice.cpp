@@ -1,4 +1,4 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "SDLGraphicsDevice.h"
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -30,7 +30,6 @@ SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
 
 SDLGraphicsDevice::~SDLGraphicsDevice()
 {
-
     for (std::pair<std::string, TextureAndUsage> pair : textTextures) {
         SDL_DestroyTexture(pair.second.texture);
     }
