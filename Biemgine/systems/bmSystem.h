@@ -1,7 +1,7 @@
 #pragma once
 
-#include "bmEntity.h"
-#include "bmStateManager.h"
+#include "../entities/bmEntity.h"
+#include "../managers/bmStateManager.h"
 
 class bmSystem
 {

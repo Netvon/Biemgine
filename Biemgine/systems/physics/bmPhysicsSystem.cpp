@@ -1,10 +1,10 @@
-#include "stdafx.h"
+#include "../../stdafx.h"
 #include "bmPhysicsSystem.h"
-#include "bmPositionComponent.h"
-#include "bmPhysicsComponent.h"
-#include "PhysicsComponentShape.h"
-#include "bmGroundedComponent.h"
-#include "bmAffectedByGravityComponent.h"
+#include "../../components/bmPositionComponent.h"
+#include "../../components/bmPhysicsComponent.h"
+#include "../../components/bmPhysicsComponent.h"
+#include "../../components/bmGroundedComponent.h"
+#include "../../components/bmAffectedByGravityComponent.h"
 
 #include <random>
 #include <math.h>

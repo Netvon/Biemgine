@@ -1,12 +1,12 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "bmRenderSystem.h"
-#include "bmPositionComponent.h"
-#include "bmColorComponent.h"
-#include "bmRectangleComponent.h"
-#include "bmTextureComponent.h"
-#include "bmAtmosphereComponent.h"
-#include "bmGravityComponent.h"
-#include "bmEntity.h"
+#include "../components/bmPositionComponent.h"
+#include "../components/bmColorComponent.h"
+#include "../components/bmRectangleComponent.h"
+#include "../components/bmTextureComponent.h"
+#include "../components/bmAtmosphereComponent.h"
+#include "../components/bmGravityComponent.h"
+#include "../entities/bmEntity.h"
 
 
 void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)

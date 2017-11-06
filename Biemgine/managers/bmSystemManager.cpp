@@ -1,7 +1,6 @@
-#include "stdafx.h"
+#include "..\..\stdafx.h"
 #include "bmSystemManager.h"
-#include "bmRenderSystem.h"
-
+#include "..\systems\bmRenderSystem.h"
 
 bmSystemManager::bmSystemManager()
 {

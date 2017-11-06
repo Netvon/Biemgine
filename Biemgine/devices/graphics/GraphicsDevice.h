@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bmColor.h"
+#include "..\..\primitives\bmColor.h"
 #include "TextureFlip.h"
 
 #include <string>

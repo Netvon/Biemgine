@@ -1,7 +1,7 @@
-#include "stdafx.h"
+#include "..\..\stdafx.h"
 #include "bmContactListener.h"
-#include "bmEntity.h"
-#include "bmGroundedComponent.h"
+#include "..\..\entities\bmEntity.h"
+#include "..\..\components\bmGroundedComponent.h"
 
 void bmContactListener::BeginContact(b2Contact* contact)
 {

@@ -1,8 +1,8 @@
 #pragma once
 #include "bmStateManager.h"
-#include "bmSceneType.h"
-#include "bmLevelScene.h"
-#include "bmMenuScene.h"
+#include "..\scenes\bmSceneType.h"
+//#include "bmLevelScene.h"
+//#include "bmMenuScene.h"
 
 class bmSceneManager
 {

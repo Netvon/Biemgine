@@ -1,6 +1,6 @@
 #pragma once
-#include "bmSystem.h"
-#include "bmEntity.h"
+#include "..\systems\bmSystem.h"
+#include "..\entities\bmEntity.h"
 
 #include <vector>
 

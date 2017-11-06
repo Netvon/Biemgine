@@ -1,5 +1,5 @@
 #pragma once
-#include "bmSystem.h"
+#include "../../systems/bmSystem.h"
 #include <Box2D/Box2D.h>
 #include <vector>
 #include "bmContactListener.h"

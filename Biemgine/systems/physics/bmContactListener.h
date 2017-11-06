@@ -2,7 +2,7 @@
 
 #include "Box2D/Dynamics/Contacts/b2Contact.h"
 #include "Box2D/Dynamics/b2WorldCallbacks.h"
-#include "bmEntity.h"
+#include "../../entities/bmEntity.h"
 
 class bmContactListener :
     public b2ContactListener

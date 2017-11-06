@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "..\..\stdafx.h"
 #include "bmSceneManager.h"
 
 void bmSceneManager::createStateManager(Window* window)

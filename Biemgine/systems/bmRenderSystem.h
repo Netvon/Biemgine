@@ -1,8 +1,8 @@
 #pragma once
 #include "bmSystem.h"
-#include "bmEntity.h"
-#include "bmTextComponent.h"
-#include "GraphicsDevice.h"
+#include "../entities/bmEntity.h"
+#include "../components/bmTextComponent.h"
+#include "../devices/graphics/GraphicsDevice.h"
 
 #include <list>
 

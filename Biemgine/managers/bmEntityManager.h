@@ -1,8 +1,7 @@
 #pragma once
-#include "bmEntity.h"
+#include "..\entities\bmEntity.h"
 #include "bmSystemManager.h"
 #include <vector>
-
 
 class bmEntityManager
 {

@@ -1,5 +1,6 @@
-#include "stdafx.h"
-#include "bmSystem.h"
+#include "../stdafx.h"
+#include "../systems/bmSystem.h"
+#include "../managers/bmStateManager.h"
 
 void bmSystem::setTransitionManager(bmStateManager * pManager)
 {
