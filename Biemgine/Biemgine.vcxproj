@@ -46,7 +46,7 @@
     <ClInclude Include="managers\bmSceneManager.h" />
     <ClInclude Include="managers\bmStateManager.h" />
     <ClInclude Include="managers\bmSystemManager.h" />
-    <ClInclude Include="primitives\bmColor.h" />
+    <ClInclude Include="primitives\bmPrimitives.h" />
     <ClInclude Include="scenes\bmScene.h" />
     <ClInclude Include="scenes\bmSceneType.h" />
     <ClInclude Include="stdafx.h" />

@@ -114,9 +114,6 @@
     <ClInclude Include="components\bmPositionComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="primitives\bmColor.h">
-      <Filter>primitives</Filter>
-    </ClInclude>
     <ClInclude Include="managers\bmEntityManager.h">
       <Filter>managers</Filter>
     </ClInclude>
@@ -137,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="primitives\bmPrimitives.h">
+      <Filter>primitives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
