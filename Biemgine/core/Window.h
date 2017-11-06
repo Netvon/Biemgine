@@ -1,7 +1,7 @@
 #pragma once
-#include "stdafx.h"
+#include "../devices/graphics/GraphicsDevice.h"
+#include "../stdafx.h"
 #include <string>
-#include "GraphicsDevice.h"
 
 using namespace std;
 

@@ -1,54 +1,56 @@
 #pragma once
 
-#include "stdafx.h"
+#include "../managers/bmInputManager.h"
+#include "../stdafx.h"
 #include "Window.h"
-#include "bmInputManager.h"
 #include <vector>
 
-class bmLoop
-{
-public:
+namespace core {
 
-    static const int BM_GAMELOOP_FPS;
-    static const float BM_GAMELOOP_UPDATE_MS;
+    class bmLoop
+    {
+    public:
 
-    bmInputManager im;
+        static const int BM_GAMELOOP_FPS;
+        static const float BM_GAMELOOP_UPDATE_MS;
 
-    virtual ~bmLoop() {};
+        bmInputManager im;
 
-    void start(const Window * window);
-    void signalQuit();
+        virtual ~bmLoop() {};
 
-    const Window* getWindow() const {
-        return window;
-    }
+        void start(const Window * window);
+        void signalQuit();
 
-    bmInputManager* getInputManager() {
-        return &im;
-    }
+        const Window* getWindow() const {
+            return window;
+        }
 
-private:
-    SDL_Event event;
-    const Window* window;
+        bmInputManager* getInputManager() {
+            return &im;
+        }
 
-    bool quit = false;
+    private:
+        SDL_Event event;
+        const Window* window;
 
-    float previousTime = static_cast<float>(SDL_GetTicks());
-    float lagTime = 0.0f;
+        bool quit = false;
 
-    void startLoop();
-    void pollEvents();
+        float previousTime = static_cast<float>(SDL_GetTicks());
+        float lagTime = 0.0f;
 
-    void globalUpdate();
-    void globalRender(const float deltaTime);
-    void globalEnd();
+        void startLoop();
+        void pollEvents();
 
-    virtual void input() { }
-    virtual void update() { }
-    virtual void render(const float deltaTime) { }
-    virtual void created() { }
-    virtual void end() { }
-};
+        void globalUpdate();
+        void globalRender(const float deltaTime);
+        void globalEnd();
 
+        virtual void input() { }
+        virtual void update() { }
+        virtual void render(const float deltaTime) { }
+        virtual void created() { }
+        virtual void end() { }
+    };
+}
 
 

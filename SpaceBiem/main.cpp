@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 
+using core::bmEngine;
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
     try
     {
         engine = new bmEngine;
-        engine->start();
+        engine->start("SpaceBiem v0.1");
     }
     catch (...)
     {

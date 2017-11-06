@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "Window.h"
-#include "SDLGraphicsDevice.h"
+#include "..\devices\graphics\SDLGraphicsDevice.h"
 
 Window::Window(
     const string & title,
