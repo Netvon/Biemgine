@@ -1,11 +1,8 @@
 #pragma once
 
-#include "bmSystem.h"
-#include "bmOxygenComponent.h"
-#include "bmPositionComponent.h"
-#include "bmUIComponent.h"
-#include "bmColorComponent.h"
-#include "GraphicsDevice.h"
+#include "stdafx.h"
+
+using namespace biemgine;
 
 class bmOxygenUISystem : public bmSystem
 {

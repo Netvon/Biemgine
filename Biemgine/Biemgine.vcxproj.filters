@@ -134,6 +134,7 @@
     <ClInclude Include="primitives\bmPrimitives.h">
       <Filter>primitives</Filter>
     </ClInclude>
+    <ClInclude Include="Biemgine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">

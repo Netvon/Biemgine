@@ -1,11 +1,14 @@
 #pragma once
-#include "bmSystem.h"
+
+#include "stdafx.h"
+using namespace biemgine;
+
 class bmScoreSystem :
-	public bmSystem
+    public bmSystem
 {
 public:
-	bmScoreSystem();
-	~bmScoreSystem();
+    bmScoreSystem();
+    ~bmScoreSystem();
 
     void update(const bmEntity& entity) override;
     void onSceneSwitch() override;

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\bmAffectedByGravityComponent.h" />
     <ClInclude Include="components\bmColorComponent.h" />
     <ClInclude Include="components\bmComponent.h" />

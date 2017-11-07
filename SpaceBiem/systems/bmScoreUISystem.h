@@ -1,12 +1,9 @@
 #pragma once
 
-#include "bmSystem.h"
-#include "bmScoreComponent.h"
-#include "bmTextComponent.h"
-#include "bmPositionComponent.h"
-#include "bmUIComponent.h"
-#include "bmColorComponent.h"
-#include "GraphicsDevice.h"
+#include "stdafx.h"
+#include "..\components\bmScoreComponent.h"
+
+using namespace biemgine;
 
 class bmScoreUISystem : public bmSystem
 {

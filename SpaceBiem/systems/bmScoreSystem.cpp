@@ -1,8 +1,5 @@
 #include "stdafx.h"
-#include "bmScoreSystem.h"
-#include "bmScoreComponent.h"
-#include "bmLoop.h"
-
+#include "..\components\bmScoreComponent.h"
 
 bmScoreSystem::bmScoreSystem()
 {

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <tchar.h>
 
-#include <core\bmEngine.h>
+#include <Biemgine.h>
 
 // TODO: reference additional headers your program requires here
 // https://docs.microsoft.com/en-us/visualstudio/debugger/finding-memory-leaks-using-the-crt-library

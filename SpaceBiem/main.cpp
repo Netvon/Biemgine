@@ -2,8 +2,7 @@
 //
 
 #include "stdafx.h"
-
-using core::bmEngine;
+using biemgine::bmEngine;
 
 int main()
 {
