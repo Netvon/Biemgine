@@ -6,8 +6,9 @@
 
 #include <vector>
 
-using namespace systems;
+
 using namespace std;
+using namespace biemgine;
 
 class bmGravitySystem :
 	public bmSystem

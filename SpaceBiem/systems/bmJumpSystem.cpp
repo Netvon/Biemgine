@@ -1,9 +1,5 @@
 #include "stdafx.h"
 #include "bmJumpSystem.h"
-#include "bmPhysicsComponent.h"
-#include "bmGroundedComponent.h"
-#include "bmAffectedByGravityComponent.h"
-#include "bmPositionComponent.h"
 
 #include <glm\glm.hpp>
 
@@ -11,7 +7,7 @@ using namespace glm;
 
 void bmJumpSystem::update(const bmEntity & entity)
 {
-    if (!transitionManager->getInputManager()->isKeyDown("Space"))
+    if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
         return;
 
     if (entity.hasComponent("affectedByGravity")

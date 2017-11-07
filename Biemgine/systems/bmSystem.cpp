@@ -7,4 +7,8 @@ namespace biemgine {
     {
         transitionManager = pManager;
     }
+
+    const bmStateManager* bmSystem::getTransitionManager() const {
+        return transitionManager;
+    }
 }

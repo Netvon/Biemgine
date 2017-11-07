@@ -18,6 +18,7 @@ namespace biemgine {
         virtual void onSceneSwitch() = 0;
 
         void setTransitionManager(const bmStateManager* pManager);
+        const bmStateManager* getTransitionManager() const;
 
     protected:
         const bmStateManager* transitionManager = nullptr;

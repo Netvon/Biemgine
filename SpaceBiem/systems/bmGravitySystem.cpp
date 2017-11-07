@@ -1,10 +1,5 @@
 #include "stdafx.h"
 #include "bmGravitySystem.h"
-#include "bmGravityComponent.h"
-#include "bmAffectedByGravityComponent.h"
-#include "bmAtmosphereComponent.h"
-#include "bmPositionComponent.h"
-#include "bmPhysicsComponent.h"
 
 using namespace glm;
 

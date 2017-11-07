@@ -14,12 +14,12 @@ namespace biemgine {
         keyStates = SDL_GetKeyboardState(nullptr);
     }
 
-    bool bmInputManager::isKeyDown(const char * key)
+    bool bmInputManager::isKeyDown(const char * key) const
     {
         return keyStates[SDL_GetScancodeFromName(key)];
     }
 
-    bool bmInputManager::isKeyDown(const SDL_Scancode key)
+    bool bmInputManager::isKeyDown(const SDL_Scancode key) const
     {
         return keyStates[key];
     }

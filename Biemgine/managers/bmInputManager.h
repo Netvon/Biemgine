@@ -7,8 +7,8 @@ namespace biemgine {
         bmInputManager();
 
         void update();
-        bool isKeyDown(const char* key);
-        bool isKeyDown(const SDL_Scancode key);
+        bool isKeyDown(const char* key) const;
+        bool isKeyDown(const SDL_Scancode key) const;
     private:
         const Uint8* keyStates;
     };

@@ -1,5 +1,7 @@
 #pragma once
-#include "bmSystem.h"
+
+using namespace biemgine;
+
 class bmJumpSystem :
     public bmSystem
 {
