@@ -1,7 +1,9 @@
 #pragma once
-#include "bmComponent.h"
+
+#include "stdafx.h"
 
 using namespace std;
+using namespace biemgine;
 
 class bmScoreComponent :
     public bmComponent

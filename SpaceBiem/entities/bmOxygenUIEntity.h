@@ -1,10 +1,10 @@
 #pragma once
-#include "bmEntity.h"
-#include "bmPositionComponent.h"
-#include "bmColorComponent.h"
-#include "bmUIComponent.h"
-#include "bmOxygenComponent.h"
 
+#include "stdafx.h"
+
+using namespace biemgine;
+
+#include "../components/bmOxygenComponent.h"
 
 class bmOxygenUIEntity : public bmEntity
 {

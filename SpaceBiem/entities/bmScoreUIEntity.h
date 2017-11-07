@@ -1,5 +1,7 @@
 #pragma once
-#include "bmEntity.h"
+
+using namespace biemgine;
+
 class bmScoreUIEntity :
 	public bmEntity
 {

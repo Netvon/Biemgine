@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "bmScoreUIEntity.h"
-#include "bmPositionComponent.h"
-#include "bmUIComponent.h"
-#include "bmColorComponent.h"
-#include "bmScoreComponent.h"
-#include "bmTextComponent.h"
+
+using namespace biemgine;
+
+#include "../components/bmScoreComponent.h"
 
 bmScoreUIEntity::bmScoreUIEntity(float x, float y, float score, string name)
 {

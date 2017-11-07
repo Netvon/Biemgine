@@ -1,12 +1,11 @@
 #pragma once
-#include "bmEntity.h"
-#include "bmPositionComponent.h"
-#include "bmColorComponent.h"
-#include "bmTextureComponent.h"
-#include "bmPhysicsComponent.h"
-#include "bmRectangleComponent.h"
 
-class bmSurfaceEntity : public bmEntity
+#include "stdafx.h"
+
+using namespace biemgine;
+
+class bmSurfaceEntity :
+    public bmEntity
 {
 public:
     bmSurfaceEntity(float x, float y, bmColor color, float w, float h)

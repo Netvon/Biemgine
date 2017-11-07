@@ -1,5 +1,7 @@
 #pragma once
 
+#include "stdafx.h"
+
 using namespace biemgine;
 
 class bmAtmosphereComponent :

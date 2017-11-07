@@ -1,5 +1,8 @@
 #pragma once
-#include "bmEntity.h"
+
+#include "stdafx.h"
+
+using biemgine::bmEntity;
 
 class bmEntityFactory
 {

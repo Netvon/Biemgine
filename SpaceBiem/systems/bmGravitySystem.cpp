@@ -1,7 +1,10 @@
 #include "stdafx.h"
-#include "bmGravitySystem.h"
 
 using namespace glm;
+using namespace biemgine;
+
+#include "../components/bmGravityComponent.h"
+#include "bmGravitySystem.h"
 
 void bmGravitySystem::update(const bmEntity & entity)
 {

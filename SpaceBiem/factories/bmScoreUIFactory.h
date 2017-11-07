@@ -1,11 +1,14 @@
 #pragma once
-#include "bmEntity.h"
-#include "bmScoreUIEntity.h"
+
+#include "stdafx.h"
+
 #include "bmEntityFactory.h"
 #include "bmFileHandler.h"
-#include "bmScoreComponent.h"
 
-class bmScoreUIFactory : public bmEntityFactory
+using namespace biemgine;
+
+class bmScoreUIFactory :
+    public bmEntityFactory
 {
 public:
 

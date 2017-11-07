@@ -1,11 +1,11 @@
 #pragma once
+
 #include <systems\bmSystem.h>
 #include <entities\bmEntity.h>
 #include <components\bmPhysicsComponent.h>
 #include <components\bmAffectedByGravityComponent.h>
 
 #include <vector>
-
 
 using namespace std;
 using namespace biemgine;

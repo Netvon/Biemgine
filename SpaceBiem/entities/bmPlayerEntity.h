@@ -1,7 +1,6 @@
 #pragma once
-#include "bmEntity.h"
-#include "bmPositionComponent.h"
-#include "bmColor.h"
+
+using namespace biemgine;
 
 class bmPlayerEntity : public bmEntity
 {

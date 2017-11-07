@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include "bmPlayerEntity.h"
-#include "bmColorComponent.h"
-#include "bmGroundedComponent.h"
-#include "bmTextureComponent.h"
-#include "bmPhysicsComponent.h"
-#include "bmAffectedByGravityComponent.h"
-#include "bmOxygenComponent.h"
-#include "bmScoreComponent.h"
+
+using namespace biemgine;
+
+#include "../components/bmOxygenComponent.h"
+#include "../components/bmScoreComponent.h"
 
 bmPlayerEntity::bmPlayerEntity(float x, float y, bmColor color, float w, float h, float mass)
 {

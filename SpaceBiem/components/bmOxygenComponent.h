@@ -1,8 +1,11 @@
 #pragma once
 
-#include "bmComponent.h"
+#include "stdafx.h"
 
-class bmOxygenComponent : public bmComponent
+using namespace biemgine;
+
+class bmOxygenComponent :
+    public bmComponent
 {
 public:
 
