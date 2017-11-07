@@ -1,9 +1,9 @@
 #pragma once
 
-#include "bmSystem.h"
+using namespace biemgine;
 
 class bmMovementSystem :
-	public bmSystem
+    public bmSystem
 {
 public:
     void update(const bmEntity& entity) override;

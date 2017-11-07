@@ -1,5 +1,5 @@
 #pragma once
-#include "bmScene.h"
+using namespace biemgine;
 
 class bmMenuScene :
     public bmScene
@@ -10,7 +10,7 @@ public:
     void render(const float deltaTime) override;
     void sceneCreated() override;
 
-    bmMenuScene(bmStateManager* manager)
+    bmMenuScene(bmStateManager& manager)
         : bmScene(manager) {};
 };
 

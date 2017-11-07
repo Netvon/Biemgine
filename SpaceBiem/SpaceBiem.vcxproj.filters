@@ -113,9 +113,6 @@
     <ClCompile Include="systems\bmOxygenUISystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="factories\bmEntityFactory.cpp">
-      <Filter>factories</Filter>
-    </ClCompile>
     <ClCompile Include="entities\bmPlayerEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>

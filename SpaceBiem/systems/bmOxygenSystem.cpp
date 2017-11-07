@@ -1,6 +1,5 @@
 #include <algorithm>
 
-#include "stdafx.h"
 #include "bmOxygenSystem.h"
 
 void bmOxygenSystem::before()
@@ -50,7 +49,8 @@ void bmOxygenSystem::update(const bmEntity & entity)
     oc->setOxygenAmount(oAmount);
 
     if (oAmount <= 0) {
-        transitionManager->gameOverTransition();
+        // TODO: fix
+        // transitionManager->gameOverTransition();
     }
 }
 

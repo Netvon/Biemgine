@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-using biemgine::bmEntity;
+using namespace biemgine;
 
 class bmEntityFactory
 {

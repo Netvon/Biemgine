@@ -1,9 +1,8 @@
 #pragma once
+using namespace biemgine;
 
-#include "bmSystem.h"
-#include "bmOxygenComponent.h"
-#include "bmAtmosphereComponent.h"
-#include "bmPositionComponent.h"
+#include "..\components\bmAtmosphereComponent.h"
+#include "..\components\bmOxygenComponent.h"
 
 class bmOxygenSystem : public bmSystem
 {

@@ -20,8 +20,8 @@ namespace biemgine {
     {
     public:
 
-        bmScene(const bmStateManager* manager)
-            : transitionManager(manager) {}
+        bmScene(bmStateManager& manager)
+            : transitionManager(&manager) {}
 
         virtual ~bmScene()
         {
@@ -36,15 +36,15 @@ namespace biemgine {
         void updateEntities();
         void updateEntities(const float deltaTime);
 
-        const bmStateManager& getTransitionManager() const {
+        bmStateManager& getTransitionManager() const {
             return *transitionManager;
         }
 
-        const bmEntityManager& getEntityManager() const {
+        bmEntityManager& getEntityManager() const {
             return *entityManager;
         }
 
-        const bmSystemManager& getSystemManager() const {
+        bmSystemManager& getSystemManager() const {
             return *systemManager;
         }
 
@@ -58,7 +58,7 @@ namespace biemgine {
         bmSystemManager* systemManager = new bmSystemManager();
         bmEntityManager* entityManager = new bmEntityManager();
 
-        const bmStateManager* transitionManager = nullptr;
+        bmStateManager* transitionManager = nullptr;
 
         virtual void input() override { }
         virtual void update() override = 0;

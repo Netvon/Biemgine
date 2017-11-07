@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "bmLevelScene.h"
-#include "bmPlayerEntity.h"
-#include "bmSurfaceEntity.h"
-#include "bmPlanetEarthEntity.h"
-#include "bmPlanetMoonEntity.h"
-#include "bmOxygenUIEntity.h"
-#include "bmScoreUIEntity.h"
-#include "bmScoreUIFactory.h"
+
+#include "..\entities\bmPlayerEntity.h"
+#include "..\entities\bmPlanetEarthEntity.h"
+#include "..\entities\bmPlanetMoonEntity.h"
+#include "..\entities\bmScoreUIEntity.h"
+#include "..\entities\bmOxygenUIEntity.h"
+#include "..\factories\bmScoreUIFactory.h"
 
 void bmLevelScene::sceneCreated()
 {

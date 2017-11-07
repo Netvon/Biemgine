@@ -1,6 +1,5 @@
 #pragma once
-#include "bmScene.h"
-#include "bmStateManager.h"
+using namespace biemgine;
 
 class bmLevelScene :
     public bmScene
@@ -12,7 +11,7 @@ public:
     void sceneCreated() override;
     void sceneEnd() override;
 
-    bmLevelScene(bmStateManager* manager)
+    bmLevelScene(bmStateManager& manager)
         : bmScene(manager) {};
 
 private:

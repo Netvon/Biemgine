@@ -64,6 +64,7 @@
     <ClCompile Include="core\Window.cpp" />
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp" />
     <ClCompile Include="entities\bmEntity.cpp" />
+    <ClCompile Include="managers\bmEntityManager.cpp" />
     <ClCompile Include="managers\bmInputManager.cpp" />
     <ClCompile Include="managers\bmSceneManager.cpp" />
     <ClCompile Include="managers\bmStateManager.cpp" />

@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "bmMenuScene.h"
-#include "bmSpriteEntity.h"
-#include "bmScoreUIEntity.h"
-#include "bmScoreUIFactory.h"
 
+#include "..\factories\bmScoreUIFactory.h"
 
 void bmMenuScene::sceneCreated()
 {

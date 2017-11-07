@@ -186,5 +186,8 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="managers\bmEntityManager.cpp">
+      <Filter>managers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

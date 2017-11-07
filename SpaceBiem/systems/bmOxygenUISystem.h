@@ -1,8 +1,10 @@
 #pragma once
 
 #include "stdafx.h"
+#include "..\components\bmOxygenComponent.h"
 
 using namespace biemgine;
+using std::map;
 
 class bmOxygenUISystem : public bmSystem
 {
@@ -22,7 +24,7 @@ public:
 private:
     GraphicsDevice* graphicsDevice = nullptr;
 
-    std::map<bmOxygenComponent*, bool> oxygenMap;
+    map<bmOxygenComponent*, bool> oxygenMap;
 
 };
 

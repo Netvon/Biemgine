@@ -1,6 +1,5 @@
 #include "stdafx.h"
-
-using namespace biemgine;
+#include "bmEntityFactory.h"
 
 bmEntityManager::~bmEntityManager()
 {

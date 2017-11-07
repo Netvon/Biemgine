@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include "bmPhysicsComponent.h"
-#include "bmGroundedComponent.h"
-#include "bmAffectedByGravityComponent.h"
-#include "bmPositionComponent.h"
 #include "bmMovementSystem.h"
 
 #include <glm\glm.hpp>

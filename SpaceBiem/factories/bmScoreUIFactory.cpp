@@ -4,6 +4,9 @@
 #include <windows.h>
 #include <Lmcons.h>
 
+#include "..\entities\bmScoreUIEntity.h"
+#include "..\components\bmScoreComponent.h"
+
 vector<bmEntity*> bmScoreUIFactory::sceneStart(int windowW, int windowH)
 {
     vector<bmEntity*> entities;

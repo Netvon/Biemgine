@@ -93,6 +93,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(ProjectDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,7 +179,6 @@
     <ClCompile Include="components\bmOxygenComponent.cpp" />
     <ClCompile Include="entities\bmPlayerEntity.cpp" />
     <ClCompile Include="entities\bmScoreUIEntity.cpp" />
-    <ClCompile Include="factories\bmEntityFactory.cpp" />
     <ClCompile Include="factories\bmScoreUIFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="scenes\bmLevelScene.cpp" />

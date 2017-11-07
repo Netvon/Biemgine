@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "bmOxygenUISystem.h"
-#include "bmRectangleComponent.h"
 
 void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
 {
