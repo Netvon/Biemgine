@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
-namespace core {
+namespace biemgine {
 
     const int bmLoop::BM_GAMELOOP_FPS = 200;
     const float bmLoop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;

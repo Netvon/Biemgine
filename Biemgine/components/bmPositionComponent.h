@@ -3,7 +3,7 @@
 #include "bmComponent.h"
 #include <glm/glm.hpp>
 
-namespace components
+namespace biemgine
 {
     class bmPositionComponent :
         public bmComponent

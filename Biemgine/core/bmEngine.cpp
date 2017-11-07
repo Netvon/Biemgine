@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "..\managers\bmSceneManager.h"
 
-namespace core {
+namespace biemgine {
     void bmEngine::start(const string& windowTitle)
     {
         Window window(
@@ -13,7 +13,7 @@ namespace core {
             SDL_RENDERER_ACCELERATED
         );
 
-        manager.createStateManager(&window);
+        manager.createStateManager(window);
         //manager.changeScene(bmScene_menu);
 
 

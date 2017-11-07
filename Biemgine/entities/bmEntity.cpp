@@ -4,22 +4,23 @@
 #include "..\components\bmComponent.h"
 #include "bmEntity.h"
 
-using namespace components;
+namespace biemgine {
 
-bmEntity::bmEntity()
-{
-    std::mt19937 rng;
-    rng.seed(std::random_device()());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, INT_MAX);
+    bmEntity::bmEntity()
+    {
+        std::mt19937 rng;
+        rng.seed(std::random_device()());
+        std::uniform_int_distribution<std::mt19937::result_type> dist6(1, INT_MAX);
 
-    id = dist6(rng);
-}
-
-bmEntity::~bmEntity()
-{
-    for (std::pair<std::string, const bmComponent*> pair : componentHashmap) {
-        delete pair.second;
+        id = dist6(rng);
     }
 
-    componentHashmap.clear();
+    bmEntity::~bmEntity()
+    {
+        for (std::pair<std::string, const bmComponent*> pair : componentHashmap) {
+            delete pair.second;
+        }
+
+        componentHashmap.clear();
+    }
 }

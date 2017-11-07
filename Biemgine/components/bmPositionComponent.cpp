@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmPositionComponent.h"
 
-namespace components
+namespace biemgine
 {
     float bmPositionComponent::getX() const
     {

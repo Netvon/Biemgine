@@ -48,7 +48,6 @@
     <ClInclude Include="managers\bmSystemManager.h" />
     <ClInclude Include="primitives\bmPrimitives.h" />
     <ClInclude Include="scenes\bmScene.h" />
-    <ClInclude Include="scenes\bmSceneType.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="systems\bmRenderSystem.h" />
     <ClInclude Include="systems\bmSystem.h" />
@@ -169,10 +168,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ForcedIncludeFiles>
-      </ForcedIncludeFiles>
+      <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

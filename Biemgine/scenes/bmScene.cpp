@@ -9,52 +9,54 @@
 //#include "..\systems\bmjumpsystem.h"
 //#include "..\systems\bmmovementsystem.h"
 
+namespace biemgine {
 
-void bmScene::updateEntities()
-{
-    entityManager->updateEntities(systemManager);
-}
+    void bmScene::updateEntities()
+    {
+        entityManager->updateEntities(systemManager);
+    }
 
-void bmScene::updateEntities(const float deltaTime)
-{
-    entityManager->updateEntities(systemManager, deltaTime);
-}
+    void bmScene::updateEntities(const float deltaTime)
+    {
+        entityManager->updateEntities(systemManager, deltaTime);
+    }
 
-void bmScene::created()
-{
-    //auto gravitySystem = new bmGravitySystem();
-    //auto physicsSystem = new bmPhysicsSystem();
-    //auto oxygenSystem = new bmOxygenSystem();
-    //auto jumpSystem = new bmJumpSystem();
-    //auto scoreSystem = new bmScoreSystem();
-    //auto scoreUISystem = new bmScoreUISystem();
-    //auto movementSystem = new bmMovementSystem();
-    //auto oxygenUISystem = new bmOxygenUISystem();
+    void bmScene::created()
+    {
+        //auto gravitySystem = new bmGravitySystem();
+        //auto physicsSystem = new bmPhysicsSystem();
+        //auto oxygenSystem = new bmOxygenSystem();
+        //auto jumpSystem = new bmJumpSystem();
+        //auto scoreSystem = new bmScoreSystem();
+        //auto scoreUISystem = new bmScoreUISystem();
+        //auto movementSystem = new bmMovementSystem();
+        //auto oxygenUISystem = new bmOxygenUISystem();
 
-    //systemManager->addSystem(jumpSystem);
-    //systemManager->addSystem(gravitySystem);
-    //systemManager->addSystem(physicsSystem);
-    //systemManager->addSystem(oxygenSystem);
-    //systemManager->addSystem(scoreSystem);
-    //systemManager->addSystem(scoreUISystem);
-    //systemManager->addSystem(movementSystem);
-    //systemManager->addSystem(oxygenUISystem);
+        //systemManager->addSystem(jumpSystem);
+        //systemManager->addSystem(gravitySystem);
+        //systemManager->addSystem(physicsSystem);
+        //systemManager->addSystem(oxygenSystem);
+        //systemManager->addSystem(scoreSystem);
+        //systemManager->addSystem(scoreUISystem);
+        //systemManager->addSystem(movementSystem);
+        //systemManager->addSystem(oxygenUISystem);
 
-    //auto gd = getWindow()->getGraphicsDevice();
+        //auto gd = getWindow()->getGraphicsDevice();
 
-    //auto renderSystem = new bmRenderSystem();
+        //auto renderSystem = new bmRenderSystem();
 
-    //renderSystem->setGraphicsDevice(gd);
+        //renderSystem->setGraphicsDevice(gd);
 
-    //systemManager->addSystem(renderSystem);
+        //systemManager->addSystem(renderSystem);
 
-    //gravitySystem->setTransitionManager(transitionManager);
-    //oxygenSystem->setTransitionManager(transitionManager);
-    //physicsSystem->setTransitionManager(transitionManager);
-    //renderSystem->setTransitionManager(transitionManager);
-    //oxygenUISystem->setTransitionManager(transitionManager);
-    //jumpSystem->setTransitionManager(transitionManager);
-    //movementSystem->setTransitionManager(transitionManager);
+        //gravitySystem->setTransitionManager(transitionManager);
+        //oxygenSystem->setTransitionManager(transitionManager);
+        //physicsSystem->setTransitionManager(transitionManager);
+        //renderSystem->setTransitionManager(transitionManager);
+        //oxygenUISystem->setTransitionManager(transitionManager);
+        //jumpSystem->setTransitionManager(transitionManager);
+        //movementSystem->setTransitionManager(transitionManager);
 
-    //sceneCreated();
+        sceneCreated();
+    }
 }

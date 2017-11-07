@@ -2,7 +2,7 @@
 
 #include "bmComponent.h"
 
-namespace components
+namespace biemgine
 {
     class bmGroundComponent :
         public bmComponent

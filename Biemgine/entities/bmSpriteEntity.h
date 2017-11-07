@@ -6,17 +6,16 @@
 #include "..\primitives\bmPrimitives.h"
 #include "bmEntity.h"
 
-using primitives::bmColor;
-using namespace components;
+namespace biemgine {
 
-class bmSpriteEntity : public bmEntity
-{
-public:
-    bmSpriteEntity(std::string texture, float x, float y, bmColor color, float w, float h)
+    class bmSpriteEntity : public bmEntity
     {
-        addComponent("position", new bmPositionComponent(x, y));
-        addComponent("texture", new bmTextureComponent(texture, 0, 0, w, h));
-        addComponent("color", new bmColorComponent(color));
-    }
-};
-
+    public:
+        bmSpriteEntity(std::string texture, float x, float y, bmColor color, float w, float h)
+        {
+            addComponent("position", new bmPositionComponent(x, y));
+            addComponent("texture", new bmTextureComponent(texture, 0, 0, w, h));
+            addComponent("color", new bmColorComponent(color));
+        }
+    };
+}

@@ -9,7 +9,7 @@
 using namespace std;
 using namespace glm;
 
-namespace components
+namespace biemgine
 {
     class bmTimedForce
     {
@@ -122,7 +122,7 @@ namespace components
             if (hasTimedForce(id))
                 return;
 
-            auto inner = bmTimedForce(forceX, forceY, doForTicks, isImpulse);
+            auto inner = bmTimedForce(forceX, forceY, static_cast<float>(doForTicks), isImpulse);
 
             timedForces.insert(pair<string, bmTimedForce>(id, inner));
         }

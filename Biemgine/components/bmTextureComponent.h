@@ -4,7 +4,7 @@
 
 #include "bmComponent.h"
 
-namespace components
+namespace biemgine
 {
     class bmTextureComponent :
         public bmComponent

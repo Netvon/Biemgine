@@ -5,7 +5,7 @@
 #include "bmComponent.h"
 #include "bmPositionComponent.h"
 
-namespace components
+namespace biemgine
 {
     class bmTransformComponent :
         public bmComponent

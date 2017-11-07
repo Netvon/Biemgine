@@ -3,34 +3,37 @@
 
 using std::pair;
 
-void bmSceneManager::createStateManager(Window* window)
-{
-    currentWindow = window;
-    transitionManager = new bmStateManager(this, window);
-}
+namespace biemgine {
 
-bool bmSceneManager::checkNextScene() 
-{
-    if (currentScene != nullptr) {
-        currentScene->sceneEnd();
-        delete currentScene;
+    void bmSceneManager::createStateManager(const Window& window)
+    {
+        currentWindow = &window;
+        transitionManager = new bmStateManager(*this, window);
     }
 
-    if (nextScene == nullptr) {
-        return false;
+    bool bmSceneManager::checkNextScene()
+    {
+        if (currentScene != nullptr) {
+            currentScene->sceneEnd();
+            delete currentScene;
+        }
+
+        if (nextScene == nullptr) {
+            return false;
+        }
+
+        currentScene = nextScene;
+        nextScene = nullptr;
+
+        transitionManager->setInputManager(currentScene->getInputManager());
+        currentScene->start(currentWindow);
+
+        return true;
     }
 
-    currentScene = nextScene;
-    nextScene = nullptr;
+    bmSceneManager::~bmSceneManager()
+    {
 
-    transitionManager->setInputManager(currentScene->getInputManager());
-    currentScene->start(currentWindow);
-
-    return true;
-}
-
-bmSceneManager::~bmSceneManager()
-{
-    
+    }
 }
 

@@ -1,9 +1,8 @@
 #pragma once
 
-namespace primitives
-{
+namespace biemgine {
     struct bmColor {
-        int r, g, b, a;
+        unsigned char r, g, b, a;
     };
 
     struct bmVector2 {

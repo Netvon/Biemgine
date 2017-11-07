@@ -4,27 +4,29 @@
 #include <vector>
 #include "bmContactListener.h"
 
-class bmPhysicsSystem :
-    public bmSystem
-{
-public:
-    bmPhysicsSystem();
+namespace biemgine {
 
-    ~bmPhysicsSystem();
+    class bmPhysicsSystem :
+        public bmSystem
+    {
+    public:
+        bmPhysicsSystem();
 
-    void update(const bmEntity& entity) override;
-    void onSceneSwitch() override;
-    void before() override;
+        ~bmPhysicsSystem();
 
-    void after() override;
+        void update(const bmEntity& entity) override;
+        void onSceneSwitch() override;
+        void before() override;
 
-private:
-    b2Vec2* gravity = nullptr;
-    b2World* world = nullptr;
-    bmContactListener* contactListener = nullptr;
+        void after() override;
 
-    std::map<int, b2Body*> bodies;
+    private:
+        b2Vec2* gravity = nullptr;
+        b2World* world = nullptr;
+        bmContactListener* contactListener = nullptr;
 
-    b2Body* createBody(const bmEntity & entity);
-};
+        std::map<int, b2Body*> bodies;
 
+        b2Body* createBody(const bmEntity & entity);
+    };
+}

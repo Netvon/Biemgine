@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "bmGroundedComponent.h"
 
-namespace components
+namespace biemgine
 {
     bool bmGroundedComponent::isGrounded() const
     {

@@ -4,16 +4,19 @@
 #include "Box2D/Dynamics/b2WorldCallbacks.h"
 #include "../../entities/bmEntity.h"
 
-class bmContactListener :
-    public b2ContactListener
-{
-public:
-    bmContactListener() {};
-    ~bmContactListener() {};
+namespace biemgine {
 
-    void BeginContact(b2Contact* contact);
-    void EndContact(b2Contact* contact);
+    class bmContactListener :
+        public b2ContactListener
+    {
+    public:
+        bmContactListener() {};
+        ~bmContactListener() {};
 
-    bmEntity* getEntityFromFixture(b2Fixture* fixture);
-    void bmContactListener::entitySetGrounded(const bmEntity* entity, const bool grounded) const;
-};
+        void BeginContact(b2Contact* contact);
+        void EndContact(b2Contact* contact);
+
+        bmEntity* getEntityFromFixture(b2Fixture* fixture);
+        void bmContactListener::entitySetGrounded(const bmEntity* entity, const bool grounded) const;
+    };
+}

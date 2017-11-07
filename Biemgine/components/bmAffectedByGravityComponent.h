@@ -1,7 +1,7 @@
 #pragma once
 #include "bmComponent.h"
 
-namespace components
+namespace biemgine
 {
     class bmAffectedByGravityComponent
         : public bmComponent

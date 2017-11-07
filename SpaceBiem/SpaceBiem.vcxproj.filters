@@ -81,6 +81,9 @@
     <ClInclude Include="systems\bmScoreSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="bmFileHandler.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\bmGravityComponent.cpp">
@@ -134,5 +137,8 @@
     <ClCompile Include="scenes\bmMenuScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
+    <ClCompile Include="bmFileHandler.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
 </Project>

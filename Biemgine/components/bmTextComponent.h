@@ -3,7 +3,7 @@
 #include "bmComponent.h"
 #include <String>
 
-namespace components
+namespace biemgine
 {
     class bmTextComponent :
         public bmComponent

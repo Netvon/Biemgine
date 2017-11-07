@@ -2,7 +2,7 @@
 #include "bmPositionComponent.h"
 #include "bmColorComponent.h"
 
-namespace components
+namespace biemgine
 {
     class bmRectangleComponent :
         public bmComponent

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace components
+namespace biemgine
 {
     enum PhysicsComponentShape
     {

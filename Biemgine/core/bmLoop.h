@@ -4,7 +4,7 @@
 #include "Window.h"
 #include <vector>
 
-namespace core {
+namespace biemgine {
 
     class bmLoop
     {

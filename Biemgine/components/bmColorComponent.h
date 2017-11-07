@@ -3,15 +3,13 @@
 #include "bmComponent.h"
 #include "../primitives/bmPrimitives.h"
 
-using primitives::bmColor;
-
-namespace components
+namespace biemgine
 {
     class bmColorComponent :
-        public components::bmComponent
+        public bmComponent
     {
     public:
-        bmColorComponent::bmColorComponent(int r, int g, int b, int a = 255)
+        bmColorComponent::bmColorComponent(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255)
             : color({ r, g, b, a }) {}
 
         bmColorComponent::bmColorComponent(bmColor bmColor)

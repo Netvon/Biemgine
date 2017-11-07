@@ -4,28 +4,30 @@
 
 #include <vector>
 
-class bmSystemManager 
-{
-public:
-    
-    bmSystemManager();
+namespace biemgine {
 
-    ~bmSystemManager();
+    class bmSystemManager
+    {
+    public:
 
-    void preUpdate();
-    void preUpdate(const float deltaTime);
+        bmSystemManager();
 
-    void postUpdate();
-    void postUpdate(const float deltaTime);
+        ~bmSystemManager();
 
-    void acceptForUpdate(const bmEntity& entity);
-    void acceptForUpdate(const bmEntity& entity, const float deltaTime);
+        void preUpdate();
+        void preUpdate(const float deltaTime);
 
-    void addSystem(bmSystem* system);
+        void postUpdate();
+        void postUpdate(const float deltaTime);
 
-    void onSceneSwitch();
-private:
-    std::vector<bmSystem*> systems;
+        void acceptForUpdate(const bmEntity& entity);
+        void acceptForUpdate(const bmEntity& entity, const float deltaTime);
 
-};
+        void addSystem(bmSystem* system);
 
+        void onSceneSwitch();
+    private:
+        std::vector<bmSystem*> systems;
+
+    };
+}

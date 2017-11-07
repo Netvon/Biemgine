@@ -51,9 +51,6 @@
     <ClInclude Include="scenes\bmScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\bmSceneType.h">
-      <Filter>scenes</Filter>
-    </ClInclude>
     <ClInclude Include="entities\bmSpriteEntity.h">
       <Filter>entities</Filter>
     </ClInclude>

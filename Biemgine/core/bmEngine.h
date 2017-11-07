@@ -2,7 +2,7 @@
 
 #include "..\managers\bmSceneManager.h"
 
-namespace core {
+namespace biemgine {
 
     class bmEngine
     {
