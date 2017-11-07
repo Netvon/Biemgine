@@ -175,9 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmFileHandler.cpp" />
-    <ClCompile Include="components\bmGravityComponent.cpp" />
     <ClCompile Include="components\bmOxygenComponent.cpp" />
-    <ClCompile Include="components\bmScoreComponent.cpp" />
     <ClCompile Include="entities\bmPlayerEntity.cpp" />
     <ClCompile Include="entities\bmScoreUIEntity.cpp" />
     <ClCompile Include="factories\bmEntityFactory.cpp" />

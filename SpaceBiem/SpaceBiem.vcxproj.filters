@@ -86,9 +86,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="components\bmGravityComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="scenes\bmLevelScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\bmOxygenComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\bmScoreComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="factories\bmScoreUIFactory.cpp">
