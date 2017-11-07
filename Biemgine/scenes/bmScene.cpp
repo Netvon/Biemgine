@@ -9,8 +9,8 @@
 //#include "..\systems\bmjumpsystem.h"
 //#include "..\systems\bmmovementsystem.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     void bmScene::updateEntities()
     {
         entityManager->updateEntities(systemManager);

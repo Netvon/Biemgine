@@ -175,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmFileHandler.cpp" />
-    <ClCompile Include="components\bmAtmosphereComponent.cpp" />
     <ClCompile Include="components\bmGravityComponent.cpp" />
     <ClCompile Include="components\bmOxygenComponent.cpp" />
     <ClCompile Include="components\bmScoreComponent.cpp" />

@@ -107,9 +107,6 @@
     <ClCompile Include="components\bmOxygenComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmAtmosphereComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="components\bmScoreComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>

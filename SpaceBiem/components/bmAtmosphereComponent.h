@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bmComponent.h"
+using namespace biemgine;
 
 class bmAtmosphereComponent :
     public bmComponent
