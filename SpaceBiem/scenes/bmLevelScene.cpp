@@ -18,7 +18,7 @@ void bmLevelScene::sceneCreated()
     float width = 15 * 2;
     float height = 25 * 2;
 
-    getEntityManager()->addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
+    addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();
@@ -26,18 +26,18 @@ void bmLevelScene::sceneCreated()
     float p_size = (wW / 4) - (xMarge / 2);
     int yMarge = (wH - (p_size * 2)) / 2;
 
-    getEntityManager()->addEntity(new bmOxygenUIEntity());
-    getEntityManager()->addEntity(new bmScoreUIEntity());
+    addEntity(new bmOxygenUIEntity());
+    addEntity(new bmScoreUIEntity());
 
-    getEntityManager()->addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
-    getEntityManager()->addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+    addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+    addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
 
 }
 
 void bmLevelScene::sceneEnd() {
 
     bmScoreUIFactory sf;
-    sf.sceneEnd(getEntityManager()->getEntities());
+    sf.sceneEnd(getEntities());
 
 }
 

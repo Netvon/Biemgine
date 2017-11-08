@@ -14,12 +14,12 @@ void bmMenuScene::sceneCreated()
     int x = wW / 2 - w;
 
 
-    getEntityManager()->addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
+    addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
 
 
     bmScoreUIFactory sf;
     for(auto e : sf.sceneStart(wW, wH)) {
-        getEntityManager()->addEntity(e);
+        addEntity(e);
     }
     
 }
@@ -38,7 +38,6 @@ void bmMenuScene::input()
 
 void bmMenuScene::update()
 {
-
     updateEntities();
 }
 

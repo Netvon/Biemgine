@@ -27,8 +27,11 @@ namespace biemgine {
         void updateEntities(const float deltaTime);
 
         bmStateManager& getTransitionManager() const;
-        std::shared_ptr<bmEntityManager> getEntityManager() const;
-        std::shared_ptr<bmSystemManager> getSystemManager() const;
+        /*std::shared_ptr<bmEntityManager> getEntityManager() const;
+        std::shared_ptr<bmSystemManager> getSystemManager() const;*/
+
+        int addEntity(bmEntity* entity);
+        std::vector<bmEntity*> getEntities() const;
 
         virtual void sceneEnd();
 
@@ -40,8 +43,8 @@ namespace biemgine {
         void addSystem();
 
     private:
-        std::shared_ptr<bmSystemManager> systemManager = std::make_shared<bmSystemManager>(new bmSystemManager);
-        std::shared_ptr<bmEntityManager> entityManager = std::make_shared<bmEntityManager>(new bmEntityManager);
+        std::shared_ptr<bmSystemManager> systemManager = std::make_shared<bmSystemManager>();
+        std::shared_ptr<bmEntityManager> entityManager = std::make_shared<bmEntityManager>();
 
         bmStateManager* transitionManager = nullptr;
 

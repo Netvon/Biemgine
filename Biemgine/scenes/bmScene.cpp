@@ -41,12 +41,22 @@ namespace biemgine
         return *transitionManager;
     }
 
-    std::shared_ptr<bmEntityManager> bmScene::getEntityManager() const {
+    /*std::shared_ptr<bmEntityManager> bmScene::getEntityManager() const {
         return entityManager;
     }
 
     std::shared_ptr<bmSystemManager> bmScene::getSystemManager() const {
         return systemManager;
+    }*/
+
+    int bmScene::addEntity(bmEntity * entity)
+    {
+        return entityManager->addEntity(entity);
+    }
+
+    std::vector<bmEntity*> bmScene::getEntities() const
+    {
+        return entityManager->getEntities();
     }
 
     void bmScene::sceneEnd() {}
