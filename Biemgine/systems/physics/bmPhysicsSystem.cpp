@@ -25,6 +25,8 @@ namespace biemgine {
 
     bmPhysicsSystem::~bmPhysicsSystem()
     {
+        world->SetContactListener(nullptr);
+
         if (bodies.size() > 0) {
 
             for (auto pair : bodies) {

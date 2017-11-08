@@ -7,7 +7,7 @@ using namespace std;
 using namespace biemgine;
 
 class bmGravitySystem :
-	public bmSystem
+    public bmSystem
 {
 public:
     void update(const bmEntity& entity) override;

@@ -3,10 +3,12 @@
 
 #include "..\factories\bmScoreUIFactory.h"
 #include "bmLevelScene.h"
+#include "..\systems\bmScoreUISystem.h"
 
 void bmMenuScene::sceneCreated()
 {
     enableRendering();
+    addSystem<bmScoreUISystem>();
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();

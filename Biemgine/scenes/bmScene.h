@@ -60,7 +60,7 @@ namespace biemgine {
     template<class TSystem>
     void bmScene::addSystem()
     {
-        bmSystem system = new TSystem();
+        auto system = new TSystem();
         systemManager->addSystem(system);
 
         system->setTransitionManager(stateManager);

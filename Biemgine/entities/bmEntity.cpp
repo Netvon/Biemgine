@@ -23,6 +23,7 @@ namespace biemgine {
 
         componentHashmap.clear();
     }
+
     bool bmEntity::hasComponent(const string & name) const
     {
         return componentHashmap.find(name) != componentHashmap.end();

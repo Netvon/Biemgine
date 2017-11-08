@@ -9,11 +9,26 @@
 #include "..\factories\bmScoreUIFactory.h"
 
 #include "bmMenuScene.h"
+#include "..\systems\bmGravitySystem.h"
+#include "..\systems\bmMovementSystem.h"
+#include "..\systems\bmJumpSystem.h"
+#include "..\systems\bmOxygenSystem.h"
+#include "..\systems\bmOxygenUISystem.h"
+#include "..\systems\bmScoreUISystem.h"
+#include "..\systems\bmScoreSystem.h"
 
 void bmLevelScene::sceneCreated()
 {
     enableRendering();
     enablePhysics();
+
+    addSystem<bmGravitySystem>();
+    addSystem<bmMovementSystem>();
+    addSystem<bmJumpSystem>();
+    addSystem<bmOxygenSystem>();
+    addSystem<bmOxygenUISystem>();
+    addSystem<bmScoreSystem>();
+    addSystem<bmScoreUISystem>();
 
     float width = 15 * 2;
     float height = 25 * 2;
