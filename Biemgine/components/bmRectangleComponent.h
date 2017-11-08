@@ -1,35 +1,23 @@
 #pragma once
+
+#include "dlldef.h"
 #include "bmPositionComponent.h"
 #include "bmColorComponent.h"
 
 namespace biemgine
 {
-    class bmRectangleComponent :
+    class BIEMGINE bmRectangleComponent :
         public bmComponent
     {
     public:
-        bmRectangleComponent(float width, float height, bmColor color)
-            : color(color), width(width), height(height) { }
+        bmRectangleComponent(float width, float height, bmColor color);
+        ~bmRectangleComponent();
 
-        float getWidth() const {
-            return width;
-        }
-
-        float getHeight() const {
-            return height;
-        }
-
-        void setWidth(float pWidth) {
-            width = pWidth;
-        }
-
-        void setHeight(float pHeight) {
-            height = pHeight;
-        }
-
-        bmColorComponent getColor() const {
-            return color;
-        }
+        float getWidth() const;
+        float getHeight() const;
+        void setWidth(float pWidth);
+        void setHeight(float pHeight);
+        bmColorComponent getColor() const;
 
     private:
         float width, height;

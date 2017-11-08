@@ -40,6 +40,7 @@
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
     <ClInclude Include="devices\graphics\TextureAndUsage.h" />
     <ClInclude Include="devices\graphics\TextureFlip.h" />
+    <ClInclude Include="dlldef.h" />
     <ClInclude Include="entities\bmEntity.h" />
     <ClInclude Include="entities\bmSpriteEntity.h" />
     <ClInclude Include="managers\bmEntityManager.h" />
@@ -57,18 +58,30 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmUIComponent.cpp" />
+    <ClCompile Include="components\bmAffectedByGravityComponent.cpp" />
+    <ClCompile Include="components\bmColorComponent.cpp" />
+    <ClCompile Include="components\bmComponent.cpp" />
+    <ClCompile Include="components\bmGroundComponent.cpp" />
     <ClCompile Include="components\bmGroundedComponent.cpp" />
+    <ClCompile Include="components\bmPhysicsComponent.cpp" />
     <ClCompile Include="components\bmPositionComponent.cpp" />
+    <ClCompile Include="components\bmRectangleComponent.cpp" />
+    <ClCompile Include="components\bmTextComponent.cpp" />
+    <ClCompile Include="components\bmTextureComponent.cpp" />
+    <ClCompile Include="components\bmTransformComponent.cpp" />
     <ClCompile Include="core\bmEngine.cpp" />
     <ClCompile Include="core\bmLoop.cpp" />
     <ClCompile Include="core\Window.cpp" />
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp" />
     <ClCompile Include="entities\bmEntity.cpp" />
+    <ClCompile Include="entities\bmSpriteEntity.cpp" />
     <ClCompile Include="managers\bmEntityManager.cpp" />
     <ClCompile Include="managers\bmInputManager.cpp" />
     <ClCompile Include="managers\bmSceneManager.cpp" />
     <ClCompile Include="managers\bmStateManager.cpp" />
     <ClCompile Include="managers\bmSystemManager.cpp" />
+    <ClCompile Include="primitives\bmPrimitives.cpp" />
     <ClCompile Include="scenes\bmScene.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="systems\bmRenderSystem.cpp" />
@@ -99,7 +112,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -166,18 +179,19 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;BIEMGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <LanguageStandard>
       </LanguageStandard>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>

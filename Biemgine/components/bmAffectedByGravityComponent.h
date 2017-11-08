@@ -1,33 +1,22 @@
 #pragma once
+
+#include "dlldef.h"
 #include "bmComponent.h"
 
 namespace biemgine
 {
-    class bmAffectedByGravityComponent
+    class BIEMGINE bmAffectedByGravityComponent
         : public bmComponent
     {
     public:
-        bmAffectedByGravityComponent(bool isAffected) : isAffected(isAffected) {};
+        bmAffectedByGravityComponent(bool isAffected);
+        ~bmAffectedByGravityComponent();
 
-        bool getIsAffected() const {
-            return isAffected;
-        }
-
-        float getFallingTowardsX() const {
-            return fallingTowardsX;
-        }
-
-        float getFallingTowardsY() const {
-            return fallingTowardsY;
-        }
-
-        void setFallingTowardsX(float value) {
-            fallingTowardsX = value;
-        }
-
-        void setFallingTowardsY(float value) {
-            fallingTowardsY = value;
-        }
+        bool getIsAffected() const;
+        float getFallingTowardsX() const;
+        float getFallingTowardsY() const;
+        void setFallingTowardsX(float value);
+        void setFallingTowardsY(float value);
 
     private:
         bool isAffected;

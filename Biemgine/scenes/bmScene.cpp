@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "bmScene.h"
 
+#include "..\systems\physics\bmPhysicsSystem.h"
+#include "..\systems\bmRenderSystem.h"
+
 //#include "..\systems\bmgravitysystem.h"
 //#include "..\systems\bmphysicssystem.h"
 //#include "..\systems\bmrendersystem.h"
@@ -11,6 +14,19 @@
 
 namespace biemgine
 {
+    bmScene::bmScene(bmStateManager & manager)
+        : transitionManager(&manager) {}
+
+    bmScene::~bmScene()
+    {
+        systemManager->onSceneSwitch();
+
+        /*delete systemManager;
+        delete entityManager;*/
+    }
+
+    void bmScene::init() {}
+
     void bmScene::updateEntities()
     {
         entityManager->updateEntities(systemManager);
@@ -20,6 +36,42 @@ namespace biemgine
     {
         entityManager->updateEntities(systemManager, deltaTime);
     }
+
+    bmStateManager & bmScene::getTransitionManager() const {
+        return *transitionManager;
+    }
+
+    std::shared_ptr<bmEntityManager> bmScene::getEntityManager() const {
+        return entityManager;
+    }
+
+    std::shared_ptr<bmSystemManager> bmScene::getSystemManager() const {
+        return systemManager;
+    }
+
+    void bmScene::sceneEnd() {}
+
+    void bmScene::enablePhysics()
+    {
+        auto physicsSystem = new bmPhysicsSystem();
+        systemManager->addSystem(physicsSystem);
+        physicsSystem->setTransitionManager(transitionManager);
+    }
+
+    void bmScene::enableRendering()
+    {
+        // TODO default rendering device
+        auto gd = getWindow()->getGraphicsDevice();
+        auto renderSystem = new bmRenderSystem();
+        renderSystem->setGraphicsDevice(gd);
+
+        systemManager->addSystem(renderSystem);
+        renderSystem->setTransitionManager(transitionManager);
+    }
+
+    void bmScene::input() { }
+
+    void bmScene::render(float deltaTime) { }
 
     void bmScene::created()
     {

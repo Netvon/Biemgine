@@ -1,4 +1,5 @@
 #pragma once
+#include "dlldef.h"
 #include "..\core\Window.h"
 #include "bmInputManager.h"
 
@@ -6,11 +7,11 @@ namespace biemgine {
 
     class bmSceneManager;
 
-    class bmStateManager
+    class BIEMGINE bmStateManager
     {
     public:
         bmStateManager(
-            const bmSceneManager& pSceneManager,
+            bmSceneManager& pSceneManager,
             const Window& pWindow
         ) : sceneManager(&pSceneManager), window(&pWindow) {};
 
@@ -40,11 +41,20 @@ namespace biemgine {
             return inputManager;
         }
 
+        template<class TScene>
+        void navigateTo();
+
     private:
-        const bmSceneManager* sceneManager = nullptr;
+        bmSceneManager* sceneManager = nullptr;
         const bmInputManager* inputManager = nullptr;
         const Window* window = nullptr;
 
         bool paused = false;
     };
+
+    template<class TScene>
+    void bmStateManager::navigateTo()
+    {
+        sceneManager->navigateTo<TScene>("");
+    }
 }

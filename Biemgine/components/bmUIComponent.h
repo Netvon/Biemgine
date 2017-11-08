@@ -1,24 +1,30 @@
 #pragma once
 
+#include "dlldef.h"
 #include "bmComponent.h"
 
 namespace biemgine
 {
-    class bmUIComponent :
+    class BIEMGINE bmUIComponent :
         public bmComponent
     {
     public:
-        template <typename TComponent>
-        TComponent getComponentReference() const {
-            return dynamic_cast<TComponent>(componentReference);
-        }
 
-        void setComponentReference(bmComponent* component)
-        {
-            componentReference = component;
-        }
+        bmUIComponent();
+        ~bmUIComponent();
+
+        template <typename TComponent>
+        TComponent getComponentReference() const;
+
+        void setComponentReference(bmComponent* component);
 
     private:
         bmComponent* componentReference = nullptr;
     };
+
+    template<typename TComponent>
+    TComponent bmUIComponent::getComponentReference() const
+    {
+        return dynamic_cast<TComponent>(componentReference);
+    }
 }

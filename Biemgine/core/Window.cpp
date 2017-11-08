@@ -2,32 +2,54 @@
 #include "Window.h"
 #include "..\devices\graphics\SDLGraphicsDevice.h"
 
+#include <SDL.h>
+
 namespace biemgine {
+
+    SDL_Window * getWindow(int id) {
+        return SDL_GetWindowFromID(id);
+    }
 
     Window::Window(
         const string & title,
         const int32_t & width,
-        const int32_t & height,
-        const int32_t& options,
-        const int32_t& renderOptions)
+        const int32_t & height)
     {
         if (init()) {
 
-            initWindow(title, width, height, options);
+            int id = initWindow(title, width, height, SDL_WINDOW_SHOWN);
 
-            gd = new SDLGraphicsDevice(window);
+            gd = new SDLGraphicsDevice(getWindow(windowId));
         }
     }
 
     Window::~Window()
     {
-        SDL_DestroyWindow(window);
+        SDL_DestroyWindow(getWindow(windowId));
 
         if (gd != nullptr) {
             delete gd;
         }
 
         SDL_Quit();
+    }
+
+    int Window::getWidth() const
+    {
+        auto renderer = SDL_GetRenderer(getWindow(windowId));
+        int w, h = 0;
+        SDL_RenderGetLogicalSize(renderer, &w, &h);
+
+        return w;
+    }
+
+    int Window::getHeight() const
+    {
+        auto renderer = SDL_GetRenderer(getWindow(windowId));
+        int w, h = 0;
+        SDL_RenderGetLogicalSize(renderer, &w, &h);
+
+        return h;
     }
 
     GraphicsDevice * Window::getGraphicsDevice() const
@@ -46,13 +68,13 @@ namespace biemgine {
         return true;
     }
 
-    void Window::initWindow(
+    int Window::initWindow(
         const string & title,
         const int32_t & width,
         const int32_t & height,
         const int32_t & options)
     {
-        window = SDL_CreateWindow(
+        auto w = SDL_CreateWindow(
             (const char*)title.c_str(),
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
@@ -66,7 +88,13 @@ namespace biemgine {
         /*if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) < 0)
             cout << "Failed to Set Fullscreen\n" << SDL_GetError() << endl;*/
 
-        if (window == nullptr)
+        if (w == nullptr) {
             std::cout << "Failed to initialize Window\n" << SDL_GetError() << std::endl;
+            return 0;
+        }
+        else {
+            windowId = SDL_GetWindowID(w);
+            return windowId;
+        }
     }
 }

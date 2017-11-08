@@ -7,6 +7,9 @@
 #include "..\entities\bmEntity.h"
 
 namespace biemgine {
+    bmRenderSystem::~bmRenderSystem()
+    {
+    }
 
     void bmRenderSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
     {
@@ -96,4 +99,6 @@ namespace biemgine {
 
         drawList.clear();
     }
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, bmColor color, unsigned int layer) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
 }

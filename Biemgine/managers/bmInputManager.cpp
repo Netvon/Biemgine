@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "bmInputManager.h"
 
+#include <SDL.h>
+
 namespace biemgine {
 
     bmInputManager::bmInputManager()
@@ -17,10 +19,5 @@ namespace biemgine {
     bool bmInputManager::isKeyDown(const char * key) const
     {
         return keyStates[SDL_GetScancodeFromName(key)];
-    }
-
-    bool bmInputManager::isKeyDown(const SDL_Scancode key) const
-    {
-        return keyStates[key];
     }
 }

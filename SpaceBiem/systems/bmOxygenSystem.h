@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Biemgine.h"
 using namespace biemgine;
 
 #include "..\components\bmAtmosphereComponent.h"

@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Biemgine.h"
 using namespace biemgine;
 
 class bmLevelScene :
@@ -13,6 +15,8 @@ public:
 
     bmLevelScene(bmStateManager& manager)
         : bmScene(manager) {};
+
+    ~bmLevelScene() {}
 
 private:
     bool isPauseButtonDown = false;

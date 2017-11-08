@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Biemgine.h"
 #include <vector>
 
 using namespace std;
@@ -11,7 +13,7 @@ public:
     void update(const bmEntity& entity) override;
     void after() override;
 
-    void applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics, bmAffectedByGravityComponent* affected);
+    void applyForce(bmVector centerOfGravity, bmVector centerOfSatellite, bmPhysicsComponent * satPhysics, bmAffectedByGravityComponent* affected);
 
     void onSceneSwitch() override {};
     

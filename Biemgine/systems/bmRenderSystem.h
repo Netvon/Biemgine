@@ -17,8 +17,7 @@ namespace biemgine {
         float angle;
         unsigned int layer;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, bmColor color, unsigned int layer) :
-            path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {};
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, bmColor color, unsigned int layer);
     };
 
     class bmRenderSystem
@@ -26,9 +25,7 @@ namespace biemgine {
     {
     public:
 
-        ~bmRenderSystem()
-        {
-        };
+        ~bmRenderSystem();;
 
         void setGraphicsDevice(GraphicsDevice* graphicsDevice);
 

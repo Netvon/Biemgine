@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-using namespace glm;
-using namespace biemgine;
-
 #include "../components/bmGravityComponent.h"
 #include "bmGravitySystem.h"
 
@@ -20,8 +17,8 @@ void bmGravitySystem::update(const bmEntity & entity)
 
 struct DistanceInfo
 {
-    glm::vec2 centerOfGravity;
-    glm::vec2 centerOfSatellite;
+    bmVector centerOfGravity;
+    bmVector centerOfSatellite;
     bmPhysicsComponent * satPhysics;
 };
 
@@ -32,7 +29,7 @@ void bmGravitySystem::after()
         auto satPhysics = satellite->getComponent<bmPhysicsComponent*>("physics");
         auto satAffected = satellite->getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
 
-        vec2 centerOfSatellite = {
+        bmVector centerOfSatellite = {
             satPosition->getX() + satPhysics->getColliderW() / 2.0f,
             satPosition->getY() + satPhysics->getColliderH() / 2.0f
         };
@@ -44,12 +41,12 @@ void bmGravitySystem::after()
             auto gravPosition = point->getComponent<bmPositionComponent*>("position");
             auto gravity = point->getComponent<bmGravityComponent*>("gravity");
 
-            vec2 centerOfGravity = {
+            bmVector centerOfGravity = {
                 (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
                 (gravPosition->getY() + gravity->getY()) + gravity->getHeight() / 2.0f
             };
 
-            const auto distance = glm::distance(centerOfGravity, centerOfSatellite);
+            const auto distance = centerOfGravity.distance(centerOfSatellite);
             distances.insert(pair<float, DistanceInfo>(distance, {
                 centerOfGravity,
                 centerOfSatellite,
@@ -72,11 +69,11 @@ void bmGravitySystem::after()
     satellites.clear();
 }
 
-void bmGravitySystem::applyForce(glm::vec2 centerOfGravity, glm::vec2 centerOfSatellite, bmPhysicsComponent * satPhysics, bmAffectedByGravityComponent* affected)
+void bmGravitySystem::applyForce(bmVector centerOfGravity, bmVector centerOfSatellite, bmPhysicsComponent * satPhysics, bmAffectedByGravityComponent* affected)
 {
     auto force = centerOfGravity - centerOfSatellite;
 
-    force = glm::normalize(force);
+    force = force.normalize();
     force *= 29000.0f;
 
     satPhysics->addForce("gravity", force.x, force.y);

@@ -135,6 +135,7 @@
       <Filter>primitives</Filter>
     </ClInclude>
     <ClInclude Include="Biemgine.h" />
+    <ClInclude Include="dlldef.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -188,6 +189,42 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="managers\bmEntityManager.cpp">
       <Filter>managers</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\bmPrimitives.cpp">
+      <Filter>primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="bmUIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmSpriteEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmAffectedByGravityComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmColorComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmGroundComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmPhysicsComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmRectangleComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmTextComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmTextureComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmTransformComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Biemgine.h"
 #include "stdafx.h"
 
 using namespace biemgine;
@@ -18,7 +19,7 @@ public:
         addComponent("texture", new bmTextureComponent("textures/gravityField.png", w / -2, h / -2, w * 2, h * 2));
         addComponent("physics", new bmPhysicsComponent(w, h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
-        addComponent("ground", new bmGroundComponent());
+        addComponent("ground", new bmGroundComponent);
         addComponent("gravity", new bmGravityComponent(w / -2, h / -2, w * 2, h * 2, w));
     }
 };

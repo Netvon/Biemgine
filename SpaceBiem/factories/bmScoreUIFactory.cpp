@@ -27,7 +27,7 @@ vector<bmEntity*> bmScoreUIFactory::sceneStart(int windowW, int windowH)
 	return entities;
 }
 
-void bmScoreUIFactory::sceneEnd(vector<bmEntity*> entities)
+void bmScoreUIFactory::sceneEnd(std::vector<bmEntity*> entities)
 {
     bmFileHandler fh;
 

@@ -1,10 +1,15 @@
 #pragma once
 
+#include "dlldef.h"
 #include "bmComponent.h"
 
 namespace biemgine
 {
-    class bmGroundComponent :
+    class BIEMGINE bmGroundComponent :
         public bmComponent
-    {};
+    {
+    public:
+        bmGroundComponent();
+        ~bmGroundComponent();
+    };
 }

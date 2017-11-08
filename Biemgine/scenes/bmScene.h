@@ -1,68 +1,53 @@
 #pragma once
 
+#include "dlldef.h"
 #include "..\core\bmLoop.h"
 #include "..\managers\bmSystemManager.h"
 #include "..\managers\bmEntityManager.h"
 #include "..\managers\bmStateManager.h"
-#include "..\systems\physics\bmPhysicsSystem.h"
-#include "..\systems\bmRenderSystem.h"
-//#include "bmScoreSystem.h"
-//#include "bmScoreUISystem.h"
-//#include "bmOxygenUISystem.h"
+
+#include <memory>
 
 class bmResourceManager;
-class GraphicsDevice;
 
 namespace biemgine {
 
-    class bmScene :
+    class BIEMGINE bmScene :
         public bmLoop
     {
     public:
 
-        bmScene(bmStateManager& manager)
-            : transitionManager(&manager) {}
+        bmScene(bmStateManager& manager);
 
-        virtual ~bmScene()
-        {
-            systemManager->onSceneSwitch();
+        virtual ~bmScene();
 
-            delete systemManager;
-            delete entityManager;
-        }
-
-        void init() {}
+        void init();
 
         void updateEntities();
         void updateEntities(const float deltaTime);
 
-        bmStateManager& getTransitionManager() const {
-            return *transitionManager;
-        }
+        bmStateManager& getTransitionManager() const;
+        std::shared_ptr<bmEntityManager> getEntityManager() const;
+        std::shared_ptr<bmSystemManager> getSystemManager() const;
 
-        bmEntityManager& getEntityManager() const {
-            return *entityManager;
-        }
+        virtual void sceneEnd();
 
-        bmSystemManager& getSystemManager() const {
-            return *systemManager;
-        }
-
-        virtual void sceneEnd() {};
+        void enablePhysics();
+        void enableRendering();
 
     protected:
         template<class TSystem>
         void addSystem();
 
     private:
-        bmSystemManager* systemManager = new bmSystemManager();
-        bmEntityManager* entityManager = new bmEntityManager();
+        std::shared_ptr<bmSystemManager> systemManager = std::make_shared<bmSystemManager>(new bmSystemManager);
+        std::shared_ptr<bmEntityManager> entityManager = std::make_shared<bmEntityManager>(new bmEntityManager);
 
         bmStateManager* transitionManager = nullptr;
 
-        virtual void input() override { }
+        virtual void input() override;
         virtual void update() override = 0;
-        virtual void render(float deltaTime) override { }
+        virtual void render(float deltaTime) override;
 
         void created() override;
 

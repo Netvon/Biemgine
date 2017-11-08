@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "bmLoop.h"
 
+#include <SDL.h>
+
 namespace biemgine {
 
     const int bmLoop::BM_GAMELOOP_FPS = 200;
     const float bmLoop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
+
+    bmLoop::bmLoop(): previousTime(static_cast<float>(SDL_GetTicks()))
+    {
+    }
 
     void bmLoop::start(const Window* bmwindow)
     {
@@ -45,6 +51,7 @@ namespace biemgine {
 
     void bmLoop::pollEvents()
     {
+        SDL_Event event;
         while (SDL_PollEvent(&event)) {
             quit = event.type == SDL_QUIT;
         }

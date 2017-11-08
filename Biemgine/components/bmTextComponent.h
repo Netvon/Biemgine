@@ -1,23 +1,20 @@
 #pragma once
 
+#include "dlldef.h"
 #include "bmComponent.h"
 #include <String>
 
 namespace biemgine
 {
-    class bmTextComponent :
+    class BIEMGINE bmTextComponent :
         public bmComponent
     {
     public:
-        bmTextComponent(std::string pText = "") : text{ pText } {};
+        bmTextComponent(std::string pText = "");
+        ~bmTextComponent();
 
-        std::string getText() const {
-            return text;
-        };
-
-        void setText(std::string newText) {
-            text = newText;
-        };
+        const std::string& getText() const;
+        void setText(const std::string& newText);
 
     private:
         std::string text;

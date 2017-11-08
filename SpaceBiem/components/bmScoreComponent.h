@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Biemgine.h"
 #include "stdafx.h"
 
 using namespace std;

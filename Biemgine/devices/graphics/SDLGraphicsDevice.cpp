@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SDLGraphicsDevice.h"
+
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 

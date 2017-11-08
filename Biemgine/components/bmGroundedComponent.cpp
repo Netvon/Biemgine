@@ -3,6 +3,12 @@
 
 namespace biemgine
 {
+    bmGroundedComponent::bmGroundedComponent(bool grounded)
+        : grounded(grounded)
+    { }
+
+    bmGroundedComponent::~bmGroundedComponent() {}
+
     bool bmGroundedComponent::isGrounded() const
     {
         return grounded;

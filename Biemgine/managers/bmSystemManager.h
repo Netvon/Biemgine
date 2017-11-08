@@ -1,4 +1,7 @@
 #pragma once
+#pragma once
+
+#include "dlldef.h"
 #include "..\systems\bmSystem.h"
 #include "..\entities\bmEntity.h"
 
@@ -6,7 +9,7 @@
 
 namespace biemgine {
 
-    class bmSystemManager
+    class BIEMGINE bmSystemManager
     {
     public:
 

@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "bmJumpSystem.h"
 
-#include <glm\glm.hpp>
-
-using namespace glm;
-
 void bmJumpSystem::update(const bmEntity & entity)
 {
     if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
@@ -23,17 +19,17 @@ void bmJumpSystem::update(const bmEntity & entity)
         auto position = entity.getComponent<bmPositionComponent*>("position");
         auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
-        vec2 centerOfSatellite = {
+        bmVector centerOfSatellite = {
             position->getX() + physics->getColliderW() / 2.0f,
             position->getY() + physics->getColliderH() / 2.0f
         };
 
-        vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+        bmVector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
-        vec2 diff = centerOfGravity - centerOfSatellite;
+        bmVector diff = centerOfGravity - centerOfSatellite;
 
         diff *= -1;
-        diff = glm::normalize(diff) * 90000.f * 1500.f;
+        diff = diff.normalize() * 90000.f * 1500.f;
         
         physics->addTimedForce("jump", diff.x, diff.y, 100, true);
     }

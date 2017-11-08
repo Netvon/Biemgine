@@ -16,24 +16,37 @@ namespace biemgine {
         if (currentScene != nullptr) {
             currentScene->sceneEnd();
             delete currentScene;
+            currentScene = nullptr;
         }
 
         if (nextScene == nullptr) {
             return false;
         }
+        else {
 
-        currentScene = nextScene;
-        nextScene = nullptr;
+            currentScene = nextScene;
+            nextScene = nullptr;
 
-        transitionManager->setInputManager(currentScene->getInputManager());
-        currentScene->start(currentWindow);
+            transitionManager->setInputManager(currentScene->getInputManager());
+            currentScene->start(currentWindow);
 
-        return true;
+            return true;
+        }
     }
+
+    bmSceneManager::bmSceneManager() {}
 
     bmSceneManager::~bmSceneManager()
     {
+        if (nextScene != nullptr)
+            delete nextScene;
 
+        //currentScene = nullptr;
+        delete transitionManager;
+    }
+
+    bmStateManager * bmSceneManager::getTransitionManager() {
+        return transitionManager;
     }
 }
 

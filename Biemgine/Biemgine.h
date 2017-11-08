@@ -7,8 +7,6 @@
 #include "core\Window.h"
 
 #include "systems\bmSystem.h"
-#include "systems\bmRenderSystem.h"
-#include "systems\physics\bmPhysicsSystem.h"
 
 #include "components\bmComponent.h"
 #include "components\bmAffectedByGravityComponent.h"
@@ -34,6 +32,3 @@
 #include "managers\bmSystemManager.h"
 
 #include "scenes\bmScene.h"
-
-#include "devices\graphics\GraphicsDevice.h"
-#include "devices\graphics\SDLGraphicsDevice.h"

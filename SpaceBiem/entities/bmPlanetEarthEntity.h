@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Biemgine.h"
 #include "stdafx.h"
 
 using namespace biemgine;
@@ -21,7 +22,7 @@ public:
         addComponent("physics", new bmPhysicsComponent(w  , h, true, CIRCLE));
         addComponent("color", new bmColorComponent(color));
         addComponent("atmosphere", new bmAtmosphereComponent(x + (w / 2), y + (h / 2), w));
-        addComponent("ground", new bmGroundComponent());
-		addComponent("gravity", new bmGravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
+        addComponent("ground", new bmGroundComponent);
+        addComponent("gravity", new bmGravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
     }
 };

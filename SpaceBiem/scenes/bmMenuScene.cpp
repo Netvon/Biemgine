@@ -2,9 +2,11 @@
 #include "bmMenuScene.h"
 
 #include "..\factories\bmScoreUIFactory.h"
+#include "bmLevelScene.h"
 
 void bmMenuScene::sceneCreated()
 {
+    enableRendering();
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();
@@ -12,12 +14,12 @@ void bmMenuScene::sceneCreated()
     int x = wW / 2 - w;
 
 
-    getEntityManager().addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
+    getEntityManager()->addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
 
 
     bmScoreUIFactory sf;
     for(auto e : sf.sceneStart(wW, wH)) {
-        getEntityManager().addEntity(e);
+        getEntityManager()->addEntity(e);
     }
     
 }
@@ -30,7 +32,7 @@ void bmMenuScene::input()
     }
 
     if (im.isKeyDown("Return")) {
-        getTransitionManager().startLevelTransition();
+        getTransitionManager().navigateTo<bmMenuScene>();
     }
 }
 

@@ -8,13 +8,17 @@
 #include "..\entities\bmOxygenUIEntity.h"
 #include "..\factories\bmScoreUIFactory.h"
 
+#include "bmMenuScene.h"
+
 void bmLevelScene::sceneCreated()
 {
+    enableRendering();
+    enablePhysics();
 
     float width = 15 * 2;
     float height = 25 * 2;
 
-    getEntityManager().addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
+    getEntityManager()->addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
     int wW = getTransitionManager().getWindowWidth();
     int wH = getTransitionManager().getWindowHeight();
@@ -22,18 +26,18 @@ void bmLevelScene::sceneCreated()
     float p_size = (wW / 4) - (xMarge / 2);
     int yMarge = (wH - (p_size * 2)) / 2;
 
-    getEntityManager().addEntity(new bmOxygenUIEntity());
-    getEntityManager().addEntity(new bmScoreUIEntity());
+    getEntityManager()->addEntity(new bmOxygenUIEntity());
+    getEntityManager()->addEntity(new bmScoreUIEntity());
 
-    getEntityManager().addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
-    getEntityManager().addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager()->addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+    getEntityManager()->addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
 
 }
 
 void bmLevelScene::sceneEnd() {
 
     bmScoreUIFactory sf;
-    sf.sceneEnd(getEntityManager().getEntities());
+    sf.sceneEnd(getEntityManager()->getEntities());
 
 }
 
@@ -45,7 +49,7 @@ void bmLevelScene::input()
     }
 
     if (im.isKeyDown("Escape")) {
-        getTransitionManager().quitLevelTransition();
+        getTransitionManager().navigateTo<bmMenuScene>();
     }
 
     if (im.isKeyDown("P")) {

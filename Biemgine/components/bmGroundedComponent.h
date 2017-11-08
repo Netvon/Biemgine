@@ -1,16 +1,16 @@
 #pragma once
 
+#include "dlldef.h"
 #include "bmComponent.h"
 
 namespace biemgine
 {
-    class bmGroundedComponent :
+    class BIEMGINE bmGroundedComponent :
         public bmComponent
     {
     public:
-        bmGroundedComponent(bool grounded = false)
-            : grounded(grounded)
-        { };
+        bmGroundedComponent(bool grounded = false);
+        ~bmGroundedComponent();
 
         bool isGrounded() const;
         bmGroundedComponent* bmGroundedComponent::setGrounded(bool grounded = false);

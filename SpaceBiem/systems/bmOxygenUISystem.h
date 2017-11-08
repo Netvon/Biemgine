@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
+#include "Biemgine.h"
 #include "..\components\bmOxygenComponent.h"
 
 using namespace biemgine;

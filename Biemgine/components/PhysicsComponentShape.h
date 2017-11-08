@@ -1,8 +1,9 @@
 #pragma once
 
+#include "dlldef.h"
 namespace biemgine
 {
-    enum PhysicsComponentShape
+    enum BIEMGINE PhysicsComponentShape
     {
         CIRCLE, RECTANGLE, PILL
     };

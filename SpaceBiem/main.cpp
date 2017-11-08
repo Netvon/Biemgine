@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "scenes\bmMenuScene.h"
 using biemgine::bmEngine;
 
 int main()
@@ -11,7 +12,7 @@ int main()
     try
     {
         engine = new bmEngine;
-        engine->start("SpaceBiem v0.1");
+        engine->start<bmMenuScene>("SpaceBiem v0.1");
     }
     catch (...)
     {

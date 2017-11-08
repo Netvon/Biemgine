@@ -1,39 +1,24 @@
 #pragma once
 
+#include "dlldef.h"
 #include <string>
-
 #include "bmComponent.h"
 
 namespace biemgine
 {
-    class bmTextureComponent :
+    class BIEMGINE bmTextureComponent :
         public bmComponent
     {
     public:
-        bmTextureComponent(std::string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0)
-            : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), layer(layer) { };
+        bmTextureComponent(std::string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0);
+        ~bmTextureComponent();
 
-        std::string& getPath() { return path; };
-
-        int getWidth() const {
-            return width;
-        }
-
-        int getHeight() const {
-            return height;
-        }
-
-        float getOffsetX() const {
-            return offsetX;
-        }
-
-        float getOffsetY() const {
-            return offsetY;
-        }
-
-        unsigned int getLayer() const {
-            return layer;
-        }
+        const std::string& getPath();
+        int getWidth() const;
+        int getHeight() const;
+        float getOffsetX() const;
+        float getOffsetY() const;
+        unsigned int getLayer() const;
 
     private:
         std::string path;

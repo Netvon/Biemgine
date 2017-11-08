@@ -1,17 +1,18 @@
 #pragma once
 
+#include "dlldef.h"
 #include "../managers/bmInputManager.h"
 #include "Window.h"
 #include <vector>
 
 namespace biemgine {
 
-    class bmLoop
+    class BIEMGINE bmLoop
     {
     public:
-
+        bmLoop();
         static const int BM_GAMELOOP_FPS;
-        static const float BM_GAMELOOP_UPDATE_MS;
+        static const float BM_GAMELOOP_UPDATE_MS;   
 
         bmInputManager im;
 
@@ -29,12 +30,11 @@ namespace biemgine {
         }
 
     private:
-        SDL_Event event;
         const Window* window;
 
         bool quit = false;
 
-        float previousTime = static_cast<float>(SDL_GetTicks());
+        float previousTime;
         float lagTime = 0.0f;
 
         void startLoop();

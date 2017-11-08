@@ -3,6 +3,11 @@
 
 namespace biemgine
 {
+    bmPositionComponent::bmPositionComponent(float x, float y, float z, float rotation)
+        : location({ x, y, z }), rotation(rotation) { }
+
+    bmPositionComponent::~bmPositionComponent() {}
+
     float bmPositionComponent::getX() const
     {
         return location.x;
@@ -36,5 +41,9 @@ namespace biemgine
     void bmPositionComponent::setRotation(float newRotation)
     {
         rotation = newRotation;
+    }
+    void bmPositionComponent::add(float x, float y, float z)
+    {
+        location += { x, y, z };
     }
 }

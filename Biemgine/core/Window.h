@@ -1,4 +1,5 @@
 #pragma once
+#include "dlldef.h"
 #include "../devices/graphics/GraphicsDevice.h"
 #include <string>
 
@@ -6,49 +7,35 @@ using std::string;
 
 namespace biemgine {
 
-    class Window
+    class BIEMGINE Window
     {
     public:
         Window
         (
             const string& title = "Untitled Window",
             const int32_t& width = 800,
-            const int32_t& height = 600,
-            const int32_t& options = SDL_WINDOW_SHOWN,
-            const int32_t& renderOptions = SDL_RENDERER_ACCELERATED
+            const int32_t& height = 600
         );
 
         ~Window();
 
-        int getWidth() const {
-            auto renderer = SDL_GetRenderer(window);
-            int w, h = 0;
-            SDL_RenderGetLogicalSize(renderer, &w, &h);
+        int getWidth() const;
 
-            return w;
-        };
-
-        int getHeight() const {
-            auto renderer = SDL_GetRenderer(window);
-            int w, h = 0;
-            SDL_RenderGetLogicalSize(renderer, &w, &h);
-
-            return h;
-        };
+        int getHeight() const;
 
         GraphicsDevice* getGraphicsDevice() const;
 
     private:
         bool init();
-        void initWindow(
+        int initWindow(
             const string& title,
             const int32_t& width,
             const int32_t& height,
             const int32_t& options
         );
 
-
-        SDL_Window* window = nullptr;
+        int windowId;
+        //SDL_Window* window = nullptr;
         GraphicsDevice* gd = nullptr;
     };
 }

@@ -1,145 +1,66 @@
 #pragma once
+
+#include "dlldef.h"
 #include "bmComponent.h"
 #include "PhysicsComponentShape.h"
-#include <glm\glm.hpp>
 #include <vector>
 #include <map>
 #include <string>
 
+#include "..\primitives\bmPrimitives.h"
+
 using namespace std;
-using namespace glm;
 
 namespace biemgine
 {
-    class bmTimedForce
+    class BIEMGINE bmTimedForce
     {
     private:
-        vec2 force;
+        bmVector force;
         bool isImpulse;
         float ticksLeft;
 
     public:
-        bmTimedForce(float px, float py, float pticksLeft, bool pisImpulse = false) :
-            force(px, py), ticksLeft(pticksLeft), isImpulse(pisImpulse) {}
+        bmTimedForce(float px, float py, float pticksLeft, bool pisImpulse = false);
+        ~bmTimedForce();
 
-        vec2 getForce() const { return force; }
-        float getTicksLeft() const { return ticksLeft; }
-        bool getIsImpulse() const { return isImpulse; }
+        bmVector getForce() const;
+        float getTicksLeft() const;
+        bool getIsImpulse() const;
 
-        bool decreaseTicks() {
-            if (ticksLeft - 1 == 0)
-                return true;
-
-            ticksLeft--;
-            return false;
-        }
+        bool decreaseTicks();
     };
 
-    class bmPhysicsComponent :
+    class BIEMGINE bmPhysicsComponent :
         public bmComponent
     {
     public:
-        bmPhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass = 22.0f)
-            : colliderSize(colliderW, colliderH), shape(shape), isStatic(isStatic), mass(mass)
-        {
+        bmPhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass = 22.0f);
+        ~bmPhysicsComponent();
 
-        };
+        const float& getColliderW() const;
+        const float& getColliderH() const;
 
-        const float& getColliderW() const {
-            return colliderSize.x;
-        }
+        PhysicsComponentShape getShape() const;
 
-        const float& getColliderH() const {
-            return colliderSize.y;
-        }
+        bool getIsStatic() const;
+        float getForceX() const;
+        float getForceY() const;
 
-        PhysicsComponentShape getShape() const {
-            return shape;
-        }
+        float getMass() const;
+        float getImpulseX() const;
+        float getImpulseY() const;
 
-        bool getIsStatic() const {
-            return isStatic;
-        }
+        void addForce(const string id, float x, float y);
 
-        float getForceX() const {
-            vec2 f = { 0,0 };
+        void addImpulse(const string id, float x, float y);
 
-            for (auto force : timedForces) {
-                if (!force.second.getIsImpulse())
-                    f += force.second.getForce();
-            }
+        void addTimedForce(const string id, float forceX, float forceY, size_t doForTicks, bool isImpulse = false);
 
-            return f.x;
-        }
-
-        float getForceY() const {
-            vec2 f = { 0,0 };
-
-            for (auto force : timedForces) {
-                if (!force.second.getIsImpulse())
-                    f += force.second.getForce();
-            }
-
-            return f.y;
-        }
-
-        float getMass() const {
-            return mass;
-        }
-
-        float getImpulseX() const {
-            vec2 f = { 0,0 };
-
-            for (auto force : timedForces) {
-                if (force.second.getIsImpulse())
-                    f += force.second.getForce();
-            }
-
-            return f.x;
-        }
-
-        float getImpulseY() const {
-            vec2 f = { 0,0 };
-
-            for (auto force : timedForces) {
-                if (force.second.getIsImpulse())
-                    f += force.second.getForce();
-            }
-
-            return f.y;
-        }
-
-        void addForce(const string id, float x, float y) {
-            addTimedForce(id, x, y, 1);
-        }
-
-        void addImpulse(const string id, float x, float y) {
-            addTimedForce(id, x, y, 1, true);
-        }
-
-        void addTimedForce(const string id, float forceX, float forceY, size_t doForTicks, bool isImpulse = false)
-        {
-            if (hasTimedForce(id))
-                return;
-
-            auto inner = bmTimedForce(forceX, forceY, static_cast<float>(doForTicks), isImpulse);
-
-            timedForces.insert(pair<string, bmTimedForce>(id, inner));
-        }
-
-        void decreaseTimedForces() {
-            for (auto it = timedForces.begin(); it != timedForces.end();) {
-                bmTimedForce& inner = it->second;
-
-                if (inner.decreaseTicks())
-                    it = timedForces.erase(it);
-                else
-                    ++it;
-            }
-        }
+        void decreaseTimedForces();
 
     private:
-        vec2 colliderSize;
+        bmVector colliderSize;
 
         map<string, bmTimedForce> timedForces;
 
@@ -149,8 +70,6 @@ namespace biemgine
         PhysicsComponentShape shape;
         bool isStatic;
 
-        bool hasTimedForce(const string id) const {
-            return timedForces.find(id) != timedForces.end();
-        }
+        bool hasTimedForce(const string id) const;
     };
 }

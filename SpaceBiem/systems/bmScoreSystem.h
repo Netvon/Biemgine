@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
+#include "Biemgine.h"
 using namespace biemgine;
 
 class bmScoreSystem :

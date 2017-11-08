@@ -1,4 +1,5 @@
 #pragma once
+#include "dlldef.h"
 #include "../scenes/bmScene.h"
 #include "bmStateManager.h"
 #include <map>
@@ -8,22 +9,19 @@ using std::map;
 using std::string;
 
 namespace biemgine {
-    class bmSceneManager
+    class BIEMGINE bmSceneManager
     {
     public:
-
         void createStateManager(const Window& window);
         bool checkNextScene();
 
-        bmSceneManager() {};
+        bmSceneManager();
         ~bmSceneManager();
 
-        bmStateManager* getTransitionManager() {
-            return transitionManager;
-        }
+        bmStateManager* getTransitionManager();
 
         template<class TScene>
-        void navigateTo(const string& parameter = nullptr);
+        void navigateTo(const string& parameter = "");
 
     private:
         bmScene* currentScene = nullptr;
@@ -38,7 +36,7 @@ namespace biemgine {
     template<class TScene>
     void bmSceneManager::navigateTo(const string & parameter)
     {
-        nextScene = new TScene(transitionManager);
+        nextScene = new TScene(*transitionManager);
 
         if (currentScene != nullptr)
             currentScene->signalQuit();

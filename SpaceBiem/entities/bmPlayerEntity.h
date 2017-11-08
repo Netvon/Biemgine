@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Biemgine.h"
 using namespace biemgine;
 
 class bmPlayerEntity : public bmEntity

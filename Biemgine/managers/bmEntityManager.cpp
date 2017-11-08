@@ -19,7 +19,7 @@ namespace biemgine {
         return entity->getId();
     }
 
-    void bmEntityManager::updateEntities(bmSystemManager * manager)
+    void bmEntityManager::updateEntities(std::shared_ptr<bmSystemManager> manager)
     {
         manager->preUpdate();
 
@@ -30,7 +30,7 @@ namespace biemgine {
         manager->postUpdate();
     }
 
-    void bmEntityManager::updateEntities(bmSystemManager * manager, const float deltaTime)
+    void bmEntityManager::updateEntities(std::shared_ptr<bmSystemManager> manager, const float deltaTime)
     {
         manager->preUpdate(deltaTime);
 

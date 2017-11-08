@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Biemgine.h"
 using namespace biemgine;
 
 class bmMenuScene :
@@ -12,5 +14,7 @@ public:
 
     bmMenuScene(bmStateManager& manager)
         : bmScene(manager) {};
+
+    ~bmMenuScene() {}
 };
 

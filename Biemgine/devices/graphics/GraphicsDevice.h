@@ -1,5 +1,6 @@
 #pragma once
 
+#include "dlldef.h"
 #include "..\..\primitives\bmPrimitives.h"
 #include "TextureFlip.h"
 #include <string>
@@ -7,7 +8,7 @@
 using std::string;
 
 namespace biemgine {
-    class GraphicsDevice
+    class BIEMGINE GraphicsDevice
     {
     public:
         virtual ~GraphicsDevice() { }

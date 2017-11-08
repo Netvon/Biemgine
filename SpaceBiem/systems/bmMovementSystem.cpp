@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "bmMovementSystem.h"
 
-#include <glm\glm.hpp>
-
-using namespace glm;
-
 void bmMovementSystem::update(const bmEntity & entity)
 {
     if (!transitionManager->getInputManager()->isKeyDown("Left")
@@ -23,24 +19,24 @@ void bmMovementSystem::update(const bmEntity & entity)
         if (!grounded->isGrounded() || !affected->getIsAffected())
             return;
 
-        vec2 centerOfSatellite = {
+        bmVector centerOfSatellite = {
             position->getX() + physics->getColliderW() / 2.0f,
             position->getY() + physics->getColliderH() / 2.0f
         };
 
-        vec2 centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
-        vec2 diff = centerOfGravity - centerOfSatellite;
+        bmVector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+        bmVector diff = centerOfGravity - centerOfSatellite;
 
         if (transitionManager->getInputManager()->isKeyDown("Left")) {
-            vec2 left = { -diff.y, diff.x };
-            left = glm::normalize(left) * 90000.f * 1500.f;
+            bmVector left = { -diff.y, diff.x };
+            left = left.normalize() * 90000.f * 1500.f;
 
             physics->addForce("left", left.x, left.y);
         }
 
         if (transitionManager->getInputManager()->isKeyDown("Right")) {
-            vec2 right = { diff.y, -diff.x };
-            right = glm::normalize(right) * 90000.f * 1500.f;
+            bmVector right = { diff.y, -diff.x };
+            right = right.normalize() * 90000.f * 1500.f;
 
             physics->addForce("right", right.x, right.y);
         }

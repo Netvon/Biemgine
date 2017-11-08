@@ -1,15 +1,16 @@
 #pragma once
 
+#include "dlldef.h"
+
 namespace biemgine {
-    class bmInputManager
+    class BIEMGINE bmInputManager
     {
     public:
         bmInputManager();
 
         void update();
         bool isKeyDown(const char* key) const;
-        bool isKeyDown(const SDL_Scancode key) const;
     private:
-        const Uint8* keyStates;
+        const unsigned char* keyStates;
     };
 }

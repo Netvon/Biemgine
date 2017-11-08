@@ -23,4 +23,18 @@ namespace biemgine {
 
         componentHashmap.clear();
     }
+    bool bmEntity::hasComponent(const string & name) const
+    {
+        return componentHashmap.find(name) != componentHashmap.end();
+    }
+
+    void bmEntity::addComponent(const string & name, bmComponent * component)
+    {
+        componentHashmap.insert(pair<string, bmComponent*>(name, component));
+    }
+
+    int bmEntity::getId() const
+    {
+        return this->id;
+    }
 }
