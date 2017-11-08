@@ -46,7 +46,7 @@ namespace biemgine {
         std::shared_ptr<bmSystemManager> systemManager = std::make_shared<bmSystemManager>();
         std::shared_ptr<bmEntityManager> entityManager = std::make_shared<bmEntityManager>();
 
-        bmStateManager* transitionManager = nullptr;
+        bmStateManager* stateManager = nullptr;
 
         virtual void input() override;
         virtual void update() override = 0;
@@ -63,7 +63,7 @@ namespace biemgine {
         bmSystem system = new TSystem();
         systemManager->addSystem(system);
 
-        system->setTransitionManager(transitionManager);
+        system->setTransitionManager(stateManager);
     }
 }
 

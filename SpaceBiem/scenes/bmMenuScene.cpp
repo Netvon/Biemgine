@@ -32,7 +32,7 @@ void bmMenuScene::input()
     }
 
     if (im.isKeyDown("Return")) {
-        getTransitionManager().navigateTo<bmMenuScene>();
+        getTransitionManager().navigateTo<bmLevelScene>();
     }
 }
 

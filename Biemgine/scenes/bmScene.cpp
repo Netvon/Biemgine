@@ -15,7 +15,7 @@
 namespace biemgine
 {
     bmScene::bmScene(bmStateManager & manager)
-        : transitionManager(&manager) {}
+        : stateManager(&manager) {}
 
     bmScene::~bmScene()
     {
@@ -38,7 +38,7 @@ namespace biemgine
     }
 
     bmStateManager & bmScene::getTransitionManager() const {
-        return *transitionManager;
+        return *stateManager;
     }
 
     /*std::shared_ptr<bmEntityManager> bmScene::getEntityManager() const {
@@ -65,7 +65,7 @@ namespace biemgine
     {
         auto physicsSystem = new bmPhysicsSystem();
         systemManager->addSystem(physicsSystem);
-        physicsSystem->setTransitionManager(transitionManager);
+        physicsSystem->setTransitionManager(stateManager);
     }
 
     void bmScene::enableRendering()
@@ -76,7 +76,7 @@ namespace biemgine
         renderSystem->setGraphicsDevice(gd);
 
         systemManager->addSystem(renderSystem);
-        renderSystem->setTransitionManager(transitionManager);
+        renderSystem->setTransitionManager(stateManager);
     }
 
     void bmScene::input() { }

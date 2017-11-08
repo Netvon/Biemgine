@@ -4,6 +4,7 @@
 #include "bmStateManager.h"
 #include <map>
 #include <vector>
+#include <memory>
 
 using std::map;
 using std::string;
@@ -18,17 +19,17 @@ namespace biemgine {
         bmSceneManager();
         ~bmSceneManager();
 
-        bmStateManager* getTransitionManager();
+        std::shared_ptr<bmStateManager> getStateManager();
 
         template<class TScene>
         void navigateTo(const string& parameter = "");
 
     private:
-        bmScene* currentScene = nullptr;
+        std::unique_ptr<bmScene> currentScene{ nullptr };
         const Window* currentWindow;
-        bmStateManager* transitionManager;
+        std::shared_ptr<bmStateManager> stateManager{ nullptr };
 
-        bmScene* nextScene = nullptr;
+        std::unique_ptr<bmScene> nextScene{ nullptr };
 
         //int nextScene;
     };
@@ -36,7 +37,7 @@ namespace biemgine {
     template<class TScene>
     void bmSceneManager::navigateTo(const string & parameter)
     {
-        nextScene = new TScene(*transitionManager);
+        nextScene = std::make_unique<TScene>(*stateManager);
 
         if (currentScene != nullptr)
             currentScene->signalQuit();

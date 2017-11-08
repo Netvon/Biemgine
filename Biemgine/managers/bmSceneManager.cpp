@@ -8,14 +8,14 @@ namespace biemgine {
     void bmSceneManager::createStateManager(const Window& window)
     {
         currentWindow = &window;
-        transitionManager = new bmStateManager(*this, window);
+        stateManager = std::make_shared<bmStateManager>(*this, window);
     }
 
     bool bmSceneManager::checkNextScene()
     {
         if (currentScene != nullptr) {
             currentScene->sceneEnd();
-            delete currentScene;
+            //delete currentScene;
             currentScene = nullptr;
         }
 
@@ -24,10 +24,10 @@ namespace biemgine {
         }
         else {
 
-            currentScene = nextScene;
-            nextScene = nullptr;
+            currentScene.swap(nextScene);
+            //nextScene = nullptr;
 
-            transitionManager->setInputManager(currentScene->getInputManager());
+            stateManager->setInputManager(currentScene->getInputManager());
             currentScene->start(currentWindow);
 
             return true;
@@ -38,15 +38,16 @@ namespace biemgine {
 
     bmSceneManager::~bmSceneManager()
     {
-        if (nextScene != nullptr)
-            delete nextScene;
+
+        /*if (nextScene != nullptr)
+            delete nextScene;*/
 
         //currentScene = nullptr;
-        delete transitionManager;
+        //delete stateManager;
     }
 
-    bmStateManager * bmSceneManager::getTransitionManager() {
-        return transitionManager;
+    std::shared_ptr<bmStateManager> bmSceneManager::getStateManager() {
+        return stateManager;
     }
 }
 
