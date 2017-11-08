@@ -27,9 +27,6 @@ namespace biemgine {
             bmEntity* entity = this->getEntityFromFixture(contact->GetFixtureA());
             bmEntity* otherEntity = this->getEntityFromFixture(contact->GetFixtureB());
 
-            if (!entity || !otherEntity)
-                return;
-
             if (entity->hasComponent("grounded") && otherEntity->hasComponent("ground")) {
                 this->entitySetGrounded(entity, false);
             }
