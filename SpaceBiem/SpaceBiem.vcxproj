@@ -166,6 +166,7 @@
     <ClInclude Include="entities\SurfaceEntity.h" />
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
+    <ClInclude Include="ResourceUISystem.h" />
     <ClInclude Include="scenes\LevelScene.h" />
     <ClInclude Include="scenes\MenuScene.h" />
     <ClInclude Include="stdafx.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ResourceUISystem.cpp" />
     <ClCompile Include="scenes\LevelScene.cpp" />
     <ClCompile Include="scenes\MenuScene.cpp" />
     <ClCompile Include="stdafx.cpp">
