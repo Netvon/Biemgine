@@ -2,12 +2,12 @@
 
 namespace spacebiem
 {
-    int OxygenComponent::getOxygenAmount() const
+    float OxygenComponent::getOxygenAmount() const
     {
         return oxygenAmount;
     }
 
-    void OxygenComponent::setOxygenAmount(int pOxygen)
+    void OxygenComponent::setOxygenAmount(float pOxygen)
     {
         if (pOxygen >= 0 && pOxygen <= oxygenMax) {
             oxygenAmount = pOxygen;
@@ -19,13 +19,9 @@ namespace spacebiem
         return oxygenMax;
     }
 
-    int OxygenComponent::getOxygenDecrease() const
+    int OxygenComponent::getOxygenScale() const
     {
-        return oxygenDecrease;
+        return oxygenScale;
     }
 
-    int OxygenComponent::getOxygenIncrease() const
-    {
-        return oxygenIncrease;
-    }
 }

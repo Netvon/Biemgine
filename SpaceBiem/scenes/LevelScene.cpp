@@ -7,6 +7,7 @@
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
+#include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
 #include "..\systems\GravitySystem.h"
@@ -37,18 +38,16 @@ namespace spacebiem
 
         addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
-        int wW = getTransitionManager().getWindowWidth();
-        int wH = getTransitionManager().getWindowHeight();
-        int xMarge = 60;
-        float p_size = (wW / 4) - (xMarge / 2);
-        int yMarge = (wH - (p_size * 2)) / 2;
-
         addEntity(new OxygenUIEntity());
         addEntity(new ScoreUIEntity());
 
-        addEntity(new PlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
-        addEntity(new PlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+        int wW = getTransitionManager().getWindowWidth();
+        int wH = getTransitionManager().getWindowHeight();
 
+        PlanetFactory pf;
+        for (auto e : pf.sceneStart(wW, wH)) {
+            addEntity(e);
+        }
     }
 
     void LevelScene::sceneEnd() {

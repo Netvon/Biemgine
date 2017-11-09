@@ -43,12 +43,12 @@ namespace spacebiem
             }
         }
 
-        int oAmount = oc->getOxygenAmount();
+        float oAmount = oc->getOxygenAmount();
         if (currentAtmosphere == nullptr) {
-            oAmount -= oc->getOxygenDecrease();
+            oAmount -= oc->getOxygenScale();
         }
         else {
-            oAmount += oc->getOxygenIncrease();
+            oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
         }
         oc->setOxygenAmount(oAmount);
 

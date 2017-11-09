@@ -17,4 +17,8 @@ namespace spacebiem
     {
         return r;
     }
+	float AtmosphereComponent::getOxygenModifier() const
+	{
+		return oxygenModifier;
+	}
 }
