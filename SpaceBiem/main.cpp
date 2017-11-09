@@ -3,7 +3,9 @@
 
 #include "stdafx.h"
 #include "scenes\bmMenuScene.h"
+
 using biemgine::bmEngine;
+using spacebiem::bmMenuScene;
 
 int main()
 {
