@@ -51,7 +51,8 @@ namespace spacebiem
 
     void bmScoreUISystem::after(const float deltaTime)
     {
-
+        auto l = getTransitionManager()->getInputManager()->getMouseLocation();
+        printf("{%f,%f}\n", l.x, l.y);
     }
 
     void bmScoreUISystem::onSceneSwitch()
