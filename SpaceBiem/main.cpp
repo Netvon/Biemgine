@@ -14,7 +14,7 @@ int main()
     try
     {
         engine = new Engine;
-        engine->start<MenuScene>("SpaceBiem v0.1");
+        engine->start<MenuScene>("SpaceBiem");
     }
     catch (...)
     {
