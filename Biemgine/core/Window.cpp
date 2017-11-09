@@ -19,7 +19,7 @@ namespace biemgine
 
             int id = initWindow(title, width, height, SDL_WINDOW_SHOWN);
 
-            gd = new SDLGraphicsDevice(getWindow(windowId));
+            gd = new SDLGraphicsDevice(getWindow(id));
         }
     }
 

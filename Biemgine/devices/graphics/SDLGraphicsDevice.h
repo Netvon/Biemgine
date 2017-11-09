@@ -16,9 +16,9 @@ namespace biemgine
         SDLGraphicsDevice(SDL_Window* window);
         ~SDLGraphicsDevice();
 
-        void drawSquare(int x, int y, int w, int h, bmColor color, float angle = 0) const override;
-        void drawTexture(const string& path, int x, int y, int w = -1, int h = -1, float angle = 0, bmColor color = { 255, 255, 255 }, TextureFlip flip = NONE) override;
-        void drawText(const string& text, int x, int y, bmColor color, int ptSize, TextureFlip flip = NONE) override;
+        void drawSquare(int x, int y, int w, int h, Color color, float angle = 0) const override;
+        void drawTexture(const string& path, int x, int y, int w = -1, int h = -1, float angle = 0, Color color = { 255, 255, 255 }, TextureFlip flip = NONE) override;
+        void drawText(const string& text, int x, int y, Color color, int ptSize, TextureFlip flip = NONE) override;
         void clear() const override;
         void present() override;
 

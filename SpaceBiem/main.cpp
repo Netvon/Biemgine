@@ -2,19 +2,19 @@
 //
 
 #include "stdafx.h"
-#include "scenes\bmMenuScene.h"
+#include "scenes\MenuScene.h"
 
-using biemgine::bmEngine;
-using spacebiem::bmMenuScene;
+using biemgine::Engine;
+using spacebiem::MenuScene;
 
 int main()
 {
-    bmEngine* engine = nullptr;
+    Engine* engine = nullptr;
 
     try
     {
-        engine = new bmEngine;
-        engine->start<bmMenuScene>("SpaceBiem v0.1");
+        engine = new Engine;
+        engine->start<MenuScene>("SpaceBiem v0.1");
     }
     catch (...)
     {

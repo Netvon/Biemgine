@@ -50,7 +50,7 @@ namespace biemgine {
         IMG_Quit();
     }
 
-    void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, bmColor color, float angle) const
+    void SDLGraphicsDevice::drawSquare(int x, int y, int w, int h, Color color, float angle) const
     {
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         SDL_Rect rect = { x, y, w, h };
@@ -58,7 +58,7 @@ namespace biemgine {
         SDL_RenderFillRect(renderer, &rect);
     }
 
-    void SDLGraphicsDevice::drawText(const std::string& text, int x, int y, bmColor color, int ptSize, TextureFlip flip) {
+    void SDLGraphicsDevice::drawText(const std::string& text, int x, int y, Color color, int ptSize, TextureFlip flip) {
 
         if (textTextures.find(text) == textTextures.end()) {
             SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
@@ -82,7 +82,7 @@ namespace biemgine {
 
     }
 
-    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, bmColor color, TextureFlip flip)
+    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip)
     {
         auto texture = getTexture(path);
 
