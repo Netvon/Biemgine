@@ -29,7 +29,6 @@ namespace biemgine
         /*std::shared_ptr<bmEntityManager> getEntityManager() const;
         std::shared_ptr<bmSystemManager> getSystemManager() const;*/
 
-        int addEntity(bmEntity* entity);
         std::vector<bmEntity*> getEntities() const;
 
         virtual void sceneEnd();
@@ -41,6 +40,8 @@ namespace biemgine
         template<class TSystem>
         void addSystem();
 
+        int addEntity(bmEntity* entity);
+
     private:
         std::shared_ptr<bmSystemManager> systemManager = std::make_shared<bmSystemManager>();
         std::shared_ptr<bmEntityManager> entityManager = std::make_shared<bmEntityManager>();
@@ -51,9 +52,7 @@ namespace biemgine
         virtual void update() override = 0;
         virtual void render(float deltaTime) override;
 
-        void created() override;
-
-        virtual void sceneCreated() = 0;
+        virtual void created() = 0;
     };
 
     template<class TSystem>

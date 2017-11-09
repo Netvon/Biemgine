@@ -2,6 +2,7 @@
 
 #include "dlldef.h"
 #include "bmComponent.h"
+#include "..\primitives\bmPrimitives.h"
 
 namespace biemgine
 {
@@ -17,6 +18,7 @@ namespace biemgine
         float getFallingTowardsY() const;
         void setFallingTowardsX(float value);
         void setFallingTowardsY(float value);
+        bmVector getFallingTowards();
 
     private:
         bool isAffected;

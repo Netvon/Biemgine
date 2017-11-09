@@ -17,7 +17,7 @@
 #include "..\systems\bmScoreUISystem.h"
 #include "..\systems\bmScoreSystem.h"
 
-void bmLevelScene::sceneCreated()
+void bmLevelScene::created()
 {
     enableRendering();
     enablePhysics();

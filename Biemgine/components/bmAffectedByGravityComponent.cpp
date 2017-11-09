@@ -24,4 +24,9 @@ namespace biemgine
     void bmAffectedByGravityComponent::setFallingTowardsY(float value) {
         fallingTowardsY = value;
     }
+
+    bmVector bmAffectedByGravityComponent::getFallingTowards()
+    {
+        return { fallingTowardsX, fallingTowardsY };
+    }
 }

@@ -5,7 +5,7 @@
 #include "bmLevelScene.h"
 #include "..\systems\bmScoreUISystem.h"
 
-void bmMenuScene::sceneCreated()
+void bmMenuScene::created()
 {
     enableRendering();
     addSystem<bmScoreUISystem>();

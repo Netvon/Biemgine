@@ -10,7 +10,7 @@ public:
     void input() override;
     void update() override;
     void render(const float deltaTime) override;
-    void sceneCreated() override;
+    void created() override;
     void sceneEnd() override;
 
     bmLevelScene(bmStateManager& manager)
