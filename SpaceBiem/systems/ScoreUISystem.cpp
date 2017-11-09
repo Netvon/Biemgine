@@ -32,6 +32,14 @@ namespace spacebiem
         auto pc = entity.getComponent<PositionComponent*>("position");
         auto uc = entity.getComponent<UIComponent*>("ui");
 
+        if (uc->getIsMouseDown()) {
+            printf("%i keydown\n", entity.getId());
+        }
+
+        if (uc->getIsMouseOver()) {
+            printf("%i mouseover\n", entity.getId());
+        }
+
         // If the UI doesn't have the component which to draw, pick one from the map.
         ScoreComponent* oRef = uc->getComponentReference<ScoreComponent*>();
 
@@ -55,10 +63,10 @@ namespace spacebiem
 
     void ScoreUISystem::after(const float deltaTime)
     {
-        if (getTransitionManager()->getInputManager()->isLeftMouseDown()) {
+        /*if (getTransitionManager()->getInputManager()->isLeftMouseDown()) {
             auto l = getTransitionManager()->getInputManager()->getMouseLocation();
             printf("{%i,%i}\n", l.x, l.y);
-        }
+        }*/
     }
 
     void ScoreUISystem::onSceneSwitch()

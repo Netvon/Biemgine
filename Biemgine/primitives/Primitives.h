@@ -16,6 +16,10 @@ namespace biemgine
         operator Vector();
     };
 
+    struct BIEMGINE Size {
+        int width = 0, height = 0;
+    };
+
     struct BIEMGINE Vector
     {
         float x = 0, y = 0, z = 1;
