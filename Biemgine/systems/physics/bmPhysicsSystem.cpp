@@ -10,8 +10,8 @@
 #include <random>
 #include <math.h>
 
-namespace biemgine {
-
+namespace biemgine
+{
     #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288)
     #define DEGREE_TO_RAD (3.14159265358979323846264338327950288 / 180.0f)
 

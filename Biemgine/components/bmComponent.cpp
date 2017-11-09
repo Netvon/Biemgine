@@ -1,6 +1,7 @@
 #include "bmComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmComponent::bmComponent() {}
     bmComponent::~bmComponent() {}
 }

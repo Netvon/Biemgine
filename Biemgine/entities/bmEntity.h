@@ -13,8 +13,8 @@ using std::pair;
 using std::multimap;
 using std::vector;
 
-namespace biemgine {
-
+namespace biemgine
+{
     //class BIEMGINE componentmap : public std::multimap<string, bmComponent*> {};
 
     class BIEMGINE bmEntity

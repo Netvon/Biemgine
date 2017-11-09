@@ -3,8 +3,8 @@
 
 using std::pair;
 
-namespace biemgine {
-
+namespace biemgine
+{
     void bmSceneManager::createStateManager(const Window& window)
     {
         currentWindow = &window;
@@ -38,7 +38,6 @@ namespace biemgine {
 
     bmSceneManager::~bmSceneManager()
     {
-
         /*if (nextScene != nullptr)
             delete nextScene;*/
 
@@ -50,4 +49,3 @@ namespace biemgine {
         return stateManager;
     }
 }
-

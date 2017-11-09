@@ -1,6 +1,7 @@
 #include "bmTransformComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmTransformComponent::bmTransformComponent(float x, float y, float rotation, float scaleX , float scaleY)
         : position(x, y, 0), rotation(rotation), scale({ scaleX, scaleY }) { }
 

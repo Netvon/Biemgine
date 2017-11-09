@@ -7,8 +7,8 @@
 
 #include <vector>
 
-namespace biemgine {
-
+namespace biemgine
+{
     class BIEMGINE bmSystemManager
     {
     public:
@@ -31,6 +31,5 @@ namespace biemgine {
         void onSceneSwitch();
     private:
         std::vector<bmSystem*> systems;
-
     };
 }

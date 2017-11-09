@@ -4,8 +4,8 @@
 #include "Box2D/Dynamics/b2WorldCallbacks.h"
 #include "../../entities/bmEntity.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     class bmContactListener :
         public b2ContactListener
     {

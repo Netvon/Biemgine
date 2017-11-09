@@ -5,8 +5,8 @@
 #include "Window.h"
 #include <vector>
 
-namespace biemgine {
-
+namespace biemgine
+{
     class BIEMGINE bmLoop
     {
     public:

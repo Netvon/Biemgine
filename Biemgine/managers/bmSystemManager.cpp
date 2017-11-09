@@ -2,12 +2,9 @@
 #include "bmSystemManager.h"
 #include "..\systems\bmRenderSystem.h"
 
-namespace biemgine {
-
-    bmSystemManager::bmSystemManager()
-    {
-
-    }
+namespace biemgine
+{
+    bmSystemManager::bmSystemManager() {}
 
     bmSystemManager::~bmSystemManager()
     {

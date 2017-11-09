@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "bmEntityManager.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     bmEntityManager::~bmEntityManager()
     {
         for (auto it = entities.begin(); it != entities.end(); ++it)

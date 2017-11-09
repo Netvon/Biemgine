@@ -7,7 +7,8 @@
 
 using std::string;
 
-namespace biemgine {
+namespace biemgine
+{
     class BIEMGINE GraphicsDevice
     {
     public:

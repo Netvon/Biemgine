@@ -1,6 +1,7 @@
 #include "bmAffectedByGravityComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmAffectedByGravityComponent::bmAffectedByGravityComponent(bool isAffected) : isAffected(isAffected) {}
     bmAffectedByGravityComponent::~bmAffectedByGravityComponent() {}
 

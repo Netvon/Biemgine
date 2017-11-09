@@ -3,8 +3,8 @@
 #include "..\core\Window.h"
 #include "bmInputManager.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     class bmSceneManager;
 
     class BIEMGINE bmStateManager

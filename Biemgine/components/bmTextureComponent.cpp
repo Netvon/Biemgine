@@ -1,9 +1,10 @@
 #include "bmTextComponent.h"
 #include "bmTextureComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmTextureComponent::bmTextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer)
-        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), layer(layer) { };
+        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), layer(layer) {};
 
     bmTextureComponent::~bmTextureComponent() {}
 

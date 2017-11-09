@@ -4,8 +4,8 @@
 
 #include <SDL.h>
 
-namespace biemgine {
-
+namespace biemgine
+{
     SDL_Window * getWindow(int id) {
         return SDL_GetWindowFromID(id);
     }

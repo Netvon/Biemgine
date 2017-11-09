@@ -9,7 +9,8 @@
 using std::map;
 using std::string;
 
-namespace biemgine {
+namespace biemgine
+{
     class BIEMGINE bmSceneManager
     {
     public:

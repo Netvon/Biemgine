@@ -3,14 +3,13 @@
 
 #include <SDL.h>
 
-namespace biemgine {
-
+namespace biemgine
+{
     const int bmLoop::BM_GAMELOOP_FPS = 200;
     const float bmLoop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
-    bmLoop::bmLoop(): previousTime(static_cast<float>(SDL_GetTicks()))
-    {
-    }
+    bmLoop::bmLoop() :
+        previousTime(static_cast<float>(SDL_GetTicks())) {}
 
     void bmLoop::start(const Window* bmwindow)
     {

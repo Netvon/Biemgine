@@ -1,8 +1,9 @@
 #include "bmRectangleComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmRectangleComponent::bmRectangleComponent(float width, float height, bmColor color)
-        : color(color), width(width), height(height) { }
+        : color(color), width(width), height(height) {}
 
     bmRectangleComponent::~bmRectangleComponent() {}
 

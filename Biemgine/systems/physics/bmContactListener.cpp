@@ -3,8 +3,8 @@
 #include "..\..\entities\bmEntity.h"
 #include "..\..\components\bmGroundedComponent.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     void bmContactListener::BeginContact(b2Contact* contact)
     {
         if (contact->GetFixtureA()->IsSensor() || contact->GetFixtureB()->IsSensor()) {

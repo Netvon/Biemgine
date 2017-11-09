@@ -3,8 +3,8 @@
 
 #include <SDL.h>
 
-namespace biemgine {
-
+namespace biemgine
+{
     bmInputManager::bmInputManager()
     {
         update();

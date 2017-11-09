@@ -11,7 +11,6 @@ namespace biemgine {
     {
     public:
         bmPhysicsSystem();
-
         ~bmPhysicsSystem();
 
         void update(const bmEntity& entity) override;

@@ -1,7 +1,7 @@
 #include "bmPhysicsComponent.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     bmTimedForce::bmTimedForce(float px, float py, float pticksLeft, bool pisImpulse) :
         force({ px, py }), ticksLeft(pticksLeft), isImpulse(pisImpulse) {}
 
@@ -19,14 +19,9 @@ namespace biemgine {
     }
 
     bmPhysicsComponent::bmPhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass)
-        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), mass(mass)
-    {
+        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), mass(mass) {}
 
-    };
-
-    bmPhysicsComponent::~bmPhysicsComponent()
-    {
-    }
+    bmPhysicsComponent::~bmPhysicsComponent() {}
 
     const float & bmPhysicsComponent::getColliderW() const {
         return colliderSize.x;

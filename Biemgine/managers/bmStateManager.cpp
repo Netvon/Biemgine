@@ -2,12 +2,9 @@
 #include "bmStateManager.h"
 #include "bmSceneManager.h"
 
-namespace biemgine {
-
-    bmStateManager::~bmStateManager()
-    {
-
-    }
+namespace biemgine
+{
+    bmStateManager::~bmStateManager() {}
 
     void bmStateManager::gameOverTransition()
     {
@@ -37,7 +34,6 @@ namespace biemgine {
     void bmStateManager::pauseGame()
     {
         paused = true;
-
     }
 
     void bmStateManager::resumeGame()
@@ -63,11 +59,10 @@ namespace biemgine {
         }
     }
 
-    void bmStateManager::drawBackground() {
-
+    void bmStateManager::drawBackground()
+    {
         auto gd = window->getGraphicsDevice();
 
         gd->drawTexture("textures/space.png", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
-
     }
 }

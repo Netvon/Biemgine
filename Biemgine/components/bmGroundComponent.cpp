@@ -1,6 +1,7 @@
 #include "bmGroundComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmGroundComponent::bmGroundComponent() {}
     bmGroundComponent::~bmGroundComponent() {}
 }

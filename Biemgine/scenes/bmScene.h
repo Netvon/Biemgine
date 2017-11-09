@@ -10,13 +10,12 @@
 
 class bmResourceManager;
 
-namespace biemgine {
-
+namespace biemgine
+{
     class BIEMGINE bmScene :
         public bmLoop
     {
     public:
-
         bmScene(bmStateManager& manager);
 
         virtual ~bmScene();
@@ -66,4 +65,3 @@ namespace biemgine {
         system->setTransitionManager(stateManager);
     }
 }
-

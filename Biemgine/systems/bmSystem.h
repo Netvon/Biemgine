@@ -4,7 +4,8 @@
 #include "..\entities\bmEntity.h"
 #include "..\managers\bmStateManager.h"
 
-namespace biemgine {
+namespace biemgine
+{
     class BIEMGINE bmSystem
     {
     public:

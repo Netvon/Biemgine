@@ -7,13 +7,12 @@
 
 using std::string;
 
-namespace biemgine {
-
+namespace biemgine
+{
     class SDLGraphicsDevice :
         public GraphicsDevice
     {
     public:
-
         SDLGraphicsDevice(SDL_Window* window);
         ~SDLGraphicsDevice();
 
@@ -24,7 +23,6 @@ namespace biemgine {
         void present() override;
 
     private:
-
         SDL_Renderer* renderer = nullptr;
         TTF_Font* font = nullptr;
 
@@ -32,6 +30,5 @@ namespace biemgine {
         std::map<std::string, TextureAndUsage> textTextures;
 
         SDL_Texture* getTexture(std::string path);
-
     };
 }

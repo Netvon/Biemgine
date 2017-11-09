@@ -3,8 +3,8 @@
 #include <cmath>
 #include <glm\glm.hpp>
 
-namespace biemgine {
-
+namespace biemgine
+{
     bmVector& bmVector::operator+=(const bmVector & other)
     {
         x += other.x; y += other.y; z += other.z;

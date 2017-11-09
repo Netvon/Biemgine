@@ -4,8 +4,8 @@
 #include "..\components\bmComponent.h"
 #include "bmEntity.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     bmEntity::bmEntity()
     {
         std::mt19937 rng;

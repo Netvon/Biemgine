@@ -3,8 +3,8 @@
 #include "dlldef.h"
 #include "..\managers\bmSceneManager.h"
 
-namespace biemgine {
-
+namespace biemgine
+{
     class BIEMGINE bmEngine
     {
     public:

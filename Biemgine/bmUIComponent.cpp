@@ -1,6 +1,7 @@
 #include "components\bmUIComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmUIComponent::bmUIComponent() {}
     bmUIComponent::~bmUIComponent() {}
 

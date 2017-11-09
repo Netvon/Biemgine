@@ -2,7 +2,8 @@
 
 #include "dlldef.h"
 
-namespace biemgine {
+namespace biemgine
+{
     class BIEMGINE bmInputManager
     {
     public:

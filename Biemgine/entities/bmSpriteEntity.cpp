@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "bmSpriteEntity.h"
 
-namespace biemgine {
-    bmSpriteEntity::~bmSpriteEntity() { }
+namespace biemgine
+{
+    bmSpriteEntity::~bmSpriteEntity() {}
 
     bmSpriteEntity::bmSpriteEntity(std::string texture, float x, float y, bmColor color, float w, float h)
     {

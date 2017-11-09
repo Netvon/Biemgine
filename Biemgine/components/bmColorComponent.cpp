@@ -1,6 +1,7 @@
 #include "bmColorComponent.h"
 
-namespace biemgine {
+namespace biemgine
+{
     bmColorComponent::bmColorComponent(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
         : color({ r, g, b, a }) { }
     bmColorComponent::bmColorComponent(bmColor bmColor)

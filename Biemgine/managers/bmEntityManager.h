@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-namespace biemgine {
-
+namespace biemgine
+{
     class BIEMGINE bmEntityManager
     {
     public:
@@ -23,6 +23,5 @@ namespace biemgine {
 
     private:
         std::vector<bmEntity*> entities;
-
     };
 }

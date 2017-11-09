@@ -9,8 +9,10 @@
 using std::string;
 using std::list;
 
-namespace biemgine {
-    struct DrawTexture {
+namespace biemgine
+{
+    struct DrawTexture
+    {
         string path;
         int x, y, w, h;
         bmColor color;
@@ -24,7 +26,6 @@ namespace biemgine {
         : public bmSystem
     {
     public:
-
         ~bmRenderSystem();;
 
         void setGraphicsDevice(GraphicsDevice* graphicsDevice);

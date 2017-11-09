@@ -7,9 +7,10 @@
 #include "..\primitives\bmPrimitives.h"
 #include "bmEntity.h"
 
-namespace biemgine {
-
-    class BIEMGINE bmSpriteEntity : public bmEntity
+namespace biemgine
+{
+    class BIEMGINE bmSpriteEntity :
+        public bmEntity
     {
     public:
         ~bmSpriteEntity();
