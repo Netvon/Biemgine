@@ -32,6 +32,52 @@ namespace spacebiem
     {
         ofstream myfile;
         myfile.open("highscores.csv", ios_base::app);
-        myfile << name << "," << score << ";\n";
+        myfile << name << "," << score << "\n";
+    }
+
+
+    map<string, int> FileHandler::atmosphereContent()
+    {
+        map<string, int> atmosphereM;
+        ifstream file("planet_atmosphere_modifier.csv");
+        string planet;
+
+        while (getline(file, planet, ',') && planet != "\n") {
+            string modifier;
+            getline(file, modifier);
+            atmosphereM[planet] = stoi(modifier);
+        }
+
+        return atmosphereM;
+    }
+
+    map<string, int> FileHandler::planetScoreContent()
+    {
+        map<string, int> scoreM;
+        ifstream file("score_per_planettype.csv");
+        string planet;
+
+        while (getline(file, planet, ',') && planet != "\n") {
+            string score;
+            getline(file, score);
+            scoreM[planet] = stoi(score);
+        }
+
+        return scoreM;
+    }
+
+    map<string, int> FileHandler::resourceScoreContent()
+    {
+        map<string, int> scoreM;
+        ifstream file("score_per_resourcetype.csv");
+        string resource;
+
+        while (getline(file, resource, ',') && resource != "\n") {
+            string score;
+            getline(file, score);
+            scoreM[resource] = stoi(score);
+        }
+
+        return scoreM;
     }
 }

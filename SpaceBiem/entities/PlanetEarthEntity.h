@@ -11,6 +11,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        PlanetEarthEntity(float x, float y, Color color, float w, float h);
+        PlanetEarthEntity(float x, float y, Color color, float w, float h, float atmosphere);
     };
 }

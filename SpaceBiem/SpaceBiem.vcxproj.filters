@@ -84,6 +84,7 @@
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="factories\PlanetFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -146,5 +147,6 @@
     <ClCompile Include="entities\SurfaceEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="factories\PlanetFactory.cpp" />
   </ItemGroup>
 </Project>

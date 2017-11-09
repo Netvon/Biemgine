@@ -13,7 +13,7 @@ using biemgine::PhysicsComponentShape;
 
 namespace spacebiem
 {
-    PlanetEarthEntity::PlanetEarthEntity(float x, float y, Color color, float w, float h)
+    PlanetEarthEntity::PlanetEarthEntity(float x, float y, Color color, float w, float h, float atmosphere = 1)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("texture", new TextureComponent("textures/earth-plain.png", 0.f, 0.f, w, h, 2u));
@@ -23,7 +23,7 @@ namespace spacebiem
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f));
         addComponent("physics", new PhysicsComponent(w, h, true, PhysicsComponentShape::CIRCLE));
         addComponent("color", new ColorComponent(color));
-        addComponent("atmosphere", new AtmosphereComponent(x + (w / 2), y + (h / 2), w));
+        addComponent("atmosphere", new AtmosphereComponent(x + (w / 2), y + (h / 2), w, atmosphere));
         addComponent("ground", new GroundComponent);
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
     }

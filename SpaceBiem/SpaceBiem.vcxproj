@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="factories\PlanetFactory.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="components\AtmosphereComponent.h" />
     <ClInclude Include="components\GravityComponent.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="factories\PlanetFactory.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="components\AtmosphereComponent.cpp" />
     <ClCompile Include="components\GravityComponent.cpp" />

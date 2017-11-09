@@ -1,0 +1,5 @@
+planet_name,atmosphere_modifier
+moon,-1
+earth,1
+sand,0.5
+toxic,-0.5
