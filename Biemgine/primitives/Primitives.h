@@ -3,9 +3,17 @@
 
 namespace biemgine
 {
+    struct Vector;
+
     struct BIEMGINE Color
     {
         unsigned char r, g, b, a;
+    };
+
+    struct BIEMGINE Point {
+        int x = 0, y = 0, z = 1;
+
+        operator Vector();
     };
 
     struct BIEMGINE Vector
@@ -28,6 +36,8 @@ namespace biemgine
         float length();
 
         float distance(const Vector&b);
+
+        operator Point();
     };
 
     struct BIEMGINE Matrix33

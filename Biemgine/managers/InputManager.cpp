@@ -21,27 +21,27 @@ namespace biemgine
         return keyStates[SDL_GetScancodeFromName(key)];
     }
 
-    bmVector bmInputManager::getMouseLocation() const
+    Point InputManager::getMouseLocation() const
     {
         int x = 0, y = 0;
 
         SDL_GetMouseState(&x, &y);
 
-        return { static_cast<float>(x), static_cast<float>(y) };
+        return { x, y };
     }
 
-    bool bmInputManager::isLeftMouseDown() const
+    bool InputManager::isLeftMouseDown() const
     {
-        return SDL_BUTTON(SDL_BUTTON_LEFT);
+        return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) == 1;
     }
 
-    bool bmInputManager::isRightMouseDown() const
+    bool InputManager::isRightMouseDown() const
     {
-        return SDL_BUTTON(SDL_BUTTON_RIGHT);
+        return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)) == 1;
     }
 
-    bool bmInputManager::isMiddleMouseDown() const
+    bool InputManager::isMiddleMouseDown() const
     {
-        return SDL_BUTTON(SDL_BUTTON_MIDDLE);
+        return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_MIDDLE)) == 1;
     }
 }

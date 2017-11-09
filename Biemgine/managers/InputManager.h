@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dlldef.h"
-#include "..\primitives\bmPrimitives.h"
+#include "..\primitives\Primitives.h"
 
 namespace biemgine
 {
@@ -12,7 +12,7 @@ namespace biemgine
 
         void update();
         bool isKeyDown(const char* key) const;
-        bmVector getMouseLocation() const;
+        Point getMouseLocation() const;
         bool isLeftMouseDown() const;
         bool isRightMouseDown() const;
         bool isMiddleMouseDown() const;
