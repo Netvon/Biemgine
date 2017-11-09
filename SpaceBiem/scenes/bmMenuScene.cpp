@@ -5,6 +5,8 @@
 #include "bmLevelScene.h"
 #include "..\systems\bmScoreUISystem.h"
 
+using biemgine::bmSpriteEntity;
+
 namespace spacebiem
 {
     void bmMenuScene::created()
@@ -17,9 +19,7 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-
         addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
-
 
         bmScoreUIFactory sf;
         for (auto e : sf.sceneStart(wW, wH)) {

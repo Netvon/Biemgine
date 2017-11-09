@@ -2,6 +2,8 @@
 #include "bmScoreUISystem.h"
 
 using biemgine::bmTextComponent;
+using biemgine::bmPositionComponent;
+using biemgine::bmUIComponent;
 
 namespace spacebiem
 {
