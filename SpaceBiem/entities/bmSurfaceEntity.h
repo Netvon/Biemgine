@@ -5,15 +5,17 @@
 
 using namespace biemgine;
 
-class bmSurfaceEntity :
-    public bmEntity
+namespace spacebiem
 {
-public:
-    bmSurfaceEntity(float x, float y, bmColor color, float w, float h)
+    class bmSurfaceEntity :
+        public bmEntity
     {
-        addComponent("position", new bmPositionComponent(x, y));
-        addComponent("rectangle", new bmRectangleComponent(w, h, color));
-        addComponent("physics", new bmPhysicsComponent(w, h, true, RECTANGLE));
-    }
-};
-
+    public:
+        bmSurfaceEntity(float x, float y, bmColor color, float w, float h)
+        {
+            addComponent("position", new bmPositionComponent(x, y));
+            addComponent("rectangle", new bmRectangleComponent(w, h, color));
+            addComponent("physics", new bmPhysicsComponent(w, h, true, RECTANGLE));
+        }
+    };
+}

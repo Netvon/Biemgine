@@ -5,29 +5,31 @@
 
 using namespace biemgine;
 
-class bmAtmosphereComponent :
-    public bmComponent
+namespace spacebiem
 {
-public:
-    bmAtmosphereComponent(float offsetX, float offsetY, float r) :
-        offsetX(offsetX),
-        offsetY(offsetY),
-        r(r)
-    { };
+    class bmAtmosphereComponent :
+        public bmComponent
+    {
+    public:
+        bmAtmosphereComponent(float offsetX, float offsetY, float r) :
+            offsetX(offsetX),
+            offsetY(offsetY),
+            r(r)
+        { };
 
-    float getX() const {
-        return offsetX;
-    }
+        float getX() const {
+            return offsetX;
+        }
 
-    float getY() const {
-        return offsetY;
-    }
+        float getY() const {
+            return offsetY;
+        }
 
-    float getRadius() const {
-        return r;
-    }
+        float getRadius() const {
+            return r;
+        }
 
-private:
-    float offsetX, offsetY, r;
-};
-
+    private:
+        float offsetX, offsetY, r;
+    };
+}

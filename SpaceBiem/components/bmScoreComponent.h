@@ -6,35 +6,38 @@
 using namespace std;
 using namespace biemgine;
 
-class bmScoreComponent :
-    public bmComponent
+namespace spacebiem
 {
-public:
-    bmScoreComponent(float pScore = 0, string pName= "Score") : score(pScore), name(pName) {};
-    ~bmScoreComponent() {};
-
-    bmScoreComponent* setScore(const float pScore)
+    class bmScoreComponent :
+        public bmComponent
     {
-        score = pScore;
-        return this;
-    }
+    public:
+        bmScoreComponent(float pScore = 0, string pName = "Score") : score(pScore), name(pName) {};
+        ~bmScoreComponent() {};
 
-    bmScoreComponent* addScore(const float pScore)
-    {
-        score += pScore;
-        return this;
-    }
+        bmScoreComponent* setScore(const float pScore)
+        {
+            score = pScore;
+            return this;
+        }
 
-    float getScore() const
-    {
-        return score;
-    }
-    string getName() const
-    {
-        return name;
-    }
+        bmScoreComponent* addScore(const float pScore)
+        {
+            score += pScore;
+            return this;
+        }
 
-private:
-    float score;
-    string name;
-};
+        float getScore() const
+        {
+            return score;
+        }
+        string getName() const
+        {
+            return name;
+        }
+
+    private:
+        float score;
+        string name;
+    };
+}

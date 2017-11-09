@@ -17,81 +17,82 @@
 #include "..\systems\bmScoreUISystem.h"
 #include "..\systems\bmScoreSystem.h"
 
-void bmLevelScene::created()
+namespace spacebiem
 {
-    enableRendering();
-    enablePhysics();
+    void bmLevelScene::created()
+    {
+        enableRendering();
+        enablePhysics();
 
-    addSystem<bmGravitySystem>();
-    addSystem<bmMovementSystem>();
-    addSystem<bmJumpSystem>();
-    addSystem<bmOxygenSystem>();
-    addSystem<bmOxygenUISystem>();
-    addSystem<bmScoreSystem>();
-    addSystem<bmScoreUISystem>();
+        addSystem<bmGravitySystem>();
+        addSystem<bmMovementSystem>();
+        addSystem<bmJumpSystem>();
+        addSystem<bmOxygenSystem>();
+        addSystem<bmOxygenUISystem>();
+        addSystem<bmScoreSystem>();
+        addSystem<bmScoreUISystem>();
 
-    float width = 15 * 2;
-    float height = 25 * 2;
+        float width = 15 * 2;
+        float height = 25 * 2;
 
-    addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
+        addEntity(new bmPlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
-    int wW = getTransitionManager().getWindowWidth();
-    int wH = getTransitionManager().getWindowHeight();
-    int xMarge = 60;
-    float p_size = (wW / 4) - (xMarge / 2);
-    int yMarge = (wH - (p_size * 2)) / 2;
+        int wW = getTransitionManager().getWindowWidth();
+        int wH = getTransitionManager().getWindowHeight();
+        int xMarge = 60;
+        float p_size = (wW / 4) - (xMarge / 2);
+        int yMarge = (wH - (p_size * 2)) / 2;
 
-    addEntity(new bmOxygenUIEntity());
-    addEntity(new bmScoreUIEntity());
+        addEntity(new bmOxygenUIEntity());
+        addEntity(new bmScoreUIEntity());
 
-    addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
-    addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+        addEntity(new bmPlanetEarthEntity(xMarge + (p_size / 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
+        addEntity(new bmPlanetMoonEntity(xMarge + (p_size / 2) + (p_size * 2), yMarge + (p_size / 2), { 255, 255, 255, 255 }, p_size, p_size));
 
-}
-
-void bmLevelScene::sceneEnd() {
-
-    bmScoreUIFactory sf;
-    sf.sceneEnd(getEntities());
-
-}
-
-
-void bmLevelScene::input()
-{
-    if (im.isKeyDown("Q")) {
-        signalQuit();
     }
 
-    if (im.isKeyDown("Escape")) {
-        getTransitionManager().navigateTo<bmMenuScene>();
+    void bmLevelScene::sceneEnd() {
+
+        bmScoreUIFactory sf;
+        sf.sceneEnd(getEntities());
     }
 
-    if (im.isKeyDown("P")) {
-        if (!isPauseButtonDown) {
+    void bmLevelScene::input()
+    {
+        if (im.isKeyDown("Q")) {
+            signalQuit();
+        }
 
-            if (getTransitionManager().isPaused()) getTransitionManager().resumeGame();
-            else getTransitionManager().pauseGame();
-            
-            isPauseButtonDown = true;
+        if (im.isKeyDown("Escape")) {
+            getTransitionManager().navigateTo<bmMenuScene>();
+        }
+
+        if (im.isKeyDown("P")) {
+            if (!isPauseButtonDown) {
+
+                if (getTransitionManager().isPaused()) getTransitionManager().resumeGame();
+                else getTransitionManager().pauseGame();
+
+                isPauseButtonDown = true;
+            }
+        }
+        else {
+            isPauseButtonDown = false;
+        }
+
+    }
+
+    void bmLevelScene::update()
+    {
+        if (!getTransitionManager().isPaused()) {
+            updateEntities();
         }
     }
-    else {
-        isPauseButtonDown = false;
-    }
-    
-}
 
-void bmLevelScene::update()
-{
-    if (!getTransitionManager().isPaused()) {
-        updateEntities();
+    void bmLevelScene::render(const float deltaTime)
+    {
+        getTransitionManager().drawBackground();
+        updateEntities(deltaTime);
+        getTransitionManager().drawOverlay();
     }
-}
-
-void bmLevelScene::render(const float deltaTime)
-{
-    getTransitionManager().drawBackground();
-    updateEntities(deltaTime);
-    getTransitionManager().drawOverlay();
 }

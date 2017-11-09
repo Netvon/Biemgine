@@ -3,22 +3,24 @@
 #include "Biemgine.h"
 using namespace biemgine;
 
-class bmLevelScene :
-    public bmScene
+namespace spacebiem
 {
-public:
-    void input() override;
-    void update() override;
-    void render(const float deltaTime) override;
-    void created() override;
-    void sceneEnd() override;
+    class bmLevelScene :
+        public bmScene
+    {
+    public:
+        void input() override;
+        void update() override;
+        void render(const float deltaTime) override;
+        void created() override;
+        void sceneEnd() override;
 
-    bmLevelScene(bmStateManager& manager)
-        : bmScene(manager) {};
+        bmLevelScene(bmStateManager& manager)
+            : bmScene(manager) {};
 
-    ~bmLevelScene() {}
+        ~bmLevelScene() {}
 
-private:
-    bool isPauseButtonDown = false;
-};
-
+    private:
+        bool isPauseButtonDown = false;
+    };
+}

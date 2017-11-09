@@ -8,13 +8,15 @@
 
 using namespace biemgine;
 
-class bmScoreUIFactory :
-    public bmEntityFactory
+namespace spacebiem
 {
-public:
+    class bmScoreUIFactory :
+        public bmEntityFactory
+    {
+    public:
 
-    ~bmScoreUIFactory() { };
-    vector<bmEntity*> sceneStart(int windowW, int windowH) override;
-    void sceneEnd(std::vector<bmEntity*> entities) override;
-};
-
+        ~bmScoreUIFactory() { };
+        vector<bmEntity*> sceneStart(int windowW, int windowH) override;
+        void sceneEnd(std::vector<bmEntity*> entities) override;
+    };
+}
