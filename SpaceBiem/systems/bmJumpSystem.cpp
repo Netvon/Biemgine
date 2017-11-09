@@ -1,36 +1,39 @@
 #include "stdafx.h"
 #include "bmJumpSystem.h"
 
-void bmJumpSystem::update(const bmEntity & entity)
+namespace spacebiem
 {
-    if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
-        return;
-
-    if (entity.hasComponent("affectedByGravity")
-        && entity.hasComponent("grounded")
-        && entity.hasComponent("physics"))
+    void bmJumpSystem::update(const bmEntity & entity)
     {
-        auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
-        auto affected = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
-
-        if (!grounded->isGrounded() || !affected->getIsAffected())
+        if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
             return;
 
-        auto position = entity.getComponent<bmPositionComponent*>("position");
-        auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
+        if (entity.hasComponent("affectedByGravity")
+            && entity.hasComponent("grounded")
+            && entity.hasComponent("physics"))
+        {
+            auto grounded = entity.getComponent<bmGroundedComponent*>("grounded");
+            auto affected = entity.getComponent<bmAffectedByGravityComponent*>("affectedByGravity");
 
-        bmVector centerOfSatellite = {
-            position->getX() + physics->getColliderW() / 2.0f,
-            position->getY() + physics->getColliderH() / 2.0f
-        };
+            if (!grounded->isGrounded() || !affected->getIsAffected())
+                return;
 
-        bmVector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+            auto position = entity.getComponent<bmPositionComponent*>("position");
+            auto physics = entity.getComponent<bmPhysicsComponent*>("physics");
 
-        bmVector diff = centerOfGravity - centerOfSatellite;
+            bmVector centerOfSatellite = {
+                position->getX() + physics->getColliderW() / 2.0f,
+                position->getY() + physics->getColliderH() / 2.0f
+            };
 
-        diff *= -1;
-        diff = diff.normalize() * 90000.f * 1500.f;
-        
-        physics->addTimedForce("jump", diff.x, diff.y, 100, true);
+            bmVector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+
+            bmVector diff = centerOfGravity - centerOfSatellite;
+
+            diff *= -1;
+            diff = diff.normalize() * 90000.f * 1500.f;
+
+            physics->addTimedForce("jump", diff.x, diff.y, 100, true);
+        }
     }
 }

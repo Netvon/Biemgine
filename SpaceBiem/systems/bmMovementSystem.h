@@ -3,10 +3,13 @@
 #include "Biemgine.h"
 using namespace biemgine;
 
-class bmMovementSystem :
-    public bmSystem
+namespace spacebiem
 {
-public:
-    void update(const bmEntity& entity) override;
-    void onSceneSwitch() override { };
-};
+    class bmMovementSystem :
+        public bmSystem
+    {
+    public:
+        void update(const bmEntity& entity) override;
+        void onSceneSwitch() override { };
+    };
+}

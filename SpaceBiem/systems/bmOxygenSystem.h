@@ -6,22 +6,24 @@ using namespace biemgine;
 #include "..\components\bmAtmosphereComponent.h"
 #include "..\components\bmOxygenComponent.h"
 
-class bmOxygenSystem : public bmSystem
+namespace spacebiem
 {
-public:
+    class bmOxygenSystem : public bmSystem
+    {
+    public:
 
-    bmOxygenSystem() {};
-    ~bmOxygenSystem() {};
+        bmOxygenSystem() {};
+        ~bmOxygenSystem() {};
 
-    void before() override;
-    void update(const bmEntity& entity) override;
-    void after() override;
+        void before() override;
+        void update(const bmEntity& entity) override;
+        void after() override;
 
-    void onSceneSwitch() override;
+        void onSceneSwitch() override;
 
 
-private:
-    vector<bmAtmosphereComponent*> atmospheres;
+    private:
+        vector<bmAtmosphereComponent*> atmospheres;
 
-};
-
+    };
+}

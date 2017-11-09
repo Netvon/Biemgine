@@ -6,25 +6,27 @@
 using namespace biemgine;
 using std::map;
 
-class bmOxygenUISystem : public bmSystem
+namespace spacebiem
 {
-public:
+    class bmOxygenUISystem : public bmSystem
+    {
+    public:
 
-    bmOxygenUISystem() {};
-    ~bmOxygenUISystem() {};
+        bmOxygenUISystem() {};
+        ~bmOxygenUISystem() {};
 
-    void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
+        void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
 
-    void before(const float deltaTime) override;
-    void update(const bmEntity& entity, const float deltaTime) override;
-    void after(const float deltaTime) override;
+        void before(const float deltaTime) override;
+        void update(const bmEntity& entity, const float deltaTime) override;
+        void after(const float deltaTime) override;
 
-    void onSceneSwitch() override;
+        void onSceneSwitch() override;
 
-private:
-    GraphicsDevice* graphicsDevice = nullptr;
+    private:
+        GraphicsDevice* graphicsDevice = nullptr;
 
-    map<bmOxygenComponent*, bool> oxygenMap;
+        map<bmOxygenComponent*, bool> oxygenMap;
 
-};
-
+    };
+}

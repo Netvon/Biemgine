@@ -4,11 +4,13 @@
 
 using namespace biemgine;
 
-class bmJumpSystem :
-    public bmSystem
+namespace spacebiem
 {
-public:
-    void update(const bmEntity& entity) override;
-    void onSceneSwitch() override { };
-};
-
+    class bmJumpSystem :
+        public bmSystem
+    {
+    public:
+        void update(const bmEntity& entity) override;
+        void onSceneSwitch() override { };
+    };
+}
