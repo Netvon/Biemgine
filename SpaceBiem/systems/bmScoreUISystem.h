@@ -12,7 +12,6 @@ namespace spacebiem
     class bmScoreUISystem : public bmSystem
     {
     public:
-
         bmScoreUISystem() {};
         ~bmScoreUISystem() {};
 
@@ -28,6 +27,5 @@ namespace spacebiem
         GraphicsDevice* graphicsDevice = nullptr;
 
         std::map<bmScoreComponent*, bool> scoreMap;
-
     };
 }

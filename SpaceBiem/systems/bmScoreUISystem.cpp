@@ -12,9 +12,7 @@ namespace spacebiem
         this->graphicsDevice = graphicsDevice;
     }
 
-    void bmScoreUISystem::before(const float deltaTime)
-    {
-    }
+    void bmScoreUISystem::before(const float deltaTime) {}
 
     void bmScoreUISystem::update(const bmEntity & entity, const float deltaTime)
     {
@@ -36,6 +34,7 @@ namespace spacebiem
 
         // If the UI doesn't have the component which to draw, pick one from the map.
         bmScoreComponent* oRef = uc->getComponentReference<bmScoreComponent*>();
+
         if (oRef == nullptr) {
             for (auto x : scoreMap)
             {
@@ -45,6 +44,7 @@ namespace spacebiem
                     break;
                 }
             }
+
             if (oRef != nullptr) scoreMap[oRef] = true;
             else oRef = oc;
         }
@@ -53,10 +53,7 @@ namespace spacebiem
         tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()));
     }
 
-    void bmScoreUISystem::after(const float deltaTime)
-    {
-
-    }
+    void bmScoreUISystem::after(const float deltaTime) {}
 
     void bmScoreUISystem::onSceneSwitch()
     {
