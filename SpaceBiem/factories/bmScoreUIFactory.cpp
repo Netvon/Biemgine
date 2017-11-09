@@ -7,44 +7,47 @@
 #include "..\entities\bmScoreUIEntity.h"
 #include "..\components\bmScoreComponent.h"
 
-vector<bmEntity*> bmScoreUIFactory::sceneStart(int windowW, int windowH)
+namespace spacebiem
 {
-    vector<bmEntity*> entities;
+    vector<bmEntity*> bmScoreUIFactory::sceneStart(int windowW, int windowH)
+    {
+        vector<bmEntity*> entities;
 
-    int w = 50;
-    int x = windowW / 2 - w;
-    int y = 200;
-    int dY = 30;
+        int w = 50;
+        int x = windowW / 2 - w;
+        int y = 200;
+        int dY = 30;
 
-    bmFileHandler fh;
+        bmFileHandler fh;
 
-    for (auto const& score : fh.scoresContent()) {
-        if (y + (dY * 4) > windowH) break;
-        entities.push_back(new bmScoreUIEntity(x, y, score.second, score.first));
-        y += dY;
+        for (auto const& score : fh.scoresContent()) {
+            if (y + (dY * 4) > windowH) break;
+            entities.push_back(new bmScoreUIEntity(x, y, score.second, score.first));
+            y += dY;
+        }
+
+        return entities;
     }
 
-	return entities;
-}
+    void bmScoreUIFactory::sceneEnd(std::vector<bmEntity*> entities)
+    {
+        bmFileHandler fh;
 
-void bmScoreUIFactory::sceneEnd(std::vector<bmEntity*> entities)
-{
-    bmFileHandler fh;
+        TCHAR user[UNLEN + 1];
+        DWORD size = UNLEN + 1;
+        string name = "Mr. NoName";
 
-    TCHAR user[UNLEN + 1];
-    DWORD size = UNLEN + 1;
-    string name = "Mr. NoName";
+        if (GetUserName((TCHAR*)user, &size)) {
+            wstring test(&user[0]);
+            string stringName(test.begin(), test.end());
+            name = stringName;
+        }
 
-    if (GetUserName((TCHAR*)user, &size)) {
-        wstring test(&user[0]);
-        string stringName(test.begin(), test.end());
-        name = stringName;
-    }
-
-    for (bmEntity* e : entities) {
-        if (e->hasComponent("score") && !e->hasComponent("ui")) {
-            auto sc = e->getComponent<bmScoreComponent*>("score");
-            fh.writeScore(name, sc->getScore());
+        for (bmEntity* e : entities) {
+            if (e->hasComponent("score") && !e->hasComponent("ui")) {
+                auto sc = e->getComponent<bmScoreComponent*>("score");
+                fh.writeScore(name, sc->getScore());
+            }
         }
     }
 }

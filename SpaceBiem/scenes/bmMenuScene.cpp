@@ -5,46 +5,46 @@
 #include "bmLevelScene.h"
 #include "..\systems\bmScoreUISystem.h"
 
-void bmMenuScene::created()
+namespace spacebiem
 {
-    enableRendering();
-    addSystem<bmScoreUISystem>();
+    void bmMenuScene::created()
+    {
+        enableRendering();
+        addSystem<bmScoreUISystem>();
 
-    int wW = getTransitionManager().getWindowWidth();
-    int wH = getTransitionManager().getWindowHeight();
-    int w = 50;
-    int x = wW / 2 - w;
-
-
-    addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
-
-
-    bmScoreUIFactory sf;
-    for(auto e : sf.sceneStart(wW, wH)) {
-        addEntity(e);
-    }
-    
-}
+        int wW = getTransitionManager().getWindowWidth();
+        int wH = getTransitionManager().getWindowHeight();
+        int w = 50;
+        int x = wW / 2 - w;
 
 
-void bmMenuScene::input()
-{
-    if (im.isKeyDown("Q")) {
-        signalQuit();
+        addEntity(new bmSpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
+
+
+        bmScoreUIFactory sf;
+        for (auto e : sf.sceneStart(wW, wH)) {
+            addEntity(e);
+        }
     }
 
-    if (im.isKeyDown("Return")) {
-        getTransitionManager().navigateTo<bmLevelScene>();
+    void bmMenuScene::input()
+    {
+        if (im.isKeyDown("Q")) {
+            signalQuit();
+        }
+
+        if (im.isKeyDown("Return")) {
+            getTransitionManager().navigateTo<bmLevelScene>();
+        }
     }
-}
 
-void bmMenuScene::update()
-{
-    updateEntities();
-}
+    void bmMenuScene::update()
+    {
+        updateEntities();
+    }
 
-void bmMenuScene::render(const float deltaTime)
-{
-
-    updateEntities(deltaTime);
+    void bmMenuScene::render(const float deltaTime)
+    {
+        updateEntities(deltaTime);
+    }
 }

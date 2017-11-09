@@ -8,14 +8,12 @@
 
 using namespace std;
 
-class bmFileHandler
+namespace spacebiem
 {
-public:
-
-    vector<pair<string,int>> scoresContent();
-    void writeScore(string name, int score);
-
-protected:
-
-};
-
+    class bmFileHandler
+    {
+    public:
+        vector<pair<string, int>> scoresContent();
+        void writeScore(string name, int score);
+    };
+}
