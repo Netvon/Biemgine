@@ -3,7 +3,9 @@
 #include "Biemgine.h"
 #include "..\components\bmScoreComponent.h"
 
-using namespace biemgine;
+using biemgine::GraphicsDevice;
+using biemgine::bmSystem;
+using biemgine::bmEntity;
 
 namespace spacebiem
 {

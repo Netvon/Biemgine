@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "bmOxygenUISystem.h"
 
+using biemgine::bmColorComponent;
+using biemgine::bmUIComponent;
+using biemgine::bmPositionComponent;
+using biemgine::bmRectangleComponent;
+
 namespace spacebiem
 {
     void bmOxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)

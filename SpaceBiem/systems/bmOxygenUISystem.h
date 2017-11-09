@@ -3,7 +3,9 @@
 #include "Biemgine.h"
 #include "..\components\bmOxygenComponent.h"
 
-using namespace biemgine;
+using biemgine::bmSystem;
+using biemgine::GraphicsDevice;
+using biemgine::bmEntity;
 using std::map;
 
 namespace spacebiem

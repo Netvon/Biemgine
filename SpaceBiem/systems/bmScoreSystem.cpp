@@ -2,6 +2,8 @@
 #include "..\components\bmScoreComponent.h"
 #include "bmScoreSystem.h"
 
+using biemgine::bmLoop;
+
 namespace spacebiem
 {
     bmScoreSystem::bmScoreSystem()

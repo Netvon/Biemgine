@@ -2,6 +2,8 @@
 
 #include "bmOxygenSystem.h"
 
+using biemgine::bmPositionComponent;
+
 namespace spacebiem
 {
     void bmOxygenSystem::before()

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "bmScoreUISystem.h"
 
+using biemgine::bmTextComponent;
+
 namespace spacebiem
 {
     void bmScoreUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
