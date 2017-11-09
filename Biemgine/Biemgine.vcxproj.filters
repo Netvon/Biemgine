@@ -1,368 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="bmBase">
-      <UniqueIdentifier>{1102e1e8-c7d2-48e3-b2f7-d4cc680b373f}</UniqueIdentifier>
+    <Filter Include="managers">
+      <UniqueIdentifier>{5aefaee6-06fd-4ab8-8a7e-e4930c97e700}</UniqueIdentifier>
     </Filter>
     <Filter Include="components">
-      <UniqueIdentifier>{3175867a-483f-454d-abdc-e8a45e03af47}</UniqueIdentifier>
+      <UniqueIdentifier>{da9ef43e-a848-4ae3-8680-11e1874eb886}</UniqueIdentifier>
     </Filter>
-    <Filter Include="graphics">
-      <UniqueIdentifier>{d9fc2de9-aea6-4e0f-934a-584f2dfc380a}</UniqueIdentifier>
+    <Filter Include="core">
+      <UniqueIdentifier>{e41fe3c7-9964-490f-8257-3f574a209914}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{1afdb8ab-c8a2-4026-a187-e56966c6effb}</UniqueIdentifier>
+    <Filter Include="scenes">
+      <UniqueIdentifier>{be4d3f77-1a7b-4039-84cf-6fbeac066f07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{7eb97375-b9c6-473d-81dc-59d98b0b7ae6}</UniqueIdentifier>
+    <Filter Include="entities">
+      <UniqueIdentifier>{6baaec74-e5fa-434d-a75a-c0a4a62065bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entities">
-      <UniqueIdentifier>{5ef5a6a1-93cd-4a04-a886-cd68753a3453}</UniqueIdentifier>
+    <Filter Include="systems">
+      <UniqueIdentifier>{5a986e3f-f89a-4317-94a7-a4d28328634a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Systems">
-      <UniqueIdentifier>{037327a9-fad4-47ef-8843-dff1def666fa}</UniqueIdentifier>
+    <Filter Include="devices\graphics">
+      <UniqueIdentifier>{e6b67c65-01bb-4859-8a11-0b09e1465e2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{07aa0c24-bcf1-4fd4-9a1b-39502195bed0}</UniqueIdentifier>
+    <Filter Include="devices">
+      <UniqueIdentifier>{2ab3bc4b-fd4b-4399-9357-0d4d98f6b11c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Listeners">
-      <UniqueIdentifier>{edf99bd3-d9a7-47ed-b1f2-d2b81bb4d96f}</UniqueIdentifier>
+    <Filter Include="systems\physics">
+      <UniqueIdentifier>{10315ba0-b48b-43df-aacf-66c72d85be0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entities\PlanetEntities">
-      <UniqueIdentifier>{21d0653c-4e5a-4f94-832d-ebc3893a6ade}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EntityFactories">
-      <UniqueIdentifier>{bbd95f82-ea26-4ff0-af0c-2ae26dda3aaf}</UniqueIdentifier>
+    <Filter Include="primitives">
+      <UniqueIdentifier>{3bda5fd9-7171-490e-98a2-5e033e27898a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="managers\bmStateManager.h">
+      <Filter>managers</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmGroundComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmAffectedByGravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Window.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmRectangleComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\bmScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmSpriteEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmRenderSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="managers\bmSceneManager.h">
+      <Filter>managers</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmGroundedComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="managers\bmInputManager.h">
+      <Filter>managers</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmColorComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\PhysicsComponentShape.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\TextureFlip.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="managers\bmSystemManager.h">
+      <Filter>managers</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\TextureAndUsage.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\bmEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\GraphicsDevice.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\SDLGraphicsDevice.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmTextComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\physics\bmContactListener.h">
+      <Filter>systems\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="core\bmLoop.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmPhysicsComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmPositionComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="managers\bmEntityManager.h">
+      <Filter>managers</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\physics\bmPhysicsSystem.h">
+      <Filter>systems\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmTransformComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\bmUIComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\bmSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="core\bmEngine.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="primitives\bmPrimitives.h">
+      <Filter>primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Biemgine.h" />
+    <ClInclude Include="dlldef.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bmColor.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
-    <ClInclude Include="bmEngine.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="bmInputManager.h">
-      <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="bmLoop.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSceneManager.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmLevelScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSceneType.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmMenuScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmEntityManager.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmPlayerEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSystemManager.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmRenderSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmPositionComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>bmBase</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsDevice.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLGraphicsDevice.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="bmColorComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureFlip.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="bmTextureComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmPhysicsSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmPhysicsComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponentShape.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSurfaceEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmRectangleComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmSpriteEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmTransformComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmOxygenSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmOxygenComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmUIComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmAtmosphereComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmGravityComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmGroundedComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmContactListener.h">
-      <Filter>Listeners</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureAndUsage.h">
-      <Filter>graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureAndUsage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bmGroundComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScoreComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScoreUIEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScoreSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmTextComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScoreUISystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmOxygenUISystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmAffectedByGravityComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="bmGravitySystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmJumpSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="bmOxygenUIEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="bmStateManager.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="bmEntityFactory.h">
-      <Filter>EntityFactories</Filter>
-    </ClInclude>
-    <ClInclude Include="bmScoreUIFactory.h">
-      <Filter>EntityFactories</Filter>
-    </ClInclude>
-    <ClInclude Include="bmFileHandler.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="bmMovementSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
+      <Filter>devices\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="bmEngine.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="core\Window.cpp">
+      <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="bmInputManager.cpp">
-      <Filter>Input</Filter>
+    <ClCompile Include="managers\bmInputManager.cpp">
+      <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="bmLoop.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmSceneManager.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmLevelScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmMenuScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmEntityManager.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="bmEntity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="bmPlayerEntity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="bmSystemManager.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmComponent.cpp">
+    <ClCompile Include="components\bmGroundedComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmRenderSystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="systems\bmSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="bmPositionComponent.cpp">
+    <ClCompile Include="scenes\bmScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\physics\bmPhysicsSystem.cpp">
+      <Filter>systems\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmPositionComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="entities\bmEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>bmBase</Filter>
+    <ClCompile Include="managers\bmStateManager.cpp">
+      <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="SDLGraphicsDevice.cpp">
-      <Filter>graphics</Filter>
+    <ClCompile Include="core\bmEngine.cpp">
+      <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="bmColorComponent.cpp">
-      <Filter>components</Filter>
+    <ClCompile Include="managers\bmSceneManager.cpp">
+      <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="bmTextureComponent.cpp">
-      <Filter>components</Filter>
+    <ClCompile Include="systems\bmRenderSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="bmPhysicsSystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="systems\physics\bmContactListener.cpp">
+      <Filter>systems\physics</Filter>
     </ClCompile>
-    <ClCompile Include="bmPhysicsComponent.cpp">
-      <Filter>components</Filter>
+    <ClCompile Include="managers\bmSystemManager.cpp">
+      <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="bmOxygenSystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="core\bmLoop.cpp">
+      <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="bmOxygenComponent.cpp">
-      <Filter>components</Filter>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="managers\bmEntityManager.cpp">
+      <Filter>managers</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\bmPrimitives.cpp">
+      <Filter>primitives</Filter>
     </ClCompile>
     <ClCompile Include="bmUIComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmPlanetEarthEntity.h">
-      <Filter>Entities\PlanetEntities</Filter>
+    <ClCompile Include="entities\bmSpriteEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="bmAtmosphereComponent.cpp">
+    <ClCompile Include="components\bmAffectedByGravityComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmGravityComponent.cpp">
+    <ClCompile Include="components\bmColorComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmContactListener.cpp">
-      <Filter>Listeners</Filter>
-    </ClCompile>
-    <ClCompile Include="bmGroundedComponent.cpp">
+    <ClCompile Include="components\bmComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmGroundComponent.cpp">
+    <ClCompile Include="components\bmGroundComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmScoreComponent.cpp">
+    <ClCompile Include="components\bmPhysicsComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmScoreUIEntity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="bmScoreSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmTextComponent.cpp">
+    <ClCompile Include="components\bmRectangleComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmScoreUISystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="components\bmTextComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmOxygenUISystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="components\bmTextureComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="bmJumpSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmGravitySystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="bmPlanetMoonEntity.h">
-      <Filter>Entities\PlanetEntities</Filter>
-    </ClCompile>
-    <ClCompile Include="bmStateManager.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="bmScoreUIFactory.cpp">
-      <Filter>EntityFactories</Filter>
-    </ClCompile>
-    <ClCompile Include="bmFileHandler.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="highscores.csv">
-      <Filter>Resource Files</Filter>
-    </None>
-    <ClCompile Include="bmMovementSystem.cpp">
-      <Filter>Systems</Filter>
+    <ClCompile Include="components\bmTransformComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

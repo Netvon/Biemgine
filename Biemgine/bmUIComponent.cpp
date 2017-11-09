@@ -1,8 +1,12 @@
-#include "stdafx.h"
-#include "bmUIComponent.h"
+#include "components\bmUIComponent.h"
 
-void bmUIComponent::setComponentReference(bmComponent* component)
+namespace biemgine
 {
-    componentReference = component;
-}
+    bmUIComponent::bmUIComponent() {}
+    bmUIComponent::~bmUIComponent() {}
 
+    void bmUIComponent::setComponentReference(bmComponent * component)
+    {
+        componentReference = component;
+    }
+}

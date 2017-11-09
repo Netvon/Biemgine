@@ -9,10 +9,10 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
+
+#include <Biemgine.h>
 
 // TODO: reference additional headers your program requires here
-
 // https://docs.microsoft.com/en-us/visualstudio/debugger/finding-memory-leaks-using-the-crt-library
 #define _CRTDBG_MAP_ALLOC  
 #include <stdlib.h>  
