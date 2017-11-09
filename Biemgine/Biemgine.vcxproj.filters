@@ -136,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="dlldef.h" />
+    <ClInclude Include="systems\UISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -225,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="components\TransformComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\UISystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

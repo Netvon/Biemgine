@@ -55,9 +55,11 @@
     <ClInclude Include="systems\System.h" />
     <ClInclude Include="systems\physics\ContactListener.h" />
     <ClInclude Include="systems\physics\PhysicsSystem.h" />
+    <ClInclude Include="systems\UISystem.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="systems\UISystem.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />

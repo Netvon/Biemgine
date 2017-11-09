@@ -9,4 +9,14 @@ namespace biemgine
     {
         componentReference = component;
     }
+
+    bool UIComponent::getIsMouseDown() const
+    {
+        return isMouseDown;
+    }
+
+    bool UIComponent::getIsMouseOver() const
+    {
+        return isMouseOver;
+    }
 }

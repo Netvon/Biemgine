@@ -18,8 +18,14 @@ namespace biemgine
 
         void setComponentReference(Component* component);
 
+        bool getIsMouseDown() const;
+        bool getIsMouseOver() const;
+
     private:
         Component* componentReference = nullptr;
+
+        bool isMouseDown = false;
+        bool isMouseOver = false;
     };
 
     template<typename TComponent>
