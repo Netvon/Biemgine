@@ -18,115 +18,133 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="systems\bmOxygenSystem.h">
+    <ClInclude Include="systems\OxygenSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmPlanetMoonEntity.h">
+    <ClInclude Include="entities\PlanetMoonEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\bmLevelScene.h">
+    <ClInclude Include="scenes\LevelScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmGravityComponent.h">
+    <ClInclude Include="components\GravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmMovementSystem.h">
+    <ClInclude Include="systems\MovementSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmPlayerEntity.h">
+    <ClInclude Include="entities\PlayerEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\bmMenuScene.h">
+    <ClInclude Include="scenes\MenuScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="factories\bmEntityFactory.h">
+    <ClInclude Include="factories\EntityFactory.h">
       <Filter>factories</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmSurfaceEntity.h">
+    <ClInclude Include="entities\SurfaceEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmGravitySystem.h">
+    <ClInclude Include="systems\GravitySystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmScoreUIEntity.h">
+    <ClInclude Include="entities\ScoreUIEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmJumpSystem.h">
+    <ClInclude Include="systems\JumpSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmScoreUISystem.h">
+    <ClInclude Include="systems\ScoreUISystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmPlanetEarthEntity.h">
+    <ClInclude Include="entities\PlanetEarthEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmOxygenUIEntity.h">
+    <ClInclude Include="entities\OxygenUIEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmOxygenUISystem.h">
+    <ClInclude Include="systems\OxygenUISystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmOxygenComponent.h">
+    <ClInclude Include="components\OxygenComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmAtmosphereComponent.h">
+    <ClInclude Include="components\AtmosphereComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmScoreComponent.h">
+    <ClInclude Include="components\ScoreComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="factories\bmScoreUIFactory.h">
+    <ClInclude Include="factories\ScoreUIFactory.h">
       <Filter>factories</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmScoreSystem.h">
+    <ClInclude Include="systems\ScoreSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="bmFileHandler.h" />
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scenes\bmLevelScene.cpp">
+    <ClCompile Include="scenes\LevelScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmScoreUISystem.cpp">
+    <ClCompile Include="systems\ScoreUISystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmJumpSystem.cpp">
+    <ClCompile Include="systems\JumpSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="entities\bmScoreUIEntity.cpp">
+    <ClCompile Include="entities\ScoreUIEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmOxygenSystem.cpp">
+    <ClCompile Include="systems\OxygenSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmOxygenComponent.cpp">
+    <ClCompile Include="components\OxygenComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="factories\bmScoreUIFactory.cpp">
+    <ClCompile Include="factories\ScoreUIFactory.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmScoreSystem.cpp">
+    <ClCompile Include="systems\ScoreSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmOxygenUISystem.cpp">
+    <ClCompile Include="systems\OxygenUISystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="entities\bmPlayerEntity.cpp">
+    <ClCompile Include="entities\PlayerEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmGravitySystem.cpp">
+    <ClCompile Include="systems\GravitySystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmMovementSystem.cpp">
+    <ClCompile Include="systems\MovementSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\bmMenuScene.cpp">
+    <ClCompile Include="scenes\MenuScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="bmFileHandler.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="components\AtmosphereComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\GravityComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ScoreComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetEarthEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetMoonEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\SurfaceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

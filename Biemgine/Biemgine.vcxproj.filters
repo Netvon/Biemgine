@@ -33,40 +33,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="managers\bmStateManager.h">
+    <ClInclude Include="managers\StateManager.h">
       <Filter>managers</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmGroundComponent.h">
+    <ClInclude Include="components\GroundComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmAffectedByGravityComponent.h">
+    <ClInclude Include="components\AffectedByGravityComponent.h">
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="core\Window.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmRectangleComponent.h">
+    <ClInclude Include="components\RectangleComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\bmScene.h">
+    <ClInclude Include="scenes\Scene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmSpriteEntity.h">
+    <ClInclude Include="entities\SpriteEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmRenderSystem.h">
+    <ClInclude Include="systems\RenderSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="managers\bmSceneManager.h">
+    <ClInclude Include="managers\SceneManager.h">
       <Filter>managers</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmGroundedComponent.h">
+    <ClInclude Include="components\GroundedComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="managers\bmInputManager.h">
+    <ClInclude Include="managers\InputManager.h">
       <Filter>managers</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmColorComponent.h">
+    <ClInclude Include="components\ColorComponent.h">
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="components\PhysicsComponentShape.h">
@@ -75,19 +75,19 @@
     <ClInclude Include="devices\graphics\TextureFlip.h">
       <Filter>devices\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="managers\bmSystemManager.h">
+    <ClInclude Include="managers\SystemManager.h">
       <Filter>managers</Filter>
     </ClInclude>
     <ClInclude Include="devices\graphics\TextureAndUsage.h">
       <Filter>devices\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="entities\bmEntity.h">
+    <ClInclude Include="entities\Entity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmTextureComponent.h">
+    <ClInclude Include="components\TextureComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmComponent.h">
+    <ClInclude Include="components\Component.h">
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="devices\graphics\GraphicsDevice.h">
@@ -96,42 +96,42 @@
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h">
       <Filter>devices\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmTextComponent.h">
+    <ClInclude Include="components\TextComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\physics\bmContactListener.h">
+    <ClInclude Include="systems\physics\ContactListener.h">
       <Filter>systems\physics</Filter>
     </ClInclude>
-    <ClInclude Include="core\bmLoop.h">
+    <ClInclude Include="core\Loop.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmPhysicsComponent.h">
+    <ClInclude Include="components\PhysicsComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmPositionComponent.h">
+    <ClInclude Include="components\PositionComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="managers\bmEntityManager.h">
+    <ClInclude Include="managers\EntityManager.h">
       <Filter>managers</Filter>
     </ClInclude>
-    <ClInclude Include="systems\physics\bmPhysicsSystem.h">
+    <ClInclude Include="systems\physics\PhysicsSystem.h">
       <Filter>systems\physics</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmTransformComponent.h">
+    <ClInclude Include="components\TransformComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\bmUIComponent.h">
+    <ClInclude Include="components\UIComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\bmSystem.h">
+    <ClInclude Include="systems\System.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="core\bmEngine.h">
+    <ClInclude Include="core\Engine.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="primitives\bmPrimitives.h">
+    <ClInclude Include="primitives\Primitives.h">
       <Filter>primitives</Filter>
     </ClInclude>
     <ClInclude Include="Biemgine.h" />
@@ -144,86 +144,86 @@
     <ClCompile Include="core\Window.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="managers\bmInputManager.cpp">
+    <ClCompile Include="managers\InputManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmGroundedComponent.cpp">
+    <ClCompile Include="components\GroundedComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmSystem.cpp">
+    <ClCompile Include="systems\System.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\bmScene.cpp">
+    <ClCompile Include="scenes\Scene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="systems\physics\bmPhysicsSystem.cpp">
+    <ClCompile Include="systems\physics\PhysicsSystem.cpp">
       <Filter>systems\physics</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmPositionComponent.cpp">
+    <ClCompile Include="components\PositionComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="entities\bmEntity.cpp">
+    <ClCompile Include="entities\Entity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="managers\bmStateManager.cpp">
+    <ClCompile Include="managers\StateManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="core\bmEngine.cpp">
+    <ClCompile Include="core\Engine.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="managers\bmSceneManager.cpp">
+    <ClCompile Include="managers\SceneManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="systems\bmRenderSystem.cpp">
+    <ClCompile Include="systems\RenderSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="systems\physics\bmContactListener.cpp">
+    <ClCompile Include="systems\physics\ContactListener.cpp">
       <Filter>systems\physics</Filter>
     </ClCompile>
-    <ClCompile Include="managers\bmSystemManager.cpp">
+    <ClCompile Include="managers\SystemManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="core\bmLoop.cpp">
+    <ClCompile Include="core\Loop.cpp">
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="managers\bmEntityManager.cpp">
+    <ClCompile Include="managers\EntityManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="primitives\bmPrimitives.cpp">
+    <ClCompile Include="primitives\Primitives.cpp">
       <Filter>primitives</Filter>
     </ClCompile>
-    <ClCompile Include="bmUIComponent.cpp">
+    <ClCompile Include="UIComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="entities\bmSpriteEntity.cpp">
+    <ClCompile Include="entities\SpriteEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmAffectedByGravityComponent.cpp">
+    <ClCompile Include="components\AffectedByGravityComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmColorComponent.cpp">
+    <ClCompile Include="components\ColorComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmComponent.cpp">
+    <ClCompile Include="components\Component.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmGroundComponent.cpp">
+    <ClCompile Include="components\GroundComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmPhysicsComponent.cpp">
+    <ClCompile Include="components\PhysicsComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmRectangleComponent.cpp">
+    <ClCompile Include="components\RectangleComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmTextComponent.cpp">
+    <ClCompile Include="components\TextComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmTextureComponent.cpp">
+    <ClCompile Include="components\TextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\bmTransformComponent.cpp">
+    <ClCompile Include="components\TransformComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
