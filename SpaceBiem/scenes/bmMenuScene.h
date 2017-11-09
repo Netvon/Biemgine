@@ -2,7 +2,8 @@
 
 #include "Biemgine.h"
 
-using namespace biemgine;
+using biemgine::bmScene;
+using biemgine::bmStateManager;
 
 namespace spacebiem
 {

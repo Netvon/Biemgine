@@ -3,7 +3,7 @@
 #include "Biemgine.h"
 #include "stdafx.h"
 
-using namespace biemgine;
+using biemgine::bmComponent;
 
 namespace spacebiem
 {
@@ -12,22 +12,12 @@ namespace spacebiem
     {
     public:
         bmAtmosphereComponent(float offsetX, float offsetY, float r) :
-            offsetX(offsetX),
-            offsetY(offsetY),
-            r(r)
+            offsetX(offsetX), offsetY(offsetY), r(r)
         { };
 
-        float getX() const {
-            return offsetX;
-        }
-
-        float getY() const {
-            return offsetY;
-        }
-
-        float getRadius() const {
-            return r;
-        }
+        float getX() const;
+        float getY() const;
+        float getRadius() const;
 
     private:
         float offsetX, offsetY, r;

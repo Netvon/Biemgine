@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Biemgine.h"
-using namespace biemgine;
+
+using biemgine::bmEntity;
+using biemgine::bmColor;
 
 namespace spacebiem
 {

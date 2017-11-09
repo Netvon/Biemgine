@@ -6,7 +6,9 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::pair;
 
 namespace spacebiem
 {

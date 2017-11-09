@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Biemgine.h"
-#include "stdafx.h"
-
-using namespace biemgine;
+using biemgine::bmEntity;
+using biemgine::bmColor;
 
 namespace spacebiem
 {
@@ -11,11 +10,6 @@ namespace spacebiem
         public bmEntity
     {
     public:
-        bmSurfaceEntity(float x, float y, bmColor color, float w, float h)
-        {
-            addComponent("position", new bmPositionComponent(x, y));
-            addComponent("rectangle", new bmRectangleComponent(w, h, color));
-            addComponent("physics", new bmPhysicsComponent(w, h, true, RECTANGLE));
-        }
+        bmSurfaceEntity(float x, float y, bmColor color, float w, float h);
     };
 }

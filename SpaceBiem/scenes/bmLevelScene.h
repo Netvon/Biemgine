@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Biemgine.h"
-using namespace biemgine;
+
+using biemgine::bmScene;
+using biemgine::bmStateManager;
 
 namespace spacebiem
 {
@@ -15,8 +17,8 @@ namespace spacebiem
         void created() override;
         void sceneEnd() override;
 
-        bmLevelScene(bmStateManager& manager)
-            : bmScene(manager) {};
+        bmLevelScene(bmStateManager& manager) :
+            bmScene(manager) {};
 
         ~bmLevelScene() {}
 

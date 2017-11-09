@@ -3,8 +3,8 @@
 #include "Biemgine.h"
 #include "stdafx.h"
 
-using namespace std;
-using namespace biemgine;
+using std::string;
+using biemgine::bmComponent;
 
 namespace spacebiem
 {
@@ -12,29 +12,15 @@ namespace spacebiem
         public bmComponent
     {
     public:
-        bmScoreComponent(float pScore = 0, string pName = "Score") : score(pScore), name(pName) {};
+        bmScoreComponent(float pScore = 0, string pName = "Score") :
+            score(pScore), name(pName) {};
         ~bmScoreComponent() {};
 
-        bmScoreComponent* setScore(const float pScore)
-        {
-            score = pScore;
-            return this;
-        }
+        bmScoreComponent* setScore(const float pScore);
+        float getScore() const;
+        bmScoreComponent* addScore(const float pScore);
 
-        bmScoreComponent* addScore(const float pScore)
-        {
-            score += pScore;
-            return this;
-        }
-
-        float getScore() const
-        {
-            return score;
-        }
-        string getName() const
-        {
-            return name;
-        }
+        string getName() const;
 
     private:
         float score;

@@ -3,8 +3,11 @@
 #include "Biemgine.h"
 #include <vector>
 
-using namespace std;
-using namespace biemgine;
+using biemgine::bmSystem;
+using biemgine::bmVector;
+using biemgine::bmEntity;
+using biemgine::bmPhysicsComponent;
+using biemgine::bmAffectedByGravityComponent;
 
 namespace spacebiem
 {

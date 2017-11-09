@@ -6,7 +6,7 @@
 #include "..\bmFileHandler.h"
 #include <vector>
 
-using namespace biemgine;
+using biemgine::bmEntity;
 
 namespace spacebiem
 {
@@ -14,8 +14,6 @@ namespace spacebiem
         public bmEntityFactory
     {
     public:
-
-        ~bmScoreUIFactory() { };
         vector<bmEntity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<bmEntity*> entities) override;
     };

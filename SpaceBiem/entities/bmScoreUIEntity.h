@@ -1,8 +1,10 @@
 #pragma once
 
+#include "stdafx.h"
 #include "Biemgine.h"
 
-using namespace biemgine;
+using std::string;
+using biemgine::bmEntity;
 
 namespace spacebiem
 {
@@ -10,6 +12,6 @@ namespace spacebiem
         public bmEntity
     {
     public:
-        bmScoreUIEntity(float x = 20, float y = 30, float score = 0, string name = "Score");
+        bmScoreUIEntity(float x = 20, float y = 30, float score = 0, const string& name = "Score");
     };
 }

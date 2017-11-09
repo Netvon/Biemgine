@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "bmFileHandler.h"
 
+using std::ifstream;
+using std::ofstream;
+using std::ios_base;
+
 namespace spacebiem
 {
     bool sortbysec(const pair<string, int> &a, const pair<string, int> &b)

@@ -1,5 +1,10 @@
-#include "stdafx.h"
 #include "bmMovementSystem.h"
+
+using biemgine::bmPositionComponent;
+using biemgine::bmGroundedComponent;
+using biemgine::bmAffectedByGravityComponent;
+using biemgine::bmPhysicsComponent;
+using biemgine::bmVector;
 
 namespace spacebiem
 {

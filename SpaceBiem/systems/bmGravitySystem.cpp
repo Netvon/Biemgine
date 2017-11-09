@@ -1,7 +1,7 @@
-#include "stdafx.h"
-
 #include "../components/bmGravityComponent.h"
 #include "bmGravitySystem.h"
+
+using biemgine::bmPositionComponent;
 
 namespace spacebiem
 {

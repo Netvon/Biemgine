@@ -2,7 +2,7 @@
 
 #include "Biemgine.h"
 
-using namespace biemgine;
+using biemgine::bmComponent;
 
 namespace spacebiem
 {

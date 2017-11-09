@@ -3,13 +3,18 @@
 #include "Biemgine.h"
 #include "stdafx.h"
 
-using namespace biemgine;
+using biemgine::bmEntity;
+using biemgine::bmPositionComponent;
+using biemgine::bmColorComponent;
+using biemgine::bmUIComponent;
+using biemgine::bmRectangleComponent;
 
 #include "../components/bmOxygenComponent.h"
 
 namespace spacebiem
 {
-    class bmOxygenUIEntity : public bmEntity
+    class bmOxygenUIEntity :
+        public bmEntity
     {
     public:
         bmOxygenUIEntity()

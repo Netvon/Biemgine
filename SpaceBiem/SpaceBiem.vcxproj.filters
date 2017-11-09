@@ -128,5 +128,23 @@
     <ClCompile Include="bmFileHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="components\bmAtmosphereComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmGravityComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\bmScoreComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmPlanetEarthEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmPlanetMoonEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\bmSurfaceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
