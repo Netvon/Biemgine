@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="entities\PlanetSandEntity.h" />
+    <ClInclude Include="entities\PlanetToxicEntity.h" />
     <ClInclude Include="factories\PlanetFactory.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="components\AtmosphereComponent.h" />
@@ -177,6 +179,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="entities\PlanetSandEntity.cpp" />
+    <ClCompile Include="entities\PlanetToxicEntity.cpp" />
     <ClCompile Include="factories\PlanetFactory.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="components\AtmosphereComponent.cpp" />

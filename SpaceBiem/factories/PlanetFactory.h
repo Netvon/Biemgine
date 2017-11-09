@@ -6,9 +6,12 @@
 #include "..\FileHandler.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
+#include "..\entities\PlanetSandEntity.h"
+#include "..\entities\PlanetToxicEntity.h"
 #include <vector>
 
 using biemgine::Entity;
+using biemgine::RandomGenerator;
 
 namespace spacebiem
 {

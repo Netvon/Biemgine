@@ -10,25 +10,22 @@ namespace spacebiem
         public Component
     {
     public:
-        OxygenComponent(int pOxygenMax = 2000, int pOxigenDecrease = 1, int pOxygenIncrease = 2) :
+        OxygenComponent(int pOxygenMax = 2000, int oxygenScale = 1) :
             oxygenAmount(pOxygenMax),
             oxygenMax(pOxygenMax),
-            oxygenDecrease(pOxigenDecrease),
-            oxygenIncrease(pOxygenIncrease)
+            oxygenScale(oxygenScale)
         {};
 
-        int getOxygenAmount() const;
-        void setOxygenAmount(int pOxygen);
+        float getOxygenAmount() const;
+        void setOxygenAmount(float pOxygen);
 
         int getOxygenMax() const;
 
-        int getOxygenDecrease() const;
-        int getOxygenIncrease() const;
+        int getOxygenScale() const;
 
     private:
-        int oxygenAmount;
+        float oxygenAmount;
         int oxygenMax;
-        int oxygenDecrease;
-        int oxygenIncrease;
+        int oxygenScale;
     };
 }

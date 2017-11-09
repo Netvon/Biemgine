@@ -49,6 +49,7 @@
     <ClInclude Include="managers\StateManager.h" />
     <ClInclude Include="managers\SystemManager.h" />
     <ClInclude Include="primitives\Primitives.h" />
+    <ClInclude Include="primitives\RandomGenerator.h" />
     <ClInclude Include="scenes\Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="systems\RenderSystem.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="primitives\RandomGenerator.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />

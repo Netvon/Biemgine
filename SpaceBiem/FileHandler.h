@@ -17,7 +17,7 @@ namespace spacebiem
     public:
         vector<pair<string, int>> scoresContent();
         void writeScore(string name, int score);
-        map<string, int> atmosphereContent();
+        map<string, float> atmosphereContent();
         map<string, int> planetScoreContent();
         map<string, int> resourceScoreContent();
     };

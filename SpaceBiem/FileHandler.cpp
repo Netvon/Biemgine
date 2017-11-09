@@ -36,16 +36,16 @@ namespace spacebiem
     }
 
 
-    map<string, int> FileHandler::atmosphereContent()
+    map<string, float> FileHandler::atmosphereContent()
     {
-        map<string, int> atmosphereM;
+        map<string, float> atmosphereM;
         ifstream file("planet_atmosphere_modifier.csv");
         string planet;
 
         while (getline(file, planet, ',') && planet != "\n") {
             string modifier;
             getline(file, modifier);
-            atmosphereM[planet] = stoi(modifier);
+            atmosphereM[planet] = atof(modifier.c_str());
         }
 
         return atmosphereM;
