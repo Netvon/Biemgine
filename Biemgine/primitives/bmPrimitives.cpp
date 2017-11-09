@@ -81,12 +81,12 @@ namespace biemgine
 
         const auto rad = angle * (3.1415926535897931 / 180);
 
-        M00 = cos(rad);
-        M10 = sin(rad);
+        M00 = static_cast<float>(cos(rad));
+        M10 = static_cast<float>(sin(rad));
         M20 = 0;
 
-        M01 = -sin(rad);
-        M11 = cos(rad);
+        M01 = static_cast<float>(-sin(rad));
+        M11 = static_cast<float>(cos(rad));
         M21 = 0;
 
         M02 = 0;
