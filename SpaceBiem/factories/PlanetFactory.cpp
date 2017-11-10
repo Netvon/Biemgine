@@ -27,7 +27,7 @@ namespace spacebiem
         }
 
 
-        FileHandler fh;
+        FileParser fh;
         map<string, float> atmosphereM = fh.atmosphereContent();
         
         for (int x = 0; x < maxX; x++) {

@@ -81,7 +81,6 @@
     <ClInclude Include="systems\ScoreSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="factories\PlanetFactory.h">
@@ -93,6 +92,9 @@
     <ClInclude Include="entities\PlanetToxicEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="FileParser.h" />
+    <ClInclude Include="factories\ResourceFactory.h" />
+    <ClInclude Include="entities\ResourceEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -134,7 +136,6 @@
     <ClCompile Include="scenes\MenuScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="components\AtmosphereComponent.cpp">
@@ -164,5 +165,7 @@
     <ClCompile Include="entities\PlanetToxicEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="FileParser.cpp" />
+    <ClCompile Include="entities\ResourceEntity.cpp" />
   </ItemGroup>
 </Project>
