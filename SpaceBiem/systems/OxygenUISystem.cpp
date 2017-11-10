@@ -55,7 +55,7 @@ namespace spacebiem
         }
 
 
-        float oBar = (float)oRef->getOxygenAmount() / (float)oRef->getOxygenMax();
+        float oBar = oRef->getOxygenAmount() / static_cast<float>(oRef->getOxygenMax());
 
 
         auto rc = entity.getComponent<RectangleComponent*>("rectangle");
