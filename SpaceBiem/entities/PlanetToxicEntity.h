@@ -7,10 +7,10 @@ using biemgine::Color;
 
 namespace spacebiem
 {
-    class PlanetEarthEntity :
+    class PlanetToxicEntity :
         public Entity
     {
     public:
-        PlanetEarthEntity(float x, float y, Color color, float w, float h, float atmosphere);
+        PlanetToxicEntity(float x, float y, Color color, float w, float h, float atmosphere);
     };
 }

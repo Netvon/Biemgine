@@ -139,6 +139,7 @@
     <ClInclude Include="systems\UISystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="primitives\RandomGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -232,5 +233,6 @@
     <ClCompile Include="systems\UISystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="primitives\RandomGenerator.cpp" />
   </ItemGroup>
 </Project>

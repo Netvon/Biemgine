@@ -63,6 +63,6 @@ namespace biemgine
     {
         auto gd = window->getGraphicsDevice();
 
-        gd->drawTexture("textures/space.png", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
+        gd->drawTexture("textures/space.jpg", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
     }
 }
