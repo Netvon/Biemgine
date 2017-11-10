@@ -8,6 +8,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
+#include "ResourceFactory.h"
 #include <vector>
 
 using biemgine::Entity;
@@ -23,5 +24,7 @@ namespace spacebiem
         ~PlanetFactory() { };
         vector<Entity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<Entity*> entities) override;
+
+
     };
 }

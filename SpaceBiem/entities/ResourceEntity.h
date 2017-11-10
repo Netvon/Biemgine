@@ -11,6 +11,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        ResourceEntity(float x, float y, Color color, float w = -1, float h = -1, float mass = 1.0f);
+        ResourceEntity(float x, float y, Color color, float w = -1, float h = -1, string rName="", int scoreBonus=0);
     };
 }

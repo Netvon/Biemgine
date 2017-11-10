@@ -93,8 +93,21 @@
       <Filter>entities</Filter>
     </ClInclude>
     <ClInclude Include="FileParser.h" />
-    <ClInclude Include="factories\ResourceFactory.h" />
-    <ClInclude Include="entities\ResourceEntity.h" />
+    <ClInclude Include="entities\ResourceEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\ResourceFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ScoreBonusComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ResourceBonusComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ResourceComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -166,6 +179,18 @@
       <Filter>entities</Filter>
     </ClCompile>
     <ClCompile Include="FileParser.cpp" />
-    <ClCompile Include="entities\ResourceEntity.cpp" />
+    <ClCompile Include="entities\ResourceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ScoreBonusComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ResourceBonusComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ResourceComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp" />
   </ItemGroup>
 </Project>

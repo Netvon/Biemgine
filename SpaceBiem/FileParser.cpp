@@ -78,13 +78,12 @@ namespace spacebiem
         FileHandler file("resource_count_per_planettype.csv");
         for each (auto v in file.getValues())
         {
-            map<string, vector<float>> tMap;
-            tMap[v[1]] = vector<float>({
+            vector<float> vector({
                 static_cast<float>(atof(v[2].c_str())),
                 static_cast<float>(atof(v[3].c_str())),
                 static_cast<float>(atof(v[4].c_str()))
             });
-            resourceM[v[0]] = tMap;
+            resourceM[v[0]][v[1]] = vector;
         }
 
         return resourceM;

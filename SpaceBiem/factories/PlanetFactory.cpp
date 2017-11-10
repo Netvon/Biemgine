@@ -27,6 +27,8 @@ namespace spacebiem
         }
 
 
+        ResourceFactory rf;
+
         FileParser fh;
         map<string, float> atmosphereM = fh.atmosphereContent();
         
@@ -34,47 +36,65 @@ namespace spacebiem
 
             for (int y = 0; y < maxY; y++) {
 
+                int pX = xMarge + (p_size / 2) + (x*(p_size * 2));
+                int pY = yMarge + (p_size / 2) + (y*(p_size * 2));
 
                 switch (RandomGenerator::getInstance().generate(1, 5))
                 {
                 case 1:
                     entities.push_back(new PlanetEarthEntity(
-                        xMarge + (p_size / 2) + (x*(p_size * 2)),
-                        yMarge + (p_size / 2) + (y*(p_size * 2)),
+                        pX,
+                        pY,
                         { 255, 255, 255, 255 },
                         p_size,
                         p_size,
                         atmosphereM["earth"]
                     ));
+                    for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "earth"))
+                    {
+                        entities.push_back(r);
+                    }
                     break;
                 case 2:
                     entities.push_back(new PlanetSandEntity(
-                        xMarge + (p_size / 2) + (x*(p_size * 2)),
-                        yMarge + (p_size / 2) + (y*(p_size * 2)),
+                        pX,
+                        pY,
                         { 255, 255, 255, 255 },
                         p_size,
                         p_size,
                         atmosphereM["sand"]
                     ));
+                    for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "sand"))
+                    {
+                        entities.push_back(r);
+                    }
                     break;
                 case 3:
                     entities.push_back(new PlanetToxicEntity(
-                        xMarge + (p_size / 2) + (x*(p_size * 2)),
-                        yMarge + (p_size / 2) + (y*(p_size * 2)),
+                        pX,
+                        pY,
                         { 255, 255, 255, 255 },
                         p_size,
                         p_size,
                         atmosphereM["toxic"]
                     ));
+                    for each (auto r in rf.getPlanetResources(pX+(p_size/2), pY+(p_size/2), p_size/2, "toxic"))
+                    {
+                        entities.push_back(r);
+                    }
                     break;
                 case 4:
                     entities.push_back(new PlanetMoonEntity(
-                        xMarge + (p_size / 2) + (x*(p_size * 2)),
-                        yMarge + (p_size / 2) + (y*(p_size * 2)),
+                        pX,
+                        pY,
                         { 255, 255, 255, 255 },
                         p_size,
                         p_size
                     ));
+                    for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "moon"))
+                    {
+                        entities.push_back(r);
+                    }
                     break;
                 default:
                     break;
