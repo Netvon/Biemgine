@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "..\components\Component.h"
+#include "..\primitives\Primitives.h"
 
 using std::string;
 using std::pair;
@@ -34,6 +35,8 @@ namespace biemgine
         void addComponent(const string& name, Component* component);
 
         int getId() const;
+
+        Size getBounds() const;
 
     private:
         int id;

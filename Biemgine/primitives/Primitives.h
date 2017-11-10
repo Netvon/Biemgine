@@ -57,4 +57,9 @@ namespace biemgine
     {
         RotMatrix(double angle);
     };
+
+    struct BIEMGINE Rect {
+        Point point;
+        Size size;
+    };
 }
