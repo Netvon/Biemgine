@@ -20,9 +20,9 @@ namespace spacebiem
 
         FileHandler fh;
 
-        for (auto const& score : fh.scoresContent()) {
+        for (int i = 0; i < 15; i++) {
             if (y + (dY * 4) > windowH) break;
-            entities.push_back(new ScoreUIEntity(x, y, score.second, score.first));
+            entities.push_back(new ScoreUIEntity(x, y, fh.scoresContent().at(i).second, fh.scoresContent().at(i).first));
             y += dY;
         }
 

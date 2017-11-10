@@ -65,7 +65,7 @@ namespace spacebiem
         auto tx = entity.getComponent<TextComponent*>("text");
 
         if (name == oRef->getName()) {
-            tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), { 66, 113, 244 });
+            tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), { 232, 228, 41 });
         }
         else {
             tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), { 255, 255, 255 });
