@@ -11,15 +11,16 @@ namespace spacebiem
         public Component
     {
     public:
-        AtmosphereComponent(float offsetX, float offsetY, float r) :
-            offsetX(offsetX), offsetY(offsetY), r(r)
+        AtmosphereComponent(float offsetX, float offsetY, float r, float oxygenModifier) :
+            offsetX(offsetX), offsetY(offsetY), r(r), oxygenModifier(oxygenModifier)
         { };
 
         float getX() const;
         float getY() const;
         float getRadius() const;
+        float getOxygenModifier() const;
 
     private:
-        float offsetX, offsetY, r;
+        float offsetX, offsetY, r, oxygenModifier;
     };
 }

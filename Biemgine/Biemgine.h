@@ -1,6 +1,7 @@
 #pragma once
 
 #include "primitives\Primitives.h"
+#include "primitives\RandomGenerator.h"
 
 #include "core\Engine.h"
 #include "core\Loop.h"
