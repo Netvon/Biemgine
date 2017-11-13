@@ -20,10 +20,16 @@ namespace spacebiem
 
         FileHandler fh;
 
+        int counter = 0;
+
         for (auto const& score : fh.scoresContent()) {
+            if (counter == 15) break;
+
             if (y + (dY * 4) > windowH) break;
+
             entities.push_back(new ScoreUIEntity(x, y, score.second, score.first));
             y += dY;
+            counter++;
         }
 
         return entities;
