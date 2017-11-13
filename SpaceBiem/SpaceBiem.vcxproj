@@ -185,8 +185,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="components\ScoreBonusComponent.cpp">
-    </ClCompile>
+    <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />
     <ClCompile Include="entities\ResourceEntity.cpp" />
@@ -219,6 +218,7 @@
     <ClCompile Include="systems\MovementSystem.cpp" />
     <ClCompile Include="systems\OxygenSystem.cpp" />
     <ClCompile Include="systems\OxygenUISystem.cpp" />
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
     <ClCompile Include="systems\ScoreSystem.cpp" />
     <ClCompile Include="systems\ScoreUISystem.cpp" />
   </ItemGroup>
