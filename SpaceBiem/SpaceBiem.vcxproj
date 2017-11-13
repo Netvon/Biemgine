@@ -179,14 +179,13 @@
     <ClInclude Include="systems\MovementSystem.h" />
     <ClInclude Include="systems\OxygenSystem.h" />
     <ClInclude Include="systems\OxygenUISystem.h" />
+    <ClInclude Include="systems\ResourceCollectingSystem.h" />
     <ClInclude Include="systems\ScoreSystem.h" />
     <ClInclude Include="systems\ScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\ScoreBonusComponent.cpp">
-      <DeploymentContent>true</DeploymentContent>
-      <FileType>CppClass</FileType>
     </ClCompile>
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />

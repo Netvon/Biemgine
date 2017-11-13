@@ -108,6 +108,7 @@
     <ClInclude Include="components\ResourceComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -192,5 +193,6 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="factories\ResourceFactory.cpp" />
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
   </ItemGroup>
 </Project>

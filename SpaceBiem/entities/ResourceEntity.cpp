@@ -25,7 +25,7 @@ namespace spacebiem
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("scorebonus", new ScoreBonusComponent(scoreBonus));
         addComponent("resourcebonus", new ResourceBonusComponent(rName, 1));
-        addComponent("grounded", new GroundedComponent(false));
+        //addComponent("grounded", new GroundedComponent(false));
 
     }
 }
