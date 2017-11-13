@@ -143,19 +143,13 @@ namespace biemgine {
 
 
         if (surface != nullptr) {
+            auto tex = SDL_CreateTextureFromSurface(renderer, surface);
 
-            if (surface != nullptr) {
+            textures.insert_or_assign(path, tex);
 
-                auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+            SDL_FreeSurface(surface);
 
-
-                textures.insert_or_assign(path, tex);
-
-                SDL_FreeSurface(surface);
-
-                return tex;
-            }
-
+            return tex;
         }
 
         return nullptr;
