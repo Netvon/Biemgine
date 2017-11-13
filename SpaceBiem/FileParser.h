@@ -1,4 +1,7 @@
 #pragma once
+
+#include "Biemgine.h"
+
 #include <string>
 #include <map>
 #include <iostream>
@@ -10,9 +13,12 @@ using std::string;
 using std::vector;
 using std::pair;
 
+using biemgine::FileHandler;
+
+
 namespace spacebiem
 {
-    class FileHandler
+    class FileParser
     {
     public:
         vector<pair<string, int>> scoresContent();
@@ -20,5 +26,10 @@ namespace spacebiem
         map<string, float> atmosphereContent();
         map<string, int> planetScoreContent();
         map<string, int> resourceScoreContent();
+        map<string, map<string, vector<float>>> resourceSpawnRateContent();
+
+
+    private:
+
     };
 }
