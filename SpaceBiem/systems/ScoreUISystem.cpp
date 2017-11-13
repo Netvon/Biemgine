@@ -64,12 +64,14 @@ namespace spacebiem
 
         auto tx = entity.getComponent<TextComponent*>("text");
 
+        Color highlightColor = { 255, 255, 255 };
+
         if (name == oRef->getName()) {
-            tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), { 232, 228, 41 });
+            highlightColor = { 232, 228, 41 };
         }
-        else {
-            tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), { 255, 255, 255 });
-        }
+
+        tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), highlightColor);
+
     }
 
     void ScoreUISystem::after(const float deltaTime) {}
