@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "HighScoreScene.h"
 #include "MenuScene.h"
-#include <memory>
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\factories\ScoreUIFactory.h"
@@ -65,6 +64,4 @@ namespace spacebiem
         getTransitionManager().drawBackground();
         updateEntities(deltaTime);
     }
-
-
 }

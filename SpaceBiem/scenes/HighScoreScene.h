@@ -7,7 +7,6 @@ using biemgine::StateManager;
 
 namespace spacebiem
 {
-
     class HighScoreScene :
         public Scene
     {
@@ -21,6 +20,5 @@ namespace spacebiem
             : Scene(manager) {};
         ~HighScoreScene() {};
     };
-
 }
 
