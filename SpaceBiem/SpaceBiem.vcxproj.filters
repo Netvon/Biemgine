@@ -109,6 +109,9 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
+    <ClInclude Include="scenes\HighScoreScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -194,5 +197,8 @@
     </ClCompile>
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
+    <ClCompile Include="scenes\HighScoreScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
