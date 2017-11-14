@@ -10,8 +10,10 @@ namespace biemgine
 
     void UISystem::before()
     {
-        currentMouseLocation = getTransitionManager()->getInputManager()->getMouseLocation();
-        isLeftMouseDown = getTransitionManager()->getInputManager()->isLeftMouseDown();
+        auto im = getTransitionManager()->getInputManager();
+
+        currentMouseLocation = im->getMouseLocation();
+        isLeftMouseDown = im->isLeftMouseDown();
     }
 
     void UISystem::update(const Entity & entity)
@@ -43,9 +45,10 @@ namespace biemgine
             ui->setIsMouseDown(false);
         }
     }
-	inline void UISystem::before(const float deltaTime) {}
-	inline void UISystem::update(const Entity & entity, const float deltaTime) {}
-	inline void UISystem::after() {}
-	inline void UISystem::after(const float deltaTime) {}
-	inline void UISystem::onSceneSwitch() {}
+
+    inline void UISystem::before(const float deltaTime) {}
+    inline void UISystem::update(const Entity & entity, const float deltaTime) {}
+    inline void UISystem::after() {}
+    inline void UISystem::after(const float deltaTime) {}
+    inline void UISystem::onSceneSwitch() {}
 }

@@ -13,12 +13,12 @@ namespace biemgine
         void before() override;
         void update(const Entity& entity) override;
 
-        void before(const float deltaTime);
-        void update(const Entity& entity, const float deltaTime);
-        void after();
-        void after(const float deltaTime);
+        void before(const float deltaTime) override;
+        void update(const Entity& entity, const float deltaTime) override;
+        void after() override;
+        void after(const float deltaTime) override;
 
-        void onSceneSwitch();
+        void onSceneSwitch() override;
     private:
         Point currentMouseLocation;
         bool isLeftMouseDown = false;

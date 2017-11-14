@@ -26,8 +26,8 @@ namespace biemgine {
         return textSize;
     }
 
-    void TextComponent::setTextSize(const Size & pSize)
+    void TextComponent::setTextSize(const Size & pTextSize)
     {
-        textSize = pSize;
+        textSize = pTextSize;
     }
 }

@@ -21,7 +21,7 @@ namespace biemgine
         void setColor(const Color newColor);
 
         Size getTextSize() const;
-        void setTextSize(const Size& pSize);
+        void setTextSize(const Size& pTextSize);
 
     private:
         std::string text;

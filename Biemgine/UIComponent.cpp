@@ -4,9 +4,8 @@ namespace biemgine
 {
     UIComponent::UIComponent() {}
 
-    UIComponent::UIComponent(const Size & pSize)
+    UIComponent::UIComponent(const Size & pSize) : size(pSize)
     {
-        size = pSize;
     }
 
     UIComponent::~UIComponent() {}
