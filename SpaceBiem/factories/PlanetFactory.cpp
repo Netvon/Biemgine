@@ -8,8 +8,8 @@ namespace spacebiem
         vector<Entity*> entities;
 
 
-        int maxX = 6;
-        int maxY = 3;
+        int maxX = 3;
+        int maxY = 2;
 
         int xMarge;
         float p_size;
