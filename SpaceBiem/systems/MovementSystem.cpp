@@ -10,6 +10,8 @@ namespace spacebiem
 {
     void MovementSystem::update(const Entity & entity)
     {
+        if (!entity.hasComponent("movement")) return;
+
         if (!transitionManager->getInputManager()->isKeyDown("Left")
             && !transitionManager->getInputManager()->isKeyDown("Right"))
             return;
