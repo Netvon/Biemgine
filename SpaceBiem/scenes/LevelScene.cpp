@@ -42,7 +42,7 @@ namespace spacebiem
         addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
 
         addEntity(new OxygenUIEntity());
-        addEntity(new ScoreUIEntity());
+        //addEntity(new ScoreUIEntity());
         addEntity(new SpriteEntity("textures/resources-hud.png", 25, 25, {255, 255, 255, 255}, 401, 169, 100u));
         addEntity(new ResourceUIEntity(66, 150, {255, 255, 255, 255}, "uranium"));
         addEntity(new ResourceUIEntity(157, 150, {255, 255, 255, 255}, "diamond"));

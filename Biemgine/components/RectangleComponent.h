@@ -15,12 +15,15 @@ namespace biemgine
 
         float getWidth() const;
         float getHeight() const;
+        float getOriginalWidth() const;
         void setWidth(float pWidth);
         void setHeight(float pHeight);
+        void setColor(Color pColor);
         ColorComponent getColor() const;
+        ColorComponent getOriginalColor() const;
 
     private:
-        float width, height;
-        ColorComponent color;
+        float width, height, originalWidth;
+        ColorComponent color, originalColor;
     };
 }

@@ -19,11 +19,12 @@ namespace spacebiem
     public:
         OxygenUIEntity()
         {
-            addComponent("position", new PositionComponent(0, 0));
-            addComponent("color", new ColorComponent(185, 238, 253));
+            addComponent("position", new PositionComponent(42, 220));
+            addComponent("color", new ColorComponent(255, 255, 255));
             addComponent("ui", new UIComponent);
             addComponent("oxygen", new OxygenComponent);
-            addComponent("rectangle", new RectangleComponent(0, 10, { 185, 238, 253, 255 }));
+            addComponent("texture", new TextureComponent("textures/oxygen-hud.png", -17, 0, 255, 40, 2u));
+            addComponent("rectangle", new RectangleComponent(204, 36, { 93, 206, 109, 255 }));
         };
     };
 }

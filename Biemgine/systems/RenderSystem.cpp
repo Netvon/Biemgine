@@ -55,7 +55,8 @@ namespace biemgine
 
 
         }
-        else {
+        if (entity.hasComponent("rectangle"))
+        {
             auto rectangle = entity.getComponent<RectangleComponent*>("rectangle");
 
             graphicsDevice->drawSquare(
