@@ -13,6 +13,7 @@ using biemgine::CollidableComponent;
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"
 #include "../components/ResourceComponent.h"
+#include "../components/MovementComponent.h"
 
 namespace spacebiem
 {
@@ -28,5 +29,6 @@ namespace spacebiem
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("resources", new ResourceComponent());
         addComponent("collidable", new CollidableComponent);
+        addComponent("movement", new MovementComponent);
     }
 }

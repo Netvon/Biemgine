@@ -115,6 +115,9 @@
     <ClInclude Include="entities\PlanetEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="components\MovementComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="entities\PlanetEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\MovementComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
