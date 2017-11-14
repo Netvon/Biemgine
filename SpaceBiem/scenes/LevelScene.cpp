@@ -6,7 +6,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
-#include "..\ResourceUIEntity.h"
+#include "..\entities\ResourceUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
@@ -18,7 +18,7 @@
 #include "..\systems\OxygenUISystem.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ScoreSystem.h"
-#include "..\ResourceUISystem.h"
+#include "..\systems\ResourceUISystem.h"
 
 namespace spacebiem
 {

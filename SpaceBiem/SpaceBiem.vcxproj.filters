@@ -108,10 +108,14 @@
     <ClInclude Include="components\ResourceComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="ResourceUISystem.h" />
-    <ClInclude Include="ResourceUIEntity.h">
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ResourceUIEntity.h">
       <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceUISystem.h">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -196,11 +200,17 @@
     <ClCompile Include="components\ResourceComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="factories\ResourceFactory.cpp" />
-    <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="ResourceUISystem.cpp" />
-    <ClCompile Include="ResourceUIEntity.cpp">
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ResourceUIEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceUISystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

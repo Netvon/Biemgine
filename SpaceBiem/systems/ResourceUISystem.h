@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
-#include "components\ResourceComponent.h"
+#include "..\components\ResourceComponent.h"
 
 using biemgine::GraphicsDevice;
 using biemgine::System;

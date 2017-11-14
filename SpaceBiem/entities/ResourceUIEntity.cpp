@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ResourceUIEntity.h"
-#include "components\ResourceBonusComponent.h"
+#include "..\components\ResourceBonusComponent.h"
 
 using biemgine::PositionComponent;
 using biemgine::ColorComponent;
