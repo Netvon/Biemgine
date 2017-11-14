@@ -182,9 +182,6 @@
     <ClCompile Include="managers\SceneManager.cpp">
       <Filter>managers</Filter>
     </ClCompile>
-    <ClCompile Include="systems\RenderSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="systems\physics\ContactListener.cpp">
       <Filter>systems\physics</Filter>
     </ClCompile>
@@ -241,6 +238,9 @@
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\RenderSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

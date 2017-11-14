@@ -1,8 +1,14 @@
 #pragma once
 
-#include "Biemgine.h"
+#include "biemgine.h"
 using biemgine::System;
 using biemgine::Entity;
+using biemgine::CollidableComponent;
+
+#include "../components/ResourceComponent.h"
+#include "../components/ResourceBonusComponent.h"
+#include "../components/ScoreBonusComponent.h"
+#include "../components/ScoreComponent.h"
 
 
 namespace spacebiem
@@ -21,6 +27,10 @@ namespace spacebiem
         void onSceneSwitch() override;
 
     private:
+
+        vector<const Entity*> resource;
+        vector<const Entity*> resourceBonus;
+
 
     };
 }

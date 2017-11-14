@@ -8,6 +8,7 @@ namespace spacebiem
     {
         FileParser fileParser;
         spawnRates = fileParser.resourceSpawnRateContent();
+        scores = fileParser.resourceScoreContent();
     }
     vector<Entity*> ResourceFactory::sceneStart(int windowW, int windowH)
     {
@@ -35,7 +36,7 @@ namespace spacebiem
                 float cX = cos(angle)*r;
                 float cY = sin(angle)*r;
 
-                resources.push_back(new ResourceEntity(x + cX, y + cY, { 255,255,255,255 }, w, h, sr.first));
+                resources.push_back(new ResourceEntity(x + cX, y + cY, { 255,255,255,255 }, w, h, sr.first, scores[sr.first]));
 
             }
         }
