@@ -2,6 +2,7 @@
 #include "ContactListener.h"
 #include "..\..\entities\Entity.h"
 #include "..\..\components\GroundedComponent.h"
+#include "..\..\components\CollidableComponent.h"
 
 namespace biemgine
 {
@@ -17,6 +18,11 @@ namespace biemgine
 
             if (entity->hasComponent("ground") && otherEntity->hasComponent("grounded")) {
                 this->entitySetGrounded(entity, true);
+            }
+
+            if (entity->hasComponent("collidable") && otherEntity->hasComponent("collidable")) {
+                collide(entity, *otherEntity);
+                collide(otherEntity, *entity);
             }
         }
     }
@@ -34,6 +40,11 @@ namespace biemgine
             if (entity->hasComponent("ground") && otherEntity->hasComponent("grounded")) {
                 this->entitySetGrounded(otherEntity, false);
             }
+
+            if (entity->hasComponent("collidable") && otherEntity->hasComponent("collidable")) {
+                decollide(entity, *otherEntity);
+                decollide(otherEntity, *entity);
+            }
         }
     }
 
@@ -48,5 +59,17 @@ namespace biemgine
     {
         auto gc = entity->getComponent<GroundedComponent*>("grounded");
         gc->setGrounded(grounded);
+    }
+
+    void ContactListener::collide(Entity * thisEntity, Entity & thatEntity) const
+    {
+        auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
+        cc->add(thatEntity);
+    }
+
+    void ContactListener::decollide(Entity * thisEntity, Entity & thatEntity) const
+    {
+        auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
+        cc->remove(thatEntity);
     }
 }
