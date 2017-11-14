@@ -20,11 +20,8 @@ namespace spacebiem
         public EntityFactory
     {
     public:
-
-        ~PlanetFactory() { };
+        ~PlanetFactory() {};
         vector<Entity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<Entity*> entities) override;
-
-
     };
 }
