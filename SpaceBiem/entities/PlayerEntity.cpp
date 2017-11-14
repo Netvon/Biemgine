@@ -8,6 +8,7 @@ using biemgine::PhysicsComponent;
 using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponentShape;
+using biemgine::CollidableComponent;
 
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"
@@ -26,6 +27,6 @@ namespace spacebiem
         addComponent("score", new ScoreComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("resources", new ResourceComponent());
-        
+        addComponent("collidable", new CollidableComponent);
     }
 }
