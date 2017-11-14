@@ -36,7 +36,7 @@ namespace biemgine
 
         int getId() const;
 
-        Size getBounds() const;
+        /*Size getBounds() const;*/
 
     private:
         int id;
