@@ -18,12 +18,18 @@ namespace spacebiem
         int y = 200;
         int dY = 30;
 
-        FileHandler fh;
+        FileParser fh;
+
+        int counter = 0;
 
         for (auto const& score : fh.scoresContent()) {
+            if (counter == 15) break;
+
             if (y + (dY * 4) > windowH) break;
+
             entities.push_back(new ScoreUIEntity(x, y, score.second, score.first));
             y += dY;
+            counter++;
         }
 
         return entities;
@@ -31,7 +37,7 @@ namespace spacebiem
 
     void ScoreUIFactory::sceneEnd(std::vector<Entity*> entities)
     {
-        FileHandler fh;
+        FileParser fh;
 
         TCHAR user[UNLEN + 1];
         DWORD size = UNLEN + 1;

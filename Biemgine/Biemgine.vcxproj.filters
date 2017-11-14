@@ -140,6 +140,7 @@
       <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="primitives\RandomGenerator.h" />
+    <ClInclude Include="managers\FileHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -234,5 +235,6 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="primitives\RandomGenerator.cpp" />
+    <ClCompile Include="managers\FileHandler.cpp" />
   </ItemGroup>
 </Project>

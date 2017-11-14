@@ -11,6 +11,7 @@ using biemgine::PhysicsComponentShape;
 
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"
+#include "../components/ResourceComponent.h"
 
 namespace spacebiem
 {
@@ -24,5 +25,7 @@ namespace spacebiem
         addComponent("grounded", new GroundedComponent(false));
         addComponent("score", new ScoreComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
+        addComponent("resources", new ResourceComponent());
+        
     }
 }

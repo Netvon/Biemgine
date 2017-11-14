@@ -24,7 +24,7 @@ namespace biemgine
 
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
-            auto size = graphicsDevice->drawText(tx->getText(), static_cast<int>(pc->getX()), static_cast<int>(pc->getY()), { 0, 255, 255, 255 }, 0);
+            auto size = graphicsDevice->drawText(tx->getText(), static_cast<int>(pc->getX()), static_cast<int>(pc->getY()), tx->getColor(), 0);
             tx->setTextSize(size);
         }
 

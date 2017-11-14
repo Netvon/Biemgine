@@ -44,6 +44,7 @@
     <ClInclude Include="entities\Entity.h" />
     <ClInclude Include="entities\SpriteEntity.h" />
     <ClInclude Include="managers\EntityManager.h" />
+    <ClInclude Include="managers\FileHandler.h" />
     <ClInclude Include="managers\InputManager.h" />
     <ClInclude Include="managers\SceneManager.h" />
     <ClInclude Include="managers\StateManager.h" />
@@ -61,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="systems\UISystem.cpp" />
+    <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />

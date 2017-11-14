@@ -1,9 +1,12 @@
 #include "stdafx.h"
+#include <windows.h>
+#include <Lmcons.h>
 #include "ScoreUISystem.h"
 
 using biemgine::TextComponent;
 using biemgine::PositionComponent;
 using biemgine::UIComponent;
+using biemgine::Color;
 
 namespace spacebiem
 {
@@ -57,8 +60,26 @@ namespace spacebiem
             else oRef = oc;
         }
 
+        TCHAR user[UNLEN + 1];
+        DWORD size = UNLEN + 1;
+        string name = "Mr. NoName";
+
+        if (GetUserName((TCHAR*)user, &size)) {
+            wstring test(&user[0]);
+            string stringName(test.begin(), test.end());
+            name = stringName;
+        }
+
         auto tx = entity.getComponent<TextComponent*>("text");
-        tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()));
+
+        Color highlightColor = { 255, 255, 255 };
+
+        if (name == oRef->getName()) {
+            highlightColor = { 232, 228, 41 };
+        }
+
+        tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), highlightColor);
+
     }
 
     void ScoreUISystem::after(const float deltaTime)
