@@ -13,7 +13,6 @@ namespace spacebiem
             else {
                 resources[pName] = resources[pName] + pAmount;
             }
-
         }
     }
     

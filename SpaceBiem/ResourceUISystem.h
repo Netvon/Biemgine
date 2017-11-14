@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "components\ResourceComponent.h"
 
 using biemgine::GraphicsDevice;
 using biemgine::System;
@@ -24,5 +25,7 @@ namespace spacebiem
 
     private:
         GraphicsDevice* graphicsDevice = nullptr;
+
+        std::map<ResourceComponent*, bool> resourceMap;
     };
 }
