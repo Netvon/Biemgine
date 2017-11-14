@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <windows.h>
 #include <Lmcons.h>
-#include <memory>
 #include "ScoreUISystem.h"
 
 using biemgine::TextComponent;
