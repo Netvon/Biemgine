@@ -169,6 +169,7 @@
     <ClInclude Include="entities\SurfaceEntity.h" />
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
+    <ClInclude Include="ResourceUIEntity.h" />
     <ClInclude Include="ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
     <ClInclude Include="components\ResourceComponent.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ResourceUIEntity.cpp" />
     <ClCompile Include="ResourceUISystem.cpp" />
     <ClCompile Include="components\ResourceBonusComponent.cpp" />
     <ClCompile Include="components\ResourceComponent.cpp" />

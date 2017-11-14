@@ -15,5 +15,9 @@ namespace spacebiem
             }
         }
     }
+
+    const map<string, int>& ResourceComponent::getResources() const {
+        return resources;
+    }
     
 }

@@ -6,6 +6,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
+#include "..\ResourceUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
@@ -17,6 +18,7 @@
 #include "..\systems\OxygenUISystem.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ScoreSystem.h"
+#include "..\ResourceUISystem.h"
 
 namespace spacebiem
 {
@@ -32,6 +34,7 @@ namespace spacebiem
         addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
         addSystem<ScoreUISystem>();
+        addSystem<ResourceUISystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -40,7 +43,9 @@ namespace spacebiem
 
         addEntity(new OxygenUIEntity());
         addEntity(new ScoreUIEntity());
-
+        addEntity(new ResourceUIEntity(20, 100, { 255, 255, 255, 255 }, "metal"));
+        addEntity(new ResourceUIEntity(20, 150, { 255, 255, 255, 255 }, "diamond"));
+ 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 

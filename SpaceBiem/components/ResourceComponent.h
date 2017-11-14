@@ -10,10 +10,13 @@ namespace spacebiem
         public Component
     {
     public:
-        ResourceComponent()
-        {};
+        ResourceComponent(){
+            addResource("metal", 5);
+            addResource("diamond", 8);
+        };
 
         void addResource(string pName, int pAmount);
+        const map<string, int>& getResources() const;
         
     private:
 

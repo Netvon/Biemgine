@@ -5,6 +5,7 @@
 using biemgine::TextComponent;
 using biemgine::PositionComponent;
 using biemgine::UIComponent;
+using biemgine::Color;
 
 namespace spacebiem
 {
@@ -17,23 +18,23 @@ namespace spacebiem
 
     void ResourceUISystem::update(const Entity & entity, const float deltaTime)
     {
-        if (!entity.hasComponent("resources")) return;
+        if (entity.hasComponent("resources")) {
+            auto oc = entity.getComponent<ResourceComponent*>("resources");
 
-        auto oc = entity.getComponent<ResourceComponent*>("resources");
-
-        if (!entity.hasComponent("ui")) {
             if (resourceMap.find(oc) == resourceMap.end()) {
                 resourceMap[oc] = false;
             }
-            return;
-        }
 
-        if (!entity.hasComponent("position")) return;
+            return;
+        };
+
         if (!entity.hasComponent("resourcebonus")) return;
+        if (!entity.hasComponent("position")) return;
         if (!entity.hasComponent("text")) return;
 
         auto pc = entity.getComponent<PositionComponent*>("position");
         auto rbc = entity.getComponent<ResourceBonusComponent*>("resourcebonus");
+        auto tx = entity.getComponent<TextComponent*>("text");
         auto uc = entity.getComponent<UIComponent*>("ui");
 
         ResourceComponent* oRef = uc->getComponentReference<ResourceComponent*>();
@@ -48,11 +49,18 @@ namespace spacebiem
                 }
             }
 
-            if (oRef != nullptr) resourceMap[oRef] = true;
-            else oRef = oc;
+            if (oRef != nullptr);
+            else return;
         }
 
+        Color textColor = { 255, 255, 255 };
 
+        for (auto x : oRef->getResources())
+        {
+            if (x.first == rbc->getName()) {
+                tx->setText(x.first + " " + std::to_string(x.second), textColor);
+            }
+        }
     }
 
     void ResourceUISystem::after(const float deltaTime) {}
