@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="components\ScoreBonusComponent.h" />
+    <ClInclude Include="entities\PlanetEntity.h" />
     <ClInclude Include="entities\PlanetSandEntity.h" />
     <ClInclude Include="entities\PlanetToxicEntity.h" />
     <ClInclude Include="entities\ResourceEntity.h" />
@@ -187,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
+    <ClCompile Include="entities\PlanetEntity.cpp" />
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />
     <ClCompile Include="entities\ResourceEntity.cpp" />
