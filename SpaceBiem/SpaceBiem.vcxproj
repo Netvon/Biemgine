@@ -171,6 +171,7 @@
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
     <ClInclude Include="components\ResourceComponent.h" />
+    <ClInclude Include="scenes\HighScoreScene.h" />
     <ClInclude Include="scenes\LevelScene.h" />
     <ClInclude Include="scenes\MenuScene.h" />
     <ClInclude Include="stdafx.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="components\ResourceBonusComponent.cpp" />
     <ClCompile Include="components\ResourceComponent.cpp" />
+    <ClCompile Include="scenes\HighScoreScene.cpp" />
     <ClCompile Include="scenes\LevelScene.cpp" />
     <ClCompile Include="scenes\MenuScene.cpp" />
     <ClCompile Include="stdafx.cpp">
