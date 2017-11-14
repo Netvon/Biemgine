@@ -18,7 +18,7 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-        addEntity(new SpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
+        addEntity(new SpriteEntity("textures/biemlogo.png", x, 100, { 255, 255, 255, 255 }, -1, -1 , 0u));
 
         ScoreUIFactory sf;
         for (auto e : sf.sceneStart(wW, wH)) {

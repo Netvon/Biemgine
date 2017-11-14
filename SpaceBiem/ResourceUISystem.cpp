@@ -5,6 +5,7 @@
 using biemgine::TextComponent;
 using biemgine::PositionComponent;
 using biemgine::UIComponent;
+using biemgine::ColorComponent;
 using biemgine::Color;
 
 namespace spacebiem
@@ -29,11 +30,13 @@ namespace spacebiem
         };
 
         if (!entity.hasComponent("resourcebonus")) return;
+        if (!entity.hasComponent("color")) return;
         if (!entity.hasComponent("position")) return;
         if (!entity.hasComponent("text")) return;
 
         auto pc = entity.getComponent<PositionComponent*>("position");
         auto rbc = entity.getComponent<ResourceBonusComponent*>("resourcebonus");
+        auto cc = entity.getComponent<ColorComponent*>("color");
         auto tx = entity.getComponent<TextComponent*>("text");
         auto uc = entity.getComponent<UIComponent*>("ui");
 
@@ -56,7 +59,7 @@ namespace spacebiem
         for (auto x : oRef->getResources())
         {
             if (x.first == rbc->getName()) {
-                tx->setText(std::to_string(x.second), {255, 255, 255 ,255});
+                tx->setText(std::to_string(x.second), cc->getColor());
             }
         }
     }
