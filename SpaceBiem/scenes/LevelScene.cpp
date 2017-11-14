@@ -17,6 +17,7 @@
 #include "..\systems\OxygenUISystem.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ScoreSystem.h"
+#include "..\systems\ResourceCollectingSystem.h"
 
 namespace spacebiem
 {
@@ -33,6 +34,7 @@ namespace spacebiem
         addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
         addSystem<ScoreUISystem>();
+        addSystem<ResourceCollectingSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;

@@ -36,11 +36,15 @@ namespace biemgine
 
         int getId() const;
 
+        virtual void die() const;
+        bool isAlive() const;
+
         /*Size getBounds() const;*/
 
     private:
         int id;
         std::multimap<string, Component*> componentHashmap;
+        mutable bool alive = true;
     };
 
     template<typename TComponent>
