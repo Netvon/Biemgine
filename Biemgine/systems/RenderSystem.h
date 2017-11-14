@@ -22,6 +22,15 @@ namespace biemgine
         DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer);
     };
 
+    struct DrawText
+    {
+        string text;
+        int x, y;
+        Color color;
+
+        DrawText(const string& text, int x, int y, Color color);
+    };
+
     class RenderSystem
         : public System
     {
@@ -38,5 +47,6 @@ namespace biemgine
     private:
         GraphicsDevice* graphicsDevice = nullptr;
         list<DrawTexture> drawList;
+        list<DrawText> textList;
     };
 }

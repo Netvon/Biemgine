@@ -43,8 +43,9 @@ namespace spacebiem
 
         addEntity(new OxygenUIEntity());
         addEntity(new ScoreUIEntity());
-        addEntity(new ResourceUIEntity(20, 100, { 255, 255, 255, 255 }, "metal"));
-        addEntity(new ResourceUIEntity(20, 150, { 255, 255, 255, 255 }, "diamond"));
+        addEntity(new SpriteEntity("textures/resources-hud.png", 25, 25, {255, 255, 255, 255}, 267, 103));
+        addEntity(new ResourceUIEntity(20, 100, {255, 255, 255, 255}, "metal"));
+        addEntity(new ResourceUIEntity(20, 150, {255, 255, 255, 255}, "diamond"));
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();

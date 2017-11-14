@@ -24,7 +24,12 @@ namespace biemgine
 
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
-            graphicsDevice->drawText(tx->getText(), static_cast<int>(pc->getX()), static_cast<int>(pc->getY()), tx->getColor(), 0);
+            textList.push_back(DrawText(
+                tx->getText(),
+                static_cast<int>(pc->getX()),
+                static_cast<int>(pc->getY()),
+                tx->getColor()
+            ));
         }
 
         if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
@@ -94,9 +99,19 @@ namespace biemgine
             );
         }
 
+        for (auto text : textList)
+        {
+            graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+        }
+
         drawList.clear();
+        textList.clear();
     }
 
     DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer) :
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
+
+
+    DrawText::DrawText(const string& text, int x, int y, Color color) :
+        text(text), x(x), y(y), color(color) {}
 }
