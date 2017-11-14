@@ -31,5 +31,6 @@
 #include "managers\SceneManager.h"
 #include "managers\StateManager.h"
 #include "managers\SystemManager.h"
+#include "managers\FileHandler.h"
 
 #include "scenes\Scene.h"

@@ -3,7 +3,7 @@
 #include "stdafx.h"
 
 #include "EntityFactory.h"
-#include "..\FileHandler.h"
+#include "..\FileParser.h"
 #include <vector>
 
 using biemgine::Entity;
