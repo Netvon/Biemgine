@@ -2,6 +2,8 @@
 
 #include "dlldef.h"
 #include "Component.h"
+#include "..\primitives\Primitives.h"
+#include "..\systems\UISystem.h"
 
 namespace biemgine
 {
@@ -11,6 +13,7 @@ namespace biemgine
     public:
 
         UIComponent();
+        UIComponent(const Size& pSize);
         ~UIComponent();
 
         template <typename TComponent>
@@ -18,8 +21,23 @@ namespace biemgine
 
         void setComponentReference(Component* component);
 
+        bool getIsMouseDown() const;
+        bool getIsMouseOver() const;
+
+        const Size& getSize() const;
+
+    protected:
+        void setIsMouseOver(bool pIsMouseOver);
+        void setIsMouseDown(bool pIsMouseDown);
+
+        friend void UISystem::update(const Entity & entity);
+
     private:
         Component* componentReference = nullptr;
+
+        bool isMouseDown = false;
+        bool isMouseOver = false;
+        Size size;
     };
 
     template<typename TComponent>

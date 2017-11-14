@@ -14,6 +14,7 @@ namespace spacebiem
     void MenuScene::created()
     {
         enableRendering();
+        enableUI();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
