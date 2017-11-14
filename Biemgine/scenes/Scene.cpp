@@ -3,6 +3,7 @@
 
 #include "..\systems\physics\PhysicsSystem.h"
 #include "..\systems\RenderSystem.h"
+#include "..\systems\UISystem.h"
 
 //#include "..\systems\gravitysystem.h"
 //#include "..\systems\physicssystem.h"
@@ -66,6 +67,13 @@ namespace biemgine
         auto physicsSystem = new PhysicsSystem();
         systemManager->addSystem(physicsSystem);
         physicsSystem->setTransitionManager(stateManager);
+    }
+
+    void Scene::enableUI()
+    {
+        auto uisystem = new UISystem();
+        systemManager->addSystem(uisystem);
+        uisystem->setTransitionManager(stateManager);
     }
 
     void Scene::enableRendering()

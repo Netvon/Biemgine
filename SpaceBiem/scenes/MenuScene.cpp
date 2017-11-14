@@ -11,6 +11,7 @@ namespace spacebiem
     void MenuScene::created()
     {
         enableRendering();
+        enableUI();
         addSystem<ScoreUISystem>();
 
         int wW = getTransitionManager().getWindowWidth();

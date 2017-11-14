@@ -66,6 +66,11 @@ namespace biemgine
         return temp.length();
     }
 
+    Vector::operator Point()
+    {
+        return { static_cast<int>(x), static_cast<int>(y), static_cast<int>(z) };
+    }
+
     Vector & Matrix33::transform(Vector & vector)
     {
         vector.x = (M00 * vector.x) + (M01 * vector.y) + (M02 * vector.z);
@@ -92,5 +97,10 @@ namespace biemgine
         M02 = 0;
         M12 = 0;
         M22 = 1;
+    }
+
+    Point::operator Vector()
+    {
+        return { static_cast<float>(x), static_cast<float>(y), static_cast<float>(z) };
     }
 }
