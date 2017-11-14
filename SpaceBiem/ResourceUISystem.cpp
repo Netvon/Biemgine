@@ -53,12 +53,10 @@ namespace spacebiem
             else return;
         }
 
-        Color textColor = { 255, 255, 255 };
-
         for (auto x : oRef->getResources())
         {
             if (x.first == rbc->getName()) {
-                tx->setText(x.first + " " + std::to_string(x.second), textColor);
+                tx->setText(std::to_string(x.second), {255, 255, 255 ,255});
             }
         }
     }

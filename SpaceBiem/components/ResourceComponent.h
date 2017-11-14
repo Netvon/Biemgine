@@ -11,8 +11,10 @@ namespace spacebiem
     {
     public:
         ResourceComponent(){
-            addResource("metal", 5);
-            addResource("diamond", 8);
+            addResource("metal", 51);
+            addResource("diamond", 18);
+            addResource("uranium", 7);
+            addResource("anti-matter", 0);
         };
 
         void addResource(string pName, int pAmount);
