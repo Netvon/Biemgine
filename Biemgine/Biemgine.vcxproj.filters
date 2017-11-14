@@ -136,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="dlldef.h" />
+    <ClInclude Include="systems\UISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
     <ClInclude Include="primitives\RandomGenerator.h" />
     <ClInclude Include="managers\FileHandler.h" />
   </ItemGroup>
@@ -227,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="components\TransformComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\UISystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="primitives\RandomGenerator.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />

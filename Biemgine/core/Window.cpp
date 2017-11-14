@@ -25,12 +25,11 @@ namespace biemgine
 
     Window::~Window()
     {
-        SDL_DestroyWindow(getWindow(windowId));
-
         if (gd != nullptr) {
             delete gd;
         }
 
+        SDL_DestroyWindow(getWindow(windowId));
         SDL_Quit();
     }
 

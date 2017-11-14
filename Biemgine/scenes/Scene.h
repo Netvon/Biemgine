@@ -35,6 +35,7 @@ namespace biemgine
 
         void enablePhysics();
         void enableRendering();
+        void enableUI();
 
     protected:
         template<class TSystem>

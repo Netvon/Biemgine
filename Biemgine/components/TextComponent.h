@@ -4,6 +4,7 @@
 #include "Component.h"
 #include <String>
 #include "ColorComponent.h"
+#include "..\primitives\Primitives.h"
 
 namespace biemgine
 {
@@ -19,8 +20,12 @@ namespace biemgine
         const Color& getColor() const;
         void setColor(const Color newColor);
 
+        Size getTextSize() const;
+        void setTextSize(const Size& pTextSize);
+
     private:
         std::string text;
+        Size textSize;
         Color color;
     };
 }
