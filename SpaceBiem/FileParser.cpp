@@ -16,7 +16,7 @@ namespace spacebiem
     {
         vector<pair<string, int>> scoreMap;
 
-        FileHandler file("highscores.csv");
+        FileHandler file("data/highscores.csv");
         for each (auto v in file.getValues())
         {
             scoreMap.push_back(std::make_pair(v[0], stoi(v[1])));
@@ -28,7 +28,7 @@ namespace spacebiem
 
     void FileParser::writeScore(string name, int score)
     {
-        FileHandler file("highscores.csv");
+        FileHandler file("data/highscores.csv");
         file.writeLine(vector<string>({name, to_string(score)}));
     }
 
@@ -37,7 +37,7 @@ namespace spacebiem
     {
         map<string, float> atmosphereM;
 
-        FileHandler file("planet_atmosphere_modifier.csv");
+        FileHandler file("data/planet_atmosphere_modifier.csv");
         for each (auto v in file.getValues())
         {
             atmosphereM[v[0]] = static_cast<float>(atof(v[1].c_str()));
@@ -50,7 +50,7 @@ namespace spacebiem
     {
         map<string, int> scoreM;
 
-        FileHandler file("score_per_planettype.csv");
+        FileHandler file("data/score_per_planettype.csv");
         for each (auto v in file.getValues())
         {
             scoreM[v[0]] = stoi(v[1]);
@@ -63,7 +63,7 @@ namespace spacebiem
     {
         map<string, int> scoreM;
 
-        FileHandler file("score_per_resourcetype.csv");
+        FileHandler file("data/score_per_resourcetype.csv");
         for each (auto v in file.getValues())
         {
             scoreM[v[0]] = stoi(v[1]);
@@ -71,11 +71,12 @@ namespace spacebiem
 
         return scoreM;
     }
+
     map<string, map<string, vector<float>>> FileParser::resourceSpawnRateContent()
     {
         map<string, map<string, vector<float>>> resourceM;
 
-        FileHandler file("resource_count_per_planettype.csv");
+        FileHandler file("data/resource_count_per_planettype.csv");
         for each (auto v in file.getValues())
         {
             vector<float> vector({
@@ -88,4 +89,6 @@ namespace spacebiem
 
         return resourceM;
     }
+
+
 }
