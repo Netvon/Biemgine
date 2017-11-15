@@ -1,7 +1,9 @@
 #pragma once
+
 #include "dlldef.h"
 #include "..\core\Window.h"
 #include "InputManager.h"
+#include "..\entities\Entity.h"
 
 namespace biemgine
 {
@@ -43,6 +45,10 @@ namespace biemgine
 
         template<class TScene>
         void navigateTo();
+
+        Entity * getEntity(int id) const;
+
+        SceneManager & getSceneManager() const;
 
     private:
         SceneManager* sceneManager = nullptr;

@@ -90,4 +90,9 @@ namespace biemgine
     void Scene::input() { }
 
     void Scene::render(float deltaTime) { }
+
+    Entity * Scene::getEntity(int id) const
+    {
+        return entityManager->getEntity(id);
+    }
 }

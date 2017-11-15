@@ -65,4 +65,16 @@ namespace biemgine
 
         gd->drawTexture("textures/space.jpg", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
     }
+
+    SceneManager & StateManager::getSceneManager() const
+    {
+        return *sceneManager;
+    }
+
+    Entity * StateManager::getEntity(int id) const
+    {
+        return getSceneManager()
+            .getCurrentScene()
+            .getEntity(id);
+    };
 }

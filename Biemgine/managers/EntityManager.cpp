@@ -56,6 +56,13 @@ namespace biemgine
         }
     }
 
+    Entity* EntityManager::getEntity(int id) const
+    {
+        for (auto entity = entities.begin(); entity != entities.end(); ++entity)
+        {
+            if ((*entity)->getId() == id) return (*entity);
+        }
 
-
+        return nullptr;
+    }
 }
