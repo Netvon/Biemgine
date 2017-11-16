@@ -13,6 +13,6 @@ namespace spacebiem
         public PlanetEntity
     {
     public:
-        PlanetSandEntity(float x, float y, Color color, float w, float h, float atmosphere);
+        PlanetSandEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere);
     };
 }

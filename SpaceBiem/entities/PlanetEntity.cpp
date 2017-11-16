@@ -15,7 +15,7 @@ using biemgine::TextureComponent;
 
 namespace spacebiem
 {
-    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, string texture, string borderTexture)
+    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, string texture, string borderTexture, int pScoreBonus)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("physics", new PhysicsComponent(w, h, true, PhysicsComponentShape::CIRCLE));
@@ -32,6 +32,8 @@ namespace spacebiem
 
         int flagHeight = 100;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56, flagHeight, 10u, false, "flag"));
+
+        createScoreBonus(pScoreBonus);
     }
 
     void PlanetEntity::createAtmosphere(float x, float y, float w, float h, float atmosphere, string texture, bool shouldClouds)

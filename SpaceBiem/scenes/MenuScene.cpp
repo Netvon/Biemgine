@@ -39,8 +39,8 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/teambiem.png", x, 100, Color::White(), -1, -1);
 
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
-        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 10.f);
-        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight);
+        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
         
         addEntity<ButtonUIEntity>(x + 100, 300, Color::White(), 150, 50, "Play", PlayButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, 375, Color::White(), 150, 50, "Highscores", HighscoreButtonClicked);
