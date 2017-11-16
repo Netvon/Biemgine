@@ -66,14 +66,14 @@ namespace biemgine
     {
         auto physicsSystem = new PhysicsSystem();
         systemManager->addSystem(physicsSystem);
-        physicsSystem->setTransitionManager(stateManager);
+        physicsSystem->setStateManager(stateManager);
     }
 
     void Scene::enableUI()
     {
         auto uisystem = new UISystem();
         systemManager->addSystem(uisystem);
-        uisystem->setTransitionManager(stateManager);
+        uisystem->setStateManager(stateManager);
     }
 
     void Scene::enableRendering()
@@ -84,7 +84,7 @@ namespace biemgine
         renderSystem->setGraphicsDevice(gd);
 
         systemManager->addSystem(renderSystem);
-        renderSystem->setTransitionManager(stateManager);
+        renderSystem->setStateManager(stateManager);
     }
 
     void Scene::input() { }

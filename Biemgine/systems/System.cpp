@@ -11,13 +11,13 @@ namespace biemgine
     void System::update(const Entity & entity, const float deltaTime) {}
     void System::after() {}
     void System::after(const float deltaTime) {}
-    void System::setTransitionManager(const StateManager * pManager)
+    void System::setStateManager(StateManager * pManager)
     {
-        transitionManager = pManager;
+        stateManager = pManager;
     }
 
-    const StateManager* System::getTransitionManager() const
+    StateManager* System::getStateManager()
     {
-        return transitionManager;
+        return stateManager;
     }
 }

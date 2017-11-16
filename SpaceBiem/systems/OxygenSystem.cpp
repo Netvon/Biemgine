@@ -53,8 +53,7 @@ namespace spacebiem
         oc->setOxygenAmount(oAmount);
 
         if (oAmount <= 0) {
-            // TODO: fix
-            // transitionManager->gameOverTransition();
+            getStateManager()->navigateTo<MenuScene>();
         }
     }
 

@@ -19,11 +19,6 @@ namespace biemgine
 
         ~StateManager();
 
-        void gameOverTransition();
-
-        void quitLevelTransition();
-        void startLevelTransition();
-
         int getWindowWidth() const;
         int getWindowHeight() const;
 

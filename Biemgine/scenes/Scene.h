@@ -64,6 +64,6 @@ namespace biemgine
         auto system = new TSystem();
         systemManager->addSystem(system);
 
-        system->setTransitionManager(stateManager);
+        system->setStateManager(stateManager);
     }
 }

@@ -6,20 +6,6 @@ namespace biemgine
 {
     StateManager::~StateManager() {}
 
-    void StateManager::gameOverTransition()
-    {
-        //sceneManager->changeScene(Scene_menu);
-    }
-
-    void StateManager::quitLevelTransition()
-    {
-        //sceneManager->changeScene(Scene_menu);
-    }
-
-    void StateManager::startLevelTransition()
-    {
-        //sceneManager->changeScene(Scene_level);
-    }
 
     int StateManager::getWindowWidth() const
     {

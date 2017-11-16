@@ -12,8 +12,8 @@ namespace spacebiem
     {
         if (!entity.hasComponent("movement")) return;
 
-        if (!transitionManager->getInputManager()->isKeyDown("Left")
-            && !transitionManager->getInputManager()->isKeyDown("Right"))
+        if (!getStateManager()->getInputManager()->isKeyDown("Left")
+            && !getStateManager()->getInputManager()->isKeyDown("Right"))
             return;
 
         if (entity.hasComponent("affectedByGravity")
@@ -36,14 +36,14 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            if (transitionManager->getInputManager()->isKeyDown("Left")) {
+            if (getStateManager()->getInputManager()->isKeyDown("Left")) {
                 Vector left = { -diff.y, diff.x };
                 left = left.normalize() * 90000.f * 1500.f;
 
                 physics->addForce("left", left.x, left.y);
             }
 
-            if (transitionManager->getInputManager()->isKeyDown("Right")) {
+            if (getStateManager()->getInputManager()->isKeyDown("Right")) {
                 Vector right = { diff.y, -diff.x };
                 right = right.normalize() * 90000.f * 1500.f;
 
