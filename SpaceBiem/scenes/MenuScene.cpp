@@ -36,14 +36,15 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - 175;
 
-        addEntity(new SpriteEntity("textures/teambiem.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
-        addEntity(new SpriteEntity("textures/player-standing.png", x + 260, 115, { 255, 255, 255, 255 }, playerWidth, playerHeight));
-        addEntity(new PlanetEarthEntity(-100.f, static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, 10.f));
-        addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight));
+        addEntity<SpriteEntity>("textures/teambiem.png", x, 100, Color::White(), -1, -1);
 
-        addEntity(new ButtonUIEntity(x + 100, 300, { 255, 255, 255 }, 150, 50, "Play", PlayButtonClicked));
-        addEntity(new ButtonUIEntity(x + 100, 375, { 255, 255, 255 }, 150, 50, "Highscores", HighscoreButtonClicked));
-        addEntity(new ButtonUIEntity(x + 100, 450, { 255, 255, 255 }, 150, 50, "Quit", [this](auto b) { signalQuit(); }));
+        addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
+        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 10.f);
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight);
+        
+        addEntity<ButtonUIEntity>(x + 100, 300, Color::White(), 150, 50, "Play", PlayButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 375, Color::White(), 150, 50, "Highscores", HighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 450, Color::White(), 150, 50, "Quit", [this](auto b) { signalQuit(); });
     }
 
     void MenuScene::input()
