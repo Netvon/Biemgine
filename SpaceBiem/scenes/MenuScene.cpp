@@ -41,8 +41,8 @@ namespace spacebiem
         addEntity(new PlanetEarthEntity(-100.f, static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, 10.f));
         addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight));
 
-        addEntity(new ButtonUIEntity(x + 100, 300, { 0, 0, 0, 0 }, 150, 50, "Play", PlayButtonClicked));
-        addEntity(new ButtonUIEntity(x + 100, 375, { 0, 0, 0, 0 }, 150, 50, "Highscores", HighscoreButtonClicked));
+        addEntity(new ButtonUIEntity(x + 100, 300, { 255, 255, 255 }, 150, 50, "Play", PlayButtonClicked));
+        addEntity(new ButtonUIEntity(x + 100, 375, { 255, 255, 255 }, 150, 50, "Highscores", HighscoreButtonClicked));
     }
 
     void MenuScene::input()
