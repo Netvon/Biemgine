@@ -4,7 +4,7 @@ namespace biemgine
 {
     UIComponent::UIComponent() {}
 
-    UIComponent::UIComponent(const Size & pSize, std::function<void(StateManager*)> onClick) : size(pSize)
+    UIComponent::UIComponent(const Size & pSize, std::function<void(StateManager*)> onClick) : size(pSize), onClick(onClick)
     {
     }
 
@@ -30,7 +30,7 @@ namespace biemgine
         return size;
     }
 
-    std::function<void(const StateManager*)> UIComponent::getIsClicked() const
+    std::function<void(StateManager*)> UIComponent::getIsClicked() const
     {
         return onClick;
     }

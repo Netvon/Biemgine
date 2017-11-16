@@ -173,7 +173,6 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
-    <ClInclude Include="systems\NavigationSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
     <ClInclude Include="components\ResourceComponent.h" />
@@ -214,7 +213,6 @@
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />
-    <ClCompile Include="systems\NavigationSystem.cpp" />
     <ClCompile Include="systems\ResourceUISystem.cpp" />
     <ClCompile Include="components\ResourceBonusComponent.cpp" />
     <ClCompile Include="components\ResourceComponent.cpp" />

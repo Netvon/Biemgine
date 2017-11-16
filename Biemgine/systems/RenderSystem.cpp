@@ -74,8 +74,8 @@ namespace biemgine
 
     void RenderSystem::onSceneSwitch()
     {
-        if (graphicsDevice != nullptr)
-            graphicsDevice->clear();
+        /*if (graphicsDevice != nullptr)
+            graphicsDevice->clear();*/
     }
 
     void RenderSystem::before(const float deltaTime) {}
