@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dlldef.h"
+#include "..\entities\Entity.h"
 #include "Component.h"
 
 namespace biemgine
@@ -9,13 +10,12 @@ namespace biemgine
         public Component
     {
     public:
-        GroundedComponent(bool grounded = false);
-        ~GroundedComponent();
-
         bool isGrounded() const;
-        GroundedComponent* GroundedComponent::setGrounded(bool grounded = false);
+        GroundedComponent * GroundedComponent::setGrounded(bool pGrounded, Entity * pGroundedOn);
+        Entity * getGroundedOn() const;
 
     private:
         bool grounded = false;
+        Entity * groundedOn;
     };
 }

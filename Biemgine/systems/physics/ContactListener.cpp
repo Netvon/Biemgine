@@ -13,11 +13,11 @@ namespace biemgine
             Entity* otherEntity = this->getEntityFromFixture(contact->GetFixtureB());
 
             if (entity->hasComponent("grounded") && otherEntity->hasComponent("ground")) {
-                this->entitySetGrounded(entity, true);
+                ground(entity, *otherEntity);
             }
 
             if (entity->hasComponent("ground") && otherEntity->hasComponent("grounded")) {
-                this->entitySetGrounded(entity, true);
+                ground(otherEntity, *entity);
             }
 
             if (entity->hasComponent("collidable") && otherEntity->hasComponent("collidable")) {
@@ -34,11 +34,11 @@ namespace biemgine
             Entity* otherEntity = this->getEntityFromFixture(contact->GetFixtureB());
 
             if (entity->hasComponent("grounded") && otherEntity->hasComponent("ground")) {
-                this->entitySetGrounded(entity, false);
+                unground(entity, *otherEntity);
             }
 
             if (entity->hasComponent("ground") && otherEntity->hasComponent("grounded")) {
-                this->entitySetGrounded(otherEntity, false);
+                unground(otherEntity, *entity);
             }
 
             if (entity->hasComponent("collidable") && otherEntity->hasComponent("collidable")) {
@@ -55,19 +55,25 @@ namespace biemgine
         return static_cast<Entity*>(body->GetUserData());
     }
 
-    void ContactListener::entitySetGrounded(const Entity* entity, const bool grounded) const
+    void ContactListener::ground(const Entity * grounded, Entity & ground) const
     {
-        auto gc = entity->getComponent<GroundedComponent*>("grounded");
-        gc->setGrounded(grounded);
+        auto gc = grounded->getComponent<GroundedComponent*>("grounded");
+        gc->setGrounded(true, &ground);
     }
 
-    void ContactListener::collide(Entity * thisEntity, Entity & thatEntity) const
+    void ContactListener::unground(const Entity * grounded, Entity & ground) const
+    {
+        auto gc = grounded->getComponent<GroundedComponent*>("grounded");
+        gc->setGrounded(false, &ground);
+    }
+
+    void ContactListener::collide(const Entity * thisEntity, Entity & thatEntity) const
     {
         auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
         cc->add(thatEntity);
     }
 
-    void ContactListener::decollide(Entity * thisEntity, Entity & thatEntity) const
+    void ContactListener::decollide(const Entity * thisEntity, Entity & thatEntity) const
     {
         auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
         cc->remove(thatEntity);

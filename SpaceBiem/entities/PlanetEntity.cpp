@@ -11,6 +11,7 @@ using biemgine::TextureComponent;
 
 #include "../components/GravityComponent.h"
 #include "../components/AtmosphereComponent.h"
+#include "../components/ScoreBonusComponent.h"
 
 namespace spacebiem
 {
@@ -38,5 +39,10 @@ namespace spacebiem
         if (shouldClouds) {
             addComponent("texture", new TextureComponent("textures/atmosphere_clouds.png", 0.f - ((w * 2.5f / 2) - w / 2), 0 - ((h * 2.5f / 2) - h / 2), w * 2.5f, h * 2.5f, 9999u));
         }
+    }
+
+    void PlanetEntity::createScoreBonus(int pScoreBonus)
+    {
+        addComponent("scorebonus", new ScoreBonusComponent(pScoreBonus));
     }
 }

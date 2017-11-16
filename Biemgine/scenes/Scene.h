@@ -37,6 +37,8 @@ namespace biemgine
         void enableRendering();
         void enableUI();
 
+        Entity * getEntity(int id) const;
+
     protected:
         template<class TSystem>
         void addSystem();

@@ -1,4 +1,3 @@
-#include "Biemgine.h"
 #include "ScoreBonusComponent.h"
 
 namespace spacebiem
