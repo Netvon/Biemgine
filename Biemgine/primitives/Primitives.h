@@ -7,7 +7,15 @@ namespace biemgine
 
     struct BIEMGINE Color
     {
-        unsigned char r, g, b, a;
+        unsigned char r = 255, g = 255, b = 255, a = 255;
+
+        static Color White() {
+            return Color();
+        }
+
+        static Color Black() {
+            return Color{ 0, 0, 0, 255 };
+        }
     };
 
     struct BIEMGINE Point {
