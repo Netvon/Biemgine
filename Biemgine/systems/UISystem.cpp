@@ -10,7 +10,7 @@ namespace biemgine
 
     void UISystem::before()
     {
-        auto im = getTransitionManager()->getInputManager();
+        auto im = getStateManager()->getInputManager();
 
         currentMouseLocation = im->getMouseLocation();
         isLeftMouseDown = im->isLeftMouseDown();

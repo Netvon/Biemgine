@@ -25,6 +25,8 @@ namespace biemgine
         template<class TScene>
         void navigateTo(const string& parameter = "");
 
+        Scene & getCurrentScene() const;
+
     private:
         std::unique_ptr<Scene> currentScene{ nullptr };
         const Window* currentWindow;

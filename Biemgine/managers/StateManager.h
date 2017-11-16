@@ -1,7 +1,9 @@
 #pragma once
+
 #include "dlldef.h"
 #include "..\core\Window.h"
 #include "InputManager.h"
+#include "..\entities\Entity.h"
 
 namespace biemgine
 {
@@ -16,11 +18,6 @@ namespace biemgine
         ) : sceneManager(&pSceneManager), window(&pWindow) {};
 
         ~StateManager();
-
-        void gameOverTransition();
-
-        void quitLevelTransition();
-        void startLevelTransition();
 
         int getWindowWidth() const;
         int getWindowHeight() const;
@@ -43,6 +40,10 @@ namespace biemgine
 
         template<class TScene>
         void navigateTo();
+
+        Entity * getEntity(int id) const;
+
+        SceneManager & getSceneManager() const;
 
     private:
         SceneManager* sceneManager = nullptr;

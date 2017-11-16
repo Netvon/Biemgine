@@ -6,6 +6,7 @@ using biemgine::Entity;
 
 #include "..\components\AtmosphereComponent.h"
 #include "..\components\OxygenComponent.h"
+#include "..\scenes\MenuScene.h"
 
 namespace spacebiem
 {

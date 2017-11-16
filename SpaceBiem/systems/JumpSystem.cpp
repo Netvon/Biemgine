@@ -12,7 +12,7 @@ namespace spacebiem
     {
         if (!entity.hasComponent("movement")) return;
 
-        if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
+        if (!getStateManager()->getInputManager()->isKeyDown("Space"))
             return;
 
         if (entity.hasComponent("affectedByGravity")
