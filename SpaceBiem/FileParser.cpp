@@ -90,5 +90,44 @@ namespace spacebiem
         return resourceM;
     }
 
+    map<string, map<string, vector<string>>> FileParser::levelContent() {
+        map<string, map<string, vector<string>>> levelMap;
+        map<string, vector<string>> innerMap;
+
+        string currentKey;
+        string previousKey;
+
+        FileHandler file("data/level_1.csv");
+
+        int i = 0;
+         for each (auto v in file.getValues())
+        {
+             if (i == 0) {
+                 i++;
+                 continue;
+             }
+             currentKey = v[0];
+
+             vector<string> vector;
+
+             for (size_t j = 2; j < v.size(); j++)
+             {
+                 vector.push_back(v[j]);
+             }
+
+
+             if (currentKey != previousKey) {
+                 innerMap.clear();
+             }
+
+            innerMap[v[1]] = vector;
+            levelMap[v[0]] = innerMap;
+
+            previousKey = currentKey;
+            i++;
+        }
+
+        return levelMap;
+    }
 
 }

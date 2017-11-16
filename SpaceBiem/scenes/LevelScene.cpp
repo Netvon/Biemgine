@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "LevelScene.h"
 
+#include "..\UniverseBuilder.h"
+
 #include "..\entities\PlayerEntity.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
@@ -44,10 +46,8 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        PlanetFactory pf;
-        for (auto e : pf.sceneStart(wW, wH)) {
-            addEntity(e);
-        }
+        UniverseBuilder uB;
+        uB.build(wW, wH, getEntities());
     }
 
     void LevelScene::sceneEnd() {

@@ -1,0 +1,8 @@
+entity_id_type,component_type,value 1,value 2,value 3,value 4
+1_moon,position_component,100,100,1000,1000
+2_player,position_component,50,50,500,800
+2_player,score_component,100,,,
+2_player,oxygen_component,50,,,
+3_earth,position_component,1500,100,2000,2000
+4_desert,position_component,100,1500,1000,1000
+5_moon,position_component,1500,1500,1000,1000

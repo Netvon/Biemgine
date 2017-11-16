@@ -106,6 +106,24 @@ namespace spacebiem
         return entities;
     }
 
+    Entity * PlanetFactory::create(const string& type, int pX, int pY, int width, int height)
+    {
+        if (type == "moon") {
+
+        }
+
+
+        new PlanetMoonEntity(
+            pX,
+            pY,
+            { 255, 255, 255, 255 },
+            width,
+            height
+        );
+
+        return nullptr;
+    }
+
     void PlanetFactory::sceneEnd(std::vector<Entity*> entities)
     {
     }

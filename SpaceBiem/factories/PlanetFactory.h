@@ -23,6 +23,7 @@ namespace spacebiem
 
         ~PlanetFactory() { };
         vector<Entity*> sceneStart(int windowW, int windowH) override;
+        Entity* create(string type, int pX, int pY, int widht, int height);
         void sceneEnd(std::vector<Entity*> entities) override;
 
 
