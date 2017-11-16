@@ -112,6 +112,9 @@
     <ClInclude Include="scenes\HighScoreScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="entities\ButtonUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -199,6 +202,9 @@
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
     <ClCompile Include="scenes\HighScoreScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ButtonUIEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
