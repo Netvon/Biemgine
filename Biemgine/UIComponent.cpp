@@ -1,10 +1,12 @@
 #include "components\UIComponent.h"
 
+using std::function;
+
 namespace biemgine
 {
     UIComponent::UIComponent() {}
 
-    UIComponent::UIComponent(const Size & pSize, std::function<void(StateManager*)> onClick) : size(pSize), onClick(onClick)
+    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick) : size(pSize), onClick(onClick)
     {
     }
 
@@ -30,7 +32,7 @@ namespace biemgine
         return size;
     }
 
-    std::function<void(StateManager*)> UIComponent::getIsClicked() const
+    function<void(StateManager*)> UIComponent::getIsClicked() const
     {
         return onClick;
     }

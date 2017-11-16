@@ -7,6 +7,8 @@
 #include "..\primitives\Primitives.h"
 #include "..\systems\UISystem.h"
 
+using std::function;
+
 namespace biemgine
 {
     class BIEMGINE UIComponent :
@@ -15,7 +17,7 @@ namespace biemgine
     public:
 
         UIComponent();
-        UIComponent(const Size& pSize, std::function<void (StateManager*)> onClick = nullptr);
+        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr);
         ~UIComponent();
 
         template <typename TComponent>
@@ -28,7 +30,7 @@ namespace biemgine
 
         const Size& getSize() const;
 
-        std::function<void(StateManager*)> getIsClicked() const;
+        function<void(StateManager*)> getIsClicked() const;
 
     protected:
         void setIsMouseOver(bool pIsMouseOver);
@@ -42,7 +44,7 @@ namespace biemgine
         bool isMouseDown = false;
         bool isMouseOver = false;
         Size size;
-        std::function<void(StateManager*)> onClick;
+        function<void(StateManager*)> onClick;
     };
 
     template<typename TComponent>
