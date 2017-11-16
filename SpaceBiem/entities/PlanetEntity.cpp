@@ -8,6 +8,7 @@ using biemgine::ColorComponent;
 using biemgine::CollidableComponent;
 using biemgine::GroundComponent;
 using biemgine::TextureComponent;
+using biemgine::TextComponent;
 
 #include "../components/GravityComponent.h"
 #include "../components/AtmosphereComponent.h"
@@ -15,7 +16,7 @@ using biemgine::TextureComponent;
 
 namespace spacebiem
 {
-    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, string texture, string borderTexture, int pScoreBonus)
+    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, string texture, string borderTexture, int pScoreBonus, string pName)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("physics", new PhysicsComponent(w, h, true, PhysicsComponentShape::CIRCLE));
@@ -29,6 +30,7 @@ namespace spacebiem
         addComponent("ground", new GroundComponent);
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f));
+        addComponent("text", new TextComponent(pName, { 255,255,255,255 }, w / 2, h / 2, false, true));
 
         int flagHeight = 100;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56, flagHeight, 10u, false, "flag"));

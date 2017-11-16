@@ -25,13 +25,15 @@ namespace biemgine
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
 
-            textList.push_back(DrawText(
-                tx->getText(),
-                static_cast<int>(pc->getX()),
-                static_cast<int>(pc->getY()),
-                tx->getColor(),
-                tx
-            ));
+            if (tx->isVisible()) {
+                textList.push_back(DrawText(
+                    tx->getText(),
+                    static_cast<int>(pc->getX() + tx->getOffsetX()),
+                    static_cast<int>(pc->getY() + tx->getOffsetY()),
+                    tx->getColor(),
+                    tx
+                ));
+            }
         }
 
         if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
