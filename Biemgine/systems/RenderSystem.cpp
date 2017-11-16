@@ -24,8 +24,14 @@ namespace biemgine
 
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
-            auto size = graphicsDevice->drawText(tx->getText(), static_cast<int>(pc->getX()), static_cast<int>(pc->getY()), tx->getColor(), 0);
-            tx->setTextSize(size);
+
+            textList.push_back(DrawText(
+                tx->getText(),
+                static_cast<int>(pc->getX()),
+                static_cast<int>(pc->getY()),
+                tx->getColor(),
+                tx
+            ));
         }
 
         if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
@@ -51,7 +57,8 @@ namespace biemgine
 
 
         }
-        else {
+        if (entity.hasComponent("rectangle"))
+        {
             auto rectangle = entity.getComponent<RectangleComponent*>("rectangle");
 
             graphicsDevice->drawSquare(
@@ -95,9 +102,20 @@ namespace biemgine
             );
         }
 
+        for (auto text : textList)
+        {
+            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+            if(text.component != nullptr) text.component->setTextSize(size);
+        }
+
         drawList.clear();
+        textList.clear();
     }
 
     DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer) :
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
+
+
+    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component) :
+        text(text), x(x), y(y), color(color), component(component) {}
 }

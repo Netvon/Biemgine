@@ -3,12 +3,17 @@
 namespace biemgine
 {
     RectangleComponent::RectangleComponent(float width, float height, Color color)
-        : color(color), width(width), height(height) {}
+        : color(color), originalColor(color), width(width), originalWidth(width), height(height) {}
 
     RectangleComponent::~RectangleComponent() {}
 
     float RectangleComponent::getWidth() const {
         return width;
+    }
+
+    float RectangleComponent::getOriginalWidth() const
+    {
+        return originalWidth;
     }
 
     float RectangleComponent::getHeight() const {
@@ -23,7 +28,17 @@ namespace biemgine
         height = pHeight;
     }
 
+    void RectangleComponent::setColor(Color pColor)
+    {
+        color = pColor;
+    }
+
     ColorComponent RectangleComponent::getColor() const {
         return color;
+    }
+
+    ColorComponent RectangleComponent::getOriginalColor() const
+    {
+        return originalColor;
     }
 }
