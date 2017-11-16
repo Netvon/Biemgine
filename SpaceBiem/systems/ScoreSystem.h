@@ -10,9 +10,6 @@ namespace spacebiem
         public System
     {
     public:
-        ScoreSystem();
-        ~ScoreSystem();
-
         void update(const Entity& entity) override;
         void onSceneSwitch() override;
     };

@@ -29,6 +29,9 @@ namespace spacebiem
         addComponent("ground", new GroundComponent);
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f));
+
+        int flagHeight = 100;
+        addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56, flagHeight, 10u, false, "flag"));
     }
 
     void PlanetEntity::createAtmosphere(float x, float y, float w, float h, float atmosphere, string texture, bool shouldClouds)

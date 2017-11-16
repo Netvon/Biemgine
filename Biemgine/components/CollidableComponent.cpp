@@ -2,33 +2,30 @@
 
 namespace biemgine
 {
-    bool CollidableComponent::collides(const Entity& entity)
+    bool CollidableComponent::collides(const Entity & entity) const
     {
-        for (auto &entityId = entityIds.begin(); entityId != entityIds.end(); ++entityId)
-        {
-            if (*entityId == entity.getId()) return true;
-        }
+        bool collision = collisions.find(entity.getId()) != collisions.end();
 
-        return false;
+        return collision && &collision != false;
     }
 
     void CollidableComponent::add(const Entity & entity)
     {
-        if (collides(entity)) return;
-
-        entityIds.push_back(entity.getId());
+        collisions.insert_or_assign(entity.getId(), true);
     }
 
     void CollidableComponent::remove(const Entity & entity)
     {
-        if (!collides(entity)) return;
+        collisions.insert_or_assign(entity.getId(), false);
+    }
 
-        for (auto &entityId = entityIds.begin(); entityId != entityIds.end(); ++entityId)
-        {
-            if (*entityId == entity.getId()) {
-                entityIds.erase(entityId);
-                break;
-            }
-        }
+    bool CollidableComponent::visited(const Entity & entity) const
+    {
+        return collisions.find(entity.getId()) != collisions.end();
+    }
+
+    map<int, bool> CollidableComponent::getCollisions() const
+    {
+        return collisions;
     }
 }
