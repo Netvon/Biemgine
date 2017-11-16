@@ -41,7 +41,7 @@ namespace biemgine
             ui->setIsMouseDown(isLeftMouseDown);
 
             if (isLeftMouseDown) {
-                if(ui->getIsClicked() != nullptr)
+                if(ui->getIsClicked())
                     ui->getIsClicked()(getStateManager());
             }
         }
