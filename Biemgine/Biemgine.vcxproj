@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
+    <ClInclude Include="components\CollidableComponent.h" />
     <ClInclude Include="components\ColorComponent.h" />
     <ClInclude Include="components\Component.h" />
     <ClInclude Include="components\GroundComponent.h" />
@@ -63,6 +64,7 @@
   <ItemGroup>
     <ClCompile Include="systems\UISystem.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />
+    <ClCompile Include="components\CollidableComponent.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />

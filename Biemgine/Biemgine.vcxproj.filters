@@ -141,6 +141,9 @@
     </ClInclude>
     <ClInclude Include="primitives\RandomGenerator.h" />
     <ClInclude Include="managers\FileHandler.h" />
+    <ClInclude Include="components\CollidableComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -178,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="managers\SceneManager.cpp">
       <Filter>managers</Filter>
-    </ClCompile>
-    <ClCompile Include="systems\RenderSystem.cpp">
-      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="systems\physics\ContactListener.cpp">
       <Filter>systems\physics</Filter>
@@ -236,5 +236,11 @@
     </ClCompile>
     <ClCompile Include="primitives\RandomGenerator.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />
+    <ClCompile Include="components\CollidableComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\RenderSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

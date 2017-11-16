@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "OxygenUISystem.h"
 
+using biemgine::Color;
 using biemgine::ColorComponent;
 using biemgine::UIComponent;
 using biemgine::PositionComponent;
@@ -37,6 +38,7 @@ namespace spacebiem
         auto pc = entity.getComponent<PositionComponent*>("position");
         auto uc = entity.getComponent<UIComponent*>("ui");
         auto cc = entity.getComponent<ColorComponent*>("color");
+        auto rc = entity.getComponent<RectangleComponent*>("rectangle");
 
 
         // If the UI doesn't have the component which to draw, pick one from the map.
@@ -57,10 +59,14 @@ namespace spacebiem
 
         float oBar = oRef->getOxygenAmount() / static_cast<float>(oRef->getOxygenMax());
 
+        Color dangerRedColor = {204, 94, 94};
+        Color newColor;
+        newColor.r = dangerRedColor.r + ((rc->getOriginalColor().getR() - dangerRedColor.r) * oBar);
+        newColor.g = dangerRedColor.g + ((rc->getOriginalColor().getG() - dangerRedColor.g) * oBar);
+        newColor.b = dangerRedColor.b + ((rc->getOriginalColor().getB() - dangerRedColor.b) * oBar);
 
-        auto rc = entity.getComponent<RectangleComponent*>("rectangle");
-        rc->setWidth(transitionManager->getWindowWidth() * oBar);
-
+        rc->setWidth(rc->getOriginalWidth() * oBar);
+        rc->setColor(newColor);
     }
 
     void OxygenUISystem::after(const float deltaTime)

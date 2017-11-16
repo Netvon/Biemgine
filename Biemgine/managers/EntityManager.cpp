@@ -28,6 +28,8 @@ namespace biemgine
         }
 
         manager->postUpdate();
+
+        removeDeadEntities();
     }
 
     void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
@@ -39,5 +41,21 @@ namespace biemgine
         }
 
         manager->postUpdate(deltaTime);
+
+        removeDeadEntities();
     }
+
+    void EntityManager::removeDeadEntities()
+    {
+        for (vector<Entity*>::iterator e = entities.begin(); e != entities.end();)
+        {
+            if (!(*e)->isAlive())
+                e = entities.erase(e);
+            else
+                ++e;
+        }
+    }
+
+
+
 }
