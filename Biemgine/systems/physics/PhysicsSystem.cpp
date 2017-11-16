@@ -39,6 +39,13 @@ namespace biemgine
         delete world;
     }
 
+    void PhysicsSystem::before()
+    {
+        for (auto pair : bodiesUpdated) {
+            bodiesUpdated[pair.first] = false;
+        }
+    }
+
     void PhysicsSystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("physics"))
@@ -78,6 +85,27 @@ namespace biemgine
         body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
 
         physics->decreaseTimedForces();
+
+        bodiesUpdated[entity.getId()] = true;
+    }
+
+    void PhysicsSystem::after()
+    {
+        for (auto it = bodiesUpdated.cbegin(); it != bodiesUpdated.cend();)
+        {
+            if (!(*it).second)
+            {
+                world->DestroyBody(bodies[(*it).first]);
+                bodies.erase(bodies.find((*it).first));
+                it = bodiesUpdated.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+
+        world->Step(1.f / 30.0f, 6, 2);
     }
 
     void PhysicsSystem::onSceneSwitch()
@@ -92,15 +120,6 @@ namespace biemgine
         //}
 
         //destroy();
-    }
-
-    void PhysicsSystem::before()
-    {
-    }
-
-    void PhysicsSystem::after()
-    {
-        world->Step(1.f / 30.0f, 6, 2);
     }
 
     b2Body* PhysicsSystem::createBody(const Entity & entity) {

@@ -27,8 +27,9 @@ namespace biemgine
         string text;
         int x, y;
         Color color;
+        TextComponent* component;
 
-        DrawText(const string& text, int x, int y, Color color);
+        DrawText(const string& text, int x, int y, Color color, TextComponent* component);
     };
 
     class RenderSystem

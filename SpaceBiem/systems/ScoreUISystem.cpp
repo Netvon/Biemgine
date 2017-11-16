@@ -74,7 +74,13 @@ namespace spacebiem
 
     }
 
-    void ScoreUISystem::after(const float deltaTime) {}
+    void ScoreUISystem::after(const float deltaTime)
+    {
+        /*if (getTransitionManager()->getInputManager()->isLeftMouseDown()) {
+            auto l = getTransitionManager()->getInputManager()->getMouseLocation();
+            printf("{%i,%i}\n", l.x, l.y);
+        }*/
+    }
 
     void ScoreUISystem::onSceneSwitch()
     {

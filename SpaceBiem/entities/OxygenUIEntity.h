@@ -8,6 +8,7 @@ using biemgine::PositionComponent;
 using biemgine::ColorComponent;
 using biemgine::UIComponent;
 using biemgine::RectangleComponent;
+using biemgine::TextureComponent;
 
 #include "../components/OxygenComponent.h"
 

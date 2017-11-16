@@ -20,7 +20,7 @@ namespace spacebiem
         if (entity.hasComponent("ui")) return;
         auto sc = entity.getComponent<ScoreComponent*>("score");
 
-        sc->addScore(Loop::BM_GAMELOOP_UPDATE_MS / 100);
+        //sc->addScore(Loop::BM_GAMELOOP_UPDATE_MS / 100);
     }
 
     void ScoreSystem::onSceneSwitch()

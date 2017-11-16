@@ -24,11 +24,13 @@ namespace biemgine
 
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
+
             textList.push_back(DrawText(
                 tx->getText(),
                 static_cast<int>(pc->getX()),
                 static_cast<int>(pc->getY()),
-                tx->getColor()
+                tx->getColor(),
+                tx
             ));
         }
 
@@ -102,7 +104,8 @@ namespace biemgine
 
         for (auto text : textList)
         {
-            graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+            if(text.component != nullptr) text.component->setTextSize(size);
         }
 
         drawList.clear();
@@ -113,6 +116,6 @@ namespace biemgine
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
 
 
-    DrawText::DrawText(const string& text, int x, int y, Color color) :
-        text(text), x(x), y(y), color(color) {}
+    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component) :
+        text(text), x(x), y(y), color(color), component(component) {}
 }

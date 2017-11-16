@@ -117,6 +117,18 @@
     <ClInclude Include="systems\ResourceUISystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\HighScoreScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="components\MovementComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -211,6 +223,21 @@
     </ClCompile>
     <ClCompile Include="systems\ResourceUISystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\HighScoreScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\MovementComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

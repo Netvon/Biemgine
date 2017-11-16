@@ -11,9 +11,9 @@ namespace spacebiem
     {
     public:
         ResourceComponent(){
-            addResource("metal", 51);
-            addResource("diamond", 18);
-            addResource("uranium", 7);
+            addResource("metal", 0);
+            addResource("diamond", 0);
+            addResource("uranium", 0);
             addResource("anti-matter", 0);
         };
 

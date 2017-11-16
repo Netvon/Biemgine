@@ -17,6 +17,9 @@ namespace biemgine
         void EndContact(b2Contact* contact);
 
         Entity* getEntityFromFixture(b2Fixture* fixture);
-        void ContactListener::entitySetGrounded(const Entity* entity, const bool grounded) const;
+        void entitySetGrounded(const Entity* entity, const bool grounded) const;
+
+        void collide(Entity * thisEntity, Entity & thatEntity) const;
+        void decollide(Entity * thisEntity, Entity & thatEntity) const;
     };
 }
