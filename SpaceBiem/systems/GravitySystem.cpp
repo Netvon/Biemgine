@@ -76,7 +76,7 @@ namespace spacebiem
         auto force = centerOfGravity - centerOfSatellite;
 
         force = force.normalize();
-        force *= 29000.0f;
+        force *= satPhysics->getMass() * 90.0f;
 
         satPhysics->addForce("gravity", force.x, force.y);
         affected->setFallingTowardsX(centerOfGravity.x);

@@ -37,7 +37,7 @@ namespace spacebiem
         float width = 15 * 2;
         float height = 25 * 2;
 
-        addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
+        addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height, 0.1f));
 
         addEntity(new OxygenUIEntity());
         addEntity(new ScoreUIEntity());

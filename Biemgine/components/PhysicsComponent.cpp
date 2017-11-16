@@ -19,7 +19,7 @@ namespace biemgine
     }
 
     PhysicsComponent::PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass)
-        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), mass(mass) {}
+        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass) {}
 
     PhysicsComponent::~PhysicsComponent() {}
 
@@ -61,8 +61,18 @@ namespace biemgine
         return f.y;
     }
 
-    float PhysicsComponent::getMass() const {
+    float PhysicsComponent::getDensity() const {
+        return density;
+    }
+
+    float PhysicsComponent::getMass() const
+    {
         return mass;
+    }
+
+    void PhysicsComponent::setMass(float pMass)
+    {
+        mass = pMass;
     }
 
     float PhysicsComponent::getImpulseX() const {
@@ -85,6 +95,16 @@ namespace biemgine
         }
 
         return f.y;
+    }
+
+    Vector PhysicsComponent::getVelocity() const
+    {
+        return velocity;
+    }
+
+    void PhysicsComponent::setVelocity(Vector pVelocity)
+    {
+        velocity = pVelocity;
     }
 
     void PhysicsComponent::addForce(const string id, float x, float y) {

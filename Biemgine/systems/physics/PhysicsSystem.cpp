@@ -78,6 +78,9 @@ namespace biemgine
         body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
 
         physics->decreaseTimedForces();
+
+        auto velo = body->GetLinearVelocity();
+        physics->setVelocity({ velo.x, velo.y });
     }
 
     void PhysicsSystem::onSceneSwitch()
@@ -117,6 +120,7 @@ namespace biemgine
 
         if (entity.hasComponent("grounded")) {
             newBodyDef.fixedRotation = true;
+            printf("HasGrounded - ");
         }
 
         newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
@@ -131,14 +135,14 @@ namespace biemgine
             b2PolygonShape polygonshape;
             polygonshape.SetAsBox(physics->getColliderW() / 2.f, physics->getColliderH() / 2.f, { 0,0/*physics->getColliderW() / 2.f, physics->getColliderH() / 2.f*/ }, 0);
 
-            fixture = body->CreateFixture(&polygonshape, physics->getMass());
+            fixture = body->CreateFixture(&polygonshape, physics->getDensity());
         }
         else if (physics->getShape() == CIRCLE) {
             b2CircleShape circleShape;
             circleShape.m_p.Set(0, 0);
             circleShape.m_radius = physics->getColliderW() / 2.0f;
 
-            fixture = body->CreateFixture(&circleShape, physics->getMass());
+            fixture = body->CreateFixture(&circleShape, physics->getDensity());
         }
 
         fixture->SetRestitution(0.15f);
@@ -154,6 +158,9 @@ namespace biemgine
 
             b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
         }
+
+        printf("Adding body with mass: %f, density: %f\n", body->GetMass(), fixture->GetDensity());
+        physics->setMass(body->GetMass());
 
         return body;
     }

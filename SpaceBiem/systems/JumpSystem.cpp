@@ -1,10 +1,13 @@
 #include "JumpSystem.h"
+#include "../scenes/LevelScene.h"
 
 using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PositionComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
+
+#include <functional>
 
 namespace spacebiem
 {
@@ -35,10 +38,35 @@ namespace spacebiem
 
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            diff *= -1;
-            diff = diff.normalize() * 90000.f * 1500.f;
+            /*if (transitionManager->getInputManager()->isKeyDown("Left")) {
+                Vector left = { -diff.y, diff.x };
+                left = left.normalize() * physics->getMass() * (90 * 30);
 
-            physics->addTimedForce("jump", diff.x, diff.y, 100, true);
+                physics->addTimedForce("left", left.x, left.y, 30);
+            }
+
+            if (transitionManager->getInputManager()->isKeyDown("Right")) {
+                Vector right = { diff.y, -diff.x };
+                right = right.normalize() * physics->getMass() * (90 * 30);
+
+                physics->addTimedForce("right", right.x, right.y, 30);
+            }*/
+
+            diff *= physics->getVelocity();
+            //diff *= -1;
+
+            //auto diff = [](biemgine::StateManager manager) { manager.navigateTo<LevelScene>(); };
+            
+            diff = diff.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
+            physics->addForce("jump", diff.x, diff.y);
         }
+    }
+
+    void OnClick(biemgine::StateManager param) {
+
+    }
+
+    void f1(std::function<void(biemgine::StateManager)> lambda)
+    {
     }
 }

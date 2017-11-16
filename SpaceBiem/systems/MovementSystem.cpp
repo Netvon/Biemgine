@@ -34,16 +34,19 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
+            if (physics->getVelocity().length() > 50)
+                return;
+
             if (transitionManager->getInputManager()->isKeyDown("Left")) {
                 Vector left = { -diff.y, diff.x };
-                left = left.normalize() * 90000.f * 1500.f;
+                left = left.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
 
                 physics->addForce("left", left.x, left.y);
             }
 
             if (transitionManager->getInputManager()->isKeyDown("Right")) {
                 Vector right = { diff.y, -diff.x };
-                right = right.normalize() * 90000.f * 1500.f;
+                right = right.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
 
                 physics->addForce("right", right.x, right.y);
             }

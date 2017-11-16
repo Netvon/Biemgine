@@ -36,6 +36,9 @@ namespace biemgine
         Vector& operator/=(float scalar);
         Vector operator/(float scalar);
 
+        Vector& operator*=(const Vector& other);
+        Vector operator*(const Vector& other);
+
         Vector normalize();
         float length();
 
