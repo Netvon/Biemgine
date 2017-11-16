@@ -47,7 +47,7 @@ namespace spacebiem
         addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
-        //addEnti<ScoreUIEntity>();
+        addEntity<ScoreUIEntity>();
         addEntity<SpriteEntity>("textures/resources-hud.png", 25, 25, Color::White(), 401, 169, 100u);
         addEntity<ResourceUIEntity>(66, 150, Color::White(), "uranium");
         addEntity<ResourceUIEntity>(157, 150, Color::White(), "diamond");

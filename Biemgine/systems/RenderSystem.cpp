@@ -38,11 +38,12 @@ namespace biemgine
             return;
 
         if (entity.hasComponent("texture")) {
-            auto cc = entity.getComponent<ColorComponent*>("color");
-
             auto tc = entity.getComponents<TextureComponent*>("texture");
+            auto cc = entity.getComponent<ColorComponent*>("color");            
 
             for (auto tex : tc) {
+                if (!tex->isVisible()) continue;
+
                 drawList.push_back(DrawTexture(
                     tex->getPath(),
                     static_cast<int>(pc->getX() + tex->getOffsetX()),
@@ -54,9 +55,8 @@ namespace biemgine
                     tex->getLayer()
                 ));
             }
-
-
         }
+
         if (entity.hasComponent("rectangle"))
         {
             auto rectangle = entity.getComponent<RectangleComponent*>("rectangle");
@@ -69,7 +69,6 @@ namespace biemgine
                 rectangle->getColor().getColor(), pc->getRotation()
             );
         }
-
     }
 
     void RenderSystem::onSceneSwitch()

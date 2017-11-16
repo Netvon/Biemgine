@@ -47,8 +47,8 @@ namespace spacebiem
             addEntity(e);
         }
 
-        addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, static_cast<float>(10));
-        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight);
+        addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, static_cast<float>(10));
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
                  
         addEntity<ButtonUIEntity>(x, 750, Color::White(), 150, 50, "Back", BackButtonClicked);
     }
