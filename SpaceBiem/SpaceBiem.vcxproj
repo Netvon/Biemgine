@@ -173,6 +173,8 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="scenes\GameoverScene.h" />
+    <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
     <ClInclude Include="components\ResourceComponent.h" />
@@ -211,6 +213,8 @@
     <ClCompile Include="entities\ScoreUIEntity.cpp" />
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
+    <ClCompile Include="scenes\GameoverScene.cpp" />
+    <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />
     <ClCompile Include="systems\ResourceUISystem.cpp" />

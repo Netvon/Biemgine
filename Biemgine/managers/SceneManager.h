@@ -22,8 +22,8 @@ namespace biemgine
 
         std::shared_ptr<StateManager> getStateManager();
 
-        template<class TScene>
-        void navigateTo(const string& parameter = "");
+        template<class TScene, typename... TParams>
+        void navigateTo(TParams&&... arguments);
 
         Scene & getCurrentScene() const;
 
@@ -37,10 +37,10 @@ namespace biemgine
         //int nextScene;
     };
 
-    template<class TScene>
-    void SceneManager::navigateTo(const string & parameter)
+    template<class TScene, typename... TParams>
+    void SceneManager::navigateTo(TParams&&... arguments)
     {
-        nextScene = std::make_unique<TScene>(*stateManager);
+        nextScene = std::make_unique<TScene>(*stateManager, std::forward<TParams>(arguments)...);
 
         if (currentScene != nullptr)
             currentScene->signalQuit();

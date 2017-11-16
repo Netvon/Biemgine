@@ -20,6 +20,7 @@
 #include "..\systems\ScoreSystem.h"
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
+#include "..\systems\GameoverSystem.h"
 
 namespace spacebiem
 {
@@ -38,6 +39,7 @@ namespace spacebiem
         addSystem<ScoreUISystem>();
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
+        addSystem<GameoverSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;

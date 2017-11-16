@@ -52,9 +52,6 @@ namespace spacebiem
         }
         oc->setOxygenAmount(oAmount);
 
-        if (oAmount <= 0) {
-            getStateManager()->navigateTo<MenuScene>();
-        }
     }
 
     void OxygenSystem::after()

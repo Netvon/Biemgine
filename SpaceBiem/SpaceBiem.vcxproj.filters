@@ -132,6 +132,10 @@
     <ClInclude Include="components\MovementComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="systems\GameoverSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -245,5 +249,9 @@
     <ClCompile Include="components\MovementComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="systems\GameoverSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp" />
   </ItemGroup>
 </Project>

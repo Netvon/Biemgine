@@ -38,8 +38,8 @@ namespace biemgine
             return inputManager;
         }
 
-        template<class TScene>
-        void navigateTo();
+        template<class TScene, typename... TParams>
+        void navigateTo(TParams&&... arguments);
 
         Entity * getEntity(int id) const;
 
@@ -53,9 +53,9 @@ namespace biemgine
         bool paused = false;
     };
 
-    template<class TScene>
-    void StateManager::navigateTo()
+    template<class TScene, typename... TParams>
+    void StateManager::navigateTo(TParams&&... arguments)
     {
-        sceneManager->navigateTo<TScene>("");
+        sceneManager->navigateTo<TScene>(std::forward<TParams>(arguments)...);
     }
 }
