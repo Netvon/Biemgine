@@ -43,6 +43,7 @@ namespace spacebiem
 
         addEntity(new ButtonUIEntity(x + 100, 300, { 255, 255, 255 }, 150, 50, "Play", PlayButtonClicked));
         addEntity(new ButtonUIEntity(x + 100, 375, { 255, 255, 255 }, 150, 50, "Highscores", HighscoreButtonClicked));
+        addEntity(new ButtonUIEntity(x + 100, 450, { 255, 255, 255 }, 150, 50, "Quit", [this](auto b) { signalQuit(); }));
     }
 
     void MenuScene::input()
