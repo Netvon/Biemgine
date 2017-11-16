@@ -7,6 +7,7 @@
 using biemgine::GroundedComponent;
 using biemgine::CollidableComponent;
 using biemgine::TextureComponent;
+using biemgine::TextComponent;
 
 namespace spacebiem
 {
@@ -29,6 +30,7 @@ namespace spacebiem
             sc->addScore(sbc->getScoreBonus());
 
             sbc->setScoreGiven(true);
+            ground->getComponent<TextComponent*>("text")->setVisible(true);
 
             auto components = ground->getComponents<TextureComponent*>("texture");
 
