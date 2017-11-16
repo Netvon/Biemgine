@@ -2,9 +2,11 @@
 #include "..\components\ScoreComponent.h"
 #include "..\components\ScoreBonusComponent.h"
 #include "ScoreSystem.h"
+#include "..\entities\PlanetEntity.h"
 
 using biemgine::GroundedComponent;
 using biemgine::CollidableComponent;
+using biemgine::TextureComponent;
 
 namespace spacebiem
 {
@@ -20,13 +22,23 @@ namespace spacebiem
             auto ground = gc->getGroundedOn();
             if (!ground->hasComponent("scorebonus")) return;
 
-            auto cc = entity.getComponent<CollidableComponent*>("collidable");
-            if (cc->visited(*ground)) return;
+            auto sbc = ground->getComponent<ScoreBonusComponent*>("scorebonus");
+            if (sbc->isScoreGiven()) return;
 
             auto sc = entity.getComponent<ScoreComponent*>("score");
-            auto sbc = ground->getComponent<ScoreBonusComponent*>("scorebonus");
-
             sc->addScore(sbc->getScoreBonus());
+
+            sbc->setScoreGiven(true);
+
+            auto components = ground->getComponents<TextureComponent*>("texture");
+
+            for (auto it = components.begin(); it != components.end(); ++it)
+            {
+                auto component = (*it);
+                if (component->getTag() != "flag") continue;
+
+                component->setVisible(true);
+            }
         }
     }
 

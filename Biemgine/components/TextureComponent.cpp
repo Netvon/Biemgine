@@ -3,8 +3,8 @@
 
 namespace biemgine
 {
-    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer)
-        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), layer(layer) {};
+    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer, bool pVisible, const string pTag)
+        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), layer(layer), visible(pVisible), tag(pTag) {};
 
     TextureComponent::~TextureComponent() {}
 
@@ -30,5 +30,20 @@ namespace biemgine
 
     unsigned int TextureComponent::getLayer() const {
         return layer;
+    }
+
+    const string & TextureComponent::getTag() const
+    {
+        return tag;
+    }
+
+    bool TextureComponent::isVisible() const
+    {
+        return visible;
+    }
+
+    void TextureComponent::setVisible(bool pVisible)
+    {
+        visible = pVisible;
     }
 }
