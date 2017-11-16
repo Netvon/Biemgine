@@ -21,6 +21,10 @@ namespace biemgine
             return entities;
         }
 
+        Entity* getEntity(int id) const;
+
+        void removeDeadEntities();
+
     private:
         std::vector<Entity*> entities;
     };

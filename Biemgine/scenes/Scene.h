@@ -35,6 +35,9 @@ namespace biemgine
 
         void enablePhysics();
         void enableRendering();
+        void enableUI();
+
+        Entity * getEntity(int id) const;
 
     protected:
         template<class TSystem>
@@ -61,6 +64,6 @@ namespace biemgine
         auto system = new TSystem();
         systemManager->addSystem(system);
 
-        system->setTransitionManager(stateManager);
+        system->setStateManager(stateManager);
     }
 }

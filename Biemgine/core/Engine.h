@@ -24,7 +24,7 @@ namespace biemgine
 
         manager.createStateManager(window);
         //manager.changeScene(Scene_menu);
-        manager.navigateTo<TScene>("");
+        manager.navigateTo<TScene>();
 
 
         while (true) {

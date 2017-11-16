@@ -20,4 +20,14 @@ namespace biemgine {
     void TextComponent::setColor(const Color newColor) {
         color = newColor;
     }
+
+    Size TextComponent::getTextSize() const
+    {
+        return textSize;
+    }
+
+    void TextComponent::setTextSize(const Size & pTextSize)
+    {
+        textSize = pTextSize;
+    }
 }

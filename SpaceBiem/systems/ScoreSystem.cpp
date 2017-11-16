@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "..\components\ScoreComponent.h"
+#include "..\components\ScoreBonusComponent.h"
 #include "ScoreSystem.h"
 
-using biemgine::Loop;
+using biemgine::GroundedComponent;
 
 namespace spacebiem
 {
@@ -16,11 +17,22 @@ namespace spacebiem
 
     void ScoreSystem::update(const Entity& entity)
     {
-        if (!entity.hasComponent("score")) return;
-        if (entity.hasComponent("ui")) return;
-        auto sc = entity.getComponent<ScoreComponent*>("score");
+        if (!entity.hasComponent("score")
+            || entity.hasComponent("ui")
+            || !entity.hasComponent("grounded")) return;
 
-        sc->addScore(Loop::BM_GAMELOOP_UPDATE_MS / 100);
+        auto gc = entity.getComponent<GroundedComponent*>("grounded");
+
+        if (gc->isGrounded()) {
+            auto sc = entity.getComponent<ScoreComponent*>("score");
+
+            auto ground = gc->getGroundedOn();
+            if (!ground->hasComponent("scorebonus")) return;
+
+            auto sbc = ground->getComponent<ScoreBonusComponent*>("scorebonus");
+
+            sc->addScore(sbc->getScoreBonus());
+        }
     }
 
     void ScoreSystem::onSceneSwitch()

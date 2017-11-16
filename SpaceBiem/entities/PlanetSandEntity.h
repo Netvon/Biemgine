@@ -1,14 +1,16 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "stdafx.h"
 
-using biemgine::Entity;
 using biemgine::Color;
+
+#include "PlanetEntity.h"
 
 namespace spacebiem
 {
     class PlanetSandEntity :
-        public Entity
+        public PlanetEntity
     {
     public:
         PlanetSandEntity(float x, float y, Color color, float w, float h, float atmosphere);

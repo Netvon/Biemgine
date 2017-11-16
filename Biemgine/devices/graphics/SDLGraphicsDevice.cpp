@@ -58,7 +58,7 @@ namespace biemgine {
         SDL_RenderFillRect(renderer, &rect);
     }
 
-    void SDLGraphicsDevice::drawText(const std::string& text, int x, int y, Color color, int ptSize, TextureFlip flip) {
+    Size SDLGraphicsDevice::drawText(const std::string& text, int x, int y, Color color, int ptSize, TextureFlip flip) {
 
         if (textTextures.find(text) == textTextures.end()) {
             SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
@@ -80,6 +80,7 @@ namespace biemgine {
 
         SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, 0, nullptr, static_cast<SDL_RendererFlip>(flip));
 
+        return { textRect.w, textRect.h };
     }
 
     void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip)
@@ -142,19 +143,13 @@ namespace biemgine {
 
 
         if (surface != nullptr) {
+            auto tex = SDL_CreateTextureFromSurface(renderer, surface);
 
-            if (surface != nullptr) {
+            textures.insert_or_assign(path, tex);
 
-                auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+            SDL_FreeSurface(surface);
 
-
-                textures.insert_or_assign(path, tex);
-
-                SDL_FreeSurface(surface);
-
-                return tex;
-            }
-
+            return tex;
         }
 
         return nullptr;

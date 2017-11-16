@@ -31,7 +31,8 @@ namespace spacebiem
 
         FileParser fh;
         map<string, float> atmosphereM = fh.atmosphereContent();
-        
+        map<string, int> scoreBonus = fh.planetScoreContent();
+
         for (int x = 0; x < maxX; x++) {
 
             for (int y = 0; y < maxY; y++) {
@@ -39,17 +40,23 @@ namespace spacebiem
                 int pX = xMarge + (p_size / 2) + (x*(p_size * 2));
                 int pY = yMarge + (p_size / 2) + (y*(p_size * 2));
 
+                PlanetEntity * planet = nullptr;
+
                 switch (RandomGenerator::getInstance().generate(1, 5))
                 {
                 case 1:
-                    entities.push_back(new PlanetEarthEntity(
+                    planet = new PlanetEarthEntity(
                         pX,
                         pY,
                         { 255, 255, 255, 255 },
                         p_size,
                         p_size,
                         atmosphereM["earth"]
-                    ));
+                    );
+
+                    planet->createScoreBonus(scoreBonus["earth"]);
+
+                    entities.push_back(planet);
                     for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "earth"))
                     {
                         entities.push_back(r);
@@ -73,7 +80,7 @@ namespace spacebiem
                     entities.push_back(new PlanetToxicEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 127, 0, 255, 255 },
                         p_size,
                         p_size,
                         atmosphereM["toxic"]

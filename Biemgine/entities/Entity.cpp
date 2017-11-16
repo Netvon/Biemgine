@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "..\components\Component.h"
+#include "..\components\TextComponent.h"
 #include "Entity.h"
 
 namespace biemgine
@@ -38,4 +39,25 @@ namespace biemgine
     {
         return this->id;
     }
+
+    void Entity::die() const
+    {
+        alive = false;
+    }
+
+    bool Entity::isAlive() const
+    {
+        return alive;
+    }
+
+    //Size Entity::getBounds() const
+    //{
+    //    // TODO define more sizes
+    //    // Add all to created bounding box size
+
+    //    if (hasComponent("text")) {
+    //        auto txt = getComponent<TextComponent*>("text");
+    //        return txt->getTextSize();
+    //    }
+    //}
 }

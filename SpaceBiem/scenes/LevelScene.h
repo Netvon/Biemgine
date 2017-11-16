@@ -2,6 +2,7 @@
 
 #include "Biemgine.h"
 
+using biemgine::SpriteEntity;
 using biemgine::Scene;
 using biemgine::StateManager;
 

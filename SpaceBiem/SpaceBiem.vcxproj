@@ -150,7 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
+    <ClInclude Include="entities\ButtonUIEntity.h" />
+    <ClInclude Include="entities\PlanetEntity.h" />
     <ClInclude Include="entities\PlanetSandEntity.h" />
     <ClInclude Include="entities\PlanetToxicEntity.h" />
     <ClInclude Include="entities\ResourceEntity.h" />
@@ -169,8 +172,13 @@
     <ClInclude Include="entities\SurfaceEntity.h" />
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
+    <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="scenes\GameoverScene.h" />
+    <ClInclude Include="systems\GameoverSystem.h" />
+    <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
     <ClInclude Include="components\ResourceComponent.h" />
+    <ClInclude Include="scenes\HighScoreScene.h" />
     <ClInclude Include="scenes\LevelScene.h" />
     <ClInclude Include="scenes\MenuScene.h" />
     <ClInclude Include="stdafx.h" />
@@ -186,7 +194,10 @@
     <ClInclude Include="UniverseBuilder.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
+    <ClCompile Include="entities\ButtonUIEntity.cpp" />
+    <ClCompile Include="entities\PlanetEntity.cpp" />
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />
     <ClCompile Include="entities\ResourceEntity.cpp" />
@@ -203,9 +214,14 @@
     <ClCompile Include="entities\ScoreUIEntity.cpp" />
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
+    <ClCompile Include="scenes\GameoverScene.cpp" />
+    <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="entities\ResourceUIEntity.cpp" />
+    <ClCompile Include="systems\ResourceUISystem.cpp" />
     <ClCompile Include="components\ResourceBonusComponent.cpp" />
     <ClCompile Include="components\ResourceComponent.cpp" />
+    <ClCompile Include="scenes\HighScoreScene.cpp" />
     <ClCompile Include="scenes\LevelScene.cpp" />
     <ClCompile Include="scenes\MenuScene.cpp" />
     <ClCompile Include="stdafx.cpp">

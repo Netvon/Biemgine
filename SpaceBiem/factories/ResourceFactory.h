@@ -32,6 +32,7 @@ namespace spacebiem
     private:
 
         map<string, map<string, vector<float>>> spawnRates;
+        map<string, int> scores;
 
     };
 }

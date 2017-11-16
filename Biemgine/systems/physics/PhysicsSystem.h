@@ -25,6 +25,7 @@ namespace biemgine {
         ContactListener* contactListener = nullptr;
 
         std::map<int, b2Body*> bodies;
+        std::map<int, bool> bodiesUpdated;
 
         b2Body* createBody(const Entity & entity);
     };

@@ -3,9 +3,21 @@
 
 namespace biemgine
 {
+    struct Vector;
+
     struct BIEMGINE Color
     {
         unsigned char r, g, b, a;
+    };
+
+    struct BIEMGINE Point {
+        int x = 0, y = 0, z = 1;
+
+        operator Vector();
+    };
+
+    struct BIEMGINE Size {
+        int width = 0, height = 0;
     };
 
     struct BIEMGINE Vector
@@ -28,6 +40,8 @@ namespace biemgine
         float length();
 
         float distance(const Vector&b);
+
+        operator Point();
     };
 
     struct BIEMGINE Matrix33
@@ -42,5 +56,10 @@ namespace biemgine
     struct BIEMGINE RotMatrix: public Matrix33
     {
         RotMatrix(double angle);
+    };
+
+    struct BIEMGINE Rect {
+        Point point;
+        Size size;
     };
 }

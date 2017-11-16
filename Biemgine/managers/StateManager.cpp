@@ -6,20 +6,6 @@ namespace biemgine
 {
     StateManager::~StateManager() {}
 
-    void StateManager::gameOverTransition()
-    {
-        //sceneManager->changeScene(Scene_menu);
-    }
-
-    void StateManager::quitLevelTransition()
-    {
-        //sceneManager->changeScene(Scene_menu);
-    }
-
-    void StateManager::startLevelTransition()
-    {
-        //sceneManager->changeScene(Scene_level);
-    }
 
     int StateManager::getWindowWidth() const
     {
@@ -65,4 +51,16 @@ namespace biemgine
 
         gd->drawTexture("textures/space.jpg", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
     }
+
+    SceneManager & StateManager::getSceneManager() const
+    {
+        return *sceneManager;
+    }
+
+    Entity * StateManager::getEntity(int id) const
+    {
+        return getSceneManager()
+            .getCurrentScene()
+            .getEntity(id);
+    };
 }

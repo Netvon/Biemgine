@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include <string>
-#include <vector>;
+#include <vector>
 
 using std::fstream;
 using std::istringstream;

@@ -2,13 +2,14 @@
 
 #include "Biemgine.h"
 
-using biemgine::Entity;
 using biemgine::Color;
+
+#include "PlanetEntity.h"
 
 namespace spacebiem
 {
     class PlanetEarthEntity :
-        public Entity
+        public PlanetEntity
     {
     public:
         PlanetEarthEntity(float x, float y, Color color, float w, float h, float atmosphere);
