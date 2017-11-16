@@ -123,6 +123,9 @@
     <ClInclude Include="scenes\HighScoreScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="entities\ButtonUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
     <ClInclude Include="entities\PlanetEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="scenes\HighScoreScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ButtonUIEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
     <ClCompile Include="entities\PlanetEntity.cpp">
       <Filter>entities</Filter>

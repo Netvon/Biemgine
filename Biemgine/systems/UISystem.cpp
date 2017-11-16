@@ -39,6 +39,11 @@ namespace biemgine
 
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);
+
+            if (isLeftMouseDown) {
+                if(ui->getIsClicked())
+                    ui->getIsClicked()(getStateManager());
+            }
         }
         else {
             ui->setIsMouseOver(false);

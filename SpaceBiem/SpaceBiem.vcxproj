@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
+    <ClInclude Include="entities\ButtonUIEntity.h" />
     <ClInclude Include="entities\PlanetEntity.h" />
     <ClInclude Include="entities\PlanetSandEntity.h" />
     <ClInclude Include="entities\PlanetToxicEntity.h" />
@@ -192,6 +193,7 @@
   <ItemGroup>
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
+    <ClCompile Include="entities\ButtonUIEntity.cpp" />
     <ClCompile Include="entities\PlanetEntity.cpp" />
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />

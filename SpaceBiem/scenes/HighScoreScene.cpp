@@ -3,6 +3,7 @@
 #include "MenuScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
+#include "..\entities\ButtonUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\systems\ScoreUISystem.h"
 
@@ -13,8 +14,15 @@ using biemgine::TextComponent;
 
 namespace spacebiem
 {
+    void BackButtonClicked(StateManager* e)
+    {
+        e->navigateTo<MenuScene>();
+    }
+
     void HighScoreScene::created() {
         enableRendering();
+        enableUI();
+
         addSystem<ScoreUISystem>();
 
         int wW = getTransitionManager().getWindowWidth();
@@ -40,6 +48,8 @@ namespace spacebiem
 
         addEntity(new PlanetEarthEntity(static_cast<float>(-100), static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, static_cast<float>(10)));
         addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight));
+
+        addEntity(new ButtonUIEntity(x, 750, { 255, 255, 255 }, 150, 50, "Back", BackButtonClicked));
     }
 
     void HighScoreScene::input()
