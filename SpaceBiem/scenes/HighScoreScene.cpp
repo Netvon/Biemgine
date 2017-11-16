@@ -32,24 +32,25 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-        Entity* titleEntity = new Entity();
+        auto titleEntityId = addEntity<Entity>();
+        auto titleEntity = getEntityManager()->getEntity(titleEntityId);
 
-        titleEntity->addComponent("position", new PositionComponent(x, 100));
-        titleEntity->addComponent("color", new ColorComponent(66, 143, 244));
-        titleEntity->addComponent("ui", new UIComponent);
-        titleEntity->addComponent("text", new TextComponent("Highscores"));
+        titleEntity->addComponent<PositionComponent>("position", x, 100);
+        titleEntity->addComponent<ColorComponent>("color", 66, 143, 244);
+        titleEntity->addComponent<UIComponent>("ui");
+        titleEntity->addComponent<TextComponent>("text", "Highscores");
 
-        addEntity(titleEntity);
+        //addEntity(titleEntity);
 
         ScoreUIFactory sf;
         for (auto e : sf.sceneStart(wW, wH)) {
             addEntity(e);
         }
 
-        addEntity(new PlanetEarthEntity(static_cast<float>(-100), static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, static_cast<float>(10)));
-        addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight));
-
-        addEntity(new ButtonUIEntity(x, 750, { 255, 255, 255 }, 150, 50, "Back", BackButtonClicked));
+        addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, static_cast<float>(10));
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight);
+                 
+        addEntity<ButtonUIEntity>(x, 750, Color::White(), 150, 50, "Back", BackButtonClicked);
     }
 
     void HighScoreScene::input()

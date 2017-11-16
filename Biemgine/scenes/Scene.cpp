@@ -42,11 +42,11 @@ namespace biemgine
         return *stateManager;
     }
 
-    /*std::shared_ptr<EntityManager> Scene::getEntityManager() const {
+    std::shared_ptr<EntityManager> Scene::getEntityManager() const {
         return entityManager;
     }
 
-    std::shared_ptr<SystemManager> Scene::getSystemManager() const {
+    /*std::shared_ptr<SystemManager> Scene::getSystemManager() const {
         return systemManager;
     }*/
 
