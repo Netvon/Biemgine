@@ -4,17 +4,10 @@
 #include "ScoreSystem.h"
 
 using biemgine::GroundedComponent;
+using biemgine::CollidableComponent;
 
 namespace spacebiem
 {
-    ScoreSystem::ScoreSystem()
-    {
-    }
-
-    ScoreSystem::~ScoreSystem()
-    {
-    }
-
     void ScoreSystem::update(const Entity& entity)
     {
         if (!entity.hasComponent("score")
@@ -24,11 +17,13 @@ namespace spacebiem
         auto gc = entity.getComponent<GroundedComponent*>("grounded");
 
         if (gc->isGrounded()) {
-            auto sc = entity.getComponent<ScoreComponent*>("score");
-
             auto ground = gc->getGroundedOn();
             if (!ground->hasComponent("scorebonus")) return;
 
+            auto cc = entity.getComponent<CollidableComponent*>("collidable");
+            if (cc->visited(*ground)) return;
+
+            auto sc = entity.getComponent<ScoreComponent*>("score");
             auto sbc = ground->getComponent<ScoreBonusComponent*>("scorebonus");
 
             sc->addScore(sbc->getScoreBonus());
