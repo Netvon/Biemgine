@@ -4,7 +4,7 @@ namespace biemgine
 {
     UIComponent::UIComponent() {}
 
-    UIComponent::UIComponent(const Size & pSize) : size(pSize)
+    UIComponent::UIComponent(const Size & pSize, std::function<void(StateManager*)> onClick) : size(pSize)
     {
     }
 
@@ -28,6 +28,11 @@ namespace biemgine
     const Size & UIComponent::getSize() const
     {
         return size;
+    }
+
+    std::function<void(const StateManager*)> UIComponent::getIsClicked() const
+    {
+        return onClick;
     }
 
     void UIComponent::setIsMouseOver(bool pIsMouseOver)

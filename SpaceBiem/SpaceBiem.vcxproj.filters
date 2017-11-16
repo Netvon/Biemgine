@@ -132,6 +132,9 @@
     <ClInclude Include="components\MovementComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="systems\NavigationSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="components\MovementComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\NavigationSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
