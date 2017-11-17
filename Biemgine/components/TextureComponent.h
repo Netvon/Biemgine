@@ -4,6 +4,7 @@
 #include <string>
 #include "Component.h"
 #include "primitives\Primitives.h"
+#include "devices\graphics\TextureFlip.h"
 
 using std::string;
 
@@ -37,6 +38,9 @@ namespace biemgine
         ColorComponent getOriginalColor() const;
         void setRotation(int r);
         int getRotation() const;
+        void setFlip(TextureFlip pFlip);
+        TextureFlip getFlip();
+
 
     private:
         string path;
@@ -49,5 +53,6 @@ namespace biemgine
         Color color;
         Color originalColor;
         int rotation;
+        TextureFlip flip = TextureFlip::NONE;
     };
 }

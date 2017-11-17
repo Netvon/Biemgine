@@ -86,5 +86,12 @@ namespace biemgine
         return rotation;
     }
 
+    void TextureComponent::setFlip(TextureFlip pFlip) {
+        flip = pFlip;
+    }
+    TextureFlip TextureComponent::getFlip() {
+        return flip;
+    }
+
 
 }
