@@ -3,8 +3,8 @@
 
 namespace biemgine
 {
-    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color)
-        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), originalWidth(w), originalHeight(h), layer(layer), visible(pVisible), tag(pTag), color(color), originalColor(color) {};
+    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, int rotation)
+        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), originalWidth(w), originalHeight(h), layer(layer), visible(pVisible), tag(pTag), color(color), originalColor(color), rotation(rotation) {};
 
     TextureComponent::~TextureComponent() {}
 
@@ -38,9 +38,15 @@ namespace biemgine
     float TextureComponent::getOffsetX() const {
         return offsetX;
     }
-
     float TextureComponent::getOffsetY() const {
         return offsetY;
+    }
+
+    void TextureComponent::setOffsetX(int x) {
+        offsetX = x;
+    }
+    void TextureComponent::setOffsetY(int y) {
+        offsetY = y;
     }
 
     unsigned int TextureComponent::getLayer() const {
@@ -72,5 +78,13 @@ namespace biemgine
     {
         return ColorComponent(originalColor);
     }
+
+    void TextureComponent::setRotation(int r) {
+        rotation = r;
+    }
+    int TextureComponent::getRotation() const {
+        return rotation;
+    }
+
 
 }

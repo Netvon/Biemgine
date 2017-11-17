@@ -23,17 +23,19 @@ namespace biemgine
         auto pc = entity.getComponent<PositionComponent*>("position");
 
         if (entity.hasComponent("text")) {
-            auto tx = entity.getComponent<TextComponent*>("text");
+            auto txs = entity.getComponents<TextComponent*>("text");
 
-            if (tx->isVisible()) {
-                textList.push_back(DrawText(
-                    tx->getText(),
-                    static_cast<int>(pc->getX() + tx->getOffsetX()),
-                    static_cast<int>(pc->getY() + tx->getOffsetY()),
-                    tx->getColor(),
-                    tx,
-                    tx->isCenter()
-                ));
+            for (auto tx : txs) {
+                if (tx->isVisible()) {
+                    textList.push_back(DrawText(
+                        tx->getText(),
+                        static_cast<int>(pc->getX() + tx->getOffsetX()),
+                        static_cast<int>(pc->getY() + tx->getOffsetY()),
+                        tx->getColor(),
+                        tx,
+                        tx->isCenter()
+                    ));
+                }
             }
         }
 
@@ -52,7 +54,7 @@ namespace biemgine
                     static_cast<int>(pc->getY() + tex->getOffsetY()),
                     tex->getWidth(),
                     tex->getHeight(),
-                    pc->getRotation(),
+                    pc->getRotation() + tex->getRotation(),
                     (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
                     tex->getLayer(),
                     false

@@ -4,6 +4,7 @@
 #include "stdafx.h"
 
 using biemgine::Color;
+using biemgine::ColorComponent;
 
 #include "PlanetEntity.h"
 
