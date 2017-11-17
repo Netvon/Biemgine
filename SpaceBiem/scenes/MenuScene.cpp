@@ -9,6 +9,7 @@
 #include "..\systems\ScoreUISystem.h"
 
 using biemgine::SpriteEntity;
+using biemgine::Size;
 
 namespace spacebiem
 {
@@ -41,10 +42,15 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
-        
-        addEntity<ButtonUIEntity>(x + 100, 300, Color::White(), 150, 50, "Play", PlayButtonClicked);
-        addEntity<ButtonUIEntity>(x + 100, 375, Color::White(), 150, 50, "Highscores", HighscoreButtonClicked);
-        addEntity<ButtonUIEntity>(x + 100, 450, Color::White(), 150, 50, "Quit", [this](auto b) { signalQuit(); });
+
+        auto buttonTexture = "textures/button_white.png";
+        auto buttonColor = Color{ 100, 50, 50 };
+        auto buttonTextColor = Color::White();
+        auto buttonSize = Size{ 150, 50 };
+
+        addEntity<ButtonUIEntity>(x + 100, 300, buttonColor, buttonTextColor, buttonSize, "Play", buttonTexture, PlayButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 375, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 450, buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
     }
 
     void MenuScene::input()
