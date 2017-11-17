@@ -3,6 +3,7 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "LevelScene.h"
 #include "HighScoreScene.h"
+#include "GameoverScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
@@ -20,6 +21,11 @@ namespace spacebiem
     void HighscoreButtonClicked(StateManager* e)
     {
         e->navigateTo<HighScoreScene>();
+    }
+
+    void GameOverButtonClicked(StateManager* e)
+    {
+        e->navigateTo<GameoverScene>();
     }
 
     void MenuScene::created()
@@ -44,6 +50,7 @@ namespace spacebiem
         addEntity(new ButtonUIEntity(x + 100, 300, { 255, 255, 255 }, 150, 50, "Play", PlayButtonClicked));
         addEntity(new ButtonUIEntity(x + 100, 375, { 255, 255, 255 }, 150, 50, "Highscores", HighscoreButtonClicked));
         addEntity(new ButtonUIEntity(x + 100, 450, { 255, 255, 255 }, 150, 50, "Quit", [this](auto b) { signalQuit(); }));
+        addEntity(new ButtonUIEntity(x + 100, 525, { 255, 255, 255 }, 150, 50, "GameOverTest", GameOverButtonClicked));
     }
 
     void MenuScene::input()

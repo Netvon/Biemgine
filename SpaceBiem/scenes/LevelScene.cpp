@@ -10,7 +10,6 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
-#include "MenuScene.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -67,6 +66,7 @@ namespace spacebiem
 
         ScoreUIFactory sf;
         sf.sceneEnd(getEntities());
+        getTransitionManager().navigateTo<GameoverScene>();
     }
 
     void LevelScene::input()
