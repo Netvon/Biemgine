@@ -16,6 +16,6 @@ namespace spacebiem
     PlanetEarthEntity::PlanetEarthEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, string pName) :
         PlanetEntity(x, y, color, w, h, "textures/earth-plain.png", "textures/earth-TypeA.png", pScoreBonus, pName)
     {
-        createAtmosphere(x, y, w, h, atmosphere, "textures/atmosphere.png", true);
+        createAtmosphere(x, y, w, h, atmosphere, true, color);
     }
 }

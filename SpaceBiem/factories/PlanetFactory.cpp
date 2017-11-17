@@ -47,7 +47,7 @@ namespace spacebiem
                     entities.push_back(new PlanetEarthEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 71, 166, 245, 255 },
                         p_size,
                         p_size,
                         scoreBonus["earth"],
@@ -64,7 +64,7 @@ namespace spacebiem
                     entities.push_back(new PlanetSandEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 213,207,105,255 },
                         p_size,
                         p_size,
                         scoreBonus["sand"],
