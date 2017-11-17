@@ -157,6 +157,7 @@
     <ClInclude Include="entities\PlanetSandEntity.h" />
     <ClInclude Include="entities\PlanetToxicEntity.h" />
     <ClInclude Include="entities\ResourceEntity.h" />
+    <ClInclude Include="factories\NameGenerator.h" />
     <ClInclude Include="factories\PlanetFactory.h" />
     <ClInclude Include="factories\ResourceFactory.h" />
     <ClInclude Include="FileParser.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="entities\ScoreUIEntity.cpp" />
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
+    <ClCompile Include="factories\NameGenerator.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />

@@ -10,9 +10,13 @@ namespace spacebiem
     {
     public:
         ScoreBonusComponent(int pScoreBonus);
-        int getScoreBonus();
+        int getScoreBonus() const;
+
+        void setScoreGiven(bool pScoreGiven);
+        bool isScoreGiven() const;
 
     private:
         int scoreBonus;
+        bool scoreGiven = false;
     };
 }

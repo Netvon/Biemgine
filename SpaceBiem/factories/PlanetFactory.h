@@ -9,6 +9,7 @@
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
 #include "ResourceFactory.h"
+#include "NameGenerator.h"
 #include <vector>
 
 using biemgine::Entity;

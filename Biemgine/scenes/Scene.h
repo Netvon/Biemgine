@@ -26,8 +26,8 @@ namespace biemgine
         void updateEntities(const float deltaTime);
 
         StateManager& getTransitionManager() const;
-        /*std::shared_ptr<EntityManager> getEntityManager() const;
-        std::shared_ptr<SystemManager> getSystemManager() const;*/
+        std::shared_ptr<EntityManager> getEntityManager() const;
+        /*std::shared_ptr<SystemManager> getSystemManager() const;*/
 
         std::vector<Entity*>& getEntities() const;
 

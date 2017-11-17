@@ -25,24 +25,27 @@ namespace biemgine
         if (entity.hasComponent("text")) {
             auto tx = entity.getComponent<TextComponent*>("text");
 
-            textList.push_back(DrawText(
-                tx->getText(),
-                static_cast<int>(pc->getX()),
-                static_cast<int>(pc->getY()),
-                tx->getColor(),
-                tx
-            ));
+            if (tx->isVisible()) {
+                textList.push_back(DrawText(
+                    tx->getText(),
+                    static_cast<int>(pc->getX() + tx->getOffsetX()),
+                    static_cast<int>(pc->getY() + tx->getOffsetY()),
+                    tx->getColor(),
+                    tx,
+                    tx->isCenter()
+                ));
+            }
         }
 
         if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
             return;
 
         if (entity.hasComponent("texture")) {
-            auto cc = entity.getComponent<ColorComponent*>("color");
-
-            auto tc = entity.getComponents<TextureComponent*>("texture");
+            auto tc = entity.getComponents<TextureComponent*>("texture");       
 
             for (auto tex : tc) {
+                if (!tex->isVisible()) continue;
+
                 drawList.push_back(DrawTexture(
                     tex->getPath(),
                     static_cast<int>(pc->getX() + tex->getOffsetX()),
@@ -50,13 +53,13 @@ namespace biemgine
                     tex->getWidth(),
                     tex->getHeight(),
                     pc->getRotation(),
-                    cc->getColor(),
-                    tex->getLayer()
+                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
+                    tex->getLayer(),
+                    false
                 ));
             }
-
-
         }
+
         if (entity.hasComponent("rectangle"))
         {
             auto rectangle = entity.getComponent<RectangleComponent*>("rectangle");
@@ -69,7 +72,6 @@ namespace biemgine
                 rectangle->getColor().getColor(), pc->getRotation()
             );
         }
-
     }
 
     void RenderSystem::onSceneSwitch()
@@ -104,7 +106,7 @@ namespace biemgine
 
         for (auto text : textList)
         {
-            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
             if(text.component != nullptr) text.component->setTextSize(size);
         }
 
@@ -112,10 +114,10 @@ namespace biemgine
         textList.clear();
     }
 
-    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer) :
-        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center) {}
 
 
-    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component) :
-        text(text), x(x), y(y), color(color), component(component) {}
+    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center) :
+        text(text), x(x), y(y), color(color), component(component), center(center) {}
 }
