@@ -30,7 +30,11 @@ namespace spacebiem
             sc->addScore(sbc->getScoreBonus());
 
             sbc->setScoreGiven(true);
-            ground->getComponent<TextComponent*>("text")->setVisible(true);
+            auto texts = ground->getComponents<TextComponent*>("text");
+            for (auto text : texts) {
+                text->setVisible(true);
+            }
+
 
             auto components = ground->getComponents<TextureComponent*>("texture");
 

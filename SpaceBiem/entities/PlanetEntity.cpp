@@ -30,7 +30,8 @@ namespace spacebiem
         addComponent("ground", new GroundComponent);
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f));
-        addComponent("text", new TextComponent(pName, { 255,255,255,255 }, w / 2, h / 2, false, true));
+        addComponent("text", new TextComponent(to_string(pScoreBonus), { 255,255,255,255 }, w / 2, h / 2 + 20, false, true));
+        addComponent("text", new TextComponent(pName, { 255,255,255,255 }, w / 2, h / 2 - 10, false, true));
 
         int flagHeight = 100;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56, flagHeight, 10u, false, "flag"));
