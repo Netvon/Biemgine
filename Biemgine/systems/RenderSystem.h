@@ -18,8 +18,9 @@ namespace biemgine
         Color color;
         float angle;
         unsigned int layer;
+        bool center;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer);
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center);
     };
 
     struct DrawText
@@ -28,8 +29,9 @@ namespace biemgine
         int x, y;
         Color color;
         TextComponent* component;
+        bool center;
 
-        DrawText(const string& text, int x, int y, Color color, TextComponent* component);
+        DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center);
     };
 
     class RenderSystem

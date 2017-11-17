@@ -31,7 +31,8 @@ namespace biemgine
                     static_cast<int>(pc->getX() + tx->getOffsetX()),
                     static_cast<int>(pc->getY() + tx->getOffsetY()),
                     tx->getColor(),
-                    tx
+                    tx,
+                    tx->isCenter()
                 ));
             }
         }
@@ -53,8 +54,9 @@ namespace biemgine
                     tex->getWidth(),
                     tex->getHeight(),
                     pc->getRotation(),
-                    cc->getColor(),
-                    tex->getLayer()
+                    tex->getColor(),
+                    tex->getLayer(),
+                    false
                 ));
             }
         }
@@ -105,7 +107,7 @@ namespace biemgine
 
         for (auto text : textList)
         {
-            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0);
+            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
             if(text.component != nullptr) text.component->setTextSize(size);
         }
 
@@ -113,10 +115,10 @@ namespace biemgine
         textList.clear();
     }
 
-    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer) :
-        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer) {}
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center) {}
 
 
-    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component) :
-        text(text), x(x), y(y), color(color), component(component) {}
+    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center) :
+        text(text), x(x), y(y), color(color), component(component), center(center) {}
 }

@@ -12,7 +12,7 @@ namespace biemgine
         public Component
     {
     public:
-        TextureComponent(string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0, bool pVisible = true, const string pTag = "");
+        TextureComponent(string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0, bool pVisible = true, const string pTag = "", Color color = Color::White());
         ~TextureComponent();
 
         const string& getPath();
@@ -25,6 +25,8 @@ namespace biemgine
         const string & getTag() const;
         bool isVisible() const;
         void setVisible(bool pVisible);
+        void setColor(Color pColor);
+        Color getColor() const;
 
     private:
         string path;
@@ -33,5 +35,6 @@ namespace biemgine
         unsigned int layer;
         const string tag;
         bool visible;
+        Color color;
     };
 }

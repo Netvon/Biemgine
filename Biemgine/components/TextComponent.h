@@ -27,6 +27,7 @@ namespace biemgine
         float getOffsetY() const;
         bool isVisible() const;
         void setVisible(bool pVisible);
+        bool isCenter() const;
 
     private:
         std::string text;

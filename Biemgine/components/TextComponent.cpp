@@ -32,7 +32,7 @@ namespace biemgine {
     }
 
     float TextComponent::getOffsetX() const {
-        return ((center)? offsetX-(textSize.width/2) : offsetX);
+        return offsetX;
     }
 
     float TextComponent::getOffsetY() const {
@@ -45,6 +45,11 @@ namespace biemgine {
     void TextComponent::setVisible(bool pVisible)
     {
         visible = pVisible;
+    }
+
+    bool TextComponent::isCenter() const
+    {
+        return center;
     }
 
 }
