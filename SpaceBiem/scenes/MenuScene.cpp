@@ -49,14 +49,14 @@ namespace spacebiem
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
-        auto buttonColor = Color{ 100, 50, 50 };
+        auto buttonColor = Color{ 35, 65, 112 };
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
         addEntity<ButtonUIEntity>(x + 100, 300, buttonColor, buttonTextColor, buttonSize, "Play", buttonTexture, PlayButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, 375, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, 450, buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
-        addEntity<ButtonUIEntity>(x + 100, 525, buttonColor, buttonTextColor, buttonSize, "GameOverTest", GameOverButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 525, buttonColor, buttonTextColor, buttonSize, "GameOverTest", buttonTexture, GameOverButtonClicked);
     }
 
     void MenuScene::input()

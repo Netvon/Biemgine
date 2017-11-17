@@ -18,7 +18,7 @@ namespace biemgine {
             std::cout << TTF_GetError() << std::endl;
         }
 
-        font = TTF_OpenFont("consolas.ttf", 20);
+        font = TTF_OpenFont("Roboto-Regular.ttf", 20);
 
         SDL_Rect viewport = { 0, 0, 0, 0 };
 

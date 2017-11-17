@@ -66,7 +66,7 @@ namespace spacebiem
 
         ScoreUIFactory sf;
         sf.sceneEnd(getEntities());
-        getTransitionManager().navigateTo<GameoverScene>();
+        //getTransitionManager().navigateTo<GameoverScene>();
     }
 
     void LevelScene::input()

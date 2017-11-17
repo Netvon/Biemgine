@@ -7,6 +7,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
+#include "..\entities\ScoreUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
 
 using biemgine::PositionComponent;
@@ -47,11 +48,25 @@ namespace spacebiem
 
         addEntity(titleEntity);
 
-        addEntity(new PlanetEarthEntity(static_cast<float>(-100), static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, static_cast<float>(10)));
-        addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight, 0));
+        Entity* scoreEntity = new Entity();
 
-        addEntity(new ButtonUIEntity(x - 25, 600, { 255, 255, 255 }, 150, 50, "Highscores", GameoverHighscoreButtonClicked));
-        addEntity(new ButtonUIEntity(x - 25, 675, { 255, 255, 255 }, 150, 50, "Menu", MenuButtonClicked));
+        scoreEntity->addComponent("position", new PositionComponent(x, 150));
+        scoreEntity->addComponent("color", new ColorComponent(66, 143, 244));
+        scoreEntity->addComponent("ui", new UIComponent);
+        scoreEntity->addComponent("text", new TextComponent("Je score was: " + std::to_string(score)));
+
+        addEntity(scoreEntity);
+
+        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
+
+        auto buttonTexture = "textures/button_white.png";
+        auto buttonColor = Color{ 35, 65, 112 };
+        auto buttonTextColor = Color::White();
+        auto buttonSize = Size{ 150, 50 };
+
+        addEntity<ButtonUIEntity>(x - 25, 300, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 375, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
     }
 
     void GameoverScene::input()
