@@ -12,7 +12,7 @@ namespace spacebiem
     {
     }
 
-    void UniverseBuilder::build(int windowW, int windowH, std::shared_ptr<EntityManager> entityManager)
+    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager)
     {
         FileParser fileParser;
         PlanetFactory planetFactory;

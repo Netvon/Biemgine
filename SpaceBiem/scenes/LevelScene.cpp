@@ -60,7 +60,7 @@ namespace spacebiem
         int wH = getTransitionManager().getWindowHeight();
 
         UniverseBuilder uB;
-        uB.build(wW, wH, getEntityManager());
+        uB.build(getEntityManager());
     }
 
     void LevelScene::sceneEnd() {
