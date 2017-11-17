@@ -41,7 +41,7 @@ namespace biemgine
             return;
 
         if (entity.hasComponent("texture")) {
-            auto tc = entity.getComponents<TextureComponent*>("texture");
+            auto tc = entity.getComponents<TextureComponent*>("texture");       
 
             for (auto tex : tc) {
                 if (!tex->isVisible()) continue;
@@ -53,7 +53,7 @@ namespace biemgine
                     tex->getWidth(),
                     tex->getHeight(),
                     pc->getRotation(),
-                    tex->getColor(),
+                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
                     tex->getLayer(),
                     false
                 ));

@@ -19,6 +19,10 @@ namespace biemgine
         const string& getPath();
         int getWidth() const;
         int getHeight() const;
+        int getOriginalWidth() const;
+        int getOriginalHeight() const;
+        void setWidth(int w);
+        void setHeight(int h);
         float getOffsetX() const;
         float getOffsetY() const;
         unsigned int getLayer() const;
@@ -28,14 +32,17 @@ namespace biemgine
         void setVisible(bool pVisible);
         void setColor(Color pColor);
         Color getColor() const;
+        ColorComponent getOriginalColor() const;
 
     private:
         string path;
         int width, height;
+        int originalWidth, originalHeight;
         float offsetX, offsetY;
         unsigned int layer;
         const string tag;
         bool visible;
         Color color;
+        Color originalColor;
     };
 }
