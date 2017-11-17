@@ -99,13 +99,9 @@ namespace spacebiem
 
         FileHandler file("data/level_1.csv");
 
-        int i = 0;
+        
          for each (auto v in file.getValues())
         {
-             if (i == 0) {
-                 i++;
-                 continue;
-             }
              currentKey = v[0];
 
              vector<string> vector;
@@ -124,7 +120,6 @@ namespace spacebiem
             levelMap[v[0]] = innerMap;
 
             previousKey = currentKey;
-            i++;
         }
 
         return levelMap;

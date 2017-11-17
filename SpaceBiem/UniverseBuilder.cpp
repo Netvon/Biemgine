@@ -12,12 +12,15 @@ namespace spacebiem
     {
     }
 
-    void UniverseBuilder::build(int windowW, int windowH, vector<Entity*>& placeIn)
+    void UniverseBuilder::build(int windowW, int windowH, std::shared_ptr<EntityManager> entityManager)
     {
         FileParser fileParser;
         PlanetFactory planetFactory;
+        NameGenerator nameGenerator;
 
         map<string, map<string, vector<string>>> levelMap = fileParser.levelContent();
+        map<string, float> atmosphereM = fileParser.atmosphereContent();
+        map<string, int> scoreBonus = fileParser.planetScoreContent();
 
         for each (auto o in levelMap)
         {
@@ -35,23 +38,23 @@ namespace spacebiem
             {
                 string component = i.first.c_str();
 
-                for each (auto v in i.second)
-                {
-                    if (component == "position_component") {
-                        xPos = v[0];
-                        yPos = v[1];
-                        width = v[2];
-                        height = v[3];
-                    }
-                    else if ("oxygen_component") {
-                        oxigenAmount = v[0];
-                    }
-                    else if ("score_component") {
-                        score = v[0];
-                    }
+                if (component == "position_component") {
+                    xPos = i.second[0];
+                    yPos = i.second[1];
+                    width = i.second[2];
+                    height = i.second[3];
                 }
+                else if ("oxygen_component") {
+                    oxigenAmount = i.second[0];
+                }
+                else if ("score_component") {
+                    score = i.second[0];
+                }
+                
+            }
 
-                placeIn.push_back(planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height)));
+            if (type != "player") {
+                planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, nameGenerator, atmosphereM, scoreBonus);
             }
 
         }

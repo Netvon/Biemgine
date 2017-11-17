@@ -13,6 +13,7 @@ namespace biemgine
         auto im = getStateManager()->getInputManager();
 
         currentMouseLocation = im->getMouseLocation();
+
         isLeftMouseDown = im->isLeftMouseDown();
     }
 

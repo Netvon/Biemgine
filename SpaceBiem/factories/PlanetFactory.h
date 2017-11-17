@@ -13,6 +13,7 @@
 #include <vector>
 
 using biemgine::Entity;
+using biemgine::EntityManager;
 using biemgine::RandomGenerator;
 
 namespace spacebiem
@@ -23,7 +24,7 @@ namespace spacebiem
     public:
         ~PlanetFactory() {};
         vector<Entity*> sceneStart(int windowW, int windowH) override;
-        Entity* create(string type, int pX, int pY, int widht, int height);
+        void create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus);
         void sceneEnd(std::vector<Entity*> entities) override;
     };
 }
