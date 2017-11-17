@@ -10,6 +10,7 @@
 #include "..\systems\ScoreUISystem.h"
 
 using biemgine::SpriteEntity;
+using biemgine::Size;
 
 namespace spacebiem
 {
@@ -42,15 +43,20 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - 175;
 
-        addEntity(new SpriteEntity("textures/teambiem.png", x, 100, { 255, 255, 255, 255 }, -1, -1));
-        addEntity(new SpriteEntity("textures/player-standing.png", x + 260, 115, { 255, 255, 255, 255 }, playerWidth, playerHeight));
-        addEntity(new PlanetEarthEntity(-100.f, static_cast<float>(wH - 200), { 255, 255, 255, 255 }, planetWidth, planetHeight, 10.f));
-        addEntity(new PlanetMoonEntity(static_cast<float>(wW - 250), static_cast<float>(wH - 250), { 255, 255, 255, 255 }, planetWidth, planetHeight));
+        addEntity<SpriteEntity>("textures/teambiem.png", x, 100, Color::White(), -1, -1);
+        addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
+        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
-        addEntity(new ButtonUIEntity(x + 100, 300, { 255, 255, 255 }, 150, 50, "Play", PlayButtonClicked));
-        addEntity(new ButtonUIEntity(x + 100, 375, { 255, 255, 255 }, 150, 50, "Highscores", HighscoreButtonClicked));
-        addEntity(new ButtonUIEntity(x + 100, 450, { 255, 255, 255 }, 150, 50, "Quit", [this](auto b) { signalQuit(); }));
-        addEntity(new ButtonUIEntity(x + 100, 525, { 255, 255, 255 }, 150, 50, "GameOverTest", GameOverButtonClicked));
+        auto buttonTexture = "textures/button_white.png";
+        auto buttonColor = Color{ 100, 50, 50 };
+        auto buttonTextColor = Color::White();
+        auto buttonSize = Size{ 150, 50 };
+
+        addEntity<ButtonUIEntity>(x + 100, 300, buttonColor, buttonTextColor, buttonSize, "Play", buttonTexture, PlayButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 375, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, 450, buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
+        addEntity<ButtonUIEntity>(x + 100, 525, buttonColor, buttonTextColor, buttonSize, "GameOverTest", GameOverButtonClicked);
     }
 
     void MenuScene::input()

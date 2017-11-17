@@ -11,12 +11,12 @@ using biemgine::Size;
 
 namespace spacebiem
 {
-    ButtonUIEntity::ButtonUIEntity(float x, float y, Color color, float w, float h, const string& pText, std::function<void(StateManager*)> onClick)
+    ButtonUIEntity::ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick)
     {
         addComponent("position", new PositionComponent(x, y));
-        addComponent("texture", new TextureComponent("textures/button.png", 0.f, 0.f, w, h, 0u));
-        addComponent("color", new ColorComponent(185, 238, 253));
-        addComponent("ui", new UIComponent({ static_cast<int>(w), static_cast<int>(h) }, onClick));
-        addComponent("text", new TextComponent(pText, color));
+        addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 0u, true, "", buttonColor));
+        //addComponent("color", new ColorComponent(buttonColor));
+        addComponent("ui", new UIComponent(size, onClick));
+        addComponent("text", new TextComponent(pText, textcolor, size.width/2, size.height/2, true, true));
     }
 }

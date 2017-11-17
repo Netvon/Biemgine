@@ -26,8 +26,8 @@ namespace biemgine
         void updateEntities(const float deltaTime);
 
         StateManager& getTransitionManager() const;
-        /*std::shared_ptr<EntityManager> getEntityManager() const;
-        std::shared_ptr<SystemManager> getSystemManager() const;*/
+        std::shared_ptr<EntityManager> getEntityManager() const;
+        /*std::shared_ptr<SystemManager> getSystemManager() const;*/
 
         std::vector<Entity*> getEntities() const;
 
@@ -44,6 +44,9 @@ namespace biemgine
         void addSystem();
 
         int addEntity(Entity* entity);
+
+        template<class TEntity, typename... TArgs>
+        int addEntity(TArgs&&... arguments);
 
     private:
         std::shared_ptr<SystemManager> systemManager = std::make_shared<SystemManager>();
@@ -65,5 +68,11 @@ namespace biemgine
         systemManager->addSystem(system);
 
         system->setStateManager(stateManager);
+    }
+
+    template<class TEntity, typename ...TArgs>
+    int Scene::addEntity(TArgs && ...arguments)
+    {
+        return entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
     }
 }

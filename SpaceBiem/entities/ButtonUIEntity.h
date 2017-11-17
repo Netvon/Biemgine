@@ -7,6 +7,7 @@ using std::string;
 using biemgine::Entity;
 using biemgine::Color;
 using biemgine::StateManager;
+using biemgine::Size;
 
 namespace spacebiem
 {
@@ -14,6 +15,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        ButtonUIEntity(float x, float y, Color color, float w, float h, const string& pText, std::function<void(StateManager*)> onClick);
+        ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick = nullptr);
     };
 }

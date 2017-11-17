@@ -135,6 +135,9 @@
     <ClInclude Include="systems\GameoverSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="factories\NameGenerator.h">
+      <Filter>factories</Filter>
+    </ClInclude>
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="systems\GameoverSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\NameGenerator.cpp">
+      <Filter>factories</Filter>
     </ClCompile>
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>

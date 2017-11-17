@@ -43,15 +43,15 @@ namespace spacebiem
         float width = 15 * 2;
         float height = 25 * 2;
 
-        addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height));
-
-        addEntity(new OxygenUIEntity());
-        //addEntity(new ScoreUIEntity());
-        addEntity(new SpriteEntity("textures/resources-hud.png", 25, 25, {255, 255, 255, 255}, 401, 169, 100u));
-        addEntity(new ResourceUIEntity(66, 150, {255, 255, 255, 255}, "uranium"));
-        addEntity(new ResourceUIEntity(157, 150, {255, 255, 255, 255}, "diamond"));
-        addEntity(new ResourceUIEntity(248, 150, {255, 255, 255, 255}, "metal"));
-        addEntity(new ResourceUIEntity(339, 150, {255, 255, 255, 255}, "anti-matter"));
+        addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
+                 
+        addEntity<OxygenUIEntity>();
+        addEntity<ScoreUIEntity>();
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25, 25, Color::White(), 401, 169, 100u);
+        addEntity<ResourceUIEntity>(66, 150, Color::White(), "uranium");
+        addEntity<ResourceUIEntity>(157, 150, Color::White(), "diamond");
+        addEntity<ResourceUIEntity>(248, 150, Color::White(), "metal");
+        addEntity<ResourceUIEntity>(339, 150, Color::White(), "anti-matter");
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
