@@ -3,6 +3,7 @@
 #include "dlldef.h"
 #include <string>
 #include "Component.h"
+#include "primitives\Primitives.h"
 
 using std::string;
 

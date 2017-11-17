@@ -42,7 +42,6 @@ namespace biemgine
 
         if (entity.hasComponent("texture")) {
             auto tc = entity.getComponents<TextureComponent*>("texture");
-            auto cc = entity.getComponent<ColorComponent*>("color");            
 
             for (auto tex : tc) {
                 if (!tex->isVisible()) continue;
