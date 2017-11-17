@@ -54,7 +54,7 @@ namespace biemgine
                     static_cast<int>(pc->getY() + tex->getOffsetY()),
                     tex->getWidth(),
                     tex->getHeight(),
-                    pc->getRotation(),
+                    pc->getRotation() + tex->getRotation(),
                     (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
                     tex->getLayer(),
                     false

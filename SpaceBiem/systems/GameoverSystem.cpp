@@ -7,9 +7,10 @@ namespace spacebiem
 
     void GameoverSystem::update(const Entity & entity)
     {
+        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
         if (!entity.hasComponent("oxygen") ||
             entity.hasComponent("ui") ||
-            entity.getComponent<OxygenComponent*>("oxygen")->getOxygenAmount() > 0)
+            oc->getOxygenAmount() > oc->getOxygenScale())
             return;
 
         // Meer condities
