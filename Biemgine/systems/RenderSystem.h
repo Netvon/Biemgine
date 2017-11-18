@@ -3,6 +3,7 @@
 #include "../entities/Entity.h"
 #include "../components/TextComponent.h"
 #include "../devices/graphics/GraphicsDevice.h"
+#include "../devices/graphics/TextureFlip.h"
 
 #include <list>
 
@@ -19,8 +20,9 @@ namespace biemgine
         float angle;
         unsigned int layer;
         bool center;
+        TextureFlip flip;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center);
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip);
     };
 
     struct DrawText

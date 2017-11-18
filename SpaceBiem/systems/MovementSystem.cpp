@@ -5,6 +5,8 @@ using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
+using biemgine::TextureComponent;
+using biemgine::TextureFlip;
 
 namespace spacebiem
 {
@@ -49,6 +51,9 @@ namespace spacebiem
 
                 physics->addForce("right", right.x, right.y);
             }
+
+            if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
+            if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
         }
     }
 }
