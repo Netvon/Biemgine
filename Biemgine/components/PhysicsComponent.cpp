@@ -97,6 +97,16 @@ namespace biemgine
         return f.y;
     }
 
+    float PhysicsComponent::getFriction() const
+    {
+        return friction;
+    }
+
+    void PhysicsComponent::setFriction(float pFriction)
+    {
+        friction = pFriction;
+    }
+
     Vector PhysicsComponent::getVelocity() const
     {
         return velocity;

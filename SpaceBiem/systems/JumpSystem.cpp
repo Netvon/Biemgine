@@ -31,14 +31,17 @@ namespace spacebiem
             auto position = entity.getComponent<PositionComponent*>("position");
             auto physics = entity.getComponent<PhysicsComponent*>("physics");
 
-            Vector centerOfSatellite = {
+            Vector centerOfSatellite {
                 position->getX() + physics->getColliderW() / 2.0f,
                 position->getY() + physics->getColliderH() / 2.0f
             };
 
-            Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+            Vector centerOfGravity { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
             Vector diff = centerOfGravity - centerOfSatellite;
+
+            Vector left { -diff.y, diff.x };
+            Vector right { diff.y, -diff.x };
 
             /*if (transitionManager->getInputManager()->isKeyDown("Left")) {
                 Vector left = { -diff.y, diff.x };
@@ -54,21 +57,27 @@ namespace spacebiem
                 physics->addTimedForce("right", right.x, right.y, 30);
             }*/
 
-            diff *= physics->getVelocity();
-            //diff *= -1;
+            //diff *= physics->getVelocity();
+            diff *= -1;
+            diff = diff.normalize();
+            diff += (physics->getVelocity().normalize());
+            diff = diff.normalize();
+
+            /*if (getStateManager()->getInputManager()->isKeyDown("Right")) {
+                diff += (right * 1.8f);
+            }
+            else  if (getStateManager()->getInputManager()->isKeyDown("Left")) {
+                diff += (left * 1.8f);
+            }*/
 
             //auto diff = [](biemgine::StateManager manager) { manager.navigateTo<LevelScene>(); };
+
+            auto gravityConstant = 80.f;
+            auto movementForce = ((physics->getMass() * 2.0f) * gravityConstant) * (physics->getMass()*2.f) * gravityConstant * 4.0f * physics->getVelocity().length();
             
-            diff = diff.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
-            physics->addForce("jump", diff.x, diff.y);
+            diff *= movementForce;
+
+            physics->addTimedForce("jump", diff.x, diff.y, 20);
         }
-    }
-
-    void OnClick(biemgine::StateManager param) {
-
-    }
-
-    void f1(std::function<void(biemgine::StateManager)> lambda)
-    {
     }
 }

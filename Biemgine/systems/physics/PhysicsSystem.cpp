@@ -90,6 +90,7 @@ namespace biemgine
 
         auto velo = body->GetLinearVelocity();
         physics->setVelocity({ velo.x, velo.y });
+        body->GetFixtureList()->SetFriction(physics->getFriction());
     }
 
     void PhysicsSystem::after()
@@ -108,7 +109,7 @@ namespace biemgine
             }
         }
 
-        world->Step(1.f / 30.0f, 6, 2);
+        world->Step(1.f / 60.0f, 6, 2);
     }
 
     void PhysicsSystem::onSceneSwitch()
@@ -144,7 +145,7 @@ namespace biemgine
 
         newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
         newBodyDef.angle = static_cast<float>(pc->getRotation() * DEGREE_TO_RAD);
-        newBodyDef.linearDamping = 0.2f;
+        newBodyDef.linearDamping = 0.1f;
 
         b2Body* body = world->CreateBody(&newBodyDef);
         body->SetUserData((void*)&entity);
@@ -165,7 +166,7 @@ namespace biemgine
         }
 
         fixture->SetRestitution(0.15f);
-        fixture->SetFriction(1.f);
+        //fixture->SetFriction(1.f);
 
         if (entity.hasComponent("grounded")) {
             b2PolygonShape groundShape;

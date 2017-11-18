@@ -52,6 +52,8 @@ namespace biemgine
         void setMass(float pMass);
         float getImpulseX() const;
         float getImpulseY() const;
+        float getFriction() const;
+        void setFriction(float pFriction);
 
         Vector getVelocity() const;
         void setVelocity(Vector pVelocity);
@@ -72,6 +74,7 @@ namespace biemgine
 
         int impulseTicks = 30;
 
+        float friction = 50.f;
         float density = 1.0f;
         float mass;
         PhysicsComponentShape shape;
