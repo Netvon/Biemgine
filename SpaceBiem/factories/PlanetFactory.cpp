@@ -123,13 +123,13 @@ namespace spacebiem
             entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, scoreBonus["moon"], nameGenerator.getName());
         }
         else if (type == "earth") {
-            entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::White(), width, height, scoreBonus["earth"], atmosphereM["earth"], nameGenerator.getName());
+            entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::EarthAtmosphere(), width, height, scoreBonus["earth"], atmosphereM["earth"], nameGenerator.getName());
         }
         else if (type == "sand") {
-            entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::White(), width, height, scoreBonus["sand"], atmosphereM["sand"], nameGenerator.getName());
+            entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::SandAtmosphere(), width, height, scoreBonus["sand"], atmosphereM["sand"], nameGenerator.getName());
         }
         else if (type == "toxic") {
-            entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::White(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], nameGenerator.getName());
+            entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], nameGenerator.getName());
         }
     }
 

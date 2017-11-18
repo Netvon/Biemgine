@@ -16,6 +16,19 @@ namespace biemgine
         static Color Black() {
             return Color{ 0, 0, 0, 255 };
         }
+
+        static Color EarthAtmosphere(){
+            return Color{ 71, 166, 245, 255 };
+        }
+
+        static Color SandAtmosphere() {
+            return Color{ 213, 207, 105, 255 };
+        }
+
+        static Color ToxicAtmosphere() {
+            return Color{ 127, 0, 255, 255 };
+        }
+
     };
 
     struct BIEMGINE Point {
