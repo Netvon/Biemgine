@@ -28,10 +28,12 @@ namespace spacebiem
 
 
         ResourceFactory rf;
+        NameGenerator ng;
 
         FileParser fh;
         map<string, float> atmosphereM = fh.atmosphereContent();
-        
+        map<string, int> scoreBonus = fh.planetScoreContent();
+
         for (int x = 0; x < maxX; x++) {
 
             for (int y = 0; y < maxY; y++) {
@@ -45,11 +47,14 @@ namespace spacebiem
                     entities.push_back(new PlanetEarthEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 71, 166, 245, 255 },
                         p_size,
                         p_size,
-                        atmosphereM["earth"]
+                        scoreBonus["earth"],
+                        atmosphereM["earth"],
+                        ng.getName()
                     ));
+
                     for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "earth"))
                     {
                         entities.push_back(r);
@@ -59,10 +64,12 @@ namespace spacebiem
                     entities.push_back(new PlanetSandEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 213,207,105,255 },
                         p_size,
                         p_size,
-                        atmosphereM["sand"]
+                        scoreBonus["sand"],
+                        atmosphereM["sand"],
+                        ng.getName()
                     ));
                     for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "sand"))
                     {
@@ -73,10 +80,12 @@ namespace spacebiem
                     entities.push_back(new PlanetToxicEntity(
                         pX,
                         pY,
-                        { 255, 255, 255, 255 },
+                        { 127, 0, 255, 255 },
                         p_size,
                         p_size,
-                        atmosphereM["toxic"]
+                        scoreBonus["toxic"],
+                        atmosphereM["toxic"],
+                        ng.getName()
                     ));
                     for each (auto r in rf.getPlanetResources(pX+(p_size/2), pY+(p_size/2), p_size/2, "toxic"))
                     {
@@ -89,7 +98,9 @@ namespace spacebiem
                         pY,
                         { 255, 255, 255, 255 },
                         p_size,
-                        p_size
+                        p_size,
+                        scoreBonus["moon"],
+                        ng.getName()
                     ));
                     for each (auto r in rf.getPlanetResources(pX + (p_size / 2), pY + (p_size / 2), p_size / 2, "moon"))
                     {

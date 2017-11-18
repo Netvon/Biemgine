@@ -10,7 +10,7 @@ namespace biemgine
 
     void UISystem::before()
     {
-        auto im = getTransitionManager()->getInputManager();
+        auto im = getStateManager()->getInputManager();
 
         currentMouseLocation = im->getMouseLocation();
         isLeftMouseDown = im->isLeftMouseDown();
@@ -39,6 +39,11 @@ namespace biemgine
 
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);
+
+            if (isLeftMouseDown) {
+                if(ui->getIsClicked())
+                    ui->getIsClicked()(getStateManager());
+            }
         }
         else {
             ui->setIsMouseOver(false);

@@ -48,4 +48,9 @@ namespace biemgine
     std::shared_ptr<StateManager> SceneManager::getStateManager() {
         return stateManager;
     }
+
+    Scene & SceneManager::getCurrentScene() const
+    {
+        return *currentScene;
+    }
 }

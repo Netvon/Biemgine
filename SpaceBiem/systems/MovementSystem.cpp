@@ -5,13 +5,17 @@ using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
+using biemgine::TextureComponent;
+using biemgine::TextureFlip;
 
 namespace spacebiem
 {
     void MovementSystem::update(const Entity & entity)
     {
-        if (!transitionManager->getInputManager()->isKeyDown("Left")
-            && !transitionManager->getInputManager()->isKeyDown("Right"))
+        if (!entity.hasComponent("movement")) return;
+
+        if (!getStateManager()->getInputManager()->isKeyDown("Left")
+            && !getStateManager()->getInputManager()->isKeyDown("Right"))
             return;
 
         if (entity.hasComponent("affectedByGravity")
@@ -37,19 +41,22 @@ namespace spacebiem
             if (physics->getVelocity().length() > 50)
                 return;
 
-            if (transitionManager->getInputManager()->isKeyDown("Left")) {
+            if (getStateManager()->getInputManager()->isKeyDown("Left")) {
                 Vector left = { -diff.y, diff.x };
                 left = left.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
 
                 physics->addForce("left", left.x, left.y);
             }
 
-            if (transitionManager->getInputManager()->isKeyDown("Right")) {
+            if (getStateManager()->getInputManager()->isKeyDown("Right")) {
                 Vector right = { diff.y, -diff.x };
                 right = right.normalize() * physics->getMass() * 20 * (physics->getMass() * 90);
 
                 physics->addForce("right", right.x, right.y);
             }
+
+            if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
+            if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
         }
     }
 }

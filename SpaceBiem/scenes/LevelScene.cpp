@@ -6,6 +6,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
+#include "..\entities\ResourceUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
@@ -17,6 +18,9 @@
 #include "..\systems\OxygenUISystem.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ScoreSystem.h"
+#include "..\systems\ResourceUISystem.h"
+#include "..\systems\ResourceCollectingSystem.h"
+#include "..\systems\GameoverSystem.h"
 
 namespace spacebiem
 {
@@ -33,15 +37,23 @@ namespace spacebiem
         addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
         addSystem<ScoreUISystem>();
+        addSystem<ResourceUISystem>();
+        addSystem<ResourceCollectingSystem>();
+        addSystem<GameoverSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
 
-        addEntity(new PlayerEntity(800, 500, { 255, 255, 255, 255 }, width, height, 0.1f));
-
-        addEntity(new OxygenUIEntity());
-        addEntity(new ScoreUIEntity());
-
+        addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
+                 
+        addEntity<OxygenUIEntity>();
+        addEntity<ScoreUIEntity>(25,280);
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25, 25, Color::White(), 401, 169, 100u);
+        addEntity<ResourceUIEntity>(66, 150, Color::White(), "uranium");
+        addEntity<ResourceUIEntity>(157, 150, Color::White(), "diamond");
+        addEntity<ResourceUIEntity>(248, 150, Color::White(), "metal");
+        addEntity<ResourceUIEntity>(339, 150, Color::White(), "anti-matter");
+ 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 

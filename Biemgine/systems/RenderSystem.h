@@ -3,6 +3,7 @@
 #include "../entities/Entity.h"
 #include "../components/TextComponent.h"
 #include "../devices/graphics/GraphicsDevice.h"
+#include "../devices/graphics/TextureFlip.h"
 
 #include <list>
 
@@ -18,8 +19,21 @@ namespace biemgine
         Color color;
         float angle;
         unsigned int layer;
+        bool center;
+        TextureFlip flip;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer);
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip);
+    };
+
+    struct DrawText
+    {
+        string text;
+        int x, y;
+        Color color;
+        TextComponent* component;
+        bool center;
+
+        DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center);
     };
 
     class RenderSystem
@@ -38,5 +52,6 @@ namespace biemgine
     private:
         GraphicsDevice* graphicsDevice = nullptr;
         list<DrawTexture> drawList;
+        list<DrawText> textList;
     };
 }

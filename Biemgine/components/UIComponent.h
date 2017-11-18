@@ -1,9 +1,13 @@
 #pragma once
 
 #include "dlldef.h"
+#include <functional>
 #include "Component.h"
+#include "..\managers\StateManager.h"
 #include "..\primitives\Primitives.h"
 #include "..\systems\UISystem.h"
+
+using std::function;
 
 namespace biemgine
 {
@@ -13,7 +17,7 @@ namespace biemgine
     public:
 
         UIComponent();
-        UIComponent(const Size& pSize);
+        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr);
         ~UIComponent();
 
         template <typename TComponent>
@@ -25,6 +29,8 @@ namespace biemgine
         bool getIsMouseOver() const;
 
         const Size& getSize() const;
+
+        function<void(StateManager*)> getIsClicked() const;
 
     protected:
         void setIsMouseOver(bool pIsMouseOver);
@@ -38,6 +44,7 @@ namespace biemgine
         bool isMouseDown = false;
         bool isMouseOver = false;
         Size size;
+        function<void(StateManager*)> onClick;
     };
 
     template<typename TComponent>

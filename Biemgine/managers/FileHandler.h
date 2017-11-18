@@ -1,9 +1,10 @@
 #pragma once
+
 #include "dlldef.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include <string>
 #include <vector>
 
@@ -25,6 +26,5 @@ namespace biemgine
 
     private:
         fstream currentFile;
-
     };
 }

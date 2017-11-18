@@ -3,21 +3,23 @@
 
 namespace biemgine
 {
-    GroundedComponent::GroundedComponent(bool grounded)
-        : grounded(grounded)
-    { }
-
-    GroundedComponent::~GroundedComponent() {}
-
     bool GroundedComponent::isGrounded() const
     {
         return grounded;
     }
 
-    GroundedComponent* GroundedComponent::setGrounded(bool pGrounded)
+    GroundedComponent * GroundedComponent::setGrounded(bool pGrounded, Entity * pGroundedOn)
     {
         grounded = pGrounded;
 
+        if (pGrounded)
+            groundedOn = pGroundedOn;
+
         return this;
+    }
+
+    Entity * GroundedComponent::getGroundedOn() const
+    {
+        return groundedOn;
     }
 }

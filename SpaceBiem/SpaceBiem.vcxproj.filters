@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="systems">
@@ -108,8 +108,37 @@
     <ClInclude Include="components\ResourceComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\ResourceCollectingSystem.h" />
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ResourceUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
     <ClInclude Include="scenes\HighScoreScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ButtonUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="components\MovementComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\GameoverSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\NameGenerator.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -195,9 +224,43 @@
     <ClCompile Include="components\ResourceComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="factories\ResourceFactory.cpp" />
-    <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ResourceUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
     <ClCompile Include="scenes\HighScoreScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ButtonUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\MovementComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\GameoverSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\NameGenerator.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>

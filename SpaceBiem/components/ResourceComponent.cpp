@@ -5,7 +5,7 @@ namespace spacebiem
 {
     void ResourceComponent::addResource(string pName, int pAmount)
     {
-        if (pAmount > 0) {
+        if (pAmount >= 0) {
 
             if (resources.find(pName) == resources.end()) {
                 resources[pName] = pAmount;
@@ -13,8 +13,11 @@ namespace spacebiem
             else {
                 resources[pName] = resources[pName] + pAmount;
             }
-
         }
+    }
+
+    const map<string, int>& ResourceComponent::getResources() const {
+        return resources;
     }
     
 }

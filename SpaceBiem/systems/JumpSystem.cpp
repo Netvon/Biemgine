@@ -13,7 +13,9 @@ namespace spacebiem
 {
     void JumpSystem::update(const Entity & entity)
     {
-        if (!getTransitionManager()->getInputManager()->isKeyDown("Space"))
+        if (!entity.hasComponent("movement")) return;
+
+        if (!getStateManager()->getInputManager()->isKeyDown("Space"))
             return;
 
         if (entity.hasComponent("affectedByGravity")

@@ -52,10 +52,6 @@ namespace spacebiem
         }
         oc->setOxygenAmount(oAmount);
 
-        if (oAmount <= 0) {
-            // TODO: fix
-            // transitionManager->gameOverTransition();
-        }
     }
 
     void OxygenSystem::after()

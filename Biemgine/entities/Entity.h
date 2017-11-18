@@ -34,13 +34,20 @@ namespace biemgine
 
         void addComponent(const string& name, Component* component);
 
+        template <typename TComponent, typename ...TArgs>
+        void addComponent(const string& name, TArgs&&...arguments);
+
         int getId() const;
+
+        virtual void die() const;
+        bool isAlive() const;
 
         /*Size getBounds() const;*/
 
     private:
         int id;
         std::multimap<string, Component*> componentHashmap;
+        mutable bool alive = true;
     };
 
     template<typename TComponent>
@@ -66,5 +73,11 @@ namespace biemgine
         }
 
         return vec;
+    }
+
+    template<typename TComponent, typename ...TArgs>
+    void Entity::addComponent(const string & name, TArgs && ...arguments)
+    {
+        componentHashmap.emplace(std::make_pair(name, new TComponent(std::forward<TArgs>(arguments)...)));
     }
 }

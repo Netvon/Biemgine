@@ -12,7 +12,7 @@ namespace biemgine
         public Component
     {
     public:
-        TextComponent(std::string pText = "", Color pColor = { 255, 255, 255, 255 });
+        TextComponent(std::string pText = "", Color pColor = { 255, 255, 255, 255 }, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, bool center = false);
         ~TextComponent();
 
         const std::string& getText() const;
@@ -23,9 +23,19 @@ namespace biemgine
         Size getTextSize() const;
         void setTextSize(const Size& pTextSize);
 
+        float getOffsetX() const;
+        float getOffsetY() const;
+        bool isVisible() const;
+        void setVisible(bool pVisible);
+        bool isCenter() const;
+
     private:
         std::string text;
         Size textSize;
         Color color;
+        float offsetX;
+        float offsetY;
+        bool visible;
+        bool center;
     };
 }
