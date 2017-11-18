@@ -55,7 +55,6 @@ namespace biemgine
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
 
-        auto affectedByGravity = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
         auto physics = entity.getComponent<PhysicsComponent*>("physics");
         auto position = entity.getComponent<PositionComponent*>("position");
 
@@ -64,22 +63,7 @@ namespace biemgine
         position->setX(body->GetPosition().x - physics->getColliderW() / 2.f);
         position->setY(body->GetPosition().y - physics->getColliderH() / 2.f);
 
-        if (entity.hasComponent("grounded")) {
-            b2Vec2 ding = {
-                affectedByGravity->getFallingTowardsX(),
-                affectedByGravity->getFallingTowardsY()
-            };
-
-            b2Vec2 target = ding - body->GetPosition();
-
-            target.Normalize();
-            target *= 12000.0f;
-
-            float angle = atan2f(-target.x, target.y);
-            body->SetTransform(body->GetPosition(), angle);
-        }
-
-        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));
+        body->SetTransform(body->GetPosition(), position->getRotation());
 
         body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
         body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
@@ -138,7 +122,7 @@ namespace biemgine
             newBodyDef.fixedRotation = true;
         }
 
-        newBodyDef.position.Set(pc->getX() + physics->getColliderW() / 2.f, pc->getY() + physics->getColliderH() / 2.f);
+        newBodyDef.position.Set(pc->getOriginX() + physics->getColliderW() / 2.f, pc->getOriginY() + physics->getColliderH() / 2.f);
         newBodyDef.angle = static_cast<float>(pc->getRotation() * DEGREE_TO_RAD);
         newBodyDef.linearDamping = 0.2f;
 

@@ -11,6 +11,7 @@
 #include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
+#include "..\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -40,11 +41,12 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
+        addSystem<CameraSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
 
-        addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
+        addEntity<PlayerEntity>(600, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25,280);
@@ -57,10 +59,13 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        PlanetFactory pf;
+        addEntity<PlanetEarthEntity>(800, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
+        addEntity<PlanetEarthEntity>(800+1050, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
+
+       /* PlanetFactory pf;
         for (auto e : pf.sceneStart(wW, wH)) {
             addEntity(e);
-        }
+        }*/
     }
 
     void LevelScene::sceneEnd() {

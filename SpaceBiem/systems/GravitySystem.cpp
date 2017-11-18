@@ -15,6 +15,24 @@ namespace spacebiem
         {
             satellites.push_back(&entity);
         }
+
+        if (entity.hasComponent("affectedByGravity") && entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") && entity.hasComponent("grounded"))
+        {
+            auto position = entity.getComponent<PositionComponent*>("position");
+            auto physics = entity.getComponent<PhysicsComponent*>("physics");
+            auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
+
+            Vector ding = {
+                affected->getFallingTowardsX(),
+                affected->getFallingTowardsY()
+            };
+
+            float tragetX = ding.x - position->getX();
+            float tragetY = ding.y - position->getY();
+
+            float angle = atan2f(-tragetX, tragetY);
+            position->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288));
+        }      
     }
 
     struct DistanceInfo
