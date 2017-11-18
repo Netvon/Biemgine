@@ -45,8 +45,6 @@ namespace spacebiem
 
         float width = 15 * 2;
         float height = 25 * 2;
-
-        addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25,280);

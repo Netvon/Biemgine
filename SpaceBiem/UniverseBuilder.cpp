@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "UniverseBuilder.h"
 #include "FileParser.h"
-#include "factories/PlanetFactory.h"
+#include "factories\PlanetFactory.h"
 #include "Biemgine.h"
+#include "entities\PlayerEntity.h"
 
 using biemgine::Entity;
 
@@ -17,6 +18,7 @@ namespace spacebiem
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
+        ResourceFactory resourceFactory;
 
         map<string, map<string, vector<string>>> levelMap = fileParser.levelContent();
         map<string, float> atmosphereM = fileParser.atmosphereContent();
@@ -54,7 +56,10 @@ namespace spacebiem
             }
 
             if (type != "player") {
-                planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, nameGenerator, atmosphereM, scoreBonus);
+                planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
+            }
+            else {
+                entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
             }
 
         }

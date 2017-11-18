@@ -117,7 +117,7 @@ namespace spacebiem
         return entities;
     }
 
-    void PlanetFactory::create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus)
+    void PlanetFactory::create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, ResourceFactory resourceFactory , NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus)
     {
         if (type == "moon") {
             entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, scoreBonus["moon"], nameGenerator.getName());

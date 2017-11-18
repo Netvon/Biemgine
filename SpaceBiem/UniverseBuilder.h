@@ -1,5 +1,6 @@
 #pragma once
 #include "Biemgine.h"
+#include "factories\ResourceFactory.h"
 
 using biemgine::EntityManager;
 using biemgine::RandomGenerator;
