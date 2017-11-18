@@ -16,6 +16,11 @@ namespace biemgine
         static Color Black() {
             return Color{ 0, 0, 0, 255 };
         }
+
+        Color& WithAlpha(unsigned char alpha);
+        Color& WithRed(unsigned char red);
+        Color& WithGreen(unsigned char green);
+        Color& WithBlue(unsigned char green);
     };
 
     struct BIEMGINE Point {

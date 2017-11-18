@@ -18,9 +18,16 @@ namespace spacebiem
         auto physics = entity.getComponent<PhysicsComponent*>("physics");
         auto grounded = entity.getComponent<GroundedComponent*>("grounded");
 
+       
+
         if (!getStateManager()->getInputManager()->isKeyDown("Left")
-            && !getStateManager()->getInputManager()->isKeyDown("Right"))
+            && !getStateManager()->getInputManager()->isKeyDown("Right")) {
+            physics->setFriction(4.0f);
             return;
+        }
+        else {
+            physics->setFriction(0.0f);
+        }
 
         if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
         if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
@@ -45,14 +52,18 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            constexpr float terminalVelocity = 100.f;
-            constexpr float gravityConstant = 80.f;
+            float terminalVelocity = 150.f;
+            constexpr float gravityConstant = 160.f;
 
-            auto movementForce = (physics->getMass() * 2) * (gravityConstant * 2.f);
+            auto movementForce = physics->getMass() * gravityConstant;
 
             auto newVelo = physics->getVelocity().length() + movementForce;
 
-            printf("Velo: %f\n", physics->getVelocity().length());
+            //printf("%f\n", physics->getFriction());
+
+            
+
+            //printf("Velo: %f\n", physics->getVelocity().length());
 
             if (physics->getVelocity().length() > terminalVelocity)
                 return;
@@ -70,8 +81,6 @@ namespace spacebiem
 
                 physics->addForce("right", right.x, right.y);
             }
-
-            
         }
     }
 }

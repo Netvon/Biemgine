@@ -23,6 +23,7 @@
 #include "components\TransformComponent.h"
 #include "components\UIComponent.h"
 #include "components\PhysicsComponentShape.h"
+#include "components\ScriptComponent.h"
 
 #include "entities\Entity.h"
 #include "entities\SpriteEntity.h"

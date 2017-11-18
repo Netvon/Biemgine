@@ -16,6 +16,8 @@ namespace spacebiem
 {
     void GameoverScene::created() {
         enableRendering();
+        enableUI();
+        enableScripts();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();

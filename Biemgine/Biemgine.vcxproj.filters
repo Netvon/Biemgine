@@ -144,6 +144,10 @@
     <ClInclude Include="components\CollidableComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="systems\ScriptSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ScriptComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -242,5 +246,9 @@
     <ClCompile Include="systems\RenderSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="systems\ScriptSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ScriptComponent.cpp" />
   </ItemGroup>
 </Project>

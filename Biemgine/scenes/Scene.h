@@ -6,6 +6,7 @@
 #include "..\managers\EntityManager.h"
 #include "..\managers\StateManager.h"
 
+
 #include <memory>
 
 class ResourceManager;
@@ -36,6 +37,7 @@ namespace biemgine
         void enablePhysics();
         void enableRendering();
         void enableUI();
+        void enableScripts();
 
         Entity * getEntity(int id) const;
 

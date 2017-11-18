@@ -29,6 +29,7 @@ namespace spacebiem
         enableRendering();
         enablePhysics();
         enableUI();
+        enableScripts();
 
         addSystem<GravitySystem>();
         addSystem<MovementSystem>();

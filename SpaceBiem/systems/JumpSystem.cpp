@@ -60,8 +60,13 @@ namespace spacebiem
             //diff *= physics->getVelocity();
             diff *= -1;
             diff = diff.normalize();
-            diff += (physics->getVelocity().normalize());
-            diff = diff.normalize();
+
+            if (physics->getVelocity().length() > 0) {
+                diff += physics->getVelocity().normalize();
+                diff = diff.normalize();
+            }
+
+             /**/;
 
             /*if (getStateManager()->getInputManager()->isKeyDown("Right")) {
                 diff += (right * 1.8f);
@@ -72,12 +77,17 @@ namespace spacebiem
 
             //auto diff = [](biemgine::StateManager manager) { manager.navigateTo<LevelScene>(); };
 
-            auto gravityConstant = 80.f;
-            auto movementForce = ((physics->getMass() * 2.0f) * gravityConstant) * (physics->getMass()*2.f) * gravityConstant * 4.0f * physics->getVelocity().length();
+             auto multiplier = physics->getVelocity().normalize().length() * 2.0f;
+
+             if (multiplier < 1.0f)
+                 multiplier = 1.0f;
+
+            constexpr auto gravityConstant = 160.f;
+            auto movementForce = (physics->getMass() * gravityConstant) * (12.0f * multiplier);
             
             diff *= movementForce;
 
-            physics->addTimedForce("jump", diff.x, diff.y, 20);
+            physics->addForce("jump", diff.x, diff.y);
         }
     }
 }

@@ -29,6 +29,7 @@
     <ClInclude Include="components\PhysicsComponent.h" />
     <ClInclude Include="components\PositionComponent.h" />
     <ClInclude Include="components\RectangleComponent.h" />
+    <ClInclude Include="components\ScriptComponent.h" />
     <ClInclude Include="components\TextComponent.h" />
     <ClInclude Include="components\TextureComponent.h" />
     <ClInclude Include="components\TransformComponent.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="scenes\Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="systems\RenderSystem.h" />
+    <ClInclude Include="systems\ScriptSystem.h" />
     <ClInclude Include="systems\System.h" />
     <ClInclude Include="systems\physics\ContactListener.h" />
     <ClInclude Include="systems\physics\PhysicsSystem.h" />
@@ -62,6 +64,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="components\ScriptComponent.cpp" />
+    <ClCompile Include="systems\ScriptSystem.cpp" />
     <ClCompile Include="systems\UISystem.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp" />

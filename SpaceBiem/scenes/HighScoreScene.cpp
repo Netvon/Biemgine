@@ -23,6 +23,7 @@ namespace spacebiem
     void HighScoreScene::created() {
         enableRendering();
         enableUI();
+        enableScripts();
 
         addSystem<ScoreUISystem>();
 
