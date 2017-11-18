@@ -31,7 +31,6 @@ namespace spacebiem
 
         // Pak alle zooi en geef die mee met de navigate
         
-
         getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
     }
 

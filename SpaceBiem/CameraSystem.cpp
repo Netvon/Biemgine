@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CameraSystem.h"
 
+using biemgine::Rect;
 using biemgine::Color;
 using biemgine::ColorComponent;
 using biemgine::UIComponent;
@@ -27,15 +28,19 @@ namespace spacebiem
 
         if (entity.hasComponent("camera"))
         {
-            auto cc = entity.getComponent<Camera*>("camera");
+            camera = entity.getComponent<Camera*>("camera");
 
-            float xDelta = 960 - pc->getOriginX();
-            float yDelta = 540 - pc->getOriginY();
+            camera->setWindowWidth(getStateManager()->getWindowWidth());
+            camera->setWindowHeight(getStateManager()->getWindowHeight());
 
-            cc->setDeltaX(xDelta);
-            cc->setDeltaY(yDelta);
+            float xDelta = camera->getWindowWidth() / 2 - pc->getOriginX();
+            float yDelta = camera->getWindowHeight() / 2 - pc->getOriginY();
 
-            camera = cc;
+            camera->setDeltaX(xDelta);
+            camera->setDeltaY(yDelta);
+
+            Rect rect = entity.getBounds();
+            int test = 0;
         }
 
         if (camera != nullptr)

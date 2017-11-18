@@ -42,7 +42,7 @@ namespace biemgine
         virtual void die() const;
         bool isAlive() const;
 
-        /*Size getBounds() const;*/
+        Rect getBounds() const;
 
     private:
         int id;

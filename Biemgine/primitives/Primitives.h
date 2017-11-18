@@ -67,7 +67,10 @@ namespace biemgine
     };
 
     struct BIEMGINE Rect {
-        Point point;
-        Size size;
+        Point topLeft;
+        Point topRight;
+        Point bottomLeft;
+        Point bottomRight;
+        bool hasSize;
     };
 }

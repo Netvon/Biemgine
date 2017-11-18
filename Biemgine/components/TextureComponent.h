@@ -35,7 +35,7 @@ namespace biemgine
         void setVisible(bool pVisible);
         void setColor(Color pColor);
         Color getColor() const;
-        ColorComponent getOriginalColor() const;
+        Color getOriginalColor() const;
         void setRotation(int r);
         int getRotation() const;
         void setFlip(TextureFlip pFlip);

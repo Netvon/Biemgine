@@ -74,11 +74,12 @@ namespace biemgine
     Color TextureComponent::getColor() const {
         return color;
     }
-    ColorComponent TextureComponent::getOriginalColor() const
-    {
-        return ColorComponent(originalColor);
-    }
 
+    Color TextureComponent::getOriginalColor() const
+    {
+        return originalColor;
+    }
+    
     void TextureComponent::setRotation(int r) {
         rotation = r;
     }

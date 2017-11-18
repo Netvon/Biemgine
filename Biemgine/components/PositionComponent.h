@@ -13,8 +13,8 @@ namespace biemgine
         PositionComponent(float x = 0, float y = 0, float z = 0, float rotation = 0.0f);
         ~PositionComponent();
 
-        float PositionComponent::getOriginX() const;
-        float PositionComponent::getOriginY() const;
+        float getOriginX() const;
+        float getOriginY() const;
         float getX() const;
         float getY() const;
         float getZ() const;

@@ -65,9 +65,9 @@ namespace spacebiem
 
         Color dangerRedColor = {204, 94, 94};
         Color newColor;
-        newColor.r = dangerRedColor.r + ((texture->getOriginalColor().getR() - dangerRedColor.r) * oBar);
-        newColor.g = dangerRedColor.g + ((texture->getOriginalColor().getG() - dangerRedColor.g) * oBar);
-        newColor.b = dangerRedColor.b + ((texture->getOriginalColor().getB() - dangerRedColor.b) * oBar);
+        newColor.r = dangerRedColor.r + ((texture->getOriginalColor().r - dangerRedColor.r) * oBar);
+        newColor.g = dangerRedColor.g + ((texture->getOriginalColor().g - dangerRedColor.g) * oBar);
+        newColor.b = dangerRedColor.b + ((texture->getOriginalColor().b - dangerRedColor.b) * oBar);
 
         texture->setWidth(texture->getOriginalWidth() * oBar);
         texture->setColor(newColor);
