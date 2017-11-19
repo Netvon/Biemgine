@@ -148,6 +148,9 @@
       <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="components\ScriptComponent.h" />
+    <ClInclude Include="entities\TextEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -250,5 +253,8 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\ScriptComponent.cpp" />
+    <ClCompile Include="entities\TextEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

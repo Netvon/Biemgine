@@ -77,6 +77,11 @@ namespace biemgine
             body->SetTransform(body->GetPosition(), angle);
         }
 
+        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext())
+        {
+            body->GetFixtureList()->SetFriction(physics->getFriction());
+        }
+
         position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));
 
         body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);
@@ -89,10 +94,7 @@ namespace biemgine
         auto velo = body->GetLinearVelocity();
         physics->setVelocity({ meterToPixel(velo.x), meterToPixel(velo.y) });
 
-        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext())
-        {
-            body->GetFixtureList()->SetFriction(physics->getFriction());
-        }
+        
     }
 
     void PhysicsSystem::after()

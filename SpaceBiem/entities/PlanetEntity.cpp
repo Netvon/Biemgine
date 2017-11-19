@@ -36,7 +36,7 @@ namespace spacebiem
         addComponent("ground", new GroundComponent);
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "gravityfield", { color.r, color.g, color.b, 50}));
-        addComponent("text", new TextComponent(to_string(pScoreBonus) + " score", { 255,255,255,128 }, w / 2, h / 2 + 20, false, true));
+        addComponent("text", new TextComponent(to_string(pScoreBonus), { 255,255,255, 50 }, w / 2, h / 2 + 20, false, true));
         addComponent("text", new TextComponent(pName, { 255,255,255,255 }, w / 2, h / 2 - 10, false, true));
 
         int flagHeight = 60;

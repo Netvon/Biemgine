@@ -20,14 +20,14 @@ namespace spacebiem
 
        
 
-        if (!getStateManager()->getInputManager()->isKeyDown("Left")
+        /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
             && !getStateManager()->getInputManager()->isKeyDown("Right")) {
             physics->setFriction(4.0f);
             return;
         }
         else {
             physics->setFriction(0.0f);
-        }
+        }*/
 
         if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
         if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
@@ -41,7 +41,7 @@ namespace spacebiem
             auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
             
 
-            if (!grounded->isGrounded() || !affected->getIsAffected())
+            if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())
                 return;
 
             Vector centerOfSatellite = {
@@ -52,10 +52,10 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            float terminalVelocity = 150.f;
+            constexpr float terminalVelocity = 140.f;
             constexpr float gravityConstant = 160.f;
 
-            auto movementForce = physics->getMass() * gravityConstant;
+            auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
 
             auto newVelo = physics->getVelocity().length() + movementForce;
 
