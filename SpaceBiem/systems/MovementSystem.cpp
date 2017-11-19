@@ -52,7 +52,7 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            constexpr float terminalVelocity = 140.f;
+            constexpr float escapeVelocity = 140.f;
             constexpr float gravityConstant = 160.f;
 
             auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
@@ -65,7 +65,7 @@ namespace spacebiem
 
             //printf("Velo: %f\n", physics->getVelocity().length());
 
-            if (physics->getVelocity().length() > terminalVelocity)
+            if (physics->getVelocity().length() > escapeVelocity)
                 return;
 
             if (getStateManager()->getInputManager()->isKeyDown("Left")) {

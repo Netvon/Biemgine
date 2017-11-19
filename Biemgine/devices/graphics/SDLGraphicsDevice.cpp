@@ -6,7 +6,7 @@
 
 namespace biemgine {
 
-    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
+    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window, bool maximize)
     {
         renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -26,9 +26,10 @@ namespace biemgine {
         SDL_RenderSetViewport(renderer, &viewport);
         //SDL_RenderSetScale(renderer, 0.25f, 0.25f);
 
-        SDL_RenderSetLogicalSize(renderer, 1920, 1080);
+        SDL_RenderSetLogicalSize(renderer, viewport.w, viewport.h);
 
-        SDL_MaximizeWindow(window);
+        if(maximize)
+            SDL_MaximizeWindow(window);
     }
 
     SDLGraphicsDevice::~SDLGraphicsDevice()

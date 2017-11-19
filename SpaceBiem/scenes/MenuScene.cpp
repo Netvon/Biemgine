@@ -76,7 +76,7 @@ namespace spacebiem
 
     void MenuScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
 }

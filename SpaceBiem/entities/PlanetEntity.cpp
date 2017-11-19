@@ -10,6 +10,7 @@ using biemgine::GroundComponent;
 using biemgine::TextureComponent;
 using biemgine::TextComponent;
 using biemgine::ScriptComponent;
+using biemgine::RandomGenerator;
 
 #include "../components/GravityComponent.h"
 #include "../components/AtmosphereComponent.h"
@@ -17,13 +18,9 @@ using biemgine::ScriptComponent;
 
 namespace spacebiem
 {
-    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, string texture, string borderTexture, int pScoreBonus, string pName)
+    PlanetEntity::PlanetEntity(float x, float y, Color color, float w, float h, const string& texture, const string& borderTexture, int pScoreBonus, const string& pName)
     {
-        std::mt19937 rng;
-        rng.seed(std::random_device()());
-        std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 360);
-
-        float rot = static_cast<float>(dist6(rng));
+        float rot = RandomGenerator::getInstance().generate(0.0f, 360.0f);
 
         addComponent("position", new PositionComponent(x, y));
         addComponent("physics", new PhysicsComponent(w, h, true, PhysicsComponentShape::CIRCLE));
@@ -52,11 +49,7 @@ namespace spacebiem
 
         if (shouldClouds) {
 
-            std::mt19937 rng;
-            rng.seed(std::random_device()());
-            std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 360);
-
-            float rot = static_cast<float>( dist6(rng) );
+            float rot = RandomGenerator::getInstance().generate(0.0f, 360.0f);
 
             addComponent("texture", new TextureComponent("textures/atmosphere_clouds.png", 0.f - ((w * 2.5f / 2) - w / 2), 0 - ((h * 2.5f / 2) - h / 2), w * 2.5f, h * 2.5f, 10u, true, "clouds", Color::White(), rot));
 

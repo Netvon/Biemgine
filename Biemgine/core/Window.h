@@ -14,7 +14,8 @@ namespace biemgine
         (
             const string& title = "Untitled Window",
             const int32_t& width = 800,
-            const int32_t& height = 600
+            const int32_t& height = 600,
+            bool maximize = false
         );
 
         ~Window();

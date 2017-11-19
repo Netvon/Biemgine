@@ -119,7 +119,7 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
         getTransitionManager().drawOverlay();
     }
