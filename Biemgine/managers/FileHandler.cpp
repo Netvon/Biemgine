@@ -1,9 +1,7 @@
 #include "FileHandler.h"
 
-
-namespace biemgine {
-
-
+namespace biemgine
+{
     FileHandler::FileHandler(string filePath)
     {
         currentFile.open(filePath, std::fstream::in | std::fstream::out | std::fstream::app);
@@ -27,7 +25,6 @@ namespace biemgine {
         return values;
     }
 
-
     void FileHandler::writeLine(vector<string> values)
     {
         for (auto v = values.begin(); v != values.end(); v++) {
@@ -38,8 +35,4 @@ namespace biemgine {
         }
         currentFile << "\n";
     }
-    
-
-
-
 }

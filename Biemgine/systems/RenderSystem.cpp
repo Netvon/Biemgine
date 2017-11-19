@@ -5,6 +5,7 @@
 #include "..\components\RectangleComponent.h"
 #include "..\components\TextureComponent.h"
 #include "..\entities\Entity.h"
+#include "../devices/graphics/TextureFlip.h"
 
 namespace biemgine
 {
@@ -23,17 +24,19 @@ namespace biemgine
         auto pc = entity.getComponent<PositionComponent*>("position");
 
         if (entity.hasComponent("text")) {
-            auto tx = entity.getComponent<TextComponent*>("text");
+            auto txs = entity.getComponents<TextComponent*>("text");
 
-            if (tx->isVisible()) {
-                textList.push_back(DrawText(
-                    tx->getText(),
-                    static_cast<int>(pc->getX() + tx->getOffsetX()),
-                    static_cast<int>(pc->getY() + tx->getOffsetY()),
-                    tx->getColor(),
-                    tx,
-                    tx->isCenter()
-                ));
+            for (auto tx : txs) {
+                if (tx->isVisible()) {
+                    textList.push_back(DrawText(
+                        tx->getText(),
+                        static_cast<int>(pc->getX() + tx->getOffsetX()),
+                        static_cast<int>(pc->getY() + tx->getOffsetY()),
+                        tx->getColor(),
+                        tx,
+                        tx->isCenter()
+                    ));
+                }
             }
         }
 
@@ -41,7 +44,7 @@ namespace biemgine
             return;
 
         if (entity.hasComponent("texture")) {
-            auto tc = entity.getComponents<TextureComponent*>("texture");
+            auto tc = entity.getComponents<TextureComponent*>("texture");       
 
             for (auto tex : tc) {
                 if (!tex->isVisible()) continue;
@@ -52,10 +55,11 @@ namespace biemgine
                     static_cast<int>(pc->getY() + tex->getOffsetY()),
                     tex->getWidth(),
                     tex->getHeight(),
-                    pc->getRotation(),
-                    tex->getColor(),
+                    pc->getRotation() + tex->getRotation(),
+                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
                     tex->getLayer(),
-                    false
+                    false,
+                    tex->getFlip()
                 ));
             }
         }
@@ -100,7 +104,8 @@ namespace biemgine
                 texture.w,
                 texture.h,
                 texture.angle,
-                texture.color
+                texture.color,
+                texture.flip
             );
         }
 
@@ -114,8 +119,8 @@ namespace biemgine
         textList.clear();
     }
 
-    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center) :
-        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center) {}
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
 
 
     DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center) :
