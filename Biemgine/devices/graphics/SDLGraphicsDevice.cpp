@@ -86,6 +86,11 @@ namespace biemgine {
             centerpoint = { textRect.x, textRect.y };
         }
 
+        SDL_SetTextureBlendMode(textFromKey.texture, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(textFromKey.texture, color.a);
+
+        SDL_SetTextureColorMod(textFromKey.texture, color.r, color.g, color.b);
+
         SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, 0, &centerpoint, static_cast<SDL_RendererFlip>(flip));
 
         return { textRect.w, textRect.h };
