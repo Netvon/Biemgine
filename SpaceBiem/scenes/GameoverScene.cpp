@@ -42,6 +42,14 @@ namespace spacebiem
 
         addEntity<TextUIEntity>(static_cast<float>(x), 100.f, Color { 66, 143, 244 }, "Game over");
         addEntity<TextUIEntity>(static_cast<float>(x), 150.f, Color{ 66, 143, 244 }, "Je score was: " + std::to_string(score));
+        addEntity<TextUIEntity>(static_cast<float>(x), 200.f, Color{ 66, 143, 244 }, "Resources: ");
+
+        float heightCounter = 250;
+
+        for(auto& r : resources) {
+            addEntity<TextUIEntity>(static_cast<float>(x), heightCounter, Color{ 66, 143, 244 }, r.first + ": " + std::to_string(r.second));
+            heightCounter = heightCounter + 50.f;
+        }
 
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
@@ -51,8 +59,8 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        addEntity<ButtonUIEntity>(x - 25, 300, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
-        addEntity<ButtonUIEntity>(x - 25, 375, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 675, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
     }
 
     void GameoverScene::input()
