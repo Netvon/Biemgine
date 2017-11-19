@@ -14,6 +14,7 @@ using biemgine::PositionComponent;
 using biemgine::ColorComponent;
 using biemgine::UIComponent;
 using biemgine::TextComponent;
+using biemgine::TextUIEntity;
 
 namespace spacebiem
 {
@@ -39,23 +40,8 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-        Entity* titleEntity = new Entity();
-
-        titleEntity->addComponent("position", new PositionComponent(x, 100));
-        titleEntity->addComponent("color", new ColorComponent(66, 143, 244));
-        titleEntity->addComponent("ui", new UIComponent);
-        titleEntity->addComponent("text", new TextComponent("Game over"));
-
-        addEntity(titleEntity);
-
-        Entity* scoreEntity = new Entity();
-
-        scoreEntity->addComponent("position", new PositionComponent(x, 150));
-        scoreEntity->addComponent("color", new ColorComponent(66, 143, 244));
-        scoreEntity->addComponent("ui", new UIComponent);
-        scoreEntity->addComponent("text", new TextComponent("Je score was: " + std::to_string(score)));
-
-        addEntity(scoreEntity);
+        addEntity<TextUIEntity>(static_cast<float>(x), 100.f, Color { 66, 143, 244 }, "Game over");
+        addEntity<TextUIEntity>(static_cast<float>(x), 150.f, Color{ 66, 143, 244 }, "Je score was: " + std::to_string(score));
 
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);

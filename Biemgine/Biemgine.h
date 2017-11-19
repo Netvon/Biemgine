@@ -26,6 +26,7 @@
 
 #include "entities\Entity.h"
 #include "entities\SpriteEntity.h"
+#include "entities\TextUIEntity.h"
 
 #include "managers\EntityManager.h"
 #include "managers\InputManager.h"

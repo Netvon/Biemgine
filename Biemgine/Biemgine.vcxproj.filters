@@ -144,6 +144,9 @@
     <ClInclude Include="components\CollidableComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="entities\TextUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="systems\RenderSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\TextUIEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
