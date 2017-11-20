@@ -11,12 +11,7 @@ using biemgine::TextureComponent;
 
 namespace spacebiem
 {
-    void CameraSystem::before(const float deltaTime)
-    {
-
-    }
-
-    void CameraSystem::update(const Entity & entity, const float deltaTime)
+    void CameraSystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("position") || entity.hasComponent("ui"))
             return;
@@ -30,11 +25,11 @@ namespace spacebiem
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());
 
-            float xDelta = static_cast<float>(camera->getWindowWidth()) / 2.0f - pc->getOriginX();
-            float yDelta = static_cast<float>(camera->getWindowHeight()) / 2.0f - pc->getOriginY();
+            int xDelta = static_cast<int>((camera->getWindowWidth()) / 2 - static_cast<int>(pc->getOriginX()));
+            int yDelta = static_cast<int>((camera->getWindowHeight()) / 2 - static_cast<int>(pc->getOriginY()));
 
-            camera->setDeltaX(xDelta);
-            camera->setDeltaY(yDelta);
+            camera->setDeltaX(static_cast<float>(xDelta));
+            camera->setDeltaY(static_cast<float>(yDelta));
         }
 
         if (camera != nullptr)
@@ -42,16 +37,5 @@ namespace spacebiem
             pc->setOffsetX(camera->getDeltaX());
             pc->setOffsetY(camera->getDeltaY());
         }
-      
-    }
-
-    void CameraSystem::after(const float deltaTime)
-    {
-
-    }
-
-    void CameraSystem::onSceneSwitch()
-    {
-
     }
 }

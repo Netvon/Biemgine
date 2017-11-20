@@ -14,15 +14,9 @@ namespace spacebiem
         : public System
     {
     public:
-
-        CameraSystem() {};
         ~CameraSystem() {};
 
-        void before(const float deltaTime) override;
-        void update(const Entity& entity, const float deltaTime) override;
-        void after(const float deltaTime) override;
-
-        void onSceneSwitch() override;
+        void update(const Entity& entity) override;
 
     private:
         Camera* camera = nullptr;
