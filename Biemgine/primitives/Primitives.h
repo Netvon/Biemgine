@@ -31,7 +31,7 @@ namespace biemgine
         }
 
         static Color ToxicAtmosphere() {
-            return Color{ 127, 0, 255, 255 };
+            return Color{ 20, 221, 53, 255 };
         }
 
     };

@@ -9,7 +9,7 @@ namespace spacebiem
 
         FileHandler fh("data/planet_names.csv");
 
-        for each (vector<string> v in fh.getValues())
+        for (vector<string>& v : fh.getValues())
         {
             names.push_back(v[0]);
         }
