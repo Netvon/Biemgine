@@ -8,6 +8,7 @@ using biemgine::ColorComponent;
 using biemgine::UIComponent;
 using biemgine::TextComponent;
 using biemgine::Size;
+using biemgine::ScriptComponent;
 
 namespace spacebiem
 {
@@ -18,5 +19,19 @@ namespace spacebiem
         //addComponent("color", new ColorComponent(buttonColor));
         addComponent("ui", new UIComponent(size, onClick));
         addComponent("text", new TextComponent(pText, textcolor, size.width/2, size.height/2, true, true));
+
+        addComponent<ScriptComponent>("script",
+            [this]()
+        {
+            auto ui = getComponent<UIComponent*>("ui");
+            auto texture = getComponent<TextureComponent*>("texture");
+
+            if (!ui->getIsMouseOver()) {
+                texture->setColor(texture->getColor().WithAlpha(128));
+            }
+            else {
+                texture->setColor(texture->getColor().WithAlpha(255));
+            }
+        });
     }
 }

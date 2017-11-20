@@ -13,13 +13,14 @@ namespace biemgine
     Window::Window(
         const string & title,
         const int32_t & width,
-        const int32_t & height)
+        const int32_t & height,
+        bool maximize)
     {
         if (init()) {
 
             int id = initWindow(title, width, height, SDL_WINDOW_SHOWN);
 
-            gd = new SDLGraphicsDevice(getWindow(id));
+            gd = new SDLGraphicsDevice(getWindow(id), maximize);
         }
     }
 

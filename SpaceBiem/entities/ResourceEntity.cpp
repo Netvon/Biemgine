@@ -21,8 +21,8 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("texture", new TextureComponent("textures/" + rName + ".png", 0, 0, w, h, 5u));
-        addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, 1.0f));
+        addComponent("texture", new TextureComponent("textures/" + rName + ".png", 0, 0, static_cast<int>(w), static_cast<int>(h), 5u));
+        addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, 0.1f));
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("scorebonus", new ScoreBonusComponent(scoreBonus));
         addComponent("resourcebonus", new ResourceBonusComponent(rName, 1));

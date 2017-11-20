@@ -12,28 +12,24 @@ namespace biemgine
     {
     private:
 
-        RandomGenerator(int seed)
-        {
-            generator.seed(seed);
-        };
-
+        RandomGenerator(int seed);
         std::default_random_engine generator;
-
-
     public:
+        static RandomGenerator& getInstance();
 
-        static RandomGenerator& getInstance()
-        {
-            static RandomGenerator instance((unsigned int)time(NULL));
-            return instance;
-        }
         RandomGenerator(RandomGenerator const&) = delete;
         void operator=(RandomGenerator const&) = delete;
 
-        int generate(int min, int max);
+        template<typename T = int>
+        T generate(T min, T max);
 
-    private:
-
-
+        float generate(float min, float max);
     };
+
+    template<typename T>
+    T RandomGenerator::generate(T min, T max)
+    {
+        std::uniform_int_distribution<T> distribution(min, max);
+        return distribution(generator);
+    }
 }

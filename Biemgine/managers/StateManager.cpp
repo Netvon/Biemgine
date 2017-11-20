@@ -45,11 +45,11 @@ namespace biemgine
         }
     }
 
-    void StateManager::drawBackground()
+    void StateManager::drawBackground(const string& backgroundPath)
     {
         auto gd = window->getGraphicsDevice();
 
-        gd->drawTexture("textures/space.jpg", 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
+        gd->drawTexture(backgroundPath, 0, 0, getWindowWidth(), getWindowHeight(), 0.f, { 255, 255, 255, 255 });
     }
 
     SceneManager & StateManager::getSceneManager() const

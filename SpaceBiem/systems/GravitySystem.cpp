@@ -11,8 +11,15 @@ namespace spacebiem
         {
             gravityPoints.push_back(&entity);
         }
-        else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics"))
+        else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") )
         {
+            if (entity.hasComponent("resourcebonus") && entity.hasComponent("grounded")) {
+                auto grounded = entity.getComponent<biemgine::GroundedComponent*>("grounded");
+
+                if (grounded->isGrounded())
+                    return;
+            }
+
             satellites.push_back(&entity);
         }
 
@@ -48,8 +55,9 @@ namespace spacebiem
             auto satPosition = satellite->getComponent<PositionComponent*>("position");
             auto satPhysics = satellite->getComponent<PhysicsComponent*>("physics");
             auto satAffected = satellite->getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            //auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
-            Vector centerOfSatellite = {
+            Vector centerOfSatellite {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,
                 satPosition->getY() + satPhysics->getColliderH() / 2.0f
             };
@@ -61,7 +69,7 @@ namespace spacebiem
                 auto gravPosition = point->getComponent<PositionComponent*>("position");
                 auto gravity = point->getComponent<GravityComponent*>("gravity");
 
-                Vector centerOfGravity = {
+                Vector centerOfGravity {
                     (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
                     (gravPosition->getY() + gravity->getY()) + gravity->getHeight() / 2.0f
                 };
@@ -79,10 +87,10 @@ namespace spacebiem
                 }
             }
 
-            if (!forceApplied) {
+            /*if (!forceApplied) {
                 auto distanceInfo = distances.begin()->second;
                 applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
-            }
+            }*/
         }
 
         gravityPoints.clear();
@@ -94,7 +102,7 @@ namespace spacebiem
         auto force = centerOfGravity - centerOfSatellite;
 
         force = force.normalize();
-        force *= 29000.0f;
+        force *= satPhysics->getMass() * GravityComponent::getGravityConstant();
 
         satPhysics->addForce("gravity", force.x, force.y);
         affected->setFallingTowardsX(centerOfGravity.x);

@@ -6,7 +6,7 @@
 
 namespace biemgine {
 
-    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
+    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window, bool maximize)
     {
         renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -26,9 +26,10 @@ namespace biemgine {
         SDL_RenderSetViewport(renderer, &viewport);
         //SDL_RenderSetScale(renderer, 0.25f, 0.25f);
 
-        SDL_RenderSetLogicalSize(renderer, 1920, 1080);
+        SDL_RenderSetLogicalSize(renderer, viewport.w, viewport.h);
 
-        SDL_MaximizeWindow(window);
+        if(maximize)
+            SDL_MaximizeWindow(window);
     }
 
     SDLGraphicsDevice::~SDLGraphicsDevice()
@@ -84,6 +85,11 @@ namespace biemgine {
             textRect.y = textRect.y - (textRect.h / 2);
             centerpoint = { textRect.x, textRect.y };
         }
+
+        SDL_SetTextureBlendMode(textFromKey.texture, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(textFromKey.texture, color.a);
+
+        SDL_SetTextureColorMod(textFromKey.texture, color.r, color.g, color.b);
 
         SDL_RenderCopyEx(renderer, textFromKey.texture, nullptr, &textRect, 0, &centerpoint, static_cast<SDL_RendererFlip>(flip));
 

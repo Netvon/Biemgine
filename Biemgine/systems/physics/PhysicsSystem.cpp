@@ -60,17 +60,22 @@ namespace biemgine
 
         auto body = bodies.at(entity.getId());
 
-        position->setX(body->GetPosition().x - physics->getColliderW() / 2.f);
-        position->setY(body->GetPosition().y - physics->getColliderH() / 2.f);
+        position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
+        position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
 
         body->SetTransform(body->GetPosition(), position->getRotation());
 
-        body->ApplyForceToCenter({ physics->getForceX() , physics->getForceY() }, true);
-        body->ApplyLinearImpulseToCenter({ physics->getImpulseX(), physics->getImpulseY() }, true);
+        body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);
+        body->ApplyLinearImpulseToCenter({ pixelToMeter( physics->getImpulseX() ), pixelToMeter( physics->getImpulseY() ) }, true);
 
         physics->decreaseTimedForces();
 
         bodiesUpdated[entity.getId()] = true;
+
+        auto velo = body->GetLinearVelocity();
+        physics->setVelocity({ meterToPixel(velo.x), meterToPixel(velo.y) });
+
+        body->SetLinearDamping(physics->getLinearDamping());
     }
 
     void PhysicsSystem::after()
@@ -89,7 +94,7 @@ namespace biemgine
             }
         }
 
-        world->Step(1.f / 30.0f, 6, 2);
+        world->Step(1.f / 60.0f, 6, 2);
     }
 
     void PhysicsSystem::onSceneSwitch()
@@ -120,11 +125,16 @@ namespace biemgine
 
         if (entity.hasComponent("grounded")) {
             newBodyDef.fixedRotation = true;
+            printf("HasGrounded - ");
         }
 
-        newBodyDef.position.Set(pc->getOriginX() + physics->getColliderW() / 2.f, pc->getOriginY() + physics->getColliderH() / 2.f);
+        newBodyDef.position.Set(
+            pixelToMeter( pc->getOriginX() + physics->getColliderW() / 2.f ),
+            pixelToMeter( pc->getOriginY() + physics->getColliderH() / 2.f )
+        );
+
         newBodyDef.angle = static_cast<float>(pc->getRotation() * DEGREE_TO_RAD);
-        newBodyDef.linearDamping = 0.2f;
+        newBodyDef.linearDamping = 0;//0.25f;
 
         b2Body* body = world->CreateBody(&newBodyDef);
         body->SetUserData((void*)&entity);
@@ -132,24 +142,34 @@ namespace biemgine
 
         if (physics->getShape() == RECTANGLE) {
             b2PolygonShape polygonshape;
-            polygonshape.SetAsBox(physics->getColliderW() / 2.f, physics->getColliderH() / 2.f, { 0,0/*physics->getColliderW() / 2.f, physics->getColliderH() / 2.f*/ }, 0);
+            polygonshape.SetAsBox(
+                pixelToMeter( physics->getColliderW() / 2.f ),
+                pixelToMeter( physics->getColliderH() / 2.f ),
+                { 0,0/*physics->getColliderW() / 2.f, physics->getColliderH() / 2.f*/ },
+                0
+            );
 
-            fixture = body->CreateFixture(&polygonshape, physics->getMass());
+            fixture = body->CreateFixture(&polygonshape, physics->getDensity());
         }
         else if (physics->getShape() == CIRCLE) {
             b2CircleShape circleShape;
             circleShape.m_p.Set(0, 0);
-            circleShape.m_radius = physics->getColliderW() / 2.0f;
+            circleShape.m_radius = pixelToMeter( physics->getColliderW() / 2.0f );
 
-            fixture = body->CreateFixture(&circleShape, physics->getMass());
+            fixture = body->CreateFixture(&circleShape, physics->getDensity());
         }
 
         fixture->SetRestitution(0.15f);
-        fixture->SetFriction(1.f);
+        //fixture->SetFriction(1.f);
 
         if (entity.hasComponent("grounded")) {
             b2PolygonShape groundShape;
-            groundShape.SetAsBox(physics->getColliderW() * 0.5f, physics->getColliderH() * 0.5f, { 0, 0.25f }, 0);
+            groundShape.SetAsBox(
+                pixelToMeter(physics->getColliderW() * 0.5f),
+                pixelToMeter(physics->getColliderH() * 0.5f),
+                { 0, pixelToMeter(0.25f) },
+                0
+            );
 
             b2FixtureDef groundFixtureDef;
             groundFixtureDef.shape = &groundShape;
@@ -158,6 +178,29 @@ namespace biemgine
             b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
         }
 
+        printf("Adding body with mass: %f, density: %f\n", body->GetMass(), fixture->GetDensity());
+        physics->setMass(body->GetMass());
+
         return body;
+    }
+
+    Vector PhysicsSystem::pixelToMeter(Vector & pixelVector)
+    {
+        return pixelVector / pixelsInAMeter;
+    }
+
+    float PhysicsSystem::pixelToMeter(float pixelValue)
+    {
+        return pixelValue / pixelsInAMeter;
+    }
+
+    Vector PhysicsSystem::meterToPixel(Vector & pixelVector)
+    {
+        return pixelVector * pixelsInAMeter;
+    }
+
+    float PhysicsSystem::meterToPixel(float meterValue)
+    {
+        return meterValue * pixelsInAMeter;
     }
 }

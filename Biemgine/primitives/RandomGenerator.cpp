@@ -1,14 +1,28 @@
 
 #include "stdafx.h"
 #include "RandomGenerator.h"
+#include <functional>
 
 
 namespace biemgine
 {
-
-    int RandomGenerator::generate(int min, int max)
+    RandomGenerator::RandomGenerator(int seed)
     {
-        std::uniform_int_distribution<int> distribution(min, max);
-        return distribution(generator);
+        generator.seed(seed);
+    }
+
+    RandomGenerator & RandomGenerator::getInstance()
+    {
+        static RandomGenerator instance((unsigned int)time(NULL));
+        return instance;
+    }
+
+    float RandomGenerator::generate(float min, float max)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> dis(min, max);
+
+        return dis(gen);
     }
 }

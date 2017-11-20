@@ -49,6 +49,18 @@ namespace biemgine
         return { x / scalar, y / scalar, z / scalar };
     }
 
+    Vector & Vector::operator*=(const Vector & other)
+    {
+        x *= other.x; y *= other.y; z *= other.z;
+
+        return *this;
+    }
+
+    Vector Vector::operator*(const Vector & other)
+    {
+        return { x * other.x, y * other.y, z * other.z };
+    }
+
     Vector Vector::normalize()
     {
         auto me = *this;
@@ -102,5 +114,29 @@ namespace biemgine
     Point::operator Vector()
     {
         return { static_cast<float>(x), static_cast<float>(y), static_cast<float>(z) };
+    }
+
+    Color & Color::WithAlpha(unsigned char alpha)
+    {
+        a = alpha;
+        return *this;
+    }
+
+    Color & Color::WithRed(unsigned char red)
+    {
+        r = red;
+        return *this;
+    }
+
+    Color & Color::WithGreen(unsigned char green)
+    {
+        g = green;
+        return *this;
+    }
+
+    Color & Color::WithBlue(unsigned char green)
+    {
+        g = green;
+        return *this;
     }
 }
