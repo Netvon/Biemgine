@@ -93,7 +93,7 @@ namespace spacebiem
     {
         map<string, int> resourceM;
 
-        FileHandler file("resources.csv");
+        FileHandler file("data/resources.csv");
         for each (auto v in file.getValues())
         {
             resourceM[v[0]] = stoi(v[1]);
@@ -108,7 +108,7 @@ namespace spacebiem
             content[r.first] += r.second;
         }
 
-        FileHandler file("resources.csv", true);
+        FileHandler file("data/resources.csv", true);
         for (auto r : content) {
             file.writeLine(vector<string>({ r.first, to_string(r.second) }));
         }
