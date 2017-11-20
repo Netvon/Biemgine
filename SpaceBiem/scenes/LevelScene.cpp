@@ -62,19 +62,24 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(248.f, 150.f, Color::White(), "metal");
         addEntity<ResourceUIEntity>(339.f, 150.f, Color::White(), "anti-matter");
 
-        addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
-        {
-            auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
-            auto velo = player->getVelocity();
+        //addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
+        //{
+        //    auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
+        //    auto velo = player->getVelocity();
 
-            return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
-        });
+        //    return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
+        //});
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
         UniverseBuilder uB;
-        uB.build(getEntityManager());
+        if (newGame) {
+            uB.build(getEntityManager());
+        }
+        else {
+
+        }       
     }
 
     void LevelScene::sceneEnd() {
