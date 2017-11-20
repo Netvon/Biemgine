@@ -51,17 +51,20 @@ namespace spacebiem
                     break;
                 }
             }
-
-            if (oRef != nullptr);
-            else return;
         }
 
-        for (auto x : oRef->getResources())
-        {
-            if (x.first == rbc->getName()) {
-                tx->setText(std::to_string(x.second), cc->getColor());
+        if (oRef == nullptr) {
+            tx->setText(std::to_string(rbc->getAmount()), cc->getColor());  
+        }
+        else {
+            for (auto x : oRef->getResources())
+            {
+                if (x.first == rbc->getName()) {
+                    tx->setText(std::to_string(x.second), cc->getColor());
+                }
             }
         }
+        
     }
 
     void ResourceUISystem::after(const float deltaTime) {}

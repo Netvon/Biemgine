@@ -88,4 +88,29 @@ namespace spacebiem
 
         return resourceM;
     }
+    map<string, int> FileParser::resourcesContent()
+    {
+        map<string, int> resourceM;
+
+        FileHandler file("resources.csv");
+        for each (auto v in file.getValues())
+        {
+            resourceM[v[0]] = stoi(v[1]);
+        }
+
+        return resourceM;
+    }
+    void FileParser::writeNewResources(map<string, int> resources)
+    {
+        map<string, int> content = resourcesContent();
+        for (auto r : resources) {
+            content[r.first] += r.second;
+        }
+
+        FileHandler file("resources.csv", true);
+        for (auto r : content) {
+            file.writeLine(vector<string>({ r.first, to_string(r.second) }));
+        }
+
+    }
 }

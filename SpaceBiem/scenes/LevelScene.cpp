@@ -56,10 +56,10 @@ namespace spacebiem
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
         addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
-        addEntity<ResourceUIEntity>(66.f, 150.f, Color::White(), "uranium");
-        addEntity<ResourceUIEntity>(157.f, 150.f, Color::White(), "diamond");
-        addEntity<ResourceUIEntity>(248.f, 150.f, Color::White(), "metal");
-        addEntity<ResourceUIEntity>(339.f, 150.f, Color::White(), "anti-matter");
+        addEntity<ResourceUIEntity>(66.f, 145.f, Color::White(), "uranium");
+        addEntity<ResourceUIEntity>(157.f, 145.f, Color::White(), "diamond");
+        addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
+        addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
 
         addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
         {
