@@ -16,6 +16,8 @@ namespace spacebiem
 {
     void GameoverScene::created() {
         enableRendering();
+        enableUI();
+        enableScripts();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -56,7 +58,7 @@ namespace spacebiem
 
     void GameoverScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
 }

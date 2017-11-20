@@ -4,6 +4,8 @@
 
 using biemgine::System;
 using biemgine::Entity;
+using biemgine::PhysicsComponent;
+using biemgine::Vector;
 
 namespace spacebiem
 {

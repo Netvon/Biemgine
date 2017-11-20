@@ -19,7 +19,7 @@ namespace biemgine
     }
 
     PhysicsComponent::PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass)
-        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), mass(mass) {}
+        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass) {}
 
     PhysicsComponent::~PhysicsComponent() {}
 
@@ -61,8 +61,18 @@ namespace biemgine
         return f.y;
     }
 
-    float PhysicsComponent::getMass() const {
+    float PhysicsComponent::getDensity() const {
+        return density;
+    }
+
+    float PhysicsComponent::getMass() const
+    {
         return mass;
+    }
+
+    void PhysicsComponent::setMass(float pMass)
+    {
+        mass = pMass;
     }
 
     float PhysicsComponent::getImpulseX() const {
@@ -85,6 +95,26 @@ namespace biemgine
         }
 
         return f.y;
+    }
+
+    float PhysicsComponent::getFriction() const
+    {
+        return friction;
+    }
+
+    void PhysicsComponent::setFriction(float pFriction)
+    {
+        friction = pFriction;
+    }
+
+    Vector PhysicsComponent::getVelocity() const
+    {
+        return velocity;
+    }
+
+    void PhysicsComponent::setVelocity(Vector pVelocity)
+    {
+        velocity = pVelocity;
     }
 
     void PhysicsComponent::addForce(const string id, float x, float y) {
@@ -118,5 +148,15 @@ namespace biemgine
 
     bool PhysicsComponent::hasTimedForce(const string id) const {
         return timedForces.find(id) != timedForces.end();
+    }
+
+    float PhysicsComponent::getLinearDamping() const
+    {
+        return linearDamping;
+    }
+
+    void PhysicsComponent::setLinearDamping(float pLinearDampening)
+    {
+        linearDamping = pLinearDampening;
     }
 }
