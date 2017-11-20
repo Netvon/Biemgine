@@ -265,3 +265,4 @@ enc_temp_folder/
 
 # game highscores
 highscores.csv
+resources.csv
