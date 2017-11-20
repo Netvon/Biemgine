@@ -50,6 +50,15 @@ namespace biemgine
         return alive;
     }
 
+    void Entity::setTag(string pTag)
+    {
+        tag = pTag;
+    }
+    string Entity::getTag() const
+    {
+        return tag;
+    }
+
     //Size Entity::getBounds() const
     //{
     //    // TODO define more sizes

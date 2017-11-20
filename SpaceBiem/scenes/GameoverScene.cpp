@@ -17,11 +17,6 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
-    void GameoverHighscoreButtonClicked(StateManager* e)
-    {
-        e->navigateTo<HighScoreScene>();
-    }
-
     void MenuButtonClicked(StateManager* e)
     {
         e->navigateTo<MenuScene>();
@@ -32,6 +27,9 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+
+        FileParser parser;
+        parser.writeNewResources(resources);
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -58,7 +56,7 @@ namespace spacebiem
         for (auto& r : resources) {
             addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 40, 40, 100u);
             addEntity<TextUIEntity>(resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
-            heightCounter = heightCounter + 50.f;
+            heightCounter = heightCounter + 85.f;
         }
 
         heightCounter = 250;
@@ -89,7 +87,11 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
+        [this](StateManager* manager)
+        {
+            manager->navigateTo<HighScoreScene>(score);
+        });
         addEntity<ButtonUIEntity>(x - 25, 675, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
     }
 

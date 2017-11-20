@@ -2,9 +2,14 @@
 
 namespace biemgine
 {
-    FileHandler::FileHandler(string filePath)
+    FileHandler::FileHandler(string filePath, bool overwrite)
     {
-        currentFile.open(filePath, std::fstream::in | std::fstream::out | std::fstream::app);
+        if (overwrite) {
+            currentFile.open(filePath);
+        }
+        else {
+            currentFile.open(filePath, std::fstream::in | std::fstream::out | std::fstream::app);
+        }
     }
 
     vector<vector<string>> FileHandler::getValues()
