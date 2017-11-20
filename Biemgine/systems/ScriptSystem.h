@@ -18,6 +18,5 @@ namespace biemgine
     {
     public:
         void update(const Entity& entity, const float deltaTime);
-        void onSceneSwitch() {}
     };
 }

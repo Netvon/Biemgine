@@ -19,15 +19,8 @@ namespace spacebiem
         public System
     {
     public:
-
-        GameoverSystem() {};
         ~GameoverSystem() {};
 
         void update(const Entity& entity) override;
-        void onSceneSwitch() override {};
-
-        
-    private:
-
     };
 }

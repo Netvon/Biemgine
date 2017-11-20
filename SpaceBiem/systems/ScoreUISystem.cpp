@@ -10,14 +10,7 @@ using biemgine::Color;
 
 namespace spacebiem
 {
-    void ScoreUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
-    {
-        this->graphicsDevice = graphicsDevice;
-    }
-
-    void ScoreUISystem::before(const float deltaTime) {}
-
-    void ScoreUISystem::update(const Entity & entity, const float deltaTime)
+    void ScoreUISystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("score")) return;
 
@@ -64,7 +57,7 @@ namespace spacebiem
 
         auto tx = entity.getComponent<TextComponent*>("text");
 
-        Color highlightColor = { 255, 255, 255 };
+        Color highlightColor { 255, 255, 255 };
 
         if (name == oRef->getName()) {
             highlightColor = { 232, 228, 41 };
@@ -72,19 +65,5 @@ namespace spacebiem
 
         tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), highlightColor);
 
-    }
-
-    void ScoreUISystem::after(const float deltaTime)
-    {
-        /*if (getTransitionManager()->getInputManager()->isLeftMouseDown()) {
-            auto l = getTransitionManager()->getInputManager()->getMouseLocation();
-            printf("{%i,%i}\n", l.x, l.y);
-        }*/
-    }
-
-    void ScoreUISystem::onSceneSwitch()
-    {
-        if (graphicsDevice != nullptr)
-            graphicsDevice->clear();
     }
 }
