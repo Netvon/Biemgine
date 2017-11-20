@@ -22,17 +22,7 @@ namespace biemgine
         Color& WithGreen(unsigned char green);
         Color& WithBlue(unsigned char green);
 
-        static Color EarthAtmosphere(){
-            return Color{ 71, 166, 245, 255 };
-        }
 
-        static Color SandAtmosphere() {
-            return Color{ 213, 207, 105, 255 };
-        }
-
-        static Color ToxicAtmosphere() {
-            return Color{ 127, 0, 255, 255 };
-        }
 
     };
 
