@@ -11,13 +11,10 @@ using biemgine::TextureComponent;
 
 namespace spacebiem
 {
-    void CameraSystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
-    {
-        this->graphicsDevice = graphicsDevice;
-    }
-
     void CameraSystem::before(const float deltaTime)
-    {}
+    {
+
+    }
 
     void CameraSystem::update(const Entity & entity, const float deltaTime)
     {
@@ -33,8 +30,8 @@ namespace spacebiem
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());
 
-            float xDelta = camera->getWindowWidth() / 2 - pc->getOriginX();
-            float yDelta = camera->getWindowHeight() / 2 - pc->getOriginY();
+            float xDelta = static_cast<float>(camera->getWindowWidth()) / 2.0f - pc->getOriginX();
+            float yDelta = static_cast<float>(camera->getWindowHeight()) / 2.0f - pc->getOriginY();
 
             camera->setDeltaX(xDelta);
             camera->setDeltaY(yDelta);
@@ -52,11 +49,12 @@ namespace spacebiem
     }
 
     void CameraSystem::after(const float deltaTime)
-    {}
+    {
+
+    }
 
     void CameraSystem::onSceneSwitch()
     {
-        if (graphicsDevice != nullptr)
-            graphicsDevice->clear();
+
     }
 }

@@ -154,7 +154,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
@@ -180,6 +179,7 @@
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
+    <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -200,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\ButtonUIEntity.cpp" />
@@ -223,6 +222,7 @@
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
+    <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />

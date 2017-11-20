@@ -12,18 +12,18 @@ namespace spacebiem
         public Component
     {
     public:
-        Camera() : deltaX(0), deltaY(0){};
+        Camera();
         ~Camera() {};
 
-        inline float getDeltaX() const { return deltaX; };
-        inline float getDeltaY() const { return deltaY; };
-        inline int getWindowWidth() const { return windowWidth; };
-        inline int getWindowHeight() const { return windowHeight; };
+        float getDeltaX() const;
+        float getDeltaY() const;
+        int getWindowWidth() const;
+        int getWindowHeight() const;
 
-        inline void setDeltaX(float x)  { deltaX = x; };
-        inline void setDeltaY(float y)  { deltaY = y; };
-        inline void setWindowWidth(int width) { windowWidth = width; };
-        inline void setWindowHeight(int height) { windowHeight = height; };
+        void setDeltaX(float x);
+        void setDeltaY(float y);
+        void setWindowWidth(int width);
+        void setWindowHeight(int height);
 
     private:
         float windowWidth;

@@ -11,7 +11,7 @@
 #include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
-#include "..\CameraSystem.h"
+#include "..\systems\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
