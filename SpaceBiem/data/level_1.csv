@@ -5,6 +5,6 @@
 3_earth,position_component,1200,100,300,300
 4_earth,position_component,425,700,300,300
 5_sand,position_component,1200,700,300,300
-6_moon,position_component,1650,450,200,200
-7_moon,position_component,75,450,200,200
-8_toxic,position_component,875,475,150,150
+6_moon,position_component,1650,450,300,300
+7_moon,position_component,75,450,300,300
+8_toxic,position_component,875,475,300,300

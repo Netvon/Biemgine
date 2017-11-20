@@ -9,10 +9,8 @@
 
 namespace spacebiem
 {
-    vector<Entity*> ScoreUIFactory::sceneStart(int windowW, int windowH)
+    void ScoreUIFactory::sceneStart(int windowW, int windowH, shared_ptr<EntityManager> entityManager)
     {
-        vector<Entity*> entities;
-
         int w = 50;
         int x = windowW / 2 - w;
         int y = 200;
@@ -27,12 +25,11 @@ namespace spacebiem
 
             if (y + (dY * 4) > windowH) break;
 
-            entities.push_back(new ScoreUIEntity(x, y, score.second, score.first));
+            entityManager->addEntity<ScoreUIEntity>(x, y, score.second, score.first);
+
             y += dY;
             counter++;
         }
-
-        return entities;
     }
 
     void ScoreUIFactory::sceneEnd(std::vector<Entity*> entities)

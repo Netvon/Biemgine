@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "dlldef.h"
 #include "..\entities\Entity.h"
 #include "SystemManager.h"
@@ -25,8 +26,6 @@ namespace biemgine
         }
 
         Entity* getEntity(int id) const;
-
-        void removeDeadEntities();
 
     private:
         std::vector<Entity*> entities;

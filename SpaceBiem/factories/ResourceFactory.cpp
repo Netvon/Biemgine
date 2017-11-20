@@ -17,7 +17,7 @@ namespace spacebiem
         int h = 30;
 
         map<string, vector<float>> spawnResources = spawnRates[planet];
-        for each(auto sr in spawnResources) {
+        for (auto& sr : spawnResources) {
             for (int i = RandomGenerator::getInstance().generate(sr.second[0], sr.second[1]); i > 0; i--) {
 
                 if (RandomGenerator::getInstance().generate(0, 100) > sr.second[2] * 100) continue;
@@ -36,11 +36,6 @@ namespace spacebiem
         int h = 30;
 
         entityManager->addEntity<ResourceEntity>(x, y, Color::White(), w, h, name, scores[name]);
-    }
-
-    vector<Entity*> ResourceFactory::sceneStart(int windowWidth, int windowH)
-    {
-        return vector<Entity*>();
     }
 
     void ResourceFactory::sceneEnd(std::vector<Entity*> entities)
