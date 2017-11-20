@@ -17,7 +17,7 @@ namespace spacebiem
         addComponent("position", new PositionComponent(x, y));
         addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 0u, true, "", buttonColor));
         //addComponent("color", new ColorComponent(buttonColor));
-        addComponent("ui", new UIComponent(size, onClick));
+        addComponent("ui", new UIComponent(size, onClick, (onClick != nullptr)));
         addComponent("text", new TextComponent(pText, textcolor, size.width/2, size.height/2, true, true));
 
         addComponent<ScriptComponent>("script",
@@ -26,8 +26,11 @@ namespace spacebiem
             auto ui = getComponent<UIComponent*>("ui");
             auto texture = getComponent<TextureComponent*>("texture");
 
-            if (!ui->getIsMouseOver()) {
-                texture->setColor(texture->getColor().WithAlpha(128));
+            if (!ui->isEnabled()) {
+                texture->setColor(texture->getColor().WithAlpha(108));
+            }
+            else if (!ui->getIsMouseOver()) {
+                texture->setColor(texture->getColor().WithAlpha(200));
             }
             else {
                 texture->setColor(texture->getColor().WithAlpha(255));

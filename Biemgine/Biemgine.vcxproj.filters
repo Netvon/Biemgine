@@ -143,6 +143,9 @@
     <ClInclude Include="components\CollidableComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="entities\TextUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
     <ClInclude Include="systems\ScriptSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
@@ -251,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="systems\RenderSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\TextUIEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
     <ClCompile Include="systems\ScriptSystem.cpp">
       <Filter>systems</Filter>

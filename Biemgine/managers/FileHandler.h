@@ -19,7 +19,7 @@ namespace biemgine
     class BIEMGINE FileHandler
     {
     public:
-        FileHandler(string filePath);
+        FileHandler(string filePath, bool overwrite = false);
 
         vector<vector<string>> getValues();
         void writeLine(vector<string> values);

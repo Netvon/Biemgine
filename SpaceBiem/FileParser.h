@@ -27,6 +27,9 @@ namespace spacebiem
         map<string, int> planetScoreContent();
         map<string, int> resourceScoreContent();
         map<string, map<string, vector<float>>> resourceSpawnRateContent();
+        map<string, int> resourcesContent();
+        void writeNewResources(map<string, int> resources); 
+
 
 
     private:

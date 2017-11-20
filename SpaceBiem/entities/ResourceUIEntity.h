@@ -11,6 +11,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        ResourceUIEntity(float x, float y, Color color, std::string resourceName);
+        ResourceUIEntity(float x, float y, Color color, std::string resourceName, int defaultAmount = 0);
     };
 }
