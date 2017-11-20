@@ -47,7 +47,9 @@ namespace spacebiem
         planetsScore["toxic"] = 7;
         planetsScore["moon"] = 1;*/
 
-        addEntity<SpriteEntity>("textures/game_over.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
+        auto gameoverTexture = "textures/game_over.png";
+
+        addEntity<SpriteEntity>(gameoverTexture, static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
         addEntity<TextUIEntity>(resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
         addEntity<TextUIEntity>(planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
 
