@@ -22,6 +22,13 @@
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
 
+#include <functional>
+
+using biemgine::TextComponent;
+using biemgine::TextEntity;
+using biemgine::ScriptComponent;
+using std::function;
+
 namespace spacebiem
 {
     void LevelScene::created()
@@ -29,6 +36,7 @@ namespace spacebiem
         enableRendering();
         enablePhysics();
         enableUI();
+        enableScripts();
 
         addSystem<GravitySystem>();
         addSystem<MovementSystem>();
@@ -41,18 +49,26 @@ namespace spacebiem
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
 
-        float width = 15 * 2;
-        float height = 25 * 2;
+        float width = 15.f * 2.f;
+        float height = 25.f * 2.f;
 
-        addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
+        auto playerId = addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
-        addEntity<ScoreUIEntity>(25,280);
-        addEntity<SpriteEntity>("textures/resources-hud.png", 25, 25, Color::White(), 401, 169, 100u);
-        addEntity<ResourceUIEntity>(66, 150, Color::White(), "uranium");
-        addEntity<ResourceUIEntity>(157, 150, Color::White(), "diamond");
-        addEntity<ResourceUIEntity>(248, 150, Color::White(), "metal");
-        addEntity<ResourceUIEntity>(339, 150, Color::White(), "anti-matter");
+        addEntity<ScoreUIEntity>(25.f, 280.f);
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
+        addEntity<ResourceUIEntity>(66.f, 150.f, Color::White(), "uranium");
+        addEntity<ResourceUIEntity>(157.f, 150.f, Color::White(), "diamond");
+        addEntity<ResourceUIEntity>(248.f, 150.f, Color::White(), "metal");
+        addEntity<ResourceUIEntity>(339.f, 150.f, Color::White(), "anti-matter");
+
+        addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
+        {
+            auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
+            auto velo = player->getVelocity();
+
+            return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
+        });
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -103,7 +119,7 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
         getTransitionManager().drawOverlay();
     }

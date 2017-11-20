@@ -27,6 +27,7 @@ namespace spacebiem
     {
         enableRendering();
         enableUI();
+        enableScripts();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -87,7 +88,7 @@ namespace spacebiem
 
     void MenuScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
 }

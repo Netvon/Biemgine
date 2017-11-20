@@ -5,6 +5,8 @@
 #include "InputManager.h"
 #include "..\entities\Entity.h"
 
+using std::string;
+
 namespace biemgine
 {
     class SceneManager;
@@ -27,7 +29,7 @@ namespace biemgine
         bool isPaused();
 
         void drawOverlay();
-        void drawBackground();
+        void drawBackground(const string& backgroundPath);
 
         void setInputManager(const InputManager* manager) {
             inputManager = manager;

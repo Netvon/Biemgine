@@ -1,4 +1,5 @@
 #include "MovementSystem.h"
+#include "..\components\GravityComponent.h"
 
 using biemgine::PositionComponent;
 using biemgine::GroundedComponent;
@@ -12,22 +13,34 @@ namespace spacebiem
 {
     void MovementSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("movement")) return;
-
-        if (!getStateManager()->getInputManager()->isKeyDown("Left")
-            && !getStateManager()->getInputManager()->isKeyDown("Right"))
+        if (!entity.hasComponent("movement"))
             return;
+
+        auto physics = entity.getComponent<PhysicsComponent*>("physics");
+        auto grounded = entity.getComponent<GroundedComponent*>("grounded");
+
+        /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
+            && !getStateManager()->getInputManager()->isKeyDown("Right")) {
+            physics->setFriction(4.0f);
+            return;
+        }
+        else {
+            physics->setFriction(0.0f);
+        }*/
+
+        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
+        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
             auto position = entity.getComponent<PositionComponent*>("position");
-            auto grounded = entity.getComponent<GroundedComponent*>("grounded");
+            
             auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
-            auto physics = entity.getComponent<PhysicsComponent*>("physics");
+            
 
-            if (!grounded->isGrounded() || !affected->getIsAffected())
+            if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())
                 return;
 
             Vector centerOfSatellite = {
@@ -38,22 +51,35 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
+            constexpr float escapeVelocity = 140.f;
+            constexpr float gravityConstant = GravityComponent::getGravityConstant();
+
+            auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
+
+            auto newVelo = physics->getVelocity().length() + movementForce;
+
+            //printf("%f\n", physics->getFriction());
+
+            
+
+            //printf("Velo: %f\n", physics->getVelocity().length());
+
+            if (physics->getVelocity().length() > escapeVelocity)
+                return;
+
             if (getStateManager()->getInputManager()->isKeyDown("Left")) {
                 Vector left = { -diff.y, diff.x };
-                left = left.normalize() * 90000.f * 1500.f;
+                left = left.normalize() * movementForce;
 
                 physics->addForce("left", left.x, left.y);
             }
 
             if (getStateManager()->getInputManager()->isKeyDown("Right")) {
                 Vector right = { diff.y, -diff.x };
-                right = right.normalize() * 90000.f * 1500.f;
+                right = right.normalize() * movementForce;
 
                 physics->addForce("right", right.x, right.y);
             }
-
-            if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
-            if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
         }
     }
 }

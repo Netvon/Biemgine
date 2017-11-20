@@ -1,10 +1,14 @@
 #include "JumpSystem.h"
+#include "..\scenes\LevelScene.h"
+#include "..\components\GravityComponent.h"
 
 using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PositionComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
+
+#include <functional>
 
 namespace spacebiem
 {
@@ -28,19 +32,32 @@ namespace spacebiem
             auto position = entity.getComponent<PositionComponent*>("position");
             auto physics = entity.getComponent<PhysicsComponent*>("physics");
 
-            Vector centerOfSatellite = {
+            Vector centerOfSatellite {
                 position->getX() + physics->getColliderW() / 2.0f,
                 position->getY() + physics->getColliderH() / 2.0f
             };
 
-            Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+            Vector centerOfGravity { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
-            Vector diff = centerOfGravity - centerOfSatellite;
+            Vector diff = (centerOfGravity - centerOfSatellite) * - 1;
+            diff = diff.normalize();
 
-            diff *= -1;
-            diff = diff.normalize() * 90000.f * 1500.f;
+            if (physics->getVelocity().length() > 0) {
+                diff += physics->getVelocity().normalize();
+                diff = diff.normalize();
+            }
 
-            physics->addTimedForce("jump", diff.x, diff.y, 100, true);
+             auto multiplier = physics->getVelocity().normalize().length() * 2.0f;
+
+             if (multiplier < 1.0f)
+                 multiplier = 1.0f;
+
+            constexpr auto gravityConstant = GravityComponent::getGravityConstant();
+            auto movementForce = (physics->getMass() * gravityConstant) * (12.0f * multiplier);
+            
+            diff *= movementForce;
+
+            physics->addForce("jump", diff.x, diff.y);
         }
     }
 }

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <functional>
 
 #include "..\components\Component.h"
 #include "..\primitives\Primitives.h"
@@ -13,6 +14,7 @@ using std::string;
 using std::pair;
 using std::multimap;
 using std::vector;
+using std::function;
 
 namespace biemgine
 {
