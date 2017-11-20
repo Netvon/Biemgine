@@ -25,7 +25,8 @@ namespace spacebiem
         ~ResourceFactory() { };
         vector<Entity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<Entity*> entities) override;
-        void createPlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager);
+        void generatePlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager);
+        void createPlanetResources(int x, int y, string name, std::shared_ptr<EntityManager> entityManager);
     private:
 
         map<string, map<string, vector<float>>> spawnRates;

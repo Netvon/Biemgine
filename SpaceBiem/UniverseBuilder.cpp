@@ -13,14 +13,22 @@ namespace spacebiem
     {
     }
 
-    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager)
+    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
         ResourceFactory resourceFactory;
 
-        map<string, map<string, vector<string>>> levelMap = fileParser.levelContent();
+        map<string, map<string, vector<string>>> levelMap;
+
+        if (newGame) {
+            levelMap = fileParser.levelContent("data/level_1.csv");
+        }
+        else {
+            levelMap = fileParser.levelContent("data/savegame.csv");
+        }
+
         map<string, float> atmosphereM = fileParser.atmosphereContent();
         map<string, int> scoreBonus = fileParser.planetScoreContent();
 
@@ -55,13 +63,21 @@ namespace spacebiem
                 
             }
 
-            if (type != "player") {
-                planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
-            }
-            else {
+            if (type == "player") {
                 entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
             }
-
+            else if (type == "resource") {
+                // name & score moeten nog uitgelezen worden
+                resourceFactory.createPlanetResources(stoi(xPos), stoi(yPos), "metal", entityManager);
+            }
+            else {
+                if (newGame) {
+                    planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
+                }
+                else {
+                    planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, "name", atmosphereM, scoreBonus);
+                }  
+            }
         }
     }
 }

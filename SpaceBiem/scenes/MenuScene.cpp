@@ -13,9 +13,14 @@ using biemgine::Size;
 
 namespace spacebiem
 {
-    void PlayButtonClicked(StateManager* e)
+    void newGameButtonClicked(StateManager* e)
     {
-        e->navigateTo<LevelScene>();
+        e->navigateTo<LevelScene>(true);
+    }
+
+    void ContinueButtonClicked(StateManager* e)
+    {
+        e->navigateTo<LevelScene>(false);
     }
 
     void HighscoreButtonClicked(StateManager* e)
@@ -52,8 +57,8 @@ namespace spacebiem
         int beginY = 330;
         int incr = 65;
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, PlayButtonClicked);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, PlayButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, ContinueButtonClicked);
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);

@@ -90,17 +90,16 @@ namespace spacebiem
         return resourceM;
     }
 
-    map<string, map<string, vector<string>>> FileParser::levelContent() {
+    map<string, map<string, vector<string>>> FileParser::levelContent(string fileName) {
         map<string, map<string, vector<string>>> levelMap;
         map<string, vector<string>> innerMap;
 
         string currentKey;
         string previousKey;
 
-        FileHandler file("data/level_1.csv");
-
-        
-         for each (auto v in file.getValues())
+        FileHandler file(fileName);
+                
+        for each (auto v in file.getValues())
         {
              currentKey = v[0];
 

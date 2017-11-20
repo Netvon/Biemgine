@@ -26,5 +26,6 @@ namespace spacebiem
         vector<Entity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<Entity*> entities) override;
         void create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, ResourceFactory resourceFactory, NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus);
+        void load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, map<string, int> scoreBonus);
     };
 }

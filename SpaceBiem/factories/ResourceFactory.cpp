@@ -11,7 +11,7 @@ namespace spacebiem
         scores = fileParser.resourceScoreContent();
     }
 
-    void ResourceFactory::createPlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager)
+    void ResourceFactory::generatePlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager)
     {
         int w = 30;
         int h = 30;
@@ -29,6 +29,13 @@ namespace spacebiem
                 entityManager->addEntity<ResourceEntity>(x + cX, y + cY, Color::White(), w, h, sr.first, scores[sr.first]);
             }
         }
+    }
+
+    void ResourceFactory::createPlanetResources(int x, int y, string name, std::shared_ptr<EntityManager> entityManager) {
+        int w = 30;
+        int h = 30;
+
+        entityManager->addEntity<ResourceEntity>(x, y, Color::White(), w, h, name, scores[name]);
     }
 
     vector<Entity*> ResourceFactory::sceneStart(int windowWidth, int windowH)

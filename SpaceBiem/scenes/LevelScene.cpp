@@ -75,10 +75,11 @@ namespace spacebiem
 
         UniverseBuilder uB;
         if (newGame) {
-            uB.build(getEntityManager());
+            uB.build(getEntityManager(), true);
         }
         else {
-
+            //Moet nog goede bestandsnaam krijgen van kevin
+            //uB.build(getEntityManager(), false);
         }       
     }
 

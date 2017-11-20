@@ -12,6 +12,6 @@ namespace spacebiem
     {
     public:
         UniverseBuilder();
-        void build(std::shared_ptr<EntityManager> entityManager);
+        void build(std::shared_ptr<EntityManager> entityManager, bool newGame = true);
     };
 }
