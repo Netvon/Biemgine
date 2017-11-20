@@ -11,8 +11,15 @@ namespace spacebiem
         {
             gravityPoints.push_back(&entity);
         }
-        else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics"))
+        else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") )
         {
+            if (entity.hasComponent("resourcebonus") && entity.hasComponent("grounded")) {
+                auto grounded = entity.getComponent<biemgine::GroundedComponent*>("grounded");
+
+                if (grounded->isGrounded())
+                    return;
+            }
+
             satellites.push_back(&entity);
         }
     }
@@ -30,7 +37,7 @@ namespace spacebiem
             auto satPosition = satellite->getComponent<PositionComponent*>("position");
             auto satPhysics = satellite->getComponent<PhysicsComponent*>("physics");
             auto satAffected = satellite->getComponent<AffectedByGravityComponent*>("affectedByGravity");
-            auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
+            //auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
             Vector centerOfSatellite = {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,

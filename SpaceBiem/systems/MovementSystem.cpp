@@ -19,8 +19,6 @@ namespace spacebiem
         auto physics = entity.getComponent<PhysicsComponent*>("physics");
         auto grounded = entity.getComponent<GroundedComponent*>("grounded");
 
-       
-
         /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
             && !getStateManager()->getInputManager()->isKeyDown("Right")) {
             physics->setFriction(4.0f);
