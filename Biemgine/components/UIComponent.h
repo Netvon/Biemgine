@@ -16,8 +16,8 @@ namespace biemgine
     {
     public:
 
-        UIComponent();
-        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr);
+        UIComponent(bool pEnabled = true);
+        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr, bool pEnabled = true);
         ~UIComponent();
 
         template <typename TComponent>
@@ -31,6 +31,7 @@ namespace biemgine
         const Size& getSize() const;
 
         function<void(StateManager*)> getIsClicked() const;
+        bool isEnabled() const;
 
     protected:
         void setIsMouseOver(bool pIsMouseOver);
@@ -45,6 +46,7 @@ namespace biemgine
         bool isMouseOver = false;
         Size size;
         function<void(StateManager*)> onClick;
+        bool enabled;
     };
 
     template<typename TComponent>
