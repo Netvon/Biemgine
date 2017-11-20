@@ -14,16 +14,9 @@ namespace spacebiem
     {
     public:
 
-        OxygenSystem() {};
         ~OxygenSystem() {};
 
-        void before() override;
         void update(const Entity& entity) override;
-        void after() override;
-
-        void onSceneSwitch() override;
-
-
     private:
         vector<AtmosphereComponent*> atmospheres;
 

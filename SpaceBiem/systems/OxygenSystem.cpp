@@ -6,10 +6,6 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
-    void OxygenSystem::before()
-    {
-    }
-
     void OxygenSystem::update(const Entity & entity)
     {
         if (entity.hasComponent("atmosphere")) {
@@ -61,13 +57,5 @@ namespace spacebiem
         }
         oc->setOxygenAmount(oAmount);
 
-    }
-
-    void OxygenSystem::after()
-    {
-    }
-
-    void OxygenSystem::onSceneSwitch()
-    {
     }
 }

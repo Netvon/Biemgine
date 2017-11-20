@@ -37,11 +37,11 @@ namespace biemgine
         if (paused) {
             auto gd = window->getGraphicsDevice();
 
-            int x = 20;
+            int x = getWindowWidth()/2;
             int y = 60;
 
-            gd->drawText("The game is paused.", x, y, { 255, 255, 255, 255 }, 20);
-            gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20);
+            gd->drawText("The game is paused.", x, y, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
+            gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
         }
     }
 

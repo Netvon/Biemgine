@@ -54,8 +54,4 @@ namespace spacebiem
             }
         }
     }
-
-    void ScoreSystem::onSceneSwitch()
-    {
-    }
 }

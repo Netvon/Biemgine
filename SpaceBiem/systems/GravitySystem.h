@@ -22,8 +22,6 @@ namespace spacebiem
 
         void applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected, PositionComponent* satPosition);
 
-        void onSceneSwitch() override {};
-
     private:
         vector<const Entity*> gravityPoints;
         vector<const Entity*> satellites;
