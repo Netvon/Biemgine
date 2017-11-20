@@ -54,7 +54,7 @@ namespace spacebiem
         for (auto& r : resources) {
             addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 40, 40, 100u);
             addEntity<TextUIEntity>(resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
-            heightCounter = heightCounter + 50.f;
+            heightCounter = heightCounter + 85.f;
         }
 
         heightCounter = 250;

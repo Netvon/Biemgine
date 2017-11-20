@@ -4,12 +4,14 @@
 #include "..\scenes\GameoverScene.h"
 #include "..\components\ResourceComponent.h"
 #include "..\components\ScoreComponent.h"
+#include "..\components\ScoreBonusComponent.h"
 
 #include "Biemgine.h"
 #include <vector>
 
 using biemgine::System;
 using biemgine::Entity;
+using biemgine::CollidableComponent;
 
 namespace spacebiem
 {
