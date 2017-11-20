@@ -1,4 +1,5 @@
 #include "MovementSystem.h"
+#include "..\components\GravityComponent.h"
 
 using biemgine::PositionComponent;
 using biemgine::GroundedComponent;
@@ -53,7 +54,7 @@ namespace spacebiem
             Vector diff = centerOfGravity - centerOfSatellite;
 
             constexpr float escapeVelocity = 140.f;
-            constexpr float gravityConstant = 160.f;
+            constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
             auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
 

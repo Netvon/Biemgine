@@ -30,6 +30,7 @@ namespace spacebiem
             auto satPosition = satellite->getComponent<PositionComponent*>("position");
             auto satPhysics = satellite->getComponent<PhysicsComponent*>("physics");
             auto satAffected = satellite->getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
             Vector centerOfSatellite = {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,
@@ -61,10 +62,10 @@ namespace spacebiem
                 }
             }
 
-            if (!forceApplied) {
+            /*if (!forceApplied) {
                 auto distanceInfo = distances.begin()->second;
                 applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
-            }
+            }*/
         }
 
         gravityPoints.clear();
@@ -76,7 +77,7 @@ namespace spacebiem
         auto force = centerOfGravity - centerOfSatellite;
 
         force = force.normalize();
-        force *= satPhysics->getMass() * 160.f;
+        force *= satPhysics->getMass() * GravityComponent::getGravityConstant();
 
         satPhysics->addForce("gravity", force.x, force.y);
         affected->setFallingTowardsX(centerOfGravity.x);

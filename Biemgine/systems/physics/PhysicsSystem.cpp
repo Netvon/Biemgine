@@ -94,7 +94,7 @@ namespace biemgine
         auto velo = body->GetLinearVelocity();
         physics->setVelocity({ meterToPixel(velo.x), meterToPixel(velo.y) });
 
-        
+        body->SetLinearDamping(physics->getLinearDamping());
     }
 
     void PhysicsSystem::after()
@@ -153,7 +153,7 @@ namespace biemgine
         );
 
         newBodyDef.angle = static_cast<float>(pc->getRotation() * DEGREE_TO_RAD);
-        newBodyDef.linearDamping = 0.25f;
+        newBodyDef.linearDamping = 0;//0.25f;
 
         b2Body* body = world->CreateBody(&newBodyDef);
         body->SetUserData((void*)&entity);

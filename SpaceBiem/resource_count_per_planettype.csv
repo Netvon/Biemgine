@@ -4,7 +4,7 @@ sand,metal,0,3,0.5
 toxic,metal,0,5,0.5
 moon,diamond,0,0,0
 earth,diamond,0,0,0.05
-sand,diamond,0,20,0.7
+sand,diamond,0,2,0.7
 toxic,diamond,0,2,0.3
 moon,uranium,0,0,0
 earth,uranium,0,0,0

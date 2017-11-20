@@ -1,5 +1,6 @@
 #include "JumpSystem.h"
-#include "../scenes/LevelScene.h"
+#include "..\scenes\LevelScene.h"
+#include "..\components\GravityComponent.h"
 
 using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
@@ -38,27 +39,7 @@ namespace spacebiem
 
             Vector centerOfGravity { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
 
-            Vector diff = centerOfGravity - centerOfSatellite;
-
-            Vector left { -diff.y, diff.x };
-            Vector right { diff.y, -diff.x };
-
-            /*if (transitionManager->getInputManager()->isKeyDown("Left")) {
-                Vector left = { -diff.y, diff.x };
-                left = left.normalize() * physics->getMass() * (90 * 30);
-
-                physics->addTimedForce("left", left.x, left.y, 30);
-            }
-
-            if (transitionManager->getInputManager()->isKeyDown("Right")) {
-                Vector right = { diff.y, -diff.x };
-                right = right.normalize() * physics->getMass() * (90 * 30);
-
-                physics->addTimedForce("right", right.x, right.y, 30);
-            }*/
-
-            //diff *= physics->getVelocity();
-            diff *= -1;
+            Vector diff = (centerOfGravity - centerOfSatellite) * - 1;
             diff = diff.normalize();
 
             if (physics->getVelocity().length() > 0) {
@@ -66,23 +47,12 @@ namespace spacebiem
                 diff = diff.normalize();
             }
 
-             /**/;
-
-            /*if (getStateManager()->getInputManager()->isKeyDown("Right")) {
-                diff += (right * 1.8f);
-            }
-            else  if (getStateManager()->getInputManager()->isKeyDown("Left")) {
-                diff += (left * 1.8f);
-            }*/
-
-            //auto diff = [](biemgine::StateManager manager) { manager.navigateTo<LevelScene>(); };
-
              auto multiplier = physics->getVelocity().normalize().length() * 2.0f;
 
              if (multiplier < 1.0f)
                  multiplier = 1.0f;
 
-            constexpr auto gravityConstant = 160.f;
+            constexpr auto gravityConstant = GravityComponent::getGravityConstant();
             auto movementForce = (physics->getMass() * gravityConstant) * (12.0f * multiplier);
             
             diff *= movementForce;

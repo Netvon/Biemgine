@@ -55,6 +55,9 @@ namespace biemgine
         float getFriction() const;
         void setFriction(float pFriction);
 
+        float getLinearDamping() const;
+        void setLinearDamping(float pLinearDampening);
+
         Vector getVelocity() const;
         void setVelocity(Vector pVelocity);
 
@@ -75,6 +78,7 @@ namespace biemgine
         int impulseTicks = 30;
 
         float friction = 4.f;
+        float linearDamping = 0.25f;
         float density = 1.0f;
         float mass;
         PhysicsComponentShape shape;

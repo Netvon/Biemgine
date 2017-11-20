@@ -149,4 +149,14 @@ namespace biemgine
     bool PhysicsComponent::hasTimedForce(const string id) const {
         return timedForces.find(id) != timedForces.end();
     }
+
+    float PhysicsComponent::getLinearDamping() const
+    {
+        return linearDamping;
+    }
+
+    void PhysicsComponent::setLinearDamping(float pLinearDampening)
+    {
+        linearDamping = pLinearDampening;
+    }
 }
