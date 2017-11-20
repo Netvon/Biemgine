@@ -5,11 +5,21 @@ namespace spacebiem
 {
 	float AtmosphereComponent::getX() const
 	{
+		if (pc != nullptr)
+		{
+			return offsetX + pc->getX();
+		}
+
 		return offsetX;
 	}
 
 	float AtmosphereComponent::getY() const
 	{
+		if (pc != nullptr)
+		{
+			return offsetY + pc->getY();
+		}
+
 		return offsetY;
 	}
 

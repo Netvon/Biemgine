@@ -4,18 +4,29 @@
 namespace biemgine
 {
     PositionComponent::PositionComponent(float x, float y, float z, float rotation)
-        : location({ x, y, z }), rotation(rotation) { }
+        : location({x, y, z}), offsetLocation({0, 0, 0}), rotation(rotation)
+    {}
 
     PositionComponent::~PositionComponent() {}
 
-    float PositionComponent::getX() const
+    float PositionComponent::getOriginX() const
     {
         return location.x;
     }
 
-    float PositionComponent::getY() const
+    float PositionComponent::getOriginY() const
     {
         return location.y;
+    }
+
+    float PositionComponent::getX() const
+    {
+        return location.x + offsetLocation.x;
+    }
+
+    float PositionComponent::getY() const
+    {
+        return location.y + offsetLocation.y;
     }
 
     float PositionComponent::getZ() const
@@ -36,6 +47,16 @@ namespace biemgine
     void PositionComponent::setY(float y)
     {
         location.y = y;
+    }
+
+    void PositionComponent::setOffsetX(float x)
+    {
+        offsetLocation.x = x;
+    }
+
+    void PositionComponent::setOffsetY(float y)
+    {
+        offsetLocation.y = y;
     }
 
     void PositionComponent::setRotation(float newRotation)

@@ -52,8 +52,8 @@ namespace spacebiem
                 auto gravity = point->getComponent<GravityComponent*>("gravity");
 
                 Vector centerOfGravity {
-                    (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
-                    (gravPosition->getY() + gravity->getY()) + gravity->getHeight() / 2.0f
+                    gravPosition->getX() + gravity->getX() + gravity->getWidth() / 2.0f,
+                    gravPosition->getY() + gravity->getY() + gravity->getHeight() / 2.0f
                 };
 
                 const auto distance = centerOfGravity.distance(centerOfSatellite);
@@ -73,6 +73,18 @@ namespace spacebiem
                 auto distanceInfo = distances.begin()->second;
                 applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
             }*/
+
+            Vector ding = {
+                satAffected->getFallingTowardsX(),
+                satAffected->getFallingTowardsY()
+            };
+
+            float tragetX = ding.x - centerOfSatellite.x;
+            float tragetY = ding.y - centerOfSatellite.y;
+
+            float angle = atan2f(-tragetX, tragetY);
+            satPosition->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288f));
+            
         }
 
         gravityPoints.clear();

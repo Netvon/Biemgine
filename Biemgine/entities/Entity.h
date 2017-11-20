@@ -47,7 +47,7 @@ namespace biemgine
         void setTag(string pTag);
         string getTag() const;
 
-        /*Size getBounds() const;*/
+        Rect getBounds() const;
 
     private:
         int id;

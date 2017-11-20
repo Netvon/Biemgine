@@ -8,6 +8,7 @@ using biemgine::Vector;
 using biemgine::Entity;
 using biemgine::PhysicsComponent;
 using biemgine::AffectedByGravityComponent;
+using biemgine::GroundedComponent;
 
 namespace spacebiem
 {

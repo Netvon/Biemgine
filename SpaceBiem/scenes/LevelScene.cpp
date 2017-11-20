@@ -10,6 +10,8 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
+#include "MenuScene.h"
+#include "..\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -32,6 +34,8 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
+        addSystem<CameraSystem>();
+       
         enableRendering();
         enablePhysics();
         enableUI();
@@ -47,11 +51,12 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
+   
 
         float width = 15.f * 2.f;
         float height = 25.f * 2.f;
 
-        auto playerId = addEntity<PlayerEntity>(800, 500, Color::White(), width, height);
+        auto playerId = addEntity<PlayerEntity>(600, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
@@ -61,16 +66,19 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
         addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
 
-        addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
+        /*addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
         {
             auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
             auto velo = player->getVelocity();
 
             return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
-        });
+        });*/
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
+
+        //addEntity<PlanetEarthEntity>(800, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
+        //addEntity<PlanetEarthEntity>(800+1050, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
 
         PlanetFactory pf;
         for (auto e : pf.sceneStart(wW, wH)) {

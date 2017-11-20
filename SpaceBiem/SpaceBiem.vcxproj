@@ -153,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
@@ -197,6 +199,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\ButtonUIEntity.cpp" />

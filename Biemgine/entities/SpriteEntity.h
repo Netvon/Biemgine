@@ -4,6 +4,7 @@
 #include "..\components\PositionComponent.h"
 #include "..\components\ColorComponent.h"
 #include "..\components\TextureComponent.h"
+#include "..\components\UIComponent.h"
 #include "..\primitives\Primitives.h"
 #include "Entity.h"
 
