@@ -40,4 +40,9 @@ namespace biemgine
         }
         currentFile << "\n";
     }
+
+    void FileHandler::writeLine(string value)
+    {
+        currentFile << value << "\n";
+    }
 }

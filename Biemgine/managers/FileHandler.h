@@ -23,6 +23,7 @@ namespace biemgine
 
         vector<vector<string>> getValues();
         void writeLine(vector<string> values);
+        void writeLine(string value);
 
     private:
         fstream currentFile;
