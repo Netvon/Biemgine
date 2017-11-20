@@ -1,5 +1,5 @@
 1_sand,position_component,425,100,300,300
-2_player,position_component,1000,500,25,50
+2_player,position_component,1000,400,25,50
 2_player,score_component,100
 2_player,oxygen_component,50
 3_earth,position_component,1100,100,300,300
