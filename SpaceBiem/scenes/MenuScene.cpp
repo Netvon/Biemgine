@@ -3,6 +3,7 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "LevelScene.h"
 #include "HighScoreScene.h"
+#include "GameoverScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
@@ -25,6 +26,11 @@ namespace spacebiem
         e->navigateTo<HighScoreScene>();
     }
 
+    void GameOverButtonClicked(StateManager* e)
+    {
+        e->navigateTo<GameoverScene>();
+    }
+
     void MenuScene::created()
     {
         enableRendering();
@@ -43,13 +49,12 @@ namespace spacebiem
         int x = wW / 2 - 175;
 
         addEntity<SpriteEntity>("textures/teambiem.png", x, 100, Color::White(), -1, -1);
-
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
-        auto buttonColor = Color{ 100, 50, 50 };
+        auto buttonColor = Color{ 35, 65, 112 };
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
@@ -67,17 +72,16 @@ namespace spacebiem
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
 
-
         FileParser parser;
         map<string, int> resources = parser.resourcesContent();
 
         addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
         float rX = 66.f;
         float rIncr = 91.f;
-        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 150.f, Color::White(), "uranium", resources["uranium"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 150.f, Color::White(), "diamond", resources["diamond"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 150.f, Color::White(), "metal", resources["metal"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 150.f, Color::White(), "anti-matter", resources["anti-matter"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 145.f, Color::White(), "uranium", resources["uranium"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 145.f, Color::White(), "diamond", resources["diamond"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
 
     }
 

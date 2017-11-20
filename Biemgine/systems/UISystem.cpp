@@ -4,6 +4,11 @@
 
 namespace biemgine
 {
+    UISystem::UISystem()
+    {
+        sceneWasSwitched = true;
+    }
+
     UISystem::~UISystem()
     {
     }
@@ -14,11 +19,24 @@ namespace biemgine
 
         currentMouseLocation = im->getMouseLocation();
         isLeftMouseDown = im->isLeftMouseDown();
+
+        if (sceneWasSwitched && clickCoolDown > 0)
+        {
+            clickCoolDown--;
+        }
+        else if (sceneWasSwitched && clickCoolDown <= 0)
+        {
+            sceneWasSwitched = false;
+            clickCoolDown = 10;
+        }
     }
 
     void UISystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("ui") || !entity.hasComponent("position"))
+            return;
+
+        if (sceneWasSwitched)
             return;
 
         auto ui = entity.getComponent<UIComponent*>("ui");
@@ -55,5 +73,6 @@ namespace biemgine
     inline void UISystem::update(const Entity & entity, const float deltaTime) {}
     inline void UISystem::after() {}
     inline void UISystem::after(const float deltaTime) {}
-    inline void UISystem::onSceneSwitch() {}
+
+    void UISystem::onSceneSwitch() {}
 }
