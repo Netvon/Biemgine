@@ -5,7 +5,7 @@ namespace biemgine
 {
     TextUIEntity::~TextUIEntity() {}
 
-    TextUIEntity::TextUIEntity(float x, float y, Color color, std::string pText)
+    TextUIEntity::TextUIEntity(float x, float y, Color color, const std::string& pText)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));

@@ -7,11 +7,8 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "..\systems\ScoreUISystem.h"
 
-using biemgine::PositionComponent;
-using biemgine::ColorComponent;
-using biemgine::UIComponent;
-using biemgine::TextComponent;
 using biemgine::Size;
+using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
@@ -33,15 +30,7 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-        auto titleEntityId = addEntity<Entity>();
-        auto titleEntity = getEntityManager()->getEntity(titleEntityId);
-
-        titleEntity->addComponent<PositionComponent>("position", x, 100);
-        titleEntity->addComponent<ColorComponent>("color", 66, 143, 244);
-        titleEntity->addComponent<UIComponent>("ui");
-        titleEntity->addComponent<TextComponent>("text", "Highscores");
-
-        //addEntity(titleEntity);
+        addEntity<SpriteEntity>("textures/highscores.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
 
         ScoreUIFactory sf;
         for (auto e : sf.sceneStart(wW, wH)) {

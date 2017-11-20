@@ -10,11 +10,8 @@
 #include "..\entities\ScoreUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
 
-using biemgine::PositionComponent;
-using biemgine::ColorComponent;
-using biemgine::UIComponent;
-using biemgine::TextComponent;
 using biemgine::TextUIEntity;
+using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
@@ -39,15 +36,31 @@ namespace spacebiem
         float planetHeight = 500;
         int w = 50;
         int x = wW / 2 - w;
+        float resourcesX = x - 150.f;
+        float planetsX = x + 150.f;
 
-        addEntity<TextUIEntity>(static_cast<float>(x), 100.f, Color { 66, 143, 244 }, "Game over");
-        addEntity<TextUIEntity>(static_cast<float>(x), 150.f, Color{ 66, 143, 244 }, "Je score was: " + std::to_string(score));
-        addEntity<TextUIEntity>(static_cast<float>(x), 200.f, Color{ 66, 143, 244 }, "Resources: ");
+        planetsScore["sand"] = 10;
+        planetsScore["earth"] = 13;
+        planetsScore["toxic"] = 43;
+        planetsScore["moon"] = 65;
+
+        addEntity<SpriteEntity>("textures/game_over.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
+        //addEntity<TextUIEntity>(static_cast<float>(x), 150.f, Color{ 66, 143, 244 }, "Je score was: " + std::to_string(score));
+        addEntity<TextUIEntity>(resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
+        addEntity<TextUIEntity>(planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
 
         float heightCounter = 250;
 
-        for(auto& r : resources) {
-            addEntity<TextUIEntity>(static_cast<float>(x), heightCounter, Color{ 66, 143, 244 }, r.first + ": " + std::to_string(r.second));
+        for (auto& r : resources) {
+            addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 20, 20, 100u);
+            addEntity<TextUIEntity>(resourcesX + 25, heightCounter, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
+            heightCounter = heightCounter + 50.f;
+        }
+
+        heightCounter = 250;
+
+        for (auto& p : planetsScore) {
+            addEntity<TextUIEntity>(planetsX, heightCounter, Color{ 66, 143, 244 }, p.first + ": " + std::to_string(p.second));
             heightCounter = heightCounter + 50.f;
         }
 
