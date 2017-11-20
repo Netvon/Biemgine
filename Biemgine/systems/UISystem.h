@@ -8,6 +8,7 @@ namespace biemgine
         : public System
     {
     public:
+        UISystem();
         ~UISystem();
 
         void before() override;
@@ -22,5 +23,7 @@ namespace biemgine
     private:
         Point currentMouseLocation;
         bool isLeftMouseDown = false;
+        bool sceneWasSwitched = false;
+        int clickCoolDown = 10;
     };
 }

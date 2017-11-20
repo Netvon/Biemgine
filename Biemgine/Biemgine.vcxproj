@@ -45,6 +45,7 @@
     <ClInclude Include="dlldef.h" />
     <ClInclude Include="entities\Entity.h" />
     <ClInclude Include="entities\SpriteEntity.h" />
+    <ClInclude Include="entities\TextUIEntity.h" />
     <ClInclude Include="entities\TextEntity.h" />
     <ClInclude Include="managers\EntityManager.h" />
     <ClInclude Include="managers\FileHandler.h" />
@@ -65,6 +66,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
     <ClCompile Include="systems\ScriptSystem.cpp" />
