@@ -39,7 +39,7 @@ namespace spacebiem
             auto satAffected = satellite->getComponent<AffectedByGravityComponent*>("affectedByGravity");
             //auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
-            Vector centerOfSatellite = {
+            Vector centerOfSatellite {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,
                 satPosition->getY() + satPhysics->getColliderH() / 2.0f
             };
@@ -51,7 +51,7 @@ namespace spacebiem
                 auto gravPosition = point->getComponent<PositionComponent*>("position");
                 auto gravity = point->getComponent<GravityComponent*>("gravity");
 
-                Vector centerOfGravity = {
+                Vector centerOfGravity {
                     (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
                     (gravPosition->getY() + gravity->getY()) + gravity->getHeight() / 2.0f
                 };
