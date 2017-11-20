@@ -5,7 +5,7 @@
 
 namespace biemgine
 {
-    const int Loop::BM_GAMELOOP_FPS = 60;
+    const int Loop::BM_GAMELOOP_FPS = 80;
     const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
     Loop::Loop() :

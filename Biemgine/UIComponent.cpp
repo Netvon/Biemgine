@@ -4,9 +4,9 @@ using std::function;
 
 namespace biemgine
 {
-    UIComponent::UIComponent() {}
+    UIComponent::UIComponent(bool pEnabled): enabled(pEnabled) {}
 
-    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick) : size(pSize), onClick(onClick)
+    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick, bool pEnabled) : size(pSize), onClick(onClick), enabled(pEnabled)
     {
     }
 
@@ -35,6 +35,11 @@ namespace biemgine
     function<void(StateManager*)> UIComponent::getIsClicked() const
     {
         return onClick;
+    }
+
+    bool UIComponent::isEnabled() const
+    {
+        return enabled;
     }
 
     void UIComponent::setIsMouseOver(bool pIsMouseOver)

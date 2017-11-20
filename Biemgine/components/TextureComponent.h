@@ -14,7 +14,7 @@ namespace biemgine
         public Component
     {
     public:
-        TextureComponent(string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0, bool pVisible = true, const string pTag = "", Color color = Color::White(), int rotation = 0);
+        TextureComponent(string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0, bool pVisible = true, const string pTag = "", Color color = Color::White(), float rotation = 0.0f);
         ~TextureComponent();
 
         const string& getPath();
@@ -36,8 +36,8 @@ namespace biemgine
         void setColor(Color pColor);
         Color getColor() const;
         ColorComponent getOriginalColor() const;
-        void setRotation(int r);
-        int getRotation() const;
+        void setRotation(float r);
+        float getRotation() const;
         void setFlip(TextureFlip pFlip);
         TextureFlip getFlip();
 
@@ -52,7 +52,7 @@ namespace biemgine
         bool visible;
         Color color;
         Color originalColor;
-        int rotation;
+        float rotation;
         TextureFlip flip = TextureFlip::NONE;
     };
 }

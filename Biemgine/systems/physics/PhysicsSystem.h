@@ -28,5 +28,13 @@ namespace biemgine {
         std::map<int, bool> bodiesUpdated;
 
         b2Body* createBody(const Entity & entity);
+
+        float pixelsInAMeter = 100;
+
+        Vector pixelToMeter(Vector& pixelVector);
+        float pixelToMeter(float pixelValue);
+
+        Vector meterToPixel(Vector& pixelVector);
+        float meterToPixel(float meterValue);
     };
 }

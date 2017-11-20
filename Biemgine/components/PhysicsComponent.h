@@ -35,7 +35,7 @@ namespace biemgine
         public Component
     {
     public:
-        PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass = 22.0f);
+        PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass = 1.f);
         ~PhysicsComponent();
 
         const float& getColliderW() const;
@@ -47,9 +47,19 @@ namespace biemgine
         float getForceX() const;
         float getForceY() const;
 
+        float getDensity() const;
         float getMass() const;
+        void setMass(float pMass);
         float getImpulseX() const;
         float getImpulseY() const;
+        float getFriction() const;
+        void setFriction(float pFriction);
+
+        float getLinearDamping() const;
+        void setLinearDamping(float pLinearDampening);
+
+        Vector getVelocity() const;
+        void setVelocity(Vector pVelocity);
 
         void addForce(const string id, float x, float y);
 
@@ -61,12 +71,16 @@ namespace biemgine
 
     private:
         Vector colliderSize;
+        Vector velocity;
 
         map<string, TimedForce> timedForces;
 
         int impulseTicks = 30;
 
-        float mass = 1.0f;
+        float friction = 4.f;
+        float linearDamping = 0.25f;
+        float density = 1.0f;
+        float mass;
         PhysicsComponentShape shape;
         bool isStatic;
 

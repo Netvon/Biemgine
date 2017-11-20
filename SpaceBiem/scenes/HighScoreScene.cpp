@@ -20,6 +20,7 @@ namespace spacebiem
     void HighScoreScene::created() {
         enableRendering();
         enableUI();
+        enableScripts();
 
         addSystem<ScoreUISystem>();
 
@@ -37,7 +38,7 @@ namespace spacebiem
             addEntity(e);
         }
 
-        addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color::White(), planetWidth, planetHeight, 0, static_cast<float>(10));
+        addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, static_cast<float>(10));
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
         
         addEntity<ButtonUIEntity>(x, 750, Color{ 35, 65, 112 }, Color::White(), Size{ 150, 50 }, "Back", "textures/button_white.png", BackButtonClicked);
@@ -61,7 +62,7 @@ namespace spacebiem
 
     void HighScoreScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
 }

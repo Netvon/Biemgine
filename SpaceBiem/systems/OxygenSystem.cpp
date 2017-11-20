@@ -19,6 +19,15 @@ namespace spacebiem
             }
         }
 
+        /*if (entity.hasComponent("texture")) {
+            auto textures = entity.getComponents<biemgine::TextureComponent*>("texture");
+            for (auto tex : textures) {
+                if (tex->getTag() == "clouds") {
+                    tex->setRotation(tex->getRotation() + 0.01f);
+                }
+            }
+        }*/
+
         if (!entity.hasComponent("oxygen")) return;
         if (entity.hasComponent("ui")) return;
 

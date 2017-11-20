@@ -19,6 +19,10 @@ namespace spacebiem
         float getHeight();
         float getRadius();
 
+        constexpr static float getGravityConstant() {
+            return 160.f;
+        }
+
     private:
         float offsetX, offsetY, w, h, r;
     };
