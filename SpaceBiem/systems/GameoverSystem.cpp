@@ -20,7 +20,7 @@ namespace spacebiem
 
         if (entity.hasComponent("score")) {
             auto sc = entity.getComponent<ScoreComponent*>("score");
-            score = sc->getScore();
+            score = static_cast<int>(sc->getScore());
         }
         if (entity.hasComponent("resources")) {
             auto rc = entity.getComponent<ResourceComponent*>("resources");

@@ -22,7 +22,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("texture", new TextureComponent("textures/player-standing.png", 0, 0, w, h, 5u));
+        addComponent("texture", new TextureComponent("textures/player-standing.png", 0, 0, static_cast<int>(w), static_cast<int>(h), 5u));
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);

@@ -30,10 +30,10 @@ namespace spacebiem
     void ResourceCollectingSystem::after()
     {
 
-        for each (auto entity in resource)
+        for (auto& entity : resource)
         {
             auto col = entity->getComponent<CollidableComponent*>("collidable");
-            for each (auto bonus in resourceBonus)
+            for (auto& bonus : resourceBonus)
             {
                 if (col->collides(*bonus)) {
                     auto rbc = bonus->getComponent<ResourceBonusComponent*>("resourcebonus");
@@ -42,7 +42,7 @@ namespace spacebiem
                     auto sc = entity->getComponent<ScoreComponent*>("score");
 
                     rc->addResource(rbc->getName(), rbc->getAmount());
-                    sc->addScore(sbc->getScoreBonus());
+                    sc->addScore(static_cast<float>(sbc->getScoreBonus()));
 
                     bonus->die();
                 }

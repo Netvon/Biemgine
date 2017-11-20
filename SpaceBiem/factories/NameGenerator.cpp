@@ -16,7 +16,7 @@ namespace spacebiem
     }
 
     string NameGenerator::getName() {
-        return names[RandomGenerator::getInstance().generate(0, names.size() - 1)];
+        return names[RandomGenerator::getInstance().generate(0, static_cast<float>(names.size()) - 1)];
     }
 }
 

@@ -14,7 +14,7 @@ namespace spacebiem
         }
     }
 
-    int OxygenComponent::getOxygenMax() const
+    float OxygenComponent::getOxygenMax() const
     {
         return oxygenMax;
     }

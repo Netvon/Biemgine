@@ -38,11 +38,11 @@ namespace spacebiem
             auto pc = entity.getComponent<PositionComponent*>("position");
 
             for (auto atmos : atmospheres) {
-                int xA = atmos->getX();
-                int yA = atmos->getY();
-                int rA = atmos->getRadius();
-                int x = pc->getX();
-                int y = pc->getY();
+                int xA = static_cast<int>(atmos->getX());
+                int yA = static_cast<int>(atmos->getY());
+                int rA = static_cast<int>(atmos->getRadius());
+                int x = static_cast<int>(pc->getX());
+                int y = static_cast<int>(pc->getY());
 
                 // Kei skône pietjegras theorie
                 if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {

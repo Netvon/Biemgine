@@ -27,7 +27,7 @@ namespace spacebiem
 
             if (y + (dY * 4) > windowH) break;
 
-            entities.push_back(new ScoreUIEntity(x, y, score.second, score.first));
+            entities.push_back(new ScoreUIEntity(static_cast<float>(x), static_cast<float>(y), static_cast<float>(score.second), score.first));
             y += dY;
             counter++;
         }
@@ -52,7 +52,7 @@ namespace spacebiem
         for (Entity* e : entities) {
             if (e->hasComponent("score") && !e->hasComponent("ui")) {
                 auto sc = e->getComponent<ScoreComponent*>("score");
-                fh.writeScore(name, sc->getScore());
+                fh.writeScore(name, static_cast<int>(sc->getScore()));
             }
         }
     }

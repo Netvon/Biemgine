@@ -29,7 +29,7 @@ namespace spacebiem
             if (sbc->isScoreGiven()) return;
 
             auto sc = entity.getComponent<ScoreComponent*>("score");
-            sc->addScore(sbc->getScoreBonus());
+            sc->addScore(static_cast<float>(sbc->getScoreBonus()));
 
             sbc->setScoreGiven(true);
             auto texts = ground->getComponents<TextComponent*>("text");
@@ -47,8 +47,8 @@ namespace spacebiem
 
                 auto planetP = ground->getComponent<PositionComponent*>("position");
 
-                component->setOffsetX(pc->getX() - planetP->getX());
-                component->setOffsetY(pc->getY() - planetP->getY());
+                component->setOffsetX(static_cast<int>(pc->getX() - planetP->getX()));
+                component->setOffsetY(static_cast<int>(pc->getY() - planetP->getY()));
                 component->setRotation(pc->getRotation());
                 component->setVisible(true);
             }
