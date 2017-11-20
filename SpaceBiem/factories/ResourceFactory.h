@@ -11,6 +11,7 @@
 #include <math.h>
 
 using biemgine::Entity;
+using biemgine::EntityManager;
 using biemgine::RandomGenerator;
 
 namespace spacebiem
@@ -24,15 +25,10 @@ namespace spacebiem
         ~ResourceFactory() { };
         vector<Entity*> sceneStart(int windowW, int windowH) override;
         void sceneEnd(std::vector<Entity*> entities) override;
-
-
-        vector<ResourceEntity*> getPlanetResources(int x, int y, int r, string planet);
-
-
+        void createPlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager);
     private:
 
         map<string, map<string, vector<float>>> spawnRates;
         map<string, int> scores;
-
     };
 }

@@ -10,19 +10,9 @@ namespace spacebiem
         spawnRates = fileParser.resourceSpawnRateContent();
         scores = fileParser.resourceScoreContent();
     }
-    vector<Entity*> ResourceFactory::sceneStart(int windowW, int windowH)
-    {
-        return vector<Entity*>();
-    }
 
-    void ResourceFactory::sceneEnd(std::vector<Entity*> entities)
+    void ResourceFactory::createPlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager)
     {
-    }
-
-    vector<ResourceEntity*> ResourceFactory::getPlanetResources(int x, int y, int r, string planet)
-    {
-        vector<ResourceEntity*> resources;
-
         int w = 30;
         int h = 30;
 
@@ -36,12 +26,18 @@ namespace spacebiem
                 float cX = cos(angle)*r;
                 float cY = sin(angle)*r;
 
-                resources.push_back(new ResourceEntity(x + cX, y + cY, { 255,255,255,255 }, w, h, sr.first, scores[sr.first]));
-
+                entityManager->addEntity<ResourceEntity>(x + cX, y + cY, Color::White(), w, h, sr.first, scores[sr.first]);
             }
         }
+    }
 
-        return resources;
+    vector<Entity*> ResourceFactory::sceneStart(int windowWidth, int windowH)
+    {
+        return vector<Entity*>();
+    }
+
+    void ResourceFactory::sceneEnd(std::vector<Entity*> entities)
+    {
     }
 
 }
