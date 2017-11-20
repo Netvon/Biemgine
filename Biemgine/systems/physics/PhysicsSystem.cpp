@@ -63,7 +63,7 @@ namespace biemgine
         position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
         position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
 
-        body->SetTransform(body->GetPosition(), position->getRotation());
+        body->SetTransform(body->GetPosition(), position->getRotation() * DEGREE_TO_RAD);
 
         body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);
         body->ApplyLinearImpulseToCenter({ pixelToMeter( physics->getImpulseX() ), pixelToMeter( physics->getImpulseY() ) }, true);
