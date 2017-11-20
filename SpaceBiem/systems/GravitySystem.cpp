@@ -22,24 +22,6 @@ namespace spacebiem
 
             satellites.push_back(&entity);
         }
-
-        if (entity.hasComponent("affectedByGravity") && entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") && entity.hasComponent("grounded"))
-        {
-            auto position = entity.getComponent<PositionComponent*>("position");
-            auto physics = entity.getComponent<PhysicsComponent*>("physics");
-            auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
-
-            Vector ding = {
-                affected->getFallingTowardsX(),
-                affected->getFallingTowardsY()
-            };
-
-            float tragetX = ding.x - position->getX();
-            float tragetY = ding.y - position->getY();
-
-            float angle = atan2f(-tragetX, tragetY);
-            position->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288));
-        }      
     }
 
     struct DistanceInfo
@@ -70,8 +52,8 @@ namespace spacebiem
                 auto gravity = point->getComponent<GravityComponent*>("gravity");
 
                 Vector centerOfGravity {
-                    (gravPosition->getX() + gravity->getX()) + gravity->getWidth() / 2.0f,
-                    (gravPosition->getY() + gravity->getY()) + gravity->getHeight() / 2.0f
+                    gravPosition->getX() + gravity->getX() + gravity->getWidth() / 2.0f,
+                    gravPosition->getY() + gravity->getY() + gravity->getHeight() / 2.0f
                 };
 
                 const auto distance = centerOfGravity.distance(centerOfSatellite);
@@ -91,6 +73,18 @@ namespace spacebiem
                 auto distanceInfo = distances.begin()->second;
                 applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
             }*/
+
+            Vector ding = {
+                satAffected->getFallingTowardsX(),
+                satAffected->getFallingTowardsY()
+            };
+
+            float tragetX = ding.x - centerOfSatellite.x;
+            float tragetY = ding.y - centerOfSatellite.y;
+
+            float angle = atan2f(-tragetX, tragetY);
+            satPosition->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288f));
+            
         }
 
         gravityPoints.clear();

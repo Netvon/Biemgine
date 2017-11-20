@@ -12,8 +12,8 @@
 
 namespace biemgine
 {
-    #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288)
-    #define DEGREE_TO_RAD (3.14159265358979323846264338327950288 / 180.0f)
+    #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288f)
+    #define DEGREE_TO_RAD (3.14159265358979323846264338327950288f / 180.0f)
 
     PhysicsSystem::PhysicsSystem()
     {
@@ -55,6 +55,8 @@ namespace biemgine
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
 
+
+        auto affectedByGravity = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
         auto physics = entity.getComponent<PhysicsComponent*>("physics");
         auto position = entity.getComponent<PositionComponent*>("position");
 
@@ -62,6 +64,21 @@ namespace biemgine
 
         position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
         position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
+
+        /*if (entity.hasComponent("grounded")) {
+            b2Vec2 ding = {
+                pixelToMeter(affectedByGravity->getFallingTowardsX()),
+                pixelToMeter(affectedByGravity->getFallingTowardsY())
+            };
+
+            b2Vec2 target = ding - body->GetPosition();
+            target.Normalize();
+
+            float angle = atan2f(-target.x, target.y);
+            body->SetTransform(body->GetPosition(), angle);
+        }
+
+        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));*/
 
         body->SetTransform(body->GetPosition(), position->getRotation() * DEGREE_TO_RAD);
 

@@ -35,7 +35,7 @@ namespace spacebiem
     void LevelScene::created()
     {
         addSystem<CameraSystem>();
-
+       
         enableRendering();
         enablePhysics();
         enableUI();
@@ -51,7 +51,7 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
-        
+   
 
         float width = 15.f * 2.f;
         float height = 25.f * 2.f;
@@ -77,13 +77,13 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        addEntity<PlanetEarthEntity>(800, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
-        addEntity<PlanetEarthEntity>(800+1050, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
+        //addEntity<PlanetEarthEntity>(800, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
+        //addEntity<PlanetEarthEntity>(800+1050, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
 
-       /* PlanetFactory pf;
+        PlanetFactory pf;
         for (auto e : pf.sceneStart(wW, wH)) {
             addEntity(e);
-        }*/
+        }
     }
 
     void LevelScene::sceneEnd() {
