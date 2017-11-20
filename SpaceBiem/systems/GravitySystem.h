@@ -9,6 +9,7 @@ using biemgine::Entity;
 using biemgine::PhysicsComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::GroundedComponent;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -19,7 +20,7 @@ namespace spacebiem
         void update(const Entity& entity) override;
         void after() override;
 
-        void applyForce(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected);
+        void applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected, PositionComponent* satPosition);
 
         void onSceneSwitch() override {};
 

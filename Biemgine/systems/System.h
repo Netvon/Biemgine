@@ -17,7 +17,7 @@ namespace biemgine
         virtual void after();
         virtual void after(const float deltaTime);
 
-        virtual void onSceneSwitch() = 0;
+        virtual void onSceneSwitch() {};
 
         void setStateManager(StateManager* pManager);
         StateManager* getStateManager();

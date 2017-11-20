@@ -77,7 +77,7 @@ namespace biemgine
 
         int impulseTicks = 30;
 
-        float friction = 4.f;
+        float friction = 10.f;
         float linearDamping = 0.25f;
         float density = 1.0f;
         float mass;

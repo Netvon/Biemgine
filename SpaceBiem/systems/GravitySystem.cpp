@@ -64,7 +64,7 @@ namespace spacebiem
                 }));
 
                 if (distance <= gravity->getRadius()) {
-                    applyForce(centerOfGravity, centerOfSatellite, satPhysics, satAffected);
+                    applyForceAndSetRotation(centerOfGravity, centerOfSatellite, satPhysics, satAffected, satPosition);
                     forceApplied = true;
                 }
             }
@@ -73,25 +73,13 @@ namespace spacebiem
                 auto distanceInfo = distances.begin()->second;
                 applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
             }*/
-
-            Vector ding = {
-                satAffected->getFallingTowardsX(),
-                satAffected->getFallingTowardsY()
-            };
-
-            float tragetX = ding.x - centerOfSatellite.x;
-            float tragetY = ding.y - centerOfSatellite.y;
-
-            float angle = atan2f(-tragetX, tragetY);
-            satPosition->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288f));
-            
         }
 
         gravityPoints.clear();
         satellites.clear();
     }
 
-    void GravitySystem::applyForce(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected)
+    void GravitySystem::applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected, PositionComponent* satPosition)
     {
         auto force = centerOfGravity - centerOfSatellite;
 
@@ -101,5 +89,11 @@ namespace spacebiem
         satPhysics->addForce("gravity", force.x, force.y);
         affected->setFallingTowardsX(centerOfGravity.x);
         affected->setFallingTowardsY(centerOfGravity.y);
+
+        float tragetX = centerOfGravity.x - centerOfSatellite.x;
+        float tragetY = centerOfGravity.y - centerOfSatellite.y;
+
+        float angle = atan2f(-tragetX, tragetY);
+        satPosition->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288f));
     }
 }

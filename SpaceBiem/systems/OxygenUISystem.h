@@ -10,25 +10,15 @@ using std::map;
 
 namespace spacebiem
 {
-    class OxygenUISystem : public System
+    class OxygenUISystem
+        : public System
     {
     public:
-
-        OxygenUISystem() {};
         ~OxygenUISystem() {};
 
-        void OxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice);
-
-        void before(const float deltaTime) override;
-        void update(const Entity& entity, const float deltaTime) override;
-        void after(const float deltaTime) override;
-
-        void onSceneSwitch() override;
+        void update(const Entity& entity) override;
 
     private:
-        GraphicsDevice* graphicsDevice = nullptr;
-
         map<OxygenComponent*, bool> oxygenMap;
-
     };
 }

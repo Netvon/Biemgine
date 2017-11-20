@@ -10,12 +10,10 @@ using spacebiem::MenuScene;
 
 int main()
 {
-    Engine* engine = nullptr;
-
     try
     {
-        engine = new Engine;
-        engine->start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
+        Engine engine;
+        engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
     }
     catch (...)
     {
@@ -23,8 +21,5 @@ int main()
         system("pause");
     }
 
-    delete engine;
-
     return _CrtDumpMemoryLeaks();
 }
-

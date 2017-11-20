@@ -51,16 +51,15 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
-   
 
-        float width = 15.f * 2.f;
-        float height = 25.f * 2.f;
+        constexpr float width = 15.f * 2.f;
+        constexpr float height = 25.f * 2.f;
 
         auto playerId = addEntity<PlayerEntity>(600, 500, Color::White(), width, height);
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
-        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401.f, 169.f, 100u);
         addEntity<ResourceUIEntity>(66.f, 145.f, Color::White(), "uranium");
         addEntity<ResourceUIEntity>(157.f, 145.f, Color::White(), "diamond");
         addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
