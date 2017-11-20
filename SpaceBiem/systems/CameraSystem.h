@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
-#include "..\Camera.h"
+#include "..\components\CameraComponent.h"
 
 using biemgine::System;
 using biemgine::GraphicsDevice;
@@ -19,6 +19,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
 
     private:
-        Camera* camera = nullptr;
+        CameraComponent* camera = nullptr;
     };
 }

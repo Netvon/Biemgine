@@ -141,9 +141,11 @@
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="systems\CameraSystem.h">
       <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\CameraComponent.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -267,9 +269,11 @@
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="systems\CameraSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

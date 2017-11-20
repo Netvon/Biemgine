@@ -14,7 +14,7 @@ using biemgine::CollidableComponent;
 #include "../components/ScoreComponent.h"
 #include "../components/ResourceComponent.h"
 #include "../components/MovementComponent.h"
-#include "../Camera.h"
+#include "../components/CameraComponent.h"
 
 namespace spacebiem
 {
@@ -31,6 +31,6 @@ namespace spacebiem
         addComponent("resources", new ResourceComponent());
         addComponent("collidable", new CollidableComponent);
         addComponent("movement", new MovementComponent);
-        addComponent("camera", new Camera);
+        addComponent("camera", new CameraComponent);
     }
 }
