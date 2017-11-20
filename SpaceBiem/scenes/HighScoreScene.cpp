@@ -23,6 +23,7 @@ namespace spacebiem
     void HighScoreScene::created() {
         enableRendering();
         enableUI();
+        enableScripts();
 
         addSystem<ScoreUISystem>();
 
@@ -72,7 +73,7 @@ namespace spacebiem
 
     void HighScoreScene::render(const float deltaTime)
     {
-        getTransitionManager().drawBackground();
+        getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
 }

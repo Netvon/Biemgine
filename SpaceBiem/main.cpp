@@ -5,6 +5,7 @@
 #include "scenes\MenuScene.h"
 
 using biemgine::Engine;
+using biemgine::Size;
 using spacebiem::MenuScene;
 
 int main()
@@ -14,7 +15,7 @@ int main()
     try
     {
         engine = new Engine;
-        engine->start<MenuScene>("SpaceBiem");
+        engine->start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
     }
     catch (...)
     {

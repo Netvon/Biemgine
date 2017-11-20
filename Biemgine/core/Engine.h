@@ -2,6 +2,7 @@
 
 #include "dlldef.h"
 #include "..\managers\SceneManager.h"
+#include "..\primitives\Primitives.h"
 
 namespace biemgine
 {
@@ -9,17 +10,18 @@ namespace biemgine
     {
     public:
         template<class TScene>
-        void start(const string& windowTitle);
+        void start(const string& windowTitle, Size renderSize, bool maximize);
     private:
         SceneManager manager;
     };
 
     template<class TScene>
-    void Engine::start(const string& windowTitle)
+    void Engine::start(const string& windowTitle, Size renderSize, bool maximize)
     {
         Window window(
             windowTitle,
-            1366, 768
+            renderSize.width, renderSize.height,
+            maximize
         );
 
         manager.createStateManager(window);

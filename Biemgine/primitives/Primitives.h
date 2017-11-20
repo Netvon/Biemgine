@@ -17,6 +17,11 @@ namespace biemgine
             return Color{ 0, 0, 0, 255 };
         }
 
+        Color& WithAlpha(unsigned char alpha);
+        Color& WithRed(unsigned char red);
+        Color& WithGreen(unsigned char green);
+        Color& WithBlue(unsigned char green);
+
         static Color EarthAtmosphere(){
             return Color{ 71, 166, 245, 255 };
         }
@@ -56,6 +61,9 @@ namespace biemgine
 
         Vector& operator/=(float scalar);
         Vector operator/(float scalar);
+
+        Vector& operator*=(const Vector& other);
+        Vector operator*(const Vector& other);
 
         Vector normalize();
         float length();

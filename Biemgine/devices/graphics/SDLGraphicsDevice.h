@@ -13,7 +13,7 @@ namespace biemgine
         public GraphicsDevice
     {
     public:
-        SDLGraphicsDevice(SDL_Window* window);
+        SDLGraphicsDevice(SDL_Window* window, bool maximize = false);
         ~SDLGraphicsDevice();
 
         void drawSquare(int x, int y, int w, int h, Color color, float angle = 0) const override;
