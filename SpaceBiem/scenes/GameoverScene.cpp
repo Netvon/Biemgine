@@ -19,6 +19,9 @@ namespace spacebiem
         enableUI();
         enableScripts();
 
+        FileParser parser;
+        parser.writeNewResources(resources);
+
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
         float planetWidth = 500;

@@ -7,6 +7,8 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
+#include "..\systems\ResourceUISystem.h"
+#include "..\entities\ResourceUIEntity.h"
 
 using biemgine::SpriteEntity;
 using biemgine::Size;
@@ -28,6 +30,8 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+
+        addSystem<ResourceUISystem>();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -62,7 +66,18 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture);
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
-        
+
+
+        FileParser parser;
+        map<string, int> resources = parser.resourcesContent();
+
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
+        float rX = 66.f;
+        float rIncr = 91.f;
+        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 150.f, Color::White(), "uranium", resources["uranium"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 150.f, Color::White(), "diamond", resources["diamond"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 150.f, Color::White(), "metal", resources["metal"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 150.f, Color::White(), "anti-matter", resources["anti-matter"]);
 
     }
 

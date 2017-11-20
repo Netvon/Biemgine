@@ -9,12 +9,12 @@ using biemgine::UIComponent;
 
 namespace spacebiem
 {
-    ResourceUIEntity::ResourceUIEntity(float x, float y, Color color, std::string resourceName)
+    ResourceUIEntity::ResourceUIEntity(float x, float y, Color color, std::string resourceName, int defaultAmount)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
         addComponent("text", new TextComponent);
         addComponent("ui", new UIComponent);
-        addComponent("resourcebonus", new ResourceBonusComponent(resourceName, 0));
+        addComponent("resourcebonus", new ResourceBonusComponent(resourceName, defaultAmount));
     }
 }
