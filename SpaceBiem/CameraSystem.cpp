@@ -39,7 +39,7 @@ namespace spacebiem
             camera->setDeltaX(xDelta);
             camera->setDeltaY(yDelta);
 
-            Rect rect = entity.getBounds();
+            //Rect rect = entity.getBounds();
             int test = 0;
         }
 

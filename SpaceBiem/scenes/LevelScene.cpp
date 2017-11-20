@@ -34,6 +34,8 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
+        addSystem<CameraSystem>();
+
         enableRendering();
         enablePhysics();
         enableUI();
@@ -49,7 +51,7 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
-        addSystem<CameraSystem>();
+        
 
         float width = 15.f * 2.f;
         float height = 25.f * 2.f;
