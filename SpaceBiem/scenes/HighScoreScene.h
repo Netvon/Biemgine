@@ -16,9 +16,14 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
 
-        HighScoreScene(StateManager& manager)
-            : Scene(manager) {};
+        HighScoreScene(StateManager& manager, int lastScore = -1)
+            : Scene(manager),
+            lastScore(lastScore){};
         ~HighScoreScene() {};
+
+    private:
+        int lastScore;
+
     };
 }
 

@@ -17,11 +17,6 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
-    void GameoverHighscoreButtonClicked(StateManager* e)
-    {
-        e->navigateTo<HighScoreScene>();
-    }
-
     void MenuButtonClicked(StateManager* e)
     {
         e->navigateTo<MenuScene>();
@@ -90,7 +85,11 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
+        [this](StateManager* manager)
+        {
+            manager->navigateTo<HighScoreScene>(score);
+        });
         addEntity<ButtonUIEntity>(x - 25, 675, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
     }
 
