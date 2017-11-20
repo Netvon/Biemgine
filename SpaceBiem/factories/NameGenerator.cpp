@@ -7,7 +7,7 @@ namespace spacebiem
     NameGenerator::NameGenerator()
     {
 
-        FileHandler fh("planet_names.csv");
+        FileHandler fh("data/planet_names.csv");
 
         for each (vector<string> v in fh.getValues())
         {

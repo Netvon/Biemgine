@@ -15,7 +15,7 @@ int main()
     try
     {
         engine = new Engine;
-        engine->start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
+        engine->start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, true);
     }
     catch (...)
     {
