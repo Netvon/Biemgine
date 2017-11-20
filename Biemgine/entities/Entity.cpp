@@ -114,4 +114,13 @@ namespace biemgine
 
         return rect;
     }
+
+	void Entity::setTag(string pTag)
+	{
+		tag = pTag;
+	}
+	string Entity::getTag() const
+	{
+		return tag;
+	}
 }

@@ -1,3 +1,4 @@
+#pragma once
 
 #include "Biemgine.h"
 #include "stdafx.h"
