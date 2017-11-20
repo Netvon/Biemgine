@@ -35,9 +35,6 @@ namespace spacebiem
 
             camera->setDeltaX(xDelta);
             camera->setDeltaY(yDelta);
-
-            //Rect rect = entity.getBounds();
-            int test = 0;
         }
 
         if (camera != nullptr)
