@@ -20,7 +20,7 @@ namespace spacebiem
 
         if (entity.hasComponent("camera"))
         {
-            camera = entity.getComponent<Camera*>("camera");
+            camera = entity.getComponent<CameraComponent*>("camera");
 
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());

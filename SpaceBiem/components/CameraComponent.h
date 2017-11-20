@@ -8,12 +8,12 @@ using biemgine::Component;
 
 namespace spacebiem
 {
-    class Camera :
+    class CameraComponent :
         public Component
     {
     public:
-        Camera();
-        ~Camera() {};
+        CameraComponent();
+        ~CameraComponent() {};
 
         float getDeltaX() const;
         float getDeltaY() const;
