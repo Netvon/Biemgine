@@ -11,6 +11,7 @@ using std::type_index;
 #include "Biemgine.h"
 
 using biemgine::Entity;
+using biemgine::TextureComponent;
 
 namespace spacebiem
 {
@@ -19,5 +20,8 @@ namespace spacebiem
     public:
         vector<string> createFromEntities(vector<const Entity *> & entities);
         string createFromEntity(const Entity & entity);
+
+    private:
+        TextureComponent& getTextureComponentByTag(const Entity & pEntity, const string & pTag);
     };
 }

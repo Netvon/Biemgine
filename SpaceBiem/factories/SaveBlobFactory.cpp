@@ -40,7 +40,9 @@ namespace spacebiem
             return string();
 
         if (entity.hasComponent("position")) {
-            saveBlobEntityBuilder.writePosition(*entity.getComponent<PositionComponent*>("position"));
+            auto backgroundTexture = getTextureComponentByTag(entity, "background");
+
+            saveBlobEntityBuilder.writePosition(*entity.getComponent<PositionComponent*>("position"), backgroundTexture);
         }
 
         if (entity.hasComponent("score")) {
@@ -66,20 +68,25 @@ namespace spacebiem
         auto find = planetTypes.find(type_index(typeid(entity)));
 
         if (find != planetTypes.end()) {
-            saveBlobEntityBuilder.writeCollidable(*entity.getComponent<CollidableComponent*>("collidable"));
-
             // flag position
-            auto components = entity.getComponents<TextureComponent*>("texture");
+            auto flagTextureComponent = getTextureComponentByTag(entity, "flag");
 
-            for (auto it = components.begin(); it != components.end(); ++it)
-            {
-                auto component = (*it);
-                if (component->getTag() != "flag") continue;
-
-                saveBlobEntityBuilder.writeFlag(*component);
-            }
+            saveBlobEntityBuilder.writeVisited(*entity.getComponent<CollidableComponent*>("collidable"), flagTextureComponent);
         }
         
         return saveBlobEntityBuilder.build();
+    }
+
+    TextureComponent & SaveBlobFactory::getTextureComponentByTag(const Entity & entity, const string & pTag)
+    {
+        auto components = entity.getComponents<TextureComponent*>("texture");
+
+        for (auto it = components.begin(); it != components.end(); ++it)
+        {
+            auto component = (*it);
+            if (component->getTag() != pTag) continue;
+
+            return *component;
+        }
     }
 }

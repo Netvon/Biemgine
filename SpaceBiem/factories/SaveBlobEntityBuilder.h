@@ -25,12 +25,12 @@ namespace spacebiem
     {
     public:
         bool prepare(const Entity & entity);
-        void writePosition(const PositionComponent & position);
+        void writePosition(const PositionComponent & position, const TextureComponent & backgroundTexture);
         void writeScore(const ScoreComponent & score);
         void writeOxygen(const OxygenComponent & oxygen);
-        void writeCollidable(const CollidableComponent & collidable);
+        void writeVisited(const CollidableComponent & collidable, const TextureComponent & flagTexture);
         void writeResource(const ResourceComponent & resource);
-        void writeFlag(const TextureComponent & texture);
+        void writeFlag(const TextureComponent & flagTexture);
         string build();
 
     private:

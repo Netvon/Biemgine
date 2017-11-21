@@ -32,5 +32,7 @@ namespace spacebiem
         addComponent("collidable", new CollidableComponent);
         addComponent("movement", new MovementComponent);
         addComponent("camera", new CameraComponent);
+
+        setTag("player");
     }
 }
