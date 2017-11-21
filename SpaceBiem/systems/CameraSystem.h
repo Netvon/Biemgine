@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
-#include "..\components\OxygenComponent.h"
+#include "..\components\CameraComponent.h"
 
 using biemgine::System;
 using biemgine::GraphicsDevice;
@@ -10,15 +10,15 @@ using std::map;
 
 namespace spacebiem
 {
-    class OxygenUISystem
+    class CameraSystem
         : public System
     {
     public:
-        ~OxygenUISystem() {};
+        ~CameraSystem() {};
 
         void update(const Entity& entity) override;
 
     private:
-        map<OxygenComponent*, bool> oxygenMap;
+        CameraComponent* camera = nullptr;
     };
 }

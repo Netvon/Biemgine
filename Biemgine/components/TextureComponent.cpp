@@ -76,9 +76,9 @@ namespace biemgine
         return color;
     }
 
-    ColorComponent TextureComponent::getOriginalColor() const
+    Color TextureComponent::getOriginalColor() const
     {
-        return ColorComponent(originalColor);
+        return originalColor;
     }
 
     void TextureComponent::setRotation(float r) {

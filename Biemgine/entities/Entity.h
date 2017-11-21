@@ -44,12 +44,16 @@ namespace biemgine
         virtual void die() const;
         bool isAlive() const;
 
-        /*Size getBounds() const;*/
+        void setTag(string pTag);
+        string getTag() const;
+
+        Rect getBounds() const;
 
     private:
         int id;
         std::multimap<string, Component*> componentHashmap;
         mutable bool alive = true;
+        string tag = "";
     };
 
     template<typename TComponent>

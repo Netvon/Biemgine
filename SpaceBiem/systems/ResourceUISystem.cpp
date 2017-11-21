@@ -10,14 +10,7 @@ using biemgine::Color;
 
 namespace spacebiem
 {
-    void ResourceUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
-    {
-        this->graphicsDevice = graphicsDevice;
-    }
-
-    void ResourceUISystem::before(const float deltaTime) {}
-
-    void ResourceUISystem::update(const Entity & entity, const float deltaTime)
+    void ResourceUISystem::update(const Entity & entity)
     {
         if (entity.hasComponent("resources")) {
             auto oc = entity.getComponent<ResourceComponent*>("resources");
@@ -64,14 +57,5 @@ namespace spacebiem
                 }
             }
         }
-        
-    }
-
-    void ResourceUISystem::after(const float deltaTime) {}
-
-    void ResourceUISystem::onSceneSwitch()
-    {
-        if (graphicsDevice != nullptr)
-            graphicsDevice->clear();
     }
 }

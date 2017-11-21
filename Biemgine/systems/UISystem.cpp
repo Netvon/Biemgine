@@ -69,11 +69,4 @@ namespace biemgine
             ui->setIsMouseDown(false);
         }
     }
-
-    inline void UISystem::before(const float deltaTime) {}
-    inline void UISystem::update(const Entity & entity, const float deltaTime) {}
-    inline void UISystem::after() {}
-    inline void UISystem::after(const float deltaTime) {}
-
-    void UISystem::onSceneSwitch() {}
 }

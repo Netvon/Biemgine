@@ -10,16 +10,7 @@ using biemgine::TextureComponent;
 
 namespace spacebiem
 {
-    void OxygenUISystem::setGraphicsDevice(GraphicsDevice* graphicsDevice)
-    {
-        this->graphicsDevice = graphicsDevice;
-    }
-
-    void OxygenUISystem::before(const float deltaTime)
-    {
-    }
-
-    void OxygenUISystem::update(const Entity & entity, const float deltaTime)
+    void OxygenUISystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("oxygen")) return;
 
@@ -32,14 +23,14 @@ namespace spacebiem
             return;
         }
 
-        if (!entity.hasComponent("position")) return;
-        if (!entity.hasComponent("texture")) return;
+        if (!entity.hasComponent("position") || !entity.hasComponent("texture"))
+            return;
 
         auto pc = entity.getComponent<PositionComponent*>("position");
         auto uc = entity.getComponent<UIComponent*>("ui");
 
         auto tc = entity.getComponents<TextureComponent*>("texture");
-        TextureComponent* texture = entity.getComponent<TextureComponent*>("texture");
+        TextureComponent* texture = nullptr;
 
         for (auto tex : tc) {
             if (tex->getTag() == "oxygenbar") texture = tex;
@@ -60,26 +51,16 @@ namespace spacebiem
             else return;
         }
 
-
         float oBar = oRef->getOxygenAmount() / static_cast<float>(oRef->getOxygenMax());
 
-        Color dangerRedColor = {204, 94, 94};
-        Color newColor;
-        newColor.r = dangerRedColor.r + ((texture->getOriginalColor().getR() - dangerRedColor.r) * oBar);
-        newColor.g = dangerRedColor.g + ((texture->getOriginalColor().getG() - dangerRedColor.g) * oBar);
-        newColor.b = dangerRedColor.b + ((texture->getOriginalColor().getB() - dangerRedColor.b) * oBar);
+        Color dangerRedColor { 204, 94, 94 };
+        Color newColor{
+            dangerRedColor.r + static_cast<char>((texture->getOriginalColor().r - dangerRedColor.r) * oBar),
+            dangerRedColor.g + static_cast<char>((texture->getOriginalColor().g - dangerRedColor.g) * oBar),
+            dangerRedColor.b + static_cast<char>((texture->getOriginalColor().b - dangerRedColor.b) * oBar)
+        };
 
-        texture->setWidth(texture->getOriginalWidth() * oBar);
+        texture->setWidth(static_cast<int>(texture->getOriginalWidth() * oBar));
         texture->setColor(newColor);
-    }
-
-    void OxygenUISystem::after(const float deltaTime)
-    {
-    }
-
-    void OxygenUISystem::onSceneSwitch()
-    {
-        if (graphicsDevice != nullptr)
-            graphicsDevice->clear();
     }
 }

@@ -12,6 +12,8 @@
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
+#include "MenuScene.h"
+#include "..\systems\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -34,6 +36,8 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
+        addSystem<CameraSystem>();
+       
         enableRendering();
         enablePhysics();
         enableUI();
@@ -55,7 +59,7 @@ namespace spacebiem
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
-        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401.f, 169.f, 100u);
         addEntity<ResourceUIEntity>(66.f, 145.f, Color::White(), "uranium");
         addEntity<ResourceUIEntity>(157.f, 145.f, Color::White(), "diamond");
         addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");

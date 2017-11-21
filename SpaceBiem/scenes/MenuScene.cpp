@@ -53,7 +53,7 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - 175;
 
-        addEntity<SpriteEntity>("textures/teambiem.png", x, 100, Color::White(), -1, -1);
+        addEntity<SpriteEntity>("textures/spacebiem.png", x, 100, Color::White(), -1, -1);
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);

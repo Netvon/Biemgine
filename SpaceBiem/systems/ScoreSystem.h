@@ -11,6 +11,5 @@ namespace spacebiem
     {
     public:
         void update(const Entity& entity) override;
-        void onSceneSwitch() override;
     };
 }

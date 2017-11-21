@@ -48,8 +48,4 @@ namespace spacebiem
             }
         }
     }
-
-    void ResourceCollectingSystem::onSceneSwitch()
-    {
-    }
 }

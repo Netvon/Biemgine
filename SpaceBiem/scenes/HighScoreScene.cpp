@@ -4,6 +4,7 @@
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
+#include "..\entities\ScoreUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\systems\ScoreUISystem.h"
 
@@ -35,6 +36,10 @@ namespace spacebiem
 
         ScoreUIFactory sf;
         sf.sceneStart(wW, wH, getEntityManager());
+
+        if (lastScore >= 0) {
+            addEntity<ScoreUIEntity>(x, 670, lastScore, "Last score");
+        }
 
         addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, static_cast<float>(10));
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);

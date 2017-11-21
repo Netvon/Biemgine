@@ -10,7 +10,7 @@ namespace spacebiem
         public Component
     {
     public:
-        OxygenComponent(int pOxygenMax = 2000, int oxygenScale = 1) :
+        OxygenComponent(int pOxygenMax = 1000, int oxygenScale = 1) :
             oxygenAmount(pOxygenMax),
             oxygenMax(pOxygenMax),
             oxygenScale(oxygenScale)

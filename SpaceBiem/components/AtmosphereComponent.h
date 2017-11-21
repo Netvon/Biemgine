@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "components\PositionComponent.h"
 #include "stdafx.h"
 
 using biemgine::Component;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -11,9 +13,11 @@ namespace spacebiem
         public Component
     {
     public:
-        AtmosphereComponent(float offsetX, float offsetY, float r, float oxygenModifier) :
-            offsetX(offsetX), offsetY(offsetY), r(r), oxygenModifier(oxygenModifier)
+        AtmosphereComponent(PositionComponent* pc, float offsetX, float offsetY, float r, float oxygenModifier) :
+            pc(pc), offsetX(offsetX), offsetY(offsetY), r(r), oxygenModifier(oxygenModifier)
         { };
+
+        PositionComponent* pc = nullptr;
 
         float getX() const;
         float getY() const;

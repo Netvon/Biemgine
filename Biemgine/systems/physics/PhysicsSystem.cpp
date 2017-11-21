@@ -12,8 +12,8 @@
 
 namespace biemgine
 {
-    #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288)
-    #define DEGREE_TO_RAD (3.14159265358979323846264338327950288 / 180.0f)
+    #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288f)
+    #define DEGREE_TO_RAD (3.14159265358979323846264338327950288f / 180.0f)
 
     PhysicsSystem::PhysicsSystem()
     {
@@ -55,6 +55,7 @@ namespace biemgine
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
 
+
         auto affectedByGravity = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
         auto physics = entity.getComponent<PhysicsComponent*>("physics");
         auto position = entity.getComponent<PositionComponent*>("position");
@@ -64,10 +65,10 @@ namespace biemgine
         position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
         position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
 
-        if (entity.hasComponent("grounded")) {
+        /*if (entity.hasComponent("grounded")) {
             b2Vec2 ding = {
-                pixelToMeter( affectedByGravity->getFallingTowardsX() ),
-                pixelToMeter( affectedByGravity->getFallingTowardsY() )
+                pixelToMeter(affectedByGravity->getFallingTowardsX()),
+                pixelToMeter(affectedByGravity->getFallingTowardsY())
             };
 
             b2Vec2 target = ding - body->GetPosition();
@@ -77,12 +78,9 @@ namespace biemgine
             body->SetTransform(body->GetPosition(), angle);
         }
 
-        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext())
-        {
-            body->GetFixtureList()->SetFriction(physics->getFriction());
-        }
+        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));*/
 
-        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));
+        body->SetTransform(body->GetPosition(), position->getRotation() * DEGREE_TO_RAD);
 
         body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);
         body->ApplyLinearImpulseToCenter({ pixelToMeter( physics->getImpulseX() ), pixelToMeter( physics->getImpulseY() ) }, true);
@@ -148,8 +146,8 @@ namespace biemgine
         }
 
         newBodyDef.position.Set(
-            pixelToMeter( pc->getX() + physics->getColliderW() / 2.f ),
-            pixelToMeter( pc->getY() + physics->getColliderH() / 2.f )
+            pixelToMeter( pc->getOriginX() + physics->getColliderW() / 2.f ),
+            pixelToMeter( pc->getOriginY() + physics->getColliderH() / 2.f )
         );
 
         newBodyDef.angle = static_cast<float>(pc->getRotation() * DEGREE_TO_RAD);

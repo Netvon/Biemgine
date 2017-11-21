@@ -17,11 +17,6 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
-    void GameoverHighscoreButtonClicked(StateManager* e)
-    {
-        e->navigateTo<HighScoreScene>();
-    }
-
     void MenuButtonClicked(StateManager* e)
     {
         e->navigateTo<MenuScene>();
@@ -50,7 +45,9 @@ namespace spacebiem
         planetsScore["toxic"] = 7;
         planetsScore["moon"] = 1;*/
 
-        addEntity<SpriteEntity>("textures/game_over.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
+        auto gameoverTexture = "textures/game_over.png";
+
+        addEntity<SpriteEntity>(gameoverTexture, static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
         addEntity<TextUIEntity>(resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
         addEntity<TextUIEntity>(planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
 
@@ -59,7 +56,7 @@ namespace spacebiem
         for (auto& r : resources) {
             addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 40, 40, 100u);
             addEntity<TextUIEntity>(resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
-            heightCounter = heightCounter + 50.f;
+            heightCounter = heightCounter + 85.f;
         }
 
         heightCounter = 250;
@@ -82,6 +79,10 @@ namespace spacebiem
             heightCounter = heightCounter + 85.f;
         }
 
+
+        addEntity<TextUIEntity>(x - 25, 600, Color::White(), "Total score: " + std::to_string(score));
+
+
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
@@ -90,8 +91,14 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        addEntity<ButtonUIEntity>(x - 25, 600, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, GameoverHighscoreButtonClicked);
-        addEntity<ButtonUIEntity>(x - 25, 675, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
+        addEntity<ButtonUIEntity>(x - 25, 700, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
+        [this](StateManager* manager)
+        {
+            ScoreUIFactory sf;
+            sf.sceneEnd(getEntities());
+            manager->navigateTo<HighScoreScene>(score);
+        });
+        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
     }
 
     void GameoverScene::input()

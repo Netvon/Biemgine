@@ -141,6 +141,12 @@
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="systems\CameraSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\CameraComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
     <ClInclude Include="systems\ResourceCollectingSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
@@ -269,6 +275,12 @@
     <ClCompile Include="UniverseBuilder.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CameraSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
