@@ -23,9 +23,6 @@ namespace spacebiem
     class SaveBlobEntityBuilder
     {
     public:
-        SaveBlobEntityBuilder();
-        ~SaveBlobEntityBuilder();
-
         bool prepare(const Entity & entity);
         void writePosition(const PositionComponent & position);
         void writeScore(const ScoreComponent & score);
@@ -39,6 +36,6 @@ namespace spacebiem
         list<string> componentBlobs;
         string blob;
 
-        SaveBlobEntityComponentBuilder* saveBlobEntityComponentBuilder;
+        SaveBlobEntityComponentBuilder saveBlobEntityComponentBuilder;
     };
 }

@@ -2,9 +2,11 @@
 
 #include "stdafx.h"
 #include <vector>
+#include <typeindex>
 
 using std::string;
 using std::vector;
+using std::type_index;
 
 #include "Biemgine.h"
 

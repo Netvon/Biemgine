@@ -8,6 +8,11 @@ using biemgine::PositionComponent;
 #include "SaveBlobFactory.h"
 #include "..\entities\PlayerEntity.h"
 
+#include "..\entities\PlanetEarthEntity.h"
+#include "..\entities\PlanetSandEntity.h"
+#include "..\entities\PlanetToxicEntity.h"
+#include "..\entities\PlanetMoonEntity.h"
+
 #include <typeindex>
 
 namespace spacebiem
@@ -47,8 +52,20 @@ namespace spacebiem
         }
 
         if (typeid(entity) == typeid(PlayerEntity)) {
-            saveBlobEntityBuilder.writeCollidable(*entity.getComponent<CollidableComponent*>("collidable"));
             saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
+        }
+
+        map<type_index, bool> planetTypes {
+            { type_index(typeid(PlanetEarthEntity)), true },
+            { type_index(typeid(PlanetMoonEntity)), true },
+            { type_index(typeid(PlanetToxicEntity)), true },
+            { type_index(typeid(PlanetSandEntity)), true }
+        };
+
+        auto find = planetTypes.find(type_index(typeid(entity)));
+
+        if (find != planetTypes.end()) {
+            saveBlobEntityBuilder.writeCollidable(*entity.getComponent<CollidableComponent*>("collidable"));
         }
         
         return saveBlobEntityBuilder.build();

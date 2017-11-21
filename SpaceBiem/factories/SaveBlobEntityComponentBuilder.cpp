@@ -22,7 +22,10 @@ namespace spacebiem
         string blob = componentName + ",";
 
         for (auto it = values.begin(); it != values.end(); ++it) {
-            blob += (*it) + ",";
+            if (it != values.begin())
+                blob += ",";
+
+            blob += (*it);
         }
 
         return blob;

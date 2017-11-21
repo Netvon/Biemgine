@@ -16,16 +16,6 @@ using std::type_index;
 
 namespace spacebiem
 {
-    SaveBlobEntityBuilder::SaveBlobEntityBuilder()
-    {
-        saveBlobEntityComponentBuilder = new SaveBlobEntityComponentBuilder();
-    }
-
-    SaveBlobEntityBuilder::~SaveBlobEntityBuilder()
-    {
-        delete saveBlobEntityComponentBuilder;
-    }
-
     bool SaveBlobEntityBuilder::prepare(const Entity & entity)
     {
         map<type_index, string> typemap {
@@ -47,36 +37,36 @@ namespace spacebiem
 
     void SaveBlobEntityBuilder::writePosition(const PositionComponent & position)
     {
-        saveBlobEntityComponentBuilder->prepare("position_component");
+        saveBlobEntityComponentBuilder.prepare("position_component");
 
-        saveBlobEntityComponentBuilder->addValue(to_string(position.getX()));
-        saveBlobEntityComponentBuilder->addValue(to_string(position.getY()));
-        saveBlobEntityComponentBuilder->addValue(to_string(position.getZ()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getX()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getY()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getZ()));
 
-        componentBlobs.push_back(saveBlobEntityComponentBuilder->build());
+        componentBlobs.push_back(saveBlobEntityComponentBuilder.build());
     }
 
     void SaveBlobEntityBuilder::writeScore(const ScoreComponent & score)
     {
-        saveBlobEntityComponentBuilder->prepare("score_component");
+        saveBlobEntityComponentBuilder.prepare("score_component");
 
-        saveBlobEntityComponentBuilder->addValue(to_string(score.getScore()));
+        saveBlobEntityComponentBuilder.addValue(to_string(score.getScore()));
 
-        componentBlobs.push_back(saveBlobEntityComponentBuilder->build());
+        componentBlobs.push_back(saveBlobEntityComponentBuilder.build());
     }
 
     void SaveBlobEntityBuilder::writeOxygen(const OxygenComponent & oxygen)
     {
-        saveBlobEntityComponentBuilder->prepare("oxygen_component");
+        saveBlobEntityComponentBuilder.prepare("oxygen_component");
 
-        saveBlobEntityComponentBuilder->addValue(to_string(oxygen.getOxygenAmount()));
+        saveBlobEntityComponentBuilder.addValue(to_string(oxygen.getOxygenAmount()));
 
-        componentBlobs.push_back(saveBlobEntityComponentBuilder->build());
+        componentBlobs.push_back(saveBlobEntityComponentBuilder.build());
     }
 
     void SaveBlobEntityBuilder::writeCollidable(const CollidableComponent & collidable)
     {
-        saveBlobEntityComponentBuilder->prepare("collidable_component");
+        saveBlobEntityComponentBuilder.prepare("collidable_component");
 
         auto collisions = collidable.getCollisions();
 
@@ -89,20 +79,20 @@ namespace spacebiem
             }
         }
 
-        saveBlobEntityComponentBuilder->addValue(to_string(playerCollided));
+        saveBlobEntityComponentBuilder.addValue(to_string(playerCollided));
 
-        string componentBlob = saveBlobEntityComponentBuilder->build();
+        string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);
     }
 
     void SaveBlobEntityBuilder::writeResource(const ResourceComponent & resource)
     {
-        saveBlobEntityComponentBuilder->prepare("resource_component");
+        saveBlobEntityComponentBuilder.prepare("resource_component");
 
         map<string, int> resources = resource.getResources();
 
         for (auto it = resources.begin(); it != resources.end(); ++it) {
-            saveBlobEntityComponentBuilder->addValue(to_string((*it).second));
+            saveBlobEntityComponentBuilder.addValue(to_string((*it).second));
         }
     }
 

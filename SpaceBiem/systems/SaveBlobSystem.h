@@ -13,7 +13,6 @@ namespace spacebiem
         public System
     {
     public:
-
         void after(const float deltaTime) override;
 
     private:

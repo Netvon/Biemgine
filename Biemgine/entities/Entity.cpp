@@ -119,6 +119,7 @@ namespace biemgine
 	{
 		tag = pTag;
 	}
+
 	string Entity::getTag() const
 	{
 		return tag;

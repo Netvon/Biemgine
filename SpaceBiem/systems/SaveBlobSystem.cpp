@@ -14,7 +14,7 @@ namespace spacebiem
         auto e = getStateManager()->getEntities();
         vector<string> saveBlob = saveBlobFactory.createFromEntities(e);
 
-        FileHandler fileHandler("data/savegame.csv");
+        FileHandler fileHandler("data/savegame.csv", true);
 
         for (auto it = saveBlob.begin(); it != saveBlob.end(); it++) {
             fileHandler.writeLine(*it);
