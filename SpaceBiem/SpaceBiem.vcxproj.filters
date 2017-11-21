@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="systems">
+      <UniqueIdentifier>{9309bb1e-7c93-4d66-a4e1-4a500dce4f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entities">
+      <UniqueIdentifier>{f20d5781-fc59-4fe5-831f-9838f78d8b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scenes">
+      <UniqueIdentifier>{741502bf-3b7d-4fde-8e96-0d5a8f6f1dc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{cc5e0541-952d-4cbe-a456-c03969ae8c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factories">
+      <UniqueIdentifier>{45e250cf-c590-4fd8-a595-cd8630d0b927}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="systems\OxygenSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetMoonEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\LevelScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="components\GravityComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\MovementSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlayerEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\MenuScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\EntityFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\SurfaceEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\GravitySystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ScoreUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\JumpSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ScoreUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetEarthEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\OxygenUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\OxygenUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\OxygenComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AtmosphereComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ScoreComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\ScoreUIFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ScoreSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="factories\PlanetFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetSandEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetToxicEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="FileParser.h" />
+    <ClInclude Include="entities\ResourceEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\ResourceFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ScoreBonusComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ResourceBonusComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ResourceComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ResourceUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceUISystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\HighScoreScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\ButtonUIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="components\MovementComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\GameoverSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\NameGenerator.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\CameraSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\CameraComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="scenes\LevelScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ScoreUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\JumpSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ScoreUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\OxygenSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\OxygenComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ScoreUIFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ScoreSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\OxygenUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlayerEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\GravitySystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\MovementSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\MenuScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="components\AtmosphereComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\GravityComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ScoreComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetEarthEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetMoonEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\SurfaceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\PlanetFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetSandEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetToxicEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="FileParser.cpp" />
+    <ClCompile Include="entities\ResourceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ScoreBonusComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ResourceBonusComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ResourceComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ResourceUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceUISystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\HighScoreScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\ButtonUIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\MovementComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\GameoverSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\NameGenerator.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CameraSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

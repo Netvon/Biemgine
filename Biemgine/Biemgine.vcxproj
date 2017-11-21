@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -17,6 +17,93 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Biemgine.h" />
+    <ClInclude Include="components\AffectedByGravityComponent.h" />
+    <ClInclude Include="components\CollidableComponent.h" />
+    <ClInclude Include="components\ColorComponent.h" />
+    <ClInclude Include="components\Component.h" />
+    <ClInclude Include="components\GroundComponent.h" />
+    <ClInclude Include="components\GroundedComponent.h" />
+    <ClInclude Include="components\PhysicsComponent.h" />
+    <ClInclude Include="components\PositionComponent.h" />
+    <ClInclude Include="components\RectangleComponent.h" />
+    <ClInclude Include="components\ScriptComponent.h" />
+    <ClInclude Include="components\TextComponent.h" />
+    <ClInclude Include="components\TextureComponent.h" />
+    <ClInclude Include="components\TransformComponent.h" />
+    <ClInclude Include="components\UIComponent.h" />
+    <ClInclude Include="components\PhysicsComponentShape.h" />
+    <ClInclude Include="core\Engine.h" />
+    <ClInclude Include="core\Loop.h" />
+    <ClInclude Include="core\Window.h" />
+    <ClInclude Include="devices\graphics\GraphicsDevice.h" />
+    <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
+    <ClInclude Include="devices\graphics\TextureAndUsage.h" />
+    <ClInclude Include="devices\graphics\TextureFlip.h" />
+    <ClInclude Include="dlldef.h" />
+    <ClInclude Include="entities\Entity.h" />
+    <ClInclude Include="entities\SpriteEntity.h" />
+    <ClInclude Include="entities\TextUIEntity.h" />
+    <ClInclude Include="entities\TextEntity.h" />
+    <ClInclude Include="managers\EntityManager.h" />
+    <ClInclude Include="managers\FileHandler.h" />
+    <ClInclude Include="managers\InputManager.h" />
+    <ClInclude Include="managers\SceneManager.h" />
+    <ClInclude Include="managers\StateManager.h" />
+    <ClInclude Include="managers\SystemManager.h" />
+    <ClInclude Include="primitives\Primitives.h" />
+    <ClInclude Include="primitives\RandomGenerator.h" />
+    <ClInclude Include="scenes\Scene.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="systems\RenderSystem.h" />
+    <ClInclude Include="systems\ScriptSystem.h" />
+    <ClInclude Include="systems\System.h" />
+    <ClInclude Include="systems\physics\ContactListener.h" />
+    <ClInclude Include="systems\physics\PhysicsSystem.h" />
+    <ClInclude Include="systems\UISystem.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="entities\TextUIEntity.cpp" />
+    <ClCompile Include="components\ScriptComponent.cpp" />
+    <ClCompile Include="entities\TextEntity.cpp" />
+    <ClCompile Include="systems\ScriptSystem.cpp" />
+    <ClCompile Include="systems\UISystem.cpp" />
+    <ClCompile Include="managers\FileHandler.cpp" />
+    <ClCompile Include="components\CollidableComponent.cpp" />
+    <ClCompile Include="primitives\RandomGenerator.cpp" />
+    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="components\AffectedByGravityComponent.cpp" />
+    <ClCompile Include="components\ColorComponent.cpp" />
+    <ClCompile Include="components\Component.cpp" />
+    <ClCompile Include="components\GroundComponent.cpp" />
+    <ClCompile Include="components\GroundedComponent.cpp" />
+    <ClCompile Include="components\PhysicsComponent.cpp" />
+    <ClCompile Include="components\PositionComponent.cpp" />
+    <ClCompile Include="components\RectangleComponent.cpp" />
+    <ClCompile Include="components\TextComponent.cpp" />
+    <ClCompile Include="components\TextureComponent.cpp" />
+    <ClCompile Include="components\TransformComponent.cpp" />
+    <ClCompile Include="core\Engine.cpp" />
+    <ClCompile Include="core\Loop.cpp" />
+    <ClCompile Include="core\Window.cpp" />
+    <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp" />
+    <ClCompile Include="entities\Entity.cpp" />
+    <ClCompile Include="entities\SpriteEntity.cpp" />
+    <ClCompile Include="managers\EntityManager.cpp" />
+    <ClCompile Include="managers\InputManager.cpp" />
+    <ClCompile Include="managers\SceneManager.cpp" />
+    <ClCompile Include="managers\StateManager.cpp" />
+    <ClCompile Include="managers\SystemManager.cpp" />
+    <ClCompile Include="primitives\Primitives.cpp" />
+    <ClCompile Include="scenes\Scene.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="systems\RenderSystem.cpp" />
+    <ClCompile Include="systems\System.cpp" />
+    <ClCompile Include="systems\physics\ContactListener.cpp" />
+    <ClCompile Include="systems\physics\PhysicsSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -41,7 +128,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -108,16 +195,29 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;BIEMGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <LanguageStandard>
+      </LanguageStandard>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -154,122 +254,6 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="bmAffectedByGravityComponent.h" />
-    <ClInclude Include="bmColor.h" />
-    <ClInclude Include="bmColorComponent.h" />
-    <ClInclude Include="bmComponent.h" />
-    <ClInclude Include="bmEngine.h" />
-    <ClInclude Include="bmEntity.h" />
-    <ClInclude Include="bmFileHandler.h" />
-    <ClInclude Include="bmGravitySystem.h" />
-    <ClInclude Include="bmGroundComponent.h" />
-    <ClInclude Include="bmGroundedComponent.h" />
-    <ClInclude Include="bmInputManager.h" />
-    <ClInclude Include="bmJumpSystem.h" />
-    <ClInclude Include="bmLevelScene.h" />
-    <ClInclude Include="bmLoop.h" />
-    <ClInclude Include="bmMenuScene.h" />
-    <ClInclude Include="bmMovementSystem.h" />
-    <ClInclude Include="bmScoreComponent.h" />
-    <ClInclude Include="bmScoreSystem.h" />
-    <ClInclude Include="bmScoreUIEntity.h" />
-    <ClInclude Include="bmScoreUISystem.h" />
-    <ClInclude Include="bmTextComponent.h" />
-    <ClInclude Include="bmOxygenUISystem.h" />
-    <ClInclude Include="bmUIComponent.h" />
-    <ClInclude Include="bmPhysicsComponent.h" />
-    <ClInclude Include="bmPhysicsSystem.h" />
-    <ClInclude Include="bmGravityComponent.h" />
-    <ClInclude Include="bmPlayerEntity.h" />
-    <ClInclude Include="bmPositionComponent.h" />
-    <ClInclude Include="bmRectangleComponent.h" />
-    <ClInclude Include="bmRenderSystem.h" />
-    <ClInclude Include="bmScene.h" />
-    <ClInclude Include="bmSceneType.h" />
-    <ClInclude Include="bmSpriteEntity.h" />
-    <ClInclude Include="bmSurfaceEntity.h" />
-    <ClInclude Include="bmSystem.h" />
-    <ClInclude Include="bmSystemManager.h" />
-    <ClInclude Include="bmTextureComponent.h" />
-    <ClInclude Include="bmSceneManager.h" />
-    <ClInclude Include="bmEntityManager.h" />
-    <ClInclude Include="bmTransformComponent.h" />
-    <ClInclude Include="bmContactListener.h" />
-    <ClInclude Include="bmEntityFactory.h" />
-    <ClInclude Include="GraphicsDevice.h" />
-    <ClInclude Include="bmOxygenComponent.h" />
-    <ClInclude Include="bmOxygenUIEntity.h" />
-    <ClInclude Include="bmOxygenSystem.h" />
-    <ClInclude Include="PhysicsComponentShape.h" />
-    <ClInclude Include="bmAtmosphereComponent.h" />
-    <ClInclude Include="bmScoreUIFactory.h" />
-    <ClInclude Include="SDLGraphicsDevice.h" />
-    <ClInclude Include="TextureAndUsage.h" />
-    <ClInclude Include="TextureFlip.h" />
-    <ClInclude Include="bmStateManager.h" />
-    <ClInclude Include="Window.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="bmColorComponent.cpp" />
-    <ClCompile Include="bmFileHandler.cpp" />
-    <ClCompile Include="bmGroundComponent.cpp" />
-    <ClCompile Include="bmMovementSystem.cpp" />
-    <ClCompile Include="bmScoreComponent.cpp" />
-    <ClCompile Include="bmScoreSystem.cpp" />
-    <ClCompile Include="bmScoreUIEntity.cpp" />
-    <ClCompile Include="bmScoreUIFactory.cpp" />
-    <ClCompile Include="bmScoreUISystem.cpp" />
-    <ClCompile Include="bmTextComponent.cpp" />
-    <ClCompile Include="bmOxygenUISystem.cpp" />
-    <ClCompile Include="bmJumpSystem.cpp" />
-    <ClCompile Include="bmUIComponent.cpp" />
-    <ClCompile Include="bmGroundedComponent.cpp" />
-    <ClCompile Include="bmGravitySystem.cpp" />
-    <ClCompile Include="bmPhysicsComponent.cpp" />
-    <ClCompile Include="bmPhysicsSystem.cpp" />
-    <ClCompile Include="bmPlanetEarthEntity.h" />
-    <ClCompile Include="bmGravityComponent.cpp" />
-    <ClCompile Include="bmPlanetMoonEntity.h" />
-    <ClCompile Include="bmTextureComponent.cpp" />
-    <ClCompile Include="bmContactListener.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="bmComponent.cpp" />
-    <ClCompile Include="bmEngine.cpp" />
-    <ClCompile Include="bmEntity.cpp" />
-    <ClCompile Include="bmInputManager.cpp" />
-    <ClCompile Include="bmLevelScene.cpp" />
-    <ClCompile Include="bmLoop.cpp" />
-    <ClCompile Include="bmMenuScene.cpp" />
-    <ClCompile Include="bmPlayerEntity.cpp" />
-    <ClCompile Include="bmPositionComponent.cpp" />
-    <ClCompile Include="bmRenderSystem.cpp" />
-    <ClCompile Include="bmScene.cpp" />
-    <ClCompile Include="bmSystem.cpp" />
-    <ClCompile Include="bmSystemManager.cpp" />
-    <ClCompile Include="bmSceneManager.cpp" />
-    <ClCompile Include="bmEntityManager.cpp" />
-    <ClCompile Include="bmOxygenComponent.cpp" />
-    <ClCompile Include="bmOxygenSystem.cpp" />
-    <ClCompile Include="bmAtmosphereComponent.cpp" />
-    <ClCompile Include="SDLGraphicsDevice.cpp" />
-    <ClCompile Include="bmStateManager.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="highscores.csv" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
