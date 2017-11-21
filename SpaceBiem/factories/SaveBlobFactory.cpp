@@ -55,6 +55,7 @@ namespace spacebiem
             saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
         }
 
+        // visited
         map<type_index, bool> planetTypes {
             { type_index(typeid(PlanetEarthEntity)), true },
             { type_index(typeid(PlanetMoonEntity)), true },
@@ -66,6 +67,17 @@ namespace spacebiem
 
         if (find != planetTypes.end()) {
             saveBlobEntityBuilder.writeCollidable(*entity.getComponent<CollidableComponent*>("collidable"));
+
+            // flag position
+            auto components = entity.getComponents<TextureComponent*>("texture");
+
+            for (auto it = components.begin(); it != components.end(); ++it)
+            {
+                auto component = (*it);
+                if (component->getTag() != "flag") continue;
+
+                saveBlobEntityBuilder.writeFlag(*component);
+            }
         }
         
         return saveBlobEntityBuilder.build();

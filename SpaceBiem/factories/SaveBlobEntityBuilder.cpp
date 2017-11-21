@@ -18,7 +18,7 @@ namespace spacebiem
 {
     bool SaveBlobEntityBuilder::prepare(const Entity & entity)
     {
-        map<type_index, string> typemap {
+        map<type_index, string> typemap{
             { type_index(typeid(PlayerEntity)), "player" },
             { type_index(typeid(PlanetEarthEntity)), "earth" },
             { type_index(typeid(PlanetMoonEntity)), "moon" },
@@ -94,6 +94,9 @@ namespace spacebiem
         for (auto it = resources.begin(); it != resources.end(); ++it) {
             saveBlobEntityComponentBuilder.addValue(to_string((*it).second));
         }
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
     }
 
     string SaveBlobEntityBuilder::build()
@@ -102,12 +105,23 @@ namespace spacebiem
 
         for (auto it = componentBlobs.begin(); it != componentBlobs.end(); ++it) {
 
-            if(it != componentBlobs.begin())
+            if (it != componentBlobs.begin())
                 blob += "\n";
 
             blob += entityName + "," + (*it);
         }
 
         return blob;
+    }
+
+    void SaveBlobEntityBuilder::writeFlag(const TextureComponent & texture)
+    {
+        saveBlobEntityComponentBuilder.prepare("flag_component");
+
+        saveBlobEntityComponentBuilder.addValue(to_string(texture.getOffsetX()));
+        saveBlobEntityComponentBuilder.addValue(to_string(texture.getOffsetY()));
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
     }
 }

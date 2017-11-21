@@ -10,6 +10,7 @@ using std::list;
 
 using biemgine::PositionComponent;
 using biemgine::CollidableComponent;
+using biemgine::TextureComponent;
 using biemgine::Entity;
 
 #include "../components/ScoreComponent.h"
@@ -29,6 +30,7 @@ namespace spacebiem
         void writeOxygen(const OxygenComponent & oxygen);
         void writeCollidable(const CollidableComponent & collidable);
         void writeResource(const ResourceComponent & resource);
+        void writeFlag(const TextureComponent & texture);
         string build();
 
     private:
