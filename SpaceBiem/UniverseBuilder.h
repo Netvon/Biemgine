@@ -1,6 +1,9 @@
 #pragma once
 #include "Biemgine.h"
 #include "factories\ResourceFactory.h"
+#include "components\ScoreComponent.h"
+#include "components\OxygenComponent.h"
+#include "components\ResourceComponent.h"
 
 using biemgine::EntityManager;
 using biemgine::RandomGenerator;
