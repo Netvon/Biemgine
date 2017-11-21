@@ -40,8 +40,9 @@ namespace spacebiem
             id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], name);
         }
 
+        auto planet = entityManager->getEntity(id);
+
         if (isDiscovered) {
-            auto planet = entityManager->getEntity(id);
             auto texts = planet->getComponents<TextComponent*>("text");
             for (auto text : texts) {
                 text->setVisible(true);
@@ -56,7 +57,7 @@ namespace spacebiem
                 auto component = (*it);
                 if (component->getTag() != "flag") continue;
 
-                auto planetP = ground->getComponent<PositionComponent*>("position");
+                auto planetP = planet->getComponent<PositionComponent*>("position");
 
                 component->setOffsetX(flagComponent[0]);
                 component->setOffsetY(flagComponent[1]);

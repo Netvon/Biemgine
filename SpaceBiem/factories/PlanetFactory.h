@@ -16,6 +16,8 @@ using biemgine::Entity;
 using biemgine::EntityManager;
 using biemgine::RandomGenerator;
 using biemgine::TextComponent;
+using biemgine::PositionComponent;
+using biemgine::TextureComponent;
 
 namespace spacebiem
 {
