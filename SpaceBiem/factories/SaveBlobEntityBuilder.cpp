@@ -120,6 +120,7 @@ namespace spacebiem
 
         saveBlobEntityComponentBuilder.addValue(to_string(texture.getOffsetX()));
         saveBlobEntityComponentBuilder.addValue(to_string(texture.getOffsetY()));
+        saveBlobEntityComponentBuilder.addValue(to_string(texture.getRotation()));
 
         string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);
