@@ -57,6 +57,13 @@ namespace biemgine
         return *sceneManager;
     }
 
+    vector<Entity *> StateManager::getEntities() const
+    {
+        return getSceneManager()
+            .getCurrentScene()
+            .getEntities();
+    }
+
     Entity * StateManager::getEntity(int id) const
     {
         return getSceneManager()
