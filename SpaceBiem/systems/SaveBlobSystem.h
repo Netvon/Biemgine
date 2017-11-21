@@ -13,13 +13,11 @@ namespace spacebiem
         public System
     {
     public:
-        SaveBlobSystem::SaveBlobSystem();
-        SaveBlobSystem::~SaveBlobSystem();
 
         void after(const float deltaTime) override;
 
     private:
-        SaveBlobFactory * saveBlobFactory = nullptr;
+        SaveBlobFactory saveBlobFactory;
         bool savingBlob = false;
     };
 }

@@ -5,7 +5,7 @@ namespace biemgine
     FileHandler::FileHandler(string filePath, bool overwrite)
     {
         if (overwrite) {
-            currentFile.open(filePath);
+            currentFile.open(filePath, std::fstream::in | std::fstream::out);
         }
         else {
             currentFile.open(filePath, std::fstream::in | std::fstream::out | std::fstream::app);

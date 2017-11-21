@@ -26,7 +26,7 @@ namespace spacebiem
         SaveBlobEntityBuilder();
         ~SaveBlobEntityBuilder();
 
-        void prepare(const Entity & entity);
+        bool prepare(const Entity & entity);
         void writePosition(const PositionComponent & position);
         void writeScore(const ScoreComponent & score);
         void writeOxygen(const OxygenComponent & oxygen);

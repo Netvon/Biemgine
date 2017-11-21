@@ -6,6 +6,9 @@ using biemgine::PositionComponent;
 #include "../components/OxygenComponent.h"
 #include "SaveBlobEntityBuilder.h"
 #include "SaveBlobFactory.h"
+#include "..\entities\PlayerEntity.h"
+
+#include <typeindex>
 
 namespace spacebiem
 {
@@ -17,7 +20,9 @@ namespace spacebiem
 
         for (auto it = entities.begin(); it != entities.end(); it++) {
             string entityBlob = createFromEntity(*(*it));
-            blob.push_back(entityBlob);
+
+            if(!entityBlob.empty())
+                blob.push_back(entityBlob);
         }
 
         return blob;
@@ -26,7 +31,8 @@ namespace spacebiem
     string SaveBlobFactory::createFromEntity(const Entity & entity)
     {
         SaveBlobEntityBuilder saveBlobEntityBuilder{};
-        saveBlobEntityBuilder.prepare(entity);
+        if (!saveBlobEntityBuilder.prepare(entity))
+            return string();
 
         if (entity.hasComponent("position")) {
             saveBlobEntityBuilder.writePosition(*entity.getComponent<PositionComponent*>("position"));
@@ -40,7 +46,7 @@ namespace spacebiem
             saveBlobEntityBuilder.writeOxygen(*entity.getComponent<OxygenComponent*>("oxygen"));
         }
 
-        if (typeid(entity).name() == "PlayerEntity") {
+        if (typeid(entity) == typeid(PlayerEntity)) {
             saveBlobEntityBuilder.writeCollidable(*entity.getComponent<CollidableComponent*>("collidable"));
             saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
         }

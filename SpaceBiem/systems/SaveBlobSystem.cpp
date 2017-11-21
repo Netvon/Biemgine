@@ -5,23 +5,14 @@ using biemgine::StateManager;
 
 namespace spacebiem
 {
-    SaveBlobSystem::SaveBlobSystem()
-    {
-        saveBlobFactory = new SaveBlobFactory();
-    }
-
-    SaveBlobSystem::~SaveBlobSystem()
-    {
-        delete saveBlobFactory;
-    }
-
     void SaveBlobSystem::after(const float deltaTime)
     {
         if (savingBlob || !getStateManager()->getInputManager()->isKeyDown("S"))
             return;
 
         savingBlob = true;
-        vector<string> saveBlob = saveBlobFactory->createFromEntities(getStateManager()->getEntities());
+        auto e = getStateManager()->getEntities();
+        vector<string> saveBlob = saveBlobFactory.createFromEntities(e);
 
         FileHandler fileHandler("data/savegame.csv");
 
