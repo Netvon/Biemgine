@@ -17,7 +17,7 @@ namespace spacebiem
     class SaveBlobFactory
     {
     public:
-        vector<string> createFromEntities(const vector<Entity*> & entities);
+        vector<string> createFromEntities(vector<const Entity *> & entities);
         string createFromEntity(const Entity & entity);
     };
 }

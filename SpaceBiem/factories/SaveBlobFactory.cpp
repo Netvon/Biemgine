@@ -17,7 +17,7 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
-    vector<string> SaveBlobFactory::createFromEntities(const vector<Entity *> & entities)
+    vector<string> SaveBlobFactory::createFromEntities(vector<const Entity *> & entities)
     {
         vector<string> blob;
 

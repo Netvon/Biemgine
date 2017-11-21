@@ -47,7 +47,7 @@ namespace biemgine
 
         SceneManager & getSceneManager() const;
 
-        vector<Entity *> getEntities() const;
+        vector<Entity *>& getEntities() const;
 
     private:
         SceneManager* sceneManager = nullptr;
