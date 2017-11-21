@@ -60,14 +60,12 @@ namespace biemgine
     vector<Entity *> StateManager::getEntities() const
     {
         return getSceneManager()
-            .getCurrentScene()
-            .getEntities();
+            .getCurrentSceneEntities();
     }
 
     Entity * StateManager::getEntity(int id) const
     {
         return getSceneManager()
-            .getCurrentScene()
-            .getEntity(id);
-    };
+            .getCurrentSceneEntity(id);
+    }
 }

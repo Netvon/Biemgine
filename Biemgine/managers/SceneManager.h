@@ -25,7 +25,8 @@ namespace biemgine
         template<class TScene, typename... TParams>
         void navigateTo(TParams&&... arguments);
 
-        Scene & getCurrentScene() const;
+        vector<Entity *> getCurrentSceneEntities() const;
+        Entity* getCurrentSceneEntity(int id) const;
 
     private:
         std::unique_ptr<Scene> currentScene{ nullptr };
