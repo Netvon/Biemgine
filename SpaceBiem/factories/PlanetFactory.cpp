@@ -80,7 +80,7 @@ namespace spacebiem
                     entities.push_back(new PlanetToxicEntity(
                         pX,
                         pY,
-                        { 127, 0, 255, 255 },
+                        { 20, 221, 53, 255 },
                         p_size,
                         p_size,
                         scoreBonus["toxic"],

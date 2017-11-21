@@ -72,7 +72,7 @@ namespace spacebiem
                 addEntity<PlanetSandEntity>(planetsX, heightCounter, Color{ 213,207,105,255 }, 40, 40, 0, 10.f);
             }
             else if (p.first == "toxic") {
-                addEntity<PlanetToxicEntity>(planetsX, heightCounter, Color{ 127, 0, 255, 255 }, 40, 40, 0, 10.f);
+                addEntity<PlanetToxicEntity>(planetsX, heightCounter, Color{ 20, 221, 53, 255 }, 40, 40, 0, 10.f);
             }
             
             addEntity<TextUIEntity>(planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
