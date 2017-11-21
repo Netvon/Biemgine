@@ -48,7 +48,6 @@ namespace spacebiem
             vector<int> resources;
 
             for (auto& i : o.second)
-            for(auto& i : o.second)
             {
                 string component = i.first.c_str();
 
