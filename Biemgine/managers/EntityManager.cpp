@@ -24,12 +24,12 @@ namespace biemgine
         manager->preUpdate();
 
         for (Entity * e : entities) {
-            manager->acceptForUpdate(*e);
+
+            if (e->isAlive())
+                manager->acceptForUpdate(*e);
         }
 
         manager->postUpdate();
-
-        removeDeadEntities();
     }
 
     void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
@@ -37,23 +37,12 @@ namespace biemgine
         manager->preUpdate(deltaTime);
 
         for (Entity * e : entities) {
-            manager->acceptForUpdate(*e, deltaTime);
+
+            if(e->isAlive())
+                manager->acceptForUpdate(*e, deltaTime);
         }
 
         manager->postUpdate(deltaTime);
-
-        removeDeadEntities();
-    }
-
-    void EntityManager::removeDeadEntities()
-    {
-        for (vector<Entity*>::iterator e = entities.begin(); e != entities.end();)
-        {
-            if (!(*e)->isAlive())
-                e = entities.erase(e);
-            else
-                ++e;
-        }
     }
 
     Entity* EntityManager::getEntity(int id) const

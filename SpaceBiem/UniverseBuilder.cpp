@@ -32,7 +32,7 @@ namespace spacebiem
         map<string, float> atmosphereM = fileParser.atmosphereContent();
         map<string, int> scoreBonus = fileParser.planetScoreContent();
 
-        for each (auto o in levelMap)
+        for (auto& o : levelMap)
         {
             string id = o.first.c_str();
             string type = id.substr(id.find('_') + 1, id.size());
@@ -47,6 +47,7 @@ namespace spacebiem
             vector<float> flagComponent;
             vector<int> resources;
 
+            for (auto& i : o.second)
             for(auto& i : o.second)
             {
                 string component = i.first.c_str();

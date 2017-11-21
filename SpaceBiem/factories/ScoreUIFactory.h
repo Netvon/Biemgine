@@ -14,7 +14,7 @@ namespace spacebiem
         public EntityFactory
     {
     public:
-        vector<Entity*> sceneStart(int windowW, int windowH) override;
+        void sceneStart(int windowW, int windowH, shared_ptr<EntityManager> entityManager) override;
         void sceneEnd(std::vector<Entity*> entities) override;
     };
 }

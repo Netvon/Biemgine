@@ -123,8 +123,8 @@ namespace spacebiem
         string previousKey;
 
         FileHandler file(fileName);
-                
-        for each (auto v in file.getValues())
+        
+        for (auto& v : file.getValues())
         {
              currentKey = v[0];
 
@@ -134,7 +134,6 @@ namespace spacebiem
              {
                  vector.push_back(v[j]);
              }
-
 
              if (currentKey != previousKey) {
                  innerMap.clear();

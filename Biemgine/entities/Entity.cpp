@@ -18,11 +18,11 @@ namespace biemgine
 
     Entity::~Entity()
     {
-        for (std::pair<std::string, const Component*> pair : componentHashmap) {
+        for (auto& pair : componentHashmap) {
             delete pair.second;
         }
 
-        componentHashmap.clear();
+        //componentHashmap.clear();
     }
 
     bool Entity::hasComponent(const string & name) const

@@ -3,15 +3,6 @@
 
 namespace spacebiem
 {
-    vector<Entity*> PlanetFactory::sceneStart(int windowW, int windowH)
-    {
-        return vector<Entity*>();
-    }
-
-    void PlanetFactory::sceneEnd(std::vector<Entity*> entities)
-    {
-    }
-
     void PlanetFactory::create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, ResourceFactory resourceFactory , NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus)
     {
         if (type == "moon") {
@@ -76,5 +67,3 @@ namespace spacebiem
 
     }
 }
-
-

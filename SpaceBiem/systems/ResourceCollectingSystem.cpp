@@ -29,11 +29,10 @@ namespace spacebiem
 
     void ResourceCollectingSystem::after()
     {
-
-        for each (auto entity in resource)
+        for (auto& entity : resource)
         {
             auto col = entity->getComponent<CollidableComponent*>("collidable");
-            for each (auto bonus in resourceBonus)
+            for (auto& bonus : resourceBonus)
             {
                 if (col->collides(*bonus)) {
                     auto rbc = bonus->getComponent<ResourceBonusComponent*>("resourcebonus");
@@ -48,7 +47,6 @@ namespace spacebiem
                 }
             }
         }
-
     }
 
     void ResourceCollectingSystem::onSceneSwitch()

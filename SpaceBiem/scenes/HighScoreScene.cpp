@@ -34,9 +34,7 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/highscores.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
 
         ScoreUIFactory sf;
-        for (auto e : sf.sceneStart(wW, wH)) {
-            addEntity(e);
-        }
+        sf.sceneStart(wW, wH, getEntityManager());
 
         addEntity<PlanetEarthEntity>(static_cast<float>(-100), static_cast<float>(wH - 200), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, static_cast<float>(10));
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
