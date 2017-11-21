@@ -147,6 +147,18 @@
     <ClInclude Include="components\CameraComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="factories\SaveBlobFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\SaveBlobEntityBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\SaveBlobSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -274,6 +286,18 @@
     </ClCompile>
     <ClCompile Include="components\CameraComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobEntityBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\SaveBlobSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

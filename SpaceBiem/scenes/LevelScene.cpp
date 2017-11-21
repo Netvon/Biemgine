@@ -22,6 +22,7 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\SaveBlobSystem.h"
 
 #include <functional>
 
@@ -34,6 +35,7 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
+        addSystem<SaveBlobSystem>();
         addSystem<CameraSystem>();
        
         enableRendering();
@@ -114,7 +116,6 @@ namespace spacebiem
         else {
             isPauseButtonDown = false;
         }
-
     }
 
     void LevelScene::update()
