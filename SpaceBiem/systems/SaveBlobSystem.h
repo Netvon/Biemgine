@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Biemgine.h"
+
+#include "stdafx.h"
 #include <vector>
 
 using biemgine::System;
@@ -20,6 +22,7 @@ namespace spacebiem
     private:
         SaveBlobFactory saveBlobFactory;
         bool savingBlob = false;
+        std::time_t nextSaveBlobTime = 0;
 
         std::vector<const Entity*> entities;
     };

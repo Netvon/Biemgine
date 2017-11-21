@@ -2,6 +2,7 @@
 #include "SaveBlobSystem.h"
 
 using biemgine::StateManager;
+using std::time;
 
 namespace spacebiem
 {
@@ -12,8 +13,11 @@ namespace spacebiem
 
     void SaveBlobSystem::after(const float deltaTime)
     {
-        if (savingBlob || !getStateManager()->getInputManager()->isKeyDown("S")) {
-            entities.clear();
+        if (nextSaveBlobTime && nextSaveBlobTime > time(NULL)) {
+            return;
+        }
+
+        if (!getStateManager()->getInputManager()->isKeyDown("S")) {
             return;
         }
 
@@ -28,5 +32,7 @@ namespace spacebiem
         }
 
         savingBlob = false;
+
+        nextSaveBlobTime = time(NULL) + 2;
     }
 }
