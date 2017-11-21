@@ -13,11 +13,9 @@ namespace spacebiem
 
     void SaveBlobSystem::after(const float deltaTime)
     {
-        if (nextSaveBlobTime && nextSaveBlobTime > time(NULL)) {
-            return;
-        }
-
-        if (!getStateManager()->getInputManager()->isKeyDown("S")) {
+        if (nextSaveBlobTime && nextSaveBlobTime > time(NULL)
+            || !getStateManager()->getInputManager()->isKeyDown("S")) {
+            entities.clear();
             return;
         }
 

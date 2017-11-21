@@ -45,4 +45,10 @@ namespace biemgine
     {
         currentFile << value << "\n";
     }
+
+    bool FileHandler::remove(const string filePath)
+    {
+        const char *str = filePath.c_str();
+        return std::remove(str);
+    }
 }

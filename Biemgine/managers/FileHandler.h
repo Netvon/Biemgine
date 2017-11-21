@@ -25,6 +25,8 @@ namespace biemgine
         void writeLine(vector<string> values);
         void writeLine(string value);
 
+        bool remove(string filePath);
+
     private:
         fstream currentFile;
     };
