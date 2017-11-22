@@ -26,7 +26,7 @@ namespace spacebiem
         void sceneStart(int windowW, int windowH, std::shared_ptr<EntityManager> entityManager) override {};
         void sceneEnd(std::vector<Entity*> entities) override;
         void generatePlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager);
-        void createPlanetResources(int x, int y, string name, std::shared_ptr<EntityManager> entityManager);
+        void createPlanetResources(float x, float y, int w, int h, string name, std::shared_ptr<EntityManager> entityManager);
     private:
 
         map<string, map<string, vector<float>>> spawnRates;

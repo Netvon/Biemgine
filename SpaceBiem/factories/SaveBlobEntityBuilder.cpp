@@ -9,6 +9,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
 #include "..\entities\PlanetSandEntity.h"
+#include "..\entities\ResourceEntity.h"
 
 using std::map;
 using std::sprintf;
@@ -24,7 +25,8 @@ namespace spacebiem
             { type_index(typeid(PlanetEarthEntity)), "earth" },
             { type_index(typeid(PlanetMoonEntity)), "moon" },
             { type_index(typeid(PlanetToxicEntity)), "toxic" },
-            { type_index(typeid(PlanetSandEntity)), "sand" }
+            { type_index(typeid(PlanetSandEntity)), "sand" },
+            { type_index(typeid(ResourceEntity)), "resource" }
         };
 
         auto find = typemap.find(type_index(typeid(entity)));
@@ -131,6 +133,28 @@ namespace spacebiem
         saveBlobEntityComponentBuilder.addValue(to_string(physics.getVelocity().x));
         saveBlobEntityComponentBuilder.addValue(to_string(physics.getVelocity().y));
         saveBlobEntityComponentBuilder.addValue(to_string(position.getRotation()));
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
+    }
+
+    void SaveBlobEntityBuilder::writeResourceBonus(const ResourceBonusComponent & resourceBonus)
+    {
+        saveBlobEntityComponentBuilder.prepare("resource_bonus_component");
+
+        saveBlobEntityComponentBuilder.addValue(resourceBonus.getName());
+        saveBlobEntityComponentBuilder.addValue(to_string(resourceBonus.getAmount()));
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
+    }
+
+    void SaveBlobEntityBuilder::writeScoreBonus(const ScoreBonusComponent & scoreBonus)
+    {
+        saveBlobEntityComponentBuilder.prepare("score_bonus_component");
+
+        saveBlobEntityComponentBuilder.addValue(to_string(scoreBonus.getScoreBonus()));
+        saveBlobEntityComponentBuilder.addValue(to_string(scoreBonus.isScoreGiven()));
 
         string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);

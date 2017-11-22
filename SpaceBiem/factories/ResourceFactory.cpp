@@ -31,10 +31,7 @@ namespace spacebiem
         }
     }
 
-    void ResourceFactory::createPlanetResources(int x, int y, string name, std::shared_ptr<EntityManager> entityManager) {
-        int w = 30;
-        int h = 30;
-
+    void ResourceFactory::createPlanetResources(float x, float y, int w, int h, string name, std::shared_ptr<EntityManager> entityManager) {
         entityManager->addEntity<ResourceEntity>(x, y, Color::White(), w, h, name, scores[name]);
     }
 

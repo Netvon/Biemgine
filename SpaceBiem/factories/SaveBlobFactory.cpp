@@ -3,6 +3,7 @@
 using biemgine::PositionComponent;
 
 #include "../components/ScoreComponent.h"
+#include "../components/ScoreBonusComponent.h"
 #include "../components/OxygenComponent.h"
 #include "SaveBlobEntityBuilder.h"
 #include "SaveBlobFactory.h"
@@ -59,6 +60,14 @@ namespace spacebiem
 
         if (typeid(entity) == typeid(PlayerEntity)) {
             saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
+        }
+
+        if (entity.hasComponent("resourcebonus")) {
+            saveBlobEntityBuilder.writeResourceBonus(*entity.getComponent<ResourceBonusComponent*>("resourcebonus"));
+        }
+
+        if(entity.hasComponent("scorebonus")) {
+            saveBlobEntityBuilder.writeScoreBonus(*entity.getComponent<ScoreBonusComponent*>("scorebonus"));
         }
 
         // visited

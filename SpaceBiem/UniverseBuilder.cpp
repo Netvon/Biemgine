@@ -49,6 +49,7 @@ namespace spacebiem
             vector<float> flagComponent;
             vector<int> resources;
             vector<float> physics;
+            string resourceName;
 
             for (auto& i : o.second)
             {
@@ -87,6 +88,9 @@ namespace spacebiem
                     physics.push_back(stod(i.second[1]));
                     physics.push_back(stod(i.second[2]));
                 }
+                else if (component == "resource_bonus_component") {
+                    resourceName = i.second[0];
+                }
             }
 
             if (type == "player") {
@@ -114,7 +118,7 @@ namespace spacebiem
             }
             else if (type == "resource") {
                 // name & score moeten nog uitgelezen worden
-                resourceFactory.createPlanetResources(stoi(xPos), stoi(yPos), "metal", entityManager);
+                resourceFactory.createPlanetResources(stod(xPos), stod(yPos), stoi(width), stoi(height), resourceName, entityManager);
             }
             else {
                 if (newGame) {
