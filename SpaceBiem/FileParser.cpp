@@ -123,9 +123,16 @@ namespace spacebiem
         string previousKey;
 
         FileHandler file(fileName);
+
+        int i = 0;
         
         for (auto& v : file.getValues())
         {
+            if (i == 0) {
+                i++;
+                continue;
+            }
+
              currentKey = v[0];
 
              vector<string> vector;
@@ -143,6 +150,8 @@ namespace spacebiem
             levelMap[v[0]] = innerMap;
 
             previousKey = currentKey;
+
+            i++;
         }
 
         return levelMap;

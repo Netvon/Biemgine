@@ -1,3 +1,4 @@
+entity_id_type,component_type,value_1,value_2,value_3,value_4
 1_sand,position_component,425,100,300,300
 2_player,position_component,1000,400,25,50
 2_player,score_component,100
