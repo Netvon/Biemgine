@@ -26,8 +26,8 @@ namespace spacebiem
         void setWindowHeight(int height);
 
     private:
-        float windowWidth;
-        float windowHeight;
+        int windowWidth;
+        int windowHeight;
 
         float deltaX;
         float deltaY;
