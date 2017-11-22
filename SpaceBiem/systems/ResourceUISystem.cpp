@@ -13,27 +13,28 @@ namespace spacebiem
     void ResourceUISystem::update(const Entity & entity)
     {
         if (entity.hasComponent("resources")) {
-            auto oc = entity.getComponent<ResourceComponent*>("resources");
+            auto oc = entity.getComponent<ResourceComponent>("resources");
 
             if (resourceMap.find(oc) == resourceMap.end()) {
                 resourceMap[oc] = false;
             }
 
             return;
-        };
+        }
 
-        if (!entity.hasComponent("resourcebonus")) return;
-        if (!entity.hasComponent("color")) return;
-        if (!entity.hasComponent("position")) return;
-        if (!entity.hasComponent("text")) return;
+        if (!entity.hasComponent("resourcebonus")
+            || !entity.hasComponent("color")
+            || !entity.hasComponent("position")
+            || !entity.hasComponent("text"))
+            return;
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
-        auto rbc = entity.getComponent<ResourceBonusComponent*>("resourcebonus");
-        auto cc = entity.getComponent<ColorComponent*>("color");
-        auto tx = entity.getComponent<TextComponent*>("text");
-        auto uc = entity.getComponent<UIComponent*>("ui");
+        auto pc = entity.getComponent<PositionComponent>("position");
+        auto rbc = entity.getComponent<ResourceBonusComponent>("resourcebonus");
+        auto cc = entity.getComponent<ColorComponent>("color");
+        auto tx = entity.getComponent<TextComponent>("text");
+        auto uc = entity.getComponent<UIComponent>("ui");
 
-        ResourceComponent* oRef = uc->getComponentReference<ResourceComponent*>();
+        auto oRef = uc->getComponentReference<ResourceComponent>();
 
         if (oRef == nullptr) {
             for (auto x : resourceMap)

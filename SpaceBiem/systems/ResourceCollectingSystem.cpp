@@ -32,14 +32,14 @@ namespace spacebiem
 
         for each (auto entity in resource)
         {
-            auto col = entity->getComponent<CollidableComponent*>("collidable");
+            auto col = entity->getComponent<CollidableComponent>("collidable");
             for each (auto bonus in resourceBonus)
             {
                 if (col->collides(*bonus)) {
-                    auto rbc = bonus->getComponent<ResourceBonusComponent*>("resourcebonus");
-                    auto sbc = bonus->getComponent<ScoreBonusComponent*>("scorebonus");
-                    auto rc = entity->getComponent<ResourceComponent*>("resources");
-                    auto sc = entity->getComponent<ScoreComponent*>("score");
+                    auto rbc = bonus->getComponent<ResourceBonusComponent>("resourcebonus");
+                    auto sbc = bonus->getComponent<ScoreBonusComponent>("scorebonus");
+                    auto rc = entity->getComponent<ResourceComponent>("resources");
+                    auto sc = entity->getComponent<ScoreComponent>("score");
 
                     rc->addResource(rbc->getName(), rbc->getAmount());
                     sc->addScore(sbc->getScoreBonus());

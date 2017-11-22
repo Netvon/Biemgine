@@ -24,8 +24,8 @@ namespace spacebiem
         addComponent<ScriptComponent>("script",
             [this]()
         {
-            auto ui = getComponent<UIComponent*>("ui");
-            auto texture = getComponent<TextureComponent*>("texture");
+            auto ui = getComponent<UIComponent>("ui");
+            auto texture = getComponent<TextureComponent>("texture");
 
             if (!ui->isEnabled()) {
                 texture->setColor(texture->getColor().WithAlpha(108));

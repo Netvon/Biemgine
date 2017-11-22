@@ -14,7 +14,7 @@ namespace biemgine {
         addComponent<PositionComponent>("position", position.x, position.y);
         addComponent<ScriptComponent>("script", [this, getValue, color]()
         {
-            auto txt = getComponent<TextComponent*>("text");
+            auto txt = getComponent<TextComponent>("text");
             txt->setText(getValue(), color);
         });
     }

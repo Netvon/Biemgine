@@ -17,6 +17,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
 
     private:
-        std::map<ResourceComponent*, bool> resourceMap;
+        std::map<std::shared_ptr<ResourceComponent>, bool> resourceMap;
     };
 }

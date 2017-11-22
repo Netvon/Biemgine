@@ -22,11 +22,11 @@ namespace biemgine
 
     Entity::~Entity()
     {
-        for (std::pair<std::string, const Component*> pair : componentHashmap) {
+        /*for (std::pair<std::string, const Component*> pair : componentHashmap) {
             delete pair.second;
         }
 
-        componentHashmap.clear();
+        componentHashmap.clear();*/
     }
 
     bool Entity::hasComponent(const string & name) const
@@ -59,11 +59,11 @@ namespace biemgine
         Rect rect;
         rect.hasSize = false;
 
-        if (!hasComponent("position"))
+        if (!hasComponent("position") || !hasComponent("texture"))
             return rect;
 
-        auto pc = getComponent<PositionComponent*>("position");
-        auto tc = getComponents<TextureComponent*>("texture");
+        auto pc = getComponent<PositionComponent>("position");
+        auto tc = getComponents<TextureComponent>("texture");
 
         for (auto texture : tc)
         {
@@ -115,12 +115,17 @@ namespace biemgine
         return rect;
     }
 
-	void Entity::setTag(string pTag)
-	{
-		tag = pTag;
-	}
-	string Entity::getTag() const
-	{
-		return tag;
-	}
+    bool Entity::hasTag() const
+    {
+        return tag.empty();
+    }
+
+    void Entity::setTag(string pTag)
+    {
+        tag = pTag;
+    }
+    string Entity::getTag() const
+    {
+        return tag;
+    }
 }

@@ -19,6 +19,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
 
     private:
-        CameraComponent* camera = nullptr;
+        std::shared_ptr<CameraComponent> camera = nullptr;
     };
 }

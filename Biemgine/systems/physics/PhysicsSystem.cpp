@@ -56,9 +56,9 @@ namespace biemgine
         }
 
 
-        auto affectedByGravity = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
-        auto physics = entity.getComponent<PhysicsComponent*>("physics");
-        auto position = entity.getComponent<PositionComponent*>("position");
+        auto affectedByGravity = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
+        auto position = entity.getComponent<PositionComponent>("position");
 
         auto body = bodies.at(entity.getId());
 
@@ -130,8 +130,8 @@ namespace biemgine
 
     b2Body* PhysicsSystem::createBody(const Entity & entity) {
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
-        auto physics = entity.getComponent<PhysicsComponent*>("physics");
+        auto pc = entity.getComponent<PositionComponent>("position");
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
 
         b2BodyDef newBodyDef;
 

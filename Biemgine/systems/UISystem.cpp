@@ -39,8 +39,8 @@ namespace biemgine
         if (sceneWasSwitched)
             return;
 
-        auto ui = entity.getComponent<UIComponent*>("ui");
-        auto position = entity.getComponent<PositionComponent*>("position");
+        auto ui = entity.getComponent<UIComponent>("ui");
+        auto position = entity.getComponent<PositionComponent>("position");
 
         auto size = ui->getSize();
 

@@ -14,7 +14,7 @@ namespace spacebiem
     {
         if (!entity.hasComponent("score")) return;
 
-        auto oc = entity.getComponent<ScoreComponent*>("score");
+        auto oc = entity.getComponent<ScoreComponent>("score");
 
         if (!entity.hasComponent("ui")) {
             if (scoreMap.find(oc) == scoreMap.end()) {
@@ -25,11 +25,11 @@ namespace spacebiem
 
         if (!entity.hasComponent("position")) return;
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
-        auto uc = entity.getComponent<UIComponent*>("ui");
+        auto pc = entity.getComponent<PositionComponent>("position");
+        auto uc = entity.getComponent<UIComponent>("ui");
 
         // If the UI doesn't have the component which to draw, pick one from the map.
-        ScoreComponent* oRef = uc->getComponentReference<ScoreComponent*>();
+        auto oRef = uc->getComponentReference<ScoreComponent>();
 
         if (oRef == nullptr) {
             for (auto x : scoreMap)
@@ -55,7 +55,7 @@ namespace spacebiem
             name = stringName;
         }
 
-        auto tx = entity.getComponent<TextComponent*>("text");
+        auto tx = entity.getComponent<TextComponent>("text");
 
         Color highlightColor { 255, 255, 255 };
 

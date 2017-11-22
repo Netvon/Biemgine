@@ -14,7 +14,7 @@ namespace spacebiem
         else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") )
         {
             if (entity.hasComponent("resourcebonus") && entity.hasComponent("grounded")) {
-                auto grounded = entity.getComponent<biemgine::GroundedComponent*>("grounded");
+                auto grounded = entity.getComponent<biemgine::GroundedComponent>("grounded");
 
                 if (grounded->isGrounded())
                     return;
@@ -28,15 +28,15 @@ namespace spacebiem
     {
         Vector centerOfGravity;
         Vector centerOfSatellite;
-        PhysicsComponent * satPhysics;
+        std::shared_ptr<PhysicsComponent> satPhysics;
     };
 
     void GravitySystem::after()
     {
         for (auto satellite : satellites) {
-            auto satPosition = satellite->getComponent<PositionComponent*>("position");
-            auto satPhysics = satellite->getComponent<PhysicsComponent*>("physics");
-            auto satAffected = satellite->getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            auto satPosition = satellite->getComponent<PositionComponent>("position");
+            auto satPhysics = satellite->getComponent<PhysicsComponent>("physics");
+            auto satAffected = satellite->getComponent<AffectedByGravityComponent>("affectedByGravity");
             //auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
             Vector centerOfSatellite {
@@ -48,8 +48,8 @@ namespace spacebiem
             bool forceApplied = false;
 
             for (auto point : gravityPoints) {
-                auto gravPosition = point->getComponent<PositionComponent*>("position");
-                auto gravity = point->getComponent<GravityComponent*>("gravity");
+                auto gravPosition = point->getComponent<PositionComponent>("position");
+                auto gravity = point->getComponent<GravityComponent>("gravity");
 
                 Vector centerOfGravity {
                     gravPosition->getX() + gravity->getX() + gravity->getWidth() / 2.0f,
@@ -79,7 +79,7 @@ namespace spacebiem
         satellites.clear();
     }
 
-    void GravitySystem::applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, PhysicsComponent * satPhysics, AffectedByGravityComponent* affected, PositionComponent* satPosition)
+    void GravitySystem::applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, std::shared_ptr<PhysicsComponent> satPhysics, std::shared_ptr<AffectedByGravityComponent> affected, std::shared_ptr<PositionComponent> satPosition)
     {
         auto force = centerOfGravity - centerOfSatellite;
 

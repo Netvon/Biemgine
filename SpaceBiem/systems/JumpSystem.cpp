@@ -23,14 +23,14 @@ namespace spacebiem
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto grounded = entity.getComponent<GroundedComponent*>("grounded");
-            auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            auto grounded = entity.getComponent<GroundedComponent>("grounded");
+            auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
                 return;
 
-            auto position = entity.getComponent<PositionComponent*>("position");
-            auto physics = entity.getComponent<PhysicsComponent*>("physics");
+            auto position = entity.getComponent<PositionComponent>("position");
+            auto physics = entity.getComponent<PhysicsComponent>("physics");
 
             Vector centerOfSatellite {
                 position->getX() + physics->getColliderW() / 2.0f,

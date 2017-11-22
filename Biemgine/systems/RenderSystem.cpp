@@ -21,10 +21,10 @@ namespace biemgine
         if (!entity.hasComponent("position"))
             return;
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
+        auto pc = entity.getComponent<PositionComponent>("position");
 
         if (entity.hasComponent("text")) {
-            auto txs = entity.getComponents<TextComponent*>("text");
+            auto txs = entity.getComponents<TextComponent>("text");
 
             for (auto tx : txs) {
                 if (tx->isVisible()) {
@@ -45,7 +45,7 @@ namespace biemgine
             return;
 
         if (entity.hasComponent("texture")) {
-            auto tc = entity.getComponents<TextureComponent*>("texture");       
+            auto tc = entity.getComponents<TextureComponent>("texture");
 
             for (auto tex : tc) {
                 if (!tex->isVisible()) continue;
@@ -57,7 +57,7 @@ namespace biemgine
                     tex->getWidth(),
                     tex->getHeight(),
                     pc->getRotation() + tex->getRotation(),
-                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent*>("color")->getColor() : tex->getColor(),
+                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent>("color")->getColor() : tex->getColor(),
                     tex->getLayer(),
                     false,
                     tex->getFlip()
@@ -67,7 +67,7 @@ namespace biemgine
 
         if (entity.hasComponent("rectangle"))
         {
-            auto rectangle = entity.getComponent<RectangleComponent*>("rectangle");
+            auto rectangle = entity.getComponent<RectangleComponent>("rectangle");
 
             graphicsDevice->drawSquare(
                 static_cast<int>(pc->getX()),
@@ -124,6 +124,6 @@ namespace biemgine
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
 
 
-    DrawText::DrawText(Font pFont, const string& text, int x, int y, Color color, TextComponent* component, bool center) :
+    DrawText::DrawText(Font pFont, const string& text, int x, int y, Color color, std::shared_ptr<TextComponent> component, bool center) :
         font(pFont),text(text), x(x), y(y), color(color), component(component), center(center) {}
 }
