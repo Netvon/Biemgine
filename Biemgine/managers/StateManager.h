@@ -28,7 +28,7 @@ namespace biemgine
         void resumeGame();
         bool isPaused();
 
-        void drawOverlay();
+        void drawOverlay(Font font);
         void drawBackground(const string& backgroundPath);
 
         void setInputManager(const InputManager* manager) {

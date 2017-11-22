@@ -12,6 +12,8 @@
 #include "..\entities\ScoreUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
 
+#include "..\globals\Fonts.h"
+
 using biemgine::TextUIEntity;
 using biemgine::SpriteEntity;
 
@@ -48,14 +50,14 @@ namespace spacebiem
         auto gameoverTexture = "textures/game_over.png";
 
         addEntity<SpriteEntity>(gameoverTexture, static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
-        addEntity<TextUIEntity>(resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
-        addEntity<TextUIEntity>(planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
+        addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
+        addEntity<TextUIEntity>(Fonts::Roboto(), planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
 
         float heightCounter = 250;
 
         for (auto& r : resources) {
             addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 40, 40, 100u);
-            addEntity<TextUIEntity>(resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
+            addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
             heightCounter = heightCounter + 85.f;
         }
 
@@ -75,12 +77,12 @@ namespace spacebiem
                 addEntity<PlanetToxicEntity>(planetsX, heightCounter, Color{ 20, 221, 53, 255 }, 40, 40, 0, 10.f);
             }
             
-            addEntity<TextUIEntity>(planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+            addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
             heightCounter = heightCounter + 85.f;
         }
 
 
-        addEntity<TextUIEntity>(x - 25, 600, Color::White(), "Total score: " + std::to_string(score));
+        addEntity<TextUIEntity>(Fonts::Roboto(), x - 25, 600, Color::White(), "Total score: " + std::to_string(score));
 
 
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);

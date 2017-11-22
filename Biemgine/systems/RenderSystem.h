@@ -27,13 +27,14 @@ namespace biemgine
 
     struct DrawText
     {
+        Font font;
         string text;
         int x, y;
         Color color;
         TextComponent* component;
         bool center;
 
-        DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center);
+        DrawText(Font font, const string& text, int x, int y, Color color, TextComponent* component, bool center);
     };
 
     class RenderSystem

@@ -16,6 +16,9 @@
     <Filter Include="factories">
       <UniqueIdentifier>{45e250cf-c590-4fd8-a595-cd8630d0b927}</UniqueIdentifier>
     </Filter>
+    <Filter Include="globals">
+      <UniqueIdentifier>{71017a41-0af0-4f12-9cd7-3691f6835499}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="systems\OxygenSystem.h">
@@ -146,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="components\CameraComponent.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Fonts.h">
+      <Filter>globals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

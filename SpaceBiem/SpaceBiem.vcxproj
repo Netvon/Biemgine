@@ -178,6 +178,7 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="globals\Fonts.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />

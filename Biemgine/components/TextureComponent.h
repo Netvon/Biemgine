@@ -14,7 +14,14 @@ namespace biemgine
         public Component
     {
     public:
-        TextureComponent(string path, float offsetX, float offsetY, int w = -1, int h = -1, unsigned int layer = 0, bool pVisible = true, const string pTag = "", Color color = Color::White(), float rotation = 0.0f);
+        TextureComponent(
+            string path,
+            float offsetX, float offsetY, int w = -1, int h = -1,
+            unsigned int layer = 0, bool pVisible = true,
+            const string pTag = "",
+            Color color = Color::White(),
+            float rotation = 0.0f
+        );
         ~TextureComponent();
 
         const string& getPath();

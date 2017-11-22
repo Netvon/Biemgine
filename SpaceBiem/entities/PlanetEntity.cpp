@@ -15,6 +15,7 @@ using biemgine::RandomGenerator;
 #include "../components/GravityComponent.h"
 #include "../components/AtmosphereComponent.h"
 #include "../components/ScoreBonusComponent.h"
+#include "..\globals\Fonts.h"
 
 namespace spacebiem
 {
@@ -34,8 +35,8 @@ namespace spacebiem
 
         addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
         addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "gravityfield", { color.r, color.g, color.b, 50}));
-        addComponent("text", new TextComponent(to_string(pScoreBonus), { 255,255,255, 50 }, w / 2.f, h / 2.f + 20.f, false, true));
-        addComponent("text", new TextComponent(pName, { 255,255,255,255 }, w / 2.f, h / 2.f - 10.f, false, true));
+        addComponent("text", new TextComponent(Fonts::Roboto(), to_string(pScoreBonus), { 255,255,255, 50 }, w / 2.f, h / 2.f + 20.f, false, true));
+        addComponent("text", new TextComponent(Fonts::Roboto(), pName, { 255,255,255,255 }, w / 2.f, h / 2.f - 10.f, false, true));
 
         int flagHeight = 60;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56f, flagHeight, 1u, false, "flag"));
