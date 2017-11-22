@@ -53,6 +53,10 @@ namespace spacebiem
             saveBlobEntityBuilder.writeOxygen(*entity.getComponent<OxygenComponent*>("oxygen"));
         }
 
+        if (entity.hasComponent("physics") && entity.hasComponent("position")) {
+            saveBlobEntityBuilder.writePhysics(*entity.getComponent<PhysicsComponent*>("physics"), *entity.getComponent<PositionComponent*>("position"));
+        }
+
         if (typeid(entity) == typeid(PlayerEntity)) {
             saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
         }

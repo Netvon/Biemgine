@@ -11,6 +11,7 @@ using std::list;
 using biemgine::PositionComponent;
 using biemgine::CollidableComponent;
 using biemgine::TextureComponent;
+using biemgine::PhysicsComponent;
 using biemgine::Entity;
 
 #include "../components/ScoreComponent.h"
@@ -31,6 +32,7 @@ namespace spacebiem
         void writeVisited(const CollidableComponent & collidable, const TextureComponent & flagTexture);
         void writeResource(const ResourceComponent & resource);
         void writeFlag(const TextureComponent & flagTexture);
+        void writePhysics(const PhysicsComponent & physics, const PositionComponent & position);
         string build();
 
     private:

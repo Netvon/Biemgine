@@ -6,6 +6,8 @@
 #include "entities\PlayerEntity.h"
 
 using biemgine::Entity;
+using biemgine::PhysicsComponent;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -30,7 +32,7 @@ namespace spacebiem
         }
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();
-        map<string, int> scoreBonus = fileParser.planetScoreContent();
+        map<string, int> scoreBonus = fileParser.planetScoreContent(); 
 
         for (auto& o : levelMap)
         {
@@ -46,6 +48,7 @@ namespace spacebiem
             bool isDiscovered = false;
             vector<float> flagComponent;
             vector<int> resources;
+            vector<float> physics;
 
             for (auto& i : o.second)
             {
@@ -79,6 +82,11 @@ namespace spacebiem
                     resources.push_back(stod(i.second[2].c_str()));
                     resources.push_back(stod(i.second[3].c_str()));
                 }
+                else if (component == "physics_component") {
+                    physics.push_back(stod(i.second[0]));
+                    physics.push_back(stod(i.second[1]));
+                    physics.push_back(stod(i.second[2]));
+                }
             }
 
             if (type == "player") {
@@ -92,11 +100,16 @@ namespace spacebiem
                     auto scoreComponent = player->getComponent<ScoreComponent*>("score");
                     scoreComponent->setScore(stod(score));
                     auto resourceComponent = player->getComponent<ResourceComponent*>("resources");
+                    auto physicsComponent = player->getComponent<PhysicsComponent*>("physics");
+                    auto positionComponent = player->getComponent<PositionComponent*>("position");
 
                     resourceComponent->addResource("metal", resources[0]);
                     resourceComponent->addResource("diamond", resources[1]);
                     resourceComponent->addResource("uranium", resources[2]);
                     resourceComponent->addResource("anti-matter", resources[3]);
+
+                    physicsComponent->setVelocity({ physics[0], physics[1] }, true);
+                    positionComponent->setRotation(physics[2]);
                 }
             }
             else if (type == "resource") {

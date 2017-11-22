@@ -13,6 +13,7 @@
 using std::map;
 using std::sprintf;
 using std::type_index;
+using biemgine::Vector;
 
 namespace spacebiem
 {
@@ -118,6 +119,18 @@ namespace spacebiem
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getOffsetX()));
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getOffsetY()));
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getRotation()));
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
+    }
+
+    void SaveBlobEntityBuilder::writePhysics(const PhysicsComponent & physics, const PositionComponent & position)
+    {
+        saveBlobEntityComponentBuilder.prepare("physics_component");
+
+        saveBlobEntityComponentBuilder.addValue(to_string(physics.getVelocity().x));
+        saveBlobEntityComponentBuilder.addValue(to_string(physics.getVelocity().y));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getRotation()));
 
         string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);
