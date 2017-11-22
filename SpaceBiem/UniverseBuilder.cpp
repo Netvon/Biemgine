@@ -69,15 +69,15 @@ namespace spacebiem
                     }
                 }
                 else if (component == "flag_component") {
-                    flagComponent[0] = static_cast<float>(atof(i.second[0].c_str()));
-                    flagComponent[1] = static_cast<float>(atof(i.second[1].c_str()));
-                    flagComponent[2] = static_cast<float>(atof(i.second[2].c_str()));
+                    flagComponent.push_back(stod(i.second[0].c_str()));
+                    flagComponent.push_back(stod(i.second[1].c_str()));
+                    flagComponent.push_back(stod(i.second[2].c_str()));
                 }
                 else if (component == "resource_component") {
-                    resources[0] = atoi(i.second[0].c_str());
-                    resources[1] = atoi(i.second[1].c_str());
-                    resources[2] = atoi(i.second[2].c_str());
-                    resources[3] = atoi(i.second[3].c_str());
+                    resources.push_back(stod(i.second[0].c_str()));
+                    resources.push_back(stod(i.second[1].c_str()));
+                    resources.push_back(stod(i.second[2].c_str()));
+                    resources.push_back(stod(i.second[3].c_str()));
                 }
             }
 

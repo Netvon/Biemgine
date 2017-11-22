@@ -49,7 +49,7 @@ namespace spacebiem
             }
         }
 
-        if (flagComponent[2]) {
+        if (!flagComponent.empty()) {
             auto components = planet->getComponents<TextureComponent*>("texture");
 
             for (auto it = components.begin(); it != components.end(); ++it)

@@ -83,8 +83,7 @@ namespace spacebiem
             uB.build(getEntityManager(), true);
         }
         else {
-            //Moet nog goede bestandsnaam krijgen van kevin
-            //uB.build(getEntityManager(), false);
+            uB.build(getEntityManager(), false);
         }       
     }
 
