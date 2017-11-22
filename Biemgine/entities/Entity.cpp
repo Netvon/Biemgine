@@ -67,10 +67,10 @@ namespace biemgine
 
         for (auto texture : tc)
         {
-            int xMin = pc->getX() + texture->getOffsetX() - texture->getWidth() / 2;
-            int xMax = pc->getX() + texture->getOffsetX() + texture->getWidth() / 2;
-            int yMin = pc->getY() + texture->getOffsetY() - texture->getHeight() / 2;
-            int yMax = pc->getY() + texture->getOffsetY() + texture->getHeight() / 2;
+            int xMin = static_cast<int>(pc->getX() + texture->getOffsetX() - texture->getWidth() / 2);
+            int xMax = static_cast<int>(pc->getX() + texture->getOffsetX() + texture->getWidth() / 2);
+            int yMin = static_cast<int>(pc->getY() + texture->getOffsetY() - texture->getHeight() / 2);
+            int yMax = static_cast<int>(pc->getY() + texture->getOffsetY() + texture->getHeight() / 2);
 
             if (!rect.hasSize)
             {
@@ -115,12 +115,13 @@ namespace biemgine
         return rect;
     }
 
-	void Entity::setTag(string pTag)
-	{
-		tag = pTag;
-	}
-	string Entity::getTag() const
-	{
-		return tag;
-	}
+    void Entity::setTag(string pTag)
+    {
+        tag = pTag;
+    }
+
+    string Entity::getTag() const
+    {
+        return tag;
+    }
 }

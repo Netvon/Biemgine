@@ -27,7 +27,7 @@ namespace spacebiem
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);
         addComponent("score", new ScoreComponent);
-        addComponent("affectedByGravity", new AffectedByGravityComponent(true));
+        addComponent<AffectedByGravityComponent>("affectedByGravity", true);
         addComponent("resources", new ResourceComponent());
         addComponent("collidable", new CollidableComponent);
         addComponent("movement", new MovementComponent);

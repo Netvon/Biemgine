@@ -43,10 +43,11 @@ namespace biemgine
     }
 
     void TextureComponent::setOffsetX(int x) {
-        offsetX = x;
+        offsetX = static_cast<float>(x);
     }
+
     void TextureComponent::setOffsetY(int y) {
-        offsetY = y;
+        offsetY = static_cast<float>(y);
     }
 
     unsigned int TextureComponent::getLayer() const {
