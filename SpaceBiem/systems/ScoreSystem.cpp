@@ -32,11 +32,12 @@ namespace spacebiem
             sc->addScore(sbc->getScoreBonus());
 
             sbc->setScoreGiven(true);
+
             auto texts = ground->getComponents<TextComponent*>("text");
+
             for (auto text : texts) {
                 text->setVisible(true);
             }
-
 
             auto components = ground->getComponents<TextureComponent*>("texture");
 
@@ -44,6 +45,7 @@ namespace spacebiem
             {
                 auto component = (*it);
                 if (component->getTag() != "flag") continue;
+                if (component->isVisible()) break;
 
                 auto planetP = ground->getComponent<PositionComponent*>("position");
 
