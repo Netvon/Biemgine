@@ -81,10 +81,8 @@ namespace spacebiem
         auto find = planetTypes.find(type_index(typeid(entity)));
 
         if (find != planetTypes.end()) {
-            // flag position
             auto flagTextureComponent = getTextureComponentByTag(entity, "flag");
-
-            saveBlobEntityBuilder.writeVisited(*entity.getComponent<CollidableComponent*>("collidable"), flagTextureComponent);
+            saveBlobEntityBuilder.writeFlag(flagTextureComponent);            
         }
         
         return saveBlobEntityBuilder.build();
