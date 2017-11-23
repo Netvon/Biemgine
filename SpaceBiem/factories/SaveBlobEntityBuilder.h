@@ -31,7 +31,6 @@ namespace spacebiem
         void writePosition(const PositionComponent & position, const TextureComponent & backgroundTexture);
         void writeScore(const ScoreComponent & score);
         void writeOxygen(const OxygenComponent & oxygen);
-        void writeVisited(const CollidableComponent & collidable, const TextureComponent & flagTexture);
         void writeResource(const ResourceComponent & resource);
         void writeFlag(const TextureComponent & flagTexture);
         void writePhysics(const PhysicsComponent & physics, const PositionComponent & position);
