@@ -50,6 +50,7 @@ namespace spacebiem
             vector<int> resources;
             vector<float> physics;
             string resourceName;
+            string planetScore;
 
             for (auto& i : o.second)
             {
@@ -67,8 +68,10 @@ namespace spacebiem
                 else if (component == "score_component") {
                     score = i.second[0];
                 }
-                else if (component == "collidable_component") {
-                    if (i.second[0] == "1") {
+                else if (component == "score_bonus_component") {
+                    planetScore = i.second[0];
+
+                    if (i.second[1] == "1") {
                         isDiscovered = true;
                     }
                 }
@@ -125,7 +128,7 @@ namespace spacebiem
                     planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
                 }
                 else {
-                    planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, "name", atmosphereM, scoreBonus, isDiscovered, flagComponent);
+                    planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, "name", atmosphereM, planetScore, isDiscovered, flagComponent);
                 }  
             }
         }

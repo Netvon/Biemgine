@@ -26,6 +26,6 @@ namespace spacebiem
     public:
         ~PlanetFactory() {};
         void create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, ResourceFactory resourceFactory, NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus);
-        void load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, map<string, int> scoreBonus, bool isDiscovered, vector<float> flagComponent);
+        void load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, int planetScore, bool isDiscovered, vector<float> flagComponent);
     };
 }

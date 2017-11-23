@@ -23,21 +23,21 @@ namespace spacebiem
         }
     }
 
-    void PlanetFactory::load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, map<string, int> scoreBonus, bool isDiscovered, vector<float> flagComponent)
+    void PlanetFactory::load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, int planetScore, bool isDiscovered, vector<float> flagComponent)
     {
         int id;
 
         if (type == "moon") {
-            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, scoreBonus["moon"], name);
+            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, planetScore, name);
         }
         else if (type == "earth") {
-            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::EarthAtmosphere(), width, height, scoreBonus["earth"], atmosphereM["earth"], name);
+            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::EarthAtmosphere(), width, height, planetScore, atmosphereM["earth"], name);
         }
         else if (type == "sand") {
-            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::SandAtmosphere(), width, height, scoreBonus["sand"], atmosphereM["sand"], name);
+            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::SandAtmosphere(), width, height, planetScore, atmosphereM["sand"], name);
         }
         else if (type == "toxic") {
-            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], name);
+            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name);
         }
 
         auto planet = entityManager->getEntity(id);
