@@ -145,4 +145,14 @@ namespace spacebiem
         string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);
     }
+
+    void SaveBlobEntityBuilder::writeName(const TextComponent & name)
+    {
+        saveBlobEntityComponentBuilder.prepare("name_component");
+
+        saveBlobEntityComponentBuilder.addValue(name.getText());
+
+        string componentBlob = saveBlobEntityComponentBuilder.build();
+        componentBlobs.push_back(componentBlob);
+    }
 }

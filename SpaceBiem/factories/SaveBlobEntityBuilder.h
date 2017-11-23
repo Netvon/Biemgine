@@ -12,6 +12,7 @@ using biemgine::PositionComponent;
 using biemgine::CollidableComponent;
 using biemgine::TextureComponent;
 using biemgine::PhysicsComponent;
+using biemgine::TextComponent;
 using biemgine::Entity;
 
 #include "../components/ScoreComponent.h"
@@ -36,6 +37,7 @@ namespace spacebiem
         void writePhysics(const PhysicsComponent & physics, const PositionComponent & position);
         void writeResourceBonus(const ResourceBonusComponent & resourceBonus);
         void writeScoreBonus(const ScoreBonusComponent & scoreBonus);
+        void writeName(const TextComponent & text);
         string build();
 
     private:
