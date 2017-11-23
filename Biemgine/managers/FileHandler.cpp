@@ -1,3 +1,4 @@
+#include <sys/stat.h>
 #include "FileHandler.h"
 
 namespace biemgine
@@ -50,5 +51,11 @@ namespace biemgine
     {
         const char *str = filePath.c_str();
         return std::remove(str);
+    }
+
+    bool FileHandler::exists(const string filePath)
+    {
+        struct stat buffer;
+        return (stat(filePath.c_str(), &buffer) == 0);
     }
 }
