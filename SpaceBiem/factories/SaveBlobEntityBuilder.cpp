@@ -68,23 +68,6 @@ namespace spacebiem
         componentBlobs.push_back(saveBlobEntityComponentBuilder.build());
     }
 
-    void SaveBlobEntityBuilder::writeVisited(const CollidableComponent & collidable, const TextureComponent & flagTexture)
-    {
-        saveBlobEntityComponentBuilder.prepare("collidable_component");
-
-        auto collisions = collidable.getCollisions();
-        bool playerCollided = collisions.size() > 0;
-
-        saveBlobEntityComponentBuilder.addValue(playerCollided ? "1" : "0");
-
-        string componentBlob = saveBlobEntityComponentBuilder.build();
-        componentBlobs.push_back(componentBlob);
-
-        if (playerCollided) {
-            writeFlag(flagTexture);
-        }
-    }
-
     void SaveBlobEntityBuilder::writeResource(const ResourceComponent & resource)
     {
         saveBlobEntityComponentBuilder.prepare("resource_component");
@@ -116,11 +99,14 @@ namespace spacebiem
 
     void SaveBlobEntityBuilder::writeFlag(const TextureComponent & flagTexture)
     {
+        if (!flagTexture.isVisible()) return;
+
         saveBlobEntityComponentBuilder.prepare("flag_component");
 
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getOffsetX()));
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getOffsetY()));
         saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.getRotation()));
+        saveBlobEntityComponentBuilder.addValue(to_string(flagTexture.isVisible()));
 
         string componentBlob = saveBlobEntityComponentBuilder.build();
         componentBlobs.push_back(componentBlob);
