@@ -128,7 +128,7 @@ namespace spacebiem
                     planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
                 }
                 else {
-                    planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, "name", atmosphereM, planetScore, isDiscovered, flagComponent);
+                    planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, "name", atmosphereM, stoi(planetScore), isDiscovered, flagComponent);
                 }  
             }
         }
