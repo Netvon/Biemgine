@@ -15,6 +15,6 @@ namespace spacebiem
     {
     public:
         virtual void sceneStart(int windowWidth, int windowH, shared_ptr<EntityManager> entityManager) = 0;
-        virtual void sceneEnd(std::vector<Entity*> entities) = 0;
+        virtual void sceneEnd(shared_ptr<EntityManager> entityManager) = 0;
     };
 }

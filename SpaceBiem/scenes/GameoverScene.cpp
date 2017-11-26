@@ -94,8 +94,8 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x - 25, 700, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
         [this](StateManager* manager)
         {
-            ScoreUIFactory sf;
-            sf.sceneEnd(getEntities());
+            /*ScoreUIFactory sf;
+            sf.sceneEnd(getEntities());*/
             manager->navigateTo<HighScoreScene>(score);
         });
         addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);

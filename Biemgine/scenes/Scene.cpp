@@ -55,11 +55,6 @@ namespace biemgine
     {
         return entityManager->addEntity(entity);
     }
-
-    std::vector<Entity*>& Scene::getEntities() const
-    {
-        return entityManager->getEntities();
-    }
     
     void Scene::sceneEnd() {}
 

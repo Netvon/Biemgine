@@ -32,7 +32,7 @@ namespace spacebiem
         }
     }
 
-    void ScoreUIFactory::sceneEnd(std::vector<Entity*> entities)
+    void ScoreUIFactory::sceneEnd(shared_ptr<EntityManager> entityManager)
     {
         FileParser fh;
 
@@ -46,7 +46,9 @@ namespace spacebiem
             name = stringName;
         }
 
-        for (Entity* e : entities) {
+        for (auto it = entityManager->begin(); it != entityManager->end(); it++) {
+            auto e = (*it);
+
             if (e->hasComponent("score") && !e->hasComponent("ui")) {
                 auto sc = e->getComponent<ScoreComponent*>("score");
                 fh.writeScore(name, sc->getScore());

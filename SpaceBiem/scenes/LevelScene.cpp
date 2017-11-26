@@ -89,8 +89,8 @@ namespace spacebiem
 
     void LevelScene::sceneEnd() {
 
-        /*ScoreUIFactory sf;
-        sf.sceneEnd(getEntities());*/
+        ScoreUIFactory sf;
+        sf.sceneEnd(getEntityManager());
     }
 
     void LevelScene::input()

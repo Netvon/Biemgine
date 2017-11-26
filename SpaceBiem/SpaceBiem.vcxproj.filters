@@ -245,9 +245,6 @@
     <ClCompile Include="components\ResourceComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="factories\ResourceFactory.cpp">
-      <Filter>factories</Filter>
-    </ClCompile>
     <ClCompile Include="entities\ResourceUIEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
@@ -278,9 +275,6 @@
     <ClCompile Include="factories\NameGenerator.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\GameoverScene.cpp">
-      <Filter>scenes</Filter>
-    </ClCompile>
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
@@ -305,6 +299,12 @@
     </ClCompile>
     <ClCompile Include="systems\SaveBlobSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
