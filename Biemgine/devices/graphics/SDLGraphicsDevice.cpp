@@ -6,7 +6,7 @@
 
 namespace biemgine {
 
-    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window, bool maximize)
+    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
     {
         renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -18,6 +18,8 @@ namespace biemgine {
             std::cout << TTF_GetError() << std::endl;
         }
 
+        //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
         //font = TTF_OpenFont("Roboto-Regular.ttf", 20);
 
         SDL_Rect viewport = { 0, 0, 0, 0 };
@@ -27,9 +29,6 @@ namespace biemgine {
         //SDL_RenderSetScale(renderer, 0.25f, 0.25f);
 
         SDL_RenderSetLogicalSize(renderer, viewport.w, viewport.h);
-
-        if(maximize)
-            SDL_MaximizeWindow(window);
     }
 
     SDLGraphicsDevice::~SDLGraphicsDevice()

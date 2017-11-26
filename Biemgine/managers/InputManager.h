@@ -2,6 +2,7 @@
 
 #include "dlldef.h"
 #include "..\primitives\Primitives.h"
+#include "..\core\Window.h"
 
 namespace biemgine
 {
@@ -10,6 +11,7 @@ namespace biemgine
     public:
         InputManager();
 
+        void setWindow(const Window * pWindow);
         void update();
         bool isKeyDown(const char* key) const;
         Point getMouseLocation() const;
@@ -18,5 +20,6 @@ namespace biemgine
         bool isMiddleMouseDown() const;
     private:
         const unsigned char* keyStates;
+        const Window* window;
     };
 }

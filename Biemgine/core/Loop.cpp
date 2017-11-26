@@ -15,6 +15,8 @@ namespace biemgine
     {
         window = pWindow;
 
+        im.setWindow(pWindow);
+
         created();
         startLoop();
     }
