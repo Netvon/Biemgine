@@ -26,6 +26,7 @@ namespace biemgine
         void writeLine(string value);
 
         bool remove(string filePath);
+        static bool exists(string filePath);
 
     private:
         fstream currentFile;

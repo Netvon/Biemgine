@@ -82,7 +82,10 @@ namespace spacebiem
 
         if (find != planetTypes.end()) {
             auto flagTextureComponent = getTextureComponentByTag(entity, "flag");
-            saveBlobEntityBuilder.writeFlag(flagTextureComponent);            
+            saveBlobEntityBuilder.writeFlag(flagTextureComponent);
+
+            auto nameTextComponent = getTextComponentByTag(entity, "name");
+            saveBlobEntityBuilder.writeName(nameTextComponent);
         }
         
         return saveBlobEntityBuilder.build();
@@ -91,6 +94,19 @@ namespace spacebiem
     TextureComponent & SaveBlobFactory::getTextureComponentByTag(const Entity & entity, const string & pTag)
     {
         auto components = entity.getComponents<TextureComponent*>("texture");
+
+        for (auto it = components.begin(); it != components.end(); ++it)
+        {
+            auto component = (*it);
+            if (component->getTag() != pTag) continue;
+
+            return *component;
+        }
+    }
+
+    TextComponent & SaveBlobFactory::getTextComponentByTag(const Entity & entity, const string & pTag)
+    {
+        auto components = entity.getComponents<TextComponent*>("text");
 
         for (auto it = components.begin(); it != components.end(); ++it)
         {

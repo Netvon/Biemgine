@@ -12,6 +12,7 @@ using std::type_index;
 
 using biemgine::Entity;
 using biemgine::TextureComponent;
+using biemgine::TextComponent;
 
 namespace spacebiem
 {
@@ -22,6 +23,7 @@ namespace spacebiem
         string createFromEntity(const Entity & entity);
 
     private:
-        TextureComponent& getTextureComponentByTag(const Entity & pEntity, const string & pTag);
+        TextureComponent & getTextureComponentByTag(const Entity & pEntity, const string & pTag);
+        TextComponent & getTextComponentByTag(const Entity & pEntity, const string & pTag);
     };
 }
