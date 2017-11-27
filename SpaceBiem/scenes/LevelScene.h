@@ -18,12 +18,14 @@ namespace spacebiem
         void created() override;
         void sceneEnd() override;
 
-        LevelScene(StateManager& manager) :
-            Scene(manager) {};
+        LevelScene(StateManager& manager, bool newGame = true) :
+            Scene(manager),
+            newGame(newGame){};
 
         ~LevelScene() {}
 
     private:
         bool isPauseButtonDown = false;
+        bool newGame;
     };
 }

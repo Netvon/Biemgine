@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "LevelScene.h"
 
+#include "..\UniverseBuilder.h"
+
 #include "..\entities\PlayerEntity.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
@@ -22,6 +24,7 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\SaveBlobSystem.h"
 
 #include "..\globals\Fonts.h"
 
@@ -36,6 +39,7 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
+        addSystem<SaveBlobSystem>();
         addSystem<CameraSystem>();
        
         enableRendering();
@@ -54,10 +58,8 @@ namespace spacebiem
         addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>();
 
-        constexpr float width = 15.f * 2.f;
-        constexpr float height = 25.f * 2.f;
-
-        auto playerId = addEntity<PlayerEntity>(600, 500, Color::White(), width, height);
+        float width = 15 * 2;
+        float height = 25 * 2;
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
@@ -78,20 +80,19 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        //addEntity<PlanetEarthEntity>(800, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
-        //addEntity<PlanetEarthEntity>(800+1050, static_cast<float>(wH - 1000), Color::White(), 500, 500, 0, 10.f);
-
-        PlanetFactory pf;
-        for (auto e : pf.sceneStart(wW, wH)) {
-            addEntity(e);
+        UniverseBuilder uB;
+        if (newGame) {
+            uB.build(getEntityManager(), true);
         }
+        else {
+            uB.build(getEntityManager(), false);
+        }       
     }
 
     void LevelScene::sceneEnd() {
 
         ScoreUIFactory sf;
-        sf.sceneEnd(getEntities());
-        //getTransitionManager().navigateTo<GameoverScene>();
+        sf.sceneEnd(getEntityManager());
     }
 
     void LevelScene::input()
@@ -116,7 +117,6 @@ namespace spacebiem
         else {
             isPauseButtonDown = false;
         }
-
     }
 
     void LevelScene::update()

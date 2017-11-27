@@ -23,6 +23,10 @@ namespace biemgine
 
         vector<vector<string>> getValues();
         void writeLine(vector<string> values);
+        void writeLine(string value);
+
+        bool remove(string filePath);
+        static bool exists(string filePath);
 
     private:
         fstream currentFile;

@@ -30,8 +30,6 @@ namespace biemgine
         std::shared_ptr<EntityManager> getEntityManager() const;
         /*std::shared_ptr<SystemManager> getSystemManager() const;*/
 
-        std::vector<Entity*> getEntities() const;
-
         virtual void sceneEnd();
 
         void enablePhysics();
