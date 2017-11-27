@@ -54,4 +54,14 @@ namespace biemgine
 
         return nullptr;
     }
+
+    Entity * EntityManager::getEntity(string tag) const
+    {
+        for (auto entity = entities.begin(); entity != entities.end(); ++entity)
+        {
+            if ((*entity)->getTag() == tag) return (*entity);
+        }
+
+        return nullptr;
+    }
 }

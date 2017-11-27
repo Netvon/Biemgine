@@ -70,9 +70,16 @@ namespace spacebiem
                     if (texture->isPausedOrStopped())
                         texture->play();
 
-                    auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                    auto maxSpeed = 7.5f / 3.0f;
-                    texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                    if (physics->getVelocity().length() > 1.0f) {
+
+                        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+                        auto maxSpeed = 7.5f / 3.0f;
+                        texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                    }
+                    else
+                    {
+                        texture->stop();
+                    }
                 }
                 else {
                     texture->stop();

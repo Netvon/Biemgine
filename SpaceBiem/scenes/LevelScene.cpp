@@ -69,9 +69,9 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
         addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
 
-        /*addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
+        /*addEntity<TextEntity>(Fonts::Consolas(12), "", Vector{ 1000.f, 100.f }, true, Color::White(), [this]()
         {
-            auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
+            auto player = getEntityManager()->getEntity("player")->getComponent<PhysicsComponent>("physics");
             auto velo = player->getVelocity();
 
             return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
