@@ -62,6 +62,9 @@ namespace biemgine
 
         auto body = bodies.at(entity.getId());
 
+        if(physics->getHasCustomVelocity())
+            body->SetLinearVelocity({ pixelToMeter(physics->getVelocity().x), pixelToMeter(physics->getVelocity().y) });
+
         position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
         position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
 

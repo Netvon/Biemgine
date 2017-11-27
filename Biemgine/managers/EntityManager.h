@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "dlldef.h"
 #include "..\entities\Entity.h"
 #include "SystemManager.h"
@@ -19,9 +20,12 @@ namespace biemgine
         void updateEntities(std::shared_ptr<SystemManager> manager);
         void updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime);
 
-        std::vector<Entity*> getEntities() const
-        {
-            return entities;
+        auto begin() const {
+            return entities.begin();
+        }
+
+        auto end() const {
+            return entities.end();
         }
 
         Entity* getEntity(int id) const;

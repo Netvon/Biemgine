@@ -18,6 +18,7 @@ namespace biemgine
         auto im = getStateManager()->getInputManager();
 
         currentMouseLocation = im->getMouseLocation();
+
         isLeftMouseDown = im->isLeftMouseDown();
 
         if (sceneWasSwitched && clickCoolDown > 0)

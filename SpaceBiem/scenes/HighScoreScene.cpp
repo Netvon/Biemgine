@@ -35,9 +35,7 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/highscores.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
 
         ScoreUIFactory sf;
-        for (auto e : sf.sceneStart(wW, wH)) {
-            addEntity(e);
-        }
+        sf.sceneStart(wW, wH, getEntityManager());
 
         if (lastScore >= 0) {
             addEntity<ScoreUIEntity>(x, 670, lastScore, "Last score");

@@ -60,7 +60,6 @@ namespace biemgine
     Entity * StateManager::getEntity(int id) const
     {
         return getSceneManager()
-            .getCurrentScene()
-            .getEntity(id);
-    };
+            .getCurrentSceneEntity(id);
+    }
 }

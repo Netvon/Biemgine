@@ -2,17 +2,21 @@
 
 #include "GameoverSystem.h"
 
+using biemgine::FileHandler;
+
 namespace spacebiem
 {
-
     void GameoverSystem::update(const Entity & entity)
     {
-        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
         if (!entity.hasComponent("oxygen") ||
-            entity.hasComponent("ui") ||
-            oc->getOxygenAmount() > oc->getOxygenScale())
+            entity.hasComponent("ui")) {
             return;
+        }
 
+        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
+        if (oc->getOxygenAmount() > oc->getOxygenScale()) {
+            return;
+        }
 
         int score = 0;
         map<string, int> resources = map<string, int>();
@@ -22,10 +26,12 @@ namespace spacebiem
             auto sc = entity.getComponent<ScoreComponent*>("score");
             score = sc->getScore();
         }
+
         if (entity.hasComponent("resources")) {
             auto rc = entity.getComponent<ResourceComponent*>("resources");
             resources = rc->getResources();
         }
+
         if (entity.hasComponent("collidable")) {
             auto cc = entity.getComponent<CollidableComponent*>("collidable");
             for (auto c : cc->getCollisions()) {
@@ -39,11 +45,11 @@ namespace spacebiem
                     planetsScore[planet->getTag()]++;
                 }
             }
-        }        
+        }
+
+        FileHandler fileHandler{""};
+        fileHandler.remove("data/savegame.csv");
 
         getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
     }
-
-
-
 }
