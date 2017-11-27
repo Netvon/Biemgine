@@ -86,7 +86,7 @@ namespace spacebiem
         }
         else {
             uB.build(getEntityManager(), false);
-        }       
+        }
     }
 
     void LevelScene::sceneEnd() {
