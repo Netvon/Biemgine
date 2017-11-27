@@ -8,12 +8,13 @@ namespace spacebiem
 {
     void GameoverSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("oxygen") ||
-            entity.hasComponent("ui")) {
+        if (!entity.hasComponent("oxygen")
+            || entity.hasComponent("ui")) {
             return;
         }
 
-        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
+        auto oc = entity.getComponent<OxygenComponent>("oxygen");
+
         if (oc->getOxygenAmount() > oc->getOxygenScale()) {
             return;
         }
@@ -34,14 +35,15 @@ namespace spacebiem
 
         if (entity.hasComponent("collidable")) {
             auto cc = entity.getComponent<CollidableComponent>("collidable");
+
             for (auto c : cc->getCollisions()) {
                 auto planet = getStateManager()->getEntity(c.first);
 
                 if (planet == nullptr || !planet->hasComponent("scorebonus")) continue;
 
-                auto sb = planet->getComponent<ScoreBonusComponent>("scorebonus");
+                auto sbc = planet->getComponent<ScoreBonusComponent>("scorebonus");
 
-                if (sb->isScoreGiven()) {
+                if (sbc->isScoreGiven()) {
                     planetsScore[planet->getTag()]++;
                 }
             }

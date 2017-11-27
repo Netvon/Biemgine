@@ -106,13 +106,13 @@ namespace spacebiem
                 if (!newGame) {
                     auto player = entityManager->getEntity(id);
 
-                    auto oxygenComponent = player->getComponent<OxygenComponent*>("oxygen");
+                    auto oxygenComponent = player->getComponent<OxygenComponent>("oxygen");
                     oxygenComponent->setOxygenAmount(stod(oxygenAmount));
-                    auto scoreComponent = player->getComponent<ScoreComponent*>("score");
+                    auto scoreComponent = player->getComponent<ScoreComponent>("score");
                     scoreComponent->setScore(stod(score));
-                    auto resourceComponent = player->getComponent<ResourceComponent*>("resources");
-                    auto physicsComponent = player->getComponent<PhysicsComponent*>("physics");
-                    auto positionComponent = player->getComponent<PositionComponent*>("position");
+                    auto resourceComponent = player->getComponent<ResourceComponent>("resources");
+                    auto physicsComponent = player->getComponent<PhysicsComponent>("physics");
+                    auto positionComponent = player->getComponent<PositionComponent>("position");
 
                     resourceComponent->addResource("metal", resources[0]);
                     resourceComponent->addResource("diamond", resources[1]);
