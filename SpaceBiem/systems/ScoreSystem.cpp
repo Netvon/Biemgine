@@ -33,6 +33,7 @@ namespace spacebiem
 
             sbc->setScoreGiven(true);
             auto texts = ground->getComponents<TextComponent>("text");
+
             for (auto text : texts) {
                 text->setVisible(true);
             }
@@ -44,6 +45,7 @@ namespace spacebiem
             {
                 auto component = (*it);
                 if (component->getTag() != "flag") continue;
+                if (component->isVisible()) break;
 
                 auto planetP = ground->getComponent<PositionComponent>("position");
 

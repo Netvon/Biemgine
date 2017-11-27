@@ -20,7 +20,10 @@ namespace biemgine
 
             int id = initWindow(title, width, height, SDL_WINDOW_SHOWN);
 
-            gd = new SDLGraphicsDevice(getWindow(id), maximize);
+            gd = new SDLGraphicsDevice(getWindow(id));
+
+            if (maximize)
+                SDL_MaximizeWindow(getWindow(id));
         }
     }
 
@@ -34,7 +37,7 @@ namespace biemgine
         SDL_Quit();
     }
 
-    int Window::getWidth() const
+    int Window::getRenderWidth() const
     {
         auto renderer = SDL_GetRenderer(getWindow(windowId));
         int w, h = 0;
@@ -43,13 +46,40 @@ namespace biemgine
         return w;
     }
 
-    int Window::getHeight() const
+    int Window::getRenderHeight() const
     {
         auto renderer = SDL_GetRenderer(getWindow(windowId));
         int w, h = 0;
         SDL_RenderGetLogicalSize(renderer, &w, &h);
 
         return h;
+    }
+
+    Size Window::getActualSize() const
+    {
+        auto window = getWindow(windowId);
+        Size size;
+        SDL_GetWindowSize(window, &size.width, &size.height);
+
+        return size;
+    }
+
+    Point Window::actualToRender(Point actual) const
+    {
+        Size a = getActualSize();
+        Size r = { getRenderWidth(), getRenderHeight() };
+
+        auto scaleH = static_cast<float>(r.height) / static_cast<float>(a.height);
+        auto scaleW = 1.f;
+
+        if (a.width != r.width) {
+            scaleW = static_cast<float>(r.width) / static_cast<float>(a.width);
+        }
+
+        return {
+            static_cast<int>(ceil(actual.x * scaleW)),
+            static_cast<int>(ceil(actual.y * scaleH))
+        };
     }
 
     GraphicsDevice * Window::getGraphicsDevice() const

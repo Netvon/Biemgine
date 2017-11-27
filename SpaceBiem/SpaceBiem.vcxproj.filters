@@ -111,9 +111,6 @@
     <ClInclude Include="components\ResourceComponent.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="systems\ResourceCollectingSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="entities\ResourceUIEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
     <ClInclude Include="systems\GameoverSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h" />
+    <ClInclude Include="systems\ResourceCollectingSystem.h" />
+    <ClInclude Include="UniverseBuilder.h" />
     <ClInclude Include="factories\NameGenerator.h">
       <Filter>factories</Filter>
     </ClInclude>
@@ -149,6 +149,21 @@
     </ClInclude>
     <ClInclude Include="components\CameraComponent.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\SaveBlobFactory.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\SaveBlobEntityBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\SaveBlobSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ResourceCollectingSystem.h">
+      <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="globals\Fonts.h">
       <Filter>globals</Filter>
@@ -236,12 +251,6 @@
     <ClCompile Include="components\ResourceComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="factories\ResourceFactory.cpp">
-      <Filter>factories</Filter>
-    </ClCompile>
     <ClCompile Include="entities\ResourceUIEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
@@ -272,14 +281,36 @@
     <ClCompile Include="factories\NameGenerator.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\GameoverScene.cpp">
-      <Filter>scenes</Filter>
+    <ClCompile Include="scenes\GameoverScene.cpp" />
+    <ClCompile Include="factories\ResourceFactory.cpp" />
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
+    <ClCompile Include="UniverseBuilder.cpp" />
+    <ClCompile Include="systems\ResourceCollectingSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="systems\CameraSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\CameraComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobFactory.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobEntityBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\SaveBlobSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\ResourceFactory.cpp">
+      <Filter>factories</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

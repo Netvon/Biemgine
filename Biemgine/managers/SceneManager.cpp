@@ -49,8 +49,13 @@ namespace biemgine
         return stateManager;
     }
 
-    Scene & SceneManager::getCurrentScene() const
+    std::shared_ptr<EntityManager> SceneManager::getEntityManager() const
     {
-        return *currentScene;
+        return currentScene->getEntityManager();
+    }
+
+    Entity * SceneManager::getCurrentSceneEntity(int id) const
+    {
+        return currentScene->getEntity(id);
     }
 }

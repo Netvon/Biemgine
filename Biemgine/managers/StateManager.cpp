@@ -9,12 +9,12 @@ namespace biemgine
 
     int StateManager::getWindowWidth() const
     {
-        return window->getWidth();
+        return window->getRenderWidth();
     }
 
     int StateManager::getWindowHeight() const
     {
-        return window->getHeight();
+        return window->getRenderHeight();
     }
 
     void StateManager::pauseGame()
@@ -60,7 +60,6 @@ namespace biemgine
     Entity * StateManager::getEntity(int id) const
     {
         return getSceneManager()
-            .getCurrentScene()
-            .getEntity(id);
-    };
+            .getCurrentSceneEntity(id);
+    }
 }

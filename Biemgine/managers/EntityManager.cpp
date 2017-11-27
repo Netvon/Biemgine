@@ -38,7 +38,7 @@ namespace biemgine
 
         for (Entity * e : entities) {
 
-            if (e->isAlive())
+            if(e->isAlive())
                 manager->acceptForUpdate(*e, deltaTime);
         }
 

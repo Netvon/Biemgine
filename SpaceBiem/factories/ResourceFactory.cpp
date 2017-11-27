@@ -10,24 +10,14 @@ namespace spacebiem
         spawnRates = fileParser.resourceSpawnRateContent();
         scores = fileParser.resourceScoreContent();
     }
-    vector<Entity*> ResourceFactory::sceneStart(int windowW, int windowH)
-    {
-        return vector<Entity*>();
-    }
 
-    void ResourceFactory::sceneEnd(std::vector<Entity*> entities)
+    void ResourceFactory::generatePlanetResources(int x, int y, int r, string planet, std::shared_ptr<EntityManager> entityManager)
     {
-    }
-
-    vector<ResourceEntity*> ResourceFactory::getPlanetResources(int x, int y, int r, string planet)
-    {
-        vector<ResourceEntity*> resources;
-
         int w = 30;
         int h = 30;
 
         map<string, vector<float>> spawnResources = spawnRates[planet];
-        for each(auto sr in spawnResources) {
+        for (auto& sr : spawnResources) {
             for (int i = RandomGenerator::getInstance().generate(sr.second[0], sr.second[1]); i > 0; i--) {
 
                 if (RandomGenerator::getInstance().generate(0, 100) > sr.second[2] * 100) continue;
@@ -36,14 +26,12 @@ namespace spacebiem
                 float cX = cos(angle)*r;
                 float cY = sin(angle)*r;
 
-                resources.push_back(new ResourceEntity(x + cX, y + cY, { 255,255,255,255 }, w, h, sr.first, scores[sr.first]));
-
+                entityManager->addEntity<ResourceEntity>(x + cX, y + cY, Color::White(), w, h, sr.first, scores[sr.first]);
             }
         }
-
-        return resources;
     }
 
+    void ResourceFactory::createPlanetResources(float x, float y, int w, int h, string name, std::shared_ptr<EntityManager> entityManager) {
+        entityManager->addEntity<ResourceEntity>(x, y, Color::White(), w, h, name, scores[name]);
+    }
 }
-
-
