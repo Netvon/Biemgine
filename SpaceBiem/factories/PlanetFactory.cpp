@@ -43,21 +43,21 @@ namespace spacebiem
         auto planet = entityManager->getEntity(id);
 
         if (isDiscovered) {
-            auto texts = planet->getComponents<TextComponent*>("text");
+            auto texts = planet->getComponents<TextComponent>("text");
             for (auto text : texts) {
                 text->setVisible(true);
             }
         }
 
         if (!flagComponent.empty()) {
-            auto components = planet->getComponents<TextureComponent*>("texture");
+            auto components = planet->getComponents<TextureComponent>("texture");
 
             for (auto it = components.begin(); it != components.end(); ++it)
             {
                 auto component = (*it);
                 if (component->getTag() != "flag") continue;
 
-                auto planetP = planet->getComponent<PositionComponent*>("position");
+                auto planetP = planet->getComponent<PositionComponent>("position");
 
                 component->setOffsetX(flagComponent[0]);
                 component->setOffsetY(flagComponent[1]);
@@ -65,6 +65,5 @@ namespace spacebiem
                 component->setVisible(true);
             }
         }
-
     }
 }

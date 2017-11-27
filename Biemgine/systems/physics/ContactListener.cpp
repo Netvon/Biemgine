@@ -57,25 +57,25 @@ namespace biemgine
 
     void ContactListener::ground(const Entity * grounded, Entity & ground) const
     {
-        auto gc = grounded->getComponent<GroundedComponent*>("grounded");
+        auto gc = grounded->getComponent<GroundedComponent>("grounded");
         gc->setGrounded(true, &ground);
     }
 
     void ContactListener::unground(const Entity * grounded, Entity & ground) const
     {
-        auto gc = grounded->getComponent<GroundedComponent*>("grounded");
+        auto gc = grounded->getComponent<GroundedComponent>("grounded");
         gc->setGrounded(false, &ground);
     }
 
     void ContactListener::collide(const Entity * thisEntity, Entity & thatEntity) const
     {
-        auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
+        auto cc = thisEntity->getComponent<CollidableComponent>("collidable");
         cc->add(thatEntity);
     }
 
     void ContactListener::decollide(const Entity * thisEntity, Entity & thatEntity) const
     {
-        auto cc = thisEntity->getComponent<CollidableComponent*>("collidable");
+        auto cc = thisEntity->getComponent<CollidableComponent>("collidable");
         cc->remove(thatEntity);
     }
 }

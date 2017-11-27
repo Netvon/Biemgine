@@ -21,9 +21,9 @@ namespace biemgine
         ~UIComponent();
 
         template <typename TComponent>
-        TComponent getComponentReference() const;
+        std::shared_ptr<TComponent> getComponentReference() const;
 
-        void setComponentReference(Component* component);
+        void setComponentReference(std::shared_ptr<Component> component);
 
         bool getIsMouseDown() const;
         bool getIsMouseOver() const;
@@ -40,7 +40,7 @@ namespace biemgine
         friend void UISystem::update(const Entity & entity);
 
     private:
-        Component* componentReference = nullptr;
+        std::shared_ptr<Component> componentReference = nullptr;
 
         bool isMouseDown = false;
         bool isMouseOver = false;
@@ -50,8 +50,8 @@ namespace biemgine
     };
 
     template<typename TComponent>
-    TComponent UIComponent::getComponentReference() const
+    std::shared_ptr<TComponent> UIComponent::getComponentReference() const
     {
-        return dynamic_cast<TComponent>(componentReference);
+        return std::dynamic_pointer_cast<TComponent>(componentReference);
     }
 }

@@ -9,7 +9,7 @@ namespace spacebiem
     void OxygenSystem::update(const Entity & entity)
     {
         if (entity.hasComponent("atmosphere")) {
-            auto ac = entity.getComponent<AtmosphereComponent*>("atmosphere");
+            auto ac = entity.getComponent<AtmosphereComponent>("atmosphere");
             if (find(atmospheres.begin(), atmospheres.end(), ac) == atmospheres.end()) {
                 atmospheres.push_back(ac);
             }
@@ -27,11 +27,11 @@ namespace spacebiem
         if (!entity.hasComponent("oxygen")) return;
         if (entity.hasComponent("ui")) return;
 
-        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
+        auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
-        AtmosphereComponent* currentAtmosphere = nullptr;
+        std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
         if (entity.hasComponent("position")) {
-            auto pc = entity.getComponent<PositionComponent*>("position");
+            auto pc = entity.getComponent<PositionComponent>("position");
 
             for (auto atmos : atmospheres) {
                 int xA = atmos->getX();

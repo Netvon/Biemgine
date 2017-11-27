@@ -95,6 +95,4 @@ namespace biemgine
     TextureFlip TextureComponent::getFlip() {
         return flip;
     }
-
-
 }

@@ -6,6 +6,7 @@
 #include <cassert>
 #include <vector>
 #include <functional>
+#include <memory>
 
 #include "..\components\Component.h"
 #include "..\primitives\Primitives.h"
@@ -27,10 +28,10 @@ namespace biemgine
         virtual ~Entity();
 
         template <typename TComponent>
-        TComponent getComponent(const string& name) const;
+        std::shared_ptr<TComponent> getComponent(const string& name) const;
 
         template <typename TComponent>
-        vector<TComponent> getComponents(const string& name) const;
+        vector<std::shared_ptr<TComponent>> getComponents(const string& name) const;
 
         bool hasComponent(const string& name) const;
 
@@ -44,6 +45,7 @@ namespace biemgine
         virtual void die() const;
         bool isAlive() const;
 
+        bool hasTag() const;
         void setTag(string pTag);
         string getTag() const;
 
@@ -51,31 +53,32 @@ namespace biemgine
 
     private:
         int id;
-        std::multimap<string, Component*> componentHashmap;
+        std::multimap<string, std::shared_ptr<Component>> componentHashmap;
         mutable bool alive = true;
-        string tag = "";
+
+        string tag;
     };
 
     template<typename TComponent>
-    TComponent Entity::getComponent(const string & name) const
+    std::shared_ptr<TComponent> Entity::getComponent(const string & name) const
     {
         auto find = componentHashmap.equal_range(name);
 
         for (auto it = find.first; it != find.second; ++it) {
-            return dynamic_cast<TComponent>(it->second);
+            return std::dynamic_pointer_cast<TComponent>(it->second);
         }
 
         return nullptr;
     }
 
     template<typename TComponent>
-    vector<TComponent> Entity::getComponents(const string & name) const
+    vector<std::shared_ptr<TComponent>> Entity::getComponents(const string & name) const
     {
-        vector<TComponent> vec;
+        vector<std::shared_ptr<TComponent>> vec;
         auto find = componentHashmap.equal_range(name);
 
         for (auto it = find.first; it != find.second; ++it) {
-            vec.push_back(dynamic_cast<TComponent>(it->second));
+            vec.push_back(std::dynamic_pointer_cast<TComponent>(it->second));
         }
 
         return vec;
@@ -84,6 +87,6 @@ namespace biemgine
     template<typename TComponent, typename ...TArgs>
     void Entity::addComponent(const string & name, TArgs && ...arguments)
     {
-        componentHashmap.emplace(std::make_pair(name, new TComponent(std::forward<TArgs>(arguments)...)));
+        componentHashmap.emplace(std::make_pair(name, std::make_shared<TComponent>(std::forward<TArgs>(arguments)...)));
     }
 }

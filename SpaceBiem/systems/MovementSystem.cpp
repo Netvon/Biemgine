@@ -16,8 +16,8 @@ namespace spacebiem
         if (!entity.hasComponent("movement"))
             return;
 
-        auto physics = entity.getComponent<PhysicsComponent*>("physics");
-        auto grounded = entity.getComponent<GroundedComponent*>("grounded");
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
+        auto grounded = entity.getComponent<GroundedComponent>("grounded");
 
         /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
             && !getStateManager()->getInputManager()->isKeyDown("Right")) {
@@ -28,16 +28,16 @@ namespace spacebiem
             physics->setFriction(0.0f);
         }*/
 
-        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::HORIZONTAL);
-        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent*>("texture")) entity.getComponent<TextureComponent*>("texture")->setFlip(TextureFlip::NONE);
+        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::HORIZONTAL);
+        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto position = entity.getComponent<PositionComponent*>("position");
+            auto position = entity.getComponent<PositionComponent>("position");
             
-            auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
             
 
             if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())

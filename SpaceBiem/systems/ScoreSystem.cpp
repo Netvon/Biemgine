@@ -18,28 +18,28 @@ namespace spacebiem
             || entity.hasComponent("ui")
             || !entity.hasComponent("grounded")) return;
 
-        auto gc = entity.getComponent<GroundedComponent*>("grounded");
-        auto pc = entity.getComponent<PositionComponent*>("position");
+        auto gc = entity.getComponent<GroundedComponent>("grounded");
+        auto pc = entity.getComponent<PositionComponent>("position");
 
         if (gc->isGrounded()) {
             auto ground = gc->getGroundedOn();
             if (!ground->hasComponent("scorebonus")) return;
 
-            auto sbc = ground->getComponent<ScoreBonusComponent*>("scorebonus");
+            auto sbc = ground->getComponent<ScoreBonusComponent>("scorebonus");
             if (sbc->isScoreGiven()) return;
 
-            auto sc = entity.getComponent<ScoreComponent*>("score");
+            auto sc = entity.getComponent<ScoreComponent>("score");
             sc->addScore(sbc->getScoreBonus());
 
             sbc->setScoreGiven(true);
-
-            auto texts = ground->getComponents<TextComponent*>("text");
+            auto texts = ground->getComponents<TextComponent>("text");
 
             for (auto text : texts) {
                 text->setVisible(true);
             }
 
-            auto components = ground->getComponents<TextureComponent*>("texture");
+
+            auto components = ground->getComponents<TextureComponent>("texture");
 
             for (auto it = components.begin(); it != components.end(); ++it)
             {
@@ -47,7 +47,7 @@ namespace spacebiem
                 if (component->getTag() != "flag") continue;
                 if (component->isVisible()) break;
 
-                auto planetP = ground->getComponent<PositionComponent*>("position");
+                auto planetP = ground->getComponent<PositionComponent>("position");
 
                 component->setOffsetX(pc->getX() - planetP->getX());
                 component->setOffsetY(pc->getY() - planetP->getY());

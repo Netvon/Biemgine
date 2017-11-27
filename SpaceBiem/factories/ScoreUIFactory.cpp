@@ -50,7 +50,7 @@ namespace spacebiem
             auto e = (*it);
 
             if (e->hasComponent("score") && !e->hasComponent("ui")) {
-                auto sc = e->getComponent<ScoreComponent*>("score");
+                auto sc = e->getComponent<ScoreComponent>("score");
                 fh.writeScore(name, sc->getScore());
             }
         }

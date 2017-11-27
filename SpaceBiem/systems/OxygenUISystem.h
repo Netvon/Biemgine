@@ -19,6 +19,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
 
     private:
-        map<OxygenComponent*, bool> oxygenMap;
+        map<std::shared_ptr<OxygenComponent>, bool> oxygenMap;
     };
 }

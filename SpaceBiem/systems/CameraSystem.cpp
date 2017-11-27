@@ -16,11 +16,11 @@ namespace spacebiem
         if (!entity.hasComponent("position") || entity.hasComponent("ui"))
             return;
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
+        auto pc = entity.getComponent<PositionComponent>("position");
 
         if (entity.hasComponent("camera"))
         {
-            camera = entity.getComponent<CameraComponent*>("camera");
+            camera = entity.getComponent<CameraComponent>("camera");
 
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());

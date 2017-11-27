@@ -43,31 +43,31 @@ namespace spacebiem
         if (entity.hasComponent("position")) {
             auto backgroundTexture = getTextureComponentByTag(entity, "background");
 
-            saveBlobEntityBuilder.writePosition(*entity.getComponent<PositionComponent*>("position"), backgroundTexture);
+            saveBlobEntityBuilder.writePosition(*entity.getComponent<PositionComponent>("position"), backgroundTexture);
         }
 
         if (entity.hasComponent("score")) {
-            saveBlobEntityBuilder.writeScore(*entity.getComponent<ScoreComponent*>("score"));
+            saveBlobEntityBuilder.writeScore(*entity.getComponent<ScoreComponent>("score"));
         }
 
         if (entity.hasComponent("oxygen")) {
-            saveBlobEntityBuilder.writeOxygen(*entity.getComponent<OxygenComponent*>("oxygen"));
+            saveBlobEntityBuilder.writeOxygen(*entity.getComponent<OxygenComponent>("oxygen"));
         }
 
         if (entity.hasComponent("physics") && entity.hasComponent("position")) {
-            saveBlobEntityBuilder.writePhysics(*entity.getComponent<PhysicsComponent*>("physics"), *entity.getComponent<PositionComponent*>("position"));
+            saveBlobEntityBuilder.writePhysics(*entity.getComponent<PhysicsComponent>("physics"), *entity.getComponent<PositionComponent>("position"));
         }
 
         if (typeid(entity) == typeid(PlayerEntity)) {
-            saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent*>("resources"));
+            saveBlobEntityBuilder.writeResource(*entity.getComponent<ResourceComponent>("resources"));
         }
 
         if (entity.hasComponent("resourcebonus")) {
-            saveBlobEntityBuilder.writeResourceBonus(*entity.getComponent<ResourceBonusComponent*>("resourcebonus"));
+            saveBlobEntityBuilder.writeResourceBonus(*entity.getComponent<ResourceBonusComponent>("resourcebonus"));
         }
 
         if(entity.hasComponent("scorebonus")) {
-            saveBlobEntityBuilder.writeScoreBonus(*entity.getComponent<ScoreBonusComponent*>("scorebonus"));
+            saveBlobEntityBuilder.writeScoreBonus(*entity.getComponent<ScoreBonusComponent>("scorebonus"));
         }
 
         // visited
@@ -93,7 +93,7 @@ namespace spacebiem
 
     TextureComponent & SaveBlobFactory::getTextureComponentByTag(const Entity & entity, const string & pTag)
     {
-        auto components = entity.getComponents<TextureComponent*>("texture");
+        auto components = entity.getComponents<TextureComponent>("texture");
 
         for (auto it = components.begin(); it != components.end(); ++it)
         {
@@ -106,7 +106,7 @@ namespace spacebiem
 
     TextComponent & SaveBlobFactory::getTextComponentByTag(const Entity & entity, const string & pTag)
     {
-        auto components = entity.getComponents<TextComponent*>("text");
+        auto components = entity.getComponents<TextComponent>("text");
 
         for (auto it = components.begin(); it != components.end(); ++it)
         {

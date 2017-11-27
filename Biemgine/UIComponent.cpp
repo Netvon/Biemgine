@@ -12,7 +12,7 @@ namespace biemgine
 
     UIComponent::~UIComponent() {}
 
-    void UIComponent::setComponentReference(Component * component)
+    void UIComponent::setComponentReference(std::shared_ptr<Component> component)
     {
         componentReference = component;
     }

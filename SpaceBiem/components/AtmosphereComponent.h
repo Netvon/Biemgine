@@ -13,11 +13,11 @@ namespace spacebiem
         public Component
     {
     public:
-        AtmosphereComponent(PositionComponent* pc, float offsetX, float offsetY, float r, float oxygenModifier) :
+        AtmosphereComponent(std::shared_ptr<PositionComponent> pc, float offsetX, float offsetY, float r, float oxygenModifier) :
             pc(pc), offsetX(offsetX), offsetY(offsetY), r(r), oxygenModifier(oxygenModifier)
         { };
 
-        PositionComponent* pc = nullptr;
+        std::shared_ptr<PositionComponent> pc = nullptr;
 
         float getX() const;
         float getY() const;

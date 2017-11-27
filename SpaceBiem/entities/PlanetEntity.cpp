@@ -46,7 +46,7 @@ namespace spacebiem
 
     void PlanetEntity::createAtmosphere(float x, float y, float w, float h, float atmosphere, bool shouldClouds, Color color)
     {
-        PositionComponent* pc = getComponent<PositionComponent*>("position");
+        auto pc = getComponent<PositionComponent>("position");
 
         addComponent("texture", new TextureComponent("textures/atmosphere.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "atmosphere", color));
         addComponent("atmosphere", new AtmosphereComponent(pc, (w / 2), (h / 2), w, atmosphere));
@@ -60,7 +60,7 @@ namespace spacebiem
             addComponent<ScriptComponent>("script",
             [this]()
             {
-                auto textures = getComponents<TextureComponent*>("texture");
+                auto textures = getComponents<TextureComponent>("texture");
                 for (auto tex : textures) {
                     if (tex->getTag() == "clouds") {
                         tex->setRotation(tex->getRotation() + 0.01f);

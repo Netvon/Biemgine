@@ -6,6 +6,7 @@
 #include "../devices/graphics/TextureFlip.h"
 
 #include <list>
+#include <memory>
 
 using std::string;
 using std::list;
@@ -31,10 +32,10 @@ namespace biemgine
         string text;
         int x, y;
         Color color;
-        TextComponent* component;
+        std::shared_ptr<TextComponent> component;
         bool center;
 
-        DrawText(Font font, const string& text, int x, int y, Color color, TextComponent* component, bool center);
+        DrawText(Font font, const string& text, int x, int y, Color color, std::shared_ptr<TextComponent> component, bool center);
     };
 
     class RenderSystem
