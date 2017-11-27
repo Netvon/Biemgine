@@ -18,6 +18,6 @@ namespace biemgine
     {
     public:
         ~TextEntity();
-        TextEntity(const string& initialValue, Vector position, bool center = true, Color color = Color::White(), function<string()> getValue = nullptr, unsigned int layer = 0);
+        TextEntity(Font font, const string& initialValue, Vector position, bool center = true, Color color = Color::White(), function<string()> getValue = nullptr, unsigned int layer = 0);
     };
 }

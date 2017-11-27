@@ -29,6 +29,7 @@ namespace biemgine
             for (auto tx : txs) {
                 if (tx->isVisible()) {
                     textList.push_back(DrawText(
+                        tx->getFont(),
                         tx->getText(),
                         static_cast<int>(pc->getX() + tx->getOffsetX()),
                         static_cast<int>(pc->getY() + tx->getOffsetY()),
@@ -111,7 +112,7 @@ namespace biemgine
 
         for (auto text : textList)
         {
-            auto size = graphicsDevice->drawText(text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
+            auto size = graphicsDevice->drawText(text.font, text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
             if(text.component != nullptr) text.component->setTextSize(size);
         }
 
@@ -123,6 +124,6 @@ namespace biemgine
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
 
 
-    DrawText::DrawText(const string& text, int x, int y, Color color, TextComponent* component, bool center) :
-        text(text), x(x), y(y), color(color), component(component), center(center) {}
+    DrawText::DrawText(Font pFont, const string& text, int x, int y, Color color, TextComponent* component, bool center) :
+        font(pFont),text(text), x(x), y(y), color(color), component(component), center(center) {}
 }

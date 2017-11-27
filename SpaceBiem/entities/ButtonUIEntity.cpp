@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ButtonUIEntity.h"
+#include "..\globals\Fonts.h"
 
 using std::string;
 using biemgine::PositionComponent;
@@ -18,7 +19,7 @@ namespace spacebiem
         addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 0u, true, "", buttonColor));
         //addComponent("color", new ColorComponent(buttonColor));
         addComponent("ui", new UIComponent(size, onClick, (onClick != nullptr)));
-        addComponent("text", new TextComponent(pText, textcolor, size.width/2, size.height/2, true, true));
+        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, size.width/2, size.height/2, true, true));
 
         addComponent<ScriptComponent>("script",
             [this]()

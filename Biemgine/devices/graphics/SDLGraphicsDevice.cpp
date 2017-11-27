@@ -6,7 +6,7 @@
 
 namespace biemgine {
 
-    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window, bool maximize)
+    SDLGraphicsDevice::SDLGraphicsDevice(SDL_Window * window)
     {
         renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -18,7 +18,9 @@ namespace biemgine {
             std::cout << TTF_GetError() << std::endl;
         }
 
-        font = TTF_OpenFont("Roboto-Regular.ttf", 20);
+        //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
+        //font = TTF_OpenFont("Roboto-Regular.ttf", 20);
 
         SDL_Rect viewport = { 0, 0, 0, 0 };
 
@@ -27,9 +29,6 @@ namespace biemgine {
         //SDL_RenderSetScale(renderer, 0.25f, 0.25f);
 
         SDL_RenderSetLogicalSize(renderer, viewport.w, viewport.h);
-
-        if(maximize)
-            SDL_MaximizeWindow(window);
     }
 
     SDLGraphicsDevice::~SDLGraphicsDevice()
@@ -45,7 +44,9 @@ namespace biemgine {
             SDL_DestroyRenderer(renderer);
         }
 
-        TTF_CloseFont(font);
+        for (auto pair : fonts) {
+            TTF_CloseFont(pair.second);
+        }
 
         TTF_Quit();
         IMG_Quit();
@@ -59,11 +60,23 @@ namespace biemgine {
         SDL_RenderFillRect(renderer, &rect);
     }
 
-    Size SDLGraphicsDevice::drawText(const std::string& text, int x, int y, Color color, int ptSize, TextureFlip flip, bool center) {
+    Size SDLGraphicsDevice::drawText(const Font& pFont, const std::string& text, int x, int y, Color color, int ptSize, TextureFlip flip, bool center) {
+
+        TTF_Font* f = nullptr;
+
+        if (fonts.find(pFont) == fonts.end()) {
+            auto fontName = pFont.name + ".ttf";
+            f = TTF_OpenFont(fontName.c_str(), pFont.size);
+
+            fonts.emplace(pFont, f);
+        }
+        else {
+            f = fonts.at(pFont);
+        }
 
         if (textTextures.find(text) == textTextures.end()) {
             SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
-            SDL_Surface *textSurface = TTF_RenderText_Blended(font, text.c_str(), convertedColor);
+            SDL_Surface *textSurface = TTF_RenderText_Blended(f, text.c_str(), convertedColor);
             SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
             SDL_FreeSurface(textSurface);
@@ -96,7 +109,7 @@ namespace biemgine {
         return { textRect.w, textRect.h };
     }
 
-    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip)
+    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip, bool useCenterAsOrigin, SizeRect source)
     {
         auto texture = getTexture(path);
 
@@ -105,16 +118,25 @@ namespace biemgine {
                 SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
             }
 
-            SDL_Rect rec = { x, y, w, h };
-            SDL_Point center = { 0,0 };
+            SDL_Rect destRect { x, y, w, h };
+
+            if (useCenterAsOrigin) {
+                destRect.x += w / 2;
+                destRect.y += h / 2;
+            }
 
             SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
             SDL_SetTextureAlphaMod(texture, color.a);
 
             SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
 
-            SDL_RenderCopyEx(renderer, texture, nullptr, &rec, static_cast<double>(angle), nullptr, static_cast<SDL_RendererFlip>(flip));
-
+            if (source.isEmpty()) {
+                SDL_RenderCopyEx(renderer, texture, nullptr, &destRect, static_cast<double>(angle), nullptr, static_cast<SDL_RendererFlip>(flip));
+            }
+            else {
+                SDL_Rect sourceRect{ source.point.x, source.point.y, source.size.width, source.size.height };
+                SDL_RenderCopyEx(renderer, texture, &sourceRect, &destRect, static_cast<double>(angle), nullptr, static_cast<SDL_RendererFlip>(flip));
+            }
         }
     }
 

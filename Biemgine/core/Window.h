@@ -20,9 +20,12 @@ namespace biemgine
 
         ~Window();
 
-        int getWidth() const;
+        int getRenderWidth() const;
+        int getRenderHeight() const;
 
-        int getHeight() const;
+        Size getActualSize() const;
+
+        Point actualToRender(Point actual) const;
 
         GraphicsDevice* getGraphicsDevice() const;
 

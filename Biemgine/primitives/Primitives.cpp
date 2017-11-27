@@ -1,7 +1,7 @@
 #include "Primitives.h"
 
 #include <cmath>
-#include <glm\glm.hpp>
+#include <tuple>
 
 namespace biemgine
 {
@@ -138,5 +138,62 @@ namespace biemgine
     {
         g = green;
         return *this;
+    }
+
+    bool SizeRect::isEmpty() const
+    {
+        return (*this) == SizeRect::empty();
+    }
+
+    SizeRect SizeRect::empty()
+    {
+        SizeRect r;
+        r.point.x = 0;
+        r.point.y = 0;
+        r.size.width = -1;
+        r.size.height = -1;
+
+        return r;
+    }
+
+    bool SizeRect::operator==(const SizeRect & other) const
+    {
+        return point.x == other.point.x
+            && point.y == other.point.y
+            && size.width == other.size.width
+            && size.height == other.size.height;
+    }
+
+    bool SizeRect::operator!=(const SizeRect & other) const
+    {
+        return point.x != other.point.x
+            || point.y != other.point.y
+            || size.width != other.size.width
+            || size.height != other.size.height;
+    }
+
+    bool Font::isEmpty() const
+    {
+        return size == -1 && name.empty();
+    }
+
+    bool Font::operator==(const Font & other) const
+    {
+        return size == other.size && name == other.name;
+    }
+
+    bool Font::operator!=(const Font & other) const
+    {
+        return size != other.size || name != other.name;;
+    }
+    bool Font::operator<(const Font & b) const
+    {
+        return std::tie(name, size) < std::tie(b.name, b.size);
+    }
+
+    Font::Font(string pName, int pSize)
+        : name(std::move(pName)), size(pSize)
+    {
+
     }
 }

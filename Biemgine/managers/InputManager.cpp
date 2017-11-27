@@ -10,6 +10,11 @@ namespace biemgine
         update();
     }
 
+    void InputManager::setWindow(const Window * pWindow)
+    {
+        window = pWindow;
+    }
+
     void InputManager::update()
     {
         SDL_PumpEvents();
@@ -27,7 +32,7 @@ namespace biemgine
 
         SDL_GetMouseState(&x, &y);
 
-        return { x, y };
+        return window->actualToRender({ x,y });
     }
 
     bool InputManager::isLeftMouseDown() const

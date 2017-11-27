@@ -26,6 +26,8 @@
 #include "..\systems\GameoverSystem.h"
 #include "..\systems\SaveBlobSystem.h"
 
+#include "..\globals\Fonts.h"
+
 #include <functional>
 
 using biemgine::TextComponent;
@@ -128,6 +130,6 @@ namespace spacebiem
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-        getTransitionManager().drawOverlay();
+        getTransitionManager().drawOverlay(Fonts::Roboto());
     }
 }

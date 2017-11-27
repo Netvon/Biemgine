@@ -1,6 +1,10 @@
 #pragma once
 #include "dlldef.h"
 
+#include <string>
+
+using std::string;
+
 namespace biemgine
 {
     struct Vector;
@@ -93,5 +97,30 @@ namespace biemgine
         Point bottomLeft;
         Point bottomRight;
         bool hasSize;
+    };
+
+    struct BIEMGINE SizeRect {
+        Point point;
+        Size size;
+
+        bool isEmpty() const;
+        static SizeRect empty();
+
+        bool operator==(const SizeRect& other) const;
+        bool operator!=(const SizeRect& other) const;
+    };
+
+    struct BIEMGINE Font {
+        string name;
+        int size = -1;
+
+        bool isEmpty() const;
+
+        bool operator ==(const Font& other) const;
+        bool operator !=(const Font& other) const;
+
+        bool operator < (const Font& b) const;
+
+        Font(string pName, int pSize);
     };
 }

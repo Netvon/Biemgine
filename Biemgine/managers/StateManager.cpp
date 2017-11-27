@@ -9,12 +9,12 @@ namespace biemgine
 
     int StateManager::getWindowWidth() const
     {
-        return window->getWidth();
+        return window->getRenderWidth();
     }
 
     int StateManager::getWindowHeight() const
     {
-        return window->getHeight();
+        return window->getRenderHeight();
     }
 
     void StateManager::pauseGame()
@@ -32,7 +32,7 @@ namespace biemgine
         return paused;
     }
 
-    void StateManager::drawOverlay()
+    void StateManager::drawOverlay(Font font)
     {
         if (paused) {
             auto gd = window->getGraphicsDevice();
@@ -40,8 +40,8 @@ namespace biemgine
             int x = getWindowWidth()/2;
             int y = 60;
 
-            gd->drawText("The game is paused.", x, y, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
-            gd->drawText("Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
+            gd->drawText(font, "The game is paused.", x, y, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
+            gd->drawText(font, "Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
         }
     }
 
