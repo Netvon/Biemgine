@@ -97,7 +97,7 @@ namespace biemgine
     void AnimatedTextureComponent::play()
     {
         paused = false;
-        currentUpdate = 60.0f;
+        currentUpdate = playbackSpeed;
     }
 
     float AnimatedTextureComponent::getPlaybackSpeed() const

@@ -28,10 +28,12 @@ namespace spacebiem
             physics->setFriction(0.0f);
         }*/
 
-        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<AnimatedTextureComponent>("animatedtexture"))
-            entity.getComponent<AnimatedTextureComponent>("animatedtexture")->setFlip(TextureFlip::HORIZONTAL);
-        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<AnimatedTextureComponent>("animatedtexture"))
-            entity.getComponent<AnimatedTextureComponent>("animatedtexture")->setFlip(TextureFlip::NONE);
+        auto texture = entity.getComponent<AnimatedTextureComponent>("animatedtexture");
+
+        if (getStateManager()->getInputManager()->isKeyDown("Left") && texture)
+            texture->setFlip(TextureFlip::HORIZONTAL);
+        if (getStateManager()->getInputManager()->isKeyDown("Right") && texture)
+            texture->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")
@@ -62,7 +64,20 @@ namespace spacebiem
 
             //printf("%f\n", physics->getFriction());
 
-            
+            if (texture) {
+                if (grounded->isGrounded()) {
+
+                    if (texture->isPausedOrStopped())
+                        texture->play();
+
+                    auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+                    auto maxSpeed = 7.5f / 3.0f;
+                    texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                }
+                else {
+                    texture->stop();
+                }
+            }
 
             //printf("Velo: %f\n", physics->getVelocity().length());
 
@@ -82,6 +97,8 @@ namespace spacebiem
 
                 physics->addForce("right", right.x, right.y);
             }
+
+            
         }
     }
 }
