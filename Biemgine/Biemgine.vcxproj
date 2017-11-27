@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
+    <ClInclude Include="components\AnimatedTextureComponent.h" />
     <ClInclude Include="components\CollidableComponent.h" />
     <ClInclude Include="components\ColorComponent.h" />
     <ClInclude Include="components\Component.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="components\AnimatedTextureComponent.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />

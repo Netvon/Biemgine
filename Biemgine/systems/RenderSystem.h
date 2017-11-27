@@ -22,8 +22,9 @@ namespace biemgine
         unsigned int layer;
         bool center;
         TextureFlip flip;
+        SizeRect rect;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip);
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip, SizeRect rect = SizeRect::empty());
     };
 
     struct DrawText

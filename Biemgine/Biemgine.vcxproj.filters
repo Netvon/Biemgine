@@ -158,6 +158,9 @@
     <ClInclude Include="primitives\RandomGenerator.h">
       <Filter>primitives</Filter>
     </ClInclude>
+    <ClInclude Include="components\AnimatedTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="primitives\RandomGenerator.cpp">
       <Filter>primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AnimatedTextureComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

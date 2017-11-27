@@ -6,7 +6,7 @@ using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
-using biemgine::TextureComponent;
+using biemgine::AnimatedTextureComponent;
 using biemgine::TextureFlip;
 
 namespace spacebiem
@@ -28,8 +28,10 @@ namespace spacebiem
             physics->setFriction(0.0f);
         }*/
 
-        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::HORIZONTAL);
-        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::NONE);
+        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<AnimatedTextureComponent>("animatedtexture"))
+            entity.getComponent<AnimatedTextureComponent>("animatedtexture")->setFlip(TextureFlip::HORIZONTAL);
+        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<AnimatedTextureComponent>("animatedtexture"))
+            entity.getComponent<AnimatedTextureComponent>("animatedtexture")->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")

@@ -5,7 +5,8 @@
 #include "..\components\RectangleComponent.h"
 #include "..\components\TextureComponent.h"
 #include "..\entities\Entity.h"
-#include "../devices/graphics/TextureFlip.h"
+#include "..\devices\graphics\TextureFlip.h"
+#include "..\components\AnimatedTextureComponent.h"
 
 namespace biemgine
 {
@@ -41,7 +42,7 @@ namespace biemgine
             }
         }
 
-        if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
+        if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle") && !entity.hasComponent("animatedtexture"))
             return;
 
         if (entity.hasComponent("texture")) {
@@ -62,6 +63,30 @@ namespace biemgine
                     false,
                     tex->getFlip()
                 ));
+            }
+        }
+
+        if (entity.hasComponent("animatedtexture")) {
+            auto tc = entity.getComponents<AnimatedTextureComponent>("animatedtexture");
+
+            for (auto tex : tc) {
+                if (!tex->isVisible()) continue;
+
+                drawList.push_back(DrawTexture(
+                    tex->getPath(),
+                    static_cast<int>(pc->getX() + tex->getOffsetX()),
+                    static_cast<int>(pc->getY() + tex->getOffsetY()),
+                    tex->getWidth(),
+                    tex->getHeight(),
+                    pc->getRotation() + tex->getRotation(),
+                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent>("color")->getColor() : tex->getColor(),
+                    tex->getLayer(),
+                    false,
+                    tex->getFlip(),
+                    tex->getCurrentRect()
+                ));
+
+                tex->doStep(deltaTime);
             }
         }
 
@@ -106,7 +131,9 @@ namespace biemgine
                 texture.h,
                 texture.angle,
                 texture.color,
-                texture.flip
+                texture.flip,
+                false,
+                texture.rect
             );
         }
 
@@ -120,8 +147,8 @@ namespace biemgine
         textList.clear();
     }
 
-    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip) :
-        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip, SizeRect rect) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip), rect(rect) {}
 
 
     DrawText::DrawText(Font pFont, const string& text, int x, int y, Color color, std::shared_ptr<TextComponent> component, bool center) :
