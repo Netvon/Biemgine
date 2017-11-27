@@ -31,6 +31,9 @@
     <Filter Include="primitives">
       <UniqueIdentifier>{3bda5fd9-7171-490e-98a2-5e033e27898a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="devices\audio">
+      <UniqueIdentifier>{26f655f2-8d64-40cd-a759-287caf99189f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="managers\StateManager.h">
@@ -158,6 +161,10 @@
     <ClInclude Include="primitives\RandomGenerator.h">
       <Filter>primitives</Filter>
     </ClInclude>
+    <ClInclude Include="devices\audio\AudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\audio\SDLAudioDevice.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -270,5 +277,6 @@
     <ClCompile Include="primitives\RandomGenerator.cpp">
       <Filter>primitives</Filter>
     </ClCompile>
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
   </ItemGroup>
 </Project>
