@@ -18,13 +18,13 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
-    vector<string> SaveBlobFactory::createFromEntities(vector<const Entity *> & entities)
+    vector<string> SaveBlobFactory::createFromEntities(shared_ptr<EntityManager> entities)
     {
         vector<string> blob;
 
         blob.push_back("entity_id_type,component_type,value_1,value_2,value_3,value_4");
 
-        for (auto it = entities.begin(); it != entities.end(); it++) {
+        for (auto it = entities->begin(); it != entities->end(); it++) {
             string entityBlob = createFromEntity(*(*it));
 
             if(!entityBlob.empty())

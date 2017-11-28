@@ -18,6 +18,10 @@ namespace spacebiem
         void created() override;
         void sceneEnd() override;
 
+		void saveScore();
+
+		void saveGame();
+
         LevelScene(StateManager& manager, bool newGame = true) :
             Scene(manager),
             newGame(newGame){};

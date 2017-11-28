@@ -159,9 +159,6 @@
     <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h">
       <Filter>factories</Filter>
     </ClInclude>
-    <ClInclude Include="systems\SaveBlobSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="systems\ResourceCollectingSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
@@ -302,9 +299,6 @@
     </ClCompile>
     <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp">
       <Filter>factories</Filter>
-    </ClCompile>
-    <ClCompile Include="systems\SaveBlobSystem.cpp">
-      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
