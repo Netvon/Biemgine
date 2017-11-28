@@ -26,7 +26,7 @@ namespace spacebiem
                 float cX = cos(angle)*r;
                 float cY = sin(angle)*r;
 
-                entityManager->addEntity<ResourceEntity>(x + cX, y + cY, Color::White(), w, h, sr.first, scores[sr.first]);
+                //entityManager->addEntity<ResourceEntity>(x + cX, y + cY, Color::White(), w, h, sr.first, scores[sr.first]);
             }
         }
     }

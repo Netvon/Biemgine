@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "LevelScene.h"
 
-#include "..\UniverseBuilder.h"
+#include "..\factories\UniverseBuilder.h"
+#include "..\factories\UniverseGenerator.h"
 
 #include "..\entities\PlayerEntity.h"
 #include "..\entities\PlanetEarthEntity.h"
@@ -82,6 +83,12 @@ namespace spacebiem
 
         UniverseBuilder uB;
         if (newGame) {
+
+
+            UniverseGenerator uG;
+            uG.generate();
+
+
             uB.build(getEntityManager(), true);
         }
         else {

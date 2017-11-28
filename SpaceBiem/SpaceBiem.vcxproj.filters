@@ -169,14 +169,17 @@
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="UniverseBuilder.h">
-      <Filter>factories</Filter>
-    </ClInclude>
     <ClInclude Include="scenes\DifficultyScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
     <ClInclude Include="globals\Difficulty.h">
       <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseGenerator.h">
+      <Filter>factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -323,11 +326,14 @@
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="UniverseBuilder.cpp">
-      <Filter>factories</Filter>
-    </ClCompile>
     <ClCompile Include="scenes\DifficultyScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseGenerator.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseBuilder.cpp">
+      <Filter>factories</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
