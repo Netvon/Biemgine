@@ -27,6 +27,8 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\SaveBlobSystem.h"
+#include "..\systems\AIMovementSystem.h"
 
 #include "..\globals\Fonts.h"
 
@@ -50,7 +52,6 @@ namespace spacebiem
     {
 
         enableCamera();
-       
         enableRendering();
         enablePhysics();
         enableUI();
