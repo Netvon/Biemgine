@@ -4,6 +4,7 @@
 #include "LevelScene.h"
 #include "HighScoreScene.h"
 #include "GameoverScene.h"
+#include "DifficultyScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
@@ -19,7 +20,7 @@ namespace spacebiem
 {
     void newGameButtonClicked(StateManager* e)
     {
-        e->navigateTo<LevelScene>(true);
+        e->navigateTo<DifficultyScene>();
     }
 
     void ContinueButtonClicked(StateManager* e)

@@ -135,9 +135,7 @@
     <ClInclude Include="systems\GameoverSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="UniverseBuilder.h" />
     <ClInclude Include="factories\NameGenerator.h">
       <Filter>factories</Filter>
     </ClInclude>
@@ -166,6 +164,18 @@
       <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="globals\Fonts.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="UniverseBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\DifficultyScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Difficulty.h">
       <Filter>globals</Filter>
     </ClInclude>
   </ItemGroup>
@@ -281,10 +291,8 @@
     <ClCompile Include="factories\NameGenerator.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="UniverseBuilder.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
@@ -311,6 +319,15 @@
     </ClCompile>
     <ClCompile Include="factories\ResourceFactory.cpp">
       <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="UniverseBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\DifficultyScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
