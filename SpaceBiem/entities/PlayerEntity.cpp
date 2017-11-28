@@ -24,7 +24,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("animatedtexture", new AnimatedTextureComponent("textures/player-sheet.png", 0, 0, TextureColumnDef{ 4llu, 128 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background"));
+        addComponent("animatedtexture", new AnimatedTextureComponent("textures/PlayerSpriteSheet.png", 0, 0, TextureColumnDef{ 9llu, 128 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background"));
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);

@@ -73,7 +73,7 @@ namespace spacebiem
                     if (physics->getVelocity().length() > 1.0f) {
 
                         auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                        auto maxSpeed = 7.5f / 3.0f;
+                        auto maxSpeed = 7.5f / 5.0f;
                         texture->setPlaybackSpeed(maxSpeed * veloPercentage);
                     }
                     else
