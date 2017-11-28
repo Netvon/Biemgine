@@ -77,7 +77,7 @@ namespace spacebiem
 
             return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
         });*/
-
+        timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
  
         int wW = getTransitionManager().getWindowWidth();
@@ -131,9 +131,13 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
-        
-        auto tc = getEntity(FPSId)->getComponent<TextComponent>("text");
-        tc->setText("FPS: " + std::to_string(static_cast<int>(1.f / (deltaTime / 1000.f))), Color{ 255, 255, 255 });
+        if (timeout >= 500.f) {
+            auto tc = getEntity(FPSId)->getComponent<TextComponent>("text");
+            tc->setText("FPS: " + std::to_string(static_cast<int>(1.f / (deltaTime / 1000.f))), Color{ 255, 255, 255 });
+            timeout = 0;
+        }
+
+        timeout += deltaTime;
 
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);

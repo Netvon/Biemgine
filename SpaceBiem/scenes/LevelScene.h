@@ -28,5 +28,6 @@ namespace spacebiem
         bool isPauseButtonDown = false;
         bool newGame;
         int FPSId;
+        float timeout;
     };
 }
