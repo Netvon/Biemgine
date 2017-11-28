@@ -42,7 +42,8 @@ namespace biemgine
                 lagTime = lagTime - BM_GAMELOOP_UPDATE_MS;
             }
 
-            globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
+            // globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
+            globalRender(elapsedTime);
 
         }
 

@@ -32,6 +32,7 @@
 
 using biemgine::TextComponent;
 using biemgine::TextEntity;
+using biemgine::TextUIEntity;
 using biemgine::ScriptComponent;
 using std::function;
 
@@ -76,6 +77,8 @@ namespace spacebiem
 
             return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
         });*/
+
+        FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -128,6 +131,10 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
+        
+        auto tc = getEntity(FPSId)->getComponent<TextComponent>("text");
+        tc->setText("FPS: " + std::to_string(static_cast<int>(1.f / (deltaTime / 1000.f))), Color{ 255, 255, 255 });
+
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
         getTransitionManager().drawOverlay(Fonts::Roboto());
