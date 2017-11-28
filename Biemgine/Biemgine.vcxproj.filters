@@ -164,7 +164,12 @@
     <ClInclude Include="devices\audio\AudioDevice.h">
       <Filter>devices\audio</Filter>
     </ClInclude>
-    <ClInclude Include="devices\audio\SDLAudioDevice.h" />
+    <ClInclude Include="devices\audio\SDLAudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AudioComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -277,6 +282,11 @@
     <ClCompile Include="primitives\RandomGenerator.cpp">
       <Filter>primitives</Filter>
     </ClCompile>
-    <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp">
+      <Filter>devices\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AudioComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
