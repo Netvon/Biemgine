@@ -36,6 +36,7 @@ namespace biemgine
         void enableRendering();
         void enableUI();
         void enableScripts();
+        void enableCamera();
 
         Entity * getEntity(int id) const;
 

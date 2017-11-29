@@ -14,7 +14,6 @@
 #include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
-#include "..\systems\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -41,7 +40,7 @@ namespace spacebiem
     void LevelScene::created()
     {
         addSystem<SaveBlobSystem>();
-        addSystem<CameraSystem>();
+        enableCamera();
        
         enableRendering();
         enablePhysics();

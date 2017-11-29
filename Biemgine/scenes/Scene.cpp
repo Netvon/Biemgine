@@ -5,6 +5,7 @@
 #include "..\systems\RenderSystem.h"
 #include "..\systems\UISystem.h"
 #include "..\systems\ScriptSystem.h"
+#include "..\systems\CameraSystem.h"
 
 //#include "..\systems\gravitysystem.h"
 //#include "..\systems\physicssystem.h"
@@ -78,6 +79,13 @@ namespace biemgine
         systemManager->addSystem(scriptsystem);
         scriptsystem->setStateManager(stateManager);
     }
+
+	void Scene::enableCamera()
+	{
+        auto camerasystem = new CameraSystem();
+        systemManager->addSystem(camerasystem);
+        camerasystem->setStateManager(stateManager);
+	}
 
     void Scene::enableRendering()
     {

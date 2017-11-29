@@ -187,7 +187,6 @@
     <ClInclude Include="globals\Fonts.h" />
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
-    <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -236,7 +235,6 @@
     <ClCompile Include="factories\NameGenerator.cpp" />
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
-    <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />

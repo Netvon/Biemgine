@@ -142,9 +142,6 @@
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="systems\CameraSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="components\CameraComponent.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -297,9 +294,6 @@
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="systems\CameraSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\CameraComponent.cpp">

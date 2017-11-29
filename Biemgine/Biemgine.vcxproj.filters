@@ -158,6 +158,8 @@
     <ClInclude Include="primitives\RandomGenerator.h">
       <Filter>primitives</Filter>
     </ClInclude>
+    <ClInclude Include="systems\CameraSystem.h" />
+    <ClInclude Include="components\CameraComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -270,5 +272,7 @@
     <ClCompile Include="primitives\RandomGenerator.cpp">
       <Filter>primitives</Filter>
     </ClCompile>
+    <ClCompile Include="systems\CameraSystem.cpp" />
+    <ClCompile Include="components\CameraComponent.cpp" />
   </ItemGroup>
 </Project>

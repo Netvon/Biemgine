@@ -25,10 +25,13 @@ namespace spacebiem
         void addStarSystem(int level, int beltCount, int middleX, int middleY);
 
         
-        // Livable planets
+        // hot planets
         void addInnerBelt(int middleX, int middleY, int minR, int maxR);
 
-        // Deadly planets
+        // Livable planets
+        void addMiddleBelt(int middleX, int middleY, int minR, int maxR);
+
+        // cold planets
         void addOuterBelt(int middleX, int middleY, int minR, int maxR);
 
         // Tiny moons (not always there)
