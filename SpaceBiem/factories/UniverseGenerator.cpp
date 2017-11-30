@@ -68,7 +68,7 @@ namespace spacebiem
     {
 
         int sunId = RandomGenerator::getInstance().generate(1, 100000);
-        string sunType = "moon";
+        string sunType = "lava";
         int sunR = 500;
         int sunX = middleX;
         int sunY = middleY;
@@ -150,8 +150,8 @@ namespace spacebiem
         float maxPR = 350;
         float minPMargin = 150;
 
-        // cold planets / toxic planets
-        vector<string> planetProbability{ "sand", "sand", "sand", "sand", "toxic" };
+        // cold planets / toxic planets                        
+        vector<string> planetProbability{ "ice", "ice", "ice" /* baby */ , "toxic" };
 
         addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
     }

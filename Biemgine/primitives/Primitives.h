@@ -37,6 +37,12 @@ namespace biemgine
         static Color ToxicAtmosphere() {
             return Color{ 20, 221, 53, 255 };
         }
+        static Color IceAtmosphere() {
+            return Color{ 198, 242, 238, 255 };
+        }
+        static Color LavaAtmosphere() {
+            return Color{ 163, 33, 7, 255 };
+        }
 
     };
 

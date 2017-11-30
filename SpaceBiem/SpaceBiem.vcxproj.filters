@@ -178,6 +178,8 @@
     <ClInclude Include="factories\UniverseGenerator.h">
       <Filter>factories</Filter>
     </ClInclude>
+    <ClInclude Include="entities\PlanetIceEntity.h" />
+    <ClInclude Include="entities\PlanetLavaEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -329,5 +331,7 @@
     <ClCompile Include="factories\UniverseBuilder.cpp">
       <Filter>factories</Filter>
     </ClCompile>
+    <ClCompile Include="entities\PlanetIceEntity.cpp" />
+    <ClCompile Include="entities\PlanetLavaEntity.cpp" />
   </ItemGroup>
 </Project>
