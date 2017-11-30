@@ -20,4 +20,16 @@ namespace biemgine
     {
         return stateManager;
     }
+
+    void System::setTimeout(int pTimeout) {
+        timeout = pTimeout;
+        timeoutCounter = 0;
+    }
+    void System::nextUpdate() {
+        if (timeoutCounter == timeout) timeoutCounter = 0;
+        else timeoutCounter++;
+    }
+    bool System::hasTimedOut() {
+        return (timeoutCounter != 0);
+    }
 }

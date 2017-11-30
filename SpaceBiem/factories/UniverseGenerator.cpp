@@ -18,9 +18,9 @@ namespace spacebiem
         handler->writeLine("2_player,oxygen_component,500");
 
 
-        int minBelt = 3;
-        int maxBelt = 3;
-        int beltCount = RandomGenerator::getInstance().generate(minBelt, maxBelt + 1);
+        int minBelt = 4;
+        int maxBelt = 4;
+        int beltCount = RandomGenerator::getInstance().generate(minBelt, maxBelt);
 
         int sunR = 500;
         int beltMargin = 20;
@@ -36,8 +36,6 @@ namespace spacebiem
 
 
         // level 1 systems (neighbouring middle)
-
-        //float planetsInAngle = ((minR + maxR) / 2) * 3.1415926535897f * 2 / ((maxPR * 2) + minPMargin);
 
         int angleMinIncr = 25;
         int angleMaxIncr = 35;

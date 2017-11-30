@@ -22,7 +22,15 @@ namespace biemgine
         void setStateManager(StateManager* pManager);
         StateManager* getStateManager();
 
+        void setTimeout(int pTimeout);
+        void nextUpdate();
+        bool hasTimedOut();
+
     private:
         StateManager* stateManager = nullptr;
+
+        int timeout;
+        int timeoutCounter;
+
     };
 }

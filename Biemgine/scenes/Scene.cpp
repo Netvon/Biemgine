@@ -61,30 +61,22 @@ namespace biemgine
 
     void Scene::enablePhysics()
     {
-        auto physicsSystem = new PhysicsSystem();
-        systemManager->addSystem(physicsSystem);
-        physicsSystem->setStateManager(stateManager);
+        addSystem<PhysicsSystem>();
     }
 
     void Scene::enableUI()
     {
-        auto uisystem = new UISystem();
-        systemManager->addSystem(uisystem);
-        uisystem->setStateManager(stateManager);
+        addSystem<UISystem>();
     }
 
     void Scene::enableScripts()
     {
-        auto scriptsystem = new ScriptSystem();
-        systemManager->addSystem(scriptsystem);
-        scriptsystem->setStateManager(stateManager);
+        addSystem<ScriptSystem>();
     }
 
 	void Scene::enableCamera()
 	{
-        auto camerasystem = new CameraSystem();
-        systemManager->addSystem(camerasystem);
-        camerasystem->setStateManager(stateManager);
+        addSystem<CameraSystem>();
 	}
 
     void Scene::enableRendering()
@@ -92,6 +84,7 @@ namespace biemgine
         // TODO default rendering device
         auto gd = getWindow()->getGraphicsDevice();
         auto renderSystem = new RenderSystem();
+        renderSystem->setTimeout(0);
         renderSystem->setGraphicsDevice(gd);
 
         systemManager->addSystem(renderSystem);

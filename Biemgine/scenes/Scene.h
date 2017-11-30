@@ -42,7 +42,7 @@ namespace biemgine
 
     protected:
         template<class TSystem>
-        void addSystem();
+        void addSystem(int timeout = 0);
 
         int addEntity(Entity* entity);
 
@@ -63,12 +63,13 @@ namespace biemgine
     };
 
     template<class TSystem>
-    void Scene::addSystem()
+    void Scene::addSystem(int timeout)
     {
         auto system = new TSystem();
         systemManager->addSystem(system);
 
         system->setStateManager(stateManager);
+        system->setTimeout(timeout);
     }
 
     template<class TEntity, typename ...TArgs>

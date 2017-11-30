@@ -17,7 +17,8 @@ namespace biemgine
     void SystemManager::preUpdate()
     {
         for (auto* s : systems) {
-            s->before();
+            s->nextUpdate();
+            if(!s->hasTimedOut()) s->before();
         }
     }
 
@@ -31,7 +32,7 @@ namespace biemgine
     void SystemManager::postUpdate()
     {
         for (auto* s : systems) {
-            s->after();
+            if (!s->hasTimedOut()) s->after();
         }
     }
 
@@ -45,7 +46,7 @@ namespace biemgine
     void SystemManager::acceptForUpdate(const Entity & entity)
     {
         for (auto* s : systems) {
-            s->update(entity);
+            if (!s->hasTimedOut()) s->update(entity);
         }
     }
 
