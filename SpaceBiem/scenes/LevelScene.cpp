@@ -83,9 +83,8 @@ namespace spacebiem
         UniverseBuilder uB;
         if (newGame) {
 
-
             UniverseGenerator uG;
-            uG.generate();
+            uG.generate(difficulty);
 
 
             uB.build(getEntityManager(), true);

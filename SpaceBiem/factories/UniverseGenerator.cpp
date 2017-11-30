@@ -5,89 +5,84 @@ namespace spacebiem
 {
     UniverseGenerator::UniverseGenerator()
     {
+        FileParser parser;
+        difficultySystem = parser.DifficultySystemContent();
+        difficultyBelt = parser.DifficultyBeltContent();
+
     }
 
     void UniverseGenerator::generate(Difficulty difficulty)
     {
-        handler = new FileHandler{ "data/level_normal.csv", true };
+        if (difficulty == Difficulty::NORMAL) currentDifficulty = "normal";
+        else if (difficulty == Difficulty::CHALLENING) currentDifficulty = "challenging";
+        else if (difficulty == Difficulty::EXPERT) currentDifficulty = "expert";
 
-        handler->writeLine("entity_id_type,component_type,value_1,value_2,value_3,value_4");
+        // If there didn't spawn any earth planet for the player, try again.
+        while (!playerSpawned) {
 
-        handler->writeLine("2_player,position_component,600,300,25,50");
-        handler->writeLine("2_player,score_component,100");
-        handler->writeLine("2_player,oxygen_component,500");
+            handler = new FileHandler{ "data/savegame.csv", true };
+
+            handler->writeLine("entity_id_type,component_type,value_1,value_2,value_3,value_4");
+
+            int beltMargin = difficultySystem[currentDifficulty][0];
+            int beltW = difficultySystem[currentDifficulty][1];
+            int minBelt = difficultySystem[currentDifficulty][2];
+            int maxBelt = difficultySystem[currentDifficulty][3];
+            int sunR = difficultySystem[currentDifficulty][4];
+            int interstellarMargin = difficultySystem[currentDifficulty][5];
+
+            int beltCount = RandomGenerator::getInstance().generate(minBelt, maxBelt);
+
+            int systemR = (sunR)+beltMargin + ((beltCount - 1) * (beltW + beltMargin)) + beltW + interstellarMargin;
+
+            int middleX = 0;
+            int middleY = 0;
+
+            // level 0 system (middle)
+            addPlanetarySystem(0, beltCount, middleX, middleY, sunR, beltMargin, beltW);
 
 
-        int minBelt = 4;
-        int maxBelt = 4;
-        int beltCount = RandomGenerator::getInstance().generate(minBelt, maxBelt);
+            // level 1 systems (neighbouring middle)
+            int angleMinIncr = 25;
+            int angleMaxIncr = 35;
+            float startAngle = static_cast<float>(RandomGenerator::getInstance().generate(1, 100));
+            float newAngle = startAngle;
 
-        int sunR = 500;
-        int beltMargin = 20;
-        int beltW = 700;
-        int interstellarMargin = 20;
-        int systemR = (sunR)+beltMargin + ((beltCount - 1) * (beltW + beltMargin)) + beltW + interstellarMargin;
+            int count = 3;
+            while (count > 0) {
 
-        int middleX = 1000;
-        int middleY = 900;
+                float angle = newAngle / 100 * 3.1415926535897f * 2;
 
-        // level 0 system (middle)
-        addPlanetarySystem(0, beltCount, middleX, middleY);
+                float r = systemR * 2;
+                int pX = middleX + static_cast<int>(cos(angle)*r);
+                int pY = middleY + static_cast<int>(sin(angle)*r);
+
+                addPlanetarySystem(0, beltCount, pX, pY, sunR, beltMargin, beltW);
+
+                newAngle += RandomGenerator::getInstance().generate(angleMinIncr, angleMaxIncr);
+                count--;
+            }
 
 
-        // level 1 systems (neighbouring middle)
-
-        int angleMinIncr = 25;
-        int angleMaxIncr = 35;
-        float startAngle = static_cast<float>(RandomGenerator::getInstance().generate(1, 100));
-        float newAngle = startAngle;
-
-        int count = 3;
-        while (count > 0) {
-
-            float angle = newAngle / 100 * 3.1415926535897f * 2;
-
-            float r = systemR*2;
-            int pX = middleX + static_cast<int>(cos(angle)*r);
-            int pY = middleY + static_cast<int>(sin(angle)*r);
-
-            addPlanetarySystem(0, beltCount, pX, pY);
-
-            newAngle += RandomGenerator::getInstance().generate(angleMinIncr, angleMaxIncr);
-            count--;
+            delete handler;
         }
 
-
-
-
-
-        delete handler;
     }
 
-    void UniverseGenerator::addPlanetarySystem(int level, int beltCount, int middleX, int middleY)
+    void UniverseGenerator::addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW)
     {
 
-        int sunId = RandomGenerator::getInstance().generate(1, 100000);
+        int sunId = getNextId();
         string sunType = "lava";
-        int sunR = 500;
-        int sunX = middleX;
-        int sunY = middleY;
-        
 
         handler->writeLine(
             to_string(sunId)+"_"+sunType + "," +
             "position_component," +
-            to_string(sunX - (sunR / 2)) + "," +
-            to_string(sunY - (sunR / 2)) + "," +
+            to_string(middleX - (sunR / 2)) + "," +
+            to_string(middleY - (sunR / 2)) + "," +
             to_string(sunR) + "," +
             to_string(sunR)
         );
-
-
-        int beltMargin = 20; 
-
-        int beltW = 700;
-
 
 
         while (beltCount > 0) {
@@ -95,78 +90,39 @@ namespace spacebiem
 
             int minR = (sunR)+beltMargin + (beltCount * (beltW + beltMargin));
             int maxR = minR + beltW;
+            string beltType;
 
             if (beltCount >= 3) {
-                addAsteroidBelt(middleX, middleY, minR, maxR);
+                beltType = "asteroid";
             }
             else if (beltCount == 2) {
-                addOuterBelt(middleX, middleY, minR, maxR);
+                beltType = "outer";
             }
             else if (beltCount == 1) {
-                addMiddleBelt(middleX, middleY, minR, maxR);
+                beltType = "middle";
             }
             else if (beltCount == 0) {
-                addInnerBelt(middleX, middleY, minR, maxR);
+                beltType = "inner";
             }
 
+            float minPR = static_cast<float>(atof(difficultyBelt[currentDifficulty][beltType][0].c_str()));
+            float maxPR = static_cast<float>(atof(difficultyBelt[currentDifficulty][beltType][1].c_str()));
+            float minPMargin = static_cast<float>(atof(difficultyBelt[currentDifficulty][beltType][2].c_str()));
+
+            string input = difficultyBelt[currentDifficulty][beltType][3];
+            istringstream ss(input);
+            string token;
+            vector<string> planetProbability;
+
+            while (getline(ss, token, '/')) {
+                planetProbability.push_back(token);
+            }
+
+            addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
+
         }
-
-
     }
 
-    void UniverseGenerator::addStarSystem(int level, int beltCount, int middleX, int middleY)
-    {
-    }
-
-    void UniverseGenerator::addInnerBelt(int middleX, int middleY, int minR, int maxR)
-    {
-
-        float minPR = 200;          // minimum size of planet
-        float maxPR = 250;          // maximum size of planet
-        float minPMargin = 200;     // minimum margin between each planet in belt
-
-        // hot planets / scorched planets
-        vector<string> planetProbability{"sand", "moon"};
-
-        addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
-
-    }
-
-    void UniverseGenerator::addMiddleBelt(int middleX, int middleY, int minR, int maxR)
-    {
-        float minPR = 250;
-        float maxPR = 300;
-        float minPMargin = 150;
-
-        // normal planets / toxic planets
-        vector<string> planetProbability{ "earth", "earth", "toxic" };
-
-        addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
-    }
-
-    void UniverseGenerator::addOuterBelt(int middleX, int middleY, int minR, int maxR)
-    {
-        float minPR = 300;
-        float maxPR = 350;
-        float minPMargin = 150;
-
-        // cold planets / toxic planets                        
-        vector<string> planetProbability{ "ice", "ice", "ice" /* baby */ , "toxic" };
-
-        addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
-    }
-
-    void UniverseGenerator::addAsteroidBelt(int middleX, int middleY, int minR, int maxR)
-    {
-        float minPR = 150;
-        float maxPR = 200;
-        float minPMargin = 20;
-
-        // asteroids
-        vector<string> planetProbability{ "moon" };
-
-        addBelt(middleX, middleY, minR, maxR, minPR, maxPR, minPMargin, planetProbability);
-    }
 
     void UniverseGenerator::addBelt(int middleX, int middleY, int minR, int maxR, float minPR, float maxPR, float minPMargin, vector<string> planetProbability)
     {
@@ -183,7 +139,7 @@ namespace spacebiem
             float angle = newAngle / 100 * 3.1415926535897f * 2;
 
             int pRadius = RandomGenerator::getInstance().generate(minPR, maxPR);
-            int pId = RandomGenerator::getInstance().generate(1, 100000);
+            int pId = getNextId();
             string pType = planetProbability[RandomGenerator::getInstance().generate(0, planetProbability.size())];
 
             int minimumR = minR + pRadius;
@@ -193,6 +149,7 @@ namespace spacebiem
             int pX = middleX + static_cast<int>(cos(angle)*r);
             int pY = middleY + static_cast<int>(sin(angle)*r);
 
+            if (pType == "earth") spawnPlayer(pX, pY-(pRadius/2));
 
             handler->writeLine(
                 to_string(pId) + "_" + pType + "," +
@@ -209,5 +166,19 @@ namespace spacebiem
 
     }
 
+    int UniverseGenerator::getNextId() {
+        nextId++;
+        return nextId;
+    }
 
+    void UniverseGenerator::spawnPlayer(int x, int y) {
+
+        if (playerSpawned) return;
+
+        handler->writeLine("2_player,position_component,"+ to_string(x) +","+ to_string(y) +",25,50");
+        handler->writeLine("2_player,score_component,0");
+        handler->writeLine("2_player,oxygen_component,500");
+
+        playerSpawned = true;
+    }
 }
