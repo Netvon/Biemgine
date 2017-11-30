@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "EntityManager.h"
 
+#include <chrono>
+
 namespace biemgine
 {
     EntityManager::~EntityManager()
@@ -28,7 +30,8 @@ namespace biemgine
 
         for (Entity * e : entities) {
 
-            if (canUpdate(*e)) manager->acceptForUpdate(*e);
+            if (canUpdate(*e))
+                manager->acceptForUpdate(*e);
         }
 
         manager->postUpdate();
@@ -36,14 +39,23 @@ namespace biemgine
 
     void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
     {
-        manager->preUpdate(deltaTime);
+        //auto start = std::chrono::high_resolution_clock::now();
+
+        //manager->preUpdate(deltaTime);
 
         for (Entity * e : entities) {
 
-            if(canUpdate(*e)) manager->acceptForUpdate(*e, deltaTime);
+            if (canUpdate(*e)) {
+                manager->acceptForUpdate(*e, deltaTime);
+            }
         }
 
         manager->postUpdate(deltaTime);
+
+        /*auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end - start;*/
+
+        //printf("Timed Update took %f s\n", diff.count());
     }
 
     Entity* EntityManager::getEntity(int id) const

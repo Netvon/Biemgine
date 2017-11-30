@@ -48,7 +48,7 @@ namespace biemgine
 
         void update(const Entity& entity, const float deltaTime) override;
         void onSceneSwitch() override;
-        void before(const float deltaTime) override;
+        //void before(const float deltaTime) override;
         void after(const float deltaTime) override;
 
     private:

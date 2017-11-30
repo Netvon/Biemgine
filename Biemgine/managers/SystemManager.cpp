@@ -21,12 +21,12 @@ namespace biemgine
         }
     }
 
-    void SystemManager::preUpdate(const float deltaTime)
+    /*void SystemManager::preUpdate(const float deltaTime)
     {
         for (auto* s : systems) {
             s->before(deltaTime);
         }
-    }
+    }*/
 
     void SystemManager::postUpdate()
     {

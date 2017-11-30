@@ -18,7 +18,7 @@ namespace biemgine
         ~SystemManager();
 
         void preUpdate();
-        void preUpdate(const float deltaTime);
+        //void preUpdate(const float deltaTime);
 
         void postUpdate();
         void postUpdate(const float deltaTime);

@@ -85,7 +85,7 @@ namespace biemgine
             graphicsDevice->clear();
     }
 
-    void RenderSystem::before(const float deltaTime) {}
+    //void RenderSystem::before(const float deltaTime) {}
 
     bool sortByLayer(DrawTexture first, DrawTexture second)
     {
@@ -95,6 +95,8 @@ namespace biemgine
     void RenderSystem::after(const float deltaTime)
     {
         drawList.sort(sortByLayer);
+
+        /*printf("Drawing %llu textures\n", drawList.size());*/
 
         for (auto texture : drawList)
         {
