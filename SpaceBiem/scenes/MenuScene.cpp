@@ -102,6 +102,11 @@ namespace spacebiem
 
     void MenuScene::input()
     {
+        if (im.isKeyDown("B")) {
+            getTransitionManager().getAudioDevice().playSoundEffect("audio/audio1.ogg", 0, -1);
+            getTransitionManager().getAudioDevice().playSoundEffect("audio/audio2.ogg", 0, -1);
+        }
+
         if (im.isKeyDown("Q")) {
             signalQuit();
         }

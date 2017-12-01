@@ -21,6 +21,7 @@ namespace biemgine
 
         void PauzeMusic();
         void ResumeMusic();
+
     private:
         std::map<std::string, Mix_Chunk*> soundEffects;
         std::map<std::string, Mix_Music*> music;

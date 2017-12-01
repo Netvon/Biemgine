@@ -1,11 +1,19 @@
 #include "stdafx.h"
 #include "StateManager.h"
 #include "SceneManager.h"
+#include "..\devices\audio\SDLAudioDevice.h"
 
 namespace biemgine
 {
-    StateManager::~StateManager() {}
+    StateManager::StateManager(
+        SceneManager& pSceneManager,
+        const Window& pWindow
+    ) : sceneManager(&pSceneManager), window(&pWindow), audioDevice(new SDLAudioDevice()) {};
 
+    StateManager::~StateManager()
+    {
+        delete audioDevice;
+    }
 
     int StateManager::getWindowWidth() const
     {
