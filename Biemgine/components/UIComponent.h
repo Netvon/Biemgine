@@ -37,7 +37,7 @@ namespace biemgine
         void setIsMouseOver(bool pIsMouseOver);
         void setIsMouseDown(bool pIsMouseDown);
 
-        friend void UISystem::update(const Entity & entity);
+        friend void UISystem::update(const Entity & entity, const float deltaTime);
 
     private:
         std::shared_ptr<Component> componentReference = nullptr;

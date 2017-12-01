@@ -15,6 +15,6 @@ namespace biemgine
     {
     public:
         ~SpriteEntity();
-        SpriteEntity(std::string texture, float x, float y, Color color, float w, float h, unsigned int layer = 0);
+        SpriteEntity(std::string texture, float x, float y, Color color, float w, float h, unsigned int layer = 0, string tag = "");
     };
 }

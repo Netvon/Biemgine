@@ -43,6 +43,7 @@ namespace biemgine
         int getId() const;
 
         virtual void die() const;
+        virtual void rise() const;
         bool isAlive() const;
 
         bool hasTag() const;

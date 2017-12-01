@@ -9,6 +9,7 @@
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
 #include "..\entities\ResourceUIEntity.h"
+#include "..\entities\ButtonUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
@@ -37,6 +38,13 @@ using std::function;
 
 namespace spacebiem
 {
+
+    void resumeButtonClicked(StateManager* e) {
+        cout << "resume" << endl;
+        e->resumeGame();
+    }
+
+
     void LevelScene::created()
     {
         addSystem<SaveBlobSystem>();
@@ -86,7 +94,21 @@ namespace spacebiem
         }
         else {
             uB.build(getEntityManager(), false);
-        }       
+        }
+
+
+        int beginY = 400;
+        int bW = 200;
+        int bH = 60;
+        int incr = bH + 15;
+        
+        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png", resumeButtonClicked, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png", resumeButtonClicked, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", resumeButtonClicked, "pause_menu");
+
+
+        updateMenu();
     }
 
     void LevelScene::sceneEnd() {
@@ -108,8 +130,16 @@ namespace spacebiem
         if (im.isKeyDown("P")) {
             if (!isPauseButtonDown) {
 
-                if (getTransitionManager().isPaused()) getTransitionManager().resumeGame();
-                else getTransitionManager().pauseGame();
+                if (isPaused) {
+                    isPaused = false;
+                    getTransitionManager().resumeGame();
+                }
+                else {
+                    isPaused = true;
+                    getTransitionManager().pauseGame();
+                }
+
+                updateMenu();
 
                 isPauseButtonDown = true;
             }
@@ -117,11 +147,16 @@ namespace spacebiem
         else {
             isPauseButtonDown = false;
         }
+
+        if (getTransitionManager().isPaused() != isPaused) {
+            isPaused = getTransitionManager().isPaused();
+            updateMenu();
+        }
     }
 
     void LevelScene::update()
     {
-        if (!getTransitionManager().isPaused()) {
+        if (!isPaused) {
             updateEntities();
         }
     }
@@ -130,6 +165,21 @@ namespace spacebiem
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-        getTransitionManager().drawOverlay(Fonts::Roboto());
     }
+
+
+    void LevelScene::updateMenu()
+    {
+        auto em = getEntityManager();
+        for (auto it = em->begin(); it != em->end(); it++) {
+
+            if ((*it)->getTag() != "pause_menu") continue;
+
+            if (isPaused) (*it)->rise();
+            else (*it)->die();
+
+        }
+
+    }
+
 }
