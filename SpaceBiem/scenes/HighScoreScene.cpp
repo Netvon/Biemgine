@@ -45,6 +45,8 @@ namespace spacebiem
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
         
         addEntity<ButtonUIEntity>(x, 750, Color{ 35, 65, 112 }, Color::White(), Size{ 150, 50 }, "Menu", "textures/button_white.png", BackButtonClicked);
+
+        //getTransitionManager().getAudioDevice().playMusic("audio/credits.MP3", 0);
     }
 
     void HighScoreScene::input()

@@ -5,16 +5,19 @@ namespace biemgine
     SDLAudioDevice::SDLAudioDevice()
     {
         int flags = MIX_INIT_OGG | MIX_INIT_MP3;
-        int initted = Mix_Init(flags);
-        if (initted&flags != flags) {
-            printf("Mix_Init: Failed to init required ogg and mp3!\n");
-            printf("Mix_Init: %s\n", Mix_GetError());
+        if (Mix_Init(flags) & flags != flags)
+        {
+            std::cout << "Mix_Init: Failed to init required ogg and mp3! " << Mix_GetError() << std::endl;
+            return;
         }
 
         if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
         {
             std::cout << "Mixer initialization error: " << Mix_GetError() << std::endl;
+            return;
         }
+
+        Mix_AllocateChannels(16);
     }
 
     SDLAudioDevice::~SDLAudioDevice()
@@ -32,11 +35,40 @@ namespace biemgine
         Mix_CloseAudio();
     }
 
-    void SDLAudioDevice::playSoundEffect(std::string path, int loops, int channel)
+    bool SDLAudioDevice::isPlayingMusic()
     {
-        if (Mix_PlayChannel(channel, getSoundEffects(path), loops) < 0)
+        return Mix_PlayingMusic();
+    }
+
+    void SDLAudioDevice::playFadeInSoundEffect(std::string path, int loops, int channel, int volume, int fadeInTime)
+    {
+        int playChannel = Mix_FadeInChannel(channel, getSoundEffects(path), loops, fadeInTime);
+        if (playChannel < 0)
         {
             std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
+            return;
+        }
+
+        Mix_Volume(playChannel, volume);
+    }
+
+    void SDLAudioDevice::playSoundEffect(std::string path, int loops, int channel, int volume)
+    {
+        int playChannel = Mix_PlayChannel(channel, getSoundEffects(path), loops);
+        if (playChannel < 0)
+        {
+            std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
+            return;
+        }
+
+        Mix_Volume(playChannel, volume);
+    }
+
+    void SDLAudioDevice::playFadeInMusic(std::string path, int loops, int fadeInTime)
+    {
+        if (Mix_FadeInMusic(getMusic(path), loops, fadeInTime) < 0)
+        {
+            std::cout << "Play music error: " << Mix_GetError() << std::endl;
         }
     }
 

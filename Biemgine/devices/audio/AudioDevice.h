@@ -11,7 +11,13 @@ namespace biemgine
     {
     public:
         virtual ~AudioDevice() {}
-        virtual void playSoundEffect(std::string path, int loops, int channel) = 0;
+
+        virtual bool isPlayingMusic() = 0;
+
+        virtual void playFadeInSoundEffect(std::string path, int loops, int channel, int volume, int fadeInTime) = 0;
+        virtual void playSoundEffect(std::string path, int loops, int channel, int volume) = 0;
+
+        virtual void playFadeInMusic(std::string path, int loops, int fadeInTime) = 0;
         virtual void playMusic(std::string path, int loops) = 0;
     };
 }

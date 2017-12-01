@@ -98,15 +98,14 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
         addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
 
+        if (!getTransitionManager().getAudioDevice().isPlayingMusic())
+        {
+            getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);
+        }
     }
 
     void MenuScene::input()
     {
-        if (im.isKeyDown("B")) {
-            getTransitionManager().getAudioDevice().playSoundEffect("audio/audio1.ogg", 0, -1);
-            getTransitionManager().getAudioDevice().playSoundEffect("audio/audio2.ogg", 0, -1);
-        }
-
         if (im.isKeyDown("Q")) {
             signalQuit();
         }
