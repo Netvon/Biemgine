@@ -17,6 +17,7 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
         void sceneEnd() override;
+        void resetFPScounters();
 
         LevelScene(StateManager& manager, bool newGame = true) :
             Scene(manager),
@@ -29,5 +30,7 @@ namespace spacebiem
         bool newGame;
         int FPSId;
         float timeout;
+        int counter = 0;
+        int totalDeltaTime = 0;
     };
 }
