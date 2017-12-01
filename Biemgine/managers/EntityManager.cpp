@@ -24,7 +24,7 @@ namespace biemgine
         return entity->getId();
     }
 
-    void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager)
+    inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager)
     {
         manager->preUpdate();
 
@@ -37,7 +37,7 @@ namespace biemgine
         manager->postUpdate();
     }
 
-    void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
+    inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
     {
         //auto start = std::chrono::high_resolution_clock::now();
 

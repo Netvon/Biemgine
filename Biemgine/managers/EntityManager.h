@@ -19,8 +19,8 @@ namespace biemgine
         template<class TEntity, typename...TArgs>
         int addEntity(TArgs&&... arguments);
 
-        void updateEntities(std::shared_ptr<SystemManager> manager);
-        void updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime);
+        inline void updateEntities(std::shared_ptr<SystemManager> manager);
+        inline void updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime);
 
         auto begin() const {
             return entities.begin();

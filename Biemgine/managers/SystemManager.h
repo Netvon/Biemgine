@@ -17,14 +17,14 @@ namespace biemgine
 
         ~SystemManager();
 
-        void preUpdate();
+        inline void preUpdate();
         //void preUpdate(const float deltaTime);
 
-        void postUpdate();
-        void postUpdate(const float deltaTime);
+        inline void postUpdate();
+        inline void postUpdate(const float deltaTime);
 
-        void acceptForUpdate(const Entity& entity);
-        void acceptForUpdate(const Entity& entity, const float deltaTime);
+        inline void acceptForUpdate(const Entity& entity);
+        inline void acceptForUpdate(const Entity& entity, const float deltaTime);
 
         void addSystem(System* system);
 
