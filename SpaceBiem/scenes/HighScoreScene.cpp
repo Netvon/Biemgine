@@ -46,7 +46,7 @@ namespace spacebiem
         
         addEntity<ButtonUIEntity>(x, 750, Color{ 35, 65, 112 }, Color::White(), Size{ 150, 50 }, "Menu", "textures/button_white.png", BackButtonClicked);
 
-        //getTransitionManager().getAudioDevice().playMusic("audio/credits.MP3", 0);
+        getTransitionManager().getAudioDevice().playMusic("audio/highscore.ogg", -1);
     }
 
     void HighScoreScene::input()

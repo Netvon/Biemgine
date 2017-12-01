@@ -1,17 +1,11 @@
 #include "SDLAudioDevice.h"
+#include <functional>
 
 namespace biemgine
 {
     SDLAudioDevice::SDLAudioDevice()
     {
-        int flags = MIX_INIT_OGG | MIX_INIT_MP3;
-        if (Mix_Init(flags) & flags != flags)
-        {
-            std::cout << "Mix_Init: Failed to init required ogg and mp3! " << Mix_GetError() << std::endl;
-            return;
-        }
-
-        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0)
         {
             std::cout << "Mixer initialization error: " << Mix_GetError() << std::endl;
             return;
@@ -42,26 +36,26 @@ namespace biemgine
 
     void SDLAudioDevice::playFadeInSoundEffect(std::string path, int loops, int channel, int volume, int fadeInTime)
     {
-        int playChannel = Mix_FadeInChannel(channel, getSoundEffects(path), loops, fadeInTime);
-        if (playChannel < 0)
+        int chunkChannel = Mix_FadeInChannel(channel, getSoundEffects(path), loops, fadeInTime);
+        if (chunkChannel < 0)
         {
             std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
             return;
         }
 
-        Mix_Volume(playChannel, volume);
+        Mix_Volume(chunkChannel, volume);
     }
 
     void SDLAudioDevice::playSoundEffect(std::string path, int loops, int channel, int volume)
     {
-        int playChannel = Mix_PlayChannel(channel, getSoundEffects(path), loops);
-        if (playChannel < 0)
+        int chunkChannel = Mix_PlayChannel(channel, getSoundEffects(path), loops);
+        if (chunkChannel < 0)
         {
             std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
             return;
         }
 
-        Mix_Volume(playChannel, volume);
+        Mix_Volume(chunkChannel, volume);
     }
 
     void SDLAudioDevice::playFadeInMusic(std::string path, int loops, int fadeInTime)

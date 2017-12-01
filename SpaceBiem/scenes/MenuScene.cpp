@@ -20,11 +20,13 @@ namespace spacebiem
     void newGameButtonClicked(StateManager* e)
     {
         e->navigateTo<LevelScene>(true);
+        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
     }
 
     void ContinueButtonClicked(StateManager* e)
     {
         e->navigateTo<LevelScene>(false);
+        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
     }
 
     void HighscoreButtonClicked(StateManager* e)
@@ -98,10 +100,7 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
         addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
 
-        if (!getTransitionManager().getAudioDevice().isPlayingMusic())
-        {
-            getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);
-        }
+        getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);  
     }
 
     void MenuScene::input()
@@ -115,6 +114,7 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("Return")) {
+            getTransitionManager().getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
             getTransitionManager().navigateTo<LevelScene>();
         }
     }
