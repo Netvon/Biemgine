@@ -24,7 +24,6 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
-#include "..\systems\SaveBlobSystem.h"
 
 #include "..\globals\Fonts.h"
 
@@ -39,7 +38,6 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
-        addSystem<SaveBlobSystem>();
         enableCamera();
        
         enableRendering();
@@ -51,12 +49,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>();
+        addSystem<OxygenUISystem>(2);
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>();
-        addSystem<ResourceUISystem>();
-        addSystem<ResourceCollectingSystem>();
-        addSystem<GameoverSystem>();
+        addSystem<ScoreUISystem>(2);
+        addSystem<ResourceUISystem>(2);
+        addSystem<ResourceCollectingSystem>(2);
+        addSystem<GameoverSystem>(2);
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -91,7 +89,7 @@ namespace spacebiem
         }
         else {
             uB.build(getEntityManager(), false);
-        }       
+        }
     }
 
     void LevelScene::sceneEnd() {

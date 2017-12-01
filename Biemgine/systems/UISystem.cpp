@@ -9,10 +9,6 @@ namespace biemgine
         sceneWasSwitched = true;
     }
 
-    UISystem::~UISystem()
-    {
-    }
-
     void UISystem::before()
     {
         auto im = getStateManager()->getInputManager();

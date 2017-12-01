@@ -9,7 +9,6 @@ namespace biemgine
     {
     public:
         UISystem();
-        ~UISystem();
 
         void before() override;
         void update(const Entity& entity) override;

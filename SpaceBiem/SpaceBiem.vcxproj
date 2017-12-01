@@ -203,7 +203,6 @@
     <ClInclude Include="systems\OxygenSystem.h" />
     <ClInclude Include="systems\OxygenUISystem.h" />
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="systems\SaveBlobSystem.h" />
     <ClInclude Include="systems\ScoreSystem.h" />
     <ClInclude Include="systems\ScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
@@ -260,7 +259,6 @@
     <ClCompile Include="systems\OxygenSystem.cpp" />
     <ClCompile Include="systems\OxygenUISystem.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="systems\SaveBlobSystem.cpp" />
     <ClCompile Include="systems\ScoreSystem.cpp" />
     <ClCompile Include="systems\ScoreUISystem.cpp" />
     <ClCompile Include="factories\UniverseBuilder.cpp" />

@@ -44,7 +44,7 @@ namespace spacebiem
         enableUI();
         enableScripts();
 
-        addSystem<ResourceUISystem>();
+        addSystem<ResourceUISystem>(60);
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();

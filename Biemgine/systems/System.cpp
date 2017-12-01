@@ -5,12 +5,13 @@
 namespace biemgine
 {
     System::~System() {}
-    void System::before() {}
+    inline void System::before() {}
     //void System::before(const float deltaTime) {}
-    void System::update(const Entity & entity) {}
-    void System::update(const Entity & entity, const float deltaTime) {}
-    void System::after() {}
-    void System::after(const float deltaTime) {}
+    inline void System::update(const Entity & entity) {}
+    inline void System::update(const Entity & entity, const float deltaTime) {}
+    inline void System::after() {}
+    inline void System::after(const float deltaTime) {}
+
     void System::setStateManager(StateManager * pManager)
     {
         stateManager = pManager;
@@ -25,11 +26,15 @@ namespace biemgine
         timeout = pTimeout;
         timeoutCounter = 0;
     }
+
     void System::nextUpdate() {
-        if (timeoutCounter == timeout) timeoutCounter = 0;
-        else timeoutCounter++;
+        if (timeoutCounter == timeout)
+            timeoutCounter = 0;
+        else
+            timeoutCounter++;
     }
+
     bool System::hasTimedOut() {
-        return (timeoutCounter != 0);
+        return timeoutCounter != 0;
     }
 }

@@ -18,7 +18,6 @@ namespace spacebiem
     public:
         ~ResourceCollectingSystem() {};
 
-        void before() override;
         void update(const Entity& entity) override;
         void after() override;
 

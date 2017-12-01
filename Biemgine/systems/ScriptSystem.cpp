@@ -2,7 +2,7 @@
 
 namespace biemgine {
 
-    void ScriptSystem::update(const Entity & entity, const float deltaTime)
+    void ScriptSystem::update(const Entity & entity)
     {
         if (!entity.hasComponent("script"))
             return;

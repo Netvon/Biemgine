@@ -66,18 +66,18 @@ namespace biemgine
 
     void Scene::enableUI()
     {
-        addSystem<UISystem>();
+        addSystem<UISystem>(2);
     }
 
     void Scene::enableScripts()
     {
-        addSystem<ScriptSystem>();
+        addSystem<ScriptSystem>(2);
     }
 
-	void Scene::enableCamera()
-	{
+    void Scene::enableCamera()
+    {
         addSystem<CameraSystem>();
-	}
+    }
 
     void Scene::enableRendering()
     {
