@@ -13,11 +13,11 @@ namespace biemgine
     {
         unsigned char r = 255, g = 255, b = 255, a = 255;
 
-        static Color White() {
+        inline static Color White() {
             return Color();
         }
 
-        static Color Black() {
+        inline static Color Black() {
             return Color{ 0, 0, 0, 255 };
         }
 
@@ -75,10 +75,10 @@ namespace biemgine
         Vector& operator*=(const Vector& other);
         Vector operator*(const Vector& other);
 
-        Vector normalize();
-        float length();
+        inline Vector normalize();
+        inline float length();
 
-        float distance(const Vector&b);
+        inline float distance(const Vector&b);
 
         operator Point();
     };

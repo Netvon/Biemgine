@@ -61,18 +61,18 @@ namespace biemgine
         return { x * other.x, y * other.y, z * other.z };
     }
 
-    Vector Vector::normalize()
+    inline Vector Vector::normalize()
     {
         auto me = *this;
         return me / length();
     }
 
-    float Vector::length()
+    inline float Vector::length()
     {
         return sqrt(x*x + y*y + z*z);
     }
 
-    float Vector::distance(const Vector & b)
+    inline float Vector::distance(const Vector & b)
     {
         auto temp = *this - b;
         return temp.length();
