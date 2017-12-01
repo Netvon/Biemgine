@@ -108,6 +108,15 @@ namespace spacebiem
             getTransitionManager().navigateTo<MenuScene>();
         }
 
+        if (im.isKeyDown("F")) {
+            if (getEntity(FPSId)->getComponent<TextComponent>("text")->isVisible()) {
+                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(false);
+            }
+            else {
+                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(true);
+            }
+        }
+
         if (im.isKeyDown("P")) {
             if (!isPauseButtonDown) {
 

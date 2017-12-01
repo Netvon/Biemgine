@@ -44,6 +44,7 @@
     <ClInclude Include="devices\graphics\TextureFlip.h" />
     <ClInclude Include="dlldef.h" />
     <ClInclude Include="entities\Entity.h" />
+    <ClInclude Include="entities\FPSEntity.h" />
     <ClInclude Include="entities\SpriteEntity.h" />
     <ClInclude Include="entities\TextUIEntity.h" />
     <ClInclude Include="entities\TextEntity.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="entities\FPSEntity.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
