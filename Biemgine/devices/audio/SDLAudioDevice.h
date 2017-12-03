@@ -25,8 +25,8 @@ namespace biemgine
         void playFadeInMusic(std::string path, int loops = 0, int volume = 128, int fadeInTime = 1000);
         void playMusic(std::string path, int loops = 0, int volume = 128);
 
-        void PauzeMusic();
-        void ResumeMusic();
+        void pauzeMusic();
+        void resumeMusic();
 
     private:
         std::map<std::string, Mix_Chunk*> soundEffects;

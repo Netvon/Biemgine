@@ -42,6 +42,8 @@ namespace biemgine
 
         int getId() const;
 
+        bool operator==(Entity entity) { return id == entity.id; }
+
         virtual void die() const;
         bool isAlive() const;
 

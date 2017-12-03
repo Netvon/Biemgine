@@ -8,12 +8,12 @@ namespace spacebiem
 {
     void OxygenSystem::update(const Entity & entity)
     {
-        if (entity.hasComponent("atmosphere")) {
-            auto ac = entity.getComponent<AtmosphereComponent>("atmosphere");
-            if (find(atmospheres.begin(), atmospheres.end(), ac) == atmospheres.end()) {
-                atmospheres.push_back(ac);
+       /* if (entity.hasComponent("atmosphere")) {
+            std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity);
+            if (std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity) == entitiesWithAtmospheres.end()) {
+                entitiesWithAtmospheres.push_back(entity);
             }
-        }
+        }*/
 
         /*if (entity.hasComponent("texture")) {
             auto textures = entity.getComponents<biemgine::TextureComponent*>("texture");
@@ -33,16 +33,18 @@ namespace spacebiem
         if (entity.hasComponent("position")) {
             auto pc = entity.getComponent<PositionComponent>("position");
 
-            for (auto atmos : atmospheres) {
-                int xA = atmos->getX();
-                int yA = atmos->getY();
-                int rA = atmos->getRadius();
+            for (auto entity : entitiesWithAtmospheres) {
+                auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
+
+                int xA = oc->getX();
+                int yA = oc->getY();
+                int rA = oc->getRadius();
                 int x = pc->getX();
                 int y = pc->getY();
 
                 // Kei skône pietjegras theorie
                 if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
-                    currentAtmosphere = atmos;
+                    currentAtmosphere = oc;
                     break;
                 }
             }

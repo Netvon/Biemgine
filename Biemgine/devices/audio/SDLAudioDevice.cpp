@@ -117,7 +117,7 @@ namespace biemgine
         currentlyPlayingMusic = path;
     }
 
-    void SDLAudioDevice::PauzeMusic()
+    void SDLAudioDevice::pauzeMusic()
     {
         if (Mix_PlayingMusic() != 0)
         {
@@ -125,7 +125,7 @@ namespace biemgine
         }
     }
 
-    void SDLAudioDevice::ResumeMusic()
+    void SDLAudioDevice::resumeMusic()
     {
         if (Mix_PausedMusic() != 0)
         {

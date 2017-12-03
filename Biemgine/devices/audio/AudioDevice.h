@@ -20,5 +20,8 @@ namespace biemgine
 
         virtual void playFadeInMusic(std::string path, int loops = 0, int volume = 128, int fadeInTime = 1000) = 0;
         virtual void playMusic(std::string path, int loops = 0, int volume = 128) = 0;
+
+        virtual void pauzeMusic() = 0;
+        virtual void resumeMusic() = 0;
     };
 }
