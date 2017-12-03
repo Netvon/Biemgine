@@ -85,7 +85,7 @@ namespace spacebiem
         addEntity<TextUIEntity>(Fonts::Roboto(), x - 25, 600, Color::White(), "Total score: " + std::to_string(score));
 
 
-        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({71, 166, 245, 255}), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
@@ -101,6 +101,8 @@ namespace spacebiem
             manager->navigateTo<HighScoreScene>(score);
         });
         addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
+
+        getTransitionManager().getAudioDevice().playMusic("audio/gameover.mp3", 0);
     }
 
     void GameoverScene::input()

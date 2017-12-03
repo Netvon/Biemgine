@@ -44,6 +44,8 @@ namespace spacebiem
                     rc->addResource(rbc->getName(), rbc->getAmount());
                     sc->addScore(sbc->getScoreBonus());
 
+                    getStateManager()->getAudioDevice().playSoundEffect("audio/diamond.mp3");
+
                     bonus->die();
                 }
             }

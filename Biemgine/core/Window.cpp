@@ -18,12 +18,15 @@ namespace biemgine
     {
         if (init()) {
 
-            int id = initWindow(title, width, height, SDL_WINDOW_SHOWN);
+            int flags = 0;
+            if (maximize)
+                flags = SDL_WINDOW_FULLSCREEN;
+
+            int id = initWindow(title, width, height, flags);
 
             gd = new SDLGraphicsDevice(getWindow(id));
 
-            if (maximize)
-                SDL_MaximizeWindow(getWindow(id));
+            //SDL_MaximizeWindow(getWindow(id));
         }
     }
 
