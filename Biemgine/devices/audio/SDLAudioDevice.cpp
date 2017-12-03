@@ -14,6 +14,7 @@ namespace biemgine
         Mix_AllocateChannels(16);
     }
 
+
     SDLAudioDevice::~SDLAudioDevice()
     {
         for (std::pair<std::string, Mix_Chunk*>  mixChunk : soundEffects)
@@ -29,9 +30,42 @@ namespace biemgine
         Mix_CloseAudio();
     }
 
-    bool SDLAudioDevice::isPlayingMusic()
+    bool SDLAudioDevice::isPlayingMusic(std::string path)
     {
-        return Mix_PlayingMusic();
+        if (Mix_PlayingMusic() && (path.empty() || currentlyPlayingMusic == path))
+        {
+            return true;
+        }
+
+        return false; 
+    }
+
+    bool SDLAudioDevice::isPlayingSoundEffect(std::string path)
+    {
+        if (path.empty())
+        {
+            if (Mix_Playing(-1) > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        std::map<std::string, int>::iterator it = currentlyPlayingSoundEffects.find(path);
+
+        if (it != currentlyPlayingSoundEffects.end())
+        {
+            if (!Mix_Playing(it->second))
+            {
+                currentlyPlayingSoundEffects.erase(it);
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;   
     }
 
     void SDLAudioDevice::playFadeInSoundEffect(std::string path, int loops, int channel, int volume, int fadeInTime)
@@ -44,6 +78,7 @@ namespace biemgine
         }
 
         Mix_Volume(chunkChannel, volume);
+        currentlyPlayingSoundEffects[path] = chunkChannel;
     }
 
     void SDLAudioDevice::playSoundEffect(std::string path, int loops, int channel, int volume)
@@ -56,6 +91,7 @@ namespace biemgine
         }
 
         Mix_Volume(chunkChannel, volume);
+        currentlyPlayingSoundEffects[path] = chunkChannel;
     }
 
     void SDLAudioDevice::playFadeInMusic(std::string path, int loops, int fadeInTime)
@@ -64,6 +100,8 @@ namespace biemgine
         {
             std::cout << "Play music error: " << Mix_GetError() << std::endl;
         }
+
+        currentlyPlayingMusic = path;
     }
 
     void SDLAudioDevice::playMusic(std::string path, int loops)
@@ -72,6 +110,8 @@ namespace biemgine
         {
             std::cout << "Play music error: " << Mix_GetError() << std::endl;
         }
+
+        currentlyPlayingMusic = path;
     }
 
     void SDLAudioDevice::PauzeMusic()

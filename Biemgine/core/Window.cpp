@@ -26,7 +26,7 @@ namespace biemgine
 
             gd = new SDLGraphicsDevice(getWindow(id));
 
-            //SDL_MaximizeWindow(getWindow(id));
+            SDL_MaximizeWindow(getWindow(id));
         }
     }
 
