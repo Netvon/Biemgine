@@ -19,9 +19,16 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
+    void onGameOverButtonEntered(StateManager* e)
+    {
+        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+    }
+
     void MenuButtonClicked(StateManager* e)
     {
-        e->navigateTo<MenuScene>();
+        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playMusic("audio/menu.mp3", -1);
+        e->navigateTo<MenuScene>();   
     }
 
     void GameoverScene::created()
@@ -98,9 +105,11 @@ namespace spacebiem
         {
             /*ScoreUIFactory sf;
             sf.sceneEnd(getEntities());*/
+            manager->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+            manager->getAudioDevice().playMusic("audio/menu.mp3", -1);
             manager->navigateTo<HighScoreScene>(score);
-        });
-        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
+        }, onGameOverButtonEntered);
+        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
 
         getTransitionManager().getAudioDevice().playMusic("audio/gameover.mp3", 0);
     }

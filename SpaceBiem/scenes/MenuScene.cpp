@@ -17,25 +17,32 @@ using biemgine::FileHandler;
 
 namespace spacebiem
 {
+    void onMenuButtonEntered(StateManager* e)
+    {
+        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+    }
+
     void newGameButtonClicked(StateManager* e)
     {
-        e->navigateTo<LevelScene>(true);
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
+        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
+        e->navigateTo<LevelScene>(true);       
     }
 
     void ContinueButtonClicked(StateManager* e)
     {
+        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
         e->navigateTo<LevelScene>(false);
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
     }
 
     void HighscoreButtonClicked(StateManager* e)
     {
+        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
         e->navigateTo<HighScoreScene>();
     }
 
     void GameOverButtonClicked(StateManager* e)
     {
+        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
         e->navigateTo<GameoverScene>();
     }
 
@@ -69,7 +76,7 @@ namespace spacebiem
         int beginY = 330;
         int incr = 65;
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameButtonClicked, onMenuButtonEntered);
 
         std::function<void(StateManager*)> continueEventHandler = nullptr;
         bool saveBlobExists = FileHandler::exists("data/savegame.csv");
@@ -81,13 +88,13 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler);
         
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked, onMenuButtonEntered);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Tutorial", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture);
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); });
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, onMenuButtonEntered);
 
         FileParser parser;
         map<string, int> resources = parser.resourcesContent();
@@ -100,7 +107,8 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
         addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
 
-        getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);  
+        if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/menu.mp3"))
+            getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);  
     }
 
     void MenuScene::input()

@@ -94,23 +94,26 @@ namespace biemgine
         currentlyPlayingSoundEffects[path] = chunkChannel;
     }
 
-    void SDLAudioDevice::playFadeInMusic(std::string path, int loops, int fadeInTime)
+    void SDLAudioDevice::playFadeInMusic(std::string path, int loops, int volume, int fadeInTime)
     {
         if (Mix_FadeInMusic(getMusic(path), loops, fadeInTime) < 0)
         {
             std::cout << "Play music error: " << Mix_GetError() << std::endl;
         }
 
+        Mix_VolumeMusic(volume);
         currentlyPlayingMusic = path;
+
     }
 
-    void SDLAudioDevice::playMusic(std::string path, int loops)
+    void SDLAudioDevice::playMusic(std::string path, int loops, int volume)
     {
         if (Mix_PlayMusic(getMusic(path), loops) < 0)
         {
             std::cout << "Play music error: " << Mix_GetError() << std::endl;
         }
 
+        Mix_VolumeMusic(volume);
         currentlyPlayingMusic = path;
     }
 

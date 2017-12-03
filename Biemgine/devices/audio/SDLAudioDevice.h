@@ -22,8 +22,8 @@ namespace biemgine
         void playFadeInSoundEffect(std::string path, int loops = 0, int channel = -1, int volume = 128, int fadeInTime = 1000);
         void playSoundEffect(std::string path, int loops = 0, int channel = -1, int volume = 128);
 
-        void playFadeInMusic(std::string path, int loops = 0, int fadeInTime = 1000);
-        void playMusic(std::string path, int loops = 0);
+        void playFadeInMusic(std::string path, int loops = 0, int volume = 128, int fadeInTime = 1000);
+        void playMusic(std::string path, int loops = 0, int volume = 128);
 
         void PauzeMusic();
         void ResumeMusic();

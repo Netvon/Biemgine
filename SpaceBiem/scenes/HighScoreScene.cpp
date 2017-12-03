@@ -13,8 +13,14 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
+    void onHighScoreButtonEntered(StateManager* e)
+    {
+        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+    }
+
     void BackButtonClicked(StateManager* e)
     {
+        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
         e->navigateTo<MenuScene>();
     }
 
@@ -44,7 +50,7 @@ namespace spacebiem
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({71, 166, 245, 255}), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
         
-        addEntity<ButtonUIEntity>(x, 750, Color{ 35, 65, 112 }, Color::White(), Size{ 150, 50 }, "Menu", "textures/button_white.png", BackButtonClicked);
+        addEntity<ButtonUIEntity>(x, 750, Color{ 35, 65, 112 }, Color::White(), Size{ 150, 50 }, "Menu", "textures/button_white.png", BackButtonClicked, onHighScoreButtonEntered);
     }
 
     void HighScoreScene::input()
