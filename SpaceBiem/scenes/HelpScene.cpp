@@ -4,6 +4,11 @@
 #include "LevelScene.h"
 
 #include "../entities/ButtonUIEntity.h"
+#include "../entities/PlanetEarthEntity.h"
+#include "../entities/PlayerEntity.h"
+
+#include "../systems/MovementSystem.h"
+#include "../systems/GravitySystem.h"
 
 #include "..\globals\Fonts.h"
 
@@ -37,6 +42,10 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enablePhysics();
+
+        addSystem<GravitySystem>();
+        addSystem<MovementSystem>();
 
 
         int wW = getTransitionManager().getWindowWidth();
@@ -59,8 +68,23 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(wW-edgeMargin-bW, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Next", "textures/button_white.png", nextButtonClicked);
 
 
+        int pRadius = 300;
+        // slide 1 movement right/left
+        addEntity<PlanetEarthEntity>((wW-pRadius) / 4 * 3, (wH-pRadius) / 2, Color::EarthAtmosphere(), pRadius, pRadius, 0, 0.f, "slide_1");
+        addEntity<PlayerEntity>((wW - pRadius) / 4 * 3, (wH - pRadius) / 4, Color::White(), 25.f, 50.f, 1.0f, "slide_1");
+
+        // slide 2 jump
 
 
+        // slide 3 UI
+
+
+        // slide 4 earth
+        // slide 5 moon
+        // slide 6 sand
+        // slide 7 toxic
+        // slide 8 ice
+        // slide 9 lava
 
 
     }
@@ -86,4 +110,10 @@ namespace spacebiem
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
+
+    void HelpScene::updateSlide()
+    {
+        
+    }
+
 }

@@ -18,7 +18,7 @@ using biemgine::CollidableComponent;
 
 namespace spacebiem
 {
-    PlayerEntity::PlayerEntity(float x, float y, Color color, float w, float h, float mass)
+    PlayerEntity::PlayerEntity(float x, float y, Color color, float w, float h, float mass, string pTag)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
@@ -33,6 +33,6 @@ namespace spacebiem
         addComponent("movement", new MovementComponent);
         addComponent("camera", new CameraComponent);
 
-        setTag("player");
+        setTag(pTag);
     }
 }

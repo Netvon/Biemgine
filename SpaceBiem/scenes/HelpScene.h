@@ -25,7 +25,7 @@ namespace spacebiem
     private:
         bool fromLevel;
 
-
+        void updateSlide();
 
     };
 }
