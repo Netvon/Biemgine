@@ -171,6 +171,9 @@
     <ClInclude Include="globals\Fonts.h">
       <Filter>globals</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\HelpScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -314,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="factories\ResourceFactory.cpp">
       <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\HelpScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "LevelScene.h"
 #include "HighScoreScene.h"
 #include "GameoverScene.h"
+#include "HelpScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
@@ -35,6 +36,10 @@ namespace spacebiem
     void GameOverButtonClicked(StateManager* e)
     {
         e->navigateTo<GameoverScene>();
+    }
+    void HelpButtonClicked(StateManager* e)
+    {
+        e->navigateTo<HelpScene>();
     }
 
     void MenuScene::created()
@@ -81,7 +86,7 @@ namespace spacebiem
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Tutorial", buttonTexture);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, HelpButtonClicked);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture);
         beginY += 20;
