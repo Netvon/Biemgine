@@ -8,12 +8,12 @@ namespace spacebiem
 {
     void OxygenSystem::update(const Entity & entity)
     {
-       /* if (entity.hasComponent("atmosphere")) {
+        if (entity.hasComponent("atmosphere")) {
             std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity);
             if (std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity) == entitiesWithAtmospheres.end()) {
                 entitiesWithAtmospheres.push_back(entity);
             }
-        }*/
+        }
 
         /*if (entity.hasComponent("texture")) {
             auto textures = entity.getComponents<biemgine::TextureComponent*>("texture");
