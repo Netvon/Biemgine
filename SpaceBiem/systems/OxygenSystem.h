@@ -19,6 +19,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
     private:
         vector<Entity> entitiesWithAtmospheres;
-
+        std::shared_ptr<Entity> currentAtmosphereEntity = nullptr;
     };
 }

@@ -70,27 +70,31 @@ namespace biemgine
 
     void SDLAudioDevice::playFadeInSoundEffect(std::string path, int loops, int channel, int volume, int fadeInTime)
     {
-        int chunkChannel = Mix_FadeInChannel(channel, getSoundEffects(path), loops, fadeInTime);
+        Mix_Chunk* chunk = getSoundEffects(path);
+        chunk->volume = volume;
+
+        int chunkChannel = Mix_FadeInChannel(channel, chunk, loops, fadeInTime);
         if (chunkChannel < 0)
         {
             std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
             return;
         }
 
-        Mix_Volume(chunkChannel, volume);
         currentlyPlayingSoundEffects[path] = chunkChannel;
     }
 
     void SDLAudioDevice::playSoundEffect(std::string path, int loops, int channel, int volume)
     {
-        int chunkChannel = Mix_PlayChannel(channel, getSoundEffects(path), loops);
+        Mix_Chunk* chunk = getSoundEffects(path);
+        chunk->volume = volume;
+
+        int chunkChannel = Mix_PlayChannel(channel, chunk, loops);
         if (chunkChannel < 0)
         {
             std::cout << "Play sound effect error: " << Mix_GetError() << std::endl;
             return;
         }
 
-        Mix_Volume(chunkChannel, volume);
         currentlyPlayingSoundEffects[path] = chunkChannel;
     }
 
@@ -103,7 +107,6 @@ namespace biemgine
 
         Mix_VolumeMusic(volume);
         currentlyPlayingMusic = path;
-
     }
 
     void SDLAudioDevice::playMusic(std::string path, int loops, int volume)
@@ -130,6 +133,42 @@ namespace biemgine
         if (Mix_PausedMusic() != 0)
         {
             Mix_ResumeMusic();
+        }
+    }
+
+    void SDLAudioDevice::stopSoundEffect(std::string path)
+    {
+        if (path.empty())
+        {
+            Mix_HaltChannel(-1);
+            currentlyPlayingSoundEffects.clear();
+            return;
+        }
+
+        std::map<std::string, int>::iterator it = currentlyPlayingSoundEffects.find(path);
+
+        if (it != currentlyPlayingSoundEffects.end())
+        {
+            Mix_HaltChannel(it->second);
+            currentlyPlayingSoundEffects.erase(it);
+        }
+    }
+
+    void SDLAudioDevice::fadeOutSoundEffect(std::string path, int fadeOutTime)
+    {
+        if (path.empty())
+        {
+            Mix_FadeOutChannel(-1, fadeOutTime);
+            currentlyPlayingSoundEffects.clear();
+            return;
+        }
+
+        std::map<std::string, int>::iterator it = currentlyPlayingSoundEffects.find(path);
+
+        if (it != currentlyPlayingSoundEffects.end())
+        {
+            Mix_FadeOutChannel(it->second, fadeOutTime);
+            currentlyPlayingSoundEffects.erase(it);
         }
     }
 
