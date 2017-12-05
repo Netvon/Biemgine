@@ -52,7 +52,6 @@ namespace spacebiem
         FileHandler fileHandler{""};
         fileHandler.remove("data/savegame.csv");
 
-        getStateManager()->getAudioDevice().stopSoundEffect("");
         getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
     }
 }

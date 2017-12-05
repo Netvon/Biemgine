@@ -52,6 +52,8 @@ namespace spacebiem
         enableUI();
         enableScripts();
 
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
+
         addSystem<ResourceUISystem>();
 
         int wW = getTransitionManager().getWindowWidth();
