@@ -123,7 +123,7 @@ namespace spacebiem
             manager->navigateTo<HighScoreScene>(score);
 
         }, onGameOverButtonEntered);
-        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
+        addEntity<ButtonUIEntity>(x - 25, 875, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
 
         getTransitionManager().getAudioDevice().playMusic("audio/gameover.mp3", 0);
     }
