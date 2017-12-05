@@ -6,6 +6,7 @@
 #include "..\entities\Entity.h"
 
 #include <vector>
+#include "EntityManager.h"
 
 namespace biemgine
 {
@@ -25,6 +26,8 @@ namespace biemgine
 
         inline void acceptForUpdate(const Entity& entity);
         inline void acceptForUpdate(const Entity& entity, const float deltaTime);
+
+        inline void builtUpdateMap(std::shared_ptr<EntityManager> manger);
 
         void addSystem(System* system);
 

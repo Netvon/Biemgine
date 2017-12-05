@@ -51,6 +51,8 @@ namespace biemgine
         //void before(const float deltaTime) override;
         void after(const float deltaTime) override;
 
+        System::required_components requirements() const;
+
     private:
         GraphicsDevice* graphicsDevice = nullptr;
         list<DrawTexture> drawList;

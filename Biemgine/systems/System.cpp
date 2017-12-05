@@ -27,7 +27,7 @@ namespace biemgine
         timeoutCounter = 0;
     }
 
-    void System::nextUpdate() {
+    inline void System::nextUpdate() {
         if (timeoutCounter == timeout)
             timeoutCounter = 0;
         else

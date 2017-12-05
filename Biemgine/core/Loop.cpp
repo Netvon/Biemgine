@@ -43,10 +43,8 @@ namespace biemgine
             }
 
             globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
-
         }
 
-        globalEnd();
         end();
     }
 
@@ -72,11 +70,5 @@ namespace biemgine
         render(deltaTime);
         window->getGraphicsDevice()->present();
     }
-
-    void Loop::globalEnd()
-    {
-
-    }
-
 }
 

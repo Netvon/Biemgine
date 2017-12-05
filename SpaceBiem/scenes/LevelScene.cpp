@@ -51,8 +51,8 @@ namespace spacebiem
         addSystem<OxygenSystem>();
         addSystem<OxygenUISystem>(2);
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>(2);
-        addSystem<ResourceUISystem>(2);
+        addSystem<ScoreUISystem>(5);
+        addSystem<ResourceUISystem>(5);
         addSystem<ResourceCollectingSystem>(2);
         addSystem<GameoverSystem>(2);
 

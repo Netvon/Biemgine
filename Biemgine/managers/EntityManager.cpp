@@ -2,6 +2,7 @@
 #include "EntityManager.h"
 
 #include <chrono>
+#include <algorithm>
 
 namespace biemgine
 {
@@ -58,14 +59,49 @@ namespace biemgine
         //printf("Timed Update took %f s\n", diff.count());
     }
 
-    Entity* EntityManager::getEntity(int id) const
+    inline EntityManager::const_iterator EntityManager::begin() const {
+        return entities.begin();
+    }
+
+    inline EntityManager::const_iterator EntityManager::end() const {
+        return entities.end();
+    }
+
+    inline EntityManager::iterator EntityManager::begin()
     {
-        for (auto entity = entities.begin(); entity != entities.end(); ++entity)
-        {
-            if ((*entity)->getId() == id) return (*entity);
+        return entities.begin();
+    }
+
+    inline EntityManager::iterator EntityManager::end()
+    {
+        return entities.end();
+    }
+
+    EntityManager::entity_ptr EntityManager::getEntity(int id) const
+    {
+        auto result = std::find_if(entities.begin(), entities.end(), [id](EntityManager::entity_ptr e) { return e->getId() == id; });
+
+        if (result != entities.end()) {
+            return (*result);
         }
 
         return nullptr;
+    }
+
+    EntityManager::entity_ptr EntityManager::getEntity(string tag) const
+    {
+        auto result = std::find_if(entities.begin(), entities.end(), [tag](EntityManager::entity_ptr e) { return e->getTag() == tag; });
+
+        if (result != entities.end()) {
+            return (*result);
+        }
+
+        return nullptr;
+    }
+
+    EntityManager::storage::const_iterator EntityManager::inView() const
+    {
+        return storage::const_iterator();
     }
 
     bool EntityManager::canUpdate(const Entity & e)

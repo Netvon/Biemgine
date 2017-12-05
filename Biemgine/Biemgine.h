@@ -39,3 +39,5 @@
 #include "managers\FileHandler.h"
 
 #include "scenes\Scene.h"
+
+#include "Thread.h"

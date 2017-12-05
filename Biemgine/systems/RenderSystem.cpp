@@ -122,6 +122,13 @@ namespace biemgine
         textList.clear();
     }
 
+	System::required_components RenderSystem::requirements() const
+	{
+        return {
+            System::requirement<PositionComponent>()
+        };
+	}
+
     DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip) :
         path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
 
