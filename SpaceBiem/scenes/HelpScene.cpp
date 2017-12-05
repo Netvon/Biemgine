@@ -69,9 +69,32 @@ namespace spacebiem
 
 
         int pRadius = 300;
-        // slide 1 movement right/left
-        addEntity<PlanetEarthEntity>((wW-pRadius) / 4 * 3, (wH-pRadius) / 2, Color::EarthAtmosphere(), pRadius, pRadius, 0, 0.f, "slide_1");
-        addEntity<PlayerEntity>((wW - pRadius) / 4 * 3, (wH - pRadius) / 4, Color::White(), 25.f, 50.f, 1.0f, "slide_1");
+        switch (currentSlide){
+        case 1:
+            // slide 1 movement right/left
+            addEntity<PlanetEarthEntity>((wW - pRadius) / 4 * 3, (wH - pRadius) / 2, Color::EarthAtmosphere(), pRadius, pRadius, 0, 0.f);
+            addEntity<PlayerEntity>((wW - pRadius) / 4 * 3, (wH - pRadius) / 4, Color::White(), 25.f, 50.f, 1.0f);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        default:
+            break;
+        }
+        
 
         // slide 2 jump
 
