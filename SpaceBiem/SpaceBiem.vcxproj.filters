@@ -138,20 +138,12 @@
     <ClInclude Include="systems\GameoverSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="UniverseBuilder.h" />
     <ClInclude Include="factories\NameGenerator.h">
       <Filter>factories</Filter>
     </ClInclude>
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="systems\CameraSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
-    <ClInclude Include="components\CameraComponent.h">
-      <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="factories\SaveBlobFactory.h">
       <Filter>factories</Filter>
@@ -162,9 +154,6 @@
     <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h">
       <Filter>factories</Filter>
     </ClInclude>
-    <ClInclude Include="systems\SaveBlobSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="systems\ResourceCollectingSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
@@ -173,6 +162,27 @@
     </ClInclude>
     <ClInclude Include="scenes\HelpScene.h">
       <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\DifficultyScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Difficulty.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseGenerator.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetIceEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetLavaEntity.h">
+      <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,18 +297,10 @@
     <ClCompile Include="factories\NameGenerator.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="UniverseBuilder.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp">
       <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="systems\CameraSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="components\CameraComponent.cpp">
-      <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="factories\SaveBlobFactory.cpp">
       <Filter>factories</Filter>
@@ -309,9 +311,6 @@
     <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="systems\SaveBlobSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
@@ -320,6 +319,24 @@
     </ClCompile>
     <ClCompile Include="scenes\HelpScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\DifficultyScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseGenerator.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetIceEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetLavaEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 
 namespace biemgine
 {
-    const int Loop::BM_GAMELOOP_FPS = 80;
+    const int Loop::BM_GAMELOOP_FPS = 40;
     const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
     Loop::Loop() :
@@ -34,6 +34,7 @@ namespace biemgine
             float elapsedTime = currentTime - previousTime;            // Tijd tussen de vorige loop en de actuele tijd.
             previousTime = currentTime;                                // De tijd van de vorige loop de actuele tijd zetten, zodat de volgende loop dat kan gebruiken.
             lagTime += elapsedTime;                                    // Nu dat verschil aan de lagTime toevoegen, zodat we daarmee kunnen beslissen of we alles willen updaten.
+            std::cout << elapsedTime << std::endl;
 
             while (lagTime >= BM_GAMELOOP_UPDATE_MS)
             {

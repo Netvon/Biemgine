@@ -20,7 +20,7 @@ namespace spacebiem
         void update(const Entity& entity) override;
         void after() override;
 
-        void applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, std::shared_ptr<PhysicsComponent> satPhysics, std::shared_ptr<AffectedByGravityComponent> affected, std::shared_ptr<PositionComponent> satPosition);
+        void applyForceAndSetRotation(Vector& centerOfGravity, Vector& centerOfSatellite, std::shared_ptr<PhysicsComponent> satPhysics, std::shared_ptr<AffectedByGravityComponent> affected, std::shared_ptr<PositionComponent> satPosition);
 
     private:
         vector<const Entity*> gravityPoints;

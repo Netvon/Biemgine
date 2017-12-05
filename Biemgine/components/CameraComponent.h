@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Biemgine.h"
+#include "dlldef.h"
 #include "stdafx.h"
 
-using std::string;
-using biemgine::Component;
+#include "Component.h"
 
-namespace spacebiem
+namespace biemgine
 {
-    class CameraComponent :
+    class BIEMGINE CameraComponent :
         public Component
     {
     public:
@@ -19,11 +18,15 @@ namespace spacebiem
         float getDeltaY() const;
         int getWindowWidth() const;
         int getWindowHeight() const;
+        float getOriginX() const;
+        float getOriginY() const;
 
         void setDeltaX(float x);
         void setDeltaY(float y);
         void setWindowWidth(int width);
         void setWindowHeight(int height);
+        void setOriginX(float x);
+        void setOriginY(float y);
 
     private:
         float windowWidth;
@@ -31,5 +34,8 @@ namespace spacebiem
 
         float deltaX;
         float deltaY;
+
+        float originX;
+        float originY;
     };
 }

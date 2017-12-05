@@ -153,11 +153,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="components\CameraComponent.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
     <ClInclude Include="entities\PlanetEntity.h" />
+    <ClInclude Include="entities\PlanetIceEntity.h" />
+    <ClInclude Include="entities\PlanetLavaEntity.h" />
     <ClInclude Include="entities\PlanetSandEntity.h" />
     <ClInclude Include="entities\PlanetToxicEntity.h" />
     <ClInclude Include="entities\ResourceEntity.h" />
@@ -167,6 +168,8 @@
     <ClInclude Include="factories\SaveBlobEntityBuilder.h" />
     <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h" />
     <ClInclude Include="factories\SaveBlobFactory.h" />
+    <ClInclude Include="factories\UniverseBuilder.h" />
+    <ClInclude Include="factories\UniverseGenerator.h" />
     <ClInclude Include="FileParser.h" />
     <ClInclude Include="components\AtmosphereComponent.h" />
     <ClInclude Include="components\GravityComponent.h" />
@@ -181,10 +184,11 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
+    <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />
-    <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -199,18 +203,17 @@
     <ClInclude Include="systems\OxygenSystem.h" />
     <ClInclude Include="systems\OxygenUISystem.h" />
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="systems\SaveBlobSystem.h" />
     <ClInclude Include="systems\ScoreSystem.h" />
     <ClInclude Include="systems\ScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="UniverseBuilder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\ButtonUIEntity.cpp" />
     <ClCompile Include="entities\PlanetEntity.cpp" />
+    <ClCompile Include="entities\PlanetIceEntity.cpp" />
+    <ClCompile Include="entities\PlanetLavaEntity.cpp" />
     <ClCompile Include="entities\PlanetSandEntity.cpp" />
     <ClCompile Include="entities\PlanetToxicEntity.cpp" />
     <ClCompile Include="entities\ResourceEntity.cpp" />
@@ -219,6 +222,7 @@
     <ClCompile Include="factories\SaveBlobEntityBuilder.cpp" />
     <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp" />
     <ClCompile Include="factories\SaveBlobFactory.cpp" />
+    <ClCompile Include="factories\UniverseGenerator.cpp" />
     <ClCompile Include="FileParser.cpp" />
     <ClCompile Include="components\AtmosphereComponent.cpp" />
     <ClCompile Include="components\GravityComponent.cpp" />
@@ -231,9 +235,9 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
+    <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="scenes\HelpScene.cpp" />
-    <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />
@@ -255,10 +259,9 @@
     <ClCompile Include="systems\OxygenSystem.cpp" />
     <ClCompile Include="systems\OxygenUISystem.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="systems\SaveBlobSystem.cpp" />
     <ClCompile Include="systems\ScoreSystem.cpp" />
     <ClCompile Include="systems\ScoreUISystem.cpp" />
-    <ClCompile Include="UniverseBuilder.cpp" />
+    <ClCompile Include="factories\UniverseBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">

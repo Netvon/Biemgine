@@ -13,11 +13,11 @@ namespace biemgine
     {
         unsigned char r = 255, g = 255, b = 255, a = 255;
 
-        static Color White() {
+        inline static Color White() {
             return Color();
         }
 
-        static Color Black() {
+        inline static Color Black() {
             return Color{ 0, 0, 0, 255 };
         }
 
@@ -36,6 +36,12 @@ namespace biemgine
 
         static Color ToxicAtmosphere() {
             return Color{ 20, 221, 53, 255 };
+        }
+        static Color IceAtmosphere() {
+            return Color{ 198, 242, 238, 255 };
+        }
+        static Color LavaAtmosphere() {
+            return Color{ 163, 33, 7, 255 };
         }
 
     };
@@ -69,10 +75,10 @@ namespace biemgine
         Vector& operator*=(const Vector& other);
         Vector operator*(const Vector& other);
 
-        Vector normalize();
-        float length();
+        inline Vector normalize();
+        inline float length();
 
-        float distance(const Vector&b);
+        inline float distance(const Vector&b);
 
         operator Point();
     };

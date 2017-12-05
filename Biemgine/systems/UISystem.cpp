@@ -9,11 +9,7 @@ namespace biemgine
         sceneWasSwitched = true;
     }
 
-    UISystem::~UISystem()
-    {
-    }
-
-    void UISystem::before(const float deltaTime)
+    void UISystem::before()
     {
         auto im = getStateManager()->getInputManager();
 
@@ -55,6 +51,9 @@ namespace biemgine
             && currentMouseLocation.x <= X2
             && currentMouseLocation.y >= Y1
             && currentMouseLocation.y <= Y2) {
+
+            if (!ui->getIsMouseOver() && ui->getIsEntered())
+                ui->getIsEntered()(getStateManager());
 
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);

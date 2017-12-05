@@ -1,13 +1,5 @@
 #include "stdafx.h"
 #include "UniverseBuilder.h"
-#include "FileParser.h"
-#include "factories\PlanetFactory.h"
-#include "Biemgine.h"
-#include "entities\PlayerEntity.h"
-
-using biemgine::Entity;
-using biemgine::PhysicsComponent;
-using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -25,7 +17,7 @@ namespace spacebiem
         map<string, map<string, vector<string>>> levelMap;
 
         if (newGame) {
-            levelMap = fileParser.levelContent("data/level_1.csv");
+            levelMap = fileParser.levelContent("data/savegame.csv");
         }
         else {
             levelMap = fileParser.levelContent("data/savegame.csv");

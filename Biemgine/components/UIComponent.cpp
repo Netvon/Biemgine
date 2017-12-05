@@ -1,4 +1,4 @@
-#include "components\UIComponent.h"
+#include "UIComponent.h"
 
 using std::function;
 
@@ -6,7 +6,7 @@ namespace biemgine
 {
     UIComponent::UIComponent(bool pEnabled): enabled(pEnabled) {}
 
-    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick, bool pEnabled) : size(pSize), onClick(onClick), enabled(pEnabled)
+    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick, function<void(StateManager*)> onEnter, bool pEnabled) : size(pSize), onClick(onClick), onEnter(onEnter), enabled(pEnabled)
     {
     }
 
@@ -35,6 +35,11 @@ namespace biemgine
     function<void(StateManager*)> UIComponent::getIsClicked() const
     {
         return onClick;
+    }
+
+    function<void(StateManager*)> UIComponent::getIsEntered() const
+    {
+        return onEnter;
     }
 
     bool UIComponent::isEnabled() const

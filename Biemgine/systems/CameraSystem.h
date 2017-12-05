@@ -1,14 +1,9 @@
 #pragma once
-
-#include "Biemgine.h"
+#include "System.h"
 #include "..\components\CameraComponent.h"
+#include "..\entities\Entity.h"
 
-using biemgine::System;
-using biemgine::GraphicsDevice;
-using biemgine::Entity;
-using std::map;
-
-namespace spacebiem
+namespace biemgine
 {
     class CameraSystem
         : public System

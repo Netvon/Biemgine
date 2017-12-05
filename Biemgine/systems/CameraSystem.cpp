@@ -1,15 +1,10 @@
 #include "stdafx.h"
 #include "CameraSystem.h"
 
-using biemgine::Rect;
-using biemgine::Color;
-using biemgine::ColorComponent;
-using biemgine::UIComponent;
-using biemgine::PositionComponent;
-using biemgine::RectangleComponent;
-using biemgine::TextureComponent;
+#include "../components/PositionComponent.h"
 
-namespace spacebiem
+
+namespace biemgine
 {
     void CameraSystem::update(const Entity & entity)
     {
@@ -24,6 +19,9 @@ namespace spacebiem
 
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());
+
+            camera->setOriginX(pc->getOriginX());
+            camera->setOriginY(pc->getOriginY());
 
             int xDelta = static_cast<int>((camera->getWindowWidth()) / 2 - static_cast<int>(pc->getOriginX()));
             int yDelta = static_cast<int>((camera->getWindowHeight()) / 2 - static_cast<int>(pc->getOriginY()));
