@@ -9,6 +9,6 @@ namespace spacebiem
     {
         setTag("sand");
         createAtmosphere(x, y, w, h, atmosphere, false, color);
-        addComponent("audio", new AudioComponent("audio/sand.mp3", -1, -1, 20, 1000));
+        addComponent("audio", new AudioComponent("audio/sand.mp3", -1, -1, 24, 1000));
     }
 }

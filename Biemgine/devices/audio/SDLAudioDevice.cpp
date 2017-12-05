@@ -56,7 +56,7 @@ namespace biemgine
 
         if (it != currentlyPlayingSoundEffects.end())
         {
-            if (!Mix_Playing(it->second))
+            if (getSoundEffects(path) != Mix_GetChunk(it->second) || !Mix_Playing(it->second))
             {
                 currentlyPlayingSoundEffects.erase(it);
                 return false;
