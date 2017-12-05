@@ -4,6 +4,7 @@
 #include "../components/AtmosphereComponent.h"
 #include "../components/GravityComponent.h"
 
+using biemgine::AudioComponent;
 using biemgine::PositionComponent;
 using biemgine::TextureComponent;
 using biemgine::PhysicsComponent;
@@ -18,5 +19,6 @@ namespace spacebiem
     {
         setTag("earth");
         createAtmosphere(x, y, w, h, atmosphere, true, color);
+        addComponent("audio", new AudioComponent("audio/earth.mp3", -1));
     }
 }

@@ -52,6 +52,9 @@ namespace biemgine
             && currentMouseLocation.y >= Y1
             && currentMouseLocation.y <= Y2) {
 
+            if (!ui->getIsMouseOver() && ui->getIsEntered())
+                ui->getIsEntered()(getStateManager());
+
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);
 

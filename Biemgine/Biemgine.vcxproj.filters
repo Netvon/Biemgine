@@ -31,6 +31,9 @@
     <Filter Include="primitives">
       <UniqueIdentifier>{3bda5fd9-7171-490e-98a2-5e033e27898a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="devices\audio">
+      <UniqueIdentifier>{26f655f2-8d64-40cd-a759-287caf99189f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="managers\StateManager.h">
@@ -160,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="components\CameraComponent.h" />
+    <ClInclude Include="devices\audio\AudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\audio\SDLAudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AudioComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -274,5 +286,11 @@
     </ClCompile>
     <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="components\CameraComponent.cpp" />
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp">
+      <Filter>devices\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AudioComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

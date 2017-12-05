@@ -32,9 +32,7 @@ namespace spacebiem
         auto tc = entity.getComponents<TextureComponent>("texture");
         std::shared_ptr<TextureComponent> texture = nullptr;
 
-        for (auto tex : tc) {
-            if (tex->getTag() == "oxygenbar") texture = tex;
-        }
+       
 
         // If the UI doesn't have the component which to draw, pick one from the map.
         auto oRef = uc->getComponentReference<OxygenComponent>();
@@ -52,6 +50,14 @@ namespace spacebiem
         }
 
         float oBar = oRef->getOxygenAmount() / static_cast<float>(oRef->getOxygenMax());
+        float vignet = oRef->getOxygenAmount() / (static_cast<float>(oRef->getOxygenMax() / 2));
+        float alphaVignet = 255 * (1 - vignet);
+
+        for (auto tex : tc)
+        {
+            if (tex->getTag() == "oxygenbar") texture = tex;
+            if (tex->getTag() == "vignet" && vignet <= 1) tex.get()->setColor(tex.get()->getColor().WithAlpha(alphaVignet));
+        }
 
         Color dangerRedColor { 204, 94, 94 };
         Color newColor{

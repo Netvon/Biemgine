@@ -20,9 +20,16 @@ using biemgine::SpriteEntity;
 
 namespace spacebiem
 {
+    void onGameOverButtonEntered(StateManager* e)
+    {
+        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+    }
+
     void MenuButtonClicked(StateManager* e)
     {
-        e->navigateTo<MenuScene>();
+        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playMusic("audio/menu.mp3", -1);
+        e->navigateTo<MenuScene>();   
     }
 
     void GameoverScene::created()
@@ -98,7 +105,7 @@ namespace spacebiem
         addEntity<TextUIEntity>(Fonts::Roboto(), x - 25, 700, Color::White(), "Total score: " + std::to_string(score));
 
 
-        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({71, 166, 245, 255}), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
@@ -111,9 +118,14 @@ namespace spacebiem
         {
             /*ScoreUIFactory sf;
             sf.sceneEnd(getEntities());*/
+            manager->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+            manager->getAudioDevice().playMusic("audio/menu.mp3", -1);
             manager->navigateTo<HighScoreScene>(score);
-        });
-        addEntity<ButtonUIEntity>(x - 25, 875, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked);
+
+        }, onGameOverButtonEntered);
+        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
+
+        getTransitionManager().getAudioDevice().playMusic("audio/gameover.mp3", 0);
     }
 
     void GameoverScene::input()

@@ -90,6 +90,8 @@ namespace spacebiem
         else {
             uB.build(getEntityManager(), false);
         }
+
+        getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
     }
 
     void LevelScene::sceneEnd() {

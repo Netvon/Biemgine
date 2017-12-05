@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\AudioComponent.h" />
+    <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
     <ClInclude Include="components\CameraComponent.h" />
@@ -39,6 +41,7 @@
     <ClInclude Include="core\Engine.h" />
     <ClInclude Include="core\Loop.h" />
     <ClInclude Include="core\Window.h" />
+    <ClInclude Include="devices\audio\SDLAudioDevice.h" />
     <ClInclude Include="devices\graphics\GraphicsDevice.h" />
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
     <ClInclude Include="devices\graphics\TextureAndUsage.h" />
@@ -69,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\CameraComponent.cpp" />
+    <ClCompile Include="components\AudioComponent.cpp" />
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
