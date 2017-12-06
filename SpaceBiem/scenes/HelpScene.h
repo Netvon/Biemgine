@@ -18,14 +18,15 @@ namespace spacebiem
 
         HelpScene(StateManager& manager, bool fromLevel = false, int slide = 1)
             : Scene(manager),
-            fromLevel(fromLevel)
+            fromLevel(fromLevel),
+            currentSlide(slide)
         {};
         ~HelpScene() {};
 
     private:
         bool fromLevel;
         int currentSlide;
-        int maxSlides = 9;
+        int maxSlides = 8;
 
         void updateSlide();
 

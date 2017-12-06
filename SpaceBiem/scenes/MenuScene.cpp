@@ -91,12 +91,12 @@ namespace spacebiem
             continueEventHandler = ContinueButtonClicked;
         }
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler, onMenuButtonEntered);
         
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked, onMenuButtonEntered);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, HelpButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, HelpButtonClicked, onMenuButtonEntered);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture);
         beginY += 20;

@@ -18,7 +18,7 @@ using biemgine::CameraComponent;
 
 namespace spacebiem
 {
-    PlayerEntity::PlayerEntity(float x, float y, Color color, float w, float h, float mass, string pTag)
+    PlayerEntity::PlayerEntity(float x, float y, Color color, float w, float h, float mass, bool focused)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
@@ -31,8 +31,8 @@ namespace spacebiem
         addComponent("resources", new ResourceComponent());
         addComponent("collidable", new CollidableComponent);
         addComponent("movement", new MovementComponent);
-        addComponent("camera", new CameraComponent);
+        if(focused) addComponent("camera", new CameraComponent);
 
-        setTag(pTag);
+        setTag("player");
     }
 }
