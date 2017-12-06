@@ -17,8 +17,9 @@ namespace spacebiem
         ~OxygenSystem() {};
 
         void update(const Entity& entity) override;
+        void before() override;
     private:
-        vector<std::shared_ptr<AtmosphereComponent>> atmospheres;
+        vector<Entity> entitiesWithAtmospheres;
 
     };
 }

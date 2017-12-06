@@ -11,6 +11,7 @@
 
 #include "components\Component.h"
 #include "components\AffectedByGravityComponent.h"
+#include "components\AudioComponent.h"
 #include "components\CollidableComponent.h"
 #include "components\ColorComponent.h"
 #include "components\GroundComponent.h"
@@ -24,6 +25,7 @@
 #include "components\UIComponent.h"
 #include "components\PhysicsComponentShape.h"
 #include "components\ScriptComponent.h"
+#include "components\CameraComponent.h"
 
 #include "entities\Entity.h"
 #include "entities\SpriteEntity.h"

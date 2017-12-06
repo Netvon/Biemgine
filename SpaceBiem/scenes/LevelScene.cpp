@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "LevelScene.h"
 
-#include "..\UniverseBuilder.h"
+#include "..\factories\UniverseBuilder.h"
+#include "..\factories\UniverseGenerator.h"
 
 #include "..\entities\PlayerEntity.h"
 #include "..\entities\PlanetEarthEntity.h"
@@ -13,7 +14,6 @@
 #include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
-#include "..\systems\CameraSystem.h"
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -24,7 +24,6 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
-#include "..\systems\SaveBlobSystem.h"
 
 #include "..\globals\Fonts.h"
 
@@ -39,8 +38,7 @@ namespace spacebiem
 {
     void LevelScene::created()
     {
-        addSystem<SaveBlobSystem>();
-        addSystem<CameraSystem>();
+        enableCamera();
        
         enableRendering();
         enablePhysics();
@@ -51,12 +49,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>();
+        addSystem<OxygenUISystem>(2);
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>();
-        addSystem<ResourceUISystem>();
-        addSystem<ResourceCollectingSystem>();
-        addSystem<GameoverSystem>();
+        addSystem<ScoreUISystem>(2);
+        addSystem<ResourceUISystem>(2);
+        addSystem<ResourceCollectingSystem>(2);
+        addSystem<GameoverSystem>(2);
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -82,11 +80,18 @@ namespace spacebiem
 
         UniverseBuilder uB;
         if (newGame) {
+
+            UniverseGenerator uG;
+            uG.generate(difficulty);
+
+
             uB.build(getEntityManager(), true);
         }
         else {
             uB.build(getEntityManager(), false);
-        }       
+        }
+
+        getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
     }
 
     void LevelScene::sceneEnd() {

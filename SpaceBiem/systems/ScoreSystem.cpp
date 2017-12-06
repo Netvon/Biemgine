@@ -53,6 +53,8 @@ namespace spacebiem
                 component->setOffsetY(pc->getY() - planetP->getY());
                 component->setRotation(pc->getRotation());
                 component->setVisible(true);
+
+                getStateManager()->getAudioDevice().playSoundEffect("audio/flag.mp3");
             }
         }
     }

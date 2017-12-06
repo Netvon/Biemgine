@@ -138,17 +138,12 @@
     <ClInclude Include="systems\GameoverSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="systems\ResourceCollectingSystem.h" />
-    <ClInclude Include="UniverseBuilder.h" />
     <ClInclude Include="factories\NameGenerator.h">
       <Filter>factories</Filter>
     </ClInclude>
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="systems\CameraSystem.h">
-      <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="components\CameraComponent.h">
       <Filter>components</Filter>
@@ -162,15 +157,29 @@
     <ClInclude Include="factories\SaveBlobEntityComponentBuilder.h">
       <Filter>factories</Filter>
     </ClInclude>
-    <ClInclude Include="systems\SaveBlobSystem.h">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="systems\ResourceCollectingSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="globals\Fonts.h">
       <Filter>globals</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\GameoverScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\DifficultyScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Difficulty.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseBuilder.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="factories\UniverseGenerator.h">
+      <Filter>factories</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\PlanetIceEntity.h" />
+    <ClInclude Include="entities\PlanetLavaEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -284,14 +293,9 @@
     <ClCompile Include="factories\NameGenerator.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="factories\ResourceFactory.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp" />
-    <ClCompile Include="UniverseBuilder.cpp" />
     <ClCompile Include="systems\ResourceCollectingSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="systems\CameraSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\CameraComponent.cpp">
@@ -306,14 +310,25 @@
     <ClCompile Include="factories\SaveBlobEntityComponentBuilder.cpp">
       <Filter>factories</Filter>
     </ClCompile>
-    <ClCompile Include="systems\SaveBlobSystem.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="scenes\GameoverScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
     <ClCompile Include="factories\ResourceFactory.cpp">
       <Filter>factories</Filter>
     </ClCompile>
+    <ClCompile Include="scenes\GameoverScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\DifficultyScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseGenerator.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="factories\UniverseBuilder.cpp">
+      <Filter>factories</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\PlanetIceEntity.cpp" />
+    <ClCompile Include="entities\PlanetLavaEntity.cpp" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ namespace biemgine
     public:
         virtual ~System();
         virtual void before();
-        virtual void before(const float deltaTime);
+        //virtual void before(const float deltaTime);
         virtual void update(const Entity& entity);
         virtual void update(const Entity& entity, const float deltaTime);
         virtual void after();
@@ -22,7 +22,15 @@ namespace biemgine
         void setStateManager(StateManager* pManager);
         StateManager* getStateManager();
 
+        void setTimeout(int pTimeout);
+        void nextUpdate();
+        bool hasTimedOut();
+
     private:
         StateManager* stateManager = nullptr;
+
+        int timeout;
+        int timeoutCounter;
+
     };
 }

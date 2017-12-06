@@ -24,28 +24,17 @@ namespace spacebiem
         }
     }
 
-    struct DistanceInfo
-    {
-        Vector centerOfGravity;
-        Vector centerOfSatellite;
-        std::shared_ptr<PhysicsComponent> satPhysics;
-    };
-
     void GravitySystem::after()
     {
         for (auto satellite : satellites) {
             auto satPosition = satellite->getComponent<PositionComponent>("position");
             auto satPhysics = satellite->getComponent<PhysicsComponent>("physics");
             auto satAffected = satellite->getComponent<AffectedByGravityComponent>("affectedByGravity");
-            //auto grounded = satellite->getComponent<biemgine::GroundedComponent*>("grounded");
 
             Vector centerOfSatellite {
                 satPosition->getX() + satPhysics->getColliderW() / 2.0f,
                 satPosition->getY() + satPhysics->getColliderH() / 2.0f
             };
-
-            map<float, DistanceInfo> distances;
-            bool forceApplied = false;
 
             for (auto point : gravityPoints) {
                 auto gravPosition = point->getComponent<PositionComponent>("position");
@@ -57,29 +46,18 @@ namespace spacebiem
                 };
 
                 const auto distance = centerOfGravity.distance(centerOfSatellite);
-                distances.insert(pair<float, DistanceInfo>(distance, {
-                    centerOfGravity,
-                    centerOfSatellite,
-                    satPhysics
-                }));
 
                 if (distance <= gravity->getRadius()) {
                     applyForceAndSetRotation(centerOfGravity, centerOfSatellite, satPhysics, satAffected, satPosition);
-                    forceApplied = true;
                 }
             }
-
-            /*if (!forceApplied) {
-                auto distanceInfo = distances.begin()->second;
-                applyForce(distanceInfo.centerOfGravity, distanceInfo.centerOfSatellite, distanceInfo.satPhysics, satAffected);
-            }*/
         }
 
         gravityPoints.clear();
         satellites.clear();
     }
 
-    void GravitySystem::applyForceAndSetRotation(Vector centerOfGravity, Vector centerOfSatellite, std::shared_ptr<PhysicsComponent> satPhysics, std::shared_ptr<AffectedByGravityComponent> affected, std::shared_ptr<PositionComponent> satPosition)
+    void GravitySystem::applyForceAndSetRotation(Vector& centerOfGravity, Vector& centerOfSatellite, std::shared_ptr<PhysicsComponent> satPhysics, std::shared_ptr<AffectedByGravityComponent> affected, std::shared_ptr<PositionComponent> satPosition)
     {
         auto force = centerOfGravity - centerOfSatellite;
 

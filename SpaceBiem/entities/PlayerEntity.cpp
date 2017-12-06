@@ -9,6 +9,7 @@ using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
+using biemgine::CameraComponent;
 
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"

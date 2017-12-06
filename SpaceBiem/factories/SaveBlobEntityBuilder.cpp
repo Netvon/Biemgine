@@ -9,6 +9,8 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
 #include "..\entities\PlanetSandEntity.h"
+#include "..\entities\PlanetIceEntity.h"
+#include "..\entities\PlanetLavaEntity.h"
 #include "..\entities\ResourceEntity.h"
 
 using std::map;
@@ -26,6 +28,8 @@ namespace spacebiem
             { type_index(typeid(PlanetMoonEntity)), "moon" },
             { type_index(typeid(PlanetToxicEntity)), "toxic" },
             { type_index(typeid(PlanetSandEntity)), "sand" },
+            { type_index(typeid(PlanetIceEntity)), "ice" },
+            { type_index(typeid(PlanetLavaEntity)), "lava" },
             { type_index(typeid(ResourceEntity)), "resource" }
         };
 
