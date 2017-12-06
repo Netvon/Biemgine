@@ -17,6 +17,6 @@ namespace biemgine
         : public System
     {
     public:
-        void update(const Entity& entity);
+        void update(const Entity& entity, const float deltaTime);
     };
 }
