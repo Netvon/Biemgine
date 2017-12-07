@@ -7,9 +7,19 @@ namespace spacebiem
         setState(AIState::IDLE);
     }
 
-    bool AIComponent::isState(AIState pState)
+    bool AIComponent::isState(AIState pState) const
     {
         return state == pState;
+    }
+
+    void AIComponent::setTarget(Entity * pTarget)
+    {
+        target = pTarget;
+    }
+
+    const Entity & AIComponent::getTarget() const
+    {
+        return *target;
     }
 
     AIComponent * AIComponent::setState(AIState pState)
@@ -19,30 +29,24 @@ namespace spacebiem
         return this;
     }
 
-    Direction AIComponent::getDirection()
+    Direction AIComponent::getDirection() const
     {
-        int currentTime = static_cast<int>(time(0));
-
-        if (currentTime > directionEndTime) {
-            if (direction == Direction::IDLE) {
-                RandomGenerator & generator = RandomGenerator::getInstance();
-                direction = generator.generate(0.f, 1.f) > 0.5 ? Direction::LEFT : Direction::RIGHT;
-                directionEndTime = currentTime + 10;
-
-                force = generator.generate(0.2f, 0.5f);
-            }
-            else {
-                direction = Direction::IDLE;
-                directionEndTime = currentTime + 1;
-            }
-        }
-
         return direction;
     }
 
-    bool AIComponent::isDirection(Direction pDirection)
+    void AIComponent::setDirection(Direction pDirection)
+    {
+        direction = pDirection;
+    }
+
+    bool AIComponent::isDirection(Direction pDirection) const
     {
         return getDirection() == pDirection;
+    }
+
+    int AIComponent::getDirectionEndTime() const
+    {
+        return directionEndTime;
     }
 
     float AIComponent::getForce() const

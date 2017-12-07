@@ -101,6 +101,16 @@ namespace biemgine
         }
     }
 
+    float Entity::distance(const Entity & entity) const
+    {
+        if (!hasComponent("position") || !entity.hasComponent("position")) return 0;
+
+        auto position = getComponent<PositionComponent>("position");
+        auto entityPosition = entity.getComponent<PositionComponent>("position");
+
+        return position->distance(*entityPosition);
+    }
+
     bool Entity::hasTag() const
     {
         return tag.empty();
@@ -114,5 +124,10 @@ namespace biemgine
     string Entity::getTag() const
     {
         return tag;
+    }
+
+    bool Entity::isTag(const string & pTag) const
+    {
+        return getTag() == pTag;
     }
 }

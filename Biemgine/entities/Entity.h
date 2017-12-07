@@ -51,6 +51,7 @@ namespace biemgine
         bool hasTag() const;
         void setTag(string pTag);
         string getTag() const;
+        bool isTag(const string & pTag) const;
 
         void calculateBounds();
        
@@ -58,6 +59,8 @@ namespace biemgine
         int maxX;
         int minY;
         int maxY;
+
+        float distance(const Entity & entity) const;
 
     private:
         int id;

@@ -4,7 +4,9 @@
 #include "Biemgine.h"
 
 using biemgine::Component;
+using biemgine::PositionComponent;
 using biemgine::RandomGenerator;
+using biemgine::Entity;
 
 namespace spacebiem
 {
@@ -28,13 +30,19 @@ namespace spacebiem
     public:
         AIComponent::AIComponent();
 
-        bool isState(AIState pState);
+        bool isState(AIState pState) const;
         AIComponent* setState(AIState pState);
 
-        Direction getDirection();
-        bool isDirection(Direction pDirection);
+        Direction getDirection() const;
+        void setDirection(Direction pDirection);
+        bool isDirection(Direction pDirection) const;
+
+        int getDirectionEndTime() const;
 
         float getForce() const;
+
+        void setTarget(Entity * pTarget);
+        const Entity & getTarget() const;
 
     private:
         AIState state;
@@ -42,5 +50,7 @@ namespace spacebiem
         int directionEndTime = 0;
 
         float force = 1.f;
+
+        Entity * target = nullptr;
     };
 }
