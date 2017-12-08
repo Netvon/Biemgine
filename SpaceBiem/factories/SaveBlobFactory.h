@@ -13,13 +13,14 @@ using std::type_index;
 using biemgine::Entity;
 using biemgine::TextureComponent;
 using biemgine::TextComponent;
+using biemgine::EntityManager;
 
 namespace spacebiem
 {
     class SaveBlobFactory
     {
     public:
-        vector<string> createFromEntities(vector<const Entity *> & entities);
+        vector<string> createFromEntities(shared_ptr<EntityManager> entities);
         string createFromEntity(const Entity & entity);
 
     private:
