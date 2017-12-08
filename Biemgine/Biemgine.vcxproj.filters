@@ -299,7 +299,6 @@
     </ClCompile>
     <ClCompile Include="components\UIComponent.cpp">
       <Filter>components</Filter>
->>>>>>> develop
     </ClCompile>
   </ItemGroup>
 </Project>
