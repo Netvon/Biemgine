@@ -40,19 +40,6 @@ namespace biemgine
         return paused;
     }
 
-    void StateManager::drawOverlay(Font font)
-    {
-        if (paused) {
-            auto gd = window->getGraphicsDevice();
-
-            int x = getWindowWidth()/2;
-            int y = 60;
-
-            gd->drawText(font, "The game is paused.", x, y, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
-            gd->drawText(font, "Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
-        }
-    }
-
     void StateManager::drawBackground(const string& backgroundPath)
     {
         auto gd = window->getGraphicsDevice();
