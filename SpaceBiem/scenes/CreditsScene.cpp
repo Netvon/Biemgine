@@ -11,6 +11,7 @@
 using biemgine::Size;
 using biemgine::SpriteEntity;
 using biemgine::TextUIEntity;
+using biemgine::TextComponent;
 
 namespace spacebiem
 {
@@ -28,7 +29,6 @@ namespace spacebiem
     void CreditsMenuButtonClicked(StateManager* e)
     {
         e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
-        e->getAudioDevice().playMusic("audio/menu.mp3", -1);
         e->navigateTo<MenuScene>();
     }
 
@@ -48,18 +48,22 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/teambiem.png", static_cast<float>(wW / 2 - 500.f), 10.f, Color::White(), -1, -1, 100u);
         addEntity<SpriteEntity>("textures/spacebiem.png", static_cast<float>(wW / 2 + 200.f), 10.f, Color::White(), -1, -1, 100u);
 
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 200, Color{ 35, 65, 112 }, "Met dank aan:");
+        auto thanksToTextId = addEntity<TextUIEntity>(Fonts::Roboto(), x, 200, Color{ 35, 65, 112 }, "Thanks to:");
+        getEntity(thanksToTextId)->getComponent<TextComponent>("text")->setColor(Color{ 232, 228, 41 });
 
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 250, Color{ 66, 143, 244 }, "Tom van Nimwegen");
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 275, Color{ 66, 143, 244 }, "Luuk Spierings");
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 300, Color{ 66, 143, 244 }, "Kevin Schuurmans");
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 325, Color{ 66, 143, 244 }, "Stijn Mommersteeg");
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 350, Color{ 66, 143, 244 }, "Sjonnie Immink");
-        addEntity<TextUIEntity>(Fonts::Roboto(), x, 375, Color{ 66, 143, 244 }, "Willy van Eck");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 250, Color::White(), "Tom van Nimwegen");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 275, Color::White(), "Luuk Spierings");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 300, Color::White(), "Kevin Schuurmans");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 325, Color::White(), "Stijn Mommersteeg");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 350, Color::White(), "Sjonnie Immink");
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 375, Color::White(), "Willy van Eck");
 
         addEntity<TextUIEntity>(Fonts::Roboto(), x, 450, Color{ 35, 65, 112 }, "Packages: ");
         addEntity<SpriteEntity>("textures/SDL_logo.png", static_cast<float>(x - 25), 425.f, Color::White(), -1, -1, 100u);
         addEntity<SpriteEntity>("textures/box2d.png", static_cast<float>(x), 575.f, Color::White(), -1, -1, 100u);
+
+        auto testerTextId = addEntity<TextUIEntity>(Fonts::Roboto(), x, 700, Color::White(), "Special thanks to all testers");
+        getEntity(testerTextId)->getComponent<TextComponent>("text")->setColor(Color{ 232, 228, 41 });
 
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
