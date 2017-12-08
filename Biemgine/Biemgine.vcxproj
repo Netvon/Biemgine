@@ -48,7 +48,6 @@
     <ClInclude Include="devices\graphics\TextureFlip.h" />
     <ClInclude Include="dlldef.h" />
     <ClInclude Include="entities\Entity.h" />
-    <ClInclude Include="entities\FPSEntity.h" />
     <ClInclude Include="entities\SpriteEntity.h" />
     <ClInclude Include="entities\TextUIEntity.h" />
     <ClInclude Include="entities\TextEntity.h" />
