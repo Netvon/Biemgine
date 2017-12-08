@@ -20,30 +20,30 @@ namespace spacebiem
 {
     void onMenuButtonEntered(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
     }
 
     void newGameButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 64);
         e->navigateTo<DifficultyScene>();
     }
 
     void ContinueButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 64);
         e->navigateTo<LevelScene>(false);
     }
 
     void HighscoreButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 128);
         e->navigateTo<HighScoreScene>();
     }
 
     void GameOverButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 128);
         e->navigateTo<GameoverScene>();
     }
 
@@ -123,7 +123,7 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("Return")) {
-            getTransitionManager().getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
+            getTransitionManager().getAudioDevice().playSoundEffect("audio/switch.mp3", 0, 5, 64);
             getTransitionManager().navigateTo<LevelScene>();
         }
     }
