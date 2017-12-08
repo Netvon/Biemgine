@@ -6,12 +6,19 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
+
+    void OxygenSystem::before() {
+        entitiesWithAtmospheres.clear();
+        entitiesWithOxygen.clear();
+    }
+
+
     void OxygenSystem::update(const Entity & entity)
     {
         if (entity.hasComponent("atmosphere")) {
-            auto ac = entity.getComponent<AtmosphereComponent>("atmosphere");
-            if (find(atmospheres.begin(), atmospheres.end(), ac) == atmospheres.end()) {
-                atmospheres.push_back(ac);
+            //std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity);
+            if (std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity) == entitiesWithAtmospheres.end()) {
+                entitiesWithAtmospheres.push_back(entity);
             }
         }
 
@@ -27,35 +34,49 @@ namespace spacebiem
         if (!entity.hasComponent("oxygen")) return;
         if (entity.hasComponent("ui")) return;
 
-        auto oc = entity.getComponent<OxygenComponent>("oxygen");
+        entitiesWithOxygen.push_back(entity);
+        
+    }
 
-        std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
-        if (entity.hasComponent("position")) {
-            auto pc = entity.getComponent<PositionComponent>("position");
 
-            for (auto atmos : atmospheres) {
-                int xA = atmos->getX();
-                int yA = atmos->getY();
-                int rA = atmos->getRadius();
-                int x = pc->getX();
-                int y = pc->getY();
+    void OxygenSystem::after() {
 
-                // Kei skône pietjegras theorie
-                if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
-                    currentAtmosphere = atmos;
-                    break;
+        for (Entity entity : entitiesWithOxygen) {
+
+            auto oc = entity.getComponent<OxygenComponent>("oxygen");
+
+            std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
+            if (entity.hasComponent("position")) {
+                auto pc = entity.getComponent<PositionComponent>("position");
+
+                for (auto entity : entitiesWithAtmospheres) {
+                    auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
+
+                    int xA = oc->getX();
+                    int yA = oc->getY();
+                    int rA = oc->getRadius();
+                    int x = pc->getX();
+                    int y = pc->getY();
+
+                    // Kei skône pietjegras theorie
+                    if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
+                        currentAtmosphere = oc;
+                        break;
+                    }
                 }
             }
-        }
 
-        float oAmount = oc->getOxygenAmount();
-        if (currentAtmosphere == nullptr) {
-            oAmount -= oc->getOxygenScale();
-        }
-        else {
-            oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
-        }
-        oc->setOxygenAmount(oAmount);
+            float oAmount = oc->getOxygenAmount();
+            if (currentAtmosphere == nullptr) {
+                oAmount -= oc->getOxygenScale();
+            }
+            else {
+                oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
+            }
+            oc->setOxygenAmount(oAmount);
 
+        }
+        
     }
+
 }

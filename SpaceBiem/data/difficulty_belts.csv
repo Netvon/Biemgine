@@ -1,0 +1,12 @@
+normal,inner,200,250,200,sand/sand/moon
+challenging,inner,200,250,200,sand/moon
+expert,inner,200,250,200,sand/lava/moon
+normal,middle,200,250,200,earth/earth/toxic
+challenging,middle,200,250,200,earth/earth/toxic
+expert,middle,200,250,200,earth/toxic
+normal,outer,300,350,150,ice/ice/ice/toxic
+challenging,outer,300,350,150,ice/ice/toxic/moon
+expert,outer,300,350,150,ice/toxic/moon
+normal,asteroid,150,200,20,moon
+challenging,asteroid,150,200,20,moon
+expert,asteroid,150,200,20,moon

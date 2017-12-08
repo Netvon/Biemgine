@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\AudioComponent.h" />
+    <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
+    <ClInclude Include="components\CameraComponent.h" />
     <ClInclude Include="components\CollidableComponent.h" />
     <ClInclude Include="components\ColorComponent.h" />
     <ClInclude Include="components\Component.h" />
@@ -38,6 +41,7 @@
     <ClInclude Include="core\Engine.h" />
     <ClInclude Include="core\Loop.h" />
     <ClInclude Include="core\Window.h" />
+    <ClInclude Include="devices\audio\SDLAudioDevice.h" />
     <ClInclude Include="devices\graphics\GraphicsDevice.h" />
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
     <ClInclude Include="devices\graphics\TextureAndUsage.h" />
@@ -58,6 +62,7 @@
     <ClInclude Include="primitives\RandomGenerator.h" />
     <ClInclude Include="scenes\Scene.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\RenderSystem.h" />
     <ClInclude Include="systems\ScriptSystem.h" />
     <ClInclude Include="systems\System.h" />
@@ -67,16 +72,19 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="entities\FPSEntity.cpp" />
+    <ClCompile Include="components\CameraComponent.cpp" />
+    <ClCompile Include="components\AudioComponent.cpp" />
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
+    <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="systems\ScriptSystem.cpp" />
     <ClCompile Include="systems\UISystem.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="components\UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />
     <ClCompile Include="components\Component.cpp" />

@@ -58,12 +58,6 @@ namespace spacebiem
 
             auto newVelo = physics->getVelocity().length() + movementForce;
 
-            //printf("%f\n", physics->getFriction());
-
-            
-
-            //printf("Velo: %f\n", physics->getVelocity().length());
-
             if (physics->getVelocity().length() > escapeVelocity)
                 return;
 

@@ -15,6 +15,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick = nullptr);
+        ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick = nullptr, std::function<void(StateManager*)> onEnter = nullptr, string tag = "");
     };
 }

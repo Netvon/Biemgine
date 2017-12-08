@@ -63,7 +63,7 @@ namespace spacebiem
                 auto textures = getComponents<TextureComponent>("texture");
                 for (auto tex : textures) {
                     if (tex->getTag() == "clouds") {
-                        tex->setRotation(tex->getRotation() + 0.01f);
+                        tex->setRotation(tex->getRotation() + 0.1f);
                     }
                 }
             });

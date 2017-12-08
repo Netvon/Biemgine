@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "../globals/Difficulty.h"
 
 using biemgine::SpriteEntity;
 using biemgine::Scene;
@@ -19,18 +20,25 @@ namespace spacebiem
         void sceneEnd() override;
         void resetFPScounters();
 
-        LevelScene(StateManager& manager, bool newGame = true) :
+        LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
             Scene(manager),
-            newGame(newGame){};
+            newGame(newGame),
+            difficulty(difficulty)
+        {};
 
         ~LevelScene() {}
 
     private:
         bool isPauseButtonDown = false;
+        bool isPaused = false;
         bool newGame;
         int FPSId;
         float timeout;
         int counter = 0;
         int totalDeltaTime = 0;
+
+        void updateMenu();
+
+        Difficulty difficulty;
     };
 }

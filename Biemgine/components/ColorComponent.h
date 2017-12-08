@@ -19,7 +19,7 @@ namespace biemgine
         int getG() const;
         int getB() const;
         int getA() const;
-
+        
         const Color& getColor() const;
 
     private:

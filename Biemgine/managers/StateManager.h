@@ -4,6 +4,7 @@
 #include "..\core\Window.h"
 #include "InputManager.h"
 #include "..\entities\Entity.h"
+#include "..\devices\audio\AudioDevice.h"
 
 using std::string;
 
@@ -14,11 +15,7 @@ namespace biemgine
     class BIEMGINE StateManager
     {
     public:
-        StateManager(
-            SceneManager& pSceneManager,
-            const Window& pWindow
-        ) : sceneManager(&pSceneManager), window(&pWindow) {};
-
+        StateManager( SceneManager& pSceneManager,const Window& pWindow);
         ~StateManager();
 
         int getWindowWidth() const;
@@ -28,7 +25,6 @@ namespace biemgine
         void resumeGame();
         bool isPaused();
 
-        void drawOverlay(Font font);
         void drawBackground(const string& backgroundPath);
 
         void setInputManager(const InputManager* manager) {
@@ -38,6 +34,11 @@ namespace biemgine
         const InputManager* getInputManager() const
         {
             return inputManager;
+        }
+
+        AudioDevice& getAudioDevice() const
+        {
+            return *audioDevice;
         }
 
         template<class TScene, typename... TParams>
@@ -51,6 +52,7 @@ namespace biemgine
         SceneManager* sceneManager = nullptr;
         const InputManager* inputManager = nullptr;
         const Window* window = nullptr;
+        AudioDevice* audioDevice;
 
         bool paused = false;
     };
