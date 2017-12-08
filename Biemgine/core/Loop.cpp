@@ -5,7 +5,7 @@
 
 namespace biemgine
 {
-    const int Loop::BM_GAMELOOP_FPS = 40;
+    const int Loop::BM_GAMELOOP_FPS = 60;
     const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
     Loop::Loop() :
@@ -42,7 +42,8 @@ namespace biemgine
                 lagTime = lagTime - BM_GAMELOOP_UPDATE_MS;
             }
 
-            globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
+            // globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
+            globalRender(elapsedTime);
 
         }
 

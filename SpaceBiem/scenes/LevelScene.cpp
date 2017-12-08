@@ -34,6 +34,7 @@
 
 using biemgine::TextComponent;
 using biemgine::TextEntity;
+using biemgine::TextUIEntity;
 using biemgine::ScriptComponent;
 using std::function;
 
@@ -93,6 +94,8 @@ namespace spacebiem
 
             return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
         });*/
+        timeout = 0;
+        FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -142,6 +145,15 @@ namespace spacebiem
             getTransitionManager().navigateTo<MenuScene>();
         }
 
+        if (im.isKeyDown("F")) {
+            if (getEntity(FPSId)->getComponent<TextComponent>("text")->isVisible()) {
+                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(false);
+            }
+            else {
+                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(true);
+            }
+        }
+
         if (im.isKeyDown("P")) {
             if (!isPauseButtonDown) {
 
@@ -176,8 +188,26 @@ namespace spacebiem
         }
     }
 
+    void LevelScene::resetFPScounters()
+    {
+        timeout = 0;
+        counter = 0;
+        totalDeltaTime = 0;
+    }
+
     void LevelScene::render(const float deltaTime)
     {
+        cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
+        totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
+        counter++;
+        if (timeout >= 500.f) {
+            auto tc = getEntity(FPSId)->getComponent<TextComponent>("text");
+            tc->setText("FPS: " + std::to_string(totalDeltaTime / counter), Color{ 255, 255, 255 });
+            resetFPScounters();
+        }
+
+        timeout += deltaTime;
+
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
     }
