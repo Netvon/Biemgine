@@ -66,7 +66,6 @@
     <ClInclude Include="systems\physics\PhysicsSystem.h" />
     <ClInclude Include="systems\UISystem.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Thread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\CameraComponent.cpp" />
@@ -79,7 +78,6 @@
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
-    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />

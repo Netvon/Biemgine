@@ -160,7 +160,6 @@
     </ClInclude>
     <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="components\CameraComponent.h" />
-    <ClInclude Include="Thread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -275,6 +274,5 @@
     </ClCompile>
     <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="components\CameraComponent.cpp" />
-    <ClCompile Include="Thread.cpp" />
   </ItemGroup>
 </Project>
