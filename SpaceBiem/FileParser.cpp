@@ -157,4 +157,44 @@ namespace spacebiem
         return levelMap;
     }
 
+    map<string, vector<int>> FileParser::DifficultySystemContent()
+    {
+        map<string, vector<int>> systemM;
+
+        FileHandler file("data/difficulty_system.csv");
+        for each (auto v in file.getValues())
+        {
+            vector<int> vector({
+                stoi(v[1]),
+                stoi(v[2]),
+                stoi(v[3]),
+                stoi(v[4]),
+                stoi(v[5]),
+                stoi(v[6]),
+            });
+            systemM[v[0]] = vector;
+        }
+
+        return systemM;
+    }
+
+    map<string, map<string, vector<string>>> FileParser::DifficultyBeltContent()
+    {
+        map<string, map<string, vector<string>>> beltM;
+
+        FileHandler file("data/difficulty_belts.csv");
+        for each (auto v in file.getValues())
+        {
+            vector<string> vector({
+                v[2],
+                v[3],
+                v[4],
+                v[5],
+            });
+            beltM[v[0]][v[1]] = vector;
+        }
+
+        return beltM;
+    }
+
 }

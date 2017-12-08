@@ -9,11 +9,7 @@ namespace biemgine
         sceneWasSwitched = true;
     }
 
-    UISystem::~UISystem()
-    {
-    }
-
-    void UISystem::before()
+    void UISystem::before(const float deltaTime)
     {
         auto im = getStateManager()->getInputManager();
 
@@ -32,7 +28,7 @@ namespace biemgine
         }
     }
 
-    void UISystem::update(const Entity & entity)
+    void UISystem::update(const Entity & entity, const float deltaTime)
     {
         if (!entity.hasComponent("ui") || !entity.hasComponent("position"))
             return;
@@ -55,6 +51,9 @@ namespace biemgine
             && currentMouseLocation.x <= X2
             && currentMouseLocation.y >= Y1
             && currentMouseLocation.y <= Y2) {
+
+            if (!ui->getIsMouseOver() && ui->getIsEntered())
+                ui->getIsEntered()(getStateManager());
 
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);

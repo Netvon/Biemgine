@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "LevelScene.h"
 
-#include "..\UniverseBuilder.h"
+#include "..\factories\UniverseBuilder.h"
+#include "..\factories\UniverseGenerator.h"
 
 #include "..\entities\PlayerEntity.h"
 #include "..\entities\PlanetEarthEntity.h"
@@ -9,11 +10,13 @@
 #include "..\entities\ScoreUIEntity.h"
 #include "..\entities\OxygenUIEntity.h"
 #include "..\entities\ResourceUIEntity.h"
+#include "..\entities\ButtonUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\factories\PlanetFactory.h"
 
 #include "MenuScene.h"
-#include "..\systems\CameraSystem.h"
+#include "HelpScene.h"
+
 #include "..\systems\GravitySystem.h"
 #include "..\systems\MovementSystem.h"
 #include "..\systems\JumpSystem.h"
@@ -37,9 +40,26 @@ using std::function;
 
 namespace spacebiem
 {
+    void hover(StateManager* e)
+    {
+        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+    }
+    void resumeButtonClicked(StateManager* e) {
+        cout << "Resume" << endl;
+        e->resumeGame();
+    }
+    void helpButtonClicked(StateManager* e) {
+        e->navigateTo<HelpScene>(true);
+    }
+    void menuButtonClicked(StateManager* e) {
+        e->resumeGame();
+        e->navigateTo<MenuScene>();
+    }
+
     void LevelScene::created()
     {
-        addSystem<CameraSystem>();
+
+        enableCamera();
        
         enableRendering();
         enablePhysics();
@@ -50,12 +70,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>();
+        addSystem<OxygenUISystem>(2);
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>();
-        addSystem<ResourceUISystem>();
-        addSystem<ResourceCollectingSystem>();
-        addSystem<GameoverSystem>();
+        addSystem<ScoreUISystem>(2);
+        addSystem<ResourceUISystem>(2);
+        addSystem<ResourceCollectingSystem>(2);
+        addSystem<GameoverSystem>(2);
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -81,11 +101,31 @@ namespace spacebiem
 
         UniverseBuilder uB;
         if (newGame) {
+
+            UniverseGenerator uG;
+            uG.generate(difficulty);
+
+
             uB.build(getEntityManager(), true);
         }
         else {
             uB.build(getEntityManager(), false);
-        }       
+        }
+
+        int beginY = 400;
+        int bW = 200;
+        int bH = 60;
+        int incr = bH + 15;
+        
+        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
+        addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230, 255 }, 300, 330, 290u, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png", resumeButtonClicked, hover, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png", helpButtonClicked, hover, "pause_menu");
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", menuButtonClicked, hover, "pause_menu");
+
+        updateMenu();
+
+        getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
     }
 
     void LevelScene::sceneEnd() {
@@ -125,8 +165,16 @@ namespace spacebiem
         if (im.isKeyDown("P")) {
             if (!isPauseButtonDown) {
 
-                if (getTransitionManager().isPaused()) getTransitionManager().resumeGame();
-                else getTransitionManager().pauseGame();
+                if (isPaused) {
+                    isPaused = false;
+                    getTransitionManager().resumeGame();
+                }
+                else {
+                    isPaused = true;
+                    getTransitionManager().pauseGame();
+                }
+
+                updateMenu();
 
                 isPauseButtonDown = true;
             }
@@ -134,11 +182,16 @@ namespace spacebiem
         else {
             isPauseButtonDown = false;
         }
+
+        if (getTransitionManager().isPaused() != isPaused) {
+            isPaused = getTransitionManager().isPaused();
+            updateMenu();
+        }
     }
 
     void LevelScene::update()
     {
-        if (!getTransitionManager().isPaused()) {
+        if (!isPaused) {
             updateEntities();
         }
     }
@@ -147,6 +200,21 @@ namespace spacebiem
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-        getTransitionManager().drawOverlay(Fonts::Roboto());
     }
+
+
+    void LevelScene::updateMenu()
+    {
+        auto em = getEntityManager();
+        for (auto it = em->begin(); it != em->end(); it++) {
+
+            if ((*it)->getTag() != "pause_menu") continue;
+
+            if (isPaused) (*it)->rise();
+            else (*it)->die();
+
+        }
+
+    }
+
 }

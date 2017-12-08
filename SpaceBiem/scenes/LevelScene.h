@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "../globals/Difficulty.h"
 
 using biemgine::SpriteEntity;
 using biemgine::Scene;
@@ -22,14 +23,21 @@ namespace spacebiem
 
 		void saveGame();
 
-        LevelScene(StateManager& manager, bool newGame = true) :
+        LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
             Scene(manager),
-            newGame(newGame){};
+            newGame(newGame),
+            difficulty(difficulty)
+        {};
 
         ~LevelScene() {}
 
     private:
         bool isPauseButtonDown = false;
+        bool isPaused = false;
         bool newGame;
+
+        void updateMenu();
+
+        Difficulty difficulty;
     };
 }

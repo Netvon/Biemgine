@@ -1,11 +1,19 @@
 #include "stdafx.h"
 #include "StateManager.h"
 #include "SceneManager.h"
+#include "..\devices\audio\SDLAudioDevice.h"
 
 namespace biemgine
 {
-    StateManager::~StateManager() {}
+    StateManager::StateManager(
+        SceneManager& pSceneManager,
+        const Window& pWindow
+    ) : sceneManager(&pSceneManager), window(&pWindow), audioDevice(new SDLAudioDevice()) {};
 
+    StateManager::~StateManager()
+    {
+        delete audioDevice;
+    }
 
     int StateManager::getWindowWidth() const
     {
@@ -30,19 +38,6 @@ namespace biemgine
     bool StateManager::isPaused()
     {
         return paused;
-    }
-
-    void StateManager::drawOverlay(Font font)
-    {
-        if (paused) {
-            auto gd = window->getGraphicsDevice();
-
-            int x = getWindowWidth()/2;
-            int y = 60;
-
-            gd->drawText(font, "The game is paused.", x, y, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
-            gd->drawText(font, "Press 'P' to resume the game...", x, y + 25, { 255, 255, 255, 255 }, 20, biemgine::NONE, true);
-        }
     }
 
     void StateManager::drawBackground(const string& backgroundPath)
