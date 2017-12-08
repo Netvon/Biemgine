@@ -184,6 +184,9 @@
     <ClInclude Include="entities\PlanetLavaEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\CreditsScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="entities\PlanetLavaEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\CreditsScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

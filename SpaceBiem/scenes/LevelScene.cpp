@@ -197,7 +197,6 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
-        cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
         if (timeout >= 500.f) {

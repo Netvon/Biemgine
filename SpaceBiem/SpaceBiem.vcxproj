@@ -186,6 +186,7 @@
     <ClInclude Include="entities\ResourceUIEntity.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
+    <ClInclude Include="scenes\CreditsScene.h" />
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
+    <ClCompile Include="scenes\CreditsScene.cpp" />
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="scenes\HelpScene.cpp" />
