@@ -9,10 +9,9 @@ namespace biemgine
     {
     public:
         UISystem();
-        ~UISystem();
 
-        void before() override;
-        void update(const Entity& entity) override;
+        void before(const float deltaTime) override;
+        void update(const Entity& entity, const float deltaTime) override;
     private:
         Point currentMouseLocation;
         bool isLeftMouseDown = false;

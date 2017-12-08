@@ -13,18 +13,20 @@ using biemgine::PositionComponent;
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
+#include "..\entities\PlanetIceEntity.h"
+#include "..\entities\PlanetLavaEntity.h"
 
 #include <typeindex>
 
 namespace spacebiem
 {
-    vector<string> SaveBlobFactory::createFromEntities(vector<const Entity *> & entities)
+    vector<string> SaveBlobFactory::createFromEntities(shared_ptr<EntityManager> entities)
     {
         vector<string> blob;
 
         blob.push_back("entity_id_type,component_type,value_1,value_2,value_3,value_4");
 
-        for (auto it = entities.begin(); it != entities.end(); it++) {
+        for (auto it = entities->begin(); it != entities->end(); it++) {
             string entityBlob = createFromEntity(*(*it));
 
             if(!entityBlob.empty())
@@ -75,7 +77,9 @@ namespace spacebiem
             { type_index(typeid(PlanetEarthEntity)), true },
             { type_index(typeid(PlanetMoonEntity)), true },
             { type_index(typeid(PlanetToxicEntity)), true },
-            { type_index(typeid(PlanetSandEntity)), true }
+            { type_index(typeid(PlanetSandEntity)), true },
+            { type_index(typeid(PlanetIceEntity)), true },
+            { type_index(typeid(PlanetLavaEntity)), true },
         };
 
         auto find = planetTypes.find(type_index(typeid(entity)));

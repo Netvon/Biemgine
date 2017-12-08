@@ -21,7 +21,7 @@ namespace spacebiem
 
         int score = 0;
         map<string, int> resources = map<string, int>();
-        map<string, int> planetsScore = map<string, int>({ { "earth",0 },{ "sand",0 },{ "moon",0 },{ "toxic",0 } });
+        map<string, int> planetsScore = map<string, int>({ { "earth",0 },{ "sand",0 },{ "moon",0 },{ "toxic",0 },{ "ice",0 } });
 
         if (entity.hasComponent("score")) {
             auto sc = entity.getComponent<ScoreComponent>("score");

@@ -4,6 +4,8 @@
 #include "LevelScene.h"
 #include "HighScoreScene.h"
 #include "GameoverScene.h"
+#include "HelpScene.h"
+#include "DifficultyScene.h"
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
@@ -19,31 +21,35 @@ namespace spacebiem
 {
     void onMenuButtonEntered(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 128);
     }
 
     void newGameButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
-        e->navigateTo<LevelScene>(true);       
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 64);
+        e->navigateTo<DifficultyScene>();
     }
 
     void ContinueButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/biem.ogg", 0, -1, 64);
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 64);
         e->navigateTo<LevelScene>(false);
     }
 
     void HighscoreButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
         e->navigateTo<HighScoreScene>();
     }
 
     void GameOverButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
         e->navigateTo<GameoverScene>();
+    }
+    void HelpButtonClicked(StateManager* e)
+    {
+        e->navigateTo<HelpScene>();
     }
 
     void MenuScene::created()
@@ -87,12 +93,12 @@ namespace spacebiem
             continueEventHandler = ContinueButtonClicked;
         }
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler, onMenuButtonEntered);
         
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked, onMenuButtonEntered);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Tutorial", buttonTexture);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, HelpButtonClicked, onMenuButtonEntered);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture);
         beginY += 20;
@@ -124,7 +130,7 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("Return")) {
-            getTransitionManager().getAudioDevice().playSoundEffect("audio/biem.ogg", 0, 5, 64);
+            getTransitionManager().getAudioDevice().playSoundEffect("audio/switch.mp3", 0, 5, 64);
             getTransitionManager().navigateTo<LevelScene>();
         }
     }

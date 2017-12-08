@@ -21,6 +21,14 @@ namespace spacebiem
             entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "toxic", entityManager);
         }
+        else if (type == "ice") {
+            entityManager->addEntity<PlanetIceEntity>(pX, pY, Color::IceAtmosphere(), width, height, scoreBonus["ice"], atmosphereM["ice"], nameGenerator.getName());
+            resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "ice", entityManager);
+        }
+        else if (type == "lava") {
+            entityManager->addEntity<PlanetLavaEntity>(pX, pY, Color::LavaAtmosphere(), width, height, scoreBonus["lava"], atmosphereM["lava"], nameGenerator.getName());
+            resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "lava", entityManager);
+        }
     }
 
     void PlanetFactory::load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, int planetScore, bool isDiscovered, vector<float> flagComponent)
@@ -38,6 +46,12 @@ namespace spacebiem
         }
         else if (type == "toxic") {
             id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name);
+        }
+        else if (type == "ice") {
+            id = entityManager->addEntity<PlanetIceEntity>(pX, pY, Color::IceAtmosphere(), width, height, planetScore, atmosphereM["ice"], name);
+        }
+        else if (type == "lava") {
+            id = entityManager->addEntity<PlanetLavaEntity>(pX, pY, Color::LavaAtmosphere(), width, height, planetScore, atmosphereM["lava"], name);
         }
 
         auto planet = entityManager->getEntity(id);

@@ -32,6 +32,9 @@ namespace spacebiem
 
         map<string, map<string, vector<string>>> levelContent(string fileName);
 
+        map<string, vector<int>> DifficultySystemContent();
+        map<string, map<string, vector<string>>> DifficultyBeltContent();
+
 
     private:
 

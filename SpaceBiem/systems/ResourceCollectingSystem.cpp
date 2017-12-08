@@ -4,12 +4,6 @@
 
 namespace spacebiem
 {
-    void ResourceCollectingSystem::before()
-    {
-        resource.clear();
-        resourceBonus.clear();
-    }
-
     void ResourceCollectingSystem::update(const Entity & entity)
     {
 
@@ -48,5 +42,8 @@ namespace spacebiem
                 }
             }
         }
+
+        resource.clear();
+        resourceBonus.clear();
     }
 }

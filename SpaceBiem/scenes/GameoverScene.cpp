@@ -7,6 +7,7 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
+#include "..\entities\PlanetIceEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\factories\ScoreUIFactory.h"
 #include "..\entities\ScoreUIEntity.h"
@@ -75,23 +76,35 @@ namespace spacebiem
         for (auto& p : planetsScore) {
             if (p.first == "earth") {
                 addEntity<PlanetEarthEntity>(planetsX, heightCounter, Color{ 71, 166, 245, 255 }, 40, 40, 0, 10.f);
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "moon") {
                 addEntity<PlanetMoonEntity>(planetsX, heightCounter, Color::White(), 40, 40, 0);
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "sand") {
                 addEntity<PlanetSandEntity>(planetsX, heightCounter, Color{ 213,207,105,255 }, 40, 40, 0, 10.f);
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "toxic") {
                 addEntity<PlanetToxicEntity>(planetsX, heightCounter, Color{ 20, 221, 53, 255 }, 40, 40, 0, 10.f);
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                heightCounter = heightCounter + 85.f;
+            }
+            else if (p.first == "ice") {
+                addEntity<PlanetIceEntity>(planetsX, heightCounter, Color::IceAtmosphere(), 40, 40, 0, 10.f);
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                heightCounter = heightCounter + 85.f;
             }
             
-            addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
-            heightCounter = heightCounter + 85.f;
+            
         }
 
 
-        addEntity<TextUIEntity>(Fonts::Roboto(), x - 25, 600, Color::White(), "Total score: " + std::to_string(score));
+        addEntity<TextUIEntity>(Fonts::Roboto(), x - 25, 700, Color::White(), "Total score: " + std::to_string(score));
 
 
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({71, 166, 245, 255}), planetWidth, planetHeight, 0, 10.f);
@@ -102,7 +115,7 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        addEntity<ButtonUIEntity>(x - 25, 700, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
+        addEntity<ButtonUIEntity>(x - 25, 800, buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture,
         [this](StateManager* manager)
         {
             /*ScoreUIFactory sf;
@@ -110,8 +123,9 @@ namespace spacebiem
             manager->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
             manager->getAudioDevice().playMusic("audio/menu.mp3", -1);
             manager->navigateTo<HighScoreScene>(score);
+
         }, onGameOverButtonEntered);
-        addEntity<ButtonUIEntity>(x - 25, 775, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
+        addEntity<ButtonUIEntity>(x - 25, 875, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture, MenuButtonClicked, onGameOverButtonEntered);
 
         getTransitionManager().getAudioDevice().playMusic("audio/gameover.mp3", 0);
     }

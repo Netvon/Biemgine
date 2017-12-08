@@ -15,12 +15,12 @@ namespace spacebiem
 {
     void onHighScoreButtonEntered(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 128);
     }
 
     void BackButtonClicked(StateManager* e)
     {
-        e->getAudioDevice().playSoundEffect("audio/buttonclick.mp3", 0, -1, 128);
+        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
         e->navigateTo<MenuScene>();
     }
 

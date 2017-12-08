@@ -170,6 +170,12 @@
     <ClInclude Include="components\AudioComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="components\CameraComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\CameraSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -223,9 +229,6 @@
     </ClCompile>
     <ClCompile Include="primitives\Primitives.cpp">
       <Filter>primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="UIComponent.cpp">
-      <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="entities\SpriteEntity.cpp">
       <Filter>entities</Filter>
@@ -286,6 +289,15 @@
       <Filter>devices\audio</Filter>
     </ClCompile>
     <ClCompile Include="components\AudioComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CameraSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\UIComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,6 +8,8 @@
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetToxicEntity.h"
+#include "..\entities\PlanetLavaEntity.h"
+#include "..\entities\PlanetIceEntity.h"
 #include "ResourceFactory.h"
 #include "NameGenerator.h"
 #include <vector>

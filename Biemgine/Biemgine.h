@@ -25,6 +25,7 @@
 #include "components\UIComponent.h"
 #include "components\PhysicsComponentShape.h"
 #include "components\ScriptComponent.h"
+#include "components\CameraComponent.h"
 
 #include "entities\Entity.h"
 #include "entities\SpriteEntity.h"

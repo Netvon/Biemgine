@@ -114,7 +114,7 @@ namespace biemgine
             }
         }
 
-        world->Step(1.f / 60.0f, 6, 2);
+        world->Step(1.f / 40.0f, 6, 2);
     }
 
     void PhysicsSystem::onSceneSwitch()
