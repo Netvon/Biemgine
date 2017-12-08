@@ -31,6 +31,7 @@
 #include "..\globals\Fonts.h"
 
 #include <functional>
+#include "..\factories\SaveBlobFactory.h"
 
 using biemgine::TextComponent;
 using biemgine::TextEntity;
@@ -58,6 +59,7 @@ namespace spacebiem
 
     void LevelScene::created()
     {
+
         enableCamera();
        
         enableRendering();
@@ -130,18 +132,36 @@ namespace spacebiem
     }
 
     void LevelScene::sceneEnd() {
+        saveScore();
+    }
 
+    void LevelScene::saveScore()
+    {
         ScoreUIFactory sf;
         sf.sceneEnd(getEntityManager());
+    }
+
+    void LevelScene::saveGame()
+    {
+        SaveBlobFactory saveBlobFactory;
+        vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
+
+        FileHandler fileHandler("data/savegame.csv", true);
+
+        for (auto it = saveBlob.begin(); it != saveBlob.end(); it++) {
+            fileHandler.writeLine(*it);
+        }
     }
 
     void LevelScene::input()
     {
         if (im.isKeyDown("Q")) {
+            saveGame();
             signalQuit();
         }
 
         if (im.isKeyDown("Escape")) {
+            saveGame();
             getTransitionManager().navigateTo<MenuScene>();
         }
 

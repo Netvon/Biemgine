@@ -20,6 +20,10 @@ namespace spacebiem
         void sceneEnd() override;
         void resetFPScounters();
 
+		void saveScore();
+
+		void saveGame();
+
         LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
             Scene(manager),
             newGame(newGame),
