@@ -9,6 +9,7 @@ namespace spacebiem
 
     void OxygenSystem::before() {
         entitiesWithAtmospheres.clear();
+        entitiesWithOxygen.clear();
     }
 
 
@@ -33,37 +34,49 @@ namespace spacebiem
         if (!entity.hasComponent("oxygen")) return;
         if (entity.hasComponent("ui")) return;
 
-        auto oc = entity.getComponent<OxygenComponent>("oxygen");
+        entitiesWithOxygen.push_back(entity);
+        
+    }
 
-        std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
-        if (entity.hasComponent("position")) {
-            auto pc = entity.getComponent<PositionComponent>("position");
 
-            for (auto entity : entitiesWithAtmospheres) {
-                auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
+    void OxygenSystem::after() {
 
-                int xA = oc->getX();
-                int yA = oc->getY();
-                int rA = oc->getRadius();
-                int x = pc->getX();
-                int y = pc->getY();
+        for (Entity entity : entitiesWithOxygen) {
 
-                // Kei skône pietjegras theorie
-                if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
-                    currentAtmosphere = oc;
-                    break;
+            auto oc = entity.getComponent<OxygenComponent>("oxygen");
+
+            std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
+            if (entity.hasComponent("position")) {
+                auto pc = entity.getComponent<PositionComponent>("position");
+
+                for (auto entity : entitiesWithAtmospheres) {
+                    auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
+
+                    int xA = oc->getX();
+                    int yA = oc->getY();
+                    int rA = oc->getRadius();
+                    int x = pc->getX();
+                    int y = pc->getY();
+
+                    // Kei skône pietjegras theorie
+                    if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
+                        currentAtmosphere = oc;
+                        break;
+                    }
                 }
             }
-        }
 
-        float oAmount = oc->getOxygenAmount();
-        if (currentAtmosphere == nullptr) {
-            oAmount -= oc->getOxygenScale();
-        }
-        else {
-            oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
-        }
-        oc->setOxygenAmount(oAmount);
+            float oAmount = oc->getOxygenAmount();
+            if (currentAtmosphere == nullptr) {
+                oAmount -= oc->getOxygenScale();
+            }
+            else {
+                oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
+            }
+            oc->setOxygenAmount(oAmount);
 
+        }
+        
     }
+
 }

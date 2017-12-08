@@ -49,6 +49,11 @@ namespace biemgine
         alive = false;
     }
 
+    void Entity::rise() const
+    {
+        alive = true;
+    }
+
     bool Entity::isAlive() const
     {
         return alive;

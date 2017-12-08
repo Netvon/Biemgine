@@ -29,7 +29,11 @@ namespace spacebiem
 
     private:
         bool isPauseButtonDown = false;
+        bool isPaused = false;
         bool newGame;
+
+        void updateMenu();
+
         Difficulty difficulty;
     };
 }

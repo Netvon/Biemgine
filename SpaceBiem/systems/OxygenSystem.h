@@ -18,8 +18,10 @@ namespace spacebiem
 
         void update(const Entity& entity) override;
         void before() override;
+        void after() override;
     private:
         vector<Entity> entitiesWithAtmospheres;
+        vector<Entity> entitiesWithOxygen;
 
     };
 }

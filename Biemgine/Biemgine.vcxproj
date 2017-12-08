@@ -83,7 +83,7 @@
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="components\UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />
     <ClCompile Include="components\Component.cpp" />
