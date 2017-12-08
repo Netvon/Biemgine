@@ -6,7 +6,7 @@ namespace biemgine
 {
     System::~System() {}
     inline void System::before() {}
-    //void System::before(const float deltaTime) {}
+    inline void System::before(const float deltaTime) {}
     inline void System::update(const Entity & entity) {}
     inline void System::update(const Entity & entity, const float deltaTime) {}
     inline void System::after() {}

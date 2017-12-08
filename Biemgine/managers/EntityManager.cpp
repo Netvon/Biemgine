@@ -41,7 +41,7 @@ namespace biemgine
     {
         //auto start = std::chrono::high_resolution_clock::now();
 
-        //manager->preUpdate(deltaTime);
+        manager->preUpdate(deltaTime);
 
         for (Entity * e : entities) {
 

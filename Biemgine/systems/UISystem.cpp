@@ -9,7 +9,7 @@ namespace biemgine
         sceneWasSwitched = true;
     }
 
-    void UISystem::before()
+    void UISystem::before(const float deltaTime)
     {
         auto im = getStateManager()->getInputManager();
 
