@@ -22,5 +22,8 @@ namespace spacebiem
         ~GameoverSystem() {};
 
         void update(const Entity& entity) override;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

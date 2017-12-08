@@ -63,4 +63,15 @@ namespace spacebiem
         texture->setWidth(static_cast<int>(texture->getOriginalWidth() * oBar));
         texture->setColor(newColor);
     }
+
+    System::required_components OxygenUISystem::requirements() const
+    {
+        return {
+            //System::requirement<PositionComponent>(),
+            System::requirement<OxygenComponent>(),
+            System::requirement<UIComponent, System::optional>(),
+            System::requirement<TextureComponent, System::optional>(),
+            System::requirement<PositionComponent, System::optional>()
+        };
+    }
 }

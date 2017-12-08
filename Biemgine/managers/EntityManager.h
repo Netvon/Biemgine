@@ -24,7 +24,8 @@ namespace biemgine
         ~EntityManager();
 
         template<class TEntity, typename...TArgs>
-        int addEntity(entity_tag tag = "", TArgs&&... arguments);
+        int addEntity(TArgs&&... arguments);
+        int addEntity(Entity* entity);
 
         inline void updateEntities(std::shared_ptr<SystemManager> manager);
         inline void updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime);
@@ -50,7 +51,7 @@ namespace biemgine
     };
 
     template<class TEntity, typename ...TArgs>
-    int EntityManager::addEntity(EntityManager::entity_tag tag = "", TArgs && ...arguments)
+    int EntityManager::addEntity(TArgs && ...arguments)
     {
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
 
@@ -58,7 +59,7 @@ namespace biemgine
              camera = entities.back()->getComponent<CameraComponent>("camera");
         }
 
-        entities.back()->setTag(tag);
+        //entities.back()->setTag(tag);
 
         return entities.back()->getId();
     }

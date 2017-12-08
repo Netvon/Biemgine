@@ -11,13 +11,36 @@ namespace biemgine
     class BIEMGINE System
     {
     public:
+        struct build_requirement {
+            std::type_index type;
+            bool optional;
+            bool exclude;
 
-        typedef std::vector<std::type_index> required_components;
+            build_requirement(std::type_index type, bool optional, bool exclude)
+                :type(type), optional(optional), exclude(exclude)
+            { }
+        };
 
-        template <typename T>
+        typedef std::vector<build_requirement> required_components;
+        typedef std::vector<std::string> tag_requests;
+
+        struct optional {};
+        struct required {};
+        struct exclude {};
+
+        template <typename T, typename R = System::required>
         struct requirement {
-            constexpr operator std::type_index() const {
-                return std::type_index(typeid(T));
+
+            constexpr operator build_requirement() const {
+                return { std::type_index(typeid(T)), optional(), exclude() };
+            }
+
+            constexpr bool optional() const {
+                return typeid(R) == typeid(System::optional);
+            }
+
+            constexpr bool exclude() const {
+                return typeid(R) == typeid(System::exclude);
             }
         };
 
@@ -38,13 +61,31 @@ namespace biemgine
         inline void nextUpdate();
         bool hasTimedOut();
 
-        //virtual required_components requirements() const {};
+        virtual required_components requirements() const = 0;
+        virtual tag_requests request_tags() const {
+            return tag_requests();
+        };
+
+        Entity* getRequestedEntity(std::string tag) {
+
+            if (requested_entities.count(tag) <= 0llu)
+                return nullptr;
+
+            return requested_entities.at(tag);
+        }
+
+        void setRequestedEntity(std::string tag, Entity* entity) {
+            requested_entities.emplace(tag, entity);
+        }
 
     private:
         StateManager* stateManager = nullptr;
 
         int timeout;
         int timeoutCounter;
+
+    private:
+        std::map<std::string, Entity*> requested_entities;
 
     };
 }

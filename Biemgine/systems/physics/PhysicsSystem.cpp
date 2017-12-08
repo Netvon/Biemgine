@@ -9,6 +9,7 @@
 
 #include <random>
 #include <math.h>
+#include "../../components/TextComponent.h"
 
 namespace biemgine
 {
@@ -222,5 +223,14 @@ namespace biemgine
     float PhysicsSystem::meterToPixel(float meterValue)
     {
         return meterValue * pixelsInAMeter;
+    }
+
+    System::required_components PhysicsSystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<PhysicsComponent>(),
+            System::requirement<GroundedComponent, System::optional>()
+        };
     }
 }

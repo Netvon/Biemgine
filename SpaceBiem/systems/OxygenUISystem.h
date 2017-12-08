@@ -20,5 +20,8 @@ namespace spacebiem
 
     private:
         map<std::shared_ptr<OxygenComponent>, bool> oxygenMap;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

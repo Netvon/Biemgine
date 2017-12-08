@@ -36,4 +36,12 @@ namespace biemgine
             pc->setOffsetY(camera->getDeltaY());
         }
     }
+
+    System::required_components CameraSystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<CameraComponent, System::optional>()
+        };
+    }
 }

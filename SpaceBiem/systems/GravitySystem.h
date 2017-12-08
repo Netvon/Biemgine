@@ -25,5 +25,8 @@ namespace spacebiem
     private:
         vector<const Entity*> gravityPoints;
         vector<const Entity*> satellites;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

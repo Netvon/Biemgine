@@ -14,7 +14,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("text", new TextComponent(Fonts::Roboto()));
+        addComponent("text", new TextComponent(Fonts::Roboto(), std::to_string(defaultAmount)));
         addComponent("ui", new UIComponent);
         addComponent("resourcebonus", new ResourceBonusComponent(resourceName, defaultAmount));
     }

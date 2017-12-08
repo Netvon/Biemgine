@@ -9,6 +9,7 @@ using biemgine::PhysicsComponent;
 using biemgine::Vector;
 
 #include <functional>
+#include "../components/MovementComponent.h"
 
 namespace spacebiem
 {
@@ -60,5 +61,15 @@ namespace spacebiem
 
             physics->addForce("jump", diff.x, diff.y);
         }
+    }
+
+    System::required_components JumpSystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<MovementComponent>(),
+            System::requirement<PhysicsComponent>(),
+            System::requirement<AffectedByGravityComponent>(),
+        };
     }
 }

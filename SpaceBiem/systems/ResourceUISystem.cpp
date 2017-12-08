@@ -48,7 +48,7 @@ namespace spacebiem
         }
 
         if (oRef == nullptr) {
-            tx->setText(std::to_string(rbc->getAmount()), cc->getColor());  
+            tx->setText(std::to_string(rbc->getAmount()), cc->getColor());
         }
         else {
             for (auto x : oRef->getResources())
@@ -58,5 +58,22 @@ namespace spacebiem
                 }
             }
         }
+    }
+    System::required_components ResourceUISystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<ResourceBonusComponent>(),
+            System::requirement<ColorComponent>(),
+            System::requirement<TextComponent>(),
+            System::requirement<UIComponent>(),
+        };
+    }
+
+    System::tag_requests ResourceUISystem::request_tags() const
+    {
+        return {
+            "player"
+        };
     }
 }

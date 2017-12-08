@@ -10,4 +10,11 @@ namespace biemgine {
         auto script = entity.getComponent<ScriptComponent>("script");
         script->run();
     }
+
+    System::required_components ScriptSystem::requirements() const
+    {
+        return {
+            System::requirement<ScriptComponent>()
+        };
+    }
 }

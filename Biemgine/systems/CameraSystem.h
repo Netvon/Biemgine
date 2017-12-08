@@ -15,5 +15,8 @@ namespace biemgine
 
     private:
         std::shared_ptr<CameraComponent> camera = nullptr;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

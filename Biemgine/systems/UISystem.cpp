@@ -65,4 +65,12 @@ namespace biemgine
             ui->setIsMouseDown(false);
         }
     }
+
+	System::required_components UISystem::requirements() const
+	{
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<UIComponent>()
+        };
+	}
 }

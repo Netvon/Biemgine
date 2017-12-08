@@ -17,5 +17,8 @@ namespace biemgine
         bool isLeftMouseDown = false;
         bool sceneWasSwitched = false;
         int clickCoolDown = 10;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

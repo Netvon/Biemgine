@@ -7,7 +7,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
-
+#include <typeindex>
 #include "..\components\Component.h"
 #include "..\primitives\Primitives.h"
 
@@ -33,9 +33,13 @@ namespace biemgine
         template <typename TComponent>
         vector<std::shared_ptr<TComponent>> getComponents(const string& name) const;
 
+        template<typename TComponent>
+        bool hasComponent() const;
         bool hasComponent(const string& name) const;
-
         void addComponent(const string& name, Component* component);
+
+        template<typename TRequired>
+        bool meets(TRequired& requirements);
 
         template <typename TComponent, typename ...TArgs>
         void addComponent(const string& name, TArgs&&...arguments);
@@ -82,6 +86,76 @@ namespace biemgine
         }
 
         return vec;
+    }
+
+    template<typename TComponent>
+    inline bool Entity::hasComponent() const
+    {
+        for (auto& kv : componentHashmap) {
+            auto tip = std::type_index(typeid(*kv.second));
+
+            if (tip == std::type_index(typeid(TComponent)))
+                return true;
+        }
+
+        return false;
+    }
+
+    template<typename TRequired>
+    inline bool Entity::meets(TRequired & requirements)
+    {
+        int required_count = 0;
+        int required_hit = 0;
+        int optional_hit = 0;
+
+        for (auto &req_kv : requirements) {
+            if (!req_kv.optional) {
+                required_count++;
+            }
+        }
+
+        for (auto &kv : componentHashmap) {
+            auto type = std::type_index(typeid(*kv.second));
+
+            for (auto &req_kv : requirements) {
+                if (req_kv.type == type) {
+
+                    if (req_kv.exclude)
+                        return false;
+
+                    if (req_kv.optional) {
+                        optional_hit++;
+                    }
+                    else {
+                        required_hit++;
+                    }
+                }
+            }
+        }
+
+        return required_hit == required_count;
+
+        //return std::any_of(componentHashmap.begin(), componentHashmap.end(), [&requirements](const auto &kv) {
+        //    auto comp_type = std::type_index(typeid(*kv.second));
+
+        //    /*bool has_optional = std::any_of(requirements.begin(), requirements.end(), [&comp_type](const auto& r) {
+        //        return r.type == comp_type && r.optional;
+        //    });*/
+
+        //    return std::all_of(requirements.begin(), requirements.end(), [&comp_type/*, &has_optional*/](const auto& r) {
+
+        //        /*if (has_optional && r.type == comp_type && r.optional) {
+        //            return false;
+        //        }*/
+
+        //        bool type_match = r.type == comp_type;
+
+        //        if (type_match && r.exclude)
+        //            return false;
+
+        //        return type_match;
+        //    });
+        //});
     }
 
     template<typename TComponent, typename ...TArgs>

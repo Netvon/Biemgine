@@ -58,4 +58,12 @@ namespace spacebiem
         oc->setOxygenAmount(oAmount);
 
     }
+
+    System::required_components OxygenSystem::requirements() const
+    {
+        return {
+            System::requirement<AtmosphereComponent, System::optional>(),
+            System::requirement<biemgine::UIComponent, System::exclude>(),
+        };
+    }
 }

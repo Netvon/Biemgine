@@ -66,4 +66,12 @@ namespace spacebiem
         tx->setText(oRef->getName() + ": " + std::to_string((int)oRef->getScore()), highlightColor);
 
     }
+	System::required_components ScoreUISystem::requirements() const
+	{
+        return {
+            System::requirement<ScoreComponent>(),
+            System::requirement<UIComponent, System::optional>(),
+            System::requirement<PositionComponent, System::optional>(),
+        };
+	}
 }

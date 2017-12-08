@@ -46,4 +46,11 @@ namespace spacebiem
         resource.clear();
         resourceBonus.clear();
     }
+
+    System::required_components ResourceCollectingSystem::requirements() const
+    {
+        return {
+            System::requirement<CollidableComponent>(),
+        };
+    }
 }

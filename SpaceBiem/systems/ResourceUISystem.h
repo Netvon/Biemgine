@@ -18,5 +18,9 @@ namespace spacebiem
 
     private:
         std::map<std::shared_ptr<ResourceComponent>, bool> resourceMap;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
+        virtual tag_requests request_tags() const override;
     };
 }

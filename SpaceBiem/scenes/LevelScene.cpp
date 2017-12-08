@@ -49,12 +49,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>(2);
+        addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>(5);
-        addSystem<ResourceUISystem>(5);
-        addSystem<ResourceCollectingSystem>(2);
-        addSystem<GameoverSystem>(2);
+        addSystem<ScoreUISystem>();
+        addSystem<ResourceUISystem>();
+        addSystem<ResourceCollectingSystem>();
+        addSystem<GameoverSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -124,15 +124,14 @@ namespace spacebiem
 
     void LevelScene::update()
     {
-        if (!getTransitionManager().isPaused()) {
+        //if (!getTransitionManager().isPaused()) {
             updateEntities();
-        }
+        //}
     }
 
     void LevelScene::render(const float deltaTime)
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-        getTransitionManager().drawOverlay(Fonts::Roboto());
     }
 }

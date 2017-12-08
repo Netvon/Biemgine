@@ -20,5 +20,9 @@ namespace spacebiem
     private:
         vector<std::shared_ptr<AtmosphereComponent>> atmospheres;
 
+
+        // Inherited via System
+        virtual required_components requirements() const override;
+
     };
 }

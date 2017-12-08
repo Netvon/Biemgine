@@ -27,7 +27,7 @@ namespace biemgine
 
     inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager)
     {
-        manager->preUpdate();
+        /*manager->preUpdate();
 
         for (Entity * e : entities) {
 
@@ -35,7 +35,7 @@ namespace biemgine
                 manager->acceptForUpdate(*e);
         }
 
-        manager->postUpdate();
+        manager->postUpdate();*/
     }
 
     inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)

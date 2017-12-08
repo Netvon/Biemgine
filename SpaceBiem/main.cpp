@@ -23,7 +23,7 @@ int main()
 {
     try
     {
-        Thread thread{ "test_thread", hallo };
+        //Thread thread{ "test_thread", hallo };
 
         Engine engine;
         engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, true);

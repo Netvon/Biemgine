@@ -43,6 +43,7 @@ namespace biemgine
         void globalUpdate();
         void globalRender(const float deltaTime);
 
+        virtual void init() { }
         virtual void input() { }
         virtual void update() { }
         virtual void render(const float deltaTime) { }

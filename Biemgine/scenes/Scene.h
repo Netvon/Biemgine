@@ -21,7 +21,7 @@ namespace biemgine
 
         virtual ~Scene();
 
-        void init();
+        void init() override;
 
         void updateEntities();
         void updateEntities(const float deltaTime);

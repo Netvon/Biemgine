@@ -28,16 +28,25 @@ namespace biemgine
         delete entityManager;*/
     }
 
-    void Scene::init() {}
+    void Scene::init()
+    {
+        systemManager->builtUpdateMap(entityManager);
+    }
 
     void Scene::updateEntities()
     {
-        entityManager->updateEntities(systemManager);
+        //entityManager->updateEntities(systemManager);
+        systemManager->preUpdate();
+        systemManager->updateSystems();
+        systemManager->postUpdate();
     }
 
     void Scene::updateEntities(const float deltaTime)
     {
-        entityManager->updateEntities(systemManager, deltaTime);
+        //systemManager->preUpdate();
+        systemManager->updateSystems(deltaTime, true);
+        //entityManager->updateEntities(systemManager, deltaTime);
+        systemManager->postUpdate(deltaTime);
     }
 
     StateManager & Scene::getTransitionManager() const {

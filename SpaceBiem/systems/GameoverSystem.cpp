@@ -54,4 +54,9 @@ namespace spacebiem
 
         getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
     }
+
+    System::required_components GameoverSystem::requirements() const
+    {
+        return required_components();
+    }
 }

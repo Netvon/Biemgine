@@ -18,5 +18,8 @@ namespace biemgine
     {
     public:
         void update(const Entity& entity);
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

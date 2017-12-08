@@ -2,10 +2,11 @@
 #include "Loop.h"
 
 #include <SDL.h>
+#include <chrono>
 
 namespace biemgine
 {
-    const int Loop::BM_GAMELOOP_FPS = 40;
+    const int Loop::BM_GAMELOOP_FPS = 60;
     const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
     Loop::Loop() :
@@ -18,6 +19,7 @@ namespace biemgine
         im.setWindow(pWindow);
 
         created();
+        init();
         startLoop();
     }
 
@@ -61,14 +63,25 @@ namespace biemgine
         im.update();
         input();
 
+        auto start = std::chrono::high_resolution_clock::now();
         update();
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end - start;
+
+        printf("Timed Update took %f s\n", diff.count());
     }
 
     void Loop::globalRender(const float deltaTime)
     {
         window->getGraphicsDevice()->clear();
+        auto start = std::chrono::high_resolution_clock::now();
         render(deltaTime);
         window->getGraphicsDevice()->present();
+
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end - start;
+
+        printf("Render took %f s\n", diff.count());
     }
 }
 

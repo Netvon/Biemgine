@@ -56,4 +56,12 @@ namespace spacebiem
             }
         }
     }
+    System::required_components ScoreSystem::requirements() const
+    {
+        return {
+            System::requirement<ScoreComponent>(),
+            System::requirement<biemgine::UIComponent, System::exclude>(),
+            System::requirement<GroundedComponent>(),
+        };
+    }
 }

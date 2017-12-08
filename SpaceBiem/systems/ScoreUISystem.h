@@ -18,5 +18,8 @@ namespace spacebiem
 
     private:
         std::map<std::shared_ptr<ScoreComponent>, bool> scoreMap;
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

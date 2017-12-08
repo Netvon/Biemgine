@@ -25,5 +25,9 @@ namespace spacebiem
         vector<const Entity*> resource;
         vector<const Entity*> resourceBonus;
 
+
+        // Inherited via System
+        virtual required_components requirements() const override;
+
     };
 }

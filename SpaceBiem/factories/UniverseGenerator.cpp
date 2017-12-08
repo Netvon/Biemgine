@@ -149,7 +149,7 @@ namespace spacebiem
             int pX = middleX + static_cast<int>(cos(angle)*r);
             int pY = middleY + static_cast<int>(sin(angle)*r);
 
-            if (pType == "earth") spawnPlayer(pX, pY-(pRadius/2));
+            if (pType == "earth") spawnPlayer(pX, pY-(pRadius/2) - 120);
 
             handler->writeLine(
                 to_string(pId) + "_" + pType + "," +

@@ -36,5 +36,8 @@ namespace biemgine {
 
         Vector meterToPixel(Vector& pixelVector);
         float meterToPixel(float meterValue);
+
+        // Inherited via System
+        virtual required_components requirements() const override;
     };
 }

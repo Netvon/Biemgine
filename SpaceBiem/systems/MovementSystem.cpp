@@ -1,5 +1,6 @@
 #include "MovementSystem.h"
 #include "..\components\GravityComponent.h"
+#include "../components/MovementComponent.h"
 
 using biemgine::PositionComponent;
 using biemgine::GroundedComponent;
@@ -75,5 +76,15 @@ namespace spacebiem
                 physics->addForce("right", right.x, right.y);
             }
         }
+    }
+
+    System::required_components MovementSystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<MovementComponent>(),
+            System::requirement<PhysicsComponent>(),
+            System::requirement<AffectedByGravityComponent>(),
+        };
     }
 }

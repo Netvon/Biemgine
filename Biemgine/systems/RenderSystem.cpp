@@ -125,7 +125,10 @@ namespace biemgine
 	System::required_components RenderSystem::requirements() const
 	{
         return {
-            System::requirement<PositionComponent>()
+            System::requirement<PositionComponent>(),
+            System::requirement<TextureComponent, System::optional>(),
+            System::requirement<RectangleComponent, System::optional>(),
+            System::requirement<TextComponent, System::optional>()
         };
 	}
 

@@ -74,4 +74,12 @@ namespace spacebiem
         float angle = atan2f(-tragetX, tragetY);
         satPosition->setRotation(angle * (180.0f / 3.14159265358979323846264338327950288f));
     }
+
+    System::required_components GravitySystem::requirements() const
+    {
+        return {
+            System::requirement<PositionComponent>(),
+            System::requirement<PhysicsComponent>(),
+        };
+    }
 }
