@@ -12,7 +12,6 @@ namespace spacebiem
         entitiesWithOxygen.clear();
     }
 
-
     void OxygenSystem::update(const Entity & entity)
     {
         if (entity.hasComponent("atmosphere")) {
@@ -28,51 +27,76 @@ namespace spacebiem
         
     }
 
-
-    void OxygenSystem::after() {
-
+    void OxygenSystem::after()
+    {
         for (Entity entity : entitiesWithOxygen) {
 
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
-            std::shared_ptr<AtmosphereComponent> currentAtmosphere = nullptr;
             if (entity.hasComponent("position")) {
                 auto pc = entity.getComponent<PositionComponent>("position");
 
-                for (auto entity : entitiesWithAtmospheres) {
-                    auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
+                if (oc->getAtmosphereEntity() == nullptr)
+                {
+                    for (auto entity : entitiesWithAtmospheres)
+                    {
+                        auto ac = entity.getComponent<AtmosphereComponent>("atmosphere");
 
-                    int xA = oc->getX();
-                    int yA = oc->getY();
-                    int rA = oc->getRadius();
+                        int xA = ac->getX();
+                        int yA = ac->getY();
+                        int rA = ac->getRadius();
+                        int x = pc->getX();
+                        int y = pc->getY();
+
+                        // Kei skône pietjegras theorie
+                        if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA))
+                        {
+                            if (entity.hasComponent("audio"))
+                            {
+                                auto audioComponent = entity.getComponent<AudioComponent>("audio");
+                                getStateManager()->getAudioDevice().playFadeInSoundEffect(audioComponent->getPath(), audioComponent->getLoops(), audioComponent->getChannel(), audioComponent->getVolume(), audioComponent->getFadeInTime());
+                            }
+
+                            oc->setAtmosphereEntity(std::make_shared<Entity>(entity));
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
+
+                    int xA = ac->getX();
+                    int yA = ac->getY();
+                    int rA = ac->getRadius();
                     int x = pc->getX();
                     int y = pc->getY();
 
                     // Kei skône pietjegras theorie
-                    if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)) {
-                        if (entity.hasComponent("audio"))
+                    if (!(((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)))
+                    {
+                        if (oc->getAtmosphereEntity()->hasComponent("audio"))
                         {
-                            auto ac = entity.getComponent<AudioComponent>("audio");
-                            getStateManager()->getAudioDevice().playFadeInSoundEffect(ac->getPath(), ac->getLoops(), ac->getChannel(), ac->getVolume(), ac->getFadeInTime());
+                            auto audioComponent = oc->getAtmosphereEntity()->getComponent<AudioComponent>("audio");
+                            getStateManager()->getAudioDevice().fadeOutSoundEffect(audioComponent->getPath(), audioComponent->getFadeInTime());
                         }
-
-                        currentAtmosphere = oc;
+                        
+                        
+                        oc->setAtmosphereEntity(nullptr);
                         break;
                     }
                 }
             }
 
             float oAmount = oc->getOxygenAmount();
-            if (currentAtmosphere == nullptr) {
+            if (oc->getAtmosphereEntity() == nullptr) {
                 oAmount -= oc->getOxygenScale();
             }
             else {
-                oAmount += (currentAtmosphere->getOxygenModifier()*oc->getOxygenScale());
+                auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
+                oAmount += (ac->getOxygenModifier()*oc->getOxygenScale());
             }
             oc->setOxygenAmount(oAmount);
-
-        }
-        
+        } 
     }
-
 }
