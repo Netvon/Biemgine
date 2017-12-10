@@ -89,7 +89,7 @@ namespace biemgine
             vec.push_back(std::dynamic_pointer_cast<TComponent>(it->second));
         }
 
-        return vec;
+        return std::move(vec);
     }
 
     template<typename TComponent, typename ...TArgs>
