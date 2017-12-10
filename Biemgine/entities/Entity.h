@@ -52,7 +52,12 @@ namespace biemgine
         void setTag(string pTag);
         string getTag() const;
 
-        Rect getBounds() const;
+        void calculateBounds();
+       
+        int minX;
+        int maxX;
+        int minY;
+        int maxY;
 
     private:
         int id;

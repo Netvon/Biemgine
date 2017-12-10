@@ -1,6 +1,7 @@
 #pragma once
 #include "System.h"
 #include "../entities/Entity.h"
+#include "../components/CameraComponent.h"
 #include "../components/TextComponent.h"
 #include "../devices/graphics/GraphicsDevice.h"
 #include "../devices/graphics/TextureFlip.h"
@@ -55,5 +56,7 @@ namespace biemgine
         GraphicsDevice* graphicsDevice = nullptr;
         list<DrawTexture> drawList;
         list<DrawText> textList;
+        CameraComponent* cameraComponent = nullptr;
+
     };
 }

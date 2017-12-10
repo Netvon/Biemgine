@@ -21,6 +21,20 @@ namespace biemgine
         if (!entity.hasComponent("position"))
             return;
 
+        if (entity.hasComponent("camera"))
+        {
+            cameraComponent = entity.getComponent<CameraComponent>("camera").get();
+        }
+
+        int deltaX = 0;
+        int deltaY = 0;
+
+        if (cameraComponent != nullptr && !entity.hasComponent("ui"))
+        {
+            deltaX = cameraComponent->getDeltaX();
+            deltaY = cameraComponent->getDeltaY();
+        }
+
         auto pc = entity.getComponent<PositionComponent>("position");
 
         if (entity.hasComponent("text")) {
@@ -31,8 +45,8 @@ namespace biemgine
                     textList.push_back(DrawText(
                         tx->getFont(),
                         tx->getText(),
-                        static_cast<int>(pc->getX() + tx->getOffsetX()),
-                        static_cast<int>(pc->getY() + tx->getOffsetY()),
+                        static_cast<int>(pc->getX() + tx->getOffsetX() + deltaX),
+                        static_cast<int>(pc->getY() + tx->getOffsetY() + deltaY),
                         tx->getColor(),
                         tx,
                         tx->isCenter()
@@ -52,8 +66,8 @@ namespace biemgine
 
                 drawList.push_back(DrawTexture(
                     tex->getPath(),
-                    static_cast<int>(pc->getX() + tex->getOffsetX()),
-                    static_cast<int>(pc->getY() + tex->getOffsetY()),
+                    static_cast<int>(pc->getX() + tex->getOffsetX() + deltaX),
+                    static_cast<int>(pc->getY() + tex->getOffsetY() + deltaY),
                     tex->getWidth(),
                     tex->getHeight(),
                     pc->getRotation() + tex->getRotation(),
@@ -65,7 +79,7 @@ namespace biemgine
             }
         }
 
-        if (entity.hasComponent("rectangle"))
+        /*if (entity.hasComponent("rectangle"))
         {
             auto rectangle = entity.getComponent<RectangleComponent>("rectangle");
 
@@ -76,7 +90,7 @@ namespace biemgine
                 static_cast<int>(rectangle->getHeight()),
                 rectangle->getColor().getColor(), pc->getRotation()
             );
-        }
+        }*/
     }
 
     void RenderSystem::onSceneSwitch()
