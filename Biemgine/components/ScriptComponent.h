@@ -17,11 +17,11 @@ namespace biemgine
         public Component
     {
     public:
-        ScriptComponent(function<void()> pScript);
+        ScriptComponent(function<void(float)> pScript);
 
-        void run();
+        void run(float deltaTime);
 
     private:
-        function<void()> script;
+        function<void(float)> script;
     };
 }

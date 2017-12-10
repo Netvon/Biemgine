@@ -22,7 +22,7 @@ namespace spacebiem
         addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, size.width/2, size.height/2, true, true));
 
         addComponent<ScriptComponent>("script",
-            [this]()
+            [this](float deltaTime)
         {
             auto ui = getComponent<UIComponent>("ui");
             auto texture = getComponent<TextureComponent>("texture");

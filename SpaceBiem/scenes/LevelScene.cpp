@@ -98,6 +98,7 @@ namespace spacebiem
         });*/
         timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
+        fpsEntity = getEntity(FPSId);
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -120,8 +121,8 @@ namespace spacebiem
         int bH = 60;
         int incr = bH + 15;
         
-        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
-        addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230, 255 }, 300, 330, 290u, "pause_menu");
+        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{ 0, 0, 0, 60}, wW, wH, 300u, "pause_menu");
+        addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230 }, 300, 330, 290u, "pause_menu");
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png", resumeButtonClicked, hover, "pause_menu");
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png", helpButtonClicked, hover, "pause_menu");
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", menuButtonClicked, hover, "pause_menu");
@@ -166,11 +167,14 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("F")) {
-            if (getEntity(FPSId)->getComponent<TextComponent>("text")->isVisible()) {
-                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(false);
+            //auto fpsEntity = getEntity(FPSId);
+            auto fpsText = fpsEntity->getComponent<TextComponent>("text");
+
+            if (fpsText->isVisible()) {
+                fpsText->setVisible(false);
             }
             else {
-                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(true);
+                fpsText->setVisible(true);
             }
         }
 

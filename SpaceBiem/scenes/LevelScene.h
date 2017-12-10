@@ -6,6 +6,7 @@
 using biemgine::SpriteEntity;
 using biemgine::Scene;
 using biemgine::StateManager;
+using biemgine::Entity;
 
 namespace spacebiem
 {
@@ -37,6 +38,7 @@ namespace spacebiem
         bool isPaused = false;
         bool newGame;
         int FPSId;
+        Entity * fpsEntity = nullptr;
         float timeout;
         int counter = 0;
         int totalDeltaTime = 0;
@@ -44,5 +46,7 @@ namespace spacebiem
         void updateMenu();
 
         Difficulty difficulty;
+
+        std::vector<Entity*> pauseMenuEntities;
     };
 }
