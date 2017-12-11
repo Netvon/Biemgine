@@ -19,9 +19,6 @@
     <Filter Include="globals">
       <UniqueIdentifier>{71017a41-0af0-4f12-9cd7-3691f6835499}</UniqueIdentifier>
     </Filter>
-    <Filter Include="builder">
-      <UniqueIdentifier>{b058ab59-cc21-4a92-b234-59f97a026acf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="systems\OxygenSystem.h">
