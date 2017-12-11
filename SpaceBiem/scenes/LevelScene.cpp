@@ -250,7 +250,6 @@ namespace spacebiem
         auto tc = speedEntity->getComponent<TextComponent>("text");
         tc->setText("Playback speed: " + std::to_string(getFPSModifier()) + "x", Color{ 255, 255, 255 });
 
-        //cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
         if (timeout >= 500.f) {

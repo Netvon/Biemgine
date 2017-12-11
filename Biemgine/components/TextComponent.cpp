@@ -1,7 +1,7 @@
 #include "TextComponent.h"
 
 namespace biemgine {
-    TextComponent::TextComponent(Font pFont, std::string pText, Color pColor, float pOffsetX, float pOffsetY, bool pVisible, bool center, string pTag) :
+    TextComponent::TextComponent(Font pFont, std::string pText, Color pColor, bool center, float pOffsetX, float pOffsetY, bool pVisible, string pTag) :
 		font(pFont), text(pText), color(pColor), offsetX(pOffsetX),offsetY(pOffsetY),visible(pVisible), center(center), tag(pTag) {};
     TextComponent::~TextComponent() {}
 

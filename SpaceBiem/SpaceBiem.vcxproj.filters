@@ -190,6 +190,9 @@
     <ClInclude Include="entities\PlanetLavaEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\CreditsScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
     <ClInclude Include="globals\Functions.h">
       <Filter>globals</Filter>
     </ClInclude>
@@ -355,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="entities\PlanetLavaEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\CreditsScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
     <ClCompile Include="components\AIComponent.cpp">
       <Filter>components</Filter>

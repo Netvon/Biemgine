@@ -14,7 +14,7 @@ namespace biemgine
         public Component
     {
     public:
-        TextComponent(Font pFont, string pText = "", Color pColor = { 255, 255, 255, 255 }, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, bool center = false, string pTag = "");
+        TextComponent(Font pFont, string pText = "", Color pColor = { 255, 255, 255, 255 }, bool center = false, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, string pTag = "");
         ~TextComponent();
 
         const string& getText() const;
