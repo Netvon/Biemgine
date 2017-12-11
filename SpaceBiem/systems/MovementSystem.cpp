@@ -54,7 +54,7 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            constexpr float escapeVelocity = 140.f;
+            constexpr float escapeVelocity = 120.f;
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
             auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
@@ -71,9 +71,7 @@ namespace spacebiem
  
                     if (physics->getVelocity().length() > 1.0f) {
 
-                        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                        auto maxSpeed = 32.0f;
-                        texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                        setAnimationSpeed(escapeVelocity, physics, texture);
                     }
                     else {
                         texture->stop();
@@ -114,5 +112,12 @@ namespace spacebiem
                 }
             }  
         }
+    }
+
+    void MovementSystem::setAnimationSpeed(const float &escapeVelocity, std::shared_ptr<biemgine::PhysicsComponent> &physics, std::shared_ptr<biemgine::AnimatedTextureComponent> &texture)
+    {
+        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+        constexpr float maxAnimationSpeed = 32.0f;
+        texture->setPlaybackSpeed(maxAnimationSpeed * veloPercentage);
     }
 }

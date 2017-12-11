@@ -14,5 +14,6 @@ namespace spacebiem
     {
     public:
         void update(const Entity& entity) override;
+		void setAnimationSpeed(const float &escapeVelocity, std::shared_ptr<biemgine::PhysicsComponent> &physics, std::shared_ptr<biemgine::AnimatedTextureComponent> &texture);
     };
 }
