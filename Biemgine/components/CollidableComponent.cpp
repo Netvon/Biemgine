@@ -1,33 +1,41 @@
 #include "CollidableComponent.h"
 
+using biemgine::CollideInfo;
+
+#include <algorithm>
+
 namespace biemgine
 {
     CollidableComponent::CollidableComponent(int pCategoryBits, int pMaskBits) :
         categoryBits(pCategoryBits), maskBits(pMaskBits) {}
 
-    bool CollidableComponent::collides(const Entity & entity) const
+    bool CollidableComponent::collides(const Entity & pEntity) const
     {
-        bool collision = collisions.find(entity.getId()) != collisions.end();
+        auto iterator = std::find_if(collisions.begin(), collisions.end(), [pEntity](const CollideInfo & pCollideInfo) {
+            return pCollideInfo.entity->getId() == pEntity.getId();
+        });
 
-        return collision && &collision != false;
+        if (iterator == collisions.end()) return false;
+
+        auto collideInfo = *iterator;
+        return collideInfo.colliding;
     }
 
-    void CollidableComponent::add(const Entity & entity)
+    void CollidableComponent::add(const Entity & pEntity)
     {
-        collisions.insert_or_assign(entity.getId(), true);
+        collisions.push_back(createCollideInfo(&pEntity, false));
     }
 
-    void CollidableComponent::remove(const Entity & entity)
+    void CollidableComponent::remove(const Entity & pEntity)
     {
-        collisions.insert_or_assign(entity.getId(), false);
+        auto iterator = std::find_if(collisions.begin(), collisions.end(), [pEntity](const CollideInfo & pCollideInfo) {
+            return pCollideInfo.entity->getId() == pEntity.getId();
+        });
+
+        collisions.erase(iterator);
     }
 
-    bool CollidableComponent::visited(const Entity & entity) const
-    {
-        return collisions.find(entity.getId()) != collisions.end();
-    }
-
-    map<int, bool>& CollidableComponent::getCollisions()
+    vector<CollideInfo>& CollidableComponent::getCollisions()
     {
         return collisions;
     }
@@ -40,5 +48,14 @@ namespace biemgine
     int CollidableComponent::getMaskBits() const
     {
         return maskBits;
+    }
+
+    CollideInfo CollidableComponent::createCollideInfo(const Entity * pEntity, bool pColliding) const
+    {
+        CollideInfo collideInfo{};
+        collideInfo.entity = pEntity;
+        collideInfo.colliding = pColliding;
+
+        return collideInfo;
     }
 }

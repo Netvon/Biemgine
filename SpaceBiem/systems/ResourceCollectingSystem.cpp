@@ -27,7 +27,7 @@ namespace spacebiem
         {
             auto cc = entity->getComponent<CollidableComponent>("collidable");
 
-            for (auto& bonus : resourceBonus)
+            for (auto & bonus : resourceBonus)
             {
                 if (cc->collides(*bonus)) {
                     auto rbc = bonus->getComponent<ResourceBonusComponent>("resourcebonus");
