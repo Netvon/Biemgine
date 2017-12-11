@@ -193,7 +193,10 @@
     <ClInclude Include="entities\PlanetLavaEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
+    <ClInclude Include="globals\Functions.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Colors.h">
       <Filter>globals</Filter>
     </ClInclude>
     <ClInclude Include="entities\MummieAIEntity.h">

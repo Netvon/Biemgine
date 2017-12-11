@@ -54,8 +54,6 @@ namespace spacebiem
         e->navigateTo<MenuScene>();
     }
 
-
-
     void HelpScene::created()
     {
         enableRendering();

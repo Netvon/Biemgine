@@ -11,8 +11,12 @@ using biemgine::TextureColumnDef;
 using biemgine::TextureRowDef;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
+using biemgine::AnimatedTextureComponent;
+using biemgine::TextureColumnDef;
+using biemgine::TextureRowDef;
 
 #include "../components/AIComponent.h"
+#include "../globals/Functions.h"
 
 namespace spacebiem
 {
@@ -26,6 +30,8 @@ namespace spacebiem
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("collidable", new CollidableComponent(CollisionCategory::AI, CollisionCategory::PLAYER | CollisionCategory::PLANET));
         addComponent("ai", new AIComponent);
+
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
 
         setTag("ai");
     }
