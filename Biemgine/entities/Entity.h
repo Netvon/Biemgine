@@ -53,12 +53,16 @@ namespace biemgine
         string getTag() const;
         bool isTag(const string & pTag) const;
 
+        bool isCheckable() const;
+
         void calculateBounds();
+        void checkOCCheckable();
        
         int minX;
         int maxX;
         int minY;
         int maxY;
+        
 
         float distance(const Entity & entity) const;
 
@@ -68,6 +72,7 @@ namespace biemgine
         mutable bool alive = true;
 
         string tag;
+        bool isOCCheckable;
     };
 
     template<typename TComponent>

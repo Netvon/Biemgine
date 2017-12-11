@@ -111,6 +111,14 @@ namespace biemgine
         return position->distance(*entityPosition);
     }
 
+    void Entity::checkOCCheckable()
+    {
+        if (hasComponent("position") && !hasComponent("camera") && !hasComponent("ui"))
+            isOCCheckable = true;
+        else
+            isOCCheckable = false;
+    }
+
     bool Entity::hasTag() const
     {
         return tag.empty();
@@ -130,4 +138,9 @@ namespace biemgine
     {
         return getTag() == pTag;
     }
+    bool Entity::isCheckable() const
+    {
+        return isOCCheckable;
+    }
+   
 }
