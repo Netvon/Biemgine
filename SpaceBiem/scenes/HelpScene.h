@@ -15,6 +15,7 @@ namespace spacebiem
         void update() override;
         void render(const float deltaTime) override;
         void created() override;
+        void sceneEnd() override;
 
         HelpScene(StateManager& manager, bool fromLevel = false, int slide = 1)
             : Scene(manager),
@@ -27,8 +28,6 @@ namespace spacebiem
         bool fromLevel;
         int currentSlide;
         int maxSlides = 8;
-
-        void updateSlide();
 
     };
 }
