@@ -53,7 +53,7 @@ namespace spacebiem
         if (entity.hasComponent("collidable")) {
             auto cc = entity.getComponent<CollidableComponent>("collidable");
 
-            for (const auto & collideInfo : cc->getCollisions()) {
+            for (const auto & collideInfo : cc->getAllCollisions()) {
                 auto planet = collideInfo.entity;
 
                 if (!planet->hasComponent("scorebonus")) continue;
