@@ -184,6 +184,9 @@
     <ClInclude Include="entities\PlanetLavaEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>globals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">

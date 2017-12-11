@@ -28,6 +28,7 @@
 #include "..\systems\ResourceCollectingSystem.h"
 
 #include "..\globals\Fonts.h"
+#include "..\globals\Colors.h"
 #include "..\FileParser.h"
 
 using biemgine::TextUIEntity;
@@ -108,12 +109,12 @@ namespace spacebiem
         auto score = fp.planetScoreContent();
 
         // Planet in the slide
-        if (currentSlide <= 3)      addEntity<PlanetEarthEntity>(planetX, planetY, Color::EarthAtmosphere(), pRadius, pRadius, score["earth"], atmosphere["earth"], "Type: Earth");
-        else if (currentSlide == 4) addEntity<PlanetMoonEntity>(planetX, planetY, Color::White(), pRadius, pRadius, score["moon"], "Type: Moon");
-        else if (currentSlide == 5) addEntity<PlanetSandEntity>(planetX, planetY, Color::SandAtmosphere(), pRadius, pRadius, score["sand"], atmosphere["sand"], "Type: Sand");
-        else if (currentSlide == 6) addEntity<PlanetToxicEntity>(planetX, planetY, Color::ToxicAtmosphere(), pRadius, pRadius, score["toxic"], atmosphere["toxic"], "Type: Toxic");
-        else if (currentSlide == 7) addEntity<PlanetIceEntity>(planetX, planetY, Color::IceAtmosphere(), pRadius, pRadius, score["ice"], atmosphere["ice"], "Type: Ice");
-        else if (currentSlide == 8) addEntity<PlanetLavaEntity>(planetX, planetY, Color::LavaAtmosphere(), pRadius, pRadius, score["lava"], atmosphere["lava"], "Type: Lava");
+        if (currentSlide <= 3)      addEntity<PlanetEarthEntity>(planetX, planetY, Colors::EarthAtmosphere(), pRadius, pRadius, score["earth"], atmosphere["earth"], "Type: Earth");
+        else if (currentSlide == 4) addEntity<PlanetMoonEntity>(planetX, planetY, Colors::MoonAtmosphere(), pRadius, pRadius, score["moon"], "Type: Moon");
+        else if (currentSlide == 5) addEntity<PlanetSandEntity>(planetX, planetY, Colors::SandAtmosphere(), pRadius, pRadius, score["sand"], atmosphere["sand"], "Type: Sand");
+        else if (currentSlide == 6) addEntity<PlanetToxicEntity>(planetX, planetY, Colors::ToxicAtmosphere(), pRadius, pRadius, score["toxic"], atmosphere["toxic"], "Type: Toxic");
+        else if (currentSlide == 7) addEntity<PlanetIceEntity>(planetX, planetY, Colors::IceAtmosphere(), pRadius, pRadius, score["ice"], atmosphere["ice"], "Type: Ice");
+        else if (currentSlide == 8) addEntity<PlanetLavaEntity>(planetX, planetY, Colors::LavaAtmosphere(), pRadius, pRadius, score["lava"], atmosphere["lava"], "Type: Lava");
 
 
         int dialogX = 70;
