@@ -5,8 +5,8 @@
 
 namespace biemgine
 {
-    const int Loop::BM_GAMELOOP_FPS = 60;
-    const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
+    //const int Loop::BM_GAMELOOP_FPS = 60;
+    //const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
 
     Loop::Loop() :
         previousTime(static_cast<float>(SDL_GetTicks())) {}
@@ -35,11 +35,13 @@ namespace biemgine
             previousTime = currentTime;                                // De tijd van de vorige loop de actuele tijd zetten, zodat de volgende loop dat kan gebruiken.
             lagTime += elapsedTime;                                    // Nu dat verschil aan de lagTime toevoegen, zodat we daarmee kunnen beslissen of we alles willen updaten.
 
-            while (lagTime >= BM_GAMELOOP_UPDATE_MS)
+            float realFPS = 1000.0f / (fps + (fpsModifier * modifier));
+
+            while (lagTime >= realFPS)
             {
                 pollEvents();
                 globalUpdate();
-                lagTime = lagTime - BM_GAMELOOP_UPDATE_MS;
+                lagTime = lagTime - realFPS;
             }
 
             // globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);

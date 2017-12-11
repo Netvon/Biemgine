@@ -34,11 +34,17 @@ namespace spacebiem
         ~LevelScene() {}
 
     private:
+        bool isHomeButtonDown = false;
+        bool isPageUpButtonDown = false;
+        bool isPageDownButtonDown = false;
         bool isPauseButtonDown = false;
+
         bool isPaused = false;
         bool newGame;
         int FPSId;
+        int speedId;
         Entity * fpsEntity = nullptr;
+        Entity * speedEntity = nullptr;
         float timeout;
         int counter = 0;
         int totalDeltaTime = 0;
