@@ -9,6 +9,7 @@ using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
 using biemgine::GroundedComponent;
+using biemgine::AudioComponent;
 
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"
@@ -28,6 +29,7 @@ namespace spacebiem
         addComponent<ResourceBonusComponent>("resourcebonus", rName, 1);
         addComponent<CollidableComponent>("collidable", CollisionCategory::RESOURCE, CollisionCategory::PLANET | CollisionCategory::PLAYER);
         addComponent<GroundedComponent>("grounded");
+        addComponent<AudioComponent>("audio", "audio/" + rName + ".mp3",0, -1, 64);
 
         setTag("resource");
     }

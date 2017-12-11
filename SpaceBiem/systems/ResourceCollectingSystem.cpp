@@ -16,9 +16,13 @@ namespace spacebiem
                 auto sbc = bonus->getComponent<ScoreBonusComponent>("scorebonus");
                 auto rc = entity.getComponent<ResourceComponent>("resources");
                 auto sc = entity.getComponent<ScoreComponent>("score");
+                auto ac = bonus->getComponent<AudioComponent>("audio");
 
                 rc->addResource(rbc->getName(), rbc->getAmount());
                 sc->addScore(sbc->getScoreBonus());
+
+                if(ac != nullptr)
+                    getStateManager()->getAudioDevice().playSoundEffect(ac->getPath(), ac->getLoops(), ac->getChannel(), ac->getVolume());
 
                 bonus->die();
             }

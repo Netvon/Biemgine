@@ -20,8 +20,6 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
-        
-
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
