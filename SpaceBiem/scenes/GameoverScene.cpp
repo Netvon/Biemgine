@@ -39,6 +39,8 @@ namespace spacebiem
         enableUI();
         enableScripts();
 
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
+
         FileParser parser;
         parser.writeNewResources(resources);
 

@@ -8,6 +8,6 @@ namespace biemgine {
             return;
 
         auto script = entity.getComponent<ScriptComponent>("script");
-        script->run();
+        script->run(deltaTime / 1000.f);
     }
 }

@@ -47,7 +47,7 @@ namespace spacebiem
     }
     void returnToGameButtonClicked(StateManager* e)
     {
-        e->navigateTo<LevelScene>();
+        e->navigateTo<LevelScene>(false);
     }
     void returnToMenuButtonClicked(StateManager* e)
     {

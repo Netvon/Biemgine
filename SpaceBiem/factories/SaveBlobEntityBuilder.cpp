@@ -46,8 +46,8 @@ namespace spacebiem
     {
         saveBlobEntityComponentBuilder.prepare("position_component");
 
-        saveBlobEntityComponentBuilder.addValue(to_string(position.getX()));
-        saveBlobEntityComponentBuilder.addValue(to_string(position.getY()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getOriginX()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getOriginY()));
         saveBlobEntityComponentBuilder.addValue(to_string(backgroundTexture.getWidth()));
         saveBlobEntityComponentBuilder.addValue(to_string(backgroundTexture.getHeight()));
 

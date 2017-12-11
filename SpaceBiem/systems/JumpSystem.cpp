@@ -58,6 +58,9 @@ namespace spacebiem
             
             diff *= movementForce;
 
+            if (!getStateManager()->getAudioDevice().isPlayingSoundEffect("audio/jump.mp3"))
+                getStateManager()->getAudioDevice().playSoundEffect("audio/jump.mp3",0, -1, 64);
+
             physics->addForce("jump", diff.x, diff.y);
         }
     }

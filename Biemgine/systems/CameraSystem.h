@@ -14,6 +14,6 @@ namespace biemgine
         void update(const Entity& entity) override;
 
     private:
-        std::shared_ptr<CameraComponent> camera = nullptr;
+
     };
 }

@@ -44,6 +44,7 @@ namespace biemgine
     int EntityManager::addEntity(TArgs && ...arguments)
     {
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
+        entities.back()->calculateBounds();
 
         if (!camera && entities.back()->hasComponent("camera")) {
              camera = entities.back()->getComponent<CameraComponent>("camera");

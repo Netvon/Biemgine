@@ -7,5 +7,6 @@ namespace spacebiem
     {
         setTag("ice");
         createAtmosphere(x, y, w, h, atmosphere, false, color);
+        createScoreBonus(pScoreBonus);
     }
 }

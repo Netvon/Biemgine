@@ -23,5 +23,8 @@ namespace biemgine
 
         virtual void pauzeMusic() = 0;
         virtual void resumeMusic() = 0;
+
+        virtual void stopSoundEffect(std::string) = 0;
+        virtual void fadeOutSoundEffect(std::string, int fadeOutTime) = 0;
     };
 }

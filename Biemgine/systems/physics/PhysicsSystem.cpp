@@ -29,7 +29,7 @@ namespace biemgine
 
         if (bodies.size() > 0) {
 
-            for (auto pair : bodies) {
+            for (const auto &pair : bodies) {
                 world->DestroyBody(pair.second);
             }
         }
@@ -41,7 +41,7 @@ namespace biemgine
 
     void PhysicsSystem::before()
     {
-        for (auto pair : bodiesUpdated) {
+        for (const auto &pair : bodiesUpdated) {
             bodiesUpdated[pair.first] = false;
         }
     }
@@ -54,7 +54,6 @@ namespace biemgine
         if (bodies.find(entity.getId()) == bodies.end()) {
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
-
 
         auto affectedByGravity = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
         auto physics = entity.getComponent<PhysicsComponent>("physics");

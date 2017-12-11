@@ -12,6 +12,8 @@
 using biemgine::System;
 using biemgine::Entity;
 using biemgine::CollidableComponent;
+using biemgine::GroundedComponent;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {

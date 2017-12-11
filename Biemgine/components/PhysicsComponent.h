@@ -27,7 +27,7 @@ namespace biemgine
         Vector getForce() const;
         float getTicksLeft() const;
         bool getIsImpulse() const;
-
+        
         bool decreaseTicks();
     };
 
@@ -71,6 +71,9 @@ namespace biemgine
 
         bool getHasCustomVelocity() const;
 
+        bool getInitialized() const { return initialized; } ;
+        void setInitialized(bool init) { initialized = init; };
+
     private:
         Vector colliderSize;
         Vector velocity;
@@ -88,5 +91,6 @@ namespace biemgine
 
         bool hasTimedForce(const string id) const;
         bool hasCustomVelocity;
+        bool initialized;
     };
 }

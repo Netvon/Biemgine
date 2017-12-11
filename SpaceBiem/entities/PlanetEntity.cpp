@@ -41,7 +41,6 @@ namespace spacebiem
         int flagHeight = 60;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56f, flagHeight, 1u, false, "flag"));
 
-        createScoreBonus(pScoreBonus);
     }
 
     void PlanetEntity::createAtmosphere(float x, float y, float w, float h, float atmosphere, bool shouldClouds, Color color)
@@ -58,12 +57,12 @@ namespace spacebiem
             addComponent("texture", new TextureComponent("textures/atmosphere_clouds.png", 0.f - ((w * 2.5f / 2.f) - w / 2.f), 0 - ((h * 2.5f / 2.f) - h / 2.f), w * 2.5f, h * 2.5f, 10u, true, "clouds", Color::White(), rot));
 
             addComponent<ScriptComponent>("script",
-            [this]()
+            [this](float deltaTime)
             {
                 auto textures = getComponents<TextureComponent>("texture");
                 for (auto tex : textures) {
                     if (tex->getTag() == "clouds") {
-                        tex->setRotation(tex->getRotation() + 0.1f);
+                        tex->setRotation(tex->getRotation() + deltaTime);
                     }
                 }
             });
