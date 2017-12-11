@@ -55,6 +55,9 @@ namespace spacebiem
 
         template<typename P>
         static std::function<void(P)> combine(std::function<void(P)> a, std::function<void(P)> b);
+
+        template<typename P>
+        static std::function<void(P)> do_if(std::function<bool()> a, std::function<void(P)> b);
     };
 
     template<typename P>
@@ -66,6 +69,17 @@ namespace spacebiem
 
             if(b)
                 b(param);
+        };
+    }
+
+    template<typename P>
+    std::function<void(P)> Functions::do_if(std::function<bool()> a, std::function<void(P)> b)
+    {
+        return [a, b](P param) {
+
+            if (a()) {
+                b(param);
+            }
         };
     }
 }

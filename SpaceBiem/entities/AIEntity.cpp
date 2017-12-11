@@ -20,7 +20,7 @@ using biemgine::TextureRowDef;
 
 namespace spacebiem
 {
-    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount)
+    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount, bool pCanIdle, bool pCanWander, bool pCanFollow)
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
@@ -29,7 +29,7 @@ namespace spacebiem
         addComponent("grounded", new GroundedComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("collidable", new CollidableComponent(CollisionCategory::AI, CollisionCategory::PLAYER | CollisionCategory::PLANET));
-        addComponent("ai", new AIComponent);
+        addComponent("ai", new AIComponent(pCanIdle, pCanWander, pCanFollow));
 
         addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
 

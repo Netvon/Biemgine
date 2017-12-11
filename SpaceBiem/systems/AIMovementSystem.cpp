@@ -61,8 +61,6 @@ namespace spacebiem
             auto ai = entity->getComponent<AIComponent>("ai");
             auto position = entity->getComponent<PositionComponent>("position");
 
-            const Entity * player = findPlayerInRange(entity);
-
             Vector centerOfSatellite = {
                 position->getX() + physics->getColliderW() / 2.0f,
                 position->getY() + physics->getColliderH() / 2.0f
@@ -71,10 +69,19 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            if (player != nullptr) {
-                auto pc = player->getComponent<PositionComponent>("position");
-                
-                diff += position->getLocation() - pc->getLocation();
+            bool playerInRange = false;
+
+            if (ai->getCanFollow()) {
+                const Entity * player = findPlayerInRange(entity);
+
+                if (player != nullptr) {
+                    playerInRange = true;
+
+                    auto pc = player->getComponent<PositionComponent>("position");
+                    ai->setDirection(Direction::LEFT);
+
+                    diff += position->getLocation() - pc->getLocation();
+                }
             }
 
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
@@ -84,17 +91,19 @@ namespace spacebiem
             if (physics->getVelocity().length() > escapeVelocity)
                 return;
 
-            if (ai->isDirection(Direction::LEFT)) {
-                Vector left = { -diff.y, diff.x };
-                left = left.normalize() * movementForce;
+            if ((playerInRange && ai->getCanFollow() || ai->getCanWander())) {
+                if (ai->isDirection(Direction::LEFT)) {
+                    Vector left = { -diff.y, diff.x };
+                    left = left.normalize() * movementForce;
 
-                physics->addForce("left", left.x, left.y);
-            }
-            else if (ai->isDirection(Direction::RIGHT)) {
-                Vector right = { diff.y, -diff.x };
-                right = right.normalize() * movementForce;
+                    physics->addForce("left", left.x, left.y);
+                }
+                else if (ai->isDirection(Direction::RIGHT)) {
+                    Vector right = { diff.y, -diff.x };
+                    right = right.normalize() * movementForce;
 
-                physics->addForce("right", right.x, right.y);
+                    physics->addForce("right", right.x, right.y);
+                }
             }
         }
 
@@ -104,8 +113,8 @@ namespace spacebiem
 
     const Entity * AIMovementSystem::findPlayerInRange(const Entity * entity) const
     {
-        for (const auto * player : players) {
-            if (entity->distance(*player) < 500) {
+        for (auto & player : players) {
+            if (entity->distance(*player) < 500.f) {
                 return player;
             }
         }

@@ -16,13 +16,21 @@ namespace spacebiem
 {
     ButtonUIEntity::ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick, std::function<void(StateManager*)> onEnter, string tag)
     {
+        std::function<bool()> ifEnabled = [this]() {
+            auto ui = getComponent<UIComponent>("ui");
+            if (ui == nullptr)
+                return false;
+
+            return ui->isEnabled();
+        };
+
         auto click = Functions::combine<StateManager*>(
-            Functions::buttonClickSound(),
+            Functions::do_if(ifEnabled, Functions::buttonClickSound()),
             onClick
         );
 
         auto hover = Functions::combine<StateManager*>(
-            Functions::buttonHoverSound(),
+            Functions::do_if(ifEnabled, Functions::buttonHoverSound()),
             onEnter
         );
 
@@ -30,7 +38,7 @@ namespace spacebiem
         addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 1000u, true, "", buttonColor));
         //addComponent("color", new ColorComponent(buttonColor));
         addComponent("ui", new UIComponent(size, click, hover,(onClick != nullptr)));
-        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, size.width/2, size.height/2, true, true));
+        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, true, size.width/2, size.height/2, true));
 
         addComponent<ScriptComponent>("script",
             [this](float deltaTime)

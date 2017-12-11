@@ -57,12 +57,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>(2);
+        addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>(2);
-        addSystem<ResourceUISystem>(2);
+        addSystem<ScoreUISystem>();
+        addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
-        addSystem<GameoverSystem>(2);
+        addSystem<GameoverSystem>();
         addSystem<AIMovementSystem>();
 
         float width = 15 * 2;
@@ -259,7 +259,6 @@ namespace spacebiem
         auto tc = speedEntity->getComponent<TextComponent>("text");
         tc->setText("Playback speed: " + std::to_string(getFPSModifier()) + "x", Color{ 255, 255, 255 });
 
-        //cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
         if (timeout >= 500.f) {

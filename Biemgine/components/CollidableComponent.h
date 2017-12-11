@@ -36,7 +36,8 @@ namespace biemgine
         void add(const Entity & entity);
         void remove(const Entity & entity);
 
-        vector<CollideInfo>& getCollisions();
+        vector<CollideInfo> getCollisions();
+        vector<CollideInfo> getAllCollisions();
 
         int getCategoryBits() const;
         int getMaskBits() const;

@@ -20,8 +20,7 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
-        entityManager->addEntity<MummieAIEntity>(300, 200, Color().White(), 50, 50);
-        entityManager->addEntity<SnowmanAIEntity>(300, 250, Color().White(), 50, 50);
+        
 
         FileParser fileParser;
         PlanetFactory planetFactory;

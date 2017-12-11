@@ -23,7 +23,13 @@ namespace biemgine
 
     void CollidableComponent::add(const Entity & pEntity)
     {
-        collisions.push_back(createCollideInfo(&pEntity, false));
+        auto it = std::find_if(collisions.begin(), collisions.end(), [pEntity](const CollideInfo & pCollideInfo) {
+            return pCollideInfo.entity->getId() == pEntity.getId();
+        });
+
+        if (it != collisions.end()) (*it).colliding = true;
+        else collisions.push_back(createCollideInfo(&pEntity, true));
+
     }
 
     void CollidableComponent::remove(const Entity & pEntity)
@@ -32,10 +38,22 @@ namespace biemgine
             return pCollideInfo.entity->getId() == pEntity.getId();
         });
 
-        collisions.erase(iterator);
+        if (iterator != collisions.end()) {
+            (*iterator).colliding = false;
+        }
     }
 
-    vector<CollideInfo>& CollidableComponent::getCollisions()
+    vector<CollideInfo> CollidableComponent::getCollisions()
+    {
+        vector<CollideInfo> coll{};
+
+        for (CollideInfo i : collisions) {
+            if (i.colliding) coll.push_back(i);
+        }
+
+        return coll;
+    }
+    vector<CollideInfo> CollidableComponent::getAllCollisions()
     {
         return collisions;
     }

@@ -10,13 +10,6 @@ using biemgine::Entity;
 
 namespace spacebiem
 {
-    enum class AIState
-    {
-        IDLE,
-        WANDERING,
-        FOLLOW
-    };
-
     enum class Direction
     {
         IDLE,
@@ -28,14 +21,11 @@ namespace spacebiem
         public Component
     {
     public:
-        AIComponent::AIComponent();
+        AIComponent::AIComponent(bool pCanIdle = true, bool pCanWander = true, bool pCanFollow = true);
 
-        bool isState(AIState pState) const;
-        AIComponent* setState(AIState pState);
-
-        Direction getDirection() const;
+        Direction getDirection();
         void setDirection(Direction pDirection);
-        bool isDirection(Direction pDirection) const;
+        bool isDirection(Direction pDirection);
 
         int getDirectionEndTime() const;
 
@@ -44,13 +34,20 @@ namespace spacebiem
         void setTarget(Entity * pTarget);
         const Entity & getTarget() const;
 
+        bool getCanIdle() const;
+        bool getCanWander() const;
+        bool getCanFollow() const;
+
     private:
-        AIState state;
-        Direction direction = Direction::IDLE;
+        Direction direction = Direction::LEFT;
         int directionEndTime = 0;
 
         float force = 1.f;
 
         Entity * target = nullptr;
+
+        bool canIdle = true;
+        bool canWander = true;
+        bool canFollow = true;
     };
 }

@@ -2,15 +2,9 @@
 
 namespace spacebiem
 {
-    AIComponent::AIComponent()
-    {
-        setState(AIState::IDLE);
-    }
-
-    bool AIComponent::isState(AIState pState) const
-    {
-        return state == pState;
-    }
+    AIComponent::AIComponent(bool pCanIdle, bool pCanWander, bool pCanFollow) :
+        canIdle(pCanIdle), canWander(pCanWander), canFollow(pCanFollow)
+    {}
 
     void AIComponent::setTarget(Entity * pTarget)
     {
@@ -22,15 +16,41 @@ namespace spacebiem
         return *target;
     }
 
-    AIComponent * AIComponent::setState(AIState pState)
+    bool AIComponent::getCanIdle() const
     {
-        state = pState;
-
-        return this;
+        return canIdle;
     }
 
-    Direction AIComponent::getDirection() const
+    bool AIComponent::getCanWander() const
     {
+        return canWander;
+    }
+
+    bool AIComponent::getCanFollow() const
+    {
+        return canFollow;
+    }
+
+    Direction AIComponent::getDirection()
+    {
+        auto currentTime = time(0);
+
+        if (directionEndTime != 0 && directionEndTime < currentTime) return direction;
+
+        if (direction == Direction::IDLE) {
+            if (getCanWander() || getCanFollow()) {
+                RandomGenerator & generator = RandomGenerator::getInstance();
+
+                direction = generator.generate(0.f, 1.f) > 0.5 ? Direction::LEFT : Direction::RIGHT;
+            }
+
+            directionEndTime = time(0) + 5;
+        }
+        else {
+            direction = Direction::IDLE;
+            directionEndTime = time(0) + 2;
+        }
+
         return direction;
     }
 
@@ -39,7 +59,7 @@ namespace spacebiem
         direction = pDirection;
     }
 
-    bool AIComponent::isDirection(Direction pDirection) const
+    bool AIComponent::isDirection(Direction pDirection)
     {
         return getDirection() == pDirection;
     }
