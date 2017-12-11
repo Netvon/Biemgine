@@ -79,7 +79,11 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
 
         timeout = 0;
-        FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
+        FPSId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 40, Color{ 66, 143, 244 }, "");
+        speedId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, "");
+
+        fpsEntity = getEntity(FPSId);
+        speedEntity = getEntity(speedId);
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -168,12 +172,53 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("F")) {
-            if (getEntity(FPSId)->getComponent<TextComponent>("text")->isVisible()) {
-                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(false);
+            //auto fpsEntity = getEntity(FPSId);
+            auto fpsText = fpsEntity->getComponent<TextComponent>("text");
+            auto speedText = speedEntity->getComponent<TextComponent>("text");
+
+            if (fpsText->isVisible()) {
+                fpsText->setVisible(false);
+                speedText->setVisible(false);
             }
             else {
-                getEntity(FPSId)->getComponent<TextComponent>("text")->setVisible(true);
+                fpsText->setVisible(true);
+                speedText->setVisible(true);
             }
+        }
+
+        if (im.isKeyDown("Home")) {
+            if (!isHomeButtonDown) {
+                setFPSModifier(0);
+                isHomeButtonDown = true;
+            }
+        }
+        else {
+            isHomeButtonDown = false;
+        }
+
+        if (im.isKeyDown("PageDown")) {
+            if (!isPageDownButtonDown) {
+                if (getFPSModifier() > -1) {
+                    setFPSModifier(getFPSModifier() - 1);
+                }
+            }
+            isPageDownButtonDown = true;
+        }
+        else {
+            isPageDownButtonDown = false;
+        }
+
+        if (im.isKeyDown("PageUp")) {
+            if (!isPageUpButtonDown) {
+                if (getFPSModifier() < 1) {
+                    setFPSModifier(getFPSModifier() + 1);
+                }
+
+                isPageUpButtonDown = true;
+            }  
+        }
+        else {
+            isPageUpButtonDown = false;
         }
 
         if (im.isKeyDown("P")) {
@@ -207,16 +252,21 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
+        auto tc = speedEntity->getComponent<TextComponent>("text");
+        tc->setText("Playback speed: " + std::to_string(getFPSModifier()) + "x", Color{ 255, 255, 255 });
+
         //cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
         if (timeout >= 500.f) {
-            auto tc = getEntity(FPSId)->getComponent<TextComponent>("text");
+            auto tc = fpsEntity->getComponent<TextComponent>("text");
             tc->setText("FPS: " + std::to_string(totalDeltaTime / counter), Color{ 255, 255, 255 });
             resetFPScounters();
         }
 
         timeout += deltaTime;
+
+        
 
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);

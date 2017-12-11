@@ -2,13 +2,13 @@
 
 namespace biemgine {
 
-    ScriptComponent::ScriptComponent(function<void()> pScript) : script(pScript)
+    ScriptComponent::ScriptComponent(function<void(float)> pScript) : script(pScript)
     {
 
     }
 
-    void ScriptComponent::run()
+    void ScriptComponent::run(float deltaTime)
     {
-        script();
+        script(deltaTime);
     }
 }

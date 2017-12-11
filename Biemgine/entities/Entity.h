@@ -52,7 +52,12 @@ namespace biemgine
         void setTag(string pTag);
         string getTag() const;
 
-        Rect getBounds() const;
+        void calculateBounds();
+       
+        int minX;
+        int maxX;
+        int minY;
+        int maxY;
 
     private:
         int id;
@@ -84,7 +89,7 @@ namespace biemgine
             vec.push_back(std::dynamic_pointer_cast<TComponent>(it->second));
         }
 
-        return vec;
+        return std::move(vec);
     }
 
     template<typename TComponent, typename ...TArgs>

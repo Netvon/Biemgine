@@ -37,7 +37,7 @@ namespace spacebiem
         // If the UI doesn't have the component which to draw, pick one from the map.
         auto oRef = uc->getComponentReference<OxygenComponent>();
         if (oRef == nullptr) {
-            for (auto x : oxygenMap)
+            for (auto& x : oxygenMap)
             {
                 if (!x.second) {
                     uc->setComponentReference(x.first);
@@ -53,7 +53,7 @@ namespace spacebiem
         float vignet = oRef->getOxygenAmount() / (static_cast<float>(oRef->getOxygenMax() / 2));
         float alphaVignet = 255 * (1 - vignet);
 
-        for (auto tex : tc)
+        for (auto& tex : tc)
         {
             if (tex->getTag() == "oxygenbar") texture = tex;
             if (tex->getTag() == "vignet" && vignet <= 1) tex.get()->setColor(tex.get()->getColor().WithAlpha(alphaVignet));

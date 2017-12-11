@@ -59,65 +59,46 @@ namespace biemgine
         return alive;
     }
 
-    Rect Entity::getBounds() const
+    void Entity::calculateBounds()
     {
-        Rect rect;
-        rect.hasSize = false;
-
         if (!hasComponent("position") || !hasComponent("texture"))
-            return rect;
+            return;
 
         auto pc = getComponent<PositionComponent>("position");
         auto tc = getComponents<TextureComponent>("texture");
 
-        for (auto texture : tc)
+        minX = 0;
+        maxX = 0;
+        minY = 0;
+        maxY = 0;
+
+        for (auto& texture : tc)
         {
-            int xMin = pc->getX() + texture->getOffsetX() - texture->getWidth() / 2;
-            int xMax = pc->getX() + texture->getOffsetX() + texture->getWidth() / 2;
-            int yMin = pc->getY() + texture->getOffsetY() - texture->getHeight() / 2;
-            int yMax = pc->getY() + texture->getOffsetY() + texture->getHeight() / 2;
+            int textureXMin = texture->getOffsetX();
+            int textureXMax = texture->getOffsetX() + texture->getWidth();
+            int textureYMin = texture->getOffsetY();
+            int textureYMax = texture->getOffsetY() + texture->getHeight();
 
-            if (!rect.hasSize)
+            if (textureXMin < minX)
             {
-                rect.topLeft.x = xMin;
-                rect.bottomLeft.x = xMin;
-                rect.topRight.y = yMin;
-                rect.topLeft.y = yMin;
-                rect.bottomRight.x = xMax;
-                rect.topRight.x = xMax;
-                rect.bottomLeft.y = yMax;
-                rect.bottomRight.y = yMax;
-                rect.hasSize = true;
+                minX = textureXMin;
             }
-            else
+
+            if (textureXMax > maxX)
             {
-                if (rect.topLeft.x > xMin)
-                {
-                    rect.topLeft.x = xMin;
-                    rect.bottomLeft.x = xMin;
-                }
+                maxX = textureXMax;
+            }
 
-                if (rect.topRight.y > yMin)
-                {
-                    rect.topRight.y = yMin;
-                    rect.topLeft.y = yMin;
-                }
+            if (textureYMin < minY)
+            {
+                minY = textureYMin;
+            }
 
-                if (rect.bottomRight.x < xMax)
-                {
-                    rect.bottomRight.x = xMax;
-                    rect.topRight.x = xMax;
-                }
-
-                if (rect.bottomLeft.y < yMax)
-                {
-                    rect.bottomLeft.y = yMax;
-                    rect.bottomRight.y = yMax;
-                }
-            } 
+            if (textureYMax > maxY)
+            {
+                maxY = textureYMax;
+            }
         }
-
-        return rect;
     }
 
     bool Entity::hasTag() const

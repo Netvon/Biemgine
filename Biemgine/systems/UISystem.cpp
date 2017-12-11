@@ -17,14 +17,14 @@ namespace biemgine
 
         isLeftMouseDown = im->isLeftMouseDown();
 
-        if (sceneWasSwitched && clickCoolDown > 0)
+        if (sceneWasSwitched && clickCoolDown > 0.0f)
         {
-            clickCoolDown--;
+            clickCoolDown -= (deltaTime / 1000.f);
         }
-        else if (sceneWasSwitched && clickCoolDown <= 0)
+        else if (sceneWasSwitched && clickCoolDown <= 0.5f)
         {
             sceneWasSwitched = false;
-            clickCoolDown = 10;
+            clickCoolDown = 0.5f;
         }
     }
 

@@ -17,6 +17,7 @@ namespace biemgine
 
     int EntityManager::addEntity(Entity* entity)
     {
+        
         entities.push_back(entity);
         if (!camera && entity->hasComponent("camera")) {
             camera = entity->getComponent<CameraComponent>("camera");
@@ -45,9 +46,9 @@ namespace biemgine
 
         for (Entity * e : entities) {
 
-            if (canUpdate(*e)) {
+            if (canUpdate(*e)) 
                 manager->acceptForUpdate(*e, deltaTime);
-            }
+            
         }
 
         manager->postUpdate(deltaTime);
@@ -72,7 +73,6 @@ namespace biemgine
     {
         if (!e.isAlive()) return false;
 
-
         if (camera != nullptr &&
             e.hasComponent("position") &&
             !e.hasComponent("camera") &&
@@ -82,14 +82,13 @@ namespace biemgine
 
             float dX = camera.get()->getOriginX();
             float dY = camera.get()->getOriginY();
-            int wW = camera.get()->getWindowWidth();
-            int wH = camera.get()->getWindowHeight();
+            int wW = camera.get()->getWindowWidth() / 2;
+            int wH = camera.get()->getWindowHeight() / 2;
 
-            if (pc.get()->getOriginX() < dX - wW) return false;
-            if (pc.get()->getOriginX() > dX + wW) return false;
-            if (pc.get()->getOriginY() < dY - wH) return false;
-            if (pc.get()->getOriginY() > dY + wH) return false;
-
+            if (e.minX + pc.get()->getOriginX() > dX + wW) return false;
+            if (e.maxX + pc.get()->getOriginX() < dX - wW) return false;
+            if (e.minY + pc.get()->getOriginY() > dY + wH) return false;
+            if (e.maxY + pc.get()->getOriginY() < dY - wH) return false;
         }
 
         return true;

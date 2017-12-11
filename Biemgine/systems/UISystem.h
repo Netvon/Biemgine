@@ -16,6 +16,6 @@ namespace biemgine
         Point currentMouseLocation;
         bool isLeftMouseDown = false;
         bool sceneWasSwitched = false;
-        int clickCoolDown = 10;
+        float clickCoolDown = 0.5f;
     };
 }

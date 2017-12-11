@@ -26,7 +26,7 @@ namespace spacebiem
 
     void GravitySystem::after()
     {
-        for (auto satellite : satellites) {
+        for (auto& satellite : satellites) {
             auto satPosition = satellite->getComponent<PositionComponent>("position");
             auto satPhysics = satellite->getComponent<PhysicsComponent>("physics");
             auto satAffected = satellite->getComponent<AffectedByGravityComponent>("affectedByGravity");
@@ -36,7 +36,7 @@ namespace spacebiem
                 satPosition->getY() + satPhysics->getColliderH() / 2.0f
             };
 
-            for (auto point : gravityPoints) {
+            for (auto& point : gravityPoints) {
                 auto gravPosition = point->getComponent<PositionComponent>("position");
                 auto gravity = point->getComponent<GravityComponent>("gravity");
 

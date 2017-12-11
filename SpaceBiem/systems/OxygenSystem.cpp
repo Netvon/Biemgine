@@ -27,9 +27,10 @@ namespace spacebiem
         
     }
 
-    void OxygenSystem::after()
-    {
-        for (Entity entity : entitiesWithOxygen) {
+
+    void OxygenSystem::after() {
+
+        for (Entity& entity : entitiesWithOxygen) {
 
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
