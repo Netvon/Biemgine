@@ -149,7 +149,7 @@ namespace spacebiem
             int pX = middleX + static_cast<int>(cos(angle)*r);
             int pY = middleY + static_cast<int>(sin(angle)*r);
 
-            if (pType == "earth") spawnPlayer(pX, pY-(pRadius/2));
+            if (pType == "earth") spawnPlayer(pX, pY - (pRadius / 2));
 
             handler->writeLine(
                 to_string(pId) + "_" + pType + "," +
@@ -160,6 +160,26 @@ namespace spacebiem
                 to_string(pRadius)
             );
 
+            if (pType == "sand") {
+                pId = getNextId();
+
+                handler->writeLine(
+                    to_string(pId) + "_aimummie," +
+                    "position_component," +
+                    to_string(pX - (pRadius / 2) - 100) + "," +
+                    to_string(pY - (pRadius / 2) - 100) + "," +
+                    "50,50"
+                );
+            }
+            else if (pType == "ice") {
+                handler->writeLine(
+                    to_string(pId) + "_aisnowman," +
+                    "position_component," +
+                    to_string(pX - (pRadius / 2) - 100) + "," +
+                    to_string(pY - (pRadius / 2) - 100) + "," +
+                    "50,50"
+                );
+            }
 
             newAngle += static_cast<float>(RandomGenerator::getInstance().generate(angleMinIncr, angleMaxIncr));
         }

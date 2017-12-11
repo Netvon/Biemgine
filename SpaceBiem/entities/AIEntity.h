@@ -11,6 +11,6 @@ namespace spacebiem
         public Entity
     {
     public:
-        AIEntity(float x, float y, Color color, float w = -1, float h = -1, float mass = 1.0f, const std::string animatedTexture = "textures/PlayerSpriteSheet.png", size_t textureCount = 9llu, bool pCanIdle = true, bool pCanWander = true, bool pCanFollow = true);
+        AIEntity(float x, float y, Color color, float w = 50, float h = 50, float mass = 1.0f, const std::string animatedTexture = "textures/PlayerSpriteSheet.png", size_t textureCount = 9llu, bool pCanIdle = true, bool pCanWander = true, bool pCanFollow = true);
     };
 }
