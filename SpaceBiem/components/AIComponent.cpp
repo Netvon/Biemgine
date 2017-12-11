@@ -38,7 +38,7 @@ namespace spacebiem
         if (directionEndTime != 0 && directionEndTime < currentTime) return direction;
 
         if (direction == Direction::IDLE) {
-            if (getCanWander()) {
+            if (getCanWander() || getCanFollow()) {
                 RandomGenerator & generator = RandomGenerator::getInstance();
 
                 direction = generator.generate(0.f, 1.f) > 0.5 ? Direction::LEFT : Direction::RIGHT;

@@ -69,10 +69,14 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
+            bool playerInRange = false;
+
             if (ai->getCanFollow()) {
                 const Entity * player = findPlayerInRange(entity);
 
                 if (player != nullptr) {
+                    playerInRange = true;
+
                     auto pc = player->getComponent<PositionComponent>("position");
                     ai->setDirection(Direction::LEFT);
 
@@ -87,17 +91,19 @@ namespace spacebiem
             if (physics->getVelocity().length() > escapeVelocity)
                 return;
 
-            if (ai->isDirection(Direction::LEFT)) {
-                Vector left = { -diff.y, diff.x };
-                left = left.normalize() * movementForce;
+            if ((playerInRange && ai->getCanFollow() || ai->getCanWander())) {
+                if (ai->isDirection(Direction::LEFT)) {
+                    Vector left = { -diff.y, diff.x };
+                    left = left.normalize() * movementForce;
 
-                physics->addForce("left", left.x, left.y);
-            }
-            else if (ai->isDirection(Direction::RIGHT)) {
-                Vector right = { diff.y, -diff.x };
-                right = right.normalize() * movementForce;
+                    physics->addForce("left", left.x, left.y);
+                }
+                else if (ai->isDirection(Direction::RIGHT)) {
+                    Vector right = { diff.y, -diff.x };
+                    right = right.normalize() * movementForce;
 
-                physics->addForce("right", right.x, right.y);
+                    physics->addForce("right", right.x, right.y);
+                }
             }
         }
 
