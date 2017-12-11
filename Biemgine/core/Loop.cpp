@@ -5,13 +5,8 @@
 
 namespace biemgine
 {
-<<<<<<< HEAD
-    const int Loop::BM_GAMELOOP_FPS = 30;
-    const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
-=======
     //const int Loop::BM_GAMELOOP_FPS = 60;
     //const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
->>>>>>> develop
 
     Loop::Loop() :
         previousTime(static_cast<float>(SDL_GetTicks())) {}
