@@ -49,6 +49,7 @@ namespace biemgine
         virtual void render(const float deltaTime) { }
         virtual void created() { }
         virtual void end() { }
+        virtual void close() { }
     };
 }
 

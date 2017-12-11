@@ -55,7 +55,10 @@ namespace biemgine
     {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            quit = event.type == SDL_QUIT;
+            if (event.type == SDL_QUIT) {
+                close();
+                quit = true;
+            }
         }
     }
 

@@ -18,6 +18,8 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
         void sceneEnd() override;
+        void close() override;
+
         void resetFPScounters();
 
 		void saveScore();
