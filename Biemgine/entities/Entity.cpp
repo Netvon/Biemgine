@@ -72,7 +72,7 @@ namespace biemgine
         minY = 0;
         maxY = 0;
 
-        for (auto texture : tc)
+        for (auto& texture : tc)
         {
             int textureXMin = texture->getOffsetX();
             int textureXMax = texture->getOffsetX() + texture->getWidth();

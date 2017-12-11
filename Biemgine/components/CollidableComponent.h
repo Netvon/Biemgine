@@ -20,7 +20,7 @@ namespace biemgine
         void remove(const Entity & entity);
 
         bool visited(const Entity & entity) const;
-        map<int, bool> getCollisions() const;
+        map<int, bool>& getCollisions();
 
     private:
         map<int, bool> collisions;

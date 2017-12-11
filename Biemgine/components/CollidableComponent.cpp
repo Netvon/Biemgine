@@ -24,7 +24,7 @@ namespace biemgine
         return collisions.find(entity.getId()) != collisions.end();
     }
 
-    map<int, bool> CollidableComponent::getCollisions() const
+    map<int, bool>& CollidableComponent::getCollisions()
     {
         return collisions;
     }

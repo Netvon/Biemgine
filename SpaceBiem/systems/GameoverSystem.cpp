@@ -36,7 +36,7 @@ namespace spacebiem
         if (entity.hasComponent("collidable")) {
             auto cc = entity.getComponent<CollidableComponent>("collidable");
 
-            for (auto c : cc->getCollisions()) {
+            for (auto& c : cc->getCollisions()) {
                 auto planet = getStateManager()->getEntity(c.first);
 
                 if (planet == nullptr || !planet->hasComponent("scorebonus")) continue;

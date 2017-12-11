@@ -41,7 +41,7 @@ namespace spacebiem
 
     void OxygenSystem::after() {
 
-        for (Entity entity : entitiesWithOxygen) {
+        for (Entity& entity : entitiesWithOxygen) {
 
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
@@ -49,7 +49,7 @@ namespace spacebiem
             if (entity.hasComponent("position")) {
                 auto pc = entity.getComponent<PositionComponent>("position");
 
-                for (auto entity : entitiesWithAtmospheres) {
+                for (auto& entity : entitiesWithAtmospheres) {
                     auto oc = entity.getComponent<AtmosphereComponent>("atmosphere");
 
                     int xA = oc->getX();

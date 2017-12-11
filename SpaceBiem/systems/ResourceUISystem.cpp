@@ -37,7 +37,7 @@ namespace spacebiem
         auto oRef = uc->getComponentReference<ResourceComponent>();
 
         if (oRef == nullptr) {
-            for (auto x : resourceMap)
+            for (auto& x : resourceMap)
             {
                 if (!x.second) {
                     uc->setComponentReference(x.first);
@@ -51,7 +51,7 @@ namespace spacebiem
             tx->setText(std::to_string(rbc->getAmount()), cc->getColor());  
         }
         else {
-            for (auto x : oRef->getResources())
+            for (auto& x : oRef->getResources())
             {
                 if (x.first == rbc->getName()) {
                     tx->setText(std::to_string(x.second), cc->getColor());
