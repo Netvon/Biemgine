@@ -29,7 +29,7 @@ namespace spacebiem
         addComponent("texture", new TextureComponent(texture, 0.f, 0.f, w, h, 2u, true, "background"));
         addComponent("texture", new TextureComponent(borderTexture, 0.f - ((w*1.19f / 2.f) - w / 2.f), 0.f - ((h*1.19f / 2.f) - h / 2.f), w*1.19f, h*1.19f, 1u, true, "border", Color::White(), rot));
 
-        addComponent("collidable", new CollidableComponent(CollisionType::PLANET, CollisionType::PLANET | CollisionType::AI | CollisionType::PLAYER | CollisionType::RESOURCE));
+        addComponent("collidable", new CollidableComponent(CollisionCategory::PLANET, CollisionCategory::PLAYER | CollisionCategory::AI | CollisionCategory::RESOURCE));;
 
         addComponent("ground", new GroundComponent);
 

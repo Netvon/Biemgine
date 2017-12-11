@@ -205,6 +205,13 @@ namespace biemgine
             groundFixtureDef.isSensor = true;
 
             b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
+
+            if (entity.hasComponent("collidable")) {
+                b2Filter filter = groundFixture->GetFilterData();
+                filter.categoryBits = cc->getCategoryBits();
+                filter.maskBits = cc->getMaskBits();
+                groundFixture->SetFilterData(filter);
+            }
         }
 
         printf("Adding body with mass: %f, density: %f\n", body->GetMass(), fixture->GetDensity());

@@ -31,7 +31,7 @@ namespace spacebiem
         addComponent("score", new ScoreComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
         addComponent("resources", new ResourceComponent);
-        addComponent("collidable", new CollidableComponent(CollisionType::PLAYER, CollisionType::PLANET | CollisionType::AI | CollisionType::PLAYER | CollisionType::RESOURCE));
+        addComponent("collidable", new CollidableComponent(CollisionCategory::PLAYER, CollisionCategory::AI | CollisionCategory::RESOURCE | CollisionCategory::PLANET));
         addComponent("movement", new MovementComponent);
         if(focused) addComponent("camera", new CameraComponent);
 

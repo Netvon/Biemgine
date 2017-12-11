@@ -9,14 +9,13 @@
 
 using std::map;
 
-enum CollisionType
+enum CollisionCategory
 {
     NONE = 0x0001,
-    BOUNDRY = 0x0002,
-    PLANET = 0x0004,
-    PLAYER = 0x0008,
-    AI = 0x0010,
-    RESOURCE = 0x0020
+    PLANET = 0x0002,
+    PLAYER = 0x0004,
+    AI = 0x0008,
+    RESOURCE = 0x0010
 };
 
 namespace biemgine
@@ -25,8 +24,7 @@ namespace biemgine
         : public Component
     {
     public:
-        CollidableComponent() {};
-        CollidableComponent(int pCategoryBits, int pMaskBits = CollisionType::NONE);
+        CollidableComponent(int pCategoryBits = CollisionCategory::NONE, int pMaskBits = CollisionCategory::NONE);
 
         bool collides(const Entity & entity) const;
         void add(const Entity & entity);
@@ -41,7 +39,7 @@ namespace biemgine
     private:
         map<int, bool> collisions;
 
-        int categoryBits = CollisionType::NONE;
-        int maskBits = CollisionType::NONE;
+        int categoryBits = CollisionCategory::NONE;
+        int maskBits = CollisionCategory::NONE;
     };
 }
