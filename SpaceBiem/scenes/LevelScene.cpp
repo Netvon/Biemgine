@@ -56,12 +56,12 @@ namespace spacebiem
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
         addSystem<OxygenSystem>();
-        addSystem<OxygenUISystem>(2);
+        addSystem<OxygenUISystem>();
         addSystem<ScoreSystem>();
-        addSystem<ScoreUISystem>(2);
-        addSystem<ResourceUISystem>(2);
-        addSystem<ResourceCollectingSystem>(2);
-        addSystem<GameoverSystem>(2);
+        addSystem<ScoreUISystem>();
+        addSystem<ResourceUISystem>();
+        addSystem<ResourceCollectingSystem>();
+        addSystem<GameoverSystem>();
         addSystem<AIMovementSystem>();
 
         float width = 15 * 2;

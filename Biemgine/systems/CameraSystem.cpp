@@ -8,11 +8,11 @@ namespace biemgine
 {
     void CameraSystem::update(const Entity & entity)
     {
-        if (entity.hasComponent("camera") && entity.hasComponent("position"))
-        {
-            auto pc = entity.getComponent<PositionComponent>("position");
-            auto camera = entity.getComponent<CameraComponent>("camera");
+        auto pc = entity.getComponent<PositionComponent>("position");
+        auto camera = entity.getComponent<CameraComponent>("camera");
 
+        if (pc != nullptr && camera != nullptr)
+        {
             camera->setWindowWidth(getStateManager()->getWindowWidth());
             camera->setWindowHeight(getStateManager()->getWindowHeight());
 

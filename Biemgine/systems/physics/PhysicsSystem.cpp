@@ -49,7 +49,9 @@ namespace biemgine
 
     void PhysicsSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("physics"))
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
+
+        if (physics == nullptr)
             return;
 
         if (bodies.find(entity.getId()) == bodies.end()) {
@@ -57,7 +59,7 @@ namespace biemgine
         }
 
         auto affectedByGravity = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
-        auto physics = entity.getComponent<PhysicsComponent>("physics");
+        
         auto position = entity.getComponent<PositionComponent>("position");
 
         auto body = bodies.at(entity.getId());
@@ -135,6 +137,7 @@ namespace biemgine
     {
         auto pc = entity.getComponent<PositionComponent>("position");
         auto physics = entity.getComponent<PhysicsComponent>("physics");
+        auto grounded = entity.getComponent<GroundedComponent>("grounded");
 
         b2BodyDef newBodyDef;
 
@@ -143,7 +146,7 @@ namespace biemgine
         else
             newBodyDef.type = b2_staticBody;
 
-        if (entity.hasComponent("grounded")) {
+        if (grounded != nullptr) {
             newBodyDef.fixedRotation = true;
             printf("HasGrounded - ");
         }
