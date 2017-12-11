@@ -61,8 +61,6 @@ namespace spacebiem
             auto ai = entity->getComponent<AIComponent>("ai");
             auto position = entity->getComponent<PositionComponent>("position");
 
-            const Entity * player = findPlayerInRange(entity);
-
             Vector centerOfSatellite = {
                 position->getX() + physics->getColliderW() / 2.0f,
                 position->getY() + physics->getColliderH() / 2.0f
@@ -71,10 +69,15 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            if (player != nullptr) {
-                auto pc = player->getComponent<PositionComponent>("position");
-                
-                diff += position->getLocation() - pc->getLocation();
+            if (ai->getCanFollow()) {
+                const Entity * player = findPlayerInRange(entity);
+
+                if (player != nullptr) {
+                    auto pc = player->getComponent<PositionComponent>("position");
+                    ai->setDirection(Direction::LEFT);
+
+                    diff += position->getLocation() - pc->getLocation();
+                }
             }
 
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
@@ -104,8 +107,8 @@ namespace spacebiem
 
     const Entity * AIMovementSystem::findPlayerInRange(const Entity * entity) const
     {
-        for (const auto * player : players) {
-            if (entity->distance(*player) < 500) {
+        for (auto & player : players) {
+            if (entity->distance(*player) < 500.f) {
                 return player;
             }
         }
