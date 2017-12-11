@@ -8,6 +8,7 @@ using biemgine::PhysicsComponent;
 using biemgine::Vector;
 using biemgine::AnimatedTextureComponent;
 using biemgine::TextureFlip;
+using biemgine::CollidableComponent;
 
 namespace spacebiem
 {
@@ -40,9 +41,7 @@ namespace spacebiem
             && entity.hasComponent("physics"))
         {
             auto position = entity.getComponent<PositionComponent>("position");
-            
             auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
-            
 
             if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())
                 return;
@@ -66,18 +65,17 @@ namespace spacebiem
 
             if (texture != nullptr) {
                 if (grounded->isGrounded()) {
-
-                    if (texture->isPausedOrStopped())
+                    if (texture->isPausedOrStopped()) {
                         texture->play();
-
+                    }
+ 
                     if (physics->getVelocity().length() > 1.0f) {
 
                         auto veloPercentage = escapeVelocity / physics->getVelocity().length();
                         auto maxSpeed = 32.0f;
                         texture->setPlaybackSpeed(maxSpeed * veloPercentage);
                     }
-                    else
-                    {
+                    else {
                         texture->stop();
                     }
                 }
@@ -105,7 +103,16 @@ namespace spacebiem
                 physics->addForce("right", right.x, right.y);
             }
 
-            
+            // bounce away from the AI
+            if (entity.hasComponent("collidable")) {
+                auto cc = entity.getComponent<CollidableComponent>("collidable");
+
+                for (const auto & collideInfo : cc->getCollisions()) {
+                    if (collideInfo.entity->isTag("ai")) {
+                        physics->addImpulse("bounceback", -physics->getForceX() * 1.1, -physics->getForceY() * 1.1);
+                    }
+                }
+            }  
         }
     }
 }
