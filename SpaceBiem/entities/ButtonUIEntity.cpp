@@ -19,7 +19,7 @@ namespace spacebiem
         addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 1000u, true, "", buttonColor));
         //addComponent("color", new ColorComponent(buttonColor));
         addComponent("ui", new UIComponent(size, onClick, onEnter,(onClick != nullptr)));
-        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, size.width/2, size.height/2, true, true));
+        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, true, size.width/2, size.height/2, true));
 
         addComponent<ScriptComponent>("script",
             [this]()
