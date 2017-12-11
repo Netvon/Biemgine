@@ -21,6 +21,7 @@
 #include "components\RectangleComponent.h"
 #include "components\TextComponent.h"
 #include "components\TextureComponent.h"
+#include "components\AnimatedTextureComponent.h"
 #include "components\TransformComponent.h"
 #include "components\UIComponent.h"
 #include "components\PhysicsComponentShape.h"

@@ -24,7 +24,6 @@ namespace spacebiem
         if (entity.hasComponent("ui")) return;
 
         entitiesWithOxygen.push_back(entity);
-        
     }
 
 

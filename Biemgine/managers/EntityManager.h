@@ -8,6 +8,8 @@
 #include <vector>
 #include <memory>
 
+using std::string;
+
 namespace biemgine
 {
     class BIEMGINE EntityManager
@@ -31,6 +33,7 @@ namespace biemgine
         }
 
         Entity* getEntity(int id) const;
+        Entity* getEntity(string tag) const;
 
     private:
         std::vector<Entity*> entities;

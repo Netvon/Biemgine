@@ -176,6 +176,9 @@
     <ClInclude Include="systems\CameraSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="components\AnimatedTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -298,6 +301,9 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\UIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AnimatedTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>

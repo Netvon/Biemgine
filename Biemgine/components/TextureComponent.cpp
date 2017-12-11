@@ -95,4 +95,9 @@ namespace biemgine
     TextureFlip TextureComponent::getFlip() {
         return flip;
     }
+
+    const SizeRect & TextureComponent::getRect() const
+    {
+        return SizeRect::empty();
+    }
 }

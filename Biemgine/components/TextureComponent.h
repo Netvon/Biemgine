@@ -47,7 +47,8 @@ namespace biemgine
         float getRotation() const;
         void setFlip(TextureFlip pFlip);
         TextureFlip getFlip();
-
+        virtual const SizeRect& getRect() const;
+        virtual void update(float dt) {};
 
     private:
         string path;

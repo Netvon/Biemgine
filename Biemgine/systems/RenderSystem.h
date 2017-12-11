@@ -5,6 +5,7 @@
 #include "..\components\PositionComponent.h"
 #include "../components/TextComponent.h"
 #include "..\components\TextureComponent.h"
+#include "..\components\AnimatedTextureComponent.h"
 #include "../devices/graphics/GraphicsDevice.h"
 #include "../devices/graphics/TextureFlip.h"
 
@@ -39,8 +40,9 @@ namespace biemgine
         unsigned int layer;
         bool center;
         TextureFlip flip;
+        SizeRect rect;
 
-        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip);
+        DrawTexture(const string& path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip, SizeRect rect = SizeRect::empty());
     };
 
     struct DrawText
@@ -74,7 +76,7 @@ namespace biemgine
         list<OptDrawText> optTextList;
         list<DrawTexture> drawList;
         list<DrawText> textList;
-        CameraComponent* cameraComponent = nullptr;
+        std::shared_ptr<CameraComponent> cameraComponent = nullptr;
         
     };
 }

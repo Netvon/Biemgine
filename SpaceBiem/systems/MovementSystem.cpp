@@ -6,7 +6,7 @@ using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponent;
 using biemgine::Vector;
-using biemgine::TextureComponent;
+using biemgine::AnimatedTextureComponent;
 using biemgine::TextureFlip;
 
 namespace spacebiem
@@ -28,8 +28,12 @@ namespace spacebiem
             physics->setFriction(0.0f);
         }*/
 
-        if (getStateManager()->getInputManager()->isKeyDown("Left") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::HORIZONTAL);
-        if (getStateManager()->getInputManager()->isKeyDown("Right") && entity.getComponent<TextureComponent>("texture")) entity.getComponent<TextureComponent>("texture")->setFlip(TextureFlip::NONE);
+        auto texture = entity.getComponent<AnimatedTextureComponent>("texture");
+
+        if (getStateManager()->getInputManager()->isKeyDown("Left") && texture)
+            texture->setFlip(TextureFlip::HORIZONTAL);
+        if (getStateManager()->getInputManager()->isKeyDown("Right") && texture)
+            texture->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")
@@ -58,6 +62,32 @@ namespace spacebiem
 
             auto newVelo = physics->getVelocity().length() + movementForce;
 
+            //printf("%f\n", physics->getFriction());
+
+            if (texture != nullptr) {
+                if (grounded->isGrounded()) {
+
+                    if (texture->isPausedOrStopped())
+                        texture->play();
+
+                    if (physics->getVelocity().length() > 1.0f) {
+
+                        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+                        auto maxSpeed = 32.0f;
+                        texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                    }
+                    else
+                    {
+                        texture->stop();
+                    }
+                }
+                else {
+                    texture->stop();
+                }
+            }
+
+            //printf("Velo: %f\n", physics->getVelocity().length());
+
             if (physics->getVelocity().length() > escapeVelocity)
                 return;
 
@@ -74,6 +104,8 @@ namespace spacebiem
 
                 physics->addForce("right", right.x, right.y);
             }
+
+            
         }
     }
 }

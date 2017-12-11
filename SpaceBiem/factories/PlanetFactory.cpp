@@ -34,7 +34,7 @@ namespace spacebiem
 
     void PlanetFactory::load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, int planetScore, bool isDiscovered, vector<float> flagComponent)
     {
-        int id;
+        int id = 0;
 
         if (type == "moon") {
             id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Colors::MoonAtmosphere(), width, height, planetScore, name);
