@@ -27,7 +27,7 @@ namespace spacebiem
     private:
         bool fromLevel;
         int currentSlide;
-        int maxSlides = 8;
+        int maxSlides = 9;
 
     };
 }
