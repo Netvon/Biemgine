@@ -2,6 +2,9 @@
 
 namespace biemgine
 {
+    CollidableComponent::CollidableComponent(int pCategoryBits, int pMaskBits) :
+        categoryBits(pCategoryBits), maskBits(pMaskBits) {}
+
     bool CollidableComponent::collides(const Entity & entity) const
     {
         bool collision = collisions.find(entity.getId()) != collisions.end();
@@ -27,5 +30,15 @@ namespace biemgine
     map<int, bool>& CollidableComponent::getCollisions()
     {
         return collisions;
+    }
+
+    int CollidableComponent::getCategoryBits() const
+    {
+        return categoryBits;
+    }
+
+    int CollidableComponent::getMaskBits() const
+    {
+        return maskBits;
     }
 }

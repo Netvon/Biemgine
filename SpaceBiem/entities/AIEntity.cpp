@@ -22,7 +22,7 @@ namespace spacebiem
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("grounded", new GroundedComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
-        addComponent("collidable", new CollidableComponent);
+        addComponent("collidable", new CollidableComponent(CollisionType::AI, CollisionType::AI | CollisionType::PLANET | CollisionType::PLAYER));
         addComponent("ai", new AIComponent);
 
         setTag("ai");

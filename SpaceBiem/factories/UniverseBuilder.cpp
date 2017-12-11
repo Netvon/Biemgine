@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "UniverseBuilder.h"
-#include "FileParser.h"
-#include "factories\PlanetFactory.h"
+#include "..\FileParser.h"
+#include "..\factories\PlanetFactory.h"
 #include "Biemgine.h"
-#include "entities\PlayerEntity.h"
-#include "entities\AIEntity.h"
+#include "..\entities\PlayerEntity.h"
+#include "..\entities\AIEntity.h"
 
 using biemgine::Entity;
 using biemgine::Color;

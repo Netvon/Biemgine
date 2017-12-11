@@ -26,7 +26,7 @@ namespace spacebiem
         addComponent<AffectedByGravityComponent>("affectedByGravity", true);
         addComponent<ScoreBonusComponent>("scorebonus", scoreBonus);
         addComponent<ResourceBonusComponent>("resourcebonus", rName, 1);
-        addComponent<CollidableComponent>("collidable");
+        addComponent<CollidableComponent>("collidable", CollisionType::RESOURCE, CollisionType::RESOURCE | CollisionType::PLANET | CollisionType::PLAYER);
         addComponent<GroundedComponent>("grounded");
     }
 }
