@@ -60,7 +60,7 @@ namespace spacebiem
         addSystem<ScoreSystem>();
         addSystem<ScoreUISystem>(2);
         addSystem<ResourceUISystem>(2);
-        addSystem<ResourceCollectingSystem>(2);
+        addSystem<ResourceCollectingSystem>();
         addSystem<GameoverSystem>(2);
         addSystem<AIMovementSystem>();
 
