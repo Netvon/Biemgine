@@ -45,17 +45,6 @@ namespace spacebiem
     {
         e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
     }
-    void resumeButtonClicked(StateManager* e) {
-        cout << "Resume" << endl;
-        e->resumeGame();
-    }
-    void helpButtonClicked(StateManager* e) {
-        e->navigateTo<HelpScene>(true);
-    }
-    void menuButtonClicked(StateManager* e) {
-        e->resumeGame();
-        e->navigateTo<MenuScene>();
-    }
 
     void LevelScene::created()
     {
@@ -89,13 +78,6 @@ namespace spacebiem
         addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
         addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
 
-        /*addEntity<TextEntity>("", Vector{ 1000.f, 100.f }, true, Color::White(), [this, playerId]()
-        {
-            auto player = getEntity(playerId)->getComponent<PhysicsComponent*>("physics");
-            auto velo = player->getVelocity();
-
-            return to_string(velo.x) + ":" + to_string(velo.y) + " ( " + to_string(velo.length()) + " )";
-        });*/
         timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Roboto(), getTransitionManager().getWindowWidth() - 100, 0, Color{ 66, 143, 244 }, "");
  
@@ -122,9 +104,24 @@ namespace spacebiem
         
         addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
         addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230, 255 }, 300, 330, 290u, "pause_menu");
-        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png", resumeButtonClicked, hover, "pause_menu");
-        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png", helpButtonClicked, hover, "pause_menu");
-        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", menuButtonClicked, hover, "pause_menu");
+
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png",
+            [&](StateManager* e) {
+            isPaused = false;
+            updateMenu();
+        }, hover, "pause_menu");
+
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
+            [this](StateManager* e) {
+            saveGame();
+            e->navigateTo<HelpScene>(true);
+        }, hover, "pause_menu");
+
+        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png",
+            [this](StateManager* e) {
+            saveGame();
+            e->navigateTo<MenuScene>();
+        }, hover, "pause_menu");
 
         updateMenu();
 
@@ -177,14 +174,7 @@ namespace spacebiem
         if (im.isKeyDown("P")) {
             if (!isPauseButtonDown) {
 
-                if (isPaused) {
-                    isPaused = false;
-                    getTransitionManager().resumeGame();
-                }
-                else {
-                    isPaused = true;
-                    getTransitionManager().pauseGame();
-                }
+                isPaused = !isPaused;
 
                 updateMenu();
 
@@ -193,11 +183,6 @@ namespace spacebiem
         }
         else {
             isPauseButtonDown = false;
-        }
-
-        if (getTransitionManager().isPaused() != isPaused) {
-            isPaused = getTransitionManager().isPaused();
-            updateMenu();
         }
     }
 
@@ -217,7 +202,7 @@ namespace spacebiem
 
     void LevelScene::render(const float deltaTime)
     {
-        cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
+        //cout << static_cast<int>(1.f / (deltaTime / 1000.f)) << endl;
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
         if (timeout >= 500.f) {
