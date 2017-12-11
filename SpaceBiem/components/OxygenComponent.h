@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "../components/AtmosphereComponent.h"
 
 using biemgine::Component;
+using biemgine::Entity;
 
 namespace spacebiem
 {
@@ -19,6 +21,9 @@ namespace spacebiem
         float getOxygenAmount() const;
         void setOxygenAmount(float pOxygen);
 
+        void setAtmosphereEntity(std::shared_ptr<Entity> atmosphere);
+        std::shared_ptr<Entity> getAtmosphereEntity() const;
+
         int getOxygenMax() const;
 
         int getOxygenScale() const;
@@ -27,5 +32,6 @@ namespace spacebiem
         float oxygenAmount;
         int oxygenMax;
         int oxygenScale;
+        std::shared_ptr<Entity> currentAtmosphereEntity = nullptr;;
     };
 }

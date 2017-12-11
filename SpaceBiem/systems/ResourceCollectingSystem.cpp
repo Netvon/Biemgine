@@ -1,49 +1,27 @@
-
 #include "ResourceCollectingSystem.h"
-
 
 namespace spacebiem
 {
     void ResourceCollectingSystem::update(const Entity & entity)
     {
+        if (!entity.isTag("player")) return;
 
-        // player
-        if (entity.hasComponent("resources") && entity.hasComponent("collidable"))
-        {
-            resource.push_back(&entity);
-        }
+        auto cc = entity.getComponent<CollidableComponent>("collidable");
 
-        // resource
-        if (entity.hasComponent("resourcebonus") && entity.hasComponent("collidable"))
-        {
-            resourceBonus.push_back(&entity);
-        }
+        for (const auto & collideInfo : cc->getCollisions()) {
+            auto bonus = collideInfo.entity;
 
-    }
+            if (collideInfo.entity->isTag("resource")) {
+                auto rbc = bonus->getComponent<ResourceBonusComponent>("resourcebonus");
+                auto sbc = bonus->getComponent<ScoreBonusComponent>("scorebonus");
+                auto rc = entity.getComponent<ResourceComponent>("resources");
+                auto sc = entity.getComponent<ScoreComponent>("score");
 
-    void ResourceCollectingSystem::after()
-    {
-        for (auto& entity : resource)
-        {
-            auto cc = entity->getComponent<CollidableComponent>("collidable");
+                rc->addResource(rbc->getName(), rbc->getAmount());
+                sc->addScore(sbc->getScoreBonus());
 
-            for (auto& bonus : resourceBonus)
-            {
-                if (cc->collides(*bonus)) {
-                    auto rbc = bonus->getComponent<ResourceBonusComponent>("resourcebonus");
-                    auto sbc = bonus->getComponent<ScoreBonusComponent>("scorebonus");
-                    auto rc = entity->getComponent<ResourceComponent>("resources");
-                    auto sc = entity->getComponent<ScoreComponent>("score");
-
-                    rc->addResource(rbc->getName(), rbc->getAmount());
-                    sc->addScore(sbc->getScoreBonus());
-
-                    bonus->die();
-                }
+                bonus->die();
             }
         }
-
-        resource.clear();
-        resourceBonus.clear();
     }
 }

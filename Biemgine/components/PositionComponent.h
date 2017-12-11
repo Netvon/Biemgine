@@ -28,6 +28,9 @@ namespace biemgine
 
         void add(float x, float y, float z = 0);
 
+        float distance(const PositionComponent & otherPosition);
+        const Vector & getLocation() const;
+
     private:
         Vector location;
         Vector offsetLocation;

@@ -16,14 +16,6 @@ namespace spacebiem
     class ResourceCollectingSystem : public System
     {
     public:
-        ~ResourceCollectingSystem() {};
-
         void update(const Entity& entity) override;
-        void after() override;
-
-    private:
-        vector<const Entity*> resource;
-        vector<const Entity*> resourceBonus;
-
     };
 }

@@ -29,4 +29,24 @@ namespace biemgine
     {
         return { fallingTowardsX, fallingTowardsY };
     }
+
+    float AffectedByGravityComponent::getMass() const {
+        return mass;
+    }
+
+    void AffectedByGravityComponent::setMass(float pMass) {
+        mass = pMass;
+    }
+
+    float AffectedByGravityComponent::getRadius() const {
+        return radius;
+    }
+
+    void AffectedByGravityComponent::setRadius(float pRadius) {
+        radius = pRadius;
+    }
+
+    float AffectedByGravityComponent::getEscapeVelocity() const {
+        return 0.0f;
+    }
 }

@@ -163,6 +163,15 @@
     <ClInclude Include="scenes\HelpScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="components\AIComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\AIMovementSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\AIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
@@ -186,6 +195,18 @@
     </ClInclude>
     <ClInclude Include="scenes\CreditsScene.h">
       <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Functions.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="globals\Colors.h">
+      <Filter>globals</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\MummieAIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\SnowmanAIEntity.h">
+      <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +364,21 @@
     </ClCompile>
     <ClCompile Include="scenes\CreditsScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\AIMovementSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\AIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\MummieAIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\SnowmanAIEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

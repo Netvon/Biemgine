@@ -14,6 +14,7 @@
 #include "..\systems\ScoreUISystem.h"
 
 #include "..\globals\Fonts.h"
+#include "..\globals\Colors.h"
 
 using biemgine::TextUIEntity;
 using biemgine::SpriteEntity;
@@ -37,6 +38,8 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
 
         FileParser parser;
         parser.writeNewResources(resources);
@@ -93,7 +96,7 @@ namespace spacebiem
                 heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "ice") {
-                addEntity<PlanetIceEntity>(planetsX, heightCounter, Color::IceAtmosphere(), 40, 40, 0, 10.f);
+                addEntity<PlanetIceEntity>(planetsX, heightCounter, Colors::IceAtmosphere(), 40, 40, 0, 10.f);
                 addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }

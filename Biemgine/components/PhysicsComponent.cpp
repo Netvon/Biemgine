@@ -19,7 +19,7 @@ namespace biemgine
     }
 
     PhysicsComponent::PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass)
-        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass) {}
+        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass), initialized(false) {}
 
     PhysicsComponent::~PhysicsComponent() {}
 

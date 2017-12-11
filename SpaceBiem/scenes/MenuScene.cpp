@@ -13,6 +13,7 @@
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ResourceUISystem.h"
 #include "..\entities\ResourceUIEntity.h"
+#include "..\globals\Functions.h"
 
 using biemgine::SpriteEntity;
 using biemgine::Size;
@@ -20,52 +21,15 @@ using biemgine::FileHandler;
 
 namespace spacebiem
 {
-    void onMenuButtonEntered(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/switch.mp3", 0, -1, 128);
-    }
-
-    void newGameButtonClicked(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 64);
-        e->navigateTo<DifficultyScene>();
-    }
-
-    void ContinueButtonClicked(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 64);
-        e->navigateTo<LevelScene>(false);
-    }
-
-    void HighscoreButtonClicked(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
-        e->navigateTo<HighScoreScene>();
-    }
-
-    void GameOverButtonClicked(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
-        e->navigateTo<GameoverScene>();
-    }
-    void HelpButtonClicked(StateManager* e)
-    {
-        e->navigateTo<HelpScene>();
-    }
-
-    void CreditsButtonClicked(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/idroid.mp3", 0, -1, 128);
-        e->navigateTo<CreditsScene>();
-    }
-
     void MenuScene::created()
     {
         enableRendering();
         enableUI();
         enableScripts();
 
-        addSystem<ResourceUISystem>(60);
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
+
+        addSystem<ResourceUISystem>();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -89,25 +53,31 @@ namespace spacebiem
         int beginY = 330;
         int incr = 65;
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameButtonClicked, onMenuButtonEntered);
+        auto newGameClick = [](StateManager* e) { e->navigateTo<DifficultyScene>(); };
+        auto continueClick = [](StateManager* e) { e->navigateTo<LevelScene>(false); };
+        auto highscoreClick =[](StateManager* e) { e->navigateTo<HighScoreScene>(); };
+        auto helpClick = [](StateManager* e) { e->navigateTo<HelpScene>(); };
+        auto CreditsButtonClicked = [](StateManager* e) { e->navigateTo<CreditsScene>(); };
+
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameClick, nullptr);
 
         std::function<void(StateManager*)> continueEventHandler = nullptr;
         bool saveBlobExists = FileHandler::exists("data/savegame.csv");
 
         if (saveBlobExists) {
-            continueEventHandler = ContinueButtonClicked;
+            continueEventHandler = continueClick;
         }
 
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler, onMenuButtonEntered);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler, nullptr);
         
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, HighscoreButtonClicked, onMenuButtonEntered);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, highscoreClick, nullptr);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, HelpButtonClicked, onMenuButtonEntered);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, helpClick, nullptr);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, onMenuButtonEntered);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
 
         FileParser parser;
         map<string, int> resources = parser.resourcesContent();

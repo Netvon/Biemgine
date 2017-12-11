@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ButtonUIEntity.h"
 #include "..\globals\Fonts.h"
+#include "..\globals\Functions.h"
 
 using std::string;
 using biemgine::PositionComponent;
@@ -15,14 +16,24 @@ namespace spacebiem
 {
     ButtonUIEntity::ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick, std::function<void(StateManager*)> onEnter, string tag)
     {
+        auto click = Functions::combine<StateManager*>(
+            Functions::buttonClickSound(),
+            onClick
+        );
+
+        auto hover = Functions::combine<StateManager*>(
+            Functions::buttonHoverSound(),
+            onEnter
+        );
+
         addComponent("position", new PositionComponent(x, y));
         addComponent("texture", new TextureComponent(texturePath, 0.f, 0.f, size.width, size.height, 1000u, true, "", buttonColor));
         //addComponent("color", new ColorComponent(buttonColor));
-        addComponent("ui", new UIComponent(size, onClick, onEnter,(onClick != nullptr)));
-        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, true, size.width/2, size.height/2, true));
+        addComponent("ui", new UIComponent(size, click, hover,(onClick != nullptr)));
+        addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, size.width/2, size.height/2, true, true));
 
         addComponent<ScriptComponent>("script",
-            [this]()
+            [this](float deltaTime)
         {
             auto ui = getComponent<UIComponent>("ui");
             auto texture = getComponent<TextureComponent>("texture");
@@ -32,6 +43,7 @@ namespace spacebiem
             }
             else if (!ui->getIsMouseOver()) {
                 texture->setColor(texture->getColor().WithAlpha(200));
+
             }
             else {
                 texture->setColor(texture->getColor().WithAlpha(255));

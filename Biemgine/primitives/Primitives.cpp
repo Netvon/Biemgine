@@ -27,6 +27,11 @@ namespace biemgine
         return { x - other.x, y - other.y, z - other.z };
     }
 
+    Vector Vector::operator-(const Vector& other) const
+    {
+        return { x - other.x, y - other.y, z - other.z };
+    };
+
     Vector & Vector::operator*=(float scalar)
     {
         x *= scalar; y *= scalar; z *= scalar;

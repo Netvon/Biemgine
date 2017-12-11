@@ -3,18 +3,21 @@
 
 using biemgine::PositionComponent;
 using biemgine::ColorComponent;
-using biemgine::TextureComponent;
+using biemgine::AnimatedTextureComponent;
 using biemgine::PhysicsComponent;
 using biemgine::GroundedComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
+using biemgine::TextureColumnDef;
+using biemgine::TextureRowDef;
 using biemgine::CameraComponent;
 
 #include "../components/OxygenComponent.h"
 #include "../components/ScoreComponent.h"
 #include "../components/ResourceComponent.h"
 #include "../components/MovementComponent.h"
+#include "../globals/Functions.h"
 
 namespace spacebiem
 {
@@ -22,16 +25,22 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("texture", new TextureComponent("textures/player-standing.png", 0, 0, w, h, 5u, true, "background"));
+        addComponent("texture", new AnimatedTextureComponent("textures/PlayerSpriteSheet2.png", 0, 0, TextureColumnDef{ 8llu, 128 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background"));
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);
         addComponent("score", new ScoreComponent);
         addComponent("affectedByGravity", new AffectedByGravityComponent(true));
-        addComponent("resources", new ResourceComponent());
-        addComponent("collidable", new CollidableComponent);
+        addComponent("resources", new ResourceComponent);
+        addComponent("collidable", new CollidableComponent(CollisionCategory::PLAYER, CollisionCategory::AI | CollisionCategory::RESOURCE | CollisionCategory::PLANET));
         addComponent("movement", new MovementComponent);
         if(focused) addComponent("camera", new CameraComponent);
+
+        auto grounded = getComponent<GroundedComponent>("grounded");
+        auto texture = getComponent<AnimatedTextureComponent>("texture");
+        auto physics = getComponent<PhysicsComponent>("physics");
+
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
 
         setTag("player");
     }

@@ -1,11 +1,10 @@
 #include "stdafx.h"
 #include "RenderSystem.h"
-#include "..\components\PositionComponent.h"
 #include "..\components\ColorComponent.h"
 #include "..\components\RectangleComponent.h"
-#include "..\components\TextureComponent.h"
 #include "..\entities\Entity.h"
-#include "../devices/graphics/TextureFlip.h"
+#include "..\devices\graphics\TextureFlip.h"
+#include "..\components\AnimatedTextureComponent.h"
 
 namespace biemgine
 {
@@ -21,51 +20,66 @@ namespace biemgine
         if (!entity.hasComponent("position"))
             return;
 
+        
+        if (!cameraComponent)
+        {
+            cameraComponent = entity.getComponent<CameraComponent>("camera");
+        }
+
         auto pc = entity.getComponent<PositionComponent>("position");
 
-        if (entity.hasComponent("text")) {
-            auto txs = entity.getComponents<TextComponent>("text");
+        auto& txs = entity.getComponents<TextComponent>("text");
 
-            for (auto tx : txs) {
-                if (tx->isVisible()) {
-                    textList.push_back(DrawText(
-                        tx->getFont(),
-                        tx->getText(),
-                        static_cast<int>(pc->getX() + tx->getOffsetX()),
-                        static_cast<int>(pc->getY() + tx->getOffsetY()),
-                        tx->getColor(),
-                        tx,
-                        tx->isCenter()
-                    ));
-                }
-            }
+        for (auto& tx : txs) {
+            if (!tx->isVisible()) continue;
+
+            OptDrawText opt;
+            opt.textComponent = tx;
+            opt.positionComponent = pc;
+            opt.isUI = entity.hasComponent("ui");
+
+            optTextList.push_back(std::move(opt));
+
+            /*textList.push_back(DrawText(
+                    tx->getFont(),
+                    tx->getText(),
+                    static_cast<int>(pc->getX() + tx->getOffsetX()),
+                    static_cast<int>(pc->getY() + tx->getOffsetY()),
+                    tx->getColor(),
+                    tx,
+                    tx->isCenter()
+                ));*/
+            
+        }
+        
+        auto tc = entity.getComponents<TextureComponent>("texture");
+
+        for (auto& tex : tc) {
+            if (!tex->isVisible()) continue;
+
+            OptDrawTexture opt;
+            opt.textureComponent = tex;
+            opt.positionComponent = pc;
+            opt.isUI = entity.hasComponent("ui");
+
+            optDrawList.push_back(std::move(opt));
+
+            /*drawList.push_back(DrawTexture(
+                tex->getPath(),
+                static_cast<int>(pc->getX() + tex->getOffsetX() + deltaX),
+                static_cast<int>(pc->getY() + tex->getOffsetY() + deltaY),
+                tex->getWidth(),
+                tex->getHeight(),
+                pc->getRotation() + tex->getRotation(),
+                (entity.hasComponent("color")) ? entity.getComponent<ColorComponent>("color")->getColor() : tex->getColor(),
+                tex->getLayer(),
+                false,
+                tex->getFlip()
+            ));*/
+
         }
 
-        if (!entity.hasComponent("texture") && !entity.hasComponent("rectangle"))
-            return;
-
-        if (entity.hasComponent("texture")) {
-            auto tc = entity.getComponents<TextureComponent>("texture");
-
-            for (auto tex : tc) {
-                if (!tex->isVisible()) continue;
-
-                drawList.push_back(DrawTexture(
-                    tex->getPath(),
-                    static_cast<int>(pc->getX() + tex->getOffsetX()),
-                    static_cast<int>(pc->getY() + tex->getOffsetY()),
-                    tex->getWidth(),
-                    tex->getHeight(),
-                    pc->getRotation() + tex->getRotation(),
-                    (entity.hasComponent("color")) ? entity.getComponent<ColorComponent>("color")->getColor() : tex->getColor(),
-                    tex->getLayer(),
-                    false,
-                    tex->getFlip()
-                ));
-            }
-        }
-
-        if (entity.hasComponent("rectangle"))
+        /*if (entity.hasComponent("rectangle"))
         {
             auto rectangle = entity.getComponent<RectangleComponent>("rectangle");
 
@@ -76,7 +90,7 @@ namespace biemgine
                 static_cast<int>(rectangle->getHeight()),
                 rectangle->getColor().getColor(), pc->getRotation()
             );
-        }
+        }*/
     }
 
     void RenderSystem::onSceneSwitch()
@@ -87,18 +101,48 @@ namespace biemgine
 
     //void RenderSystem::before(const float deltaTime) {}
 
-    bool sortByLayer(DrawTexture first, DrawTexture second)
+    bool sortByLayer(const OptDrawTexture& first, const OptDrawTexture& second)
     {
-        return first.layer < second.layer;
+        return first.textureComponent->getLayer() < second.textureComponent->getLayer();
     }
 
     void RenderSystem::after(const float deltaTime)
     {
-        drawList.sort(sortByLayer);
+        optDrawList.sort(sortByLayer);
 
+        int deltaX = 0;
+        int deltaY = 0;
+
+        for (auto& texture : optDrawList)
+        {
+            deltaX = 0;
+            deltaY = 0;
+
+            if (cameraComponent != nullptr && !texture.isUI)
+            {
+                deltaX = cameraComponent->getDeltaX();
+                deltaY = cameraComponent->getDeltaY();
+            }
+            
+            graphicsDevice->drawTexture(
+                texture.textureComponent->getPath(),
+                texture.textureComponent->getOffsetX() + texture.positionComponent->getOriginX() + deltaX,
+                texture.textureComponent->getOffsetY() + texture.positionComponent->getOriginY() + deltaY,
+                texture.textureComponent->getWidth(),
+                texture.textureComponent->getHeight(),
+                texture.textureComponent->getRotation() + texture.positionComponent->getRotation(),
+                texture.textureComponent->getColor(),
+                texture.textureComponent->getFlip(),
+                false,
+                texture.textureComponent->getRect()
+            );
+
+            texture.textureComponent->update(deltaTime);
+        }
         /*printf("Drawing %llu textures\n", drawList.size());*/
 
-        for (auto texture : drawList)
+        /*drawList.sort(sortByLayer);
+        for (auto& texture : drawList)
         {
             graphicsDevice->drawTexture(
                 texture.path,
@@ -108,22 +152,47 @@ namespace biemgine
                 texture.h,
                 texture.angle,
                 texture.color,
-                texture.flip
+                texture.flip,
+                false,
+                texture.rect
             );
-        }
+        }*/
 
-        for (auto text : textList)
+        for (auto& text : optTextList)
         {
-            auto size = graphicsDevice->drawText(text.font, text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
-            if(text.component != nullptr) text.component->setTextSize(size);
+            deltaX = 0;
+            deltaY = 0;
+
+            if (cameraComponent != nullptr && !text.isUI)
+            {
+                deltaX = cameraComponent->getDeltaX();
+                deltaY = cameraComponent->getDeltaY();
+            }
+
+            auto size = graphicsDevice->drawText(
+                text.textComponent->getFont(),
+                text.textComponent->getText(),
+                text.textComponent->getOffsetX() + text.positionComponent->getX() + deltaX,
+                text.textComponent->getOffsetY() + text.positionComponent->getY() + deltaY,
+                text.textComponent->getColor(),
+                0,
+                biemgine::NONE,
+                text.textComponent->isCenter()
+            );
+
+            //auto size = graphicsDevice->drawText(text.font, text.text, text.x, text.y, text.color, 0, biemgine::NONE, text.center);
+            text.textComponent->setTextSize(size);
         }
 
-        drawList.clear();
-        textList.clear();
+
+        optDrawList.clear();
+        optTextList.clear();
+        //drawList.clear();
+        //textList.clear();
     }
 
-    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip) :
-        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip) {}
+    DrawTexture::DrawTexture(const string & path, int x, int y, int w, int h, float angle, Color color, unsigned int layer, bool center, TextureFlip flip, SizeRect rect) :
+        path(path), x(x), y(y), w(w), h(h), color(color), angle(angle), layer(layer), center(center), flip(flip), rect(rect) {}
 
 
     DrawText::DrawText(Font pFont, const string& text, int x, int y, Color color, std::shared_ptr<TextComponent> component, bool center) :

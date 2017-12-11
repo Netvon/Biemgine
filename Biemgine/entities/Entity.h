@@ -51,8 +51,20 @@ namespace biemgine
         bool hasTag() const;
         void setTag(string pTag);
         string getTag() const;
+        bool isTag(const string & pTag) const;
 
-        Rect getBounds() const;
+        bool isCheckable() const;
+
+        void calculateBounds();
+        void checkOCCheckable();
+       
+        int minX;
+        int maxX;
+        int minY;
+        int maxY;
+        
+
+        float distance(const Entity & entity) const;
 
     private:
         int id;
@@ -60,6 +72,7 @@ namespace biemgine
         mutable bool alive = true;
 
         string tag;
+        bool isOCCheckable;
     };
 
     template<typename TComponent>
@@ -84,7 +97,7 @@ namespace biemgine
             vec.push_back(std::dynamic_pointer_cast<TComponent>(it->second));
         }
 
-        return vec;
+        return std::move(vec);
     }
 
     template<typename TComponent, typename ...TArgs>

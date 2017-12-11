@@ -8,6 +8,8 @@
 #include <vector>
 #include <memory>
 
+using std::string;
+
 namespace biemgine
 {
     class BIEMGINE EntityManager
@@ -31,6 +33,7 @@ namespace biemgine
         }
 
         Entity* getEntity(int id) const;
+        Entity* getEntity(string tag) const;
 
     private:
         std::vector<Entity*> entities;
@@ -45,10 +48,15 @@ namespace biemgine
     {
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
 
-        if (!camera && entities.back()->hasComponent("camera")) {
-             camera = entities.back()->getComponent<CameraComponent>("camera");
+        Entity* entity = entities.back();
+
+        entity->calculateBounds();
+        entity->checkOCCheckable();
+
+        if (!camera && entity->hasComponent("camera")) {
+             camera = entity->getComponent<CameraComponent>("camera");
         }
 
-        return entities.back()->getId();
+        return entity->getId();
     }
 }

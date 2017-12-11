@@ -21,10 +21,6 @@ namespace biemgine
         int getWindowWidth() const;
         int getWindowHeight() const;
 
-        void pauseGame();
-        void resumeGame();
-        bool isPaused();
-
         void drawBackground(const string& backgroundPath);
 
         void setInputManager(const InputManager* manager) {
@@ -53,8 +49,6 @@ namespace biemgine
         const InputManager* inputManager = nullptr;
         const Window* window = nullptr;
         AudioDevice* audioDevice;
-
-        bool paused = false;
     };
 
     template<class TScene, typename... TParams>

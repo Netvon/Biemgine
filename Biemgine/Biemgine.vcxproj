@@ -24,6 +24,7 @@
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
     <ClInclude Include="components\CameraComponent.h" />
+    <ClInclude Include="components\AnimatedTextureComponent.h" />
     <ClInclude Include="components\CollidableComponent.h" />
     <ClInclude Include="components\ColorComponent.h" />
     <ClInclude Include="components\Component.h" />
@@ -74,6 +75,7 @@
     <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\AudioComponent.cpp" />
     <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
+    <ClCompile Include="components\AnimatedTextureComponent.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
@@ -211,8 +213,7 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>
-      </LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>

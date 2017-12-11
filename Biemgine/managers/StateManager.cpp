@@ -25,20 +25,6 @@ namespace biemgine
         return window->getRenderHeight();
     }
 
-    void StateManager::pauseGame()
-    {
-        paused = true;
-    }
-
-    void StateManager::resumeGame()
-    {
-        paused = false;
-    }
-
-    bool StateManager::isPaused()
-    {
-        return paused;
-    }
 
     void StateManager::drawBackground(const string& backgroundPath)
     {

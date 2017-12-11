@@ -6,6 +6,7 @@
 #include "../../components/PhysicsComponent.h"
 #include "../../components/GroundedComponent.h"
 #include "../../components/AffectedByGravityComponent.h"
+#include "../../components/CollidableComponent.h"
 
 #include <random>
 #include <math.h>
@@ -29,7 +30,7 @@ namespace biemgine
 
         if (bodies.size() > 0) {
 
-            for (auto pair : bodies) {
+            for (const auto &pair : bodies) {
                 world->DestroyBody(pair.second);
             }
         }
@@ -41,23 +42,24 @@ namespace biemgine
 
     void PhysicsSystem::before()
     {
-        for (auto pair : bodiesUpdated) {
+        for (const auto &pair : bodiesUpdated) {
             bodiesUpdated[pair.first] = false;
         }
     }
 
     void PhysicsSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("physics"))
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
+
+        if (physics == nullptr)
             return;
 
         if (bodies.find(entity.getId()) == bodies.end()) {
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
 
-
         auto affectedByGravity = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
-        auto physics = entity.getComponent<PhysicsComponent>("physics");
+        
         auto position = entity.getComponent<PositionComponent>("position");
 
         auto body = bodies.at(entity.getId());
@@ -131,10 +133,11 @@ namespace biemgine
         //destroy();
     }
 
-    b2Body* PhysicsSystem::createBody(const Entity & entity) {
-
+    b2Body* PhysicsSystem::createBody(const Entity & entity)
+    {
         auto pc = entity.getComponent<PositionComponent>("position");
         auto physics = entity.getComponent<PhysicsComponent>("physics");
+        auto grounded = entity.getComponent<GroundedComponent>("grounded");
 
         b2BodyDef newBodyDef;
 
@@ -143,7 +146,7 @@ namespace biemgine
         else
             newBodyDef.type = b2_staticBody;
 
-        if (entity.hasComponent("grounded")) {
+        if (grounded != nullptr) {
             newBodyDef.fixedRotation = true;
             printf("HasGrounded - ");
         }
@@ -182,6 +185,15 @@ namespace biemgine
         fixture->SetRestitution(0.15f);
         //fixture->SetFriction(1.f);
 
+        auto cc = entity.getComponent<CollidableComponent>("collidable");
+
+        if (entity.hasComponent("collidable")) {
+            b2Filter filter = fixture->GetFilterData();
+            filter.categoryBits = cc->getCategoryBits();
+            filter.maskBits = cc->getMaskBits();
+            fixture->SetFilterData(filter);
+        }
+
         if (entity.hasComponent("grounded")) {
             b2PolygonShape groundShape;
             groundShape.SetAsBox(
@@ -196,6 +208,13 @@ namespace biemgine
             groundFixtureDef.isSensor = true;
 
             b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
+
+            if (entity.hasComponent("collidable")) {
+                b2Filter filter = groundFixture->GetFilterData();
+                filter.categoryBits = cc->getCategoryBits();
+                filter.maskBits = cc->getMaskBits();
+                groundFixture->SetFilterData(filter);
+            }
         }
 
         printf("Adding body with mass: %f, density: %f\n", body->GetMass(), fixture->GetDensity());

@@ -1,5 +1,16 @@
 #include "stdafx.h"
 #include "UniverseBuilder.h"
+#include "..\FileParser.h"
+#include "..\factories\PlanetFactory.h"
+#include "Biemgine.h"
+#include "..\entities\PlayerEntity.h"
+#include "..\entities\MummieAIEntity.h"
+#include "..\entities\SnowmanAIEntity.h"
+
+using biemgine::Entity;
+using biemgine::Color;
+using biemgine::PhysicsComponent;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -9,6 +20,9 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
+        entityManager->addEntity<MummieAIEntity>(300, 200, Color().White(), 50, 50);
+        entityManager->addEntity<SnowmanAIEntity>(300, 250, Color().White(), 50, 50);
+
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
@@ -17,14 +31,16 @@ namespace spacebiem
         map<string, map<string, vector<string>>> levelMap;
 
         if (newGame) {
-            levelMap = fileParser.levelContent("data/savegame.csv");
+            levelMap = fileParser.levelContent("data/level_1.csv");
         }
         else {
             levelMap = fileParser.levelContent("data/savegame.csv");
         }
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();
-        map<string, int> scoreBonus = fileParser.planetScoreContent(); 
+        map<string, int> scoreBonus = fileParser.planetScoreContent();
+
+        int count = 0;
 
         for (auto& o : levelMap)
         {
@@ -124,7 +140,11 @@ namespace spacebiem
                     planetFactory.create(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, resourceFactory, nameGenerator, atmosphereM, scoreBonus);
                 }
                 else {
+                    if (planetScore.empty())
+                        planetScore = "0";
+
                     planetFactory.load(type, stoi(xPos), stoi(yPos), stoi(width), stoi(height), entityManager, planetName, atmosphereM, stoi(planetScore), isDiscovered, flagComponent);
+                    count++;
                 }  
             }
         }

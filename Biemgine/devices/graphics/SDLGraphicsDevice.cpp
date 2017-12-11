@@ -18,7 +18,7 @@ namespace biemgine {
             std::cout << TTF_GetError() << std::endl;
         }
 
-        //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
         //font = TTF_OpenFont("Roboto-Regular.ttf", 20);
 

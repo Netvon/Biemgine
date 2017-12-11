@@ -28,6 +28,7 @@
 #include "..\systems\ResourceCollectingSystem.h"
 
 #include "..\globals\Fonts.h"
+#include "..\globals\Colors.h"
 #include "..\FileParser.h"
 
 using biemgine::TextUIEntity;
@@ -46,14 +47,12 @@ namespace spacebiem
     }
     void returnToGameButtonClicked(StateManager* e)
     {
-        e->navigateTo<LevelScene>();
+        e->navigateTo<LevelScene>(false);
     }
     void returnToMenuButtonClicked(StateManager* e)
     {
         e->navigateTo<MenuScene>();
     }
-
-
 
     void HelpScene::created()
     {
@@ -108,12 +107,12 @@ namespace spacebiem
         auto score = fp.planetScoreContent();
 
         // Planet in the slide
-        if (currentSlide <= 3)      addEntity<PlanetEarthEntity>(planetX, planetY, Color::EarthAtmosphere(), pRadius, pRadius, score["earth"], atmosphere["earth"], "Type: Earth");
-        else if (currentSlide == 4) addEntity<PlanetMoonEntity>(planetX, planetY, Color::White(), pRadius, pRadius, score["moon"], "Type: Moon");
-        else if (currentSlide == 5) addEntity<PlanetSandEntity>(planetX, planetY, Color::SandAtmosphere(), pRadius, pRadius, score["sand"], atmosphere["sand"], "Type: Sand");
-        else if (currentSlide == 6) addEntity<PlanetToxicEntity>(planetX, planetY, Color::ToxicAtmosphere(), pRadius, pRadius, score["toxic"], atmosphere["toxic"], "Type: Toxic");
-        else if (currentSlide == 7) addEntity<PlanetIceEntity>(planetX, planetY, Color::IceAtmosphere(), pRadius, pRadius, score["ice"], atmosphere["ice"], "Type: Ice");
-        else if (currentSlide == 8) addEntity<PlanetLavaEntity>(planetX, planetY, Color::LavaAtmosphere(), pRadius, pRadius, score["lava"], atmosphere["lava"], "Type: Lava");
+        if (currentSlide > 1 && currentSlide <= 4) addEntity<PlanetEarthEntity>(planetX, planetY, Colors::EarthAtmosphere(), pRadius, pRadius, score["earth"], atmosphere["earth"], "Type: Earth");
+        else if (currentSlide == 5) addEntity<PlanetMoonEntity>(planetX, planetY, Colors::MoonAtmosphere(), pRadius, pRadius, score["moon"], "Type: Moon");
+        else if (currentSlide == 6) addEntity<PlanetSandEntity>(planetX, planetY, Colors::SandAtmosphere(), pRadius, pRadius, score["sand"], atmosphere["sand"], "Type: Sand");
+        else if (currentSlide == 7) addEntity<PlanetToxicEntity>(planetX, planetY, Colors::ToxicAtmosphere(), pRadius, pRadius, score["toxic"], atmosphere["toxic"], "Type: Toxic");
+        else if (currentSlide == 8) addEntity<PlanetIceEntity>(planetX, planetY, Colors::IceAtmosphere(), pRadius, pRadius, score["ice"], atmosphere["ice"], "Type: Ice");
+        else if (currentSlide == 9) addEntity<PlanetLavaEntity>(planetX, planetY, Colors::LavaAtmosphere(), pRadius, pRadius, score["lava"], atmosphere["lava"], "Type: Lava");
 
 
         int dialogX = 70;
@@ -124,6 +123,7 @@ namespace spacebiem
         int keyHeight = 50;
         string moveLeft = "textures/keys/LeftArrow.png";
         string moveRight = "textures/keys/RightArrow.png";
+        string pause = "textures/keys/P.png";
         string jump = "textures/keys/Space.png";
         int textOffset = 75;
 
@@ -131,8 +131,27 @@ namespace spacebiem
         // Info about things
         switch (currentSlide){
         case 1:
-            // slide 1 movement right/left & jumping
-            addEntity<TextUIEntity>(Fonts::Roboto(50),dialogX, dialogX, Color::White(), "Help 1: Moving & jumping");
+            // slide 1 level info
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 1: The beginning");
+
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "When starting a new level, you first choose a difficulty.");
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "Harder levels are generated with more dangerous planets than easier levels.");
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 3), Color::White(), "This makes the level less survivable, but makes it yield more resources.");
+
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 5), Color::White(), "Use the");
+            addEntity<SpriteEntity>(pause, textOffset + dialogX, dialogY + (yIncr * 5) - (keyHeight / 4), Color::White(), keyWidth, keyHeight);
+            addEntity<TextUIEntity>(Fonts::Roboto(), textOffset + keyWidth + dialogX, dialogY + (yIncr * 5), Color::White(), "  key in-game to open a menu.");
+
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 6), Color::White(), "Each time when you return to the menu, the game gets saved.");
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 7), Color::White(), "So you can return later to play further.");
+
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 9), Color::White(), "When you're gameover your save gets deleted, but your resources are saved.");
+            addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 10), Color::White(), "You can later use these resources in the shop to buy upgrades for your player (not available yet).");
+
+            break;
+        case 2:
+            // slide 2 movement right/left & jumping
+            addEntity<TextUIEntity>(Fonts::Roboto(50),dialogX, dialogX, Color::White(), "Help 2: Moving & jumping");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "By using the wonders of your legs you are able to move around a planet.");
 
@@ -158,10 +177,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 10), Color::White(), "So be wise with the choice of trajectory from the planet through endless empty space...");
 
             break;
-        case 2:
-            // slide 2 UI
+        case 3:
+            // slide 3 UI
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 2: Resources, Oxygen and Score");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 3: Resources, Oxygen and Score");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This is your resource inventory:");
 
@@ -184,10 +203,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 15), Color::White(), "Try to get as much as possible and compare it with your friends.");
 
             break;
-        case 3:
-            // slide 3 earth
+        case 4:
+            // slide 4 earth
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 3: Planet Earth");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 4: Planet Earth");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is a safe-zone.");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the middle belt of the planetary system.");
@@ -196,10 +215,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 5), Color::White(), "Oxygen: " + string((atmosphere["earth"] >= 1)? "Increase" : (atmosphere["earth"] >= -1)? "Decrease" : "Heavy decrease"));
 
             break;
-        case 4:
-            // slide 4 moon
+        case 5:
+            // slide 5 moon
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 4: Planet Moon");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 5: Planet Moon");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is mostly a way to other planets.");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the inner belt of the planetary system, or in the asteroid belts.");
@@ -208,10 +227,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 5), Color::White(), "Oxygen: Decrease");
 
             break;
-        case 5:
-            // slide 5 sand
+        case 6:
+            // slide 6 sand
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 5: Planet Sand");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 6: Planet Sand");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is partly a safe zone, watch out for the mummies!");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the inner belt of the planetary system.");
@@ -220,10 +239,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 5), Color::White(), "Oxygen: " + string((atmosphere["sand"] >= 1) ? "Increase" : (atmosphere["sand"] >= -1) ? "Decrease" : "Heavy decrease"));
 
             break;
-        case 6:
-            // slide 6 toxic
+        case 7:
+            // slide 7 toxic
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 6: Planet Toxic");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 7: Planet Toxic");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is dangerous, don't stay here too long!");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the outer belt of the planetary system.");
@@ -232,10 +251,10 @@ namespace spacebiem
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 5), Color::White(), "Oxygen: " + string((atmosphere["toxic"] >= 1) ? "Increase" : (atmosphere["toxic"] >= -1) ? "Decrease" : "Heavy decrease"));
 
             break;
-        case 7:
-            // slide 7 ice
+        case 8:
+            // slide 8 ice
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 7: Planet Ice");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 8: Planet Ice");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is partly a safe zone, watch out for the snowmen!");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the outer belt of the planetary system.");
@@ -245,10 +264,10 @@ namespace spacebiem
 
 
             break;
-        case 8:
+        case 9:
             // slide 8 lava
 
-            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 8: Planet Lava");
+            addEntity<TextUIEntity>(Fonts::Roboto(50), dialogX, dialogX, Color::White(), "Help 9: Planet Lava");
 
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 1), Color::White(), "This planet is highly dangerous!");
             addEntity<TextUIEntity>(Fonts::Roboto(), dialogX, dialogY + (yIncr * 2), Color::White(), "It is mostly spawned in the middle or the inner belt of the planetary system.");
@@ -259,8 +278,13 @@ namespace spacebiem
             break;
         }
 
-        if(currentSlide != 8) addEntity<PlayerEntity>(planetX + (pRadius / 2), planetY - 50, Color::White(), 25.f, 50.f, 1.0f, false);
+        if(currentSlide != 9) addEntity<PlayerEntity>(planetX + (pRadius / 2), planetY - 50, Color::White(), 25.f, 50.f, 1.0f, false);
 
+    }
+
+    void HelpScene::sceneEnd()
+    {
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
     }
 
     void HelpScene::input()
@@ -283,11 +307,6 @@ namespace spacebiem
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-    }
-
-    void HelpScene::updateSlide()
-    {
-        
     }
 
 }

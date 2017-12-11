@@ -13,6 +13,9 @@
 #include "..\entities\PlanetLavaEntity.h"
 #include "..\entities\ResourceEntity.h"
 
+#include "..\entities\MummieAIEntity.h"
+#include "..\entities\SnowmanAIEntity.h"
+
 using std::map;
 using std::sprintf;
 using std::type_index;
@@ -30,7 +33,9 @@ namespace spacebiem
             { type_index(typeid(PlanetSandEntity)), "sand" },
             { type_index(typeid(PlanetIceEntity)), "ice" },
             { type_index(typeid(PlanetLavaEntity)), "lava" },
-            { type_index(typeid(ResourceEntity)), "resource" }
+            { type_index(typeid(ResourceEntity)), "resource" },
+            { type_index(typeid(MummieAIEntity)), "aimummie" },
+            { type_index(typeid(SnowmanAIEntity)), "aisnowman" }
         };
 
         auto find = typemap.find(type_index(typeid(entity)));
@@ -46,8 +51,8 @@ namespace spacebiem
     {
         saveBlobEntityComponentBuilder.prepare("position_component");
 
-        saveBlobEntityComponentBuilder.addValue(to_string(position.getX()));
-        saveBlobEntityComponentBuilder.addValue(to_string(position.getY()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getOriginX()));
+        saveBlobEntityComponentBuilder.addValue(to_string(position.getOriginY()));
         saveBlobEntityComponentBuilder.addValue(to_string(backgroundTexture.getWidth()));
         saveBlobEntityComponentBuilder.addValue(to_string(backgroundTexture.getHeight()));
 

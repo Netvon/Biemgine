@@ -28,6 +28,9 @@ namespace biemgine
         void pauzeMusic();
         void resumeMusic();
 
+        void stopSoundEffect(std::string path);
+        void fadeOutSoundEffect(std::string path, int fadeOutTime);
+
     private:
         std::map<std::string, Mix_Chunk*> soundEffects;
         std::map<std::string, Mix_Music*> music;
