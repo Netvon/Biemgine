@@ -27,36 +27,59 @@ namespace biemgine
 
     inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager)
     {
+        //std::cout << std::endl;
+
         manager->preUpdate();
 
         for (Entity * e : entities) {
 
             if (canUpdate(*e))
+            {
+                //auto start = std::chrono::high_resolution_clock::now();
                 manager->acceptForUpdate(*e);
+
+                //auto end = std::chrono::high_resolution_clock::now();
+               // std::chrono::duration<double> diff = end - start;
+
+                //std::cout << std::fixed;
+                //std::cout << typeid(*e).name() << "time: " << diff.count() << std::endl;
+            }
+                
         }
+
+        //std::cout << std::endl;
 
         manager->postUpdate();
     }
 
     inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
     {
-        //auto start = std::chrono::high_resolution_clock::now();
+        
+       
 
         manager->preUpdate(deltaTime);
 
         for (Entity * e : entities) {
 
-            if (canUpdate(*e)) 
-                manager->acceptForUpdate(*e, deltaTime);
             
+
+            if (canUpdate(*e))
+            {
+               
+
+                manager->acceptForUpdate(*e, deltaTime);
+
+               
+            }
         }
+
+           
 
         manager->postUpdate(deltaTime);
 
-        /*auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> diff = end - start;*/
+       
 
-        //printf("Timed Update took %f s\n", diff.count());
+       
     }
 
     Entity* EntityManager::getEntity(int id) const
@@ -83,10 +106,7 @@ namespace biemgine
     {
         if (!e.isAlive()) return false;
 
-        if (camera != nullptr &&
-            e.hasComponent("position") &&
-            !e.hasComponent("camera") &&
-            !e.hasComponent("ui") ) {
+        if (camera != nullptr && e.isCheckable() ) {
 
             auto pc = e.getComponent<PositionComponent>("position");
 
