@@ -132,6 +132,11 @@ namespace spacebiem
         saveScore();
     }
 
+    void LevelScene::close()
+    {
+        saveGame();
+    }
+
     void LevelScene::saveScore()
     {
         ScoreUIFactory sf;
