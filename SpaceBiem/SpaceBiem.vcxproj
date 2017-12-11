@@ -155,7 +155,6 @@
   <ItemGroup>
     <ClInclude Include="Colors.h" />
     <ClInclude Include="components\AIComponent.h" />
-    <ClInclude Include="components\CameraComponent.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\AIEntity.h" />
@@ -214,7 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="components\AIComponent.cpp" />
-    <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\AIEntity.cpp" />

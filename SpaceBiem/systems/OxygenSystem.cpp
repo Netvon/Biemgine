@@ -3,6 +3,7 @@
 #include "OxygenSystem.h"
 
 using biemgine::PositionComponent;
+using biemgine::CollidableComponent;
 using biemgine::AudioComponent;
 
 namespace spacebiem
