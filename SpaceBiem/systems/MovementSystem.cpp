@@ -39,8 +39,7 @@ namespace spacebiem
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto position = entity.getComponent<PositionComponent>("position");
-            
+            auto position = entity.getComponent<PositionComponent>("position");            
             auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
             
 
@@ -72,9 +71,7 @@ namespace spacebiem
 
                     if (physics->getVelocity().length() > 1.0f) {
 
-                        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                        auto maxSpeed = 32.0f;
-                        texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                        setAnimationSpeed(escapeVelocity, physics, texture);
                     }
                     else
                     {
@@ -107,5 +104,12 @@ namespace spacebiem
 
             
         }
+    }
+
+    void MovementSystem::setAnimationSpeed(const float &escapeVelocity, std::shared_ptr<biemgine::PhysicsComponent> &physics, std::shared_ptr<biemgine::AnimatedTextureComponent> &texture)
+    {
+        auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+        constexpr float maxAnimationSpeed = 32.0f;
+        texture->setPlaybackSpeed(maxAnimationSpeed * veloPercentage);
     }
 }

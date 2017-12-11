@@ -23,6 +23,10 @@ namespace spacebiem
             return 160.f;
         }
 
+        constexpr static float getGConstant() {
+            return 6.67 * pow(10.0f, -11.f);
+        }
+
     private:
         float offsetX, offsetY, w, h, r;
     };

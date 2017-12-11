@@ -20,6 +20,11 @@ namespace biemgine
         void setFallingTowardsY(float value);
         Vector getFallingTowards();
 
+        float getMass() const;
+        float setMass(float pMass);
+
+        float getRadias
+
     private:
         bool isAffected;
 
