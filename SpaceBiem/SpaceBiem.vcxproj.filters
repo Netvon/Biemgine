@@ -163,6 +163,15 @@
     <ClInclude Include="scenes\HelpScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="components\AIComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\AIMovementSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\AIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
     <ClInclude Include="scenes\GameoverScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
@@ -339,6 +348,15 @@
       <Filter>entities</Filter>
     </ClCompile>
     <ClCompile Include="entities\PlanetLavaEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\AIMovementSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\AIEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>

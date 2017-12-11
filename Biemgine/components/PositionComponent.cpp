@@ -63,8 +63,19 @@ namespace biemgine
     {
         rotation = newRotation;
     }
+
     void PositionComponent::add(float x, float y, float z)
     {
         location += { x, y, z };
+    }
+
+    float PositionComponent::distance(const PositionComponent & otherPosition)
+    {
+        return location.distance(otherPosition.getLocation());
+    }
+
+    const Vector & PositionComponent::getLocation() const
+    {
+        return location;
     }
 }

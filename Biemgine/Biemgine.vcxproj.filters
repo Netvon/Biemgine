@@ -297,6 +297,9 @@
     <ClCompile Include="components\CameraComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
     <ClCompile Include="systems\CameraSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>

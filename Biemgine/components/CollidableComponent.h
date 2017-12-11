@@ -9,12 +9,23 @@
 
 using std::map;
 
+enum CollisionCategory
+{
+    NONE = 0x0001,
+    PLANET = 0x0002,
+    PLAYER = 0x0004,
+    AI = 0x0008,
+    RESOURCE = 0x0010
+};
+
 namespace biemgine
 {
     class BIEMGINE CollidableComponent
         : public Component
     {
     public:
+        CollidableComponent(int pCategoryBits = CollisionCategory::NONE, int pMaskBits = CollisionCategory::NONE);
+
         bool collides(const Entity & entity) const;
         void add(const Entity & entity);
         void remove(const Entity & entity);
@@ -22,7 +33,13 @@ namespace biemgine
         bool visited(const Entity & entity) const;
         map<int, bool>& getCollisions();
 
+        int getCategoryBits() const;
+        int getMaskBits() const;
+
     private:
         map<int, bool> collisions;
+
+        int categoryBits = CollisionCategory::NONE;
+        int maskBits = CollisionCategory::NONE;
     };
 }

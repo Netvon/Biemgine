@@ -1,5 +1,15 @@
 #include "stdafx.h"
 #include "UniverseBuilder.h"
+#include "..\FileParser.h"
+#include "..\factories\PlanetFactory.h"
+#include "Biemgine.h"
+#include "..\entities\PlayerEntity.h"
+#include "..\entities\AIEntity.h"
+
+using biemgine::Entity;
+using biemgine::Color;
+using biemgine::PhysicsComponent;
+using biemgine::PositionComponent;
 
 namespace spacebiem
 {
@@ -9,6 +19,8 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
+        entityManager->addEntity<AIEntity>(300, 200, Color().White(), 25, 50);
+
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
@@ -17,7 +29,7 @@ namespace spacebiem
         map<string, map<string, vector<string>>> levelMap;
 
         if (newGame) {
-            levelMap = fileParser.levelContent("data/savegame.csv");
+            levelMap = fileParser.levelContent("data/level_1.csv");
         }
         else {
             levelMap = fileParser.levelContent("data/savegame.csv");

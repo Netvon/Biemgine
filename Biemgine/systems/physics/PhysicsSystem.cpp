@@ -6,6 +6,7 @@
 #include "../../components/PhysicsComponent.h"
 #include "../../components/GroundedComponent.h"
 #include "../../components/AffectedByGravityComponent.h"
+#include "../../components/CollidableComponent.h"
 
 #include <random>
 #include <math.h>
@@ -130,8 +131,8 @@ namespace biemgine
         //destroy();
     }
 
-    b2Body* PhysicsSystem::createBody(const Entity & entity) {
-
+    b2Body* PhysicsSystem::createBody(const Entity & entity)
+    {
         auto pc = entity.getComponent<PositionComponent>("position");
         auto physics = entity.getComponent<PhysicsComponent>("physics");
 
@@ -181,6 +182,15 @@ namespace biemgine
         fixture->SetRestitution(0.15f);
         //fixture->SetFriction(1.f);
 
+        auto cc = entity.getComponent<CollidableComponent>("collidable");
+
+        if (entity.hasComponent("collidable")) {
+            b2Filter filter = fixture->GetFilterData();
+            filter.categoryBits = cc->getCategoryBits();
+            filter.maskBits = cc->getMaskBits();
+            fixture->SetFilterData(filter);
+        }
+
         if (entity.hasComponent("grounded")) {
             b2PolygonShape groundShape;
             groundShape.SetAsBox(
@@ -195,6 +205,13 @@ namespace biemgine
             groundFixtureDef.isSensor = true;
 
             b2Fixture* groundFixture = body->CreateFixture(&groundFixtureDef);
+
+            if (entity.hasComponent("collidable")) {
+                b2Filter filter = groundFixture->GetFilterData();
+                filter.categoryBits = cc->getCategoryBits();
+                filter.maskBits = cc->getMaskBits();
+                groundFixture->SetFilterData(filter);
+            }
         }
 
         printf("Adding body with mass: %f, density: %f\n", body->GetMass(), fixture->GetDensity());

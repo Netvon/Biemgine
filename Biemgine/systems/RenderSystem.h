@@ -1,7 +1,7 @@
 #pragma once
 #include "System.h"
 #include "../entities/Entity.h"
-#include "../components/CameraComponent.h"
+#include "..\components\CameraComponent.h"
 #include "..\components\PositionComponent.h"
 #include "../components/TextComponent.h"
 #include "..\components\TextureComponent.h"
