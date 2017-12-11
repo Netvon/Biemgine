@@ -57,6 +57,7 @@ namespace spacebiem
         addEntity<TextUIEntity>(Fonts::Roboto(), x, 325, Color::White(), "Stijn Mommersteeg", true);
         addEntity<TextUIEntity>(Fonts::Roboto(), x, 350, Color::White(), "Sjonnie Immink", true);
         addEntity<TextUIEntity>(Fonts::Roboto(), x, 375, Color::White(), "Willy van Eck", true);
+        addEntity<TextUIEntity>(Fonts::Roboto(), x, 400, Color::White(), "El Cheapo Coffee", true);
 
         addEntity<TextUIEntity>(Fonts::Roboto(), x, 450, Color{ 232, 228, 41 }, "Packages: ", true);
         addEntity<SpriteEntity>("textures/SDL_logo.png", static_cast<float>(x - 100), 425.f, Color::White(), -1, -1, 100u);
