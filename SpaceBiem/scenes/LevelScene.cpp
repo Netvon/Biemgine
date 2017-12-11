@@ -32,6 +32,7 @@
 #include "..\globals\Fonts.h"
 
 #include <functional>
+#include <chrono>
 #include "..\factories\SaveBlobFactory.h"
 #include "..\globals\Functions.h"
 
@@ -234,7 +235,15 @@ namespace spacebiem
     void LevelScene::update()
     {
         if (!isPaused) {
+            //auto start = std::chrono::high_resolution_clock::now();
+
             updateEntities();
+
+            //auto end = std::chrono::high_resolution_clock::now();
+            //std::chrono::duration<double> diff = end - start;
+
+            //std::cout << std::fixed;
+            //std::cout << "time: " << diff.count() << std::endl;
         }
     }
 
@@ -264,7 +273,12 @@ namespace spacebiem
         
 
         getTransitionManager().drawBackground("textures/space.png");
+
+       
+      
         updateEntities(deltaTime);
+
+        
     }
 
 

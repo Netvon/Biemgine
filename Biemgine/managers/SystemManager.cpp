@@ -46,7 +46,7 @@ namespace biemgine
     inline void SystemManager::acceptForUpdate(const Entity & entity)
     {
         for (auto* s : systems) {
-            if (!s->hasTimedOut()) s->update(entity);
+            s->update(entity);
         }
     }
 
