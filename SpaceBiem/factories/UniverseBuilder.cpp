@@ -4,7 +4,8 @@
 #include "..\factories\PlanetFactory.h"
 #include "Biemgine.h"
 #include "..\entities\PlayerEntity.h"
-#include "..\entities\AIEntity.h"
+#include "..\entities\MummieAIEntity.h"
+#include "..\entities\SnowmanAIEntity.h"
 
 using biemgine::Entity;
 using biemgine::Color;
@@ -19,7 +20,8 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
-        entityManager->addEntity<AIEntity>(300, 200, Color().White(), 25, 50);
+        entityManager->addEntity<MummieAIEntity>(300, 200, Color().White(), 50, 50);
+        entityManager->addEntity<SnowmanAIEntity>(300, 250, Color().White(), 50, 50);
 
         FileParser fileParser;
         PlanetFactory planetFactory;

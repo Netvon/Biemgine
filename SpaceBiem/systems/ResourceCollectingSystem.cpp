@@ -1,6 +1,4 @@
-
 #include "ResourceCollectingSystem.h"
-
 
 namespace spacebiem
 {

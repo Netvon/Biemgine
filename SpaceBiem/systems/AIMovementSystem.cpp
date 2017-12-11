@@ -6,6 +6,7 @@ using biemgine::PositionComponent;
 using biemgine::AffectedByGravityComponent;
 using biemgine::Vector;
 using biemgine::RandomGenerator;
+using biemgine::AnimatedTextureComponent;
 
 #include "stdafx.h"
 
@@ -31,12 +32,33 @@ namespace spacebiem
         for (const Entity * entity : ais) {
             auto grounded = entity->getComponent<GroundedComponent>("grounded");
             auto affected = entity->getComponent<AffectedByGravityComponent>("affectedByGravity");
+            auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
+            auto physics = entity->getComponent<PhysicsComponent>("physics");
+
+            constexpr float escapeVelocity = 140.f;
+
+            if (grounded->isGrounded()) {
+                if (texture->isPausedOrStopped()) {
+                    texture->play();
+                }
+
+                if (physics->getVelocity().length() > 1.0f) {
+                    auto veloPercentage = escapeVelocity / physics->getVelocity().length();
+                    auto maxSpeed = 32.0f;
+                    texture->setPlaybackSpeed(maxSpeed * veloPercentage);
+                }
+                else {
+                    texture->stop();
+                }
+            }
+            else {
+                texture->stop();
+            }
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
                 return;
 
             auto ai = entity->getComponent<AIComponent>("ai");
-            auto physics = entity->getComponent<PhysicsComponent>("physics");
             auto position = entity->getComponent<PositionComponent>("position");
 
             const Entity * player = findPlayerInRange(entity);
@@ -55,7 +77,6 @@ namespace spacebiem
                 diff += position->getLocation() - pc->getLocation();
             }
 
-            constexpr float escapeVelocity = 140.f;
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
             auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();

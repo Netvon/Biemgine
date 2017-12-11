@@ -49,7 +49,6 @@ namespace spacebiem
 
     void LevelScene::created()
     {
-
         enableCamera();
         enableRendering();
         enablePhysics();
@@ -91,10 +90,8 @@ namespace spacebiem
 
         UniverseBuilder uB;
         if (newGame) {
-
             UniverseGenerator uG;
             uG.generate(difficulty);
-
 
             uB.build(getEntityManager(), true);
         }
