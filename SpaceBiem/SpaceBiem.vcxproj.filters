@@ -199,6 +199,12 @@
     <ClInclude Include="globals\Colors.h">
       <Filter>globals</Filter>
     </ClInclude>
+    <ClInclude Include="entities\MummieAIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\SnowmanAIEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -360,6 +366,12 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="entities\AIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\MummieAIEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\SnowmanAIEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
