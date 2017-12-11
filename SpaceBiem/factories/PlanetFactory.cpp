@@ -1,32 +1,33 @@
 #include "Biemgine.h"
 #include "PlanetFactory.h"
+#include "../globals/Colors.h"
 
 namespace spacebiem
 {
     void PlanetFactory::create(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, ResourceFactory resourceFactory , NameGenerator nameGenerator, map<string, float> atmosphereM, map<string, int> scoreBonus)
     {
         if (type == "moon") {
-            entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, scoreBonus["moon"], nameGenerator.getName());
+            entityManager->addEntity<PlanetMoonEntity>(pX, pY, Colors::MoonAtmosphere(), width, height, scoreBonus["moon"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "moon", entityManager);
         }
         else if (type == "earth") {
-            entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::EarthAtmosphere(), width, height, scoreBonus["earth"], atmosphereM["earth"], nameGenerator.getName());
+            entityManager->addEntity<PlanetEarthEntity>(pX, pY, Colors::EarthAtmosphere(), width, height, scoreBonus["earth"], atmosphereM["earth"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "earth", entityManager);
         }
         else if (type == "sand") {
-            entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::SandAtmosphere(), width, height, scoreBonus["sand"], atmosphereM["sand"], nameGenerator.getName());
+            entityManager->addEntity<PlanetSandEntity>(pX, pY, Colors::SandAtmosphere(), width, height, scoreBonus["sand"], atmosphereM["sand"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "sand", entityManager);
         }
         else if (type == "toxic") {
-            entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], nameGenerator.getName());
+            entityManager->addEntity<PlanetToxicEntity>(pX, pY, Colors::ToxicAtmosphere(), width, height, scoreBonus["toxic"], atmosphereM["toxic"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "toxic", entityManager);
         }
         else if (type == "ice") {
-            entityManager->addEntity<PlanetIceEntity>(pX, pY, Color::IceAtmosphere(), width, height, scoreBonus["ice"], atmosphereM["ice"], nameGenerator.getName());
+            entityManager->addEntity<PlanetIceEntity>(pX, pY, Colors::IceAtmosphere(), width, height, scoreBonus["ice"], atmosphereM["ice"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "ice", entityManager);
         }
         else if (type == "lava") {
-            entityManager->addEntity<PlanetLavaEntity>(pX, pY, Color::LavaAtmosphere(), width, height, scoreBonus["lava"], atmosphereM["lava"], nameGenerator.getName());
+            entityManager->addEntity<PlanetLavaEntity>(pX, pY, Colors::LavaAtmosphere(), width, height, scoreBonus["lava"], atmosphereM["lava"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "lava", entityManager);
         }
     }
@@ -36,22 +37,22 @@ namespace spacebiem
         int id;
 
         if (type == "moon") {
-            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Color::White(), width, height, planetScore, name);
+            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Colors::MoonAtmosphere(), width, height, planetScore, name);
         }
         else if (type == "earth") {
-            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Color::EarthAtmosphere(), width, height, planetScore, atmosphereM["earth"], name);
+            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Colors::EarthAtmosphere(), width, height, planetScore, atmosphereM["earth"], name);
         }
         else if (type == "sand") {
-            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Color::SandAtmosphere(), width, height, planetScore, atmosphereM["sand"], name);
+            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Colors::SandAtmosphere(), width, height, planetScore, atmosphereM["sand"], name);
         }
         else if (type == "toxic") {
-            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Color::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name);
+            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Colors::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name);
         }
         else if (type == "ice") {
-            id = entityManager->addEntity<PlanetIceEntity>(pX, pY, Color::IceAtmosphere(), width, height, planetScore, atmosphereM["ice"], name);
+            id = entityManager->addEntity<PlanetIceEntity>(pX, pY, Colors::IceAtmosphere(), width, height, planetScore, atmosphereM["ice"], name);
         }
         else if (type == "lava") {
-            id = entityManager->addEntity<PlanetLavaEntity>(pX, pY, Color::LavaAtmosphere(), width, height, planetScore, atmosphereM["lava"], name);
+            id = entityManager->addEntity<PlanetLavaEntity>(pX, pY, Colors::LavaAtmosphere(), width, height, planetScore, atmosphereM["lava"], name);
         }
 
         auto planet = entityManager->getEntity(id);

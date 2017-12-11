@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
