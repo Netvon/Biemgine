@@ -52,12 +52,16 @@ namespace biemgine
         void setTag(string pTag);
         string getTag() const;
 
+        bool isCheckable() const;
+
         void calculateBounds();
+        void checkOCCheckable();
        
         int minX;
         int maxX;
         int minY;
         int maxY;
+        
 
     private:
         int id;
@@ -65,6 +69,7 @@ namespace biemgine
         mutable bool alive = true;
 
         string tag;
+        bool isOCCheckable;
     };
 
     template<typename TComponent>
