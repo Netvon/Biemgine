@@ -29,7 +29,7 @@ namespace spacebiem
         addComponent<ResourceBonusComponent>("resourcebonus", rName, 1);
         addComponent<CollidableComponent>("collidable", CollisionCategory::RESOURCE, CollisionCategory::PLANET | CollisionCategory::PLAYER);
         addComponent<GroundedComponent>("grounded");
-        addComponent<AudioComponent>("audio", "audio/" + rName + ".mp3",0, -1, 64);
+        addComponent<AudioComponent>("audio", "audio/" + rName + ".mp3",0, -1, 48);
 
         setTag("resource");
     }
