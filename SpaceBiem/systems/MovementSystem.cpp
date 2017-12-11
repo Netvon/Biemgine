@@ -64,7 +64,7 @@ namespace spacebiem
 
             //printf("%f\n", physics->getFriction());
 
-            if (texture != nullptr) {
+           /* if (texture != nullptr) {
                 if (grounded->isGrounded()) {
 
                     if (texture->isPausedOrStopped())
@@ -84,7 +84,7 @@ namespace spacebiem
                 else {
                     texture->stop();
                 }
-            }
+            }*/
 
             //printf("Velo: %f\n", physics->getVelocity().length());
 

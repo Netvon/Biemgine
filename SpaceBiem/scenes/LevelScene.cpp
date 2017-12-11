@@ -33,6 +33,7 @@
 
 #include <functional>
 #include "..\factories\SaveBlobFactory.h"
+#include "..\globals\Functions.h"
 
 using biemgine::TextComponent;
 using biemgine::TextEntity;
@@ -42,10 +43,6 @@ using std::function;
 
 namespace spacebiem
 {
-    void hover(StateManager* e)
-    {
-        e->getAudioDevice().playSoundEffect("audio/buttonhover.mp3", 0, -1, 128);
-    }
 
     void LevelScene::created()
     {
@@ -114,19 +111,19 @@ namespace spacebiem
             [&](StateManager* e) {
             isPaused = false;
             updateMenu();
-        }, hover, "pause_menu");
+        }, nullptr, "pause_menu");
 
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
             [this](StateManager* e) {
             saveGame();
             e->navigateTo<HelpScene>(true);
-        }, hover, "pause_menu");
+        }, nullptr, "pause_menu");
 
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png",
             [this](StateManager* e) {
             saveGame();
             e->navigateTo<MenuScene>();
-        }, hover, "pause_menu");
+        }, nullptr, "pause_menu");
 
         updateMenu();
 

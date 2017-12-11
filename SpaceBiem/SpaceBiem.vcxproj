@@ -153,7 +153,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Colors.h" />
     <ClInclude Include="components\AIComponent.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
@@ -187,8 +186,10 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
+    <ClInclude Include="globals\Functions.h" />
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />

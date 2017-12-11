@@ -17,6 +17,7 @@ using biemgine::CameraComponent;
 #include "../components/ScoreComponent.h"
 #include "../components/ResourceComponent.h"
 #include "../components/MovementComponent.h"
+#include "../globals/Functions.h"
 
 namespace spacebiem
 {
@@ -34,6 +35,12 @@ namespace spacebiem
         addComponent("collidable", new CollidableComponent(CollisionCategory::PLAYER, CollisionCategory::AI | CollisionCategory::RESOURCE | CollisionCategory::PLANET));
         addComponent("movement", new MovementComponent);
         if(focused) addComponent("camera", new CameraComponent);
+
+        auto grounded = getComponent<GroundedComponent>("grounded");
+        auto texture = getComponent<AnimatedTextureComponent>("texture");
+        auto physics = getComponent<PhysicsComponent>("physics");
+
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
 
         setTag("player");
     }
