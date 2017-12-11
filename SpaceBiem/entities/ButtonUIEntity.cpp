@@ -16,13 +16,21 @@ namespace spacebiem
 {
     ButtonUIEntity::ButtonUIEntity(float x, float y, Color buttonColor, Color textcolor, Size size, const string& pText, const string& texturePath, std::function<void(StateManager*)> onClick, std::function<void(StateManager*)> onEnter, string tag)
     {
+        std::function<bool()> ifEnabled = [this]() {
+            auto ui = getComponent<UIComponent>("ui");
+            if (ui == nullptr)
+                return false;
+
+            return ui->isEnabled();
+        };
+
         auto click = Functions::combine<StateManager*>(
-            Functions::buttonClickSound(),
+            Functions::do_if(ifEnabled, Functions::buttonClickSound()),
             onClick
         );
 
         auto hover = Functions::combine<StateManager*>(
-            Functions::buttonHoverSound(),
+            Functions::do_if(ifEnabled, Functions::buttonHoverSound()),
             onEnter
         );
 
