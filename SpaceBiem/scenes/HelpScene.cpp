@@ -264,6 +264,11 @@ namespace spacebiem
 
     }
 
+    void HelpScene::sceneEnd()
+    {
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
+    }
+
     void HelpScene::input()
     {
         if (im.isKeyDown("Q")) {
@@ -284,11 +289,6 @@ namespace spacebiem
     {
         getTransitionManager().drawBackground("textures/space.png");
         updateEntities(deltaTime);
-    }
-
-    void HelpScene::updateSlide()
-    {
-        
     }
 
 }
