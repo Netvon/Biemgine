@@ -20,6 +20,12 @@ enum CollisionCategory
 
 namespace biemgine
 {
+    struct CollideInfo
+    {
+        const Entity * entity;
+        bool colliding = false;
+    };
+
     class BIEMGINE CollidableComponent
         : public Component
     {
@@ -30,16 +36,17 @@ namespace biemgine
         void add(const Entity & entity);
         void remove(const Entity & entity);
 
-        bool visited(const Entity & entity) const;
-        map<int, bool>& getCollisions();
+        vector<CollideInfo>& getCollisions();
 
         int getCategoryBits() const;
         int getMaskBits() const;
 
     private:
-        map<int, bool> collisions;
+        vector<CollideInfo> collisions;
 
         int categoryBits = CollisionCategory::NONE;
         int maskBits = CollisionCategory::NONE;
+
+        CollideInfo createCollideInfo(const Entity * entity, bool colliding = false) const;
     };
 }
