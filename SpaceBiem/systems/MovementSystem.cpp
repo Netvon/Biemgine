@@ -39,7 +39,7 @@ namespace spacebiem
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto position = entity.getComponent<PositionComponent>("position");            
+            auto position = entity.getComponent<PositionComponent>("position");
             auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
             
 
@@ -54,7 +54,7 @@ namespace spacebiem
             Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
             Vector diff = centerOfGravity - centerOfSatellite;
 
-            constexpr float escapeVelocity = 140.f;
+            constexpr float escapeVelocity = 120.f;
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
             auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;

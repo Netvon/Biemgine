@@ -54,7 +54,7 @@ namespace spacebiem
                  multiplier = 1.0f;
 
             constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-            auto movementForce = (physics->getMass() * gravityConstant) * (12.0f * multiplier);
+            auto movementForce = (physics->getMass() * gravityConstant) * (10.0f * multiplier);
             
             diff *= movementForce;
 

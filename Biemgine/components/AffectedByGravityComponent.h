@@ -21,13 +21,16 @@ namespace biemgine
         Vector getFallingTowards();
 
         float getMass() const;
-        float setMass(float pMass);
-
-        float getRadias
+        void setMass(float pMass);
+        float getRadius() const;
+        void setRadius(float pRadius);
+        float getEscapeVelocity() const;
 
     private:
         bool isAffected;
 
         float fallingTowardsX, fallingTowardsY = 0.0f;
+        float mass;
+        float radius;
     };
 }
