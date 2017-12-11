@@ -22,6 +22,6 @@ namespace spacebiem
     private:
         vector<Entity> entitiesWithAtmospheres;
         vector<Entity> entitiesWithOxygen;
-
+        std::shared_ptr<Entity> currentAtmosphereEntity = nullptr;
     };
 }
