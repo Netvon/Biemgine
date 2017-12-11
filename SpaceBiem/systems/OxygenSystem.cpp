@@ -27,11 +27,9 @@ namespace spacebiem
         entitiesWithOxygen.push_back(entity);
     }
 
-
-    void OxygenSystem::after() {
-
-        for (Entity& entity : entitiesWithOxygen) {
-
+    void OxygenSystem::after()
+    {
+        for (Entity & entity : entitiesWithOxygen) {
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
             if (entity.hasComponent("position")) {
@@ -81,8 +79,7 @@ namespace spacebiem
                             auto audioComponent = oc->getAtmosphereEntity()->getComponent<AudioComponent>("audio");
                             getStateManager()->getAudioDevice().fadeOutSoundEffect(audioComponent->getPath(), audioComponent->getFadeInTime());
                         }
-                        
-                        
+
                         oc->setAtmosphereEntity(nullptr);
                         break;
                     }
@@ -90,6 +87,7 @@ namespace spacebiem
             }
 
             float oAmount = oc->getOxygenAmount();
+
             if (oc->getAtmosphereEntity() == nullptr) {
                 oAmount -= oc->getOxygenScale();
             }
@@ -97,7 +95,19 @@ namespace spacebiem
                 auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
                 oAmount += (ac->getOxygenModifier()*oc->getOxygenScale());
             }
+
+            // you're being attacked by an AI, it grabs you by the neck!!
+            if (entity.hasComponent("collidable")) {
+                auto cc = entity.getComponent<CollidableComponent>("collidable");
+
+                for (const auto & collideInfo : cc->getCollisions()) {
+                    if (collideInfo.entity->isTag("ai")) {
+                        oAmount -= 40;
+                    }
+                }
+            }
+
             oc->setOxygenAmount(oAmount);
-        } 
+        }
     }
 }
