@@ -28,5 +28,7 @@ namespace spacebiem
         addComponent<ResourceBonusComponent>("resourcebonus", rName, 1);
         addComponent<CollidableComponent>("collidable", CollisionCategory::RESOURCE, CollisionCategory::PLANET | CollisionCategory::PLAYER);
         addComponent<GroundedComponent>("grounded");
+
+        setTag("resource");
     }
 }
