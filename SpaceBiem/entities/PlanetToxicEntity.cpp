@@ -10,5 +10,6 @@ namespace spacebiem
         setTag("toxic");
         createAtmosphere(x, y, w, h, atmosphere, false, color);
         addComponent("audio", new AudioComponent("audio/toxic.mp3", -1, -1, 32, 1000));
+        createScoreBonus(pScoreBonus);
     }
 }

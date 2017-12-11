@@ -8,6 +8,6 @@ namespace spacebiem
         PlanetEntity(x, y, color, w, h, "textures/moon-plain.png", "textures/moon-TypeA.png", pScoreBonus, pName)
     {
         setTag("moon");
-        
+        createScoreBonus(pScoreBonus);
     }
 }

@@ -8,16 +8,33 @@ namespace spacebiem
 {
     void GameoverSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("oxygen")
-            || entity.hasComponent("ui")) {
-            return;
+        bool gameover = false;
+
+
+        // Gameover conditions
+
+        if (!entity.hasComponent("ui") && entity.hasComponent("grounded")) {
+            auto gc = entity.getComponent<GroundedComponent>("grounded");
+            auto pc = entity.getComponent<PositionComponent>("position");
+
+            if (gc->isGrounded()) {
+                auto ground = gc->getGroundedOn();
+                if (ground->getTag() == "lava") gameover = true;
+            }
         }
 
-        auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
-        if (oc->getOxygenAmount() > oc->getOxygenScale()) {
-            return;
+        if (entity.hasComponent("oxygen") && !entity.hasComponent("ui")) {
+            auto oc = entity.getComponent<OxygenComponent>("oxygen");
+
+            if (oc->getOxygenAmount() <= oc->getOxygenScale()) gameover = true;
         }
+
+
+        if (!gameover) return;
+        
+
+        // Gaemover actions
 
         int score = 0;
         map<string, int> resources = map<string, int>();

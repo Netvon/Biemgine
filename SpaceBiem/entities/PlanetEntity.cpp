@@ -41,7 +41,6 @@ namespace spacebiem
         int flagHeight = 60;
         addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56f, flagHeight, 1u, false, "flag"));
 
-        createScoreBonus(pScoreBonus);
     }
 
     void PlanetEntity::createAtmosphere(float x, float y, float w, float h, float atmosphere, bool shouldClouds, Color color)

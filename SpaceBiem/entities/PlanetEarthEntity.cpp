@@ -20,5 +20,6 @@ namespace spacebiem
         setTag("earth");
         createAtmosphere(x, y, w, h, atmosphere, true, color);
         addComponent("audio", new AudioComponent("audio/earth.mp3", -1, -1, 48, 1000));
+        createScoreBonus(pScoreBonus);
     }
 }
