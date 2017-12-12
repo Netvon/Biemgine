@@ -44,11 +44,11 @@ namespace spacebiem
                 direction = generator.generate(0.f, 1.f) > 0.5 ? Direction::LEFT : Direction::RIGHT;
             }
 
-            directionEndTime = time(0) + 5;
+            directionEndTime = time(0) + 3;
         }
         else {
             direction = Direction::IDLE;
-            directionEndTime = time(0) + 2;
+            directionEndTime = time(0) + 1;
         }
 
         return direction;
