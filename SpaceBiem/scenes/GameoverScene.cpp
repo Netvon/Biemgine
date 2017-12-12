@@ -61,14 +61,14 @@ namespace spacebiem
         auto gameoverTexture = "textures/game_over.png";
 
         addEntity<SpriteEntity>(gameoverTexture, static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
-        addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX, 200.f, Color{ 66, 143, 244 }, "Resources");
-        addEntity<TextUIEntity>(Fonts::Roboto(), planetsX, 200.f, Color{ 66, 143, 244 }, "Planets");
+        addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX, 200.f, Color::White(), "Resources");
+        addEntity<TextUIEntity>(Fonts::Roboto(), planetsX, 200.f, Color::White(), "Planets");
 
         float heightCounter = 250;
 
         for (auto& r : resources) {
             addEntity<SpriteEntity>("textures/" + r.first + ".png", resourcesX, heightCounter, Color::White(), 40, 40, 100u);
-            addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX + 45, heightCounter + 20, Color{ 66, 143, 244 }, " x " + std::to_string(r.second));
+            addEntity<TextUIEntity>(Fonts::Roboto(), resourcesX + 45, heightCounter + 20, Color::White(), " x " + std::to_string(r.second));
             heightCounter = heightCounter + 85.f;
         }
 
@@ -77,27 +77,27 @@ namespace spacebiem
         for (auto& p : planetsScore) {
             if (p.first == "earth") {
                 addEntity<PlanetEarthEntity>(planetsX, heightCounter, Color{ 71, 166, 245, 255 }, 40, 40, 0, 10.f);
-                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color::White(), " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "moon") {
                 addEntity<PlanetMoonEntity>(planetsX, heightCounter, Color::White(), 40, 40, 0);
-                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color::White(), " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "sand") {
                 addEntity<PlanetSandEntity>(planetsX, heightCounter, Color{ 213,207,105,255 }, 40, 40, 0, 10.f);
-                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color::White(), " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "toxic") {
                 addEntity<PlanetToxicEntity>(planetsX, heightCounter, Color{ 20, 221, 53, 255 }, 40, 40, 0, 10.f);
-                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color::White(), " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }
             else if (p.first == "ice") {
                 addEntity<PlanetIceEntity>(planetsX, heightCounter, Colors::IceAtmosphere(), 40, 40, 0, 10.f);
-                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color{ 66, 143, 244 }, " x " + std::to_string(p.second));
+                addEntity<TextUIEntity>(Fonts::Roboto(), planetsX + 60, heightCounter + 15, Color::White(), " x " + std::to_string(p.second));
                 heightCounter = heightCounter + 85.f;
             }
             
