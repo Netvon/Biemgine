@@ -37,7 +37,7 @@ namespace spacebiem
 
             constexpr float escapeVelocity = 140.f;
 
-            if (grounded->isGrounded()) {
+            /*if (grounded->isGrounded()) {
                 if (texture->isPausedOrStopped()) {
                     texture->play();
                 }
@@ -53,7 +53,7 @@ namespace spacebiem
             }
             else {
                 texture->stop();
-            }
+            }*/
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
                 return;

@@ -95,14 +95,13 @@ namespace spacebiem
                 auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
                 oAmount += (ac->getOxygenModifier()*oc->getOxygenScale());
             }
+            auto cc = entity.getComponent<CollidableComponent>("collidable");
 
             // you're being attacked by an AI, it grabs you by the neck!!
-            if (entity.hasComponent("collidable")) {
-                auto cc = entity.getComponent<CollidableComponent>("collidable");
-
+            if (cc != nullptr) {
                 for (const auto & collideInfo : cc->getCollisions()) {
                     if (collideInfo.entity->isTag("ai")) {
-                        oAmount -= 40;
+                        oAmount -= 40.0f;
                     }
                 }
             }
