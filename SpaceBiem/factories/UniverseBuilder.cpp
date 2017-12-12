@@ -20,8 +20,6 @@ namespace spacebiem
 
     void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
     {
-        
-
         FileParser fileParser;
         PlanetFactory planetFactory;
         NameGenerator nameGenerator;
@@ -30,7 +28,7 @@ namespace spacebiem
         map<string, map<string, vector<string>>> levelMap;
 
         if (newGame) {
-            levelMap = fileParser.levelContent("data/level_1.csv");
+            levelMap = fileParser.levelContent("data/savegame.csv");
         }
         else {
             levelMap = fileParser.levelContent("data/savegame.csv");

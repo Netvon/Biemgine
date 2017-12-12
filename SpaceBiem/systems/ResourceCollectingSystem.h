@@ -4,6 +4,7 @@
 using biemgine::System;
 using biemgine::Entity;
 using biemgine::CollidableComponent;
+using biemgine::AudioComponent;
 
 #include "../components/ResourceComponent.h"
 #include "../components/ResourceBonusComponent.h"

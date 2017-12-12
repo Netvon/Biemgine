@@ -17,16 +17,15 @@ namespace biemgine
 
     void RenderSystem::update(const Entity& entity, const float deltaTime)
     {
-        if (!entity.hasComponent("position"))
+        auto pc = entity.getComponent<PositionComponent>("position");
+
+        if (pc == nullptr)
             return;
 
-        
         if (!cameraComponent)
         {
             cameraComponent = entity.getComponent<CameraComponent>("camera");
         }
-
-        auto pc = entity.getComponent<PositionComponent>("position");
 
         auto& txs = entity.getComponents<TextComponent>("text");
 

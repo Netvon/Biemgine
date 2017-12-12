@@ -18,7 +18,6 @@ namespace spacebiem
             return;
 
         auto physics = entity.getComponent<PhysicsComponent>("physics");
-        auto grounded = entity.getComponent<GroundedComponent>("grounded");
 
         /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
             && !getStateManager()->getInputManager()->isKeyDown("Right")) {
@@ -37,8 +36,7 @@ namespace spacebiem
             texture->setFlip(TextureFlip::NONE);
 
         if (entity.hasComponent("affectedByGravity")
-            && entity.hasComponent("grounded")
-            && entity.hasComponent("physics"))
+            && physics != nullptr)
         {
             auto position = entity.getComponent<PositionComponent>("position");
             auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");

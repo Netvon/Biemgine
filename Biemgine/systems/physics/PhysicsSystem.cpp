@@ -57,8 +57,6 @@ namespace biemgine
         if (bodies.find(entity.getId()) == bodies.end()) {
             bodies.insert_or_assign(entity.getId(), createBody(entity));
         }
-
-        auto affectedByGravity = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
         
         auto position = entity.getComponent<PositionComponent>("position");
 
