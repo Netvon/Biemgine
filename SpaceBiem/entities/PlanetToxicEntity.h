@@ -14,6 +14,6 @@ namespace spacebiem
         public PlanetEntity
     {
     public:
-        PlanetToxicEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, string pName="");
+        PlanetToxicEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, string pName="", bool scoreGiven = false);
     };
 }

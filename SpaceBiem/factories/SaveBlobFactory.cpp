@@ -27,6 +27,9 @@ namespace spacebiem
         blob.push_back("entity_id_type,component_type,value_1,value_2,value_3,value_4");
 
         for (auto it = entities->begin(); it != entities->end(); it++) {
+
+            if (!(*it)->isAlive()) continue;
+
             string entityBlob = createFromEntity(*(*it));
 
             if(!entityBlob.empty())

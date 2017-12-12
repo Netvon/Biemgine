@@ -2,8 +2,9 @@
 
 namespace spacebiem
 {
-    ScoreBonusComponent::ScoreBonusComponent(int pScoreBonus) :
-        scoreBonus(pScoreBonus)
+    ScoreBonusComponent::ScoreBonusComponent(int pScoreBonus, bool pScoreGiven) :
+        scoreBonus(pScoreBonus),
+        scoreGiven(pScoreGiven)
     {}
 
     int ScoreBonusComponent::getScoreBonus() const

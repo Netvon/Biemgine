@@ -11,6 +11,7 @@ using biemgine::Entity;
 using biemgine::Color;
 using biemgine::PhysicsComponent;
 using biemgine::PositionComponent;
+using biemgine::CollidableComponent;
 
 namespace spacebiem
 {
@@ -151,5 +152,20 @@ namespace spacebiem
                 }  
             }
         }
+
+        Entity* player = nullptr;
+        for (auto it = entityManager->begin(); it != entityManager->end(); it++) {
+            if ((*it)->isTag("player")) player = (*it);
+        }
+        if (player != nullptr) {
+            for (auto it = entityManager->begin(); it != entityManager->end(); it++) {
+                if ((*it)->hasComponent("collidable")) {
+                    auto cc = player->getComponent<CollidableComponent>("collidable");
+                    cc->add((**it), false);
+                }
+
+            }
+        }
+
     }
 }

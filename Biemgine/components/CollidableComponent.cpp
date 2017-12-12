@@ -21,14 +21,14 @@ namespace biemgine
         return collideInfo.colliding;
     }
 
-    void CollidableComponent::add(const Entity & pEntity)
+    void CollidableComponent::add(const Entity & pEntity, bool colliding)
     {
         auto it = std::find_if(collisions.begin(), collisions.end(), [pEntity](const CollideInfo & pCollideInfo) {
             return pCollideInfo.entity->getId() == pEntity.getId();
         });
 
-        if (it != collisions.end()) (*it).colliding = true;
-        else collisions.push_back(createCollideInfo(&pEntity, true));
+        if (it != collisions.end()) (*it).colliding = colliding;
+        else collisions.push_back(createCollideInfo(&pEntity, colliding));
 
     }
 

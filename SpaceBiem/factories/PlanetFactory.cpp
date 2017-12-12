@@ -37,19 +37,19 @@ namespace spacebiem
         int id = 0;
 
         if (type == "moon") {
-            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Colors::MoonAtmosphere(), width, height, planetScore, name);
+            id = entityManager->addEntity<PlanetMoonEntity>(pX, pY, Colors::MoonAtmosphere(), width, height, planetScore, name, isDiscovered);
         }
         else if (type == "earth") {
-            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Colors::EarthAtmosphere(), width, height, planetScore, atmosphereM["earth"], name);
+            id = entityManager->addEntity<PlanetEarthEntity>(pX, pY, Colors::EarthAtmosphere(), width, height, planetScore, atmosphereM["earth"], name, isDiscovered);
         }
         else if (type == "sand") {
-            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Colors::SandAtmosphere(), width, height, planetScore, atmosphereM["sand"], name);
+            id = entityManager->addEntity<PlanetSandEntity>(pX, pY, Colors::SandAtmosphere(), width, height, planetScore, atmosphereM["sand"], name, isDiscovered);
         }
         else if (type == "toxic") {
-            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Colors::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name);
+            id = entityManager->addEntity<PlanetToxicEntity>(pX, pY, Colors::ToxicAtmosphere(), width, height, planetScore, atmosphereM["toxic"], name, isDiscovered);
         }
         else if (type == "ice") {
-            id = entityManager->addEntity<PlanetIceEntity>(pX, pY, Colors::IceAtmosphere(), width, height, planetScore, atmosphereM["ice"], name);
+            id = entityManager->addEntity<PlanetIceEntity>(pX, pY, Colors::IceAtmosphere(), width, height, planetScore, atmosphereM["ice"], name, isDiscovered);
         }
         else if (type == "lava") {
             id = entityManager->addEntity<PlanetLavaEntity>(pX, pY, Colors::LavaAtmosphere(), width, height, planetScore, atmosphereM["lava"], name);
