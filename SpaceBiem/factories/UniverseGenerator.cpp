@@ -166,8 +166,8 @@ namespace spacebiem
                 handler->writeLine(
                     to_string(pId) + "_aimummie," +
                     "position_component," +
-                    to_string(pX - (pRadius / 2) - 100) + "," +
-                    to_string(pY - (pRadius / 2) - 100) + "," +
+                    to_string(pX - (pRadius / 2) - 50) + "," +
+                    to_string(pY - (pRadius / 2) - 50) + "," +
                     "50,50"
                 );
             }
@@ -175,8 +175,8 @@ namespace spacebiem
                 handler->writeLine(
                     to_string(pId) + "_aisnowman," +
                     "position_component," +
-                    to_string(pX - (pRadius / 2) - 100) + "," +
-                    to_string(pY - (pRadius / 2) - 100) + "," +
+                    to_string(pX - (pRadius / 2) - 50) + "," +
+                    to_string(pY - (pRadius / 2) - 50) + "," +
                     "50,50"
                 );
             }
