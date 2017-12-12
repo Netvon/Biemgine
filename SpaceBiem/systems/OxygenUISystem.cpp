@@ -14,7 +14,7 @@ namespace spacebiem
     {
         if (!entity.hasComponent("oxygen")) return;
 
-        auto oc = entity.getComponent<OxygenComponent*>("oxygen");
+        auto oc = entity.getComponent<OxygenComponent>("oxygen");
 
         if (!entity.hasComponent("ui")) {
             if (oxygenMap.find(oc) == oxygenMap.end()) {
@@ -26,20 +26,18 @@ namespace spacebiem
         if (!entity.hasComponent("position") || !entity.hasComponent("texture"))
             return;
 
-        auto pc = entity.getComponent<PositionComponent*>("position");
-        auto uc = entity.getComponent<UIComponent*>("ui");
+        auto pc = entity.getComponent<PositionComponent>("position");
+        auto uc = entity.getComponent<UIComponent>("ui");
 
-        auto tc = entity.getComponents<TextureComponent*>("texture");
-        TextureComponent* texture = nullptr;
+        auto tc = entity.getComponents<TextureComponent>("texture");
+        std::shared_ptr<TextureComponent> texture = nullptr;
 
-        for (auto tex : tc) {
-            if (tex->getTag() == "oxygenbar") texture = tex;
-        }
+       
 
         // If the UI doesn't have the component which to draw, pick one from the map.
-        OxygenComponent* oRef = uc->getComponentReference<OxygenComponent*>();
+        auto oRef = uc->getComponentReference<OxygenComponent>();
         if (oRef == nullptr) {
-            for (auto x : oxygenMap)
+            for (auto& x : oxygenMap)
             {
                 if (!x.second) {
                     uc->setComponentReference(x.first);
@@ -52,6 +50,14 @@ namespace spacebiem
         }
 
         float oBar = oRef->getOxygenAmount() / static_cast<float>(oRef->getOxygenMax());
+        float vignet = oRef->getOxygenAmount() / (static_cast<float>(oRef->getOxygenMax() / 2));
+        float alphaVignet = 255 * (1 - vignet);
+
+        for (auto& tex : tc)
+        {
+            if (tex->getTag() == "oxygenbar") texture = tex;
+            if (tex->getTag() == "vignet" && vignet <= 1) tex.get()->setColor(tex.get()->getColor().WithAlpha(alphaVignet));
+        }
 
         Color dangerRedColor { 204, 94, 94 };
         Color newColor{

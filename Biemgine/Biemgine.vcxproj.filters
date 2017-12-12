@@ -31,6 +31,9 @@
     <Filter Include="primitives">
       <UniqueIdentifier>{3bda5fd9-7171-490e-98a2-5e033e27898a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="devices\audio">
+      <UniqueIdentifier>{26f655f2-8d64-40cd-a759-287caf99189f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="managers\StateManager.h">
@@ -158,6 +161,24 @@
     <ClInclude Include="primitives\RandomGenerator.h">
       <Filter>primitives</Filter>
     </ClInclude>
+    <ClInclude Include="devices\audio\AudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\audio\SDLAudioDevice.h">
+      <Filter>devices\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AudioComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\CameraComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\CameraSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AnimatedTextureComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -211,9 +232,6 @@
     </ClCompile>
     <ClCompile Include="primitives\Primitives.cpp">
       <Filter>primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="UIComponent.cpp">
-      <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="entities\SpriteEntity.cpp">
       <Filter>entities</Filter>
@@ -269,6 +287,27 @@
     </ClCompile>
     <ClCompile Include="primitives\RandomGenerator.cpp">
       <Filter>primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp">
+      <Filter>devices\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AudioComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\CameraComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CameraSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\UIComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AnimatedTextureComponent.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

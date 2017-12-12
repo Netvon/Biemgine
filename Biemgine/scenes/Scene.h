@@ -30,20 +30,19 @@ namespace biemgine
         std::shared_ptr<EntityManager> getEntityManager() const;
         /*std::shared_ptr<SystemManager> getSystemManager() const;*/
 
-        std::vector<Entity*> getEntities() const;
-
         virtual void sceneEnd();
 
         void enablePhysics();
         void enableRendering();
         void enableUI();
         void enableScripts();
+        void enableCamera();
 
         Entity * getEntity(int id) const;
 
     protected:
         template<class TSystem>
-        void addSystem();
+        void addSystem(int timeout = 0);
 
         int addEntity(Entity* entity);
 
@@ -64,12 +63,13 @@ namespace biemgine
     };
 
     template<class TSystem>
-    void Scene::addSystem()
+    void Scene::addSystem(int timeout)
     {
         auto system = new TSystem();
         systemManager->addSystem(system);
 
         system->setStateManager(stateManager);
+        system->setTimeout(timeout);
     }
 
     template<class TEntity, typename ...TArgs>

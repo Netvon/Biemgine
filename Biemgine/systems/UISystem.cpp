@@ -9,29 +9,26 @@ namespace biemgine
         sceneWasSwitched = true;
     }
 
-    UISystem::~UISystem()
-    {
-    }
-
-    void UISystem::before()
+    void UISystem::before(const float deltaTime)
     {
         auto im = getStateManager()->getInputManager();
 
         currentMouseLocation = im->getMouseLocation();
+
         isLeftMouseDown = im->isLeftMouseDown();
 
-        if (sceneWasSwitched && clickCoolDown > 0)
+        if (sceneWasSwitched && clickCoolDown > 0.0f)
         {
-            clickCoolDown--;
+            clickCoolDown -= (deltaTime / 1000.f);
         }
-        else if (sceneWasSwitched && clickCoolDown <= 0)
+        else if (sceneWasSwitched && clickCoolDown <= 0.5f)
         {
             sceneWasSwitched = false;
-            clickCoolDown = 10;
+            clickCoolDown = 0.5f;
         }
     }
 
-    void UISystem::update(const Entity & entity)
+    void UISystem::update(const Entity & entity, const float deltaTime)
     {
         if (!entity.hasComponent("ui") || !entity.hasComponent("position"))
             return;
@@ -39,8 +36,8 @@ namespace biemgine
         if (sceneWasSwitched)
             return;
 
-        auto ui = entity.getComponent<UIComponent*>("ui");
-        auto position = entity.getComponent<PositionComponent*>("position");
+        auto ui = entity.getComponent<UIComponent>("ui");
+        auto position = entity.getComponent<PositionComponent>("position");
 
         auto size = ui->getSize();
 
@@ -54,6 +51,9 @@ namespace biemgine
             && currentMouseLocation.x <= X2
             && currentMouseLocation.y >= Y1
             && currentMouseLocation.y <= Y2) {
+
+            if (!ui->getIsMouseOver() && ui->getIsEntered())
+                ui->getIsEntered()(getStateManager());
 
             ui->setIsMouseOver(true);
             ui->setIsMouseDown(isLeftMouseDown);

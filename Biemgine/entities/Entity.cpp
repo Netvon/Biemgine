@@ -22,11 +22,11 @@ namespace biemgine
 
     Entity::~Entity()
     {
-        for (std::pair<std::string, const Component*> pair : componentHashmap) {
+        /*for (std::pair<std::string, const Component*> pair : componentHashmap) {
             delete pair.second;
         }
 
-        componentHashmap.clear();
+        componentHashmap.clear();*/
     }
 
     bool Entity::hasComponent(const string & name) const
@@ -49,78 +49,98 @@ namespace biemgine
         alive = false;
     }
 
+    void Entity::rise() const
+    {
+        alive = true;
+    }
+
     bool Entity::isAlive() const
     {
         return alive;
     }
 
-    Rect Entity::getBounds() const
+    void Entity::calculateBounds()
     {
-        Rect rect;
-        rect.hasSize = false;
+        if (!hasComponent("position") || !hasComponent("texture"))
+            return;
 
-        if (!hasComponent("position"))
-            return rect;
+        auto pc = getComponent<PositionComponent>("position");
+        auto tc = getComponents<TextureComponent>("texture");
 
-        auto pc = getComponent<PositionComponent*>("position");
-        auto tc = getComponents<TextureComponent*>("texture");
+        minX = 0;
+        maxX = 0;
+        minY = 0;
+        maxY = 0;
 
-        for (auto texture : tc)
+        for (auto& texture : tc)
         {
-            int xMin = pc->getX() + texture->getOffsetX() - texture->getWidth() / 2;
-            int xMax = pc->getX() + texture->getOffsetX() + texture->getWidth() / 2;
-            int yMin = pc->getY() + texture->getOffsetY() - texture->getHeight() / 2;
-            int yMax = pc->getY() + texture->getOffsetY() + texture->getHeight() / 2;
+            int textureXMin = texture->getOffsetX();
+            int textureXMax = texture->getOffsetX() + texture->getWidth();
+            int textureYMin = texture->getOffsetY();
+            int textureYMax = texture->getOffsetY() + texture->getHeight();
 
-            if (!rect.hasSize)
+            if (textureXMin < minX)
             {
-                rect.topLeft.x = xMin;
-                rect.bottomLeft.x = xMin;
-                rect.topRight.y = yMin;
-                rect.topLeft.y = yMin;
-                rect.bottomRight.x = xMax;
-                rect.topRight.x = xMax;
-                rect.bottomLeft.y = yMax;
-                rect.bottomRight.y = yMax;
-                rect.hasSize = true;
+                minX = textureXMin;
             }
-            else
+
+            if (textureXMax > maxX)
             {
-                if (rect.topLeft.x > xMin)
-                {
-                    rect.topLeft.x = xMin;
-                    rect.bottomLeft.x = xMin;
-                }
+                maxX = textureXMax;
+            }
 
-                if (rect.topRight.y > yMin)
-                {
-                    rect.topRight.y = yMin;
-                    rect.topLeft.y = yMin;
-                }
+            if (textureYMin < minY)
+            {
+                minY = textureYMin;
+            }
 
-                if (rect.bottomRight.x < xMax)
-                {
-                    rect.bottomRight.x = xMax;
-                    rect.topRight.x = xMax;
-                }
-
-                if (rect.bottomLeft.y < yMax)
-                {
-                    rect.bottomLeft.y = yMax;
-                    rect.bottomRight.y = yMax;
-                }
-            } 
+            if (textureYMax > maxY)
+            {
+                maxY = textureYMax;
+            }
         }
-
-        return rect;
     }
 
-	void Entity::setTag(string pTag)
-	{
-		tag = pTag;
-	}
-	string Entity::getTag() const
-	{
-		return tag;
-	}
+    float Entity::distance(const Entity & entity) const
+    {
+        if (!hasComponent("position") || !entity.hasComponent("position")) return 0;
+
+        auto position = getComponent<PositionComponent>("position");
+        auto entityPosition = entity.getComponent<PositionComponent>("position");
+
+        return position->distance(*entityPosition);
+    }
+
+    void Entity::checkOCCheckable()
+    {
+        if (hasComponent("position") && !hasComponent("camera") && !hasComponent("ui"))
+            isOCCheckable = true;
+        else
+            isOCCheckable = false;
+    }
+
+    bool Entity::hasTag() const
+    {
+        return tag.empty();
+    }
+
+    void Entity::setTag(string pTag)
+    {
+        tag = pTag;
+    }
+
+    string Entity::getTag() const
+    {
+        return tag;
+    }
+
+    bool Entity::isTag(const string & pTag) const
+    {
+        return getTag() == pTag;
+    }
+    bool Entity::isCheckable() const
+    {
+        return isOCCheckable;
+    }
+   
 }

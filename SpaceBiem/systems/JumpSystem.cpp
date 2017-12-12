@@ -14,7 +14,8 @@ namespace spacebiem
 {
     void JumpSystem::update(const Entity & entity)
     {
-        if (!entity.hasComponent("movement")) return;
+        if (!entity.hasComponent("movement"))
+            return;
 
         if (!getStateManager()->getInputManager()->isKeyDown("Space"))
             return;
@@ -23,14 +24,14 @@ namespace spacebiem
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto grounded = entity.getComponent<GroundedComponent*>("grounded");
-            auto affected = entity.getComponent<AffectedByGravityComponent*>("affectedByGravity");
+            auto grounded = entity.getComponent<GroundedComponent>("grounded");
+            auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
                 return;
 
-            auto position = entity.getComponent<PositionComponent*>("position");
-            auto physics = entity.getComponent<PhysicsComponent*>("physics");
+            auto position = entity.getComponent<PositionComponent>("position");
+            auto physics = entity.getComponent<PhysicsComponent>("physics");
 
             Vector centerOfSatellite {
                 position->getX() + physics->getColliderW() / 2.0f,
@@ -53,9 +54,12 @@ namespace spacebiem
                  multiplier = 1.0f;
 
             constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-            auto movementForce = (physics->getMass() * gravityConstant) * (12.0f * multiplier);
+            auto movementForce = (physics->getMass() * gravityConstant) * (10.0f * multiplier);
             
             diff *= movementForce;
+
+            if (!getStateManager()->getAudioDevice().isPlayingSoundEffect("audio/jump.mp3"))
+                getStateManager()->getAudioDevice().playSoundEffect("audio/jump.mp3",0, -1, 64);
 
             physics->addForce("jump", diff.x, diff.y);
         }

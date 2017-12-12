@@ -30,6 +30,10 @@ namespace spacebiem
         map<string, int> resourcesContent();
         void writeNewResources(map<string, int> resources); 
 
+        map<string, map<string, vector<string>>> levelContent(string fileName);
+
+        map<string, vector<int>> DifficultySystemContent();
+        map<string, map<string, vector<string>>> DifficultyBeltContent();
 
 
     private:

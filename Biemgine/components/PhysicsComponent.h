@@ -27,7 +27,7 @@ namespace biemgine
         Vector getForce() const;
         float getTicksLeft() const;
         bool getIsImpulse() const;
-
+        
         bool decreaseTicks();
     };
 
@@ -59,7 +59,7 @@ namespace biemgine
         void setLinearDamping(float pLinearDampening);
 
         Vector getVelocity() const;
-        void setVelocity(Vector pVelocity);
+        void setVelocity(Vector pVelocity, bool pHasCustomVelocity = false);
 
         void addForce(const string id, float x, float y);
 
@@ -68,6 +68,11 @@ namespace biemgine
         void addTimedForce(const string id, float forceX, float forceY, size_t doForTicks, bool isImpulse = false);
 
         void decreaseTimedForces();
+
+        bool getHasCustomVelocity() const;
+
+        bool getInitialized() const { return initialized; } ;
+        void setInitialized(bool init) { initialized = init; };
 
     private:
         Vector colliderSize;
@@ -78,12 +83,14 @@ namespace biemgine
         int impulseTicks = 30;
 
         float friction = 10.f;
-        float linearDamping = 0.25f;
+        float linearDamping = 0.12f;
         float density = 1.0f;
         float mass;
         PhysicsComponentShape shape;
         bool isStatic;
 
         bool hasTimedForce(const string id) const;
+        bool hasCustomVelocity;
+        bool initialized;
     };
 }

@@ -96,5 +96,8 @@ namespace biemgine
         return flip;
     }
 
-
+    const SizeRect & TextureComponent::getRect() const
+    {
+        return SizeRect::empty();
+    }
 }

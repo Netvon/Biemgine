@@ -19,8 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\AudioComponent.h" />
+    <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
+    <ClInclude Include="components\CameraComponent.h" />
+    <ClInclude Include="components\AnimatedTextureComponent.h" />
     <ClInclude Include="components\CollidableComponent.h" />
     <ClInclude Include="components\ColorComponent.h" />
     <ClInclude Include="components\Component.h" />
@@ -38,6 +42,7 @@
     <ClInclude Include="core\Engine.h" />
     <ClInclude Include="core\Loop.h" />
     <ClInclude Include="core\Window.h" />
+    <ClInclude Include="devices\audio\SDLAudioDevice.h" />
     <ClInclude Include="devices\graphics\GraphicsDevice.h" />
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
     <ClInclude Include="devices\graphics\TextureAndUsage.h" />
@@ -57,6 +62,7 @@
     <ClInclude Include="primitives\RandomGenerator.h" />
     <ClInclude Include="scenes\Scene.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="systems\CameraSystem.h" />
     <ClInclude Include="systems\RenderSystem.h" />
     <ClInclude Include="systems\ScriptSystem.h" />
     <ClInclude Include="systems\System.h" />
@@ -66,15 +72,20 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="components\CameraComponent.cpp" />
+    <ClCompile Include="components\AudioComponent.cpp" />
+    <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
+    <ClCompile Include="components\AnimatedTextureComponent.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />
+    <ClCompile Include="systems\CameraSystem.cpp" />
     <ClCompile Include="systems\ScriptSystem.cpp" />
     <ClCompile Include="systems\UISystem.cpp" />
     <ClCompile Include="managers\FileHandler.cpp" />
     <ClCompile Include="components\CollidableComponent.cpp" />
     <ClCompile Include="primitives\RandomGenerator.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="components\UIComponent.cpp" />
     <ClCompile Include="components\AffectedByGravityComponent.cpp" />
     <ClCompile Include="components\ColorComponent.cpp" />
     <ClCompile Include="components\Component.cpp" />
@@ -165,8 +176,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\SDL2_ttf\include;$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)libs\SDL2_ttf\lib\x64;$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)libs\SDL2_ttf\include;$(SolutionDir)libs\SDL_image\include;$(SolutionDir)libs\glm;$(SolutionDir)\libs\SDL2\include;$(SolutionDir)libs\SDL2_mixer\include;$(SolutionDir)\libs\Box2D\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)libs\SDL2_ttf\lib\x64;$(SolutionDir)libs\SDL_image\lib\x64;$(SolutionDir)\libs\SDL2\lib\x64;$(SolutionDir)\libs\Box2D\lib\x64;$(SolutionDir)libs\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
     <CustomBuildBeforeTargets>Rebuild</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -202,15 +213,14 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>
-      </LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>

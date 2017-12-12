@@ -1,11 +1,13 @@
 #pragma once
 #include "../../systems/System.h"
 #include <Box2D/Box2D.h>
-#include <vector>
 #include "ContactListener.h"
 
-namespace biemgine {
+using std::map;
+using std::string;
 
+namespace biemgine
+{
     class PhysicsSystem :
         public System
     {

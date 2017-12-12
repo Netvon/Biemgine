@@ -7,7 +7,7 @@ namespace biemgine {
         if (!entity.hasComponent("script"))
             return;
 
-        auto script = entity.getComponent<ScriptComponent*>("script");
-        script->run();
+        auto script = entity.getComponent<ScriptComponent>("script");
+        script->run(deltaTime / 1000.f);
     }
 }

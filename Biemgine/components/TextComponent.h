@@ -6,17 +6,19 @@
 #include "ColorComponent.h"
 #include "..\primitives\Primitives.h"
 
+using std::string;
+
 namespace biemgine
 {
     class BIEMGINE TextComponent :
         public Component
     {
     public:
-        TextComponent(std::string pText = "", Color pColor = { 255, 255, 255, 255 }, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, bool center = false);
+        TextComponent(Font pFont, string pText = "", Color pColor = { 255, 255, 255, 255 }, bool center = false, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, string pTag = "");
         ~TextComponent();
 
-        const std::string& getText() const;
-        void setText(const std::string& newText, const Color& newColor);
+        const string& getText() const;
+        void setText(const string& newText, const Color& newColor);
         const Color& getColor() const;
         void setColor(const Color newColor);
 
@@ -29,13 +31,20 @@ namespace biemgine
         void setVisible(bool pVisible);
         bool isCenter() const;
 
+        void setTag(const string& tag);
+        const string& getTag() const;
+
+        Font& getFont();
+
     private:
-        std::string text;
+        string text;
         Size textSize;
         Color color;
         float offsetX;
         float offsetY;
         bool visible;
         bool center;
+        string tag;
+        Font font;
     };
 }

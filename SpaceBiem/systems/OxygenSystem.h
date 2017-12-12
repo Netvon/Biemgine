@@ -13,12 +13,12 @@ namespace spacebiem
     class OxygenSystem : public System
     {
     public:
-
-        ~OxygenSystem() {};
-
         void update(const Entity& entity) override;
+        void before() override;
+        void after() override;
     private:
-        vector<AtmosphereComponent*> atmospheres;
-
+        vector<Entity> entitiesWithAtmospheres;
+        vector<Entity> entitiesWithOxygen;
+        std::shared_ptr<Entity> currentAtmosphereEntity = nullptr;
     };
 }

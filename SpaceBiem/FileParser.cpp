@@ -16,7 +16,7 @@ namespace spacebiem
     {
         vector<pair<string, int>> scoreMap;
 
-        FileHandler file("highscores.csv");
+        FileHandler file("data/highscores.csv");
         for each (auto v in file.getValues())
         {
             scoreMap.push_back(std::make_pair(v[0], stoi(v[1])));
@@ -28,7 +28,7 @@ namespace spacebiem
 
     void FileParser::writeScore(string name, int score)
     {
-        FileHandler file("highscores.csv");
+        FileHandler file("data/highscores.csv");
         file.writeLine(vector<string>({name, to_string(score)}));
     }
 
@@ -37,7 +37,7 @@ namespace spacebiem
     {
         map<string, float> atmosphereM;
 
-        FileHandler file("planet_atmosphere_modifier.csv");
+        FileHandler file("data/planet_atmosphere_modifier.csv");
         for each (auto v in file.getValues())
         {
             atmosphereM[v[0]] = static_cast<float>(atof(v[1].c_str()));
@@ -50,7 +50,7 @@ namespace spacebiem
     {
         map<string, int> scoreM;
 
-        FileHandler file("score_per_planettype.csv");
+        FileHandler file("data/score_per_planettype.csv");
         for each (auto v in file.getValues())
         {
             scoreM[v[0]] = stoi(v[1]);
@@ -63,7 +63,7 @@ namespace spacebiem
     {
         map<string, int> scoreM;
 
-        FileHandler file("score_per_resourcetype.csv");
+        FileHandler file("data/score_per_resourcetype.csv");
         for each (auto v in file.getValues())
         {
             scoreM[v[0]] = stoi(v[1]);
@@ -71,11 +71,12 @@ namespace spacebiem
 
         return scoreM;
     }
+
     map<string, map<string, vector<float>>> FileParser::resourceSpawnRateContent()
     {
         map<string, map<string, vector<float>>> resourceM;
 
-        FileHandler file("resource_count_per_planettype.csv");
+        FileHandler file("data/resource_count_per_planettype.csv");
         for each (auto v in file.getValues())
         {
             vector<float> vector({
@@ -92,7 +93,7 @@ namespace spacebiem
     {
         map<string, int> resourceM;
 
-        FileHandler file("resources.csv");
+        FileHandler file("data/resources.csv");
         for each (auto v in file.getValues())
         {
             resourceM[v[0]] = stoi(v[1]);
@@ -107,10 +108,93 @@ namespace spacebiem
             content[r.first] += r.second;
         }
 
-        FileHandler file("resources.csv", true);
+        FileHandler file("data/resources.csv", true);
         for (auto r : content) {
             file.writeLine(vector<string>({ r.first, to_string(r.second) }));
         }
 
     }
+
+    map<string, map<string, vector<string>>> FileParser::levelContent(string fileName) {
+        map<string, map<string, vector<string>>> levelMap;
+        map<string, vector<string>> innerMap;
+
+        string currentKey;
+        string previousKey;
+
+        FileHandler file(fileName);
+
+        int i = 0;
+        
+        for (auto& v : file.getValues())
+        {
+            if (i == 0) {
+                i++;
+                continue;
+            }
+
+             currentKey = v[0];
+
+             vector<string> vector;
+
+             for (size_t j = 2; j < v.size(); j++)
+             {
+                 vector.push_back(v[j]);
+             }
+
+             if (currentKey != previousKey) {
+                 innerMap.clear();
+             }
+
+            innerMap[v[1]] = vector;
+            levelMap[v[0]] = innerMap;
+
+            previousKey = currentKey;
+
+            i++;
+        }
+
+        return levelMap;
+    }
+
+    map<string, vector<int>> FileParser::DifficultySystemContent()
+    {
+        map<string, vector<int>> systemM;
+
+        FileHandler file("data/difficulty_system.csv");
+        for each (auto v in file.getValues())
+        {
+            vector<int> vector({
+                stoi(v[1]),
+                stoi(v[2]),
+                stoi(v[3]),
+                stoi(v[4]),
+                stoi(v[5]),
+                stoi(v[6]),
+            });
+            systemM[v[0]] = vector;
+        }
+
+        return systemM;
+    }
+
+    map<string, map<string, vector<string>>> FileParser::DifficultyBeltContent()
+    {
+        map<string, map<string, vector<string>>> beltM;
+
+        FileHandler file("data/difficulty_belts.csv");
+        for each (auto v in file.getValues())
+        {
+            vector<string> vector({
+                v[2],
+                v[3],
+                v[4],
+                v[5],
+            });
+            beltM[v[0]][v[1]] = vector;
+        }
+
+        return beltM;
+    }
+
 }

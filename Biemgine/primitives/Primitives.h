@@ -1,6 +1,10 @@
 #pragma once
 #include "dlldef.h"
 
+#include <string>
+
+using std::string;
+
 namespace biemgine
 {
     struct Vector;
@@ -9,11 +13,11 @@ namespace biemgine
     {
         unsigned char r = 255, g = 255, b = 255, a = 255;
 
-        static Color White() {
+        inline static Color White() {
             return Color();
         }
 
-        static Color Black() {
+        inline static Color Black() {
             return Color{ 0, 0, 0, 255 };
         }
 
@@ -21,6 +25,7 @@ namespace biemgine
         Color& WithRed(unsigned char red);
         Color& WithGreen(unsigned char green);
         Color& WithBlue(unsigned char green);
+
     };
 
     struct BIEMGINE Point {
@@ -42,6 +47,7 @@ namespace biemgine
 
         Vector& operator-=(const Vector& other);
         Vector operator-(const Vector& other);
+        Vector operator-(const Vector& other) const;
 
         Vector& operator*=(float scalar);
         Vector operator*(float scalar);
@@ -52,10 +58,10 @@ namespace biemgine
         Vector& operator*=(const Vector& other);
         Vector operator*(const Vector& other);
 
-        Vector normalize();
-        float length();
+        inline Vector normalize();
+        inline float length();
 
-        float distance(const Vector&b);
+        inline float distance(const Vector&b);
 
         operator Point();
     };
@@ -80,5 +86,30 @@ namespace biemgine
         Point bottomLeft;
         Point bottomRight;
         bool hasSize;
+    };
+
+    struct BIEMGINE SizeRect {
+        Point point;
+        Size size;
+
+        bool isEmpty() const;
+        static SizeRect empty();
+
+        bool operator==(const SizeRect& other) const;
+        bool operator!=(const SizeRect& other) const;
+    };
+
+    struct BIEMGINE Font {
+        string name;
+        int size = -1;
+
+        bool isEmpty() const;
+
+        bool operator ==(const Font& other) const;
+        bool operator !=(const Font& other) const;
+
+        bool operator < (const Font& b) const;
+
+        Font(string pName, int pSize);
     };
 }

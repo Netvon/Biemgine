@@ -9,20 +9,45 @@
 
 using std::map;
 
+enum CollisionCategory
+{
+    NONE = 0x0001,
+    PLANET = 0x0002,
+    PLAYER = 0x0004,
+    AI = 0x0008,
+    RESOURCE = 0x0010
+};
+
 namespace biemgine
 {
+    struct CollideInfo
+    {
+        const Entity * entity;
+        bool colliding = false;
+    };
+
     class BIEMGINE CollidableComponent
         : public Component
     {
     public:
+        CollidableComponent(int pCategoryBits = CollisionCategory::NONE, int pMaskBits = CollisionCategory::NONE);
+
         bool collides(const Entity & entity) const;
-        void add(const Entity & entity);
+        void add(const Entity & entity, bool colliding = true);
         void remove(const Entity & entity);
 
-        bool visited(const Entity & entity) const;
-        map<int, bool> getCollisions() const;
+        vector<CollideInfo> getCollisions();
+        vector<CollideInfo> getAllCollisions();
+
+        int getCategoryBits() const;
+        int getMaskBits() const;
 
     private:
-        map<int, bool> collisions;
+        vector<CollideInfo> collisions;
+
+        int categoryBits = CollisionCategory::NONE;
+        int maskBits = CollisionCategory::NONE;
+
+        CollideInfo createCollideInfo(const Entity * entity, bool colliding = false) const;
     };
 }

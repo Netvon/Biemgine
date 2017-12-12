@@ -4,6 +4,7 @@
 using biemgine::System;
 using biemgine::Entity;
 using biemgine::CollidableComponent;
+using biemgine::AudioComponent;
 
 #include "../components/ResourceComponent.h"
 #include "../components/ResourceBonusComponent.h"
@@ -16,15 +17,6 @@ namespace spacebiem
     class ResourceCollectingSystem : public System
     {
     public:
-        ~ResourceCollectingSystem() {};
-
-        void before() override;
         void update(const Entity& entity) override;
-        void after() override;
-
-    private:
-        vector<const Entity*> resource;
-        vector<const Entity*> resourceBonus;
-
     };
 }

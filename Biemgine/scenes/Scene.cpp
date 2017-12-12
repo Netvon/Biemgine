@@ -5,6 +5,7 @@
 #include "..\systems\RenderSystem.h"
 #include "..\systems\UISystem.h"
 #include "..\systems\ScriptSystem.h"
+#include "..\systems\CameraSystem.h"
 
 //#include "..\systems\gravitysystem.h"
 //#include "..\systems\physicssystem.h"
@@ -55,33 +56,27 @@ namespace biemgine
     {
         return entityManager->addEntity(entity);
     }
-
-    std::vector<Entity*> Scene::getEntities() const
-    {
-        return entityManager->getEntities();
-    }
-
+    
     void Scene::sceneEnd() {}
 
     void Scene::enablePhysics()
     {
-        auto physicsSystem = new PhysicsSystem();
-        systemManager->addSystem(physicsSystem);
-        physicsSystem->setStateManager(stateManager);
+        addSystem<PhysicsSystem>();
     }
 
     void Scene::enableUI()
     {
-        auto uisystem = new UISystem();
-        systemManager->addSystem(uisystem);
-        uisystem->setStateManager(stateManager);
+        addSystem<UISystem>(2);
     }
 
     void Scene::enableScripts()
     {
-        auto scriptsystem = new ScriptSystem();
-        systemManager->addSystem(scriptsystem);
-        scriptsystem->setStateManager(stateManager);
+        addSystem<ScriptSystem>(2);
+    }
+
+    void Scene::enableCamera()
+    {
+        addSystem<CameraSystem>();
     }
 
     void Scene::enableRendering()
@@ -89,6 +84,7 @@ namespace biemgine
         // TODO default rendering device
         auto gd = getWindow()->getGraphicsDevice();
         auto renderSystem = new RenderSystem();
+        renderSystem->setTimeout(0);
         renderSystem->setGraphicsDevice(gd);
 
         systemManager->addSystem(renderSystem);

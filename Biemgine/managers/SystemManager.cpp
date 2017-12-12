@@ -14,10 +14,11 @@ namespace biemgine
         }
     }
 
-    void SystemManager::preUpdate()
+    inline void SystemManager::preUpdate()
     {
         for (auto* s : systems) {
-            s->before();
+            s->nextUpdate();
+            if(!s->hasTimedOut()) s->before();
         }
     }
 
@@ -28,28 +29,28 @@ namespace biemgine
         }
     }
 
-    void SystemManager::postUpdate()
+    inline void SystemManager::postUpdate()
     {
         for (auto* s : systems) {
-            s->after();
+            if (!s->hasTimedOut()) s->after();
         }
     }
 
-    void SystemManager::postUpdate(const float deltaTime)
+    inline void SystemManager::postUpdate(const float deltaTime)
     {
         for (auto* s : systems) {
             s->after(deltaTime);
         }
     }
 
-    void SystemManager::acceptForUpdate(const Entity & entity)
+    inline void SystemManager::acceptForUpdate(const Entity & entity)
     {
         for (auto* s : systems) {
             s->update(entity);
         }
     }
 
-    void SystemManager::acceptForUpdate(const Entity & entity, const float deltaTime)
+    inline void SystemManager::acceptForUpdate(const Entity & entity, const float deltaTime)
     {
         for (auto* s : systems) {
             s->update(entity, deltaTime);

@@ -1,7 +1,8 @@
 #include "TextComponent.h"
 
 namespace biemgine {
-    TextComponent::TextComponent(std::string pText, Color pColor, float pOffsetX, float pOffsetY, bool pVisible, bool center) : text(pText), color(pColor), offsetX(pOffsetX),offsetY(pOffsetY),visible(pVisible), center(center) {};
+    TextComponent::TextComponent(Font pFont, std::string pText, Color pColor, bool center, float pOffsetX, float pOffsetY, bool pVisible, string pTag) :
+		font(pFont), text(pText), color(pColor), offsetX(pOffsetX),offsetY(pOffsetY),visible(pVisible), center(center), tag(pTag) {};
     TextComponent::~TextComponent() {}
 
     const std::string& TextComponent::getText() const {
@@ -50,6 +51,20 @@ namespace biemgine {
     bool TextComponent::isCenter() const
     {
         return center;
+    }
+
+    void TextComponent::setTag(const string & pTag)
+    {
+        tag = pTag;
+    }
+
+    const string & TextComponent::getTag() const
+    {
+        return tag;
+    }
+    Font & TextComponent::getFont()
+    {
+        return font;
     }
 
 }

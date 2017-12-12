@@ -17,6 +17,6 @@ namespace spacebiem
         void update(const Entity& entity) override;
 
     private:
-        std::map<ScoreComponent*, bool> scoreMap;
+        std::map<std::shared_ptr<ScoreComponent>, bool> scoreMap;
     };
 }

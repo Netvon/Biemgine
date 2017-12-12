@@ -14,7 +14,7 @@ namespace biemgine
         public Entity
     {
     public:
-        TextUIEntity(float x, float y, Color color, const std::string& pText);
+        TextUIEntity(Font font, float x, float y, Color color, const std::string& pText, bool isCentered = false);
         ~TextUIEntity();
     };
 }

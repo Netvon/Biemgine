@@ -19,7 +19,7 @@ namespace biemgine
     }
 
     PhysicsComponent::PhysicsComponent(float colliderW, float colliderH, bool isStatic, PhysicsComponentShape shape, float mass)
-        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass) {}
+        : colliderSize({ colliderW, colliderH }), shape(shape), isStatic(isStatic), density(mass), initialized(false) {}
 
     PhysicsComponent::~PhysicsComponent() {}
 
@@ -112,8 +112,9 @@ namespace biemgine
         return velocity;
     }
 
-    void PhysicsComponent::setVelocity(Vector pVelocity)
+    void PhysicsComponent::setVelocity(Vector pVelocity, bool pHasCustomVelocity)
     {
+        hasCustomVelocity = pHasCustomVelocity;
         velocity = pVelocity;
     }
 
@@ -144,6 +145,11 @@ namespace biemgine
             else
                 ++it;
         }
+    }
+
+    bool PhysicsComponent::getHasCustomVelocity() const
+    {
+        return hasCustomVelocity;
     }
 
     bool PhysicsComponent::hasTimedForce(const string id) const {

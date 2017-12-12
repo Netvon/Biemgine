@@ -17,13 +17,13 @@ namespace biemgine
     public:
 
         UIComponent(bool pEnabled = true);
-        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr, bool pEnabled = true);
+        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr, function<void(StateManager*)> onEnter = nullptr, bool pEnabled = true);
         ~UIComponent();
 
         template <typename TComponent>
-        TComponent getComponentReference() const;
+        std::shared_ptr<TComponent> getComponentReference() const;
 
-        void setComponentReference(Component* component);
+        void setComponentReference(std::shared_ptr<Component> component);
 
         bool getIsMouseDown() const;
         bool getIsMouseOver() const;
@@ -31,27 +31,29 @@ namespace biemgine
         const Size& getSize() const;
 
         function<void(StateManager*)> getIsClicked() const;
+        function<void(StateManager*)> getIsEntered() const;
         bool isEnabled() const;
 
     protected:
         void setIsMouseOver(bool pIsMouseOver);
         void setIsMouseDown(bool pIsMouseDown);
 
-        friend void UISystem::update(const Entity & entity);
+        friend void UISystem::update(const Entity & entity, const float deltaTime);
 
     private:
-        Component* componentReference = nullptr;
+        std::shared_ptr<Component> componentReference = nullptr;
 
         bool isMouseDown = false;
         bool isMouseOver = false;
         Size size;
         function<void(StateManager*)> onClick;
+        function<void(StateManager*)> onEnter;
         bool enabled;
     };
 
     template<typename TComponent>
-    TComponent UIComponent::getComponentReference() const
+    std::shared_ptr<TComponent> UIComponent::getComponentReference() const
     {
-        return dynamic_cast<TComponent>(componentReference);
+        return std::dynamic_pointer_cast<TComponent>(componentReference);
     }
 }

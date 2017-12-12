@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ResourceUIEntity.h"
 #include "..\components\ResourceBonusComponent.h"
+#include "..\globals\Fonts.h"
 
 using biemgine::PositionComponent;
 using biemgine::ColorComponent;
@@ -13,7 +14,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("text", new TextComponent);
+        addComponent("text", new TextComponent(Fonts::Roboto()));
         addComponent("ui", new UIComponent);
         addComponent("resourcebonus", new ResourceBonusComponent(resourceName, defaultAmount));
     }

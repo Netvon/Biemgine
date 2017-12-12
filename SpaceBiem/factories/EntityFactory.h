@@ -3,15 +3,18 @@
 #include "stdafx.h"
 #include "Biemgine.h"
 #include <vector>
+#include <memory>
 
 using biemgine::Entity;
+using biemgine::EntityManager;
+using std::shared_ptr;
 
 namespace spacebiem
 {
     class EntityFactory
     {
     public:
-        virtual vector<Entity*> sceneStart(int windowWidth, int windowH) = 0;
-        virtual void sceneEnd(std::vector<Entity*> entities) = 0;
+        virtual void sceneStart(int windowWidth, int windowH, shared_ptr<EntityManager> entityManager) = 0;
+        virtual void sceneEnd(shared_ptr<EntityManager> entityManager) = 0;
     };
 }
