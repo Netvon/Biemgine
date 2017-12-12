@@ -103,10 +103,11 @@ namespace biemgine
 
     float Entity::distance(const Entity & entity) const
     {
-        if (!hasComponent("position") || !entity.hasComponent("position")) return 0;
-
         auto position = getComponent<PositionComponent>("position");
         auto entityPosition = entity.getComponent<PositionComponent>("position");
+
+        if (position == nullptr || entityPosition == nullptr)
+            return 0;
 
         return position->distance(*entityPosition);
     }

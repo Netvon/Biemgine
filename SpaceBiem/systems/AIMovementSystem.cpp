@@ -44,7 +44,7 @@ namespace spacebiem
                 continue;
             }
 
-            auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
+            //auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
             auto ai = entity->getComponent<AIComponent>("ai");
             auto position = entity->getComponent<PositionComponent>("position");
 
@@ -77,13 +77,13 @@ namespace spacebiem
                 auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();
 
                 if (ai->isDirection(Direction::LEFT)) {
-                    Vector left = { -diff.y, diff.x };
+                    Vector left { -diff.y, diff.x };
                     left = left.normalize() * movementForce;
 
                     physics->addForce("left", left.x, left.y);
                 }
                 else if (ai->isDirection(Direction::RIGHT)) {
-                    Vector right = { diff.y, -diff.x };
+                    Vector right { diff.y, -diff.x };
                     right = right.normalize() * movementForce;
 
                     physics->addForce("right", right.x, right.y);
