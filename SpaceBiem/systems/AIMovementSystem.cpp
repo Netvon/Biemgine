@@ -32,32 +32,19 @@ namespace spacebiem
         for (const Entity * entity : ais) {
             auto grounded = entity->getComponent<GroundedComponent>("grounded");
             auto affected = entity->getComponent<AffectedByGravityComponent>("affectedByGravity");
-            auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
-            auto physics = entity->getComponent<PhysicsComponent>("physics");
-
+           
             constexpr float escapeVelocity = 140.f;
-
-            /*if (grounded->isGrounded()) {
-                if (texture->isPausedOrStopped()) {
-                    texture->play();
-                }
-
-                if (physics->getVelocity().length() > 1.0f) {
-                    auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                    auto maxSpeed = 32.0f;
-                    texture->setPlaybackSpeed(maxSpeed * veloPercentage);
-                }
-                else {
-                    texture->stop();
-                }
-            }
-            else {
-                texture->stop();
-            }*/
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
                 return;
 
+            auto physics = entity->getComponent<PhysicsComponent>("physics");
+
+            if (physics->getVelocity().length() > escapeVelocity) {
+                continue;
+            }
+
+            auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
             auto ai = entity->getComponent<AIComponent>("ai");
             auto position = entity->getComponent<PositionComponent>("position");
 
@@ -86,12 +73,9 @@ namespace spacebiem
 
             constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
-            auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();
-
-            if (physics->getVelocity().length() > escapeVelocity)
-                return;
-
             if ((playerInRange && ai->getCanFollow() || ai->getCanWander())) {
+                auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();
+
                 if (ai->isDirection(Direction::LEFT)) {
                     Vector left = { -diff.y, diff.x };
                     left = left.normalize() * movementForce;
