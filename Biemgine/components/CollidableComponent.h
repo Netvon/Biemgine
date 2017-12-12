@@ -33,7 +33,7 @@ namespace biemgine
         CollidableComponent(int pCategoryBits = CollisionCategory::NONE, int pMaskBits = CollisionCategory::NONE);
 
         bool collides(const Entity & entity) const;
-        void add(const Entity & entity);
+        void add(const Entity & entity, bool colliding = true);
         void remove(const Entity & entity);
 
         vector<CollideInfo> getCollisions();

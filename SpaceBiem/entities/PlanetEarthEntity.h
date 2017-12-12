@@ -12,6 +12,6 @@ namespace spacebiem
         public PlanetEntity
     {
     public:
-        PlanetEarthEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName = "");
+        PlanetEarthEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName = "", bool scoreGiven = false);
     };
 }
