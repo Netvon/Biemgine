@@ -67,7 +67,7 @@ namespace spacebiem
                     auto pc = player->getComponent<PositionComponent>("position");
                     ai->setDirection(Direction::LEFT);
 
-                    diff += position->getLocation() - pc->getLocation();
+                    diff += pc->getLocation() - position->getLocation();
                 }
             }
 

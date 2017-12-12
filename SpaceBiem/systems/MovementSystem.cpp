@@ -17,8 +17,6 @@ namespace spacebiem
         if (!entity.hasComponent("movement"))
             return;
 
-        auto physics = entity.getComponent<PhysicsComponent>("physics");
-
         /*if (!getStateManager()->getInputManager()->isKeyDown("Left")
             && !getStateManager()->getInputManager()->isKeyDown("Right")) {
             physics->setFriction(4.0f);
@@ -35,81 +33,64 @@ namespace spacebiem
         if (getStateManager()->getInputManager()->isKeyDown("Right") && texture)
             texture->setFlip(TextureFlip::NONE);
 
-        if (entity.hasComponent("affectedByGravity")
-            && physics != nullptr)
-        {
-            auto position = entity.getComponent<PositionComponent>("position");
-            auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
 
-            if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())
-                return;
-
-            Vector centerOfSatellite = {
-                position->getX() + physics->getColliderW() / 2.0f,
-                position->getY() + physics->getColliderH() / 2.0f
-            };
-
-            Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
-            Vector diff = centerOfGravity - centerOfSatellite;
-
-            constexpr float escapeVelocity = 120.f;
-            constexpr float gravityConstant = GravityComponent::getGravityConstant();
-
-            auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
-
-            auto newVelo = physics->getVelocity().length() + movementForce;
-
-            //printf("%f\n", physics->getFriction());
-
-           /* if (texture != nullptr) {
-                if (grounded->isGrounded()) {
-                    if (texture->isPausedOrStopped()) {
-                        texture->play();
-                    }
- 
-                    if (physics->getVelocity().length() > 1.0f) {
-
-                        setAnimationSpeed(escapeVelocity, physics, texture);
-                    }
-                    else {
-                        texture->stop();
-                    }
-                }
-                else {
-                    texture->stop();
-                }
-            }*/
-
-            //printf("Velo: %f\n", physics->getVelocity().length());
-
-            if (physics->getVelocity().length() > escapeVelocity)
-                return;
-
-            if (getStateManager()->getInputManager()->isKeyDown("Left")) {
-                Vector left = { -diff.y, diff.x };
-                left = left.normalize() * movementForce;
-
-                physics->addForce("left", left.x, left.y);
-            }
-
-            if (getStateManager()->getInputManager()->isKeyDown("Right")) {
-                Vector right = { diff.y, -diff.x };
-                right = right.normalize() * movementForce;
-
-                physics->addForce("right", right.x, right.y);
-            }
-
-            // bounce away from the AI
-            if (entity.hasComponent("collidable")) {
-                auto cc = entity.getComponent<CollidableComponent>("collidable");
-
-                for (const auto & collideInfo : cc->getCollisions()) {
-                    if (collideInfo.entity->isTag("ai")) {
-                        physics->addImpulse("bounceback", -physics->getForceX() * 1.1, -physics->getForceY() * 1.1);
-                    }
-                }
-            }  
+        if (!entity.hasComponent("affectedByGravity") || physics == nullptr) {
+            return;
         }
+
+        auto position = entity.getComponent<PositionComponent>("position");
+        auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
+
+        if (/*!grounded->isGrounded() ||*/ !affected->getIsAffected())
+            return;
+
+        Vector centerOfSatellite = {
+            position->getX() + physics->getColliderW() / 2.0f,
+            position->getY() + physics->getColliderH() / 2.0f
+        };
+
+        Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+        Vector diff = centerOfGravity - centerOfSatellite;
+
+        constexpr float escapeVelocity = 120.f;
+        constexpr float gravityConstant = GravityComponent::getGravityConstant();
+
+        auto movementForce = (physics->getMass() * gravityConstant) * 1.5f;
+
+        auto newVelo = physics->getVelocity().length() + movementForce;
+
+        //printf("%f\n", physics->getFriction());
+
+        //printf("Velo: %f\n", physics->getVelocity().length());
+
+        if (physics->getVelocity().length() > escapeVelocity)
+            return;
+
+        if (getStateManager()->getInputManager()->isKeyDown("Left")) {
+            Vector left = { -diff.y, diff.x };
+            left = left.normalize() * movementForce;
+
+            physics->addForce("left", left.x, left.y);
+        }
+
+        if (getStateManager()->getInputManager()->isKeyDown("Right")) {
+            Vector right = { diff.y, -diff.x };
+            right = right.normalize() * movementForce;
+
+            physics->addForce("right", right.x, right.y);
+        }
+
+        // bounce away from the AI
+        if (entity.hasComponent("collidable")) {
+            auto cc = entity.getComponent<CollidableComponent>("collidable");
+
+            for (const auto & collideInfo : cc->getCollisions()) {
+                if (collideInfo.entity->isTag("ai")) {
+                    physics->addImpulse("bounceback", -physics->getForceX() * 1.1, -physics->getForceY() * 1.1);
+                }
+            }
+        }  
     }
 
     void MovementSystem::setAnimationSpeed(const float &escapeVelocity, std::shared_ptr<biemgine::PhysicsComponent> &physics, std::shared_ptr<biemgine::AnimatedTextureComponent> &texture)
