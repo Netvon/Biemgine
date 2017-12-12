@@ -10,16 +10,17 @@ namespace spacebiem
         if (entity.hasComponent("gravity"))
         {
             gravityPoints.push_back(&entity);
-            return;
         }
-
-        auto grounded = entity.getComponent<biemgine::GroundedComponent>("grounded");
-        if (grounded != nullptr && !grounded->isGrounded())
+        else if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics") )
         {
-            if (entity.hasComponent("affectedByGravity") && entity.hasComponent("physics"))
-            {
-                satellites.push_back(&entity);
+            if (entity.hasComponent("resourcebonus") && entity.hasComponent("grounded")) {
+                auto grounded = entity.getComponent<biemgine::GroundedComponent>("grounded");
+
+                if (grounded->isGrounded())
+                    return;
             }
+
+            satellites.push_back(&entity);
         }
     }
 
