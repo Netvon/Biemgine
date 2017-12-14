@@ -68,4 +68,10 @@ namespace biemgine
             s->onSceneSwitch();
         }
     }
+	void SystemManager::onAddEntity(Entity & entity)
+	{
+        for (auto* s : systems) {
+            s->onAddEntity(entity);
+        }
+	}
 }

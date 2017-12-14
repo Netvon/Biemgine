@@ -29,6 +29,7 @@ namespace biemgine
         void addSystem(System* system);
 
         void onSceneSwitch();
+        void onAddEntity(Entity& entity);
     private:
         std::vector<System*> systems;
     };

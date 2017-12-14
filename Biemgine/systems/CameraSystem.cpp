@@ -1,30 +1,43 @@
 #include "stdafx.h"
 #include "CameraSystem.h"
 
-#include "../components/PositionComponent.h"
+
 
 
 namespace biemgine
 {
-    void CameraSystem::update(const Entity & entity)
+    void CameraSystem::onAddEntity(Entity & pEntity)
     {
-        auto camera = entity.getComponent<CameraComponent>("camera");
+        auto camera = pEntity.getComponent<CameraComponent>("camera");
 
         if (camera != nullptr)
         {
-            auto pc = entity.getComponent<PositionComponent>("position");
+            auto pc = pEntity.getComponent<PositionComponent>("position");
 
-            camera->setWindowWidth(getStateManager()->getWindowWidth());
-            camera->setWindowHeight(getStateManager()->getWindowHeight());
+            CSEntity csEntity;
+            csEntity.positionComponent = pc;
+            csEntity.cameraComponent = camera;
+            csEntity.entity = &pEntity;
+             
+            entities.push_back(csEntity);
+        }
+    }
 
-            camera->setOriginX(pc->getOriginX());
-            camera->setOriginY(pc->getOriginY());
+    void CameraSystem::update(const Entity & entity)
+    {
+        for (auto s : entities)
+        {
+            s.cameraComponent->setWindowWidth(getStateManager()->getWindowWidth());
+            s.cameraComponent->setWindowHeight(getStateManager()->getWindowHeight());
 
-            int xDelta = static_cast<int>((camera->getWindowWidth()) / 2 - static_cast<int>(pc->getOriginX()));
-            int yDelta = static_cast<int>((camera->getWindowHeight()) / 2 - static_cast<int>(pc->getOriginY()));
+            s.cameraComponent->setOriginX(s.positionComponent->getOriginX());
+            s.cameraComponent->setOriginY(s.positionComponent->getOriginY());
 
-            camera->setDeltaX(static_cast<float>(xDelta));
-            camera->setDeltaY(static_cast<float>(yDelta));
-        } 
+            int xDelta = static_cast<int>((s.cameraComponent->getWindowWidth()) / 2 - static_cast<int>(s.positionComponent->getOriginX()));
+            int yDelta = static_cast<int>((s.cameraComponent->getWindowHeight()) / 2 - static_cast<int>(s.positionComponent->getOriginY()));
+
+            s.cameraComponent->setDeltaX(static_cast<float>(xDelta));
+            s.cameraComponent->setDeltaY(static_cast<float>(yDelta));
+        }
     }
 }

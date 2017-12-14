@@ -10,6 +10,7 @@ namespace biemgine
     {
     public:
         virtual ~System();
+        virtual void onAddEntity(Entity& entity);
         virtual void before();
         virtual void before(const float deltaTime);
         virtual void update(const Entity& entity);

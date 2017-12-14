@@ -5,6 +5,7 @@
 namespace biemgine
 {
     System::~System() {}
+    inline void System::onAddEntity(Entity & entity) {}
     inline void System::before() {}
     inline void System::before(const float deltaTime) {}
     inline void System::update(const Entity & entity) {}

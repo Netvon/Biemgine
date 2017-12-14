@@ -75,6 +75,9 @@ namespace biemgine
     template<class TEntity, typename ...TArgs>
     int Scene::addEntity(TArgs && ...arguments)
     {
-        return entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
+        int id = entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
+        Entity* entity = entityManager->getEntity(id);
+        systemManager->onAddEntity(*entity);
+        return id;
     }
 }

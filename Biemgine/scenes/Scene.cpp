@@ -54,6 +54,7 @@ namespace biemgine
 
     int Scene::addEntity(Entity * entity)
     {
+        
         return entityManager->addEntity(entity);
     }
     
