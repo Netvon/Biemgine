@@ -50,8 +50,8 @@ namespace biemgine
         int addEntity(TArgs&&... arguments);
 
     private:
-        std::shared_ptr<SystemManager> systemManager = std::make_shared<SystemManager>();
-        std::shared_ptr<EntityManager> entityManager = std::make_shared<EntityManager>();
+        std::shared_ptr<SystemManager> systemManager = nullptr;
+        std::shared_ptr<EntityManager> entityManager = nullptr;
 
         StateManager* stateManager = nullptr;
 
@@ -75,9 +75,6 @@ namespace biemgine
     template<class TEntity, typename ...TArgs>
     int Scene::addEntity(TArgs && ...arguments)
     {
-        int id = entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
-        Entity* entity = entityManager->getEntity(id);
-        systemManager->onAddEntity(*entity);
-        return id;
+        return entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
     }
 }

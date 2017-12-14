@@ -19,7 +19,7 @@ namespace biemgine
         ~CameraSystem() {};
 
         void onAddEntity(Entity& entity);
-        void update(const Entity& entity) override;
+        void update() override;
 
     private:
         std::vector<CSEntity> entities;

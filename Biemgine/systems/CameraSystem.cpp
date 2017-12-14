@@ -23,7 +23,7 @@ namespace biemgine
         }
     }
 
-    void CameraSystem::update(const Entity & entity)
+    void CameraSystem::update()
     {
         for (auto s : entities)
         {

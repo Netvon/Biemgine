@@ -23,6 +23,8 @@ namespace biemgine
         inline void postUpdate();
         inline void postUpdate(const float deltaTime);
 
+        inline void acceptForUpdate();
+        inline void acceptForUpdate(const float deltaTime);
         inline void acceptForUpdate(const Entity& entity);
         inline void acceptForUpdate(const Entity& entity, const float deltaTime);
 

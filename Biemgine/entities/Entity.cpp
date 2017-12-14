@@ -11,136 +11,146 @@
 
 namespace biemgine
 {
-    Entity::Entity()
-    {
-        std::mt19937 rng;
-        rng.seed(std::random_device()());
-        std::uniform_int_distribution<std::mt19937::result_type> dist6(1, INT_MAX);
+	Entity::Entity()
+	{
+		std::mt19937 rng;
+		rng.seed(std::random_device()());
+		std::uniform_int_distribution<std::mt19937::result_type> dist6(1, INT_MAX);
 
-        id = dist6(rng);
-    }
+		id = dist6(rng);
+	}
 
-    Entity::~Entity()
-    {
-        /*for (std::pair<std::string, const Component*> pair : componentHashmap) {
-            delete pair.second;
-        }
+	Entity::~Entity()
+	{
+		/*for (std::pair<std::string, const Component*> pair : componentHashmap) {
+			delete pair.second;
+		}
 
-        componentHashmap.clear();*/
-    }
+		componentHashmap.clear();*/
+	}
 
-    bool Entity::hasComponent(const string & name) const
-    {
-        return componentHashmap.find(name) != componentHashmap.end();
-    }
+	bool Entity::hasComponent(const string & name) const
+	{
+		return componentHashmap.find(name) != componentHashmap.end();
+	}
 
-    void Entity::addComponent(const string & name, Component * component)
-    {
-        componentHashmap.insert(pair<string, Component*>(name, component));
-    }
+	void Entity::addComponent(const string & name, Component * component)
+	{
+		componentHashmap.insert(pair<string, Component*>(name, component));
+	}
 
-    int Entity::getId() const
-    {
-        return this->id;
-    }
+	int Entity::getId() const
+	{
+		return this->id;
+	}
 
-    void Entity::die() const
-    {
-        alive = false;
-    }
+	void Entity::die() const
+	{
+		alive = false;
+	}
 
-    void Entity::rise() const
-    {
-        alive = true;
-    }
+	void Entity::rise() const
+	{
+		alive = true;
+	}
 
-    bool Entity::isAlive() const
-    {
-        return alive;
-    }
+	bool Entity::isAlive() const
+	{
+		return alive;
+	}
 
-    void Entity::calculateBounds()
-    {
-        if (!hasComponent("position") || !hasComponent("texture"))
-            return;
+	void Entity::setIsOnScreen(bool onScreen)
+	{
+		isOnScreen = onScreen;
+	}
 
-        auto pc = getComponent<PositionComponent>("position");
-        auto tc = getComponents<TextureComponent>("texture");
+	bool Entity::getIsOnScreen() const
+	{
+		return isOnScreen;
+	}
 
-        minX = 0;
-        maxX = 0;
-        minY = 0;
-        maxY = 0;
+	void Entity::calculateBounds()
+	{
+		if (!hasComponent("position") || !hasComponent("texture"))
+			return;
 
-        for (auto& texture : tc)
-        {
-            int textureXMin = texture->getOffsetX();
-            int textureXMax = texture->getOffsetX() + texture->getWidth();
-            int textureYMin = texture->getOffsetY();
-            int textureYMax = texture->getOffsetY() + texture->getHeight();
+		auto pc = getComponent<PositionComponent>("position");
+		auto tc = getComponents<TextureComponent>("texture");
 
-            if (textureXMin < minX)
-            {
-                minX = textureXMin;
-            }
+		minX = 0;
+		maxX = 0;
+		minY = 0;
+		maxY = 0;
 
-            if (textureXMax > maxX)
-            {
-                maxX = textureXMax;
-            }
+		for (auto& texture : tc)
+		{
+			int textureXMin = texture->getOffsetX();
+			int textureXMax = texture->getOffsetX() + texture->getWidth();
+			int textureYMin = texture->getOffsetY();
+			int textureYMax = texture->getOffsetY() + texture->getHeight();
 
-            if (textureYMin < minY)
-            {
-                minY = textureYMin;
-            }
+			if (textureXMin < minX)
+			{
+				minX = textureXMin;
+			}
 
-            if (textureYMax > maxY)
-            {
-                maxY = textureYMax;
-            }
-        }
-    }
+			if (textureXMax > maxX)
+			{
+				maxX = textureXMax;
+			}
 
-    float Entity::distance(const Entity & entity) const
-    {
-        if (!hasComponent("position") || !entity.hasComponent("position")) return 0;
+			if (textureYMin < minY)
+			{
+				minY = textureYMin;
+			}
 
-        auto position = getComponent<PositionComponent>("position");
-        auto entityPosition = entity.getComponent<PositionComponent>("position");
+			if (textureYMax > maxY)
+			{
+				maxY = textureYMax;
+			}
+		}
+	}
 
-        return position->distance(*entityPosition);
-    }
+	float Entity::distance(const Entity & entity) const
+	{
+		if (!hasComponent("position") || !entity.hasComponent("position")) return 0;
 
-    void Entity::checkOCCheckable()
-    {
-        if (hasComponent("position") && !hasComponent("camera") && !hasComponent("ui"))
-            isOCCheckable = true;
-        else
-            isOCCheckable = false;
-    }
+		auto position = getComponent<PositionComponent>("position");
+		auto entityPosition = entity.getComponent<PositionComponent>("position");
 
-    bool Entity::hasTag() const
-    {
-        return tag.empty();
-    }
+		return position->distance(*entityPosition);
+	}
 
-    void Entity::setTag(string pTag)
-    {
-        tag = pTag;
-    }
+	void Entity::checkOCCheckable()
+	{
+		if (hasComponent("position") && !hasComponent("camera") && !hasComponent("ui"))
+			isOCCheckable = true;
+		else
+			isOCCheckable = false;
+	}
 
-    string Entity::getTag() const
-    {
-        return tag;
-    }
+	bool Entity::hasTag() const
+	{
+		return tag.empty();
+	}
 
-    bool Entity::isTag(const string & pTag) const
-    {
-        return getTag() == pTag;
-    }
-    bool Entity::isCheckable() const
-    {
-        return isOCCheckable;
-    }
+	void Entity::setTag(string pTag)
+	{
+		tag = pTag;
+	}
+
+	string Entity::getTag() const
+	{
+		return tag;
+	}
+
+	bool Entity::isTag(const string & pTag) const
+	{
+		return getTag() == pTag;
+	}
+	bool Entity::isCheckable() const
+	{
+		return isOCCheckable;
+	}
    
 }

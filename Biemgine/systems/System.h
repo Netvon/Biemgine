@@ -13,6 +13,8 @@ namespace biemgine
         virtual void onAddEntity(Entity& entity);
         virtual void before();
         virtual void before(const float deltaTime);
+        virtual void update();
+        virtual void update(const float deltaTime);
         virtual void update(const Entity& entity);
         virtual void update(const Entity& entity, const float deltaTime);
         virtual void after();

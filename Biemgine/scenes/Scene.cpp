@@ -18,7 +18,10 @@
 namespace biemgine
 {
     Scene::Scene(StateManager & manager)
-        : stateManager(&manager) {}
+        : stateManager(&manager), systemManager(std::make_shared<SystemManager>())
+    {
+        entityManager = std::make_shared<EntityManager>(systemManager);
+    }
 
     Scene::~Scene()
     {

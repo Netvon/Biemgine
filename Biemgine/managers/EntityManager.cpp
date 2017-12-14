@@ -5,6 +5,9 @@
 
 namespace biemgine
 {
+    EntityManager::EntityManager(std::shared_ptr<SystemManager> manager) : systemManager(manager)
+    {}
+
     EntityManager::~EntityManager()
     {
         for (auto it = entities.begin(); it != entities.end(); ++it)
@@ -29,10 +32,12 @@ namespace biemgine
         //std::cout << std::endl;
 
         manager->preUpdate();
+        manager->acceptForUpdate();
 
         for (Entity * e : entities) {
 
-            if (canUpdate(*e))
+            e->setIsOnScreen(canUpdate(*e));
+            if (e->getIsOnScreen())
             {
                 //auto start = std::chrono::high_resolution_clock::now();
                 manager->acceptForUpdate(*e);
@@ -53,16 +58,14 @@ namespace biemgine
 
     inline void EntityManager::updateEntities(std::shared_ptr<SystemManager> manager, const float deltaTime)
     {
-        
-       
-
         manager->preUpdate(deltaTime);
+        manager->acceptForUpdate(deltaTime);
 
         for (Entity * e : entities) {
 
             
-
-            if (canUpdate(*e))
+            e->setIsOnScreen(canUpdate(*e));
+            if (e->getIsOnScreen())
             {
                
 
