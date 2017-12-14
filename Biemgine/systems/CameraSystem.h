@@ -6,9 +6,15 @@
 
 namespace biemgine
 {
-    struct CSEntity {
+    struct CameraEntity {
         Entity* entity;
         std::shared_ptr<CameraComponent> cameraComponent;
+        std::shared_ptr<PositionComponent> positionComponent;
+    };
+
+    struct CSEntity
+    {
+        Entity* entity;
         std::shared_ptr<PositionComponent> positionComponent;
     };
 
@@ -20,8 +26,10 @@ namespace biemgine
 
         void onAddEntity(Entity& entity);
         void update() override;
+        bool isOnScreen(const CSEntity & e);
 
     private:
-        std::vector<CSEntity> entities;
+        CameraEntity cameraEntity;
+        std::vector<CSEntity> allEntities;
     };
 }

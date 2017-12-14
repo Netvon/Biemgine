@@ -40,9 +40,6 @@ namespace biemgine
         std::vector<Entity*> entities;
         std::shared_ptr<CameraComponent> camera;
         std::shared_ptr<SystemManager> systemManager;
-
-        bool canUpdate(const Entity& e);
-
     };
 
     template<class TEntity, typename ...TArgs>

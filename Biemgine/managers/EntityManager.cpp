@@ -36,7 +36,6 @@ namespace biemgine
 
         for (Entity * e : entities) {
 
-            e->setIsOnScreen(canUpdate(*e));
             if (e->getIsOnScreen())
             {
                 //auto start = std::chrono::high_resolution_clock::now();
@@ -63,25 +62,13 @@ namespace biemgine
 
         for (Entity * e : entities) {
 
-            
-            e->setIsOnScreen(canUpdate(*e));
             if (e->getIsOnScreen())
             {
-               
-
-                manager->acceptForUpdate(*e, deltaTime);
-
-               
+                manager->acceptForUpdate(*e, deltaTime); 
             }
         }
 
-           
-
-        manager->postUpdate(deltaTime);
-
-       
-
-       
+        manager->postUpdate(deltaTime); 
     }
 
     Entity* EntityManager::getEntity(int id) const
@@ -102,27 +89,5 @@ namespace biemgine
         }
 
         return nullptr;
-    }
-
-    bool EntityManager::canUpdate(const Entity & e)
-    {
-        if (!e.isAlive()) return false;
-
-        if (camera != nullptr && e.isCheckable() ) {
-
-            auto pc = e.getComponent<PositionComponent>("position");
-
-            float dX = camera.get()->getOriginX();
-            float dY = camera.get()->getOriginY();
-            int wW = camera.get()->getWindowWidth() / 2;
-            int wH = camera.get()->getWindowHeight() / 2;
-
-            if (e.minX + pc.get()->getOriginX() > dX + wW) return false;
-            if (e.maxX + pc.get()->getOriginX() < dX - wW) return false;
-            if (e.minY + pc.get()->getOriginY() > dY + wH) return false;
-            if (e.maxY + pc.get()->getOriginY() < dY - wH) return false;
-        }
-
-        return true;
     }
 }
