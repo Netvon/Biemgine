@@ -38,7 +38,6 @@ namespace biemgine
 
     private:
         std::vector<Entity*> entities;
-        std::shared_ptr<CameraComponent> camera;
         std::shared_ptr<SystemManager> systemManager;
     };
 
@@ -52,10 +51,6 @@ namespace biemgine
 
         entity->calculateBounds();
         entity->checkOCCheckable();
-
-        if (!camera && entity->hasComponent("camera")) {
-             camera = entity->getComponent<CameraComponent>("camera");
-        }
 
         return entity->getId();
     }

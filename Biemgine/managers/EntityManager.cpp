@@ -21,9 +21,6 @@ namespace biemgine
     int EntityManager::addEntity(Entity* entity)
     {
         entities.push_back(entity);
-        if (!camera && entity->hasComponent("camera")) {
-            camera = entity->getComponent<CameraComponent>("camera");
-        }
         return entity->getId();
     }
 
