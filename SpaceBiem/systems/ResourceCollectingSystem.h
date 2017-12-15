@@ -17,6 +17,19 @@ namespace spacebiem
     class ResourceCollectingSystem : public System
     {
     public:
-        void update(const Entity& entity) override;
+        struct PlayerEntry
+        {
+            Entity* entity;
+            std::shared_ptr<CollidableComponent> collidableComponent;
+            std::shared_ptr<ResourceComponent> resourceComponent;
+            std::shared_ptr<ScoreComponent> scoreComponent;
+
+        };
+
+        void onAddEntity(Entity& entity) override;
+        void update();
+
+    private:
+        vector<PlayerEntry> playerEntries;
     };
 }
