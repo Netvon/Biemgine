@@ -1,62 +1,57 @@
 #include "stdafx.h"
 #include "ResourceUISystem.h"
-#include "..\components\ResourceBonusComponent.h"
-
-using biemgine::TextComponent;
-using biemgine::PositionComponent;
-using biemgine::UIComponent;
-using biemgine::ColorComponent;
-using biemgine::Color;
 
 namespace spacebiem
 {
-    void ResourceUISystem::update(const Entity & entity)
+    void ResourceUISystem::onAddEntity(Entity & entity)
     {
-        if (entity.hasComponent("resources")) {
-            auto oc = entity.getComponent<ResourceComponent>("resources");
-
-            if (resourceMap.find(oc) == resourceMap.end()) {
-                resourceMap[oc] = false;
-            }
+        if (entity.hasComponent("resources"))
+        {
+            PlayerEntry playerEntry;
+            playerEntry.entity = &entity;
+            playerEntry.resourceComponent = entity.getComponent<ResourceComponent>("resources");;
+            playerEntries.push_back(std::move(playerEntry));
 
             return;
         }
 
-        if (!entity.hasComponent("resourcebonus")
-            || !entity.hasComponent("color")
-            || !entity.hasComponent("position")
-            || !entity.hasComponent("text"))
-            return;
 
-        auto pc = entity.getComponent<PositionComponent>("position");
-        auto rbc = entity.getComponent<ResourceBonusComponent>("resourcebonus");
-        auto cc = entity.getComponent<ColorComponent>("color");
-        auto tx = entity.getComponent<TextComponent>("text");
-        auto uc = entity.getComponent<UIComponent>("ui");
+        if (entity.hasComponent("resourcebonus") && entity.hasComponent("color") && entity.hasComponent("text"))
+        {
+            ResourceTextEntry resourceTextEntry;
+            resourceTextEntry.entity = &entity;
+            resourceTextEntry.resourceBonusComponent = entity.getComponent<ResourceBonusComponent>("resourcebonus");
+            resourceTextEntry.colorComponent = entity.getComponent<ColorComponent>("color");
+            resourceTextEntry.textComponent = entity.getComponent<TextComponent>("text");
 
-        auto oRef = uc->getComponentReference<ResourceComponent>();
+            resourceTextEntries.push_back(std::move(resourceTextEntry));
+        }
+    }
 
-        if (oRef == nullptr) {
-            for (auto& x : resourceMap)
+    void ResourceUISystem::update()
+    {
+        if (!playerEntries.empty())
+        {
+            for (PlayerEntry player : playerEntries)
             {
-                if (!x.second) {
-                    uc->setComponentReference(x.first);
-                    oRef = x.first;
-                    break;
+                for (auto& x : player.resourceComponent->getResources())
+                {
+                    for (ResourceTextEntry resourceTextEntry : resourceTextEntries)
+                    {
+                        if (x.first == resourceTextEntry.resourceBonusComponent->getName())
+                        {
+                            resourceTextEntry.textComponent->setText(std::to_string(x.second), resourceTextEntry.textComponent->getColor());
+                        }
+                    }
                 }
             }
         }
-
-        if (oRef == nullptr) {
-            tx->setText(std::to_string(rbc->getAmount()), cc->getColor());  
-        }
-        else {
-            for (auto& x : oRef->getResources())
+        else
+        {
+            for (ResourceTextEntry resourceTextEntry : resourceTextEntries)
             {
-                if (x.first == rbc->getName()) {
-                    tx->setText(std::to_string(x.second), cc->getColor());
-                }
+                resourceTextEntry.textComponent->setText(std::to_string(resourceTextEntry.resourceBonusComponent->getAmount()), resourceTextEntry.textComponent->getColor());
             }
-        }
+        }  
     }
 }
