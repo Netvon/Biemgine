@@ -120,9 +120,6 @@
     <ClInclude Include="systems\physics\PhysicsSystem.h">
       <Filter>systems\physics</Filter>
     </ClInclude>
-    <ClInclude Include="components\TransformComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
     <ClInclude Include="components\UIComponent.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -258,9 +255,6 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="components\TextureComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\TransformComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="systems\UISystem.cpp">

@@ -36,7 +36,6 @@
     <ClInclude Include="components\ScriptComponent.h" />
     <ClInclude Include="components\TextComponent.h" />
     <ClInclude Include="components\TextureComponent.h" />
-    <ClInclude Include="components\TransformComponent.h" />
     <ClInclude Include="components\UIComponent.h" />
     <ClInclude Include="components\PhysicsComponentShape.h" />
     <ClInclude Include="core\Engine.h" />
@@ -96,7 +95,6 @@
     <ClCompile Include="components\RectangleComponent.cpp" />
     <ClCompile Include="components\TextComponent.cpp" />
     <ClCompile Include="components\TextureComponent.cpp" />
-    <ClCompile Include="components\TransformComponent.cpp" />
     <ClCompile Include="core\Engine.cpp" />
     <ClCompile Include="core\Loop.cpp" />
     <ClCompile Include="core\Window.cpp" />
