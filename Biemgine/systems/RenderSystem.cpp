@@ -70,7 +70,7 @@ namespace biemgine
 
         for (auto texture : optDrawList)
         {
-            if (!texture.textureComponent->isVisible() || !texture.entity->getIsOnScreen()) continue;
+            if (!texture.textureComponent->isVisible() || !texture.entity->isAlive() || !texture.entity->getIsOnScreen()) continue;
             deltaX = 0;
             deltaY = 0;
 
@@ -98,7 +98,7 @@ namespace biemgine
 
         for (auto text : optTextList)
         {
-            if (!text.textComponent->isVisible() || !text.entity->getIsOnScreen()) continue;
+            if (!text.textComponent->isVisible() || !text.entity->isAlive() || !text.entity->getIsOnScreen()) continue;
 
             deltaX = 0;
             deltaY = 0;

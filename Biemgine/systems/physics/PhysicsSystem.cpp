@@ -68,21 +68,6 @@ namespace biemgine
         position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
         position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
 
-        /*if (entity.hasComponent("grounded")) {
-            b2Vec2 ding = {
-                pixelToMeter(affectedByGravity->getFallingTowardsX()),
-                pixelToMeter(affectedByGravity->getFallingTowardsY())
-            };
-
-            b2Vec2 target = ding - body->GetPosition();
-            target.Normalize();
-
-            float angle = atan2f(-target.x, target.y);
-            body->SetTransform(body->GetPosition(), angle);
-        }
-
-        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));*/
-
         body->SetTransform(body->GetPosition(), position->getRotation() * DEGREE_TO_RAD);
 
         body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);

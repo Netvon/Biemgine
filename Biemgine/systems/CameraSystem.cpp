@@ -53,7 +53,7 @@ namespace biemgine
 
     bool CameraSystem::isOnScreen(const CSEntity & e)
     {
-        if (!e.entity->isAlive()) return false;
+        //if (!e.entity->isAlive()) return false;
 
         if (e.entity->isCheckable())
         {
