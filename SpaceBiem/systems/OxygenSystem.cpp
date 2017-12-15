@@ -2,111 +2,106 @@
 
 #include "OxygenSystem.h"
 
-using biemgine::PositionComponent;
-using biemgine::CollidableComponent;
-using biemgine::AudioComponent;
-
 namespace spacebiem
 {
-    void OxygenSystem::before() {
-        entitiesWithAtmospheres.clear();
-        entitiesWithOxygen.clear();
-    }
-
-    void OxygenSystem::update(const Entity & entity)
+    void OxygenSystem::onAddEntity(Entity & entity)
     {
-        if (entity.hasComponent("atmosphere")) {
-            if (std::find(entitiesWithAtmospheres.begin(), entitiesWithAtmospheres.end(), entity) == entitiesWithAtmospheres.end()) {
-                entitiesWithAtmospheres.push_back(entity);
-            }
+        if (entity.hasComponent("atmosphere"))
+        {
+            PlanetEntry planetEntry;
+            planetEntry.entity = &entity;
+            planetEntry.positionComponent = entity.getComponent<PositionComponent>("position");
+            planetEntry.AtmosphereComponent = entity.getComponent<AtmosphereComponent>("atmosphere");
+            planetEntry.audioComponent = entity.getComponent<AudioComponent>("audio");
+
+            planetEntries.push_back(std::move(planetEntry));
         }
 
-        if (!entity.hasComponent("oxygen")) return;
-        if (entity.hasComponent("ui")) return;
+        if (!entity.hasComponent("ui") && entity.hasComponent("oxygen"))
+        {
+            PlayerEntry playerEntry;
+            playerEntry.entity = &entity;
+            playerEntry.positionComponent = entity.getComponent<PositionComponent>("position");
+            playerEntry.collidableComponent = entity.getComponent<CollidableComponent>("collidable");
+            playerEntry.oxygenComponent = entity.getComponent<OxygenComponent>("oxygen");
 
-        entitiesWithOxygen.push_back(entity);
+            playerEntries.push_back(std::move(playerEntry));
+        }
     }
 
-    void OxygenSystem::after()
+    void OxygenSystem::update()
     {
-        for (Entity & entity : entitiesWithOxygen) {
-            auto oc = entity.getComponent<OxygenComponent>("oxygen");
-
-            if (entity.hasComponent("position")) {
-                auto pc = entity.getComponent<PositionComponent>("position");
-
-                if (oc->getAtmosphereEntity() == nullptr)
+        for (PlayerEntry player : playerEntries)
+        {
+            if (currentPlanetEntry == nullptr)
+            {
+                for (PlanetEntry planet : planetEntries)
                 {
-                    for (auto entity : entitiesWithAtmospheres)
+                    if (!planet.entity->getIsOnScreen()) continue;
+
+                    int xA = planet.AtmosphereComponent->getX();
+                    int yA = planet.AtmosphereComponent->getY();
+                    int rA = planet.AtmosphereComponent->getRadius();
+                    int x = player.positionComponent->getX();
+                    int y = player.positionComponent->getY();
+
+                    if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA))
                     {
-                        auto ac = entity.getComponent<AtmosphereComponent>("atmosphere");
-
-                        int xA = ac->getX();
-                        int yA = ac->getY();
-                        int rA = ac->getRadius();
-                        int x = pc->getX();
-                        int y = pc->getY();
-
-                        // Kei skône pietjegras theorie
-                        if (((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA))
+                        if (planet.audioComponent != nullptr)
                         {
-                            if (entity.hasComponent("audio"))
-                            {
-                                auto audioComponent = entity.getComponent<AudioComponent>("audio");
-                                getStateManager()->getAudioDevice().playFadeInSoundEffect(audioComponent->getPath(), audioComponent->getLoops(), audioComponent->getChannel(), audioComponent->getVolume(), audioComponent->getFadeInTime());
-                            }
-
-                            oc->setAtmosphereEntity(std::make_shared<Entity>(entity));
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
-
-                    int xA = ac->getX();
-                    int yA = ac->getY();
-                    int rA = ac->getRadius();
-                    int x = pc->getX();
-                    int y = pc->getY();
-
-                    // Kei skône pietjegras theorie
-                    if (!(((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)))
-                    {
-                        if (oc->getAtmosphereEntity()->hasComponent("audio"))
-                        {
-                            auto audioComponent = oc->getAtmosphereEntity()->getComponent<AudioComponent>("audio");
-                            getStateManager()->getAudioDevice().fadeOutSoundEffect(audioComponent->getPath(), audioComponent->getFadeInTime());
+                            getStateManager()->getAudioDevice().playFadeInSoundEffect(planet.audioComponent->getPath(), planet.audioComponent->getLoops(), planet.audioComponent->getChannel(), planet.audioComponent->getVolume(), planet.audioComponent->getFadeInTime());
                         }
 
-                        oc->setAtmosphereEntity(nullptr);
-                        break;
+                        currentPlanetEntry = std::make_shared<PlanetEntry>(planet);
                     }
                 }
             }
+            else
+            {
+                int xA = currentPlanetEntry->AtmosphereComponent->getX();
+                int yA = currentPlanetEntry->AtmosphereComponent->getY();
+                int rA = currentPlanetEntry->AtmosphereComponent->getRadius();
+                int x = player.positionComponent->getX();
+                int y = player.positionComponent->getY();
 
-            float oAmount = oc->getOxygenAmount();
+                if (!(((x - xA)*(x - xA)) + ((y - yA)*(y - yA)) <= (rA*rA)))
+                {
+                    if (currentPlanetEntry->audioComponent != nullptr)
+                    {
+                        getStateManager()->getAudioDevice().fadeOutSoundEffect(currentPlanetEntry->audioComponent->getPath(), currentPlanetEntry->audioComponent->getFadeInTime());
+                    }
 
-            if (oc->getAtmosphereEntity() == nullptr) {
-                oAmount -= oc->getOxygenScale();
+                    currentPlanetEntry = nullptr;
+                }
             }
-            else {
-                auto ac = oc->getAtmosphereEntity()->getComponent<AtmosphereComponent>("atmosphere");;
-                oAmount += (ac->getOxygenModifier()*oc->getOxygenScale());
+
+            float oAmount = player.oxygenComponent->getOxygenAmount();
+
+            if (currentPlanetEntry == nullptr)
+            {
+                oAmount -= player.oxygenComponent->getOxygenScale();
             }
-            auto cc = entity.getComponent<CollidableComponent>("collidable");
+            else
+            {
+                oAmount += (currentPlanetEntry->AtmosphereComponent->getOxygenModifier() * player.oxygenComponent->getOxygenScale());
+            }
 
             // you're being attacked by an AI, it grabs you by the neck!!
-            if (cc != nullptr) {
-                for (const auto & collideInfo : cc->getCollisions()) {
-                    if (collideInfo.entity->isTag("ai")) {
+            if (player.collidableComponent != nullptr)
+            {
+                for (const auto & collideInfo : player.collidableComponent->getCollisions())
+                {
+                    if (collideInfo.entity->isTag("ai"))
+                    {
                         oAmount -= 40.0f;
                     }
                 }
             }
 
-            oc->setOxygenAmount(oAmount);
+            player.oxygenComponent->setOxygenAmount(oAmount);
+
         }
     }
+
+    
 }

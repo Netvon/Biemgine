@@ -51,11 +51,11 @@ namespace biemgine
             if (i.colliding) coll.push_back(i);
         }
 
-        return coll;
+        return std::move(coll);
     }
     vector<CollideInfo> CollidableComponent::getAllCollisions()
     {
-        return collisions;
+        return std::move(collisions);
     }
 
     int CollidableComponent::getCategoryBits() const
