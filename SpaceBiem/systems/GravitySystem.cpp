@@ -5,11 +5,8 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
-    void GravitySystem::update(const Entity & entity)
+    void GravitySystem::onAddEntity(Entity & entity)
     {
-        if (added.find(entity.getId()) != added.end())
-            return;
-
         Entry entry;
 
         entry.entity = &entity;
@@ -29,15 +26,15 @@ namespace spacebiem
             entry.physics = entity.getComponent<PhysicsComponent>("physics");
             entry.affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
 
-            if(entry.physics != nullptr && entry.affected != nullptr)
+            if (entry.physics != nullptr && entry.affected != nullptr) {
                 satEntries.push_back(std::move(entry));
+            }
         }
         else {
             gravEntries.push_back(std::move(entry));
         }
-
-        added.insert(entity.getId());
     }
+
 
     void GravitySystem::after()
     {
