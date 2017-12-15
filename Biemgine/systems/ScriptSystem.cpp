@@ -1,13 +1,25 @@
 #include "ScriptSystem.h"
 
 namespace biemgine {
-
-    void ScriptSystem::update(const Entity & entity, const float deltaTime)
+    void ScriptSystem::onAddEntity(Entity & entity)
     {
-        if (!entity.hasComponent("script"))
-            return;
-
         auto script = entity.getComponent<ScriptComponent>("script");
-        script->run(deltaTime / 1000.f);
+
+        if (script != nullptr)
+        {
+            Entry entry;
+            entry.entity = &entity;
+            entry.scriptComponent = script;
+
+            entries.push_back(std::move(entry));
+        }
+    }
+
+    void ScriptSystem::update(const float deltaTime)
+    {
+        for (auto entry: entries)
+        {
+            entry.scriptComponent->run(deltaTime / 1000.f);
+        }
     }
 }
