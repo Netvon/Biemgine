@@ -102,7 +102,7 @@ namespace spacebiem
         int bH = 60;
         int incr = bH + 15;
         
-        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
+        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 280u, "pause_menu");
         addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230, 255 }, 300, 330, 290u, "pause_menu");
 
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png",
@@ -259,14 +259,14 @@ namespace spacebiem
         auto tc = speedEntity->getComponent<TextComponent>("text");
         tc->setText("Playback speed: " + std::to_string(getFPSModifier()) + "x", Color{ 255, 255, 255 });
 
-        totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
+        totalDeltaTime += deltaTime;
         counter++;
        
         if (timeout >= 500.f) {
             auto tc = fpsEntity->getComponent<TextComponent>("text");
 
             
-            tc->setText("FPS: " + std::to_string(totalDeltaTime / counter), Color{ 255, 255, 255 });
+            tc->setText("FPS: " + std::to_string(static_cast<int>(counter / totalDeltaTime * 1000)), Color{ 255, 255, 255 });
             resetFPScounters();
         }
 

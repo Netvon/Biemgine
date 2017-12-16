@@ -10,51 +10,51 @@ using biemgine::Entity;
 
 namespace spacebiem
 {
-    class LevelScene :
-        public Scene
-    {
-    public:
-        void input() override;
-        void update() override;
-        void render(const float deltaTime) override;
-        void created() override;
-        void sceneEnd() override;
-        void close() override;
+	class LevelScene :
+		public Scene
+	{
+	public:
+		void input() override;
+		void update() override;
+		void render(const float deltaTime) override;
+		void created() override;
+		void sceneEnd() override;
+		void close() override;
 
-        void resetFPScounters();
+		void resetFPScounters();
 
 		void saveScore();
 
 		void saveGame();
 
-        LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
-            Scene(manager),
-            newGame(newGame),
-            difficulty(difficulty)
-        {};
+		LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
+			Scene(manager),
+			newGame(newGame),
+			difficulty(difficulty)
+		{};
 
-        ~LevelScene() {}
+		~LevelScene() {}
 
-    private:
-        bool isHomeButtonDown = false;
-        bool isPageUpButtonDown = false;
-        bool isPageDownButtonDown = false;
-        bool isPauseButtonDown = false;
+	private:
+		bool isHomeButtonDown = false;
+		bool isPageUpButtonDown = false;
+		bool isPageDownButtonDown = false;
+		bool isPauseButtonDown = false;
 
-        bool isPaused = false;
-        bool newGame;
-        int FPSId;
-        int speedId;
-        Entity * fpsEntity = nullptr;
-        Entity * speedEntity = nullptr;
-        float timeout;
-        int counter = 0;
-        int totalDeltaTime = 0;
+		bool isPaused = false;
+		bool newGame;
+		int FPSId;
+		int speedId;
+		Entity * fpsEntity = nullptr;
+		Entity * speedEntity = nullptr;
+		int timeout;
+		float counter = 0;
+		float totalDeltaTime = 0;
 
-        void updateMenu();
+		void updateMenu();
 
-        Difficulty difficulty;
+		Difficulty difficulty;
 
-        std::vector<Entity*> pauseMenuEntities;
-    };
+		std::vector<Entity*> pauseMenuEntities;
+	};
 }
