@@ -261,23 +261,18 @@ namespace spacebiem
 
         totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
         counter++;
+       
         if (timeout >= 500.f) {
             auto tc = fpsEntity->getComponent<TextComponent>("text");
+
+            
             tc->setText("FPS: " + std::to_string(totalDeltaTime / counter), Color{ 255, 255, 255 });
             resetFPScounters();
         }
 
         timeout += deltaTime;
-
-        
-
         getTransitionManager().drawBackground("textures/space.png");
-
-       
-      
         updateEntities(deltaTime);
-
-        
     }
 
 

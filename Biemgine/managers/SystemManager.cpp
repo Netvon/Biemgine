@@ -59,20 +59,6 @@ namespace biemgine
 		}
 	}
 
-	inline void SystemManager::acceptForUpdate(const Entity & entity)
-	{
-		for (auto* s : systems) {
-			s->update(entity);
-		}
-	}
-
-	inline void SystemManager::acceptForUpdate(const Entity & entity, const float deltaTime)
-	{
-		for (auto* s : systems) {
-			s->update(entity, deltaTime);
-		}
-	}
-
 	void SystemManager::addSystem(System * system)
 	{
 		systems.push_back(system);
