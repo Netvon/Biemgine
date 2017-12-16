@@ -26,15 +26,15 @@ namespace spacebiem
 
     void OxygenUISystem::update()
     {
-        for (OxygenEntry entry : oxygenEntries)
+        for (const OxygenEntry& entry : oxygenEntries)
         {
             float oBar = entry.oxygenComponent->getOxygenAmount() / static_cast<float>(entry.oxygenComponent->getOxygenMax());
             float vignet = entry.oxygenComponent->getOxygenAmount() / (static_cast<float>(entry.oxygenComponent->getOxygenMax() / 2));
             float alphaVignet = 255 * (1 - vignet);
 
-            for (TextureEntry textureEntry : textureEntries)
+            for (const TextureEntry& textureEntry : textureEntries)
             {
-                for (auto tex : textureEntry.textureComponents)
+                for (const auto& tex : textureEntry.textureComponents)
                 {
                     if (tex->getTag() == "oxygenbar")
                     {

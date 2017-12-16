@@ -23,7 +23,7 @@ namespace spacebiem
 
     void ScoreSystem::update()
     {
-        for (PlayerEntry player : playerEntries)
+        for (const PlayerEntry& player : playerEntries)
         {
             if (player.groundedComponent->isGrounded())
             {

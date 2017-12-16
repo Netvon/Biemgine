@@ -45,7 +45,7 @@ namespace biemgine
         cameraEntity.cameraComponent->setDeltaY(static_cast<float>(yDelta));
         
 
-        for (auto e : allEntities)
+        for (const auto &e : allEntities)
         {
             e.entity->setIsOnScreen(isOnScreen(e));
         }

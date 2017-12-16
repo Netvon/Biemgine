@@ -16,7 +16,7 @@ namespace spacebiem
 
     void ResourceCollectingSystem::update()
     {
-        for (PlayerEntry player : playerEntries)
+        for (const PlayerEntry& player : playerEntries)
         {
             for (const auto & collideInfo : player.collidableComponent->getCollisions())
             {

@@ -25,7 +25,7 @@ namespace spacebiem
 		if (!getStateManager()->getInputManager()->isKeyDown("Space"))
 			return;
 
-		for (PlayerEntry player : playerEntries)
+		for (const PlayerEntry& player : playerEntries)
 		{
 			if (!player.groundedComponent->isGrounded() || !player.affectedByGravityComponent->getIsAffected())
 				return;

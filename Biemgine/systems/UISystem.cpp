@@ -44,7 +44,7 @@ namespace biemgine
         if (sceneWasSwitched)
             return;
 
-        for (Entry entry : entries)
+        for (const Entry& entry : entries)
         {
             if (!entry.entity->isAlive()) continue;
 

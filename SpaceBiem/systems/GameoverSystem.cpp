@@ -32,7 +32,7 @@ namespace spacebiem
 
     void GameoverSystem::update()
     {
-        for (PlayerEntry player : playerEntries)
+        for (const PlayerEntry& player : playerEntries)
         {
             bool gameover = false;
 

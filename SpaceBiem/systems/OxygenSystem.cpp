@@ -31,11 +31,11 @@ namespace spacebiem
 
     void OxygenSystem::update()
     {
-        for (PlayerEntry player : playerEntries)
+        for (const PlayerEntry& player : playerEntries)
         {
             if (currentPlanetEntry == nullptr)
             {
-                for (PlanetEntry planet : planetEntries)
+                for (const PlanetEntry& planet : planetEntries)
                 {
                     if (!planet.entity->getIsOnScreen()) continue;
 

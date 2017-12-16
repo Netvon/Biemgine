@@ -36,7 +36,7 @@ namespace spacebiem
     {
         if (playerEntries.empty())
         {
-            for (ScoreUIEntry score : scoreUIEntries)
+            for (const ScoreUIEntry& score : scoreUIEntries)
             {
                 TCHAR user[UNLEN + 1];
                 DWORD size = UNLEN + 1;
@@ -61,9 +61,9 @@ namespace spacebiem
         }
         else
         {
-            for (PlayerEntry player : playerEntries)
+            for (const PlayerEntry& player : playerEntries)
             {
-                for (ScoreUIEntry score : scoreUIEntries)
+                for (const ScoreUIEntry& score : scoreUIEntries)
                 {
                     score.textComponent->setText(player.scoreComponent->getName() + ": " + std::to_string((int)player.scoreComponent->getScore()), {255, 255, 255});
                 }

@@ -54,7 +54,7 @@ namespace biemgine
 
     void PhysicsSystem::update()
     {
-        for (PhysicsEntry entry : physicsEntries)
+        for (const PhysicsEntry& entry : physicsEntries)
         {
             if (entry.entity->getIsOnScreen() && entry.entity->isAlive())
             {

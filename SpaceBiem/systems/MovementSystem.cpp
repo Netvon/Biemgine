@@ -46,7 +46,7 @@ namespace spacebiem
             auto newVelo = entry.physicsComponent->getVelocity().length() + movementForce;
 
             if (entry.physicsComponent->getVelocity().length() > escapeVelocity)
-                return;
+                return; 
 
             if (getStateManager()->getInputManager()->isKeyDown("Left"))
             {

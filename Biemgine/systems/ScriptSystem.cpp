@@ -17,7 +17,7 @@ namespace biemgine {
 
     void ScriptSystem::update(const float deltaTime)
     {
-        for (auto entry: entries)
+        for (const auto& entry: entries)
         {
             entry.scriptComponent->run(deltaTime / 1000.f);
         }

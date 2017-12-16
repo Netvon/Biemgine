@@ -32,7 +32,7 @@ namespace spacebiem
     {
         if (!playerEntries.empty())
         {
-            for (PlayerEntry player : playerEntries)
+            for (const PlayerEntry& player : playerEntries)
             {
                 for (auto& x : player.resourceComponent->getResources())
                 {
@@ -48,7 +48,7 @@ namespace spacebiem
         }
         else
         {
-            for (ResourceTextEntry resourceTextEntry : resourceTextEntries)
+            for (const ResourceTextEntry& resourceTextEntry : resourceTextEntries)
             {
                 resourceTextEntry.textComponent->setText(std::to_string(resourceTextEntry.resourceBonusComponent->getAmount()), resourceTextEntry.textComponent->getColor());
             }
