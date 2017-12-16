@@ -31,7 +31,7 @@ namespace spacebiem
         addComponent("collidable", new CollidableComponent(CollisionCategory::AI, CollisionCategory::PLAYER | CollisionCategory::PLANET));
         addComponent("ai", new AIComponent(pCanIdle, pCanWander, pCanFollow));
 
-        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(getComponent<GroundedComponent>("grounded"), getComponent<AnimatedTextureComponent>("texture"), getComponent<PhysicsComponent>("physics")));
 
         setTag("ai");
     }

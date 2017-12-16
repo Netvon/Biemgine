@@ -41,11 +41,8 @@ namespace spacebiem
         addComponent("text", new TextComponent(Fonts::Roboto(), pText, textcolor, true, size.width/2, size.height/2, true));
 
         addComponent<ScriptComponent>("script",
-            [this](float deltaTime)
+            [this, ui = getComponent<UIComponent>("ui"), texture = getComponent<TextureComponent>("texture")](float deltaTime)
         {
-            auto ui = getComponent<UIComponent>("ui");
-            auto texture = getComponent<TextureComponent>("texture");
-
             if (!ui->isEnabled()) {
                 texture->setColor(texture->getColor().WithAlpha(108));
             }

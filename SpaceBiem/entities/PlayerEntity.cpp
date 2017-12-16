@@ -36,11 +36,7 @@ namespace spacebiem
         addComponent("movement", new MovementComponent);
         if(focused) addComponent("camera", new CameraComponent);
 
-        auto grounded = getComponent<GroundedComponent>("grounded");
-        auto texture = getComponent<AnimatedTextureComponent>("texture");
-        auto physics = getComponent<PhysicsComponent>("physics");
-
-        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(getComponent<GroundedComponent>("grounded"), getComponent<AnimatedTextureComponent>("texture"), getComponent<PhysicsComponent>("physics")));
 
         setTag("player");
     }
