@@ -52,7 +52,7 @@ namespace spacebiem
 				multiplier = 1.0f;
 
 			constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (15.0f * multiplier);
+			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (10.0f * multiplier);
 
 			diff *= movementForce;
 
