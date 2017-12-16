@@ -61,7 +61,7 @@ namespace biemgine
                 && currentMouseLocation.y >= Y1
                 && currentMouseLocation.y <= Y2) {
 
-                if (!entry.uiComponent->getIsMouseOver() && !entry.uiComponent->getIsEntered())
+                if (!entry.uiComponent->getIsMouseOver() && entry.uiComponent->getIsEntered())
                     entry.uiComponent->getIsEntered()(getStateManager());
 
                 entry.uiComponent->setIsMouseOver(true);

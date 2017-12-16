@@ -33,7 +33,6 @@ namespace spacebiem
 
         void onAddEntity(Entity& entity) override;
         void update() override;
-        void update(const Entity& entity) override;
 
     private:
         vector<PlayerEntry> playerEntries;
