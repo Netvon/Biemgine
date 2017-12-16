@@ -22,7 +22,7 @@ namespace spacebiem
             {
                 auto bonus = collideInfo.entity;
 
-                if (collideInfo.entity->isTag("resource"))
+                if (collideInfo.entity->isTag("resource") && collideInfo.entity->isAlive())
                 {
                     auto rbc = bonus->getComponent<ResourceBonusComponent>("resourcebonus");
                     auto sbc = bonus->getComponent<ScoreBonusComponent>("scorebonus");
