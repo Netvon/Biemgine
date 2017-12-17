@@ -88,10 +88,10 @@ namespace spacebiem
                     flagComponent.push_back(stod(i.second[2].c_str()));
                 }
                 else if (component == "resource_component") {
-                    resources.push_back(stod(i.second[0].c_str()));
-                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[2].c_str()));
+                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[3].c_str()));
+                    resources.push_back(stod(i.second[0].c_str()));
                 }
                 else if (component == "physics_component") {
                     physics.push_back(stod(i.second[0]));
