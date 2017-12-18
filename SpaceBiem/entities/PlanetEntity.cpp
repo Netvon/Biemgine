@@ -42,7 +42,7 @@ namespace spacebiem
         addComponent("text", new TextComponent(Fonts::Roboto(), pName, { 255,255,255,255 }, true, w / 2.f, h / 2.f - 10.f, scoreGiven, "name"));
 
         int flagHeight = 60;
-        addComponent("texture", new AnimatedTextureComponent("textures/flag_sheet.png", 0.f, 50.f, TextureColumnDef{2llu, 198}, TextureRowDef{1llu, 351}, 1000.f, flagHeight * 0.56f, flagHeight, 1u, false, "flag"));
+        addComponent("texture", new TextureComponent("textures/flag.png", 0.f, 0.f, flagHeight * 0.56f, flagHeight, 1u, false, "flag"));
 
     }
 
