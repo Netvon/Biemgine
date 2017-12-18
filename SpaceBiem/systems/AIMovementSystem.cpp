@@ -1,134 +1,121 @@
 #include "AIMovementSystem.h"
 
-using biemgine::PhysicsComponent;
-using biemgine::GroundedComponent;
-using biemgine::PositionComponent;
-using biemgine::AffectedByGravityComponent;
 using biemgine::Vector;
 using biemgine::RandomGenerator;
-using biemgine::AnimatedTextureComponent;
 
 #include "stdafx.h"
 
-using std::cout;
-
 #include "../components/GravityComponent.h"
-#include "../components/AIComponent.h"
 
 namespace spacebiem
 {
-    //void AIMovementSystem::update(const Entity & entity)
-    //{
-    //    if (entity.isTag("ai")) {
-    //        ais.push_back(&entity);
-    //    }
-    //    else if (entity.isTag("player")) {
-    //        players.push_back(&entity);
-    //    }
-    //}
+    void AIMovementSystem::onAddEntity(Entity & entity)
+    {
+        if (entity.isTag("ai")) {
+            auto aiEntry = AIEntry{
+                &entity,
+                entity.getComponent<PositionComponent>("position"),
+                entity.getComponent<GroundedComponent>("grounded"),
+                entity.getComponent<AffectedByGravityComponent>("affectedByGravity"),
+                entity.getComponent<AnimatedTextureComponent>("animatedTexture"),
+                entity.getComponent<PhysicsComponent>("physics"),
+                entity.getComponent<AIComponent>("ai"),
+            };
 
-    //void AIMovementSystem::after()
-    //{
-    //    for (const Entity * entity : ais) {
-    //        auto grounded = entity->getComponent<GroundedComponent>("grounded");
-    //        auto affected = entity->getComponent<AffectedByGravityComponent>("affectedByGravity");
-    //        auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
-    //        auto physics = entity->getComponent<PhysicsComponent>("physics");
+            aiEntries.push_back(std::move(aiEntry));
+        }
 
-    //        constexpr float escapeVelocity = 140.f;
+        if (entity.isTag("player")) {
+            auto playerEntry = PlayerEntry{
+                &entity,
+                entity.getComponent<PositionComponent>("position")
+            };
 
-    //        /*if (grounded->isGrounded()) {
-    //            if (texture->isPausedOrStopped()) {
-    //                texture->play();
-    //            }
+            playerEntries.push_back(std::move(playerEntry));
+        }
+    }
 
-    //            if (physics->getVelocity().length() > 1.0f) {
-    //                auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-    //                auto maxSpeed = 32.0f;
-    //                texture->setPlaybackSpeed(maxSpeed * veloPercentage);
-    //            }
-    //            else {
-    //                texture->stop();
-    //            }
-    //        }
-    //        else {
-    //            texture->stop();
-    //        }*/
+    void AIMovementSystem::update()
+    {
+        for (const AIEntry & aiEntry : aiEntries) {
+            auto grounded = aiEntry.grounded;
+            auto affected = aiEntry.affectedByGravity;
+            auto texture = aiEntry.animatedTexture;
+            auto physics = aiEntry.physics;
 
-    //        if (!grounded->isGrounded() || !affected->getIsAffected())
-    //            return;
+            constexpr float escapeVelocity = 140.f;
 
-    //        auto ai = entity->getComponent<AIComponent>("ai");
-    //        auto position = entity->getComponent<PositionComponent>("position");
+            if (!grounded->isGrounded() || !affected->getIsAffected())
+                return;
 
-    //        Vector centerOfSatellite = {
-    //            position->getX() + physics->getColliderW() / 2.0f,
-    //            position->getY() + physics->getColliderH() / 2.0f
-    //        };
+            auto ai = aiEntry.ai;
+            auto position = aiEntry.position;
 
-    //        Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
-    //        Vector diff = centerOfGravity - centerOfSatellite;
+            Vector centerOfSatellite = {
+                position->getX() + physics->getColliderW() / 2.0f,
+                position->getY() + physics->getColliderH() / 2.0f
+            };
 
-    //        bool playerInRange = false;
+            Vector centerOfGravity = { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+            Vector diff = centerOfGravity - centerOfSatellite;
 
-    //        if (ai->getCanFollow()) {
-    //            const Entity * player = findPlayerInRange(entity);
+            bool playerInRange = false;
 
-    //            if (player != nullptr) {
-    //                playerInRange = true;
+            if (ai->getCanFollow()) {
+                const Entity * player = findPlayerInRange(aiEntry.entity);
 
-    //                auto pc = player->getComponent<PositionComponent>("position");
-    //                ai->setDirection(Direction::LEFT);
+                if (player != nullptr) {
+                    playerInRange = true;
 
-    //                diff += position->getLocation() - pc->getLocation();
-    //            }
-    //        }
+                    auto pc = player->getComponent<PositionComponent>("position");
+                    ai->setDirection(Direction::LEFT);
 
-    //        constexpr float gravityConstant = GravityComponent::getGravityConstant();
+                    diff += position->getLocation() - pc->getLocation();
+                }
+            }
 
-    //        auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();
+            constexpr float gravityConstant = GravityComponent::getGravityConstant();
 
-    //        if (physics->getVelocity().length() > escapeVelocity)
-    //            return;
+            auto movementForce = (physics->getMass() * gravityConstant) * ai->getForce();
 
-    //        if ((playerInRange && ai->getCanFollow() || ai->getCanWander())) {
-    //            if (ai->isDirection(Direction::LEFT)) {
-    //                Vector left = { -diff.y, diff.x };
-    //                left = left.normalize() * movementForce;
+            if (physics->getVelocity().length() > escapeVelocity)
+                return;
 
-    //                physics->addForce("left", left.x, left.y);
-    //            }
-    //            else if (ai->isDirection(Direction::RIGHT)) {
-    //                Vector right = { diff.y, -diff.x };
-    //                right = right.normalize() * movementForce;
+            if ((playerInRange && ai->getCanFollow() || ai->getCanWander())) {
+                if (ai->isDirection(Direction::LEFT)) {
+                    Vector left = { -diff.y, diff.x };
+                    left = left.normalize() * movementForce;
 
-    //                physics->addForce("right", right.x, right.y);
-    //            }
-    //        }
-    //    }
+                    physics->addForce("left", left.x, left.y);
+                }
+                else if (ai->isDirection(Direction::RIGHT)) {
+                    Vector right = { diff.y, -diff.x };
+                    right = right.normalize() * movementForce;
 
-    //    ais.clear();
-    //    players.clear();
-    //}
+                    physics->addForce("right", right.x, right.y);
+                }
+            }
+        }
+    }
 
-    //const Entity * AIMovementSystem::findPlayerInRange(const Entity * entity) const
-    //{
-    //    for (auto & player : players) {
-    //        if (entity->distance(*player) < 500.f) {
-    //            return player;
-    //        }
-    //    }
+    const Entity * AIMovementSystem::findPlayerInRange(const Entity * entity) const
+    {
+        for (const auto & playerEntry : playerEntries) {
+            if (entity->distance(*playerEntry.entity) < 500.f) {
+                return playerEntry.entity;
+            }
+        }
 
-    //    return nullptr;
-    //}
+        return nullptr;
+    }
 
-    //Direction AIMovementSystem::computeDirection() const
-    //{
-    //    return Direction::LEFT;
-    //}
+    Direction AIMovementSystem::computeDirection() const
+    {
+        return Direction::LEFT;
+    }
 
-    //float AIMovementSystem::computeForce() const
-    //{
-    //    return 1.0f;
-    //}
+    float AIMovementSystem::computeForce() const
+    {
+        return 1.0f;
+    }
 }
