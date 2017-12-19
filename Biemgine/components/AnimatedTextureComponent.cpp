@@ -19,7 +19,7 @@ namespace biemgine
         : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation),
           regions(pRegions), sequence(pSequence), playbackSpeed(pPlaybackSpeed), paused(pPaused)
     {
-
+        animations.insert(std::make_pair("default", AnimationSequenceDef{ pRegions, pSequence }));
     }
 
     AnimatedTextureComponent::AnimatedTextureComponent(
@@ -52,6 +52,8 @@ namespace biemgine
         : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation),
         playbackSpeed(pPlaybackSpeed), paused(pPaused), sequence(pSequence)
     {
+        AnimationSequenceDef ani;
+
         for (size_t rowIndex = 0; rowIndex < row.count; rowIndex++)
         {
             for (size_t columnIndex = 0; columnIndex < column.count; columnIndex++)
@@ -74,8 +76,64 @@ namespace biemgine
                 sr.point = p;
                 sr.size = s;
 
-                regions.push_back(sr);
+                ani.regions.push_back(sr);
             }
+        }
+
+        animations.insert(std::make_pair("default", ani));
+        current_name = "default";
+    }
+
+    AnimatedTextureComponent::AnimatedTextureComponent(
+        string path,
+        float offsetX, float offsetY,
+        initializer_list<AnimationDef> pSequence,
+        float pPlaybackSpeed,
+        int w, int h,
+        unsigned int layer,
+        bool pVisible, const string pTag, Color color, float rotation, bool pPaused)
+        : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation), playbackSpeed(pPlaybackSpeed), paused(pPaused)
+    {
+        for (auto& def : pSequence) {
+
+            if (current_name.empty()) {
+                current_name = def.name;
+            }
+
+            AnimationSequenceDef ani;
+            ani.loop = def.loop;
+
+            size_t count = 0llu;
+
+            for (size_t rowIndex = 0; rowIndex < def.rows.count; rowIndex++)
+            {
+                for (size_t columnIndex = 0; columnIndex < def.cols.count; columnIndex++)
+                {
+                    Size s{ def.cols.width, def.rows.height };
+                    Point p{
+                        static_cast<int>(def.cols.width * columnIndex),
+                        static_cast<int>(def.rows.height * rowIndex)
+                    };
+
+                    if (rowIndex > 0llu) {
+                        p.x += def.rows.padding;
+                    }
+
+                    if (columnIndex > 0llu) {
+                        p.y += def.cols.padding;
+                    }
+
+                    SizeRect sr;
+                    sr.point = p;
+                    sr.size = s;
+
+                    ani.regions.push_back(sr);
+                    ani.sequence.push_back(count);
+                    count++;
+                }
+            }
+
+            animations.insert(std::make_pair(def.name, ani));
         }
     }
 
@@ -157,5 +215,14 @@ namespace biemgine
 
             currentUpdate = 0.f;
         }
+    }
+
+    const string & AnimatedTextureComponent::getCurrentName() const
+    {
+        // TODO: insert return statement here
+    }
+
+    void AnimatedTextureComponent::setCurrentName(string current)
+    {
     }
 }

@@ -14,6 +14,14 @@ using std::initializer_list;
 
 namespace biemgine
 {
+    
+
+    struct BIEMGINE AnimationSequenceDef {
+        vector<SizeRect> regions;
+        vector<size_t> sequence;
+        bool loop = true;
+    };
+
     struct BIEMGINE TextureColumnDef {
         size_t count;
         int width;
@@ -31,6 +39,13 @@ namespace biemgine
     struct BIEMGINE AnimationIndex {
         size_t row;
         size_t column;
+    };
+
+    struct BIEMGINE AnimationDef {
+        string name;
+        TextureColumnDef cols;
+        TextureRowDef rows;
+        bool loop = true;
     };
 
     struct BIEMGINE AnimationSequence {
@@ -90,6 +105,21 @@ namespace biemgine
             bool pPaused = false
         );
 
+        AnimatedTextureComponent(
+            string path,
+            float offsetX,
+            float offsetY,
+            initializer_list<AnimationDef> pSequence,
+            float pPlaybackSpeed = 1.f,
+            int w = -1, int h = -1,
+            unsigned int layer = 0,
+            bool pVisible = true,
+            const string pTag = "",
+            Color color = Color::White(),
+            float rotation = 0.0f,
+            bool pPaused = false
+        );
+
         void doStep(float dt);
 
         bool isPausedOrStopped() const;
@@ -105,6 +135,9 @@ namespace biemgine
         const SizeRect& getRect() const override;
         void update(float dt) override;
 
+        const string& getCurrentName() const;
+        void setCurrentName(string current);
+
     private:
         vector<SizeRect> regions;
         vector<size_t> sequence;
@@ -114,5 +147,8 @@ namespace biemgine
         float currentUpdate = playbackSpeed;
 
         bool paused = false;
+
+        map<string, AnimationSequenceDef> animations;
+        string current_name;
     };
 }
