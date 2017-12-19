@@ -1,7 +1,14 @@
 #pragma once
-#include "../../systems/System.h"
 #include <Box2D/Box2D.h>
+#include <random>
+#include <math.h>
 #include "ContactListener.h"
+
+#include "../../systems/System.h"
+#include "../../components/PositionComponent.h"
+#include "../../components/PhysicsComponent.h"
+#include "../../components/GroundedComponent.h"
+#include "../../components/CollidableComponent.h"
 
 using std::map;
 using std::string;
@@ -12,13 +19,19 @@ namespace biemgine
         public System
     {
     public:
+        struct PhysicsEntry
+        {
+            Entity* entity;
+            std::shared_ptr<PositionComponent> positionComponent;
+            std::shared_ptr<PhysicsComponent> physicsComponent;
+        };
+
         PhysicsSystem();
         ~PhysicsSystem();
 
-        void update(const Entity& entity) override;
-        void onSceneSwitch() override;
+        void onAddEntity(Entity& entity) override;
         void before() override;
-
+        void update() override;
         void after() override;
 
     private:
@@ -38,5 +51,7 @@ namespace biemgine
 
         Vector meterToPixel(Vector& pixelVector);
         float meterToPixel(float meterValue);
+
+        vector<PhysicsEntry> physicsEntries;
     };
 }

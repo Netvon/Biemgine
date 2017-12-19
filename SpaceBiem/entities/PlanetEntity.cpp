@@ -8,6 +8,9 @@ using biemgine::ColorComponent;
 using biemgine::CollidableComponent;
 using biemgine::GroundComponent;
 using biemgine::TextureComponent;
+using biemgine::AnimatedTextureComponent;
+using biemgine::TextureColumnDef;
+using biemgine::TextureRowDef;
 using biemgine::TextComponent;
 using biemgine::ScriptComponent;
 using biemgine::RandomGenerator;
@@ -57,9 +60,8 @@ namespace spacebiem
             addComponent("texture", new TextureComponent("textures/atmosphere_clouds.png", 0.f - ((w * 2.5f / 2.f) - w / 2.f), 0 - ((h * 2.5f / 2.f) - h / 2.f), w * 2.5f, h * 2.5f, 10u, true, "clouds", Color::White(), rot));
 
             addComponent<ScriptComponent>("script",
-            [this](float deltaTime)
+            [this, textures = getComponents<TextureComponent>("texture")](float deltaTime)
             {
-                auto textures = getComponents<TextureComponent>("texture");
                 for (auto tex : textures) {
                     if (tex->getTag() == "clouds") {
                         tex->setRotation(tex->getRotation() + deltaTime);

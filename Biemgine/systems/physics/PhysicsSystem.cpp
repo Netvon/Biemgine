@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "PhysicsSystem.h"
 
-#include "../../components/PositionComponent.h"
-#include "../../components/PhysicsComponent.h"
-#include "../../components/PhysicsComponent.h"
-#include "../../components/GroundedComponent.h"
-#include "../../components/AffectedByGravityComponent.h"
-#include "../../components/CollidableComponent.h"
-
-#include <random>
-#include <math.h>
-
 namespace biemgine
 {
     #define RAD_TO_DEGREE (180.0f / 3.14159265358979323846264338327950288f)
@@ -40,6 +30,21 @@ namespace biemgine
         delete world;
     }
 
+    void PhysicsSystem::onAddEntity(Entity & entity)
+    {
+        auto physics = entity.getComponent<PhysicsComponent>("physics");
+
+        if (physics != nullptr)
+        {
+            PhysicsEntry physicsEntry;
+            physicsEntry.entity = &entity;
+            physicsEntry.physicsComponent = physics;
+            physicsEntry.positionComponent = entity.getComponent<PositionComponent>("position");
+
+            physicsEntries.push_back(std::move(physicsEntry));
+        }
+    }
+
     void PhysicsSystem::before()
     {
         for (const auto &pair : bodiesUpdated) {
@@ -47,55 +52,40 @@ namespace biemgine
         }
     }
 
-    void PhysicsSystem::update(const Entity & entity)
+    void PhysicsSystem::update()
     {
-        auto physics = entity.getComponent<PhysicsComponent>("physics");
+        for (const PhysicsEntry& entry : physicsEntries)
+        {
+            if (entry.entity->getIsOnScreen() && entry.entity->isAlive())
+            {
+                if (bodies.find(entry.entity->getId()) == bodies.end())
+                {
+                    bodies.insert_or_assign(entry.entity->getId(), createBody(*entry.entity));
+                }
 
-        if (physics == nullptr)
-            return;
+                auto body = bodies.at(entry.entity->getId());
 
-        if (bodies.find(entity.getId()) == bodies.end()) {
-            bodies.insert_or_assign(entity.getId(), createBody(entity));
+                if (entry.physicsComponent->getHasCustomVelocity())
+                    body->SetLinearVelocity({pixelToMeter(entry.physicsComponent->getVelocity().x), pixelToMeter(entry.physicsComponent->getVelocity().y)});
+
+                entry.positionComponent->setX(meterToPixel(body->GetPosition().x - pixelToMeter(entry.physicsComponent->getColliderW() / 2.f)));
+                entry.positionComponent->setY(meterToPixel(body->GetPosition().y - pixelToMeter(entry.physicsComponent->getColliderH() / 2.f)));
+
+                body->SetTransform(body->GetPosition(), entry.positionComponent->getRotation() * DEGREE_TO_RAD);
+
+                body->ApplyForceToCenter({pixelToMeter(entry.physicsComponent->getForceX()), pixelToMeter(entry.physicsComponent->getForceY())}, true);
+                body->ApplyLinearImpulseToCenter({pixelToMeter(entry.physicsComponent->getImpulseX()), pixelToMeter(entry.physicsComponent->getImpulseY())}, true);
+
+                entry.physicsComponent->decreaseTimedForces();
+
+                bodiesUpdated[entry.entity->getId()] = true;
+
+                auto velo = body->GetLinearVelocity();
+                entry.physicsComponent->setVelocity({meterToPixel(velo.x), meterToPixel(velo.y)});
+
+                body->SetLinearDamping(entry.physicsComponent->getLinearDamping());
+            }
         }
-        
-        auto position = entity.getComponent<PositionComponent>("position");
-
-        auto body = bodies.at(entity.getId());
-
-        if(physics->getHasCustomVelocity())
-            body->SetLinearVelocity({ pixelToMeter(physics->getVelocity().x), pixelToMeter(physics->getVelocity().y) });
-
-        position->setX(meterToPixel( body->GetPosition().x - pixelToMeter(physics->getColliderW() / 2.f )));
-        position->setY(meterToPixel( body->GetPosition().y - pixelToMeter(physics->getColliderH() / 2.f )));
-
-        /*if (entity.hasComponent("grounded")) {
-            b2Vec2 ding = {
-                pixelToMeter(affectedByGravity->getFallingTowardsX()),
-                pixelToMeter(affectedByGravity->getFallingTowardsY())
-            };
-
-            b2Vec2 target = ding - body->GetPosition();
-            target.Normalize();
-
-            float angle = atan2f(-target.x, target.y);
-            body->SetTransform(body->GetPosition(), angle);
-        }
-
-        position->setRotation(static_cast<float>(body->GetAngle() * RAD_TO_DEGREE));*/
-
-        body->SetTransform(body->GetPosition(), position->getRotation() * DEGREE_TO_RAD);
-
-        body->ApplyForceToCenter({ pixelToMeter( physics->getForceX() ) , pixelToMeter( physics->getForceY() ) }, true);
-        body->ApplyLinearImpulseToCenter({ pixelToMeter( physics->getImpulseX() ), pixelToMeter( physics->getImpulseY() ) }, true);
-
-        physics->decreaseTimedForces();
-
-        bodiesUpdated[entity.getId()] = true;
-
-        auto velo = body->GetLinearVelocity();
-        physics->setVelocity({ meterToPixel(velo.x), meterToPixel(velo.y) });
-
-        body->SetLinearDamping(physics->getLinearDamping());
     }
 
     void PhysicsSystem::after()
@@ -115,20 +105,6 @@ namespace biemgine
         }
 
         world->Step(1.f / 40.0f, 6, 2);
-    }
-
-    void PhysicsSystem::onSceneSwitch()
-    {
-        //for (auto pair : *bodies) {
-
-        //    /*b2Fixture* f = pair.second->GetFixtureList();
-        //    pair.second->DestroyFixture(f);*/
-
-        //    world->DestroyBody(pair.second);
-        //    pair.second = nullptr;
-        //}
-
-        //destroy();
     }
 
     b2Body* PhysicsSystem::createBody(const Entity & entity)

@@ -88,10 +88,10 @@ namespace spacebiem
                     flagComponent.push_back(stod(i.second[2].c_str()));
                 }
                 else if (component == "resource_component") {
-                    resources.push_back(stod(i.second[0].c_str()));
-                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[2].c_str()));
+                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[3].c_str()));
+                    resources.push_back(stod(i.second[0].c_str()));
                 }
                 else if (component == "physics_component") {
                     physics.push_back(stod(i.second[0]));
@@ -129,12 +129,12 @@ namespace spacebiem
                     positionComponent->setRotation(physics[2]);
                 }
             }
-            /*else if (type == "aimummie") {
+            else if (type == "aimummie") {
                 entityManager->addEntity<MummieAIEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
             }
             else if (type == "aisnowman") {
                 entityManager->addEntity<SnowmanAIEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
-            }*/
+            }
             else if (type == "resource") {
                 // name & score moeten nog uitgelezen worden
                 resourceFactory.createPlanetResources(stod(xPos), stod(yPos), stoi(width), stoi(height), resourceName, entityManager);

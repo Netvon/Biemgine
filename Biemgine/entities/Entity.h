@@ -47,6 +47,8 @@ namespace biemgine
         virtual void die() const;
         virtual void rise() const;
         bool isAlive() const;
+        void setIsOnScreen(bool onScreen);
+        bool getIsOnScreen() const;
 
         bool hasTag() const;
         void setTag(string pTag);
@@ -73,6 +75,7 @@ namespace biemgine
 
         string tag;
         bool isOCCheckable;
+        bool isOnScreen;
     };
 
     template<typename TComponent>

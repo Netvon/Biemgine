@@ -15,6 +15,7 @@ namespace biemgine
     class BIEMGINE EntityManager
     {
     public:
+        EntityManager(std::shared_ptr<SystemManager> manager);
         ~EntityManager();
         int addEntity(Entity* entity);
 
@@ -37,10 +38,7 @@ namespace biemgine
 
     private:
         std::vector<Entity*> entities;
-        std::shared_ptr<CameraComponent> camera;
-
-        bool canUpdate(const Entity& e);
-
+        std::shared_ptr<SystemManager> systemManager;
     };
 
     template<class TEntity, typename ...TArgs>
@@ -49,13 +47,10 @@ namespace biemgine
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
 
         Entity* entity = entities.back();
+        systemManager->onAddEntity(*entity);
 
         entity->calculateBounds();
         entity->checkOCCheckable();
-
-        if (!camera && entity->hasComponent("camera")) {
-             camera = entity->getComponent<CameraComponent>("camera");
-        }
 
         return entity->getId();
     }

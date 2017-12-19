@@ -5,7 +5,6 @@
 #include "Component.h"
 #include "..\managers\StateManager.h"
 #include "..\primitives\Primitives.h"
-#include "..\systems\UISystem.h"
 
 using std::function;
 
@@ -34,11 +33,8 @@ namespace biemgine
         function<void(StateManager*)> getIsEntered() const;
         bool isEnabled() const;
 
-    protected:
         void setIsMouseOver(bool pIsMouseOver);
         void setIsMouseDown(bool pIsMouseDown);
-
-        friend void UISystem::update(const Entity & entity, const float deltaTime);
 
     private:
         std::shared_ptr<Component> componentReference = nullptr;

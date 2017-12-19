@@ -4,8 +4,11 @@
 #include "..\components\OxygenComponent.h"
 
 using biemgine::System;
-using biemgine::GraphicsDevice;
 using biemgine::Entity;
+using biemgine::Color;
+using biemgine::UIComponent;
+using biemgine::PositionComponent;
+using biemgine::TextureComponent;
 using std::map;
 
 namespace spacebiem
@@ -14,11 +17,27 @@ namespace spacebiem
         : public System
     {
     public:
+        struct OxygenEntry
+        {
+            Entity* entity;
+            std::shared_ptr<OxygenComponent> oxygenComponent;
+
+        };
+
+        struct TextureEntry
+        {
+            Entity* entity;
+            vector<std::shared_ptr<TextureComponent>> textureComponents;
+
+        };
+
         ~OxygenUISystem() {};
 
-        void update(const Entity& entity) override;
+        void onAddEntity(Entity& entity) override;
+        void update() override;
 
     private:
-        map<std::shared_ptr<OxygenComponent>, bool> oxygenMap;
+        vector<OxygenEntry> oxygenEntries;
+        vector<TextureEntry> textureEntries;
     };
 }
