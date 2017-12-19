@@ -211,6 +211,9 @@
     <ClInclude Include="scenes\LevelEditorScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="systems\DragDropSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="scenes\LevelEditorScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\DragDropSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

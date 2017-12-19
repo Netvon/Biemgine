@@ -9,6 +9,8 @@
 #include "../entities/PlanetEarthEntity.h"
 #include "../entities/PlanetMoonEntity.h"
 
+#include "../systems/DragDropSystem.h"
+
 #include "..\globals\Fonts.h"
 
 using biemgine::TextUIEntity;
@@ -25,28 +27,53 @@ namespace spacebiem
         enableUI();
         enableScripts();
 
+        addSystem<DragDropSystem>();
+
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
         float planetWidth = 500;
         float planetHeight = 500;
-
-        addEntity<SpriteEntity>("textures/spacebiem.png", wW / 2 - 175, 100, Color::White(), -1, -1);
-        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
-        addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
         auto buttonColor = Color{ 35, 65, 112 };
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
+        int menuSize = 400;
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2), wH - 250, buttonColor, buttonTextColor, buttonSize, "Back to slots", buttonTexture,
+        // menu background
+        addEntity<SpriteEntity>("textures/rectangle.png", wW - menuSize, 0, Color{ 0, 0, 0, 150 }, menuSize, wH, 1u, "entity_menu");
+
+
+        fillMenuEntitySpace();
+
+
+        addEntity<ButtonUIEntity>((wW) - (buttonSize.width) - 20, wH - buttonSize.height - 20, buttonColor, buttonTextColor, buttonSize, "Back to slots", buttonTexture,
             [this](StateManager* manager)
         {
             manager->navigateTo<LevelLoadScene>();
         });
 
     }
+
+
+    void LevelEditorScene::fillMenuEntitySpace() {
+
+        int wW = getTransitionManager().getWindowWidth();
+        int wH = getTransitionManager().getWindowHeight();
+
+        int menuSize = 400;
+
+        int entityMarginX = 80;
+        int entityMarginY = 80;
+        int entityWidth = (menuSize - (entityMarginX * 2));
+
+        addEntity<PlanetEarthEntity>(wW - entityMarginX - (entityWidth), entityMarginY, Color{ 71, 166, 245, 255 }, entityWidth / 2, entityWidth / 2, 0, 10.f);
+
+
+
+    }
+
 
     void LevelEditorScene::input()
     {

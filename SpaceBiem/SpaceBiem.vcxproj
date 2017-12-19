@@ -199,6 +199,7 @@
     <ClInclude Include="scenes\LevelEditorScene.h" />
     <ClInclude Include="scenes\LevelLoadScene.h" />
     <ClInclude Include="systems\AIMovementSystem.h" />
+    <ClInclude Include="systems\DragDropSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="scenes\LevelEditorScene.cpp" />
     <ClCompile Include="scenes\LevelLoadScene.cpp" />
     <ClCompile Include="systems\AIMovementSystem.cpp" />
+    <ClCompile Include="systems\DragDropSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />
