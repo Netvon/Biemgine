@@ -22,6 +22,7 @@
     <ClInclude Include="systems\AnimateSystem.h" />
     <ClInclude Include="components\AnimationComponent.h" />
     <ClInclude Include="components\AudioComponent.h" />
+    <ClInclude Include="components\TextBoxComponent.h" />
     <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
     <ClInclude Include="components\AffectedByGravityComponent.h" />
@@ -46,6 +47,8 @@
     <ClInclude Include="devices\audio\SDLAudioDevice.h" />
     <ClInclude Include="devices\graphics\GraphicsDevice.h" />
     <ClInclude Include="devices\graphics\SDLGraphicsDevice.h" />
+    <ClInclude Include="devices\graphics\SDLTextBoxDevice.h" />
+    <ClInclude Include="devices\graphics\TextBoxDevice.h" />
     <ClInclude Include="devices\graphics\TextureAndUsage.h" />
     <ClInclude Include="devices\graphics\TextureFlip.h" />
     <ClInclude Include="dlldef.h" />
@@ -77,8 +80,10 @@
     <ClCompile Include="components\AnimationComponent.cpp" />
     <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\AudioComponent.cpp" />
+    <ClCompile Include="components\TextBoxComponent.cpp" />
     <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
     <ClCompile Include="components\AnimatedTextureComponent.cpp" />
+    <ClCompile Include="devices\graphics\SDLTextBoxDevice.cpp" />
     <ClCompile Include="entities\TextUIEntity.cpp" />
     <ClCompile Include="components\ScriptComponent.cpp" />
     <ClCompile Include="entities\TextEntity.cpp" />

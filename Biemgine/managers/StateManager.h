@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "..\entities\Entity.h"
 #include "..\devices\audio\AudioDevice.h"
+#include "..\devices\graphics\TextBoxDevice.h"
 
 using std::string;
 
@@ -37,6 +38,11 @@ namespace biemgine
             return *audioDevice;
         }
 
+        TextBoxDevice& getTextBoxDevice() const
+        {
+            return *textBoxDevice;
+        }
+
         template<class TScene, typename... TParams>
         void navigateTo(TParams&&... arguments);
 
@@ -49,6 +55,7 @@ namespace biemgine
         const InputManager* inputManager = nullptr;
         const Window* window = nullptr;
         AudioDevice* audioDevice;
+        TextBoxDevice* textBoxDevice;
     };
 
     template<class TScene, typename... TParams>

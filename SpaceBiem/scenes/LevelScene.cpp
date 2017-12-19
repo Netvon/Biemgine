@@ -215,6 +215,10 @@ namespace spacebiem
             isPageDownButtonDown = false;
         }
 
+        if (im.isKeyDown("`")) {
+            getTransitionManager().getTextBoxDevice().drawTextBox();
+        }
+
         if (im.isKeyDown("PageUp")) {
             if (!isPageUpButtonDown) {
                 if (getFPSModifier() < 1) {

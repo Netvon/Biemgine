@@ -176,6 +176,15 @@
     <ClInclude Include="components\AnimatedTextureComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="components\TextBoxComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\SDLTextBoxDevice.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="devices\graphics\TextBoxDevice.h">
+      <Filter>devices\graphics</Filter>
+    </ClInclude>
     <ClInclude Include="systems\AnimateSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
@@ -309,11 +318,17 @@
     <ClCompile Include="components\AnimatedTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="components\TextBoxComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
     <ClCompile Include="systems\AnimateSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="components\AnimationComponent.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="devices\graphics\SDLTextBoxDevice.cpp">
+      <Filter>devices\graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
