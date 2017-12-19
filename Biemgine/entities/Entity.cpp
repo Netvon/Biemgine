@@ -20,14 +20,7 @@ namespace biemgine
 		id = dist6(rng);
 	}
 
-	Entity::~Entity()
-	{
-		/*for (std::pair<std::string, const Component*> pair : componentHashmap) {
-			delete pair.second;
-		}
-
-		componentHashmap.clear();*/
-	}
+	Entity::~Entity() {}
 
 	bool Entity::hasComponent(const string & name) const
 	{
