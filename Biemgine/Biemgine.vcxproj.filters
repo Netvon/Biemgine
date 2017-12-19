@@ -176,6 +176,7 @@
     <ClInclude Include="components\AnimatedTextureComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -303,5 +304,6 @@
     <ClCompile Include="components\AnimatedTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp" />
   </ItemGroup>
 </Project>

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="components\AudioComponent.h" />
     <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
@@ -71,6 +72,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\AudioComponent.cpp" />
     <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
