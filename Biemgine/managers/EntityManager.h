@@ -33,6 +33,8 @@ namespace biemgine
             return entities.end();
         }
 
+        void addEntitiesToSystems();
+
         Entity* getEntity(int id) const;
         Entity* getEntity(string tag) const;
 
@@ -46,12 +48,6 @@ namespace biemgine
     {
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
 
-        Entity* entity = entities.back();
-        systemManager->onAddEntity(*entity);
-
-        entity->calculateBounds();
-        entity->checkOCCheckable();
-
-        return entity->getId();
+        return entities.back()->getId();
     }
 }

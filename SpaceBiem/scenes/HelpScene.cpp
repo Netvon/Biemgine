@@ -31,6 +31,7 @@
 #include "..\globals\Colors.h"
 #include "..\FileParser.h"
 
+using biemgine::AnimationComponent;
 using biemgine::TextUIEntity;
 using biemgine::SpriteEntity;
 
@@ -60,10 +61,13 @@ namespace spacebiem
         enablePhysics();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         addSystem<GravitySystem>();
         addSystem<MovementSystem>();
         addSystem<JumpSystem>();
+
+        getTransitionManager().getAudioDevice().stopSoundEffect("");
 
         if (currentSlide > 1) {
             addSystem<OxygenSystem>();
@@ -82,18 +86,31 @@ namespace spacebiem
         int middleMargin = 10;
 
 
+        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 0}, wW, wH, 9999);
+        auto overlayEntity = getEntity(overlayId);
+        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 500,
+                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
+      
+        if(fade)
+            overlayAnimation->play();
+
         if (fromLevel) {
+           
+
             addEntity<ButtonUIEntity>((wW - bW - bW) / 2 - middleMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", returnToMenuButtonClicked);
-            addEntity<ButtonUIEntity>((wW) / 2 + middleMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to game", "textures/button_white.png", returnToGameButtonClicked);
+            addEntity<ButtonUIEntity>((wW) / 2 + middleMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to game", "textures/button_white.png",
+                                      [this, overlayAnimation](StateManager* e)
+            { overlayAnimation->setOnFinished([e] { e->navigateTo<LevelScene>(false); }); overlayAnimation->playReversed(); });
         }
         else {
             addEntity<ButtonUIEntity>((wW-bW)/2, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", returnToMenuButtonClicked);
         }
 
-        if(currentSlide > 1)addEntity<ButtonUIEntity>(edgeMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Previous", "textures/button_white.png", [this](StateManager* e) { e->navigateTo<HelpScene>(fromLevel, currentSlide - 1); });
+        if(currentSlide > 1)addEntity<ButtonUIEntity>(edgeMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Previous", "textures/button_white.png", [this](StateManager* e) { e->navigateTo<HelpScene>(fromLevel, false, currentSlide - 1); });
         else addEntity<ButtonUIEntity>(edgeMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Previous", "textures/button_white.png");
 
-        if(currentSlide < maxSlides) addEntity<ButtonUIEntity>(wW - edgeMargin - bW, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Next", "textures/button_white.png", [this](StateManager* e) { e->navigateTo<HelpScene>(fromLevel, currentSlide + 1); });
+        if(currentSlide < maxSlides) addEntity<ButtonUIEntity>(wW - edgeMargin - bW, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Next", "textures/button_white.png", [this](StateManager* e) { e->navigateTo<HelpScene>(fromLevel, false, currentSlide + 1); });
         else addEntity<ButtonUIEntity>(wW - edgeMargin - bW, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Next", "textures/button_white.png");
 
 

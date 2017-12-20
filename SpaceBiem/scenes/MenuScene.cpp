@@ -15,6 +15,8 @@
 #include "..\entities\ResourceUIEntity.h"
 #include "..\globals\Functions.h"
 
+using biemgine::AnimationComponent;
+using biemgine::TextureComponent;
 using biemgine::SpriteEntity;
 using biemgine::Size;
 using biemgine::FileHandler;
@@ -26,6 +28,7 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         getTransitionManager().getAudioDevice().stopSoundEffect("");
 
@@ -39,6 +42,17 @@ namespace spacebiem
         float playerHeight = 25 * 2;
         int w = 50;
         int x = wW / 2 - 175;
+
+        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 0}, wW, wH, 9999);
+        auto overlayEntity = getEntity(overlayId);
+        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 500,
+                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
+
+        if (fadeIn)
+        {
+            overlayAnimation->play();
+        }
 
         addEntity<SpriteEntity>("textures/spacebiem.png", x, 100, Color::White(), -1, -1);
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
@@ -54,7 +68,12 @@ namespace spacebiem
         int incr = 65;
 
         auto newGameClick = [](StateManager* e) { e->navigateTo<DifficultyScene>(); };
-        auto continueClick = [](StateManager* e) { e->navigateTo<LevelScene>(false); };
+        auto continueClick = [overlayAnimation](StateManager* e)
+        {
+            overlayAnimation->setOnFinished([e] { e->navigateTo<LevelScene>(false); });
+            overlayAnimation->playReversed();
+        };
+
         auto highscoreClick =[](StateManager* e) { e->navigateTo<HighScoreScene>(); };
         auto helpClick = [](StateManager* e) { e->navigateTo<HelpScene>(); };
         auto CreditsButtonClicked = [](StateManager* e) { e->navigateTo<CreditsScene>(); };

@@ -48,7 +48,7 @@ namespace spacebiem
             float startAngle = static_cast<float>(RandomGenerator::getInstance().generate(1, 100));
             float newAngle = startAngle;
 
-            int count = 0;
+            int count = 5;
             while (count > 0) {
 
                 float angle = newAngle / 100 * 3.1415926535897f * 2;

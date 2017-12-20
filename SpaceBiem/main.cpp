@@ -13,7 +13,7 @@ int main()
     try
     {
         Engine engine;
-        engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
+        engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, true);
     }
     catch (...)
     {

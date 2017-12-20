@@ -12,6 +12,8 @@
 #include "..\globals\Fonts.h"
 #include "..\globals\Difficulty.h"
 
+using biemgine::AnimationComponent;
+using biemgine::TextureComponent;
 using biemgine::TextUIEntity;
 using biemgine::SpriteEntity;
 
@@ -23,6 +25,7 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -32,6 +35,13 @@ namespace spacebiem
         float playerHeight = 25 * 2;
         int w = 50;
         int x = wW / 2 - w;
+
+        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 0}, wW, wH, 9999);
+        auto overlayEntity = getEntity(overlayId);
+        overlayEntity->addComponent("animation", new AnimationComponent(0, 255, 500,
+                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+
+        auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         addEntity<SpriteEntity>("textures/choose_difficulty.png", wW / 2 - 175, 130, Color::White(), -1, -1);
         addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
@@ -46,21 +56,24 @@ namespace spacebiem
         int incr = 65;
 
         addEntity<ButtonUIEntity>(x - 25, beginY + (0 * incr), Color{ 22, 94, 22 }, buttonTextColor, buttonSize, "Normal", buttonTexture,
-            [this](StateManager* manager)
+            [overlayAnimation](StateManager* manager)
         {
-            manager->navigateTo<LevelScene>(true, Difficulty::NORMAL);
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::NORMAL); });
+            overlayAnimation->play();
         });
 
         addEntity<ButtonUIEntity>(x - 25, beginY + (1 * incr), Color{ 188, 103, 0 }, buttonTextColor, buttonSize, "Challenging", buttonTexture,
-            [this](StateManager* manager)
+            [overlayAnimation](StateManager* manager)
         {
-            manager->navigateTo<LevelScene>(true, Difficulty::CHALLENING);
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::CHALLENING); });
+            overlayAnimation->play();
         });
 
         addEntity<ButtonUIEntity>(x - 25, beginY + (2 * incr), Color{ 135, 25, 25 }, buttonTextColor, buttonSize, "Expert", buttonTexture,
-            [this](StateManager* manager)
+            [overlayAnimation](StateManager* manager)
         {
-            manager->navigateTo<LevelScene>(true, Difficulty::EXPERT);
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::EXPERT); });
+            overlayAnimation->play(); 
         });
 
         beginY += 40;

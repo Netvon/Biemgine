@@ -17,15 +17,17 @@ namespace spacebiem
         void created() override;
         void sceneEnd() override;
 
-        HelpScene(StateManager& manager, bool fromLevel = false, int slide = 1)
+        HelpScene(StateManager& manager, bool fromLevel = false, bool pFade = false, int slide = 1)
             : Scene(manager),
             fromLevel(fromLevel),
+            fade(pFade),
             currentSlide(slide)
         {};
         ~HelpScene() {};
 
     private:
         bool fromLevel;
+        bool fade;
         int currentSlide;
         int maxSlides = 9;
 

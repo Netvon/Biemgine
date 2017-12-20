@@ -64,13 +64,16 @@ namespace biemgine
                 if (!entry.uiComponent->getIsMouseOver() && entry.uiComponent->getIsEntered())
                     entry.uiComponent->getIsEntered()(getStateManager());
 
-                entry.uiComponent->setIsMouseOver(true);
-                entry.uiComponent->setIsMouseDown(isLeftMouseDown);
-
-                if (isLeftMouseDown) {
+                if (isLeftMouseDown && !entry.uiComponent->getIsMouseDown())
+                {
                     if (entry.uiComponent->getIsClicked())
                         entry.uiComponent->getIsClicked()(getStateManager());
                 }
+
+                entry.uiComponent->setIsMouseOver(true);
+                entry.uiComponent->setIsMouseDown(isLeftMouseDown);
+
+                
             }
             else {
                 entry.uiComponent->setIsMouseOver(false);

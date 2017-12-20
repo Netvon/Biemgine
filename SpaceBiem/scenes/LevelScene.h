@@ -3,6 +3,7 @@
 #include "Biemgine.h"
 #include "../globals/Difficulty.h"
 
+using biemgine::AnimationComponent;
 using biemgine::SpriteEntity;
 using biemgine::Scene;
 using biemgine::StateManager;
@@ -47,6 +48,7 @@ namespace spacebiem
 		int speedId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
+		std::shared_ptr<AnimationComponent> fadeAnimation = nullptr;
 		int timeout;
 		float counter = 0;
 		float totalDeltaTime = 0;

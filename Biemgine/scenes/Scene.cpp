@@ -6,6 +6,7 @@
 #include "..\systems\UISystem.h"
 #include "..\systems\ScriptSystem.h"
 #include "..\systems\CameraSystem.h"
+#include "..\systems\AnimateSystem.h"
 
 //#include "..\systems\gravitysystem.h"
 //#include "..\systems\physicssystem.h"
@@ -83,6 +84,11 @@ namespace biemgine
         addSystem<CameraSystem>();
     }
 
+    void Scene::enableAnimations()
+    {
+        addSystem<AnimateSystem>();
+    }
+
     void Scene::enableRendering()
     {
         // TODO default rendering device
@@ -99,6 +105,11 @@ namespace biemgine
 
     void Scene::render(float deltaTime) { }
 
+    void Scene::firstFrame()
+    {
+        entityManager->addEntitiesToSystems();
+    }
+    
     Entity * Scene::getEntity(int id) const
     {
         return entityManager->getEntity(id);
