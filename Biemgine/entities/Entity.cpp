@@ -145,5 +145,19 @@ namespace biemgine
 	{
 		return isOCCheckable;
 	}
-   
+
+    void Entity::scaleSize(float scalair) {
+        if (hasComponent("texture")) {
+            auto textures = getComponents<TextureComponent>("texture");
+            for (auto texture : textures) {
+                texture->setWidth(texture->getWidth() * scalair);
+                texture->setHeight(texture->getHeight() * scalair);
+                texture->setOffsetX(texture->getOffsetX() * scalair);
+                texture->setOffsetY(texture->getOffsetY() * scalair);
+           }
+        }
+
+
+    }
+
 }
