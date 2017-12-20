@@ -4,6 +4,7 @@
 
 #include <map>
 #include <vector>
+#include <functional>
 
 #include <initializer_list>
 
@@ -14,8 +15,6 @@ using std::initializer_list;
 
 namespace biemgine
 {
-    
-
     struct BIEMGINE AnimationSequenceDef {
         vector<SizeRect> regions;
         vector<size_t> sequence;
@@ -25,6 +24,7 @@ namespace biemgine
     struct BIEMGINE TextureColumnDef {
         size_t count;
         int width;
+        int offset = 0;
 
         int padding = 0;
     };
@@ -32,6 +32,7 @@ namespace biemgine
     struct BIEMGINE TextureRowDef {
         size_t count;
         int height;
+        int offset = 0;
 
         int padding = 0;
     };
@@ -110,6 +111,7 @@ namespace biemgine
             float offsetX,
             float offsetY,
             initializer_list<AnimationDef> pSequence,
+            string initialAnimation,
             float pPlaybackSpeed = 1.f,
             int w = -1, int h = -1,
             unsigned int layer = 0,
@@ -120,7 +122,7 @@ namespace biemgine
             bool pPaused = false
         );
 
-        void doStep(float dt);
+        //void doStep(float dt);
 
         bool isPausedOrStopped() const;
         void pause();
@@ -131,14 +133,17 @@ namespace biemgine
         void setPlaybackSpeed(float pPlaybackSpeed);
 
         size_t getCurrentStep() const;
-        const SizeRect& getCurrentRect() const;
+        //const SizeRect& getCurrentRect() const;
         const SizeRect& getRect() const override;
         void update(float dt) override;
 
-        const string& getCurrentName() const;
-        void setCurrentName(string current);
+        const string& getCurrentAnimation() const;
+        void setCurrentAnimation(string key);
 
     private:
+
+        std::function<void(string, bool)> onAnimationCycleComplete;
+
         vector<SizeRect> regions;
         vector<size_t> sequence;
         size_t current = 0llu;
@@ -149,6 +154,7 @@ namespace biemgine
         bool paused = false;
 
         map<string, AnimationSequenceDef> animations;
-        string current_name;
+        string currentName;
+        AnimationSequenceDef* currentAnimation = nullptr;
     };
 }

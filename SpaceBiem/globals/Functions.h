@@ -17,6 +17,10 @@ namespace spacebiem
 
                 if (grounded->isGrounded()) {
 
+                    if (texture->getCurrentAnimation() != "walk") {
+                        texture->setCurrentAnimation("walk");
+                    }
+
                     if (texture->isPausedOrStopped())
                         texture->play();
 
@@ -32,7 +36,9 @@ namespace spacebiem
                     }
                 }
                 else {
-                    texture->stop();
+
+                    if (texture->getCurrentAnimation() == "walk")
+                        texture->stop();
                 }
             };
         }

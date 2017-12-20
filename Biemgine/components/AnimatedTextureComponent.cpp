@@ -20,6 +20,7 @@ namespace biemgine
           regions(pRegions), sequence(pSequence), playbackSpeed(pPlaybackSpeed), paused(pPaused)
     {
         animations.insert(std::make_pair("default", AnimationSequenceDef{ pRegions, pSequence }));
+        setCurrentAnimation("default");
     }
 
     AnimatedTextureComponent::AnimatedTextureComponent(
@@ -53,6 +54,7 @@ namespace biemgine
         playbackSpeed(pPlaybackSpeed), paused(pPaused), sequence(pSequence)
     {
         AnimationSequenceDef ani;
+        size_t count = 0llu;
 
         for (size_t rowIndex = 0; rowIndex < row.count; rowIndex++)
         {
@@ -76,18 +78,22 @@ namespace biemgine
                 sr.point = p;
                 sr.size = s;
 
+
                 ani.regions.push_back(sr);
+                ani.sequence.push_back(count);
+                count++;
             }
         }
 
         animations.insert(std::make_pair("default", ani));
-        current_name = "default";
+        setCurrentAnimation("default");
     }
 
     AnimatedTextureComponent::AnimatedTextureComponent(
         string path,
         float offsetX, float offsetY,
         initializer_list<AnimationDef> pSequence,
+        string initialAnimation,
         float pPlaybackSpeed,
         int w, int h,
         unsigned int layer,
@@ -96,8 +102,8 @@ namespace biemgine
     {
         for (auto& def : pSequence) {
 
-            if (current_name.empty()) {
-                current_name = def.name;
+            if (currentName.empty() && initialAnimation.empty()) {
+                currentName = def.name;
             }
 
             AnimationSequenceDef ani;
@@ -111,8 +117,8 @@ namespace biemgine
                 {
                     Size s{ def.cols.width, def.rows.height };
                     Point p{
-                        static_cast<int>(def.cols.width * columnIndex),
-                        static_cast<int>(def.rows.height * rowIndex)
+                        static_cast<int>(def.cols.width * columnIndex) + def.cols.offset,
+                        static_cast<int>(def.rows.height * rowIndex) + def.rows.offset
                     };
 
                     if (rowIndex > 0llu) {
@@ -135,21 +141,12 @@ namespace biemgine
 
             animations.insert(std::make_pair(def.name, ani));
         }
-    }
 
-    void AnimatedTextureComponent::doStep(float dt)
-    {
-        if (paused)
-            return;
-
-        currentUpdate += dt;
-
-        if (currentUpdate >= playbackSpeed) {
-            current++;
-            current %= sequence.size();
-
-            currentUpdate = 0.f;
+        if (!initialAnimation.empty()) {
+            currentName = initialAnimation;
         }
+
+        setCurrentAnimation(currentName);
     }
 
     bool AnimatedTextureComponent::isPausedOrStopped() const
@@ -190,16 +187,10 @@ namespace biemgine
         return current;
     }
 
-    const SizeRect& AnimatedTextureComponent::getCurrentRect() const
-    {
-        auto &s = sequence.at(current);
-        return regions.at(s);
-    }
-
     const SizeRect & AnimatedTextureComponent::getRect() const
-    {
-        auto &s = sequence.at(current);
-        return regions.at(s);
+    {        
+        auto &s = currentAnimation->sequence.at(current);
+        return currentAnimation->regions.at(s);
     }
 
     void AnimatedTextureComponent::update(float dt)
@@ -211,18 +202,30 @@ namespace biemgine
 
         if (currentUpdate >= playbackSpeed) {
             current++;
-            current %= sequence.size();
+
+            if (currentAnimation->loop) {
+                current %= currentAnimation->sequence.size();
+            }
+            else if(current >= currentAnimation->sequence.size()) {
+                stop();
+            }
 
             currentUpdate = 0.f;
         }
     }
 
-    const string & AnimatedTextureComponent::getCurrentName() const
+    const string & AnimatedTextureComponent::getCurrentAnimation() const
     {
-        // TODO: insert return statement here
+        return currentName;
     }
 
-    void AnimatedTextureComponent::setCurrentName(string current)
+    void AnimatedTextureComponent::setCurrentAnimation(string key)
     {
+        if (animations.count(key) > 0) {
+            currentName = key;
+            currentAnimation = &animations[key];
+            currentUpdate = 0.0f;
+            current = 0llu;
+        }
     }
 }
