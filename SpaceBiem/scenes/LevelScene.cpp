@@ -121,7 +121,7 @@ namespace spacebiem
 
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
             [this](StateManager* e) {
-            fadeAnimation->setOnFinished([this, e] { saveGame();  e->navigateTo<HelpScene>(true); });
+            fadeAnimation->setOnFinished([this, e] { saveGame();  e->navigateTo<HelpScene>(true, true); });
             fadeAnimation->playReversed();
            
         }, nullptr, "pause_menu");
