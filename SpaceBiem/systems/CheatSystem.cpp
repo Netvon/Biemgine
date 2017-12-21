@@ -36,7 +36,7 @@ namespace spacebiem
                 }
 
                 if (getStateManager()->getInputManager()->isKeyDown("K")) {
-                    player.oxygenComponent->setOxygenAmount(0.f);
+                    player.oxygenComponent->setOxygenAmount(0);
                 }
             }
 
