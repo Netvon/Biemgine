@@ -44,7 +44,7 @@ namespace spacebiem
         auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         addEntity<SpriteEntity>("textures/choose_difficulty.png", wW / 2 - 175, 130, Color::White(), -1, -1);
-        addEntity<PlanetEarthEntity>(-100.f, static_cast<float>(wH - 200), Color{ 71, 166, 245, 255 }, planetWidth, planetHeight, 0, 10.f);
+        addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";

@@ -8,7 +8,6 @@ namespace spacebiem
         FileParser parser;
         difficultySystem = parser.DifficultySystemContent();
         difficultyBelt = parser.DifficultyBeltContent();
-
     }
 
     void UniverseGenerator::generate(Difficulty difficulty)
