@@ -42,10 +42,10 @@ namespace spacebiem
 
             Vector centerOfGravity{player.affectedByGravityComponent->getFallingTowardsX(), player.affectedByGravityComponent->getFallingTowardsY()};
 
-            Vector diff = (centerOfGravity - centerOfSatellite) * -1;
+            Vector diff = (centerOfGravity - centerOfSatellite) * -1.0f;
             diff = diff.normalize();
 
-            if (player.physicsComponent->getVelocity().length() > 0)
+            if (player.physicsComponent->getVelocity().length() > 0.0f)
             {
                 diff += player.physicsComponent->getVelocity().normalize();
                 diff = diff.normalize();
