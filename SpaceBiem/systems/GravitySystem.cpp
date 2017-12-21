@@ -47,7 +47,7 @@ namespace spacebiem
                 sat_entry.position->getY() + sat_entry.physics->getColliderH() / 2.0f
             };
 
-            for (auto &grav_entry : gravEntries) {
+            for (const auto &grav_entry : gravEntries) {
                 if (!grav_entry.entity->getIsOnScreen())
                     continue;
 

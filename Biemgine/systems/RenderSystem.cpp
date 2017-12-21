@@ -36,7 +36,7 @@ namespace biemgine
            
         auto txs = entity.getComponents<TextComponent>("text");
 
-        for (auto tx : txs)
+        for (const auto& tx : txs)
         {
             OptDrawText opt;
             opt.entity = &entity;
@@ -49,7 +49,7 @@ namespace biemgine
 
         auto tc = entity.getComponents<TextureComponent>("texture");
 
-        for (auto tex : tc)
+        for (const auto& tex : tc)
         {
             OptDrawTexture opt;
             opt.entity = &entity;
@@ -68,7 +68,7 @@ namespace biemgine
         int deltaX = 0;
         int deltaY = 0;
 
-        for (auto texture : optDrawList)
+        for (const auto& texture : optDrawList)
         {
             if (!texture.textureComponent->isVisible() || !texture.entity->isAlive() || !texture.entity->getIsOnScreen()) continue;
             deltaX = 0;
@@ -96,7 +96,7 @@ namespace biemgine
             texture.textureComponent->update(deltaTime);
         }
 
-        for (auto text : optTextList)
+        for (auto& text : optTextList)
         {
             if (!text.textComponent->isVisible() || !text.entity->isAlive() || !text.entity->getIsOnScreen()) continue;
 

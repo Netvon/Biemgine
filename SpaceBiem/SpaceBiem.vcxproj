@@ -196,6 +196,8 @@
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />
+    <ClInclude Include="scenes\LevelEditorScene.h" />
+    <ClInclude Include="scenes\LevelLoadScene.h" />
     <ClInclude Include="systems\AIMovementSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
@@ -251,6 +253,8 @@
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="scenes\HelpScene.cpp" />
+    <ClCompile Include="scenes\LevelEditorScene.cpp" />
+    <ClCompile Include="scenes\LevelLoadScene.cpp" />
     <ClCompile Include="systems\AIMovementSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
