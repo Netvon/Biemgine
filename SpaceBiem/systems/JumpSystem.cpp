@@ -33,6 +33,7 @@ namespace spacebiem
 
             player.animatedComponent->setCurrentAnimation("jump");
             player.animatedComponent->play();
+            player.animatedComponent->setPlaybackSpeed(70.0f);
 
             Vector centerOfSatellite{
                 player.positionComponent->getX() + player.physicsComponent->getColliderW() / 2.0f,

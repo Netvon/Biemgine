@@ -13,12 +13,13 @@ namespace spacebiem
         static std::function<void(float)> updateAnimatedBasesOnSpeed(std::shared_ptr<biemgine::GroundedComponent> grounded, std::shared_ptr<biemgine::AnimatedTextureComponent> texture, std::shared_ptr<biemgine::PhysicsComponent> physics) {
 
             return [grounded, texture, physics](float deltatime) {
+                constexpr char* animation = "walk";
                 constexpr float escapeVelocity = 140.0f;
 
                 if (grounded->isGrounded()) {
 
-                    if (texture->getCurrentAnimation() != "walk") {
-                        texture->setCurrentAnimation("walk");
+                    if (texture->getCurrentAnimation() != animation) {
+                        texture->setCurrentAnimation(animation);
                     }
 
                     if (texture->isPausedOrStopped())
@@ -37,7 +38,7 @@ namespace spacebiem
                 }
                 else {
 
-                    if (texture->getCurrentAnimation() == "walk")
+                    if (texture->getCurrentAnimation() == animation)
                         texture->stop();
                 }
             };
