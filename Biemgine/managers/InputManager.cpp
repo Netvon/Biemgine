@@ -26,11 +26,6 @@ namespace biemgine
         return keyStates[SDL_GetScancodeFromName(key)];
     }
 
-    string InputManager::getKeyPressed() const
-    {
-        return "";
-    }
-
     Point InputManager::getMouseLocation() const
     {
         int x = 0, y = 0;

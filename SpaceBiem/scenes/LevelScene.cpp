@@ -132,9 +132,6 @@ namespace spacebiem
             fadeAnimation->playReversed();
         }, nullptr, "pause_menu");
 
-        inputId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, inputText);
-        inputEntity = getEntity(inputId);
-
         updateMenu();
 
         if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/spacemusic1.mp3"))
@@ -219,9 +216,7 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("`")) {
-
             getTransitionManager().getTextBoxDevice().drawTextBox();
-            
         }
 
         if (im.isKeyDown("PageUp")) {
