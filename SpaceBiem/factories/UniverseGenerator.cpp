@@ -8,7 +8,6 @@ namespace spacebiem
         FileParser parser;
         difficultySystem = parser.DifficultySystemContent();
         difficultyBelt = parser.DifficultyBeltContent();
-
     }
 
     void UniverseGenerator::generate(Difficulty difficulty)
@@ -48,7 +47,7 @@ namespace spacebiem
             float startAngle = static_cast<float>(RandomGenerator::getInstance().generate(1, 100));
             float newAngle = startAngle;
 
-            int count = 5;
+            int count = 0;
             while (count > 0) {
 
                 float angle = newAngle / 100 * 3.1415926535897f * 2;

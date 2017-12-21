@@ -90,7 +90,7 @@ namespace spacebiem
 
         int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
         auto overlayEntity = getEntity(overlayId);
-        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 500,
+        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,
                                     [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
         fadeAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
