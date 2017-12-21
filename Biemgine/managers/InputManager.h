@@ -14,6 +14,7 @@ namespace biemgine
         void setWindow(const Window * pWindow);
         void update();
         bool isKeyDown(const char* key) const;
+        string getKeyPressed() const;
         Point getMouseLocation() const;
         bool isLeftMouseDown() const;
         bool isRightMouseDown() const;
