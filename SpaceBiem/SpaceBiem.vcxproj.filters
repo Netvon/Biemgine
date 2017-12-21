@@ -211,6 +211,9 @@
     <ClInclude Include="scenes\LevelEditorScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="globals\Ads.h">
+      <Filter>globals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -389,5 +392,11 @@
     <ClCompile Include="scenes\LevelEditorScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
+    <ClCompile Include="globals\Ads.cpp">
+      <Filter>globals</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ads\.gitkeep" />
   </ItemGroup>
 </Project>

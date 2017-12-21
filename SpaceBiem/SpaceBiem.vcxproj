@@ -95,6 +95,8 @@
       <PrecompiledHeaderOutputFile>$(ProjectDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,6 +190,7 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="globals\Ads.h" />
     <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
@@ -249,6 +252,7 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
+    <ClCompile Include="globals\Ads.cpp" />
     <ClCompile Include="scenes\CreditsScene.cpp" />
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
@@ -285,6 +289,9 @@
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">
       <Project>{e83a57d4-482a-420a-a132-4d44a04827d5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ads\.gitkeep" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
