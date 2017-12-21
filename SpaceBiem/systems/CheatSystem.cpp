@@ -6,7 +6,7 @@ namespace spacebiem
 {
     void CheatSystem::onAddEntity(Entity & entity)
     {
-        if (entity.hasComponent("oxygen") && entity.hasComponent("score"))
+        if (entity.hasComponent("oxygen") && entity.hasComponent("score") && entity.hasComponent("movement"))
         {
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
             auto sc = entity.getComponent<ScoreComponent>("score");
@@ -30,8 +30,13 @@ namespace spacebiem
                 if (getStateManager()->getInputManager()->isKeyDown("=")) {
                     player.scoreComponent->setScore(player.scoreComponent->getScore() + 10.f);
                 }
+
                 if (getStateManager()->getInputManager()->isKeyDown("-")) {
                     player.scoreComponent->setScore(player.scoreComponent->getScore() - 10.f);
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown("K")) {
+                    player.oxygenComponent->setOxygenAmount(0.f);
                 }
             }
 
