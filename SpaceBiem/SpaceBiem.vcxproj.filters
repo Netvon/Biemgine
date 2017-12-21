@@ -217,6 +217,9 @@
     <ClInclude Include="entities\AdEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="systems\CheatSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="entities\SnowmanAIEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CheatSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="scenes\LevelLoadScene.cpp">
       <Filter>scenes</Filter>
