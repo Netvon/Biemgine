@@ -33,6 +33,10 @@ namespace spacebiem
                 if (getStateManager()->getInputManager()->isKeyDown("-")) {
                     player.scoreComponent->setScore(player.scoreComponent->getScore() - 10.f);
                 }
+
+                if (getStateManager()->getInputManager()->isKeyDown("K")) {
+                    player.oxygenComponent->setOxygenAmount(0);
+                }
             }
 
             if (getStateManager()->getInputManager()->isKeyDown("=")) {
