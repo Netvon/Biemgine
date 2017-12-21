@@ -19,7 +19,6 @@
 #include "components\PhysicsComponent.h"
 #include "components\PositionComponent.h"
 #include "components\RectangleComponent.h"
-#include "components\TextBoxComponent.h"
 #include "components\TextComponent.h"
 #include "components\TextureComponent.h"
 #include "components\AnimatedTextureComponent.h"
