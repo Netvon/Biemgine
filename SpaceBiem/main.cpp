@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "scenes\MenuScene.h"
+#include "globals\Ads.h"
 
 using biemgine::Engine;
 using biemgine::Size;
@@ -12,6 +13,8 @@ int main()
 {
     try
     {
+        Ads::initialize("ads", ".jpg");
+
         Engine engine;
         engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
     }
