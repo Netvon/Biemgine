@@ -318,9 +318,6 @@
     <ClCompile Include="components\AnimatedTextureComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\TextBoxComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="systems\AnimateSystem.cpp">
       <Filter>systems</Filter>
     </ClCompile>
