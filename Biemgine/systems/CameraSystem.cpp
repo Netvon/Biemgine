@@ -14,14 +14,14 @@ namespace biemgine
         if (pc == nullptr)
             return;
 
-        Entry entity;
+        CSEntity entity;
         entity.positionComponent = pc;
         entity.entity = &pEntity;
         allEntities.push_back(std::move(entity));
 
         if (camera != nullptr)
         {
-            CameraEntry cEntity;
+            CameraEntity cEntity;
             cEntity.positionComponent = pc;
             cEntity.cameraComponent = camera;
             cEntity.entity = &pEntity;
@@ -51,7 +51,7 @@ namespace biemgine
         }
     }
 
-    bool CameraSystem::isOnScreen(const Entry & e)
+    bool CameraSystem::isOnScreen(const CSEntity & e)
     {
         //if (!e.entity->isAlive()) return false;
 
