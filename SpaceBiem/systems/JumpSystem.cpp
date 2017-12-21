@@ -15,6 +15,7 @@ namespace spacebiem
 			playerEntry.groundedComponent = entity.getComponent<GroundedComponent>("grounded");
 			playerEntry.affectedByGravityComponent = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
 			playerEntry.physicsComponent = entity.getComponent<PhysicsComponent>("physics");
+            playerEntry.movementComponent = entity.getComponent<MovementComponent>("movement");
 
 			playerEntries.push_back(std::move(playerEntry));
 		}	
@@ -52,7 +53,7 @@ namespace spacebiem
 				multiplier = 1.0f;
 
 			constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (10.0f * multiplier);
+			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (player.movementComponent->getJumpForce() * multiplier);
 
 			diff *= movementForce;
 

@@ -2,6 +2,7 @@
 
 #include "Biemgine.h"
 #include "..\components\GravityComponent.h"
+#include "..\components\MovementComponent.h"
 
 using biemgine::System;
 using biemgine::Entity;
@@ -24,6 +25,7 @@ namespace spacebiem
             std::shared_ptr<GroundedComponent> groundedComponent;
             std::shared_ptr<AffectedByGravityComponent> affectedByGravityComponent;
             std::shared_ptr<PhysicsComponent> physicsComponent;
+            std::shared_ptr<MovementComponent> movementComponent;
         };
 
         void onAddEntity(Entity& entity) override;
