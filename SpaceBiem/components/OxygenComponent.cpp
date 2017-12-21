@@ -9,10 +9,22 @@ namespace spacebiem
 
 	void OxygenComponent::setOxygenAmount(float pOxygen)
 	{
-		if (pOxygen >= 0 && pOxygen <= oxygenMax) {
-			oxygenAmount = pOxygen;
-		}
+        if (!isGod) {
+            if (pOxygen >= 0 && pOxygen <= oxygenMax) {
+                oxygenAmount = pOxygen;
+            }
+        }	
 	}
+
+    void OxygenComponent::setIsGod(bool pIsGod)
+    {
+        isGod = pIsGod;
+    }
+
+    bool OxygenComponent::getIsGod() const
+    {
+        return isGod;
+    }
 
 	void OxygenComponent::setAtmosphereEntity(std::shared_ptr<Entity> atmosphere)
 	{

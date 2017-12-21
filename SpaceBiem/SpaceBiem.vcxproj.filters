@@ -205,6 +205,9 @@
     <ClInclude Include="entities\SnowmanAIEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="systems\CheatSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -376,6 +379,9 @@
     </ClCompile>
     <ClCompile Include="entities\SnowmanAIEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\CheatSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

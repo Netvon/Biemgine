@@ -27,6 +27,7 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\CheatSystem.h"
 #include "..\systems\AIMovementSystem.h"
 
 #include "..\globals\Fonts.h"
@@ -64,6 +65,7 @@ namespace spacebiem
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
         addSystem<GameoverSystem>();
+        addSystem<CheatSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
