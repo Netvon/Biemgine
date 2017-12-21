@@ -36,7 +36,7 @@ namespace biemgine
            
         auto txs = entity.getComponents<TextComponent>("text");
 
-        for (const auto& tx : txs)
+        for (auto tx : txs)
         {
             OptDrawText opt;
             opt.entity = &entity;
