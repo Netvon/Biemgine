@@ -56,8 +56,8 @@ namespace spacebiem
             if (multiplier < 1.0f)
                 multiplier = 1.0f;
 
-            constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-            auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (10.0f * multiplier);
+			constexpr auto gravityConstant = GravityComponent::getGravityConstant();
+			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (player.movementComponent->getJumpForce() * multiplier);
 
             diff *= movementForce;
 

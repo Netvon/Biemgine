@@ -10,11 +10,13 @@ namespace spacebiem
         {
             auto oc = entity.getComponent<OxygenComponent>("oxygen");
             auto sc = entity.getComponent<ScoreComponent>("score");
+            auto mc = entity.getComponent<MovementComponent>("movement");
 
             PlayerEntry playerEntry;
             playerEntry.entity = &entity;
             playerEntry.oxygenComponent = oc;
             playerEntry.scoreComponent = sc;
+            playerEntry.movementComponent = mc;
 
             playerEntries.push_back(std::move(playerEntry));
         }
@@ -31,6 +33,14 @@ namespace spacebiem
                 if (getStateManager()->getInputManager()->isKeyDown("-")) {
                     player.scoreComponent->setScore(player.scoreComponent->getScore() - 10.f);
                 }
+            }
+
+            if (getStateManager()->getInputManager()->isKeyDown("=")) {
+                player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() + 0.1f);
+            }
+
+            if (getStateManager()->getInputManager()->isKeyDown("-")) {
+                player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() - 0.1f);
             }
 
             if (getStateManager()->getInputManager()->isKeyDown(",")) {

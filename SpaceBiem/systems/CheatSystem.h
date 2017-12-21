@@ -3,6 +3,7 @@
 #include "..\components\OxygenComponent.h"
 #include "..\scenes\LevelScene.h"
 #include "..\components\ScoreComponent.h"
+#include "..\components\MovementComponent.h"
 #include "..\components\ScoreBonusComponent.h"
 
 #include "Biemgine.h"
@@ -22,6 +23,7 @@ namespace spacebiem
             Entity* entity;
             std::shared_ptr<OxygenComponent> oxygenComponent;
             std::shared_ptr<ScoreComponent> scoreComponent;
+            std::shared_ptr<MovementComponent> movementComponent;
         };
 
         ~CheatSystem() {};
