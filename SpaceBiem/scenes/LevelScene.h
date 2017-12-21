@@ -45,15 +45,11 @@ namespace spacebiem
 		bool newGame;
 		int FPSId;
 		int speedId;
-        int inputId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
-        Entity * inputEntity = nullptr;
 		int timeout;
 		float counter = 0;
 		float totalDeltaTime = 0;
-
-        string inputText = "Test Input";
 
 		void updateMenu();
 

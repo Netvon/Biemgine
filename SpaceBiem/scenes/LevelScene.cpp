@@ -123,9 +123,6 @@ namespace spacebiem
             e->navigateTo<MenuScene>();
         }, nullptr, "pause_menu");
 
-        inputId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, inputText);
-        inputEntity = getEntity(inputId);
-
         updateMenu();
 
         getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
@@ -208,9 +205,7 @@ namespace spacebiem
         }
 
         if (im.isKeyDown("`")) {
-
             getTransitionManager().getTextBoxDevice().drawTextBox();
-            
         }
 
         if (im.isKeyDown("PageUp")) {
