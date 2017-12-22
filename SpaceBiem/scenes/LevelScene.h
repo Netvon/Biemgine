@@ -45,8 +45,10 @@ namespace spacebiem
 		bool newGame;
 		int FPSId;
 		int speedId;
+        int cheatId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
+        Entity * cheatEntity = nullptr;
 		int timeout;
 		float counter = 0;
 		float totalDeltaTime = 0;

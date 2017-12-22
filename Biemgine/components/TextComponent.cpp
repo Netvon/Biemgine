@@ -9,7 +9,7 @@ namespace biemgine {
         return text;
     }
 
-    void TextComponent::setText(const std::string& newText, const Color& newColor) {
+    void TextComponent::setText(std::string newText, Color newColor) {
         text = newText;
         color = newColor;
     }

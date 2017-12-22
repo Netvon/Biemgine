@@ -128,6 +128,10 @@ namespace spacebiem
         updateMenu();
 
         getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
+
+        cheatId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 250, 40, Color{ 66, 143, 244 }, "");
+        cheatEntity = getEntity(cheatId);
+        cheatEntity->setTag("cheat");
     }
 
     void LevelScene::sceneEnd() {
