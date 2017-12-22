@@ -13,7 +13,7 @@ int main()
 {
     try
     {
-        Ads::initialize("ads", ".jpg");
+        Ads::instance().initialize("ads", ".jpg");
 
         Engine engine;
         engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
@@ -23,6 +23,8 @@ int main()
         printf("An unexpected error occured..");
         system("pause");
     }
+
+    Ads::instance().close();
 
     return _CrtDumpMemoryLeaks();
 }
