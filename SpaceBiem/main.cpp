@@ -24,5 +24,7 @@ int main()
         system("pause");
     }
 
+    Ads::clear();
+
     return _CrtDumpMemoryLeaks();
 }

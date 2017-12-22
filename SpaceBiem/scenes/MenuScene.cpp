@@ -15,6 +15,7 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\entities\ResourceUIEntity.h"
 #include "..\globals\Functions.h"
+#include "..\globals\Ads.h"
 
 using biemgine::SpriteEntity;
 using biemgine::Size;
@@ -41,6 +42,7 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - 175;
 
+        addEntity<SpriteEntity>(Ads::random(), wW - 402, 0, Color::White(), 402,169, 20.f);
         addEntity<SpriteEntity>("textures/spacebiem.png", x, 100, Color::White(), -1, -1);
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);

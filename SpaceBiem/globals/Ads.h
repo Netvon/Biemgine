@@ -11,6 +11,7 @@ public:
 
     static void initialize(filesystem::path pDirectoryContainingAds = "ads", std::string allowedExtension = ".jpg");
     static std::string random();
+    static void clear();
 
 private:
     static void shuffle();

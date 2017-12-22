@@ -31,6 +31,12 @@ std::string Ads::random()
     }
 }
 
+void Ads::clear()
+{
+    files.~vector();
+    directoryContainingAds.~path();
+}
+
 void Ads::shuffle()
 {
     if (files.size() > 0) {
