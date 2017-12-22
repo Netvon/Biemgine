@@ -9,6 +9,7 @@
 #include "DifficultyScene.h"
 #include "LevelLoadScene.h"
 #include "..\entities\PlanetEarthEntity.h"
+#include "..\entities\AdEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
@@ -69,17 +70,7 @@ namespace spacebiem
         int beginY = 330;
         int incr = 65;
 
-        auto adEntityId = addEntity<SpriteEntity>(Ads::random(), wW - 427, -169, Color::White(), 402, 169, 20.f);
-        auto adEntity = getEntity(adEntityId);
-        adEntity->addComponent("animation", new AnimationComponent(-169, 25, 500, nullptr, nullptr));
-        auto adAnimation = adEntity->getComponent<AnimationComponent>("animation");
-        auto adPos = adEntity->getComponent<PositionComponent>("position");
-
-        auto adButtonId = addEntity<ButtonUIEntity>(wW - 75, 169 - 25, Color{ 0, 0, 0 }, Color{ 0, 0, 0 }, Size{ 50, 50 }, "X", "", [adAnimation](StateManager* e) {adAnimation->playReversed(); }, nullptr);
-        auto adButtonEntity = getEntity(adButtonId);
-        auto adButtonPos = adButtonEntity->getComponent<PositionComponent>("position");
-
-        adAnimation->setOnUpdate([adPos, adButtonPos](float newValue) { adPos->setY(newValue); adButtonPos->setY(newValue); });
+        addEntity<AdEntity>();
 
         auto newGameClick = [](StateManager* e) { e->navigateTo<DifficultyScene>(); };
         auto continueClick = [overlayAnimation](StateManager* e)

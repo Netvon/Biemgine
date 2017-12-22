@@ -6,6 +6,7 @@
 
 using std::string;
 using biemgine::Entity;
+using biemgine::StateManager;
 using biemgine::Color;
 using biemgine::PositionComponent;
 using biemgine::ColorComponent;

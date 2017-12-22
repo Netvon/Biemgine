@@ -50,10 +50,10 @@ namespace biemgine
 
             auto sizeRect = entry.uiComponent->getSize();
 
-            auto X1 = entry.positionComponent->getX();
+            auto X1 = entry.positionComponent->getX() + sizeRect.point.x;
             auto X2 = X1 + sizeRect.size.width;
 
-            auto Y1 = entry.positionComponent->getY();
+            auto Y1 = entry.positionComponent->getY() + sizeRect.point.y;
             auto Y2 = Y1 + sizeRect.size.height;
 
             if (currentMouseLocation.x >= X1
