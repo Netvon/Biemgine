@@ -10,13 +10,10 @@ namespace biemgine
     class BIEMGINE Loop
     {
     public:
-        Loop();
-        //static const int BM_GAMELOOP_FPS;
-        //static const float BM_GAMELOOP_UPDATE_MS;
-
-        InputManager im;
 
         virtual ~Loop() {};
+
+        InputManager im;
 
         void start(const Window * window);
         void signalQuit();
@@ -64,6 +61,7 @@ namespace biemgine
         virtual void update() { }
         virtual void render(const float deltaTime) { }
         virtual void created() { }
+        virtual void firstFrame() {}
         virtual void end() { }
         virtual void close() { }
     };

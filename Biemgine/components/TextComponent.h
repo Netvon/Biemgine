@@ -14,11 +14,11 @@ namespace biemgine
         public Component
     {
     public:
-        TextComponent(Font pFont, string pText = "", Color pColor = { 255, 255, 255, 255 }, bool center = false, float pOffsetX = 0, float pOffsetY = 0, bool pVisible = true, string pTag = "");
+        TextComponent(Font pFont, string pText = "", Color pColor = { 255, 255, 255, 255 }, bool center = false, float pOffsetX = 0, float pOffsetY = 0, unsigned int pLayer = 200u, bool pVisible = true, string pTag = "");
         ~TextComponent();
 
         const string& getText() const;
-        void setText(string newText, Color newColor);
+        void setText(const string& newText, const Color& newColor);
         const Color& getColor() const;
         void setColor(const Color newColor);
 
@@ -30,6 +30,7 @@ namespace biemgine
         bool isVisible() const;
         void setVisible(bool pVisible);
         bool isCenter() const;
+        unsigned int getLayer() const;
 
         void setTag(const string& tag);
         const string& getTag() const;
@@ -46,5 +47,6 @@ namespace biemgine
         bool center;
         string tag;
         Font font;
+        unsigned int layer;
     };
 }

@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "CameraSystem.h"
 
-
-
-
 namespace biemgine
 {
     void CameraSystem::onAddEntity(Entity & pEntity)
