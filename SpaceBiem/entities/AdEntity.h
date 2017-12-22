@@ -13,7 +13,9 @@ using biemgine::UIComponent;
 using biemgine::TextComponent;
 using biemgine::TextureComponent;
 using biemgine::AnimationComponent;
+using biemgine::Point;
 using biemgine::Size;
+using biemgine::SizeRect;
 using biemgine::Font;
 
 namespace spacebiem

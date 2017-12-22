@@ -6,7 +6,7 @@ namespace biemgine
 {
     UIComponent::UIComponent(bool pEnabled): enabled(pEnabled) {}
 
-    UIComponent::UIComponent(const Size & pSize, function<void(StateManager*)> onClick, function<void(StateManager*)> onEnter, bool pEnabled) : size(pSize), onClick(onClick), onEnter(onEnter), enabled(pEnabled)
+    UIComponent::UIComponent(const SizeRect & pSize, function<void(StateManager*)> onClick, function<void(StateManager*)> onEnter, bool pEnabled) : size(pSize), onClick(onClick), onEnter(onEnter), enabled(pEnabled)
     {
     }
 
@@ -27,7 +27,7 @@ namespace biemgine
         return isMouseOver;
     }
 
-    const Size & UIComponent::getSize() const
+    const SizeRect & UIComponent::getSize() const
     {
         return size;
     }

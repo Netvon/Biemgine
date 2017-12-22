@@ -48,13 +48,13 @@ namespace biemgine
         {
             if (!entry.entity->isAlive()) continue;
 
-            auto size = entry.uiComponent->getSize();
+            auto sizeRect = entry.uiComponent->getSize();
 
             auto X1 = entry.positionComponent->getX();
-            auto X2 = X1 + size.width;
+            auto X2 = X1 + sizeRect.size.width;
 
             auto Y1 = entry.positionComponent->getY();
-            auto Y2 = Y1 + size.height;
+            auto Y2 = Y1 + sizeRect.size.height;
 
             if (currentMouseLocation.x >= X1
                 && currentMouseLocation.x <= X2

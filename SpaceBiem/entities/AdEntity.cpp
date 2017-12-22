@@ -12,7 +12,7 @@ namespace spacebiem
         addComponent("animation", new AnimationComponent(-169, 25, 500, nullptr, nullptr));
         auto animation = getComponent<AnimationComponent>("animation");
 
-        addComponent("ui", new UIComponent(Size{ 50, 50 }, nullptr, nullptr));
+        addComponent("ui", new UIComponent(SizeRect{Point{0,0,0}, Size{50, 50}}, nullptr, nullptr));
     }
 }
 
