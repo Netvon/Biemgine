@@ -46,8 +46,10 @@ namespace spacebiem
 		bool newGame;
 		int FPSId;
 		int speedId;
+        int cheatId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
+        Entity * cheatEntity = nullptr;
         Entity * inputEntity = nullptr;
 		std::shared_ptr<AnimationComponent> fadeAnimation = nullptr;
 		int timeout;

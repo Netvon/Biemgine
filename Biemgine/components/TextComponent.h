@@ -18,7 +18,7 @@ namespace biemgine
         ~TextComponent();
 
         const string& getText() const;
-        void setText(const string& newText, const Color& newColor);
+        void setText(string newText, Color newColor);
         const Color& getColor() const;
         void setColor(const Color newColor);
 

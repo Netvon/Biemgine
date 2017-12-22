@@ -11,6 +11,7 @@
 
 using biemgine::System;
 using biemgine::Entity;
+using biemgine::TextComponent;
 
 namespace spacebiem
 {
@@ -26,6 +27,12 @@ namespace spacebiem
             std::shared_ptr<MovementComponent> movementComponent;
         };
 
+        struct CheatTextEntry
+        {
+            Entity* entity;
+            std::shared_ptr<TextComponent> textComponent;
+        };
+
         ~CheatSystem() {};
 
         void onAddEntity(Entity& entity) override;
@@ -33,5 +40,6 @@ namespace spacebiem
 
     private:
         vector<PlayerEntry> playerEntries;
+        CheatTextEntry cheatTextEntry;
     };
 }

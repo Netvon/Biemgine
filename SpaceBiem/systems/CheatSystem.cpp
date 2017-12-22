@@ -2,6 +2,8 @@
 
 #include "CheatSystem.h"
 
+using biemgine::Color;
+
 namespace spacebiem
 {
     void CheatSystem::onAddEntity(Entity & entity)
@@ -19,6 +21,20 @@ namespace spacebiem
             playerEntry.movementComponent = mc;
 
             playerEntries.push_back(std::move(playerEntry));
+        }
+
+        if (entity.hasComponent("text"))
+        {
+            if (entity.getTag() == "cheat")
+            {
+                auto tc = entity.getComponent<TextComponent>("text");
+
+                CheatTextEntry cheatText;
+                cheatText.entity = &entity;
+                cheatText.textComponent = tc;
+
+                cheatTextEntry = std::move(cheatText);
+            }
         }
     }
 
@@ -57,6 +73,7 @@ namespace spacebiem
 
             if (getStateManager()->getInputManager()->isKeyDown("G")) {
                 if (!player.oxygenComponent->getIsGod()) {
+                    cheatTextEntry.textComponent->setText("HOI", Color{ 255, 255, 255 });
                     player.oxygenComponent->setIsGod(true);
                 }
                 else {
