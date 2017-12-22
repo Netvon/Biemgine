@@ -90,7 +90,8 @@ namespace biemgine
                 texture.textureComponent->getColor(),
                 texture.textureComponent->getFlip(),
                 false,
-                texture.textureComponent->getRect()
+                texture.textureComponent->getRect(),
+                texture.textureComponent->getBlendMode()
             );
 
             texture.textureComponent->update(deltaTime);

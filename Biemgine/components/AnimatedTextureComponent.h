@@ -61,6 +61,24 @@ namespace biemgine
             string path,
             float offsetX,
             float offsetY,
+            TextureColumnDef column,
+            TextureRowDef row,
+            initializer_list<size_t> pSequence,
+            float pPlaybackSpeed = 1.f,
+            int w = -1, int h = -1,
+            unsigned int layer = 0,
+            bool pVisible = true,
+            const string pTag = "",
+            Color color = Color::White(),
+            float rotation = 0.0f,
+            bool pPaused = false,
+            BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND
+        );
+
+        AnimatedTextureComponent(
+            string path,
+            float offsetX,
+            float offsetY,
             initializer_list<SizeRect> pRegions,
             initializer_list<size_t> pSequence,
             float pPlaybackSpeed = 1.f,
@@ -70,7 +88,8 @@ namespace biemgine
             const string pTag = "",
             Color color = Color::White(),
             float rotation = 0.0f,
-            bool pPaused = false
+            bool pPaused = false,
+            BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND
         );
 
         AnimatedTextureComponent(
@@ -86,24 +105,8 @@ namespace biemgine
             const string pTag = "",
             Color color = Color::White(),
             float rotation = 0.0f,
-            bool pPaused = false
-        );
-
-        AnimatedTextureComponent(
-            string path,
-            float offsetX,
-            float offsetY,
-            TextureColumnDef column,
-            TextureRowDef row,
-            initializer_list<size_t> pSequence,
-            float pPlaybackSpeed = 1.f,
-            int w = -1, int h = -1,
-            unsigned int layer = 0,
-            bool pVisible = true,
-            const string pTag = "",
-            Color color = Color::White(),
-            float rotation = 0.0f,
-            bool pPaused = false
+            bool pPaused = false,
+            BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND
         );
 
         AnimatedTextureComponent(
@@ -119,7 +122,8 @@ namespace biemgine
             const string pTag = "",
             Color color = Color::White(),
             float rotation = 0.0f,
-            bool pPaused = false
+            bool pPaused = false,
+            BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND
         );
 
         //void doStep(float dt);

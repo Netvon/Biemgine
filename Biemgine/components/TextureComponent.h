@@ -14,13 +14,21 @@ namespace biemgine
         public Component
     {
     public:
+        enum class BLEND_MODE {
+            NO_BLEND = 0x00000000,
+            ALPHA_BLEND = 0x00000001,
+            ADD_BLEND = 0x00000002,
+            MOD_BLEND = 0x00000004,
+        };
+
         TextureComponent(
             string path,
             float offsetX, float offsetY, int w = -1, int h = -1,
             unsigned int layer = 0, bool pVisible = true,
             const string pTag = "",
             Color color = Color::White(),
-            float rotation = 0.0f
+            float rotation = 0.0f,
+            BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND
         );
         ~TextureComponent();
 
@@ -50,6 +58,8 @@ namespace biemgine
         virtual const SizeRect& getRect() const;
         virtual void update(float dt) {};
 
+        BLEND_MODE getBlendMode() const;
+
     private:
         string path;
         int width, height;
@@ -62,5 +72,6 @@ namespace biemgine
         Color originalColor;
         float rotation;
         TextureFlip flip = TextureFlip::NONE;
+        BLEND_MODE blend = BLEND_MODE::ALPHA_BLEND;
     };
 }
