@@ -40,6 +40,17 @@ namespace biemgine
         manager->postUpdate(deltaTime); 
     }
 
+    void EntityManager::addEntitiesToSystems()
+    {
+        for (auto & entity : entities)
+        {
+            entity->calculateBounds();
+            entity->checkOCCheckable();
+
+            systemManager->onAddEntity(*entity); 
+        }
+    }
+
     Entity* EntityManager::getEntity(int id) const
     {
         for (auto entity = entities.begin(); entity != entities.end(); ++entity)

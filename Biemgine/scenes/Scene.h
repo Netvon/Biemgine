@@ -37,6 +37,7 @@ namespace biemgine
         void enableUI();
         void enableScripts();
         void enableCamera();
+        void enableAnimations();
 
         Entity * getEntity(int id) const;
 
@@ -58,7 +59,7 @@ namespace biemgine
         virtual void input() override;
         virtual void update() override = 0;
         virtual void render(float deltaTime) override;
-
+        virtual void firstFrame() override;
         virtual void created() = 0;
     };
 
