@@ -6,7 +6,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(1493, -169));
         addComponent("text", new TextComponent(Fonts::Roboto(), "X", Color{ 0, 0, 0 }, true, 25, 25, 1100u, true));
-        addComponent("texture", new TextureComponent(Ads::random(), 0, 0, 402, 169, 1000u, true, "", Color::White()));
+        addComponent("texture", new TextureComponent(Ads::instance().random(), 0, 0, 402, 169, 1000u, true, "", Color::White()));
 
         auto position = getComponent<PositionComponent>("position");
         addComponent("animation", new AnimationComponent(-169, 25, 500, [position](float newValue) { position->setY(newValue); }, nullptr, true));

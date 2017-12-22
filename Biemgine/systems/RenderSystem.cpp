@@ -130,7 +130,8 @@ namespace biemgine
                     texture->textureComponent->getColor(),
                     texture->textureComponent->getFlip(),
                     false,
-                    texture->textureComponent->getRect()
+                    texture->textureComponent->getRect(),
+                    texture->textureComponent->getBlendMode()
                 );
 
                 texture->textureComponent->update(deltaTime);
@@ -139,63 +140,7 @@ namespace biemgine
            
         }
 
-        /*for (const auto& texture : optDrawList)
-        {
-            if (!texture->entity->getIsOnScreen() || !texture->entity->isAlive() || !texture->textureComponent->isVisible()) continue;
 
-            
-
-            deltaX = 0;
-            deltaY = 0;
-
-            if (cameraComponent != nullptr && !texture->isUI)
-            {
-                deltaX = cameraComponent->getDeltaX();
-                deltaY = cameraComponent->getDeltaY();
-            }
-
-            graphicsDevice->drawTexture(
-                texture->textureComponent->getPath(),
-                texture->textureComponent->getOffsetX() + texture->positionComponent->getOriginX() + deltaX,
-                texture->textureComponent->getOffsetY() + texture->positionComponent->getOriginY() + deltaY,
-                texture->textureComponent->getWidth(),
-                texture->textureComponent->getHeight(),
-                texture->textureComponent->getRotation() + texture->positionComponent->getRotation(),
-                texture->textureComponent->getColor(),
-                texture->textureComponent->getFlip(),
-                false,
-                texture->textureComponent->getRect()
-            );
-
-            texture->textureComponent->update(deltaTime);
-        }
-
-        for (auto& text : optTextList)
-        {
-            if (!text->entity->getIsOnScreen()  || !text->entity->isAlive() || !text->textComponent->isVisible()) continue;
-
-            deltaX = 0;
-            deltaY = 0;
-
-            if (cameraComponent != nullptr && !text->isUI)
-            {
-                deltaX = cameraComponent->getDeltaX();
-                deltaY = cameraComponent->getDeltaY();
-            }
-
-            auto size = graphicsDevice->drawText(
-                text->textComponent->getFont(),
-                text->textComponent->getText(),
-                text->textComponent->getOffsetX() + text->positionComponent->getX() + deltaX,
-                text->textComponent->getOffsetY() + text->positionComponent->getY() + deltaY,
-                text->textComponent->getColor(),
-                0,
-                biemgine::NONE,
-                text->textComponent->isCenter()
-            );
-
-            text->textComponent->setTextSize(size);
-        }*/
     }
 
     void RenderSystem::onSceneSwitch()

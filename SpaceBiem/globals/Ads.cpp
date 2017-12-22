@@ -2,8 +2,11 @@
 #include "Ads.h"
 #include <random>
 
-filesystem::path Ads::directoryContainingAds;
-std::vector<std::string> Ads::files;
+Ads & Ads::instance()
+{
+    static Ads singleinstance;
+    return singleinstance;
+}
 
 void Ads::initialize(filesystem::path pDirectoryContainingAds, std::string allowedExtension)
 {
@@ -31,7 +34,7 @@ std::string Ads::random()
     }
 }
 
-void Ads::clear()
+void Ads::close()
 {
     files.~vector();
     directoryContainingAds.~path();

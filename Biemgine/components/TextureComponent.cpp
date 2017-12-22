@@ -3,8 +3,9 @@
 
 namespace biemgine
 {
-    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation)
-        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), originalWidth(w), originalHeight(h), layer(layer), visible(pVisible), tag(pTag), color(color), originalColor(color), rotation(rotation) {};
+    TextureComponent::TextureComponent(std::string path, float offsetX, float offsetY, int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, BLEND_MODE blend)
+        : path(path), offsetX(offsetX), offsetY(offsetY), width(w), height(h), originalWidth(w), originalHeight(h), layer(layer), visible(pVisible), tag(pTag), color(color), originalColor(color), rotation(rotation),
+            blend(blend) {};
 
     TextureComponent::~TextureComponent() {}
 
@@ -99,5 +100,10 @@ namespace biemgine
     const SizeRect & TextureComponent::getRect() const
     {
         return SizeRect::empty();
+    }
+
+    TextureComponent::BLEND_MODE TextureComponent::getBlendMode() const
+    {
+        return blend;
     }
 }
