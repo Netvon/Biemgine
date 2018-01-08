@@ -2,7 +2,6 @@
 
 #include "Biemgine.h"
 #include "..\globals\Difficulty.h"
-#include "..\globals\Cheats.h"
 
 using biemgine::AnimationComponent;
 using biemgine::SpriteEntity;
