@@ -8,12 +8,14 @@
 #include "CreditsScene.h"
 #include "DifficultyScene.h"
 #include "..\entities\PlanetEarthEntity.h"
+#include "..\entities\AdEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ResourceUISystem.h"
 #include "..\entities\ResourceUIEntity.h"
 #include "..\globals\Functions.h"
+#include "..\globals\Ads.h"
 
 using biemgine::AnimationComponent;
 using biemgine::TextureComponent;
@@ -66,6 +68,8 @@ namespace spacebiem
 
         int beginY = 330;
         int incr = 65;
+
+        addEntity<AdEntity>();
 
         auto newGameClick = [](StateManager* e) { e->navigateTo<DifficultyScene>(); };
         auto continueClick = [overlayAnimation](StateManager* e)

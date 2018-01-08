@@ -23,8 +23,9 @@ namespace biemgine
         void stop();
         void update(float deltaTime);
 
+        void setOnUpdate(std::function<void(float)> function);
         void setOnFinished(std::function<void()> function);
-
+       
     private:
         float startValue;
         float endValue;

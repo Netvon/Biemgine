@@ -59,7 +59,7 @@ namespace biemgine
 
                 if (currentTime <= 0)
                 {
-                    currentTime = totalTime;
+                    currentTime = 0;
                     done = true;
                 }
             }
@@ -79,6 +79,11 @@ namespace biemgine
             }
 
         }
+    }
+
+    void AnimationComponent::setOnUpdate(std::function<void(float)> function)
+    {
+        onUpdate = function;
     }
 
     void AnimationComponent::setOnFinished(std::function<void()> function)

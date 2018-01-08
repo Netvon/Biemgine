@@ -50,7 +50,7 @@ namespace spacebiem
     {
         auto pc = getComponent<PositionComponent>("position");
 
-        addComponent("texture", new TextureComponent("textures/atmosphere.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "atmosphere", color));
+        addComponent("texture", new TextureComponent("textures/atmosphere.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "atmosphere", color, 0.0f));
         addComponent("atmosphere", new AtmosphereComponent(pc, (w / 2), (h / 2), w, atmosphere));
 
         if (shouldClouds) {

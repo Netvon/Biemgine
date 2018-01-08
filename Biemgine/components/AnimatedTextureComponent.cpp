@@ -15,8 +15,9 @@ namespace biemgine
         const string pTag,
         Color color,
         float rotation,
-        bool pPaused)
-        : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation),
+        bool pPaused,
+        BLEND_MODE blend)
+        : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation, blend),
           regions(pRegions), sequence(pSequence), playbackSpeed(pPlaybackSpeed), paused(pPaused)
     {
         animations.insert(std::make_pair("default", AnimationSequenceDef{ pRegions, pSequence }));
@@ -27,30 +28,10 @@ namespace biemgine
         string path,
         float offsetX, float offsetY,
         TextureColumnDef column, TextureRowDef row,
-        float pPlaybackSpeed,
-        int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, bool pPaused)
-        : AnimatedTextureComponent(path, offsetX, offsetX, column, row, initializer_list<size_t>(), pPlaybackSpeed, w, h, layer, pVisible, pTag, color, rotation)
-    {
-        size_t count = 0llu;
-
-        for (size_t rowIndex = 0; rowIndex < row.count; rowIndex++)
-        {
-            for (size_t columnIndex = 0; columnIndex < column.count; columnIndex++)
-            {
-                sequence.push_back(count);
-                count++;
-            }
-        }
-    }
-
-    AnimatedTextureComponent::AnimatedTextureComponent(
-        string path,
-        float offsetX, float offsetY,
-        TextureColumnDef column, TextureRowDef row,
         initializer_list<size_t> pSequence,
         float pPlaybackSpeed,
-        int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, bool pPaused)
-        : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation),
+        int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, bool pPaused, BLEND_MODE blend)
+        : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation, blend),
         playbackSpeed(pPlaybackSpeed), paused(pPaused), sequence(pSequence)
     {
         AnimationSequenceDef ani;
@@ -92,12 +73,32 @@ namespace biemgine
     AnimatedTextureComponent::AnimatedTextureComponent(
         string path,
         float offsetX, float offsetY,
+        TextureColumnDef column, TextureRowDef row,
+        float pPlaybackSpeed,
+        int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, bool pPaused, BLEND_MODE blend)
+        : AnimatedTextureComponent(path, offsetX, offsetX, column, row, initializer_list<size_t>(), pPlaybackSpeed, w, h, layer, pVisible, pTag, color, rotation)
+    {
+        size_t count = 0llu;
+
+        for (size_t rowIndex = 0; rowIndex < row.count; rowIndex++)
+        {
+            for (size_t columnIndex = 0; columnIndex < column.count; columnIndex++)
+            {
+                sequence.push_back(count);
+                count++;
+            }
+        }
+    }
+
+    AnimatedTextureComponent::AnimatedTextureComponent(
+        string path,
+        float offsetX, float offsetY,
         initializer_list<AnimationDef> pSequence,
         string initialAnimation,
         float pPlaybackSpeed,
         int w, int h,
         unsigned int layer,
-        bool pVisible, const string pTag, Color color, float rotation, bool pPaused)
+        bool pVisible, const string pTag, Color color, float rotation, bool pPaused, BLEND_MODE blend)
         : TextureComponent(path, offsetX, offsetX, w, h, layer, pVisible, pTag, color, rotation), playbackSpeed(pPlaybackSpeed), paused(pPaused)
     {
         for (auto& def : pSequence) {
