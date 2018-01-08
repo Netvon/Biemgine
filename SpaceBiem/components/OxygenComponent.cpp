@@ -9,11 +9,13 @@ namespace spacebiem
 
     void OxygenComponent::setOxygenAmount(float pOxygen)
     {
-        if (pOxygen >= 0.0f && pOxygen <= oxygenMax) {
-            oxygenAmount = pOxygen;
-        }
-        else if (pOxygen <= 0.0f) {
-            oxygenAmount = 0.0f;
+        if (!isGod) {
+            if (pOxygen >= 0.0f && pOxygen <= oxygenMax) {
+                oxygenAmount = pOxygen;
+            }
+            else if (pOxygen <= 0.0f) {
+                oxygenAmount = 0.0f;
+            }
         }
     }
 

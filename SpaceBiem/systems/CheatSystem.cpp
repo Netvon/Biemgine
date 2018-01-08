@@ -35,6 +35,17 @@ namespace spacebiem
 
                 cheatTextEntry = std::move(cheatText);
             }
+
+            if (entity.getTag() == "godmode")
+            {
+                auto tc = entity.getComponent<TextComponent>("text");
+
+                CheatTextEntry cheatText;
+                cheatText.entity = &entity;
+                cheatText.textComponent = tc;
+
+                godModeTextEntry = std::move(cheatText);
+            }
         }
     }
 
@@ -47,6 +58,30 @@ namespace spacebiem
                     player.scoreComponent->setScore(player.scoreComponent->getScore() + 10.f);
                 }
                 if (getStateManager()->getInputManager()->isKeyDown("-")) {
+                    player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() - 0.1f);
+                    cheatTextEntry.textComponent->setText("Jump Force: " + std::to_string(static_cast<int>(player.movementComponent->getJumpForce())), Color{ 255, 255, 255 });
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown("=")) {
+                    player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() + 0.1f);
+                    cheatTextEntry.textComponent->setText("Jump Force: " + std::to_string(static_cast<int>(player.movementComponent->getJumpForce())), Color{ 255, 255, 255 });
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown(",")) {
+                    player.oxygenComponent->setOxygenAmount(player.oxygenComponent->getOxygenAmount() - 10.f);
+                    cheatTextEntry.textComponent->setText("Oxygen: " + std::to_string(static_cast<int>(player.oxygenComponent->getOxygenAmount())), Color{ 255, 255, 255 });
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown(".")) {
+                    player.oxygenComponent->setOxygenAmount(player.oxygenComponent->getOxygenAmount() + 10.f);
+                    cheatTextEntry.textComponent->setText("Oxygen: " + std::to_string(static_cast<int>(player.oxygenComponent->getOxygenAmount())), Color{ 255, 255, 255 });
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown("'")) {
+                    player.scoreComponent->setScore(player.scoreComponent->getScore() + 10.f);
+                }
+
+                if (getStateManager()->getInputManager()->isKeyDown(";")) {
                     player.scoreComponent->setScore(player.scoreComponent->getScore() - 10.f);
                 }
 
@@ -54,29 +89,17 @@ namespace spacebiem
                     player.oxygenComponent->setOxygenAmount(0);
                 }
             }
-
-            if (getStateManager()->getInputManager()->isKeyDown("=")) {
-                player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() + 0.1f);
-            }
-
-            if (getStateManager()->getInputManager()->isKeyDown("-")) {
-                player.movementComponent->setJumpForce(player.movementComponent->getJumpForce() - 0.1f);
-            }
-
-            if (getStateManager()->getInputManager()->isKeyDown(",")) {
-                player.oxygenComponent->setOxygenAmount(player.oxygenComponent->getOxygenAmount() - 10.f);
-            }
-
-            if (getStateManager()->getInputManager()->isKeyDown(".")) {
-                player.oxygenComponent->setOxygenAmount(player.oxygenComponent->getOxygenAmount() + 10.f);
+            else {
+                cheatTextEntry.textComponent->setText("", Color{ 255, 255, 255 });
             }
 
             if (getStateManager()->getInputManager()->isKeyDown("G")) {
                 if (!player.oxygenComponent->getIsGod()) {
-                    cheatTextEntry.textComponent->setText("HOI", Color{ 255, 255, 255 });
+                    godModeTextEntry.textComponent->setText("God mode: ON", Color{ 255, 255, 255 });
                     player.oxygenComponent->setIsGod(true);
                 }
                 else {
+                    godModeTextEntry.textComponent->setText("", Color{ 255, 255, 255 });
                     player.oxygenComponent->setIsGod(false);
                 }
             }

@@ -12,6 +12,7 @@
 using biemgine::System;
 using biemgine::Entity;
 using biemgine::TextComponent;
+using biemgine::PhysicsComponent;
 
 namespace spacebiem
 {
@@ -41,5 +42,6 @@ namespace spacebiem
     private:
         vector<PlayerEntry> playerEntries;
         CheatTextEntry cheatTextEntry;
+        CheatTextEntry godModeTextEntry;
     };
 }
