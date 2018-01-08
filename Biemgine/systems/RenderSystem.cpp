@@ -16,9 +16,9 @@ namespace biemgine
     }
 
 
-    bool sortByLayer(const OptDrawTexture& first, const OptDrawTexture& second)
+    bool sortByLayer(const std::shared_ptr<OptDrawable> first, const std::shared_ptr<OptDrawable> second)
     {
-        return first.textureComponent->getLayer() < second.textureComponent->getLayer();
+        return first->layer < second->layer;
     }
 
     void RenderSystem::onAddEntity(Entity & entity)
@@ -43,11 +43,14 @@ namespace biemgine
             opt.textComponent = tx;
             opt.positionComponent = pc;
             opt.isUI = entity.hasComponent("ui");
+            opt.type = 0;
+            opt.layer = tx->getLayer();
 
-            optTextList.push_back(std::move(opt));
+            optDrawableList.push_back(std::make_shared<OptDrawText>(opt));
         }
 
         auto tc = entity.getComponents<TextureComponent>("texture");
+
 
         for (const auto& tex : tc)
         {
@@ -56,11 +59,13 @@ namespace biemgine
             opt.textureComponent = tex;
             opt.positionComponent = pc;
             opt.isUI = entity.hasComponent("ui");
+            opt.type = 1;
+            opt.layer = tex->getLayer();
 
-            optDrawList.push_back(std::move(opt));
+            optDrawableList.push_back(std::make_shared<OptDrawTexture>(opt));
         }
 
-        optDrawList.sort(sortByLayer);
+        std::sort(optDrawableList.begin(), optDrawableList.end(), sortByLayer);
     }
 
     void RenderSystem::update(const float deltaTime)
@@ -68,61 +73,74 @@ namespace biemgine
         int deltaX = 0;
         int deltaY = 0;
 
-        for (const auto& texture : optDrawList)
+        for (const auto& drawable : optDrawableList)
         {
-            if (!texture.textureComponent->isVisible() || !texture.entity->isAlive() || !texture.entity->getIsOnScreen()) continue;
-            deltaX = 0;
-            deltaY = 0;
+            if (!drawable->entity->getIsOnScreen() || !drawable->entity->isAlive()) continue;
 
-            if (cameraComponent != nullptr && !texture.isUI)
+            if (drawable->type == 0)
             {
-                deltaX = cameraComponent->getDeltaX();
-                deltaY = cameraComponent->getDeltaY();
+                auto text = std::static_pointer_cast<OptDrawText>(drawable);
+
+                if (!text->textComponent->isVisible()) continue;
+
+                deltaX = 0;
+                deltaY = 0;
+
+                if (cameraComponent != nullptr && !text->isUI)
+                {
+                    deltaX = cameraComponent->getDeltaX();
+                    deltaY = cameraComponent->getDeltaY();
+                }
+
+                auto size = graphicsDevice->drawText(
+                    text->textComponent->getFont(),
+                    text->textComponent->getText(),
+                    text->textComponent->getOffsetX() + text->positionComponent->getX() + deltaX,
+                    text->textComponent->getOffsetY() + text->positionComponent->getY() + deltaY,
+                    text->textComponent->getColor(),
+                    0,
+                    biemgine::NONE,
+                    text->textComponent->isCenter()
+                );
+
+                text->textComponent->setTextSize(size);
+            }
+            else
+            {
+                auto texture = std::static_pointer_cast<OptDrawTexture>(drawable);
+
+                if (!texture->textureComponent->isVisible()) continue;
+
+                deltaX = 0;
+                deltaY = 0;
+
+                if (cameraComponent != nullptr && !texture->isUI)
+                {
+                    deltaX = cameraComponent->getDeltaX();
+                    deltaY = cameraComponent->getDeltaY();
+                }
+
+                graphicsDevice->drawTexture(
+                    texture->textureComponent->getPath(),
+                    texture->textureComponent->getOffsetX() + texture->positionComponent->getOriginX() + deltaX,
+                    texture->textureComponent->getOffsetY() + texture->positionComponent->getOriginY() + deltaY,
+                    texture->textureComponent->getWidth(),
+                    texture->textureComponent->getHeight(),
+                    texture->textureComponent->getRotation() + texture->positionComponent->getRotation(),
+                    texture->textureComponent->getColor(),
+                    texture->textureComponent->getFlip(),
+                    false,
+                    texture->textureComponent->getRect(),
+                    texture->textureComponent->getBlendMode()
+                );
+
+                texture->textureComponent->update(deltaTime);
             }
 
-            graphicsDevice->drawTexture(
-                texture.textureComponent->getPath(),
-                texture.textureComponent->getOffsetX() + texture.positionComponent->getOriginX() + deltaX,
-                texture.textureComponent->getOffsetY() + texture.positionComponent->getOriginY() + deltaY,
-                texture.textureComponent->getWidth(),
-                texture.textureComponent->getHeight(),
-                texture.textureComponent->getRotation() + texture.positionComponent->getRotation(),
-                texture.textureComponent->getColor(),
-                texture.textureComponent->getFlip(),
-                false,
-                texture.textureComponent->getRect(),
-                texture.textureComponent->getBlendMode()
-            );
-
-            texture.textureComponent->update(deltaTime);
+           
         }
 
-        for (auto& text : optTextList)
-        {
-            if (!text.textComponent->isVisible() || !text.entity->isAlive() || !text.entity->getIsOnScreen()) continue;
 
-            deltaX = 0;
-            deltaY = 0;
-
-            if (cameraComponent != nullptr && !text.isUI)
-            {
-                deltaX = cameraComponent->getDeltaX();
-                deltaY = cameraComponent->getDeltaY();
-            }
-
-            auto size = graphicsDevice->drawText(
-                text.textComponent->getFont(),
-                text.textComponent->getText(),
-                text.textComponent->getOffsetX() + text.positionComponent->getX() + deltaX,
-                text.textComponent->getOffsetY() + text.positionComponent->getY() + deltaY,
-                text.textComponent->getColor(),
-                0,
-                biemgine::NONE,
-                text.textComponent->isCenter()
-            );
-
-            text.textComponent->setTextSize(size);
-        }
     }
 
     void RenderSystem::onSceneSwitch()

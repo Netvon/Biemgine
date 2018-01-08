@@ -48,13 +48,13 @@ namespace biemgine
         {
             if (!entry.entity->isAlive()) continue;
 
-            auto size = entry.uiComponent->getSize();
+            auto sizeRect = entry.uiComponent->getSize();
 
-            auto X1 = entry.positionComponent->getX();
-            auto X2 = X1 + size.width;
+            auto X1 = entry.positionComponent->getX() + sizeRect.point.x;
+            auto X2 = X1 + sizeRect.size.width;
 
-            auto Y1 = entry.positionComponent->getY();
-            auto Y2 = Y1 + size.height;
+            auto Y1 = entry.positionComponent->getY() + sizeRect.point.y;
+            auto Y2 = Y1 + sizeRect.size.height;
 
             if (currentMouseLocation.x >= X1
                 && currentMouseLocation.x <= X2
@@ -64,13 +64,16 @@ namespace biemgine
                 if (!entry.uiComponent->getIsMouseOver() && entry.uiComponent->getIsEntered())
                     entry.uiComponent->getIsEntered()(getStateManager());
 
-                entry.uiComponent->setIsMouseOver(true);
-                entry.uiComponent->setIsMouseDown(isLeftMouseDown);
-
-                if (isLeftMouseDown) {
+                if (isLeftMouseDown && !entry.uiComponent->getIsMouseDown())
+                {
                     if (entry.uiComponent->getIsClicked())
                         entry.uiComponent->getIsClicked()(getStateManager());
                 }
+
+                entry.uiComponent->setIsMouseOver(true);
+                entry.uiComponent->setIsMouseDown(isLeftMouseDown);
+
+                
             }
             else {
                 entry.uiComponent->setIsMouseOver(false);

@@ -11,6 +11,7 @@
 
 #include "components\Component.h"
 #include "components\AffectedByGravityComponent.h"
+#include "components\AnimationComponent.h"
 #include "components\AudioComponent.h"
 #include "components\CollidableComponent.h"
 #include "components\ColorComponent.h"

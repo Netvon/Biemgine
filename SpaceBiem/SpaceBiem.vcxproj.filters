@@ -214,6 +214,9 @@
     <ClInclude Include="globals\Ads.h">
       <Filter>globals</Filter>
     </ClInclude>
+    <ClInclude Include="entities\AdEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -394,6 +397,9 @@
     </ClCompile>
     <ClCompile Include="globals\Ads.cpp">
       <Filter>globals</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\AdEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
