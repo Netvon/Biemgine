@@ -41,19 +41,4 @@ namespace spacebiem
     {
         return "data/" + name + "/" + filename;
     }
-
-    constexpr char * Player::playerOne()
-    {
-        return "biem";
-    }
-
-    constexpr char * Player::playerTwo()
-    {
-        return "mummy";
-    }
-
-    constexpr char * Player::playerThree()
-    {
-        return "snowman";
-    }
 }

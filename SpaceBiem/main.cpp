@@ -4,10 +4,11 @@
 #include "stdafx.h"
 #include "scenes\MenuScene.h"
 #include "globals\Ads.h"
+#include "scenes/ProfileScene.h"
 
 using biemgine::Engine;
 using biemgine::Size;
-using spacebiem::MenuScene;
+using spacebiem::ProfileScene;
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
         Ads::instance().initialize("ads", ".jpg");
 
         Engine engine;
-        engine.start<MenuScene>("SpaceBiem", Size{ 1920, 1080 }, false);
+        engine.start<ProfileScene>("SpaceBiem", Size{ 1920, 1080 }, false);
     }
     catch (...)
     {

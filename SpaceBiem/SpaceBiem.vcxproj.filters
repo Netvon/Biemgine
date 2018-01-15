@@ -220,6 +220,9 @@
     <ClInclude Include="globals\Player.h">
       <Filter>globals</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\ProfileScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="globals\Player.cpp">
       <Filter>globals</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\ProfileScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
