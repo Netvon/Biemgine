@@ -60,6 +60,7 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x - 25, beginY + (0 * incr), Color{ 22, 94, 22 }, buttonTextColor, buttonSize, "Normal", buttonTexture,
             [](StateManager* manager)
         {
+            //auto nextAvail = static_cast<Difficulty>(static_cast<int>(Difficulty::NORMAL) + 1);
             manager->navigateTo<StoryScene>(Difficulty::NORMAL);
         });
 

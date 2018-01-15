@@ -20,7 +20,7 @@ using biemgine::PositionComponent;
 
 namespace spacebiem
 {
-    vector<string> SaveBlobFactory::createFromEntities(shared_ptr<EntityManager> entities)
+    vector<string> SaveBlobFactory::createFromEntities(shared_ptr<EntityManager> entities, string withTag)
     {
         vector<string> blob;
 
@@ -29,6 +29,7 @@ namespace spacebiem
         for (auto it = entities->begin(); it != entities->end(); it++) {
 
             if (!(*it)->isAlive()) continue;
+            if (withTag != "" && (*it)->getTag().find(withTag) == std::string::npos) continue;
 
             string entityBlob = createFromEntity(*(*it));
 

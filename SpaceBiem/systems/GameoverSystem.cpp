@@ -65,10 +65,16 @@ namespace spacebiem
                     }
                 }
 
-                FileHandler fileHandler{""};
-                fileHandler.remove("data/savegame.csv");
 
-                getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
+                if (customLevel) {
+                    getStateManager()->navigateTo<LevelLoadScene>();
+                }
+                else {
+                    FileHandler fileHandler{ "" };
+                    fileHandler.remove("data/savegame.csv");
+
+                    getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
+                }
             }
         }  
     }

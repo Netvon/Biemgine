@@ -19,7 +19,7 @@ namespace spacebiem
     {
     }
 
-    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
+    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame, string fileName, bool focused)
     {
         FileParser fileParser;
         PlanetFactory planetFactory;
@@ -28,12 +28,8 @@ namespace spacebiem
 
         map<string, map<string, vector<string>>> levelMap;
 
-        if (newGame) {
-            levelMap = fileParser.levelContent("data/savegame.csv");
-        }
-        else {
-            levelMap = fileParser.levelContent("data/savegame.csv");
-        }
+        levelMap = fileParser.levelContent("data/level_1.csv");
+       
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();
         map<string, int> scoreBonus = fileParser.planetScoreContent();
@@ -107,7 +103,7 @@ namespace spacebiem
             }
 
             if (type == "player") {
-                int id = entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
+                int id = entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height), 1.f, focused);
 
                 if (!newGame) {
                     auto player = entityManager->getEntity(id);

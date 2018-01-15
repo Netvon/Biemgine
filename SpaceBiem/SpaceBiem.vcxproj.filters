@@ -220,6 +220,12 @@
     <ClInclude Include="entities\AdEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="entities\WormholeEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\WinSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
     <ClInclude Include="scenes\StoryScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
@@ -409,6 +415,12 @@
     </ClCompile>
     <ClCompile Include="entities\AdEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\WormholeEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\WinSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="scenes\StoryScene.cpp">
       <Filter>scenes</Filter>

@@ -76,7 +76,7 @@ namespace biemgine
         TextureColumnDef column, TextureRowDef row,
         float pPlaybackSpeed,
         int w, int h, unsigned int layer, bool pVisible, const string pTag, Color color, float rotation, bool pPaused, BLEND_MODE blend)
-        : AnimatedTextureComponent(path, offsetX, offsetX, column, row, initializer_list<size_t>(), pPlaybackSpeed, w, h, layer, pVisible, pTag, color, rotation)
+        : AnimatedTextureComponent(path, offsetX, offsetX, column, row, initializer_list<size_t>(), pPlaybackSpeed, w, h, layer, pVisible, pTag, color, rotation, pPaused)
     {
         size_t count = 0llu;
 

@@ -96,7 +96,6 @@ namespace spacebiem
       
         if(fade)
             overlayAnimation->play();
-
         if (fromLevel) {
             addEntity<ButtonUIEntity>((wW - bW - bW) / 2 - middleMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png", returnToMenuButtonClicked);
             addEntity<ButtonUIEntity>((wW) / 2 + middleMargin, wH - edgeMargin - bH, Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to game", "textures/button_white.png",

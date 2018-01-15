@@ -10,6 +10,7 @@
 #include "..\entities\PlanetToxicEntity.h"
 #include "..\entities\PlanetLavaEntity.h"
 #include "..\entities\PlanetIceEntity.h"
+#include "..\entities\WormholeEntity.h"
 #include "ResourceFactory.h"
 #include "NameGenerator.h"
 #include <vector>
