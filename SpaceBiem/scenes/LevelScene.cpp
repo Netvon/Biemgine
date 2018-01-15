@@ -83,16 +83,19 @@ namespace spacebiem
         timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 40, Color{ 66, 143, 244 }, "");
         speedId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, "");
-        cheatId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 40, Color{ 66, 143, 244 }, "");
+        cheatId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 70, Color{ 66, 143, 244 }, "");
         godModeId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 10, Color{ 66, 143, 244 }, "");
+        aibounceId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 40, Color{ 66, 143, 244 }, "");
 
         fpsEntity = getEntity(FPSId);
         speedEntity = getEntity(speedId);
         cheatEntity = getEntity(cheatId);
         godModeEntity = getEntity(godModeId);
+        aibounceEntity = getEntity(aibounceId);
 
         cheatEntity->setTag("cheat");
         godModeEntity->setTag("godmode");
+        aibounceEntity->setTag("ai_bounce");
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();

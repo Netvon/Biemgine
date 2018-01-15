@@ -48,10 +48,12 @@ namespace spacebiem
 		int speedId;
         int cheatId;
         int godModeId;
+        int aibounceId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
         Entity * cheatEntity = nullptr;
         Entity * godModeEntity = nullptr;
+        Entity * aibounceEntity = nullptr;
 		std::shared_ptr<AnimationComponent> fadeAnimation = nullptr;
 		int timeout;
 		float counter = 0;

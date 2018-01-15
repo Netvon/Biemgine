@@ -46,6 +46,17 @@ namespace spacebiem
 
                 godModeTextEntry = std::move(cheatText);
             }
+
+            if (entity.getTag() == "ai_bounce")
+            {
+                auto tc = entity.getComponent<TextComponent>("text");
+
+                CheatTextEntry cheatText;
+                cheatText.entity = &entity;
+                cheatText.textComponent = tc;
+
+                aibounceTextEntry = std::move(cheatText);
+            }
         }
     }
 
@@ -98,6 +109,17 @@ namespace spacebiem
                 else {
                     godModeTextEntry.textComponent->setText("", Color{ 255, 255, 255 });
                     Cheat::Instance().setEnabled("god", false);
+                }
+            }
+
+            if (getStateManager()->getInputManager()->isKeyDown("B")) {
+                if (!Cheat::Instance().isEnabled("ai_bounce")) {
+                    aibounceTextEntry.textComponent->setText("AI bounce: OFF", Color{ 255, 255, 255 });
+                    Cheat::Instance().setEnabled("ai_bounce", true);
+                }
+                else {
+                    aibounceTextEntry.textComponent->setText("", Color{ 255, 255, 255 });
+                    Cheat::Instance().setEnabled("ai_bounce", false);
                 }
             }
         }
