@@ -59,23 +59,28 @@ namespace spacebiem
                 overlayAnimation->playReversed();
             });
 
+            if (fromLevel)
+            {
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "Congratulations! You succeeded the level", true);
+            }
+
             if (nextDifficulty == Difficulty::NORMAL)
             {
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a normal difficulty", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 1), Color::White(), "This is a story of a man named BiemBoii", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 2), Color::White(), "He needs to collect resources and go through the wormhole to proceed", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 3), Color::White(), "The next level has a NORMAL difficuly.", true);
             }
             else if (nextDifficulty == Difficulty::CHALLENING)
             {
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a challenging difficulty", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 1), Color::White(), "BiemBoii wants to go further to meets his family at home", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 2), Color::White(), "He needs to collect even more resources and go through the wormhole to proceed", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 3), Color::White(), "The next level has a CHALLENGING difficuly.", true);
             }
             else if (nextDifficulty == Difficulty::EXPERT)
             {
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
-                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a expert difficulty", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 1), Color::White(), "BiemBoii has almost reached his goal", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 2), Color::White(), "He needs to collect even more resources and go through the wormhole to proceed", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), x, 80 + (55 * 3), Color::White(), "The next level has a EXPERT difficuly.", true);
             }
         } 
         else

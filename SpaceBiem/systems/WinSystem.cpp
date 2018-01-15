@@ -72,7 +72,7 @@ namespace spacebiem
                     if (metal <= 0 && diamond <= 0 && uranium <= 0 && antimatter <= 0)
                     {
                         Difficulty diff = static_cast<Difficulty>(static_cast<int>(difficulty) + 1);
-                        getStateManager()->navigateTo<StoryScene>(diff);
+                        getStateManager()->navigateTo<StoryScene>(diff, true);
                     }
                     else
                     {
