@@ -42,16 +42,16 @@ namespace spacebiem
             normal["anti-matter"] = 0;
 
             map<string, int> challenging;
-            normal["metal"] = 100;
-            normal["diamond"] = 20;
-            normal["uranium"] = 10;
-            normal["anti-matter"] = 0;
+            challenging["metal"] = 100;
+            challenging["diamond"] = 20;
+            challenging["uranium"] = 10;
+            challenging["anti-matter"] = 0;
 
             map<string, int> expert;
-            normal["metal"] = 200;
-            normal["diamond"] = 40;
-            normal["uranium"] = 20;
-            normal["anti-matter"] = 1;
+            expert["metal"] = 200;
+            expert["diamond"] = 40;
+            expert["uranium"] = 20;
+            expert["anti-matter"] = 1;
 
             winConditions[Difficulty::NORMAL] = normal;
             winConditions[Difficulty::CHALLENING] = challenging;
