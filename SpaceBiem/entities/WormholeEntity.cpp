@@ -23,6 +23,8 @@ namespace spacebiem
     {
         float rot = RandomGenerator::getInstance().generate(0.0f, 360.0f);
 
+        setTag("wormhole");
+
         addComponent("position", new PositionComponent(x, y));
         addComponent("physics", new PhysicsComponent(w , h, true, PhysicsComponentShape::CIRCLE));
 

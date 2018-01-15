@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Biemgine.h"
+#include "../FileParser.h"
 
 using biemgine::Component;
-using biemgine::FileHandler;
 
 namespace spacebiem
 {
