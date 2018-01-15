@@ -37,11 +37,15 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - w;
 
-        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 0}, wW, wH, 9999);
-        auto overlayEntity = getEntity(overlayId);
-        overlayEntity->addComponent("animation", new AnimationComponent(0, 255, 200.0f,
-                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(0, 255, 200.0f, [sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        }, "textures/rectangle.png", 0, 0, Color{0, 0, 0, 0}, wW, wH, 9999);
 
+        auto overlayEntity = getEntity(overlayId);
+        /*overlayEntity->addComponent("animation", new AnimationComponent(0, 255, 200.0f,
+                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+*/
         auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         addEntity<SpriteEntity>("textures/choose_difficulty.png", wW / 2 - 175, 130, Color::White(), -1, -1);

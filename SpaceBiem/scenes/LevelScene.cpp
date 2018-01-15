@@ -88,10 +88,12 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,[sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
+        }, "textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
         auto overlayEntity = getEntity(overlayId);
-        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,
-                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
+
         fadeAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         UniverseBuilder uB;

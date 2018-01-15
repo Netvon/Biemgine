@@ -50,6 +50,9 @@ namespace biemgine
         template<class TEntity, typename... TArgs>
         int addEntity(TArgs&&... arguments);
 
+        template<class TEntity, typename... TArgs>
+        int addEntityExtra(std::function<void(Entity*)> onAdd, TArgs&&... arguments);
+
     private:
         std::shared_ptr<SystemManager> systemManager = nullptr;
         std::shared_ptr<EntityManager> entityManager = nullptr;
@@ -77,5 +80,11 @@ namespace biemgine
     int Scene::addEntity(TArgs && ...arguments)
     {
         return entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
+    }
+
+    template<class TEntity, typename ...TArgs>
+    int Scene::addEntityExtra(std::function<void(Entity*)> onAdd, TArgs && ...arguments)
+    {
+        return entityManager->addEntityExtra<TEntity>(onAdd, std::forward<TArgs>(arguments)...);
     }
 }

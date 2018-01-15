@@ -29,30 +29,33 @@ namespace biemgine
 
     void CameraSystem::update()
     {
-        cameraEntity.cameraComponent->setWindowWidth(getStateManager()->getWindowWidth());
-        cameraEntity.cameraComponent->setWindowHeight(getStateManager()->getWindowHeight());
+        if (cameraEntity.cameraComponent) {
+            cameraEntity.cameraComponent->setWindowWidth(getStateManager()->getWindowWidth());
+            cameraEntity.cameraComponent->setWindowHeight(getStateManager()->getWindowHeight());
 
-        cameraEntity.cameraComponent->setOriginX(cameraEntity.positionComponent->getOriginX());
-        cameraEntity.cameraComponent->setOriginY(cameraEntity.positionComponent->getOriginY());
+            cameraEntity.cameraComponent->setOriginX(cameraEntity.positionComponent->getOriginX());
+            cameraEntity.cameraComponent->setOriginY(cameraEntity.positionComponent->getOriginY());
 
-        int xDelta = static_cast<int>((cameraEntity.cameraComponent->getWindowWidth()) / 2 - static_cast<int>(cameraEntity.positionComponent->getOriginX()));
-        int yDelta = static_cast<int>((cameraEntity.cameraComponent->getWindowHeight()) / 2 - static_cast<int>(cameraEntity.positionComponent->getOriginY()));
+            int xDelta = static_cast<int>((cameraEntity.cameraComponent->getWindowWidth()) / 2 - static_cast<int>(cameraEntity.positionComponent->getOriginX()));
+            int yDelta = static_cast<int>((cameraEntity.cameraComponent->getWindowHeight()) / 2 - static_cast<int>(cameraEntity.positionComponent->getOriginY()));
 
-        cameraEntity.cameraComponent->setDeltaX(static_cast<float>(xDelta));
-        cameraEntity.cameraComponent->setDeltaY(static_cast<float>(yDelta));
-        
+            cameraEntity.cameraComponent->setDeltaX(static_cast<float>(xDelta));
+            cameraEntity.cameraComponent->setDeltaY(static_cast<float>(yDelta));
+
+        }
 
         for (const auto &e : allEntities)
         {
             e.entity->setIsOnScreen(isOnScreen(e));
         }
+        
     }
 
     bool CameraSystem::isOnScreen(const Entry & e)
     {
         //if (!e.entity->isAlive()) return false;
 
-        if (e.entity->isCheckable())
+        if (e.entity->isCheckable() && cameraEntity.cameraComponent)
         {
             float dX = cameraEntity.cameraComponent->getOriginX();
             float dY = cameraEntity.cameraComponent->getOriginY();

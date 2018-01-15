@@ -107,7 +107,7 @@ namespace biemgine
 
     void Scene::firstFrame()
     {
-        entityManager->addEntitiesToSystems();
+        //entityManager->addEntitiesToSystems();
     }
     
     Entity * Scene::getEntity(int id) const
