@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StoryScene.h"
 #include "LevelScene.h"
+#include "DifficultyScene.h"
 
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\AdEntity.h"
@@ -22,6 +23,7 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -30,13 +32,17 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2;
 
+        addEntity<AdEntity>();
+
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
-        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{ 0, 0, 0, 0 }, wW, wH, 9999);
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(255, 0, 300.f, [sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        }, "textures/rectangle.png", 0, 0, Color{ 0, 0, 0, 0 }, wW, wH, 9999);
+
         auto overlayEntity = getEntity(overlayId);
-        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 500,
-            [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
         auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         auto buttonTexture = "textures/button_white.png";
@@ -44,30 +50,45 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
 
-        if (nextDifficulty == Difficulty::NORMAL)
+        if (nextDifficulty != Difficulty::DONE)
         {
-            addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "The next level is has a normal difficulty", true);
-
-            addEntity<ButtonUIEntity>(x - 25, 300, Color{ 22, 94, 22 }, buttonTextColor, buttonSize, "Normal", buttonTexture,
-                [overlayAnimation](StateManager* manager)
+            addEntity<ButtonUIEntity>(x - 75, 300, buttonColor, buttonTextColor, buttonSize, "Play", buttonTexture,
+                [this, overlayAnimation](StateManager* manager)
             {
-                manager->navigateTo<LevelScene>(Difficulty::NORMAL);
-                overlayAnimation->play();
+                overlayAnimation->setOnFinished([this, manager] {manager->navigateTo<LevelScene>(true, nextDifficulty); });
+                overlayAnimation->playReversed();
             });
-        }
-        else if (nextDifficulty == Difficulty::CHALLENING)
-        {
-            addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "The next level is has a challenging difficulty", true);
-        }
-        else if (nextDifficulty == Difficulty::EXPERT)
-        {
-            addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "The next level is has a export difficulty", true);
-        }
+
+            if (nextDifficulty == Difficulty::NORMAL)
+            {
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a normal difficulty", true);
+            }
+            else if (nextDifficulty == Difficulty::CHALLENING)
+            {
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a challenging difficulty", true);
+            }
+            else if (nextDifficulty == Difficulty::EXPERT)
+            {
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "This is a story of a man named BiemBoii", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "Get to the wormhole to proceed to the next level", true);
+                addEntity<TextUIEntity>(Fonts::Roboto(), wW / 2, 200, Color::White(), "The next level has a expert difficulty", true);
+            }
+        } 
         else
         {
             addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 80, Color::White(), "You have completed the expert difficulty", true);
-            addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 100, Color::White(), "You have finished the game!", true);
+            addEntity<TextUIEntity>(Fonts::Roboto(40), wW / 2, 140, Color::White(), "You have finished the game!", true);
         }
+
+        addEntity<ButtonUIEntity>(x - 75, 365, buttonColor, buttonTextColor, buttonSize, "Back", buttonTexture,
+            [](StateManager* manager)
+        {
+            manager->navigateTo<DifficultyScene>();
+        });
     }
 
     void StoryScene::input()
