@@ -43,6 +43,11 @@ namespace spacebiem
             std::shared_ptr<TextComponent> textComponent;
         };
 
+        struct ResourceTextureEntry
+        {
+            Entity* entity;
+        };
+
         WinSystem(Difficulty pDifficulty) :
             difficulty(pDifficulty)
         {
@@ -77,6 +82,7 @@ namespace spacebiem
     private:
         vector<PlayerEntry> playerEntries;
         vector<ResourceTextEntry> resourceTextEntries;
+        vector<ResourceTextureEntry> resourceTextureEntries;
 
         map<Difficulty ,map<string, int>> winConditions;
 

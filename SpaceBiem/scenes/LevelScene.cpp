@@ -137,13 +137,13 @@ namespace spacebiem
             fadeAnimation->playReversed();
         }, nullptr, "pause_menu");
 
-        //addEntity<SpriteEntity>("textures/resources-need.png", wW - 250 - 25.f, 70.f, Color::White(), 250, 382, 100u);
-        //float rX = 66.f;
-        //float rIncr = 91.f;
-        //addEntity<ResourceUIEntity>(wW - 234.f, 143.f, Color::White(), "uranium", 0, "resource-needed");
-        //addEntity<ResourceUIEntity>(wW - 234.f, 143.f + 75, Color::White(), "diamond", 0);
-        ////addEntity<ResourceUIEntity>(wW - 200, 145.f, Color::White(), "metal", 0);
-        ////addEntity<ResourceUIEntity>(wW - 200, 145.f, Color::White(), "anti-matter", 0);
+        addEntity<SpriteEntity>("textures/resources-need.png", wW - 250 - 25.f, 70.f, Color::White(), 250, 382, 100u, "resource-needed-background");
+        float rX = 66.f;
+        float rIncr = 91.f;
+        addEntity<ResourceUIEntity>(wW - 234.f, 143.f, Color::White(), "uranium", 0, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 143.f + 78.f, Color::White(), "diamond", 0, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 145.f + 78.f * 2.f, Color::White(), "metal", 0, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 145.f + 78.f * 3.f, Color::White(), "anti-matter", 0, "resource-needed");
 
         updateMenu();
 

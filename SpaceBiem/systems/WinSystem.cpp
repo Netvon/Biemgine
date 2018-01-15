@@ -36,6 +36,14 @@ namespace spacebiem
 
             resourceTextEntries.push_back(std::move(resourceTextEntry));
         }
+
+        if (entity.isTag("resource-needed-background"))
+        {
+            ResourceTextureEntry resourceTextureEntry;
+            resourceTextureEntry.entity = &entity;
+
+            resourceTextureEntries.push_back(std::move(resourceTextureEntry));
+        }
     }
 
     void WinSystem::update()
@@ -47,20 +55,21 @@ namespace spacebiem
                 auto ground = player.groundedComponent->getGroundedOn();
                 if (ground->getTag() == "wormhole")
                 {
-                    auto resources = player.resourceComponent->getAllResources();
+                    auto resources = player.resourceComponent->getResources();
+                    auto allResources = player.resourceComponent->getAllResources();
                     auto neededResources = player.resourceComponent->getNeededResources();
 
-                    int metal = resources["metal"] - winConditions[difficulty]["metal"];
-                    int diamond = resources["diamond"] - winConditions[difficulty]["diamond"];
-                    int uranium = resources["uranium"] - winConditions[difficulty]["uranium"];
-                    int antimatter = resources["anti-matter"] - winConditions[difficulty]["anti-matter"];
+                    int metal = winConditions[difficulty]["metal"] - (resources["metal"] + allResources["metal"]);
+                    int diamond = winConditions[difficulty]["diamond"] - (resources["diamond"] + allResources["diamond"]);
+                    int uranium = winConditions[difficulty]["uranium"] - (resources["uranium"] + allResources["uranium"]);
+                    int antimatter = winConditions[difficulty]["anti-matter"] - (resources["anti-matter"] + allResources["anti-matter"]);
 
-                    neededResources["metal"] = metal;
-                    neededResources["diamond"] = diamond;
-                    neededResources["uranium"] = uranium;
-                    neededResources["anti-matter"] = antimatter;
+                    neededResources["metal"] = metal < 0 ? 0 : metal;
+                    neededResources["diamond"] = diamond < 0 ? 0 : diamond;
+                    neededResources["uranium"] = uranium < 0 ? 0 : uranium;
+                    neededResources["anti-matter"] = antimatter < 0 ? 0 : antimatter;
 
-                    if (metal >= 0 && diamond >= 0 && uranium >= 0 && antimatter >= 0)
+                    if (metal == 0 && diamond == 0 && uranium == 0 && antimatter == 0)
                     {
                         Difficulty diff = static_cast<Difficulty>(static_cast<int>(difficulty) + 1);
                         getStateManager()->navigateTo<StoryScene>(diff);
@@ -73,12 +82,30 @@ namespace spacebiem
                             {
                                 if (x.first == resourceTextEntry.resourceBonusComponent->getName())
                                 {
+                                    resourceTextEntry.entity->rise();
                                     resourceTextEntry.textComponent->setText(std::to_string(x.second), resourceTextEntry.textComponent->getColor());
                                 }
                             }
-                        } 
+                        }
+
+                        for (ResourceTextureEntry resourceTextureEntry : resourceTextureEntries)
+                        {
+                            resourceTextureEntry.entity->rise();
+                        }
                     }
+
+                    return;
                 }
+            }
+
+            for (ResourceTextEntry resourceTextEntry : resourceTextEntries)
+            {
+                resourceTextEntry.entity->die();
+            }
+
+            for (ResourceTextureEntry resourceTextureEntry : resourceTextureEntries)
+            {
+                resourceTextureEntry.entity->die();
             }
         }
     }
