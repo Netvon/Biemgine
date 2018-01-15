@@ -223,7 +223,9 @@
     <ClInclude Include="entities\WormholeEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="systems\WinSystem.h" />
+    <ClInclude Include="systems\WinSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -414,7 +416,9 @@
     <ClCompile Include="entities\WormholeEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="systems\WinSystem.cpp" />
+    <ClCompile Include="systems\WinSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ads\.gitkeep" />
