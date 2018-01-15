@@ -2,6 +2,7 @@
 
 #include "Biemgine.h"
 #include "../components/AtmosphereComponent.h"
+#include "../globals/Cheat.h"
 
 using biemgine::Component;
 using biemgine::Entity;
@@ -21,9 +22,6 @@ namespace spacebiem
         float getOxygenAmount() const;
         void setOxygenAmount(float pOxygen);
 
-        void setIsGod(bool pIsGod);
-        bool getIsGod() const;
-
         void setAtmosphereEntity(std::shared_ptr<Entity> atmosphere);
         std::shared_ptr<Entity> getAtmosphereEntity() const;
 
@@ -32,7 +30,6 @@ namespace spacebiem
         int getOxygenScale() const;
 
     private:
-        bool isGod = false;
         float oxygenAmount;
         int oxygenMax;
         int oxygenScale;

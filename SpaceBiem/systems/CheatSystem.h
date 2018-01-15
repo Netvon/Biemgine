@@ -5,6 +5,7 @@
 #include "..\components\ScoreComponent.h"
 #include "..\components\MovementComponent.h"
 #include "..\components\ScoreBonusComponent.h"
+#include "..\globals\Cheat.h"
 
 #include "Biemgine.h"
 #include <vector>

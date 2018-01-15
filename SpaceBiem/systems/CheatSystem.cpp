@@ -91,13 +91,13 @@ namespace spacebiem
             }
 
             if (getStateManager()->getInputManager()->isKeyDown("G")) {
-                if (!player.oxygenComponent->getIsGod()) {
+                if (!Cheat::Instance().isEnabled("god")) {
                     godModeTextEntry.textComponent->setText("God mode: ON", Color{ 255, 255, 255 });
-                    player.oxygenComponent->setIsGod(true);
+                    Cheat::Instance().setEnabled("god", true);
                 }
                 else {
                     godModeTextEntry.textComponent->setText("", Color{ 255, 255, 255 });
-                    player.oxygenComponent->setIsGod(false);
+                    Cheat::Instance().setEnabled("god", false);
                 }
             }
         }

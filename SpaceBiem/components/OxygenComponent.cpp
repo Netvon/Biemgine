@@ -7,19 +7,9 @@ namespace spacebiem
         return oxygenAmount;
     }
 
-    void OxygenComponent::setIsGod(bool pIsGod)
-    {
-        isGod = pIsGod;
-    }
-
-    bool OxygenComponent::getIsGod() const
-    {
-        return isGod;
-    }
-
     void OxygenComponent::setOxygenAmount(float pOxygen)
     {
-        if (!isGod) {
+        if (!Cheat::Instance().isEnabled("god")) {
             if (pOxygen >= 0.0f && pOxygen <= oxygenMax) {
                 oxygenAmount = pOxygen;
             }
