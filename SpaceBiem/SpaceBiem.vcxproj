@@ -192,6 +192,7 @@
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
     <ClInclude Include="globals\Ads.h" />
+    <ClInclude Include="globals\Cheat.h" />
     <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />

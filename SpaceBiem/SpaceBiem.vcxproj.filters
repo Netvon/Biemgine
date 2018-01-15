@@ -214,6 +214,9 @@
     <ClInclude Include="entities\AdEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="globals\Cheat.h">
+      <Filter>globals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
