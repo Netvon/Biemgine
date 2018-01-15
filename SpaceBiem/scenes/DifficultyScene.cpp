@@ -3,6 +3,7 @@
 #include "DifficultyScene.h"
 #include "MenuScene.h"
 #include "LevelScene.h"
+#include "StoryScene.h"
 
 #include "..\entities\PlanetEarthEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
@@ -58,21 +59,21 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x - 25, beginY + (0 * incr), Color{ 22, 94, 22 }, buttonTextColor, buttonSize, "Normal", buttonTexture,
             [overlayAnimation](StateManager* manager)
         {
-            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::NORMAL); });
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<StoryScene>(Difficulty::NORMAL); });
             overlayAnimation->play();
         });
 
         addEntity<ButtonUIEntity>(x - 25, beginY + (1 * incr), Color{ 188, 103, 0 }, buttonTextColor, buttonSize, "Challenging", buttonTexture,
             [overlayAnimation](StateManager* manager)
         {
-            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::CHALLENING); });
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<StoryScene>(Difficulty::CHALLENING); });
             overlayAnimation->play();
         });
 
         addEntity<ButtonUIEntity>(x - 25, beginY + (2 * incr), Color{ 135, 25, 25 }, buttonTextColor, buttonSize, "Expert", buttonTexture,
             [overlayAnimation](StateManager* manager)
         {
-            overlayAnimation->setOnFinished([manager] { manager->navigateTo<LevelScene>(true, Difficulty::EXPERT); });
+            overlayAnimation->setOnFinished([manager] { manager->navigateTo<StoryScene>(Difficulty::EXPERT); });
             overlayAnimation->play(); 
         });
 

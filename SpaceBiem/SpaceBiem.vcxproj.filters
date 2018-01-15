@@ -217,6 +217,9 @@
     <ClInclude Include="entities\AdEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\StoryScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -400,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="entities\AdEntity.cpp">
       <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\StoryScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
