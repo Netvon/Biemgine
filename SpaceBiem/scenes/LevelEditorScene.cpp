@@ -38,6 +38,7 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enableCamera();
 
         addSystem<DragDropSystem>();
 

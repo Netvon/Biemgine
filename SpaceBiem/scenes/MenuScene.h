@@ -16,9 +16,12 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
 
-        MenuScene(StateManager& manager)
-            : Scene(manager) {};
+        MenuScene(StateManager& manager, bool pFadeIn = false)
+            : Scene(manager), fadeIn(pFadeIn) {};
 
         ~MenuScene() {}
+
+    private:
+        bool fadeIn;
     };
 }

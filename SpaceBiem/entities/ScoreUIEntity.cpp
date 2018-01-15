@@ -9,6 +9,8 @@ using biemgine::ColorComponent;
 using biemgine::UIComponent;
 using biemgine::TextComponent;
 using biemgine::Size;
+using biemgine::SizeRect;
+using biemgine::Point;
 
 namespace spacebiem
 {
@@ -16,7 +18,7 @@ namespace spacebiem
     {
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(185, 238, 253));
-        addComponent("ui", new UIComponent({ 100, 100 }));
+        addComponent("ui", new UIComponent(SizeRect{Point{0,0,0}, Size{100, 100}}));
         addComponent("score", new ScoreComponent(score, name));
         addComponent("text", new TextComponent(Fonts::Roboto()));
     }

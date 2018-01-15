@@ -109,7 +109,7 @@ namespace biemgine {
         return { textRect.w, textRect.h };
     }
 
-    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip, bool useCenterAsOrigin, SizeRect source)
+    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip, bool useCenterAsOrigin, SizeRect source, TextureComponent::BLEND_MODE blend)
     {
         auto texture = getTexture(path);
 
@@ -125,7 +125,7 @@ namespace biemgine {
                 destRect.y += h / 2;
             }
 
-            SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+            SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blend));
             SDL_SetTextureAlphaMod(texture, color.a);
 
             SDL_SetTextureColorMod(texture, color.r, color.g, color.b);

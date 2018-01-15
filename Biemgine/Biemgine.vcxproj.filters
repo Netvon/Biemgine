@@ -176,6 +176,12 @@
     <ClInclude Include="components\AnimatedTextureComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="systems\AnimateSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="components\AnimationComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices\graphics\SDLGraphicsDevice.cpp">
@@ -301,6 +307,12 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="components\AnimatedTextureComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\AnimateSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="components\AnimationComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>

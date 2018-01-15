@@ -11,26 +11,30 @@
 
 #include <list>
 #include <memory>
+#include <algorithm>
 
 using std::string;
 using std::list;
 
 namespace biemgine
 {
-    struct OptDrawTexture
+    struct OptDrawable
     {
         Entity* entity;
-        std::shared_ptr<TextureComponent> textureComponent;
         std::shared_ptr<PositionComponent> positionComponent;
         bool isUI;
+        int type;
+        int layer;
     };
 
-    struct OptDrawText
+    struct OptDrawTexture : public OptDrawable
     {
-        Entity* entity;
+        std::shared_ptr<TextureComponent> textureComponent; 
+    };
+
+    struct OptDrawText  : public OptDrawable
+    {
         std::shared_ptr<TextComponent> textComponent;
-        std::shared_ptr<PositionComponent> positionComponent;
-        bool isUI;
     };
 
     class RenderSystem
@@ -47,8 +51,7 @@ namespace biemgine
 
     private:
         GraphicsDevice* graphicsDevice = nullptr;
-        list<OptDrawTexture> optDrawList;
-        list<OptDrawText> optTextList;
+        vector<std::shared_ptr<OptDrawable>> optDrawableList;
         std::shared_ptr<CameraComponent> cameraComponent = nullptr;
         
     };
