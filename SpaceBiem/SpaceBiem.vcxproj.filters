@@ -211,6 +211,9 @@
     <ClInclude Include="scenes\LevelEditorScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="systems\DragDropSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
     <ClInclude Include="globals\Ads.h">
       <Filter>globals</Filter>
     </ClInclude>
@@ -398,6 +401,9 @@
     </ClCompile>
     <ClCompile Include="scenes\LevelEditorScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\DragDropSystem.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="globals\Ads.cpp">
       <Filter>globals</Filter>

@@ -24,7 +24,7 @@ namespace spacebiem
     {
         addComponent<PositionComponent>("position", x, y);
         addComponent<ColorComponent>("color", color);
-        addComponent<AnimatedTextureComponent>("texture", animatedTexture, 0, 0, TextureColumnDef{ textureCount, 256 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background");
+        addComponent<AnimatedTextureComponent>("texture", animatedTexture, 0, 0, TextureColumnDef{ textureCount, 256 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background", Color::White(), 0.f, true);
         addComponent<PhysicsComponent>("physics", w, h, false, PhysicsComponentShape::RECTANGLE, mass);
         addComponent<GroundedComponent>("grounded");
         addComponent<AffectedByGravityComponent>("affectedByGravity", true);

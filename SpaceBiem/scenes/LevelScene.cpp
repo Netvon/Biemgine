@@ -66,8 +66,8 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
-        addSystem<GameoverSystem>();
         addSystem<WinSystem>();
+        addSystem<GameoverSystem>((customLevel != ""));
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -90,10 +90,12 @@ namespace spacebiem
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
 
-        int overlayId = addEntity<SpriteEntity>("textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,[sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
+        }, "textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
         auto overlayEntity = getEntity(overlayId);
-        overlayEntity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,
-                                    [sprite = overlayEntity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
+
         fadeAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         UniverseBuilder uB;
@@ -104,7 +106,8 @@ namespace spacebiem
             uB.build(getEntityManager(), true);
         }
         else {
-            uB.build(getEntityManager(), false);
+            if (customLevel == "") uB.build(getEntityManager(), false);
+            else uB.build(getEntityManager(), false, customLevel);
         }
 
         int beginY = 400;
@@ -151,12 +154,16 @@ namespace spacebiem
 
     void LevelScene::saveScore()
     {
+        if (customLevel == "") return;
+
         ScoreUIFactory sf;
         sf.sceneEnd(getEntityManager());
     }
 
     void LevelScene::saveGame()
     {
+        if (customLevel == "") return;
+
         SaveBlobFactory saveBlobFactory;
         vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
 
