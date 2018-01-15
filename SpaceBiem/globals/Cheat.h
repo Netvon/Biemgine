@@ -5,6 +5,6 @@ namespace spacebiem
     class Cheat
     {
     public:
-    
+        
     };
 }
