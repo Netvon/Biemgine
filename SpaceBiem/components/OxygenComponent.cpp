@@ -9,7 +9,7 @@ namespace spacebiem
 
     void OxygenComponent::setOxygenAmount(float pOxygen)
     {
-        if (!isGod) {
+        if (!Cheat::Instance().isEnabled("god")) {
             if (pOxygen >= 0.0f && pOxygen <= oxygenMax) {
                 oxygenAmount = pOxygen;
             }

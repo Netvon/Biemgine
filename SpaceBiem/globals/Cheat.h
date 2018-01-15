@@ -8,7 +8,7 @@ namespace spacebiem
     class Cheat
     {
     public:
-        Cheat & Cheat::Instance()
+        static Cheat & Cheat::Instance()
         {
             static Cheat instance;
             return instance;
