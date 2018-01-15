@@ -26,18 +26,18 @@ namespace spacebiem
         addComponent("position", new PositionComponent(x, y));
         addComponent("physics", new PhysicsComponent(w , h, true, PhysicsComponentShape::CIRCLE));
 
-        addComponent("texture", new TextureComponent("textures/wormhole-plain.png", 0.f - ((w*1.19f / 2.f) - w / 2.f), 0.f - ((h*1.19f / 2.f) - h / 2.f), w*1.19f, h*1.19f, 4u, true, "border", Color::White(), rot));
-        addComponent("texture", new TextureComponent("textures/wormhole-TypeA.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 2u, true, "background_A"));
-        addComponent("texture", new TextureComponent("textures/wormhole-TypeB.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 2u, true, "background_B"));
+        addComponent("texture", new TextureComponent("textures/wormhole-TypeA.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 1u, true, "border", Color::White(), rot));
+        addComponent("texture", new TextureComponent("textures/wormhole-TypeB.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 1u, true, "border_B", Color::White(), rot));
+        addComponent("texture", new TextureComponent("textures/wormhole-plain.png", 0.f , 0.f , w, h, 2u, true, "background"));
 
         addComponent<ScriptComponent>("script",
         [this, textures = getComponents<TextureComponent>("texture")](float deltaTime)
         {
             for (auto tex : textures) {
-                if (tex->getTag() == "background_B") {
+                if (tex->getTag() == "border_B") {
                     tex->setRotation(tex->getRotation() + (deltaTime * 10));
                 }
-                if (tex->getTag() == "background_A") {
+                if (tex->getTag() == "border") {
                     tex->setRotation(tex->getRotation() + (deltaTime * 50));
                 }
             }
