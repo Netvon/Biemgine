@@ -227,7 +227,7 @@ namespace spacebiem
 
         FileHandler file("data/progress.csv", true);
         for (auto r : content) {
-            file.writeLine(vector<string>({ r.first, to_string(r.second) }));
+            file.writeLine(vector<string>({ static_cast<unsigned int>(r.first), to_string(r.second) }));
         }
 
     }
