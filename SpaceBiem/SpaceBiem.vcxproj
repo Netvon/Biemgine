@@ -195,6 +195,7 @@
     <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
+    <ClInclude Include="globals\Player.h" />
     <ClInclude Include="scenes\CreditsScene.h" />
     <ClInclude Include="globals\Functions.h" />
     <ClInclude Include="scenes\DifficultyScene.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
     <ClCompile Include="globals\Ads.cpp" />
+    <ClCompile Include="globals\Player.cpp" />
     <ClCompile Include="scenes\CreditsScene.cpp" />
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />

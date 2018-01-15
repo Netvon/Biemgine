@@ -5,6 +5,7 @@
 #include "..\components\ScoreComponent.h"
 #include "..\components\OxygenComponent.h"
 #include "..\components\ResourceComponent.h"
+#include "..\globals\Player.h"
 
 #include "..\FileParser.h"
 #include "..\entities\PlayerEntity.h"

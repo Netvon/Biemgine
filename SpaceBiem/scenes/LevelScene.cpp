@@ -30,6 +30,7 @@
 #include "..\systems\AIMovementSystem.h"
 
 #include "..\globals\Fonts.h"
+#include "..\globals\\Player.h"
 
 #include <functional>
 #include <chrono>
@@ -158,7 +159,7 @@ namespace spacebiem
         SaveBlobFactory saveBlobFactory;
         vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
 
-        FileHandler fileHandler("data/savegame.csv", true);
+        FileHandler fileHandler(Player::current().saveLocation(), true);
 
         for (auto it = saveBlob.begin(); it != saveBlob.end(); it++) {
             fileHandler.writeLine(*it);

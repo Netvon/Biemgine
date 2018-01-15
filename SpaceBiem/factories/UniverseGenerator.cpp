@@ -19,7 +19,8 @@ namespace spacebiem
         // If there didn't spawn any earth planet for the player, try again.
         while (!playerSpawned) {
 
-            handler = new FileHandler{ "data/savegame.csv", true };
+            
+            handler = new FileHandler{ Player::current().saveLocation(), true };
 
             handler->writeLine("entity_id_type,component_type,value_1,value_2,value_3,value_4");
 

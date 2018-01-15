@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FileParser.h"
+#include "globals\Player.h"
 
 using std::ifstream;
 using std::ofstream;
@@ -93,7 +94,7 @@ namespace spacebiem
     {
         map<string, int> resourceM;
 
-        FileHandler file("data/resources.csv");
+        FileHandler file(Player::current().resourceLocation());
         for each (auto v in file.getValues())
         {
             resourceM[v[0]] = stoi(v[1]);
@@ -108,7 +109,7 @@ namespace spacebiem
             content[r.first] += r.second;
         }
 
-        FileHandler file("data/resources.csv", true);
+        FileHandler file(Player::current().resourceLocation(), true);
         for (auto r : content) {
             file.writeLine(vector<string>({ r.first, to_string(r.second) }));
         }

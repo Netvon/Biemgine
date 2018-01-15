@@ -267,3 +267,6 @@ enc_temp_folder/
 highscores.csv
 SpaceBiem/data/resources.csv
 SpaceBiem/data/savegame.csv
+
+SpaceBiem/**/resources.csv
+SpaceBiem/**/savegame.csv

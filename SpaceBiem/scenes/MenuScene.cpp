@@ -17,6 +17,7 @@
 #include "..\entities\ResourceUIEntity.h"
 #include "..\globals\Functions.h"
 #include "..\globals\Ads.h"
+#include "..\globals\Player.h"
 
 using biemgine::AnimationComponent;
 using biemgine::TextureComponent;
@@ -87,7 +88,7 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameClick, nullptr);
 
         std::function<void(StateManager*)> continueEventHandler = nullptr;
-        bool saveBlobExists = FileHandler::exists("data/savegame.csv");
+        bool saveBlobExists = FileHandler::exists(Player::current().saveLocation());
 
         if (saveBlobExists) {
             continueEventHandler = continueClick;

@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "GameoverSystem.h"
+#include "..\globals\Player.h"
 
 using biemgine::FileHandler;
 
@@ -65,8 +66,10 @@ namespace spacebiem
                     }
                 }
 
+                
+
                 FileHandler fileHandler{""};
-                fileHandler.remove("data/savegame.csv");
+                fileHandler.remove(Player::current().saveLocation());
 
                 getStateManager()->navigateTo<GameoverScene>(score, resources, planetsScore);
             }

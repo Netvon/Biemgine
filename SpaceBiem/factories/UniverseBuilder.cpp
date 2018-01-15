@@ -29,10 +29,10 @@ namespace spacebiem
         map<string, map<string, vector<string>>> levelMap;
 
         if (newGame) {
-            levelMap = fileParser.levelContent("data/savegame.csv");
+            levelMap = fileParser.levelContent(Player::current().saveLocation());
         }
         else {
-            levelMap = fileParser.levelContent("data/savegame.csv");
+            levelMap = fileParser.levelContent(Player::current().saveLocation());
         }
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();

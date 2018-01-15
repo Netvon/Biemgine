@@ -2,7 +2,7 @@
 #include "Biemgine.h"
 
 #include "../globals/Difficulty.h"
-
+#include "../globals/Player.h"
 #include "../FileParser.h"
 
 using biemgine::FileHandler;
