@@ -6,6 +6,8 @@
 #include "..\components\ScoreComponent.h"
 #include "..\components\ScoreBonusComponent.h"
 
+#include "..\globals\Difficulty.h"
+
 #include "Biemgine.h"
 #include <vector>
 
@@ -30,7 +32,9 @@ namespace spacebiem
             std::shared_ptr<CollidableComponent> collidableComponent;
         };
 
-        WinSystem() {
+        WinSystem(Difficulty pDifficulty) :
+            difficulty(pDifficulty)
+        {
             map<string, int> normal;
             normal["metal"] = 50;
             normal["diamond"] = 10;
@@ -49,9 +53,9 @@ namespace spacebiem
             normal["uranium"] = 20;
             normal["anti-matter"] = 1;
 
-            winConditions["normal"] = normal;
-            winConditions["challenging"] = challenging;
-            winConditions["expert"] = expert;
+            winConditions[Difficulty::NORMAL] = normal;
+            winConditions[Difficulty::CHALLENING] = challenging;
+            winConditions[Difficulty::EXPERT] = expert;
         };
 
         ~WinSystem() {};
@@ -62,8 +66,9 @@ namespace spacebiem
     private:
         vector<PlayerEntry> playerEntries;
 
-        map<string ,map<string, int>> winConditions;
+        map<Difficulty ,map<string, int>> winConditions;
 
+        Difficulty difficulty;
     };
 }
 

@@ -66,7 +66,7 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
-        addSystem<WinSystem>();
+        addSystem<WinSystem>(difficulty);
         addSystem<GameoverSystem>((customLevel != ""));
 
         float width = 15 * 2;

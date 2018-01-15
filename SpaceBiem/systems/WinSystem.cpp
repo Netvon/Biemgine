@@ -28,14 +28,27 @@ namespace spacebiem
 
     void WinSystem::update()
     {
+        bool resourceCheck = false;
+
         for (const PlayerEntry& player : playerEntries)
         {
             bool win = false;
 
             if (player.groundedComponent->isGrounded())
             {
+                auto resources = player.resourceComponent->getAllResources();
+
+                int metal = resources["metal"] - winConditions[difficulty]["metal"];
+                int diamond = resources["diamond"] - winConditions[difficulty]["diamond"];
+                int uranium = resources["uranium"] - winConditions[difficulty]["uranium"];
+                int antimatter = resources["anti-matter"] - winConditions[difficulty]["anti-matter"];
+
+                if (metal >= 0 && diamond >= 0 && uranium >= 0 && antimatter >= 0) {
+                    win = true;
+                }
+
                 auto ground = player.groundedComponent->getGroundedOn();
-                if (ground->getTag() == "wormhole") win = true;
+                if (ground->getTag() == "wormhole" && resourceCheck) win = true;
             }
         }
     }
