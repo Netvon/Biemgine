@@ -23,29 +23,38 @@ void Ads::initialize(filesystem::path pDirectoryContainingAds, std::string allow
         if (path.extension() == allowedExtension) {
             files.push_back(path.string());
         }
+
+        unUsedFiles = files;
     }
 }
 
 std::string Ads::random()
 {
-    if (files.size() > 0) {
-        shuffle();
-        return files.front();
+    shuffle();
+    std::string file = unUsedFiles.front();
+    unUsedFiles.erase(unUsedFiles.begin());
+
+    if (unUsedFiles.size() <= 0)
+    {
+        unUsedFiles = files;
     }
+
+    return file;
 }
 
 void Ads::close()
 {
     files.~vector();
+    unUsedFiles.~vector();
     directoryContainingAds.~path();
 }
 
 void Ads::shuffle()
 {
-    if (files.size() > 0) {
+    if (unUsedFiles.size() > 0) {
         std::random_device rd;
         std::mt19937 g(rd());
 
-        std::shuffle(files.begin(), files.end(), g);
+        std::shuffle(unUsedFiles.begin(), unUsedFiles.end(), g);
     }
 }
