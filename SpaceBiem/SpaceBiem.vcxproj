@@ -192,6 +192,7 @@
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
     <ClInclude Include="globals\Ads.h" />
+    <ClInclude Include="globals\Cheat.h" />
     <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
@@ -200,9 +201,8 @@
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />
-    <ClInclude Include="scenes\LevelEditorScene.h" />
-    <ClInclude Include="scenes\LevelLoadScene.h" />
     <ClInclude Include="systems\AIMovementSystem.h" />
+    <ClInclude Include="systems\CheatSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -259,9 +259,8 @@
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="scenes\HelpScene.cpp" />
-    <ClCompile Include="scenes\LevelEditorScene.cpp" />
-    <ClCompile Include="scenes\LevelLoadScene.cpp" />
     <ClCompile Include="systems\AIMovementSystem.cpp" />
+    <ClCompile Include="systems\CheatSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />

@@ -2,6 +2,7 @@
 
 #include "Biemgine.h"
 #include "../components/AtmosphereComponent.h"
+#include "../globals/Cheat.h"
 
 using biemgine::Component;
 using biemgine::Entity;

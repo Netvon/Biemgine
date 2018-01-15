@@ -27,6 +27,7 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\CheatSystem.h"
 #include "..\systems\AIMovementSystem.h"
 
 #include "..\globals\Fonts.h"
@@ -66,6 +67,7 @@ namespace spacebiem
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
         addSystem<GameoverSystem>();
+        addSystem<CheatSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -81,9 +83,19 @@ namespace spacebiem
         timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 40, Color{ 66, 143, 244 }, "");
         speedId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, "");
+        cheatId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 70, Color{ 66, 143, 244 }, "");
+        godModeId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 10, Color{ 66, 143, 244 }, "");
+        aibounceId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 40, Color{ 66, 143, 244 }, "");
 
         fpsEntity = getEntity(FPSId);
         speedEntity = getEntity(speedId);
+        cheatEntity = getEntity(cheatId);
+        godModeEntity = getEntity(godModeId);
+        aibounceEntity = getEntity(aibounceId);
+
+        cheatEntity->setTag("cheat");
+        godModeEntity->setTag("godmode");
+        aibounceEntity->setTag("ai_bounce");
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
@@ -136,6 +148,10 @@ namespace spacebiem
 
         if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/spacemusic1.mp3"))
             getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
+
+        cheatId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 250, 40, Color{ 66, 143, 244 }, "");
+        cheatEntity = getEntity(cheatId);
+        cheatEntity->setTag("cheat");
     }
 
     void LevelScene::sceneEnd() {

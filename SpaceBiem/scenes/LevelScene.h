@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Biemgine.h"
-#include "../globals/Difficulty.h"
+#include "..\globals\Difficulty.h"
 
 using biemgine::AnimationComponent;
 using biemgine::SpriteEntity;
@@ -46,8 +46,15 @@ namespace spacebiem
 		bool newGame;
 		int FPSId;
 		int speedId;
+        int cheatId;
+        int godModeId;
+        int aibounceId;
 		Entity * fpsEntity = nullptr;
 		Entity * speedEntity = nullptr;
+        Entity * cheatEntity = nullptr;
+        Entity * godModeEntity = nullptr;
+        Entity * inputEntity = nullptr;
+        Entity * aibounceEntity = nullptr;
 		std::shared_ptr<AnimationComponent> fadeAnimation = nullptr;
 		int timeout;
 		float counter = 0;

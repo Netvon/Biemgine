@@ -1,4 +1,5 @@
 #include "MovementSystem.h"
+#include "..\globals\Cheat.h"
 
 namespace spacebiem
 {
@@ -66,7 +67,7 @@ namespace spacebiem
 
             for (const auto & collideInfo : entry.collidableComponent->getCollisions())
             {
-                if (collideInfo.entity->isTag("ai"))
+                if (collideInfo.entity->isTag("ai") && !Cheat::Instance().isEnabled("ai_bounce"))
                 {
                     entry.physicsComponent->addImpulse("bounceback", -entry.physicsComponent->getForceX() * 1.1, -entry.physicsComponent->getForceY() * 1.1);
                 }
