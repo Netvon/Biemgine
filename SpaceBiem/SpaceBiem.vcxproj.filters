@@ -220,6 +220,7 @@
     <ClInclude Include="entities\WormholeEntity.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="systems\WinSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -407,6 +408,7 @@
     <ClCompile Include="entities\WormholeEntity.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="systems\WinSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ads\.gitkeep" />
