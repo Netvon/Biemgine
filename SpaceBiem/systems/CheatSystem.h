@@ -44,5 +44,6 @@ namespace spacebiem
         vector<PlayerEntry> playerEntries;
         CheatTextEntry cheatTextEntry;
         CheatTextEntry godModeTextEntry;
+        CheatTextEntry aibounceTextEntry;
     };
 }
