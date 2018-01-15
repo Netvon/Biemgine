@@ -89,6 +89,7 @@ namespace spacebiem
 
         return resourceM;
     }
+
     map<string, int> FileParser::resourcesContent()
     {
         map<string, int> resourceM;
@@ -101,6 +102,7 @@ namespace spacebiem
 
         return resourceM;
     }
+
     void FileParser::writeNewResources(map<string, int> resources)
     {
         map<string, int> content = resourcesContent();
@@ -195,6 +197,39 @@ namespace spacebiem
         }
 
         return beltM;
+    }
+
+    map<Difficulty, bool> FileParser::progressContent()
+    {
+        map<Difficulty, bool> progress;
+
+        FileHandler file("data/progress.csv");
+        for each (auto v in file.getValues())
+        {
+            if (v[0] == "true") {
+                progress[(Difficulty)stoi(v[0])] = true;
+            }
+            else {
+                progress[(Difficulty)stoi(v[0])] = false;
+            }
+        }
+
+        return progress;
+    }
+
+
+    void FileParser::writeProgress(map<Difficulty, bool> resources)
+    {
+        map<Difficulty, bool> content = progressContent();
+        for (auto r : resources) {
+            content[r.first] += r.second;
+        }
+
+        FileHandler file("data/progress.csv", true);
+        for (auto r : content) {
+            file.writeLine(vector<string>({ r.first, to_string(r.second) }));
+        }
+
     }
 
 }
