@@ -220,6 +220,7 @@
     <ClInclude Include="systems\ScoreSystem.h" />
     <ClInclude Include="systems\ScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="entities\WormholeEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entities\AdEntity.cpp" />
@@ -286,6 +287,7 @@
     <ClCompile Include="systems\ScoreSystem.cpp" />
     <ClCompile Include="systems\ScoreUISystem.cpp" />
     <ClCompile Include="factories\UniverseBuilder.cpp" />
+    <ClCompile Include="entities\WormholeEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">
