@@ -61,7 +61,7 @@ namespace spacebiem
                 }
             }
 
-            // Then pickup planets
+            // Then pickup planets / ai / player
             if (!pickup) {
                 for (const DragDropEntry& entry : dragDropEntries)
                 {
@@ -75,9 +75,17 @@ namespace spacebiem
                         dragOffsetY = entry.positionComponent.get()->getY() - mouseY;
 
                         if (entry.entity->getTag().find("_placed") == std::string::npos) {
-                            entry.entity->scaleSize(2.5f);
-                            dragOffsetX *= 2.5f;
-                            dragOffsetY *= 2.5f;
+
+                            float scale = 1.f;
+                            if (entry.entity->isTag("ai") || entry.entity->isTag("player")) {
+                                scale = 1.0f;
+                            }
+                            else {
+                                scale = 3.5f;
+                            }
+                            entry.entity->scaleSize(scale);
+                            dragOffsetX *= scale;
+                            dragOffsetY *= scale;
                         }
 
                         dragEntity = std::make_shared<DragDropEntry>(entry);
@@ -110,7 +118,7 @@ namespace spacebiem
 
                     dragEntity->entity->scaleSize(1/1.03f);
                     dragEntity->entity->calculateBounds();
-                    dragEntity->entity->setTag(dragEntity.get()->entity->getTag() + "_placed");
+                    if (dragEntity->entity->getTag().find("_placed") == std::string::npos) dragEntity->entity->setTag(dragEntity.get()->entity->getTag() + "_placed");
                     dragEntity = nullptr;
 
                 }

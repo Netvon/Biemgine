@@ -5,6 +5,7 @@
 #include "..\components\ResourceComponent.h"
 #include "..\components\ScoreComponent.h"
 #include "..\components\ScoreBonusComponent.h"
+#include "..\scenes\LevelLoadScene.h"
 
 #include "Biemgine.h"
 #include <vector>
@@ -21,6 +22,9 @@ namespace spacebiem
         public System
     {
     public:
+
+        GameoverSystem(bool customLevel = false): customLevel(customLevel) {};
+
         struct PlayerEntry
         {
             Entity* entity;
@@ -39,5 +43,6 @@ namespace spacebiem
 
     private:
         vector<PlayerEntry> playerEntries;
+        bool customLevel;
     };
 }

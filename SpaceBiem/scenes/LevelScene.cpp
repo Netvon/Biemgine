@@ -65,7 +65,7 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
-        addSystem<GameoverSystem>();
+        addSystem<GameoverSystem>((customLevel != ""));
 
         float width = 15 * 2;
         float height = 25 * 2;
@@ -104,7 +104,8 @@ namespace spacebiem
             uB.build(getEntityManager(), true);
         }
         else {
-            uB.build(getEntityManager(), false);
+            if (customLevel == "") uB.build(getEntityManager(), false);
+            else uB.build(getEntityManager(), false, customLevel);
         }
 
         int beginY = 400;
@@ -151,12 +152,16 @@ namespace spacebiem
 
     void LevelScene::saveScore()
     {
+        if (customLevel == "") return;
+
         ScoreUIFactory sf;
         sf.sceneEnd(getEntityManager());
     }
 
     void LevelScene::saveGame()
     {
+        if (customLevel == "") return;
+
         SaveBlobFactory saveBlobFactory;
         vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
 

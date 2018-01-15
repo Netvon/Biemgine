@@ -28,10 +28,11 @@ namespace spacebiem
 
 		void saveGame();
 
-		LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL) :
+		LevelScene(StateManager& manager, bool newGame = true, Difficulty difficulty = Difficulty::NORMAL, string customLevel = "") :
 			Scene(manager),
 			newGame(newGame),
-			difficulty(difficulty)
+            difficulty(difficulty),
+            customLevel(customLevel)
 		{};
 
 		~LevelScene() {}
@@ -56,6 +57,8 @@ namespace spacebiem
 		void updateMenu();
 
 		Difficulty difficulty;
+
+        string customLevel;
 
 		std::vector<Entity*> pauseMenuEntities;
 	};
