@@ -10,7 +10,7 @@ namespace spacebiem
     }
 
     Player::Player()
-        : name{playerTwo()}
+        : name{playerOne()}
     {
     }
 
