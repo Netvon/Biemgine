@@ -89,6 +89,9 @@ namespace spacebiem
         {
             manager->navigateTo<DifficultyScene>();
         });
+
+        if (!getTransitionManager().getAudioDevice().isPlayingMusic("audio/menu.mp3"))
+            getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);
     }
 
     void StoryScene::input()

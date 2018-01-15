@@ -28,7 +28,7 @@ namespace spacebiem
 
         map<string, map<string, vector<string>>> levelMap;
 
-        levelMap = fileParser.levelContent("data/level_1.csv");
+        levelMap = fileParser.levelContent(fileName);
        
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();

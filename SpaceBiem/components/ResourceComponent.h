@@ -24,10 +24,12 @@ namespace spacebiem
         void addResource(string pName, int pAmount);
         const map<string, int>& getResources() const;
         const map<string, int>& getAllResources() const;
+        map<string, int>& getNeededResources();
     private:
 
         map<string, int> resources;
         map<string, int> allResources;
+        map<string, int> neededResources;
 
     };
 }

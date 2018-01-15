@@ -137,6 +137,14 @@ namespace spacebiem
             fadeAnimation->playReversed();
         }, nullptr, "pause_menu");
 
+        //addEntity<SpriteEntity>("textures/resources-need.png", wW - 250 - 25.f, 70.f, Color::White(), 250, 382, 100u);
+        //float rX = 66.f;
+        //float rIncr = 91.f;
+        //addEntity<ResourceUIEntity>(wW - 234.f, 143.f, Color::White(), "uranium", 0, "resource-needed");
+        //addEntity<ResourceUIEntity>(wW - 234.f, 143.f + 75, Color::White(), "diamond", 0);
+        ////addEntity<ResourceUIEntity>(wW - 200, 145.f, Color::White(), "metal", 0);
+        ////addEntity<ResourceUIEntity>(wW - 200, 145.f, Color::White(), "anti-matter", 0);
+
         updateMenu();
 
         if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/spacemusic1.mp3"))
