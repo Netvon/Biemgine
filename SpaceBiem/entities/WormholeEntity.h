@@ -9,9 +9,9 @@ using biemgine::Color;
 namespace spacebiem
 {
     class WormholeEntity :
-        public PlanetEntity
+        public Entity
     {
     public:
-        WormholeEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName = "", bool scoreGiven = false);
+        WormholeEntity(float x, float y, Color color, float w, float h);
     };
 }

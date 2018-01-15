@@ -1,24 +1,53 @@
 #include "Biemgine.h"
 
 #include "WormholeEntity.h"
-#include "../components/AtmosphereComponent.h"
 #include "../components/GravityComponent.h"
 
-using biemgine::AudioComponent;
 using biemgine::PositionComponent;
-using biemgine::TextureComponent;
 using biemgine::PhysicsComponent;
-using biemgine::ColorComponent;
-using biemgine::GroundComponent;
 using biemgine::PhysicsComponentShape;
+using biemgine::ColorComponent;
+using biemgine::CollidableComponent;
+using biemgine::GroundComponent;
+using biemgine::TextureComponent;
+using biemgine::AnimatedTextureComponent;
+using biemgine::TextureColumnDef;
+using biemgine::TextureRowDef;
+using biemgine::TextComponent;
+using biemgine::ScriptComponent;
+using biemgine::RandomGenerator;
 
 namespace spacebiem
 {
-    WormholeEntity::WormholeEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName, bool scoreGiven) :
-        PlanetEntity(x, y, color, w, h, "textures/wormhole-plain.png", "textures/wormhole-TypeA.png", pScoreBonus, pName, scoreGiven)
+    WormholeEntity::WormholeEntity(float x, float y, Color color, float w, float h)
     {
-        setTag("wormhole");
-        addComponent("texture", new TextureComponent("textures/wormhole-TypeB.png", 0.f, 0.f, w, h, 2u, true, "background_B"));
-        //addComponent("audio", new AudioComponent("audio/earth.mp3", -1, -1, 48, 1000));
+        float rot = RandomGenerator::getInstance().generate(0.0f, 360.0f);
+
+        addComponent("position", new PositionComponent(x, y));
+        addComponent("physics", new PhysicsComponent(w , h, true, PhysicsComponentShape::CIRCLE));
+
+        addComponent("texture", new TextureComponent("textures/wormhole-plain.png", 0.f - ((w*1.19f / 2.f) - w / 2.f), 0.f - ((h*1.19f / 2.f) - h / 2.f), w*1.19f, h*1.19f, 4u, true, "border", Color::White(), rot));
+        addComponent("texture", new TextureComponent("textures/wormhole-TypeA.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 2u, true, "background_A"));
+        addComponent("texture", new TextureComponent("textures/wormhole-TypeB.png", 0.f - (w / 2), 0.f - (h / 2), w * 2, h * 2, 2u, true, "background_B"));
+
+        addComponent<ScriptComponent>("script",
+        [this, textures = getComponents<TextureComponent>("texture")](float deltaTime)
+        {
+            for (auto tex : textures) {
+                if (tex->getTag() == "background_B") {
+                    tex->setRotation(tex->getRotation() + (deltaTime * 10));
+                }
+                if (tex->getTag() == "background_A") {
+                    tex->setRotation(tex->getRotation() + (deltaTime * 50));
+                }
+            }
+        });
+
+        addComponent("collidable", new CollidableComponent(CollisionCategory::PLANET, CollisionCategory::PLAYER | CollisionCategory::AI | CollisionCategory::RESOURCE));;
+
+        addComponent("ground", new GroundComponent);
+
+        addComponent("gravity", new GravityComponent(w / -2.f, h / -2.f, w * 2.f, h * 2.f, w));
+        addComponent("texture", new TextureComponent("textures/gravityField.png", w / -2.f, h / -2.f, w * 2.f, h * 2.f, 0u, true, "gravityfield", { color.r, color.g, color.b, 50 }));
     }
 }
