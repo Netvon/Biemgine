@@ -45,7 +45,7 @@ namespace spacebiem
 
             constexpr float escapeVelocity = 140.f;
 
-            if (!grounded->isGrounded() || !affected->getIsAffected())
+            if (/*!grounded->isGrounded() || */!affected->getIsAffected())
                 return;
 
             auto ai = aiEntry.ai;
