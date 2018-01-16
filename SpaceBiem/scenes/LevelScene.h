@@ -21,7 +21,7 @@ namespace spacebiem
 		void created() override;
 		void sceneEnd() override;
 		void close() override;
-
+        
 		void resetFPScounters();
 
 		void saveScore();

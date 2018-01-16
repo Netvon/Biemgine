@@ -62,6 +62,10 @@ namespace biemgine
             int wW = cameraEntity.cameraComponent->getWindowWidth() / 2;
             int wH = cameraEntity.cameraComponent->getWindowHeight() / 2;
 
+            if (e.entity->getTag().find(cameraEntity.cameraComponent->getOnlyWithSuffix()) == std::string::npos) {
+                return true;
+            }
+
             if (e.entity->minX + e.positionComponent->getOriginX() > dX + wW) return false;
             if (e.entity->maxX + e.positionComponent->getOriginX() < dX - wW) return false;
             if (e.entity->minY + e.positionComponent->getOriginY() > dY + wH) return false;

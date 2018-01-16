@@ -107,8 +107,10 @@ namespace spacebiem
             uB.build(getEntityManager(), true, Player::current().saveLocation());
         }
         else {
-            if (customLevel == "") uB.build(getEntityManager(), false);
-            else uB.build(getEntityManager(), false, customLevel);
+            if (customLevel == "")
+                uB.build(getEntityManager(), false, Player::current().saveLocation());
+            else
+                uB.build(getEntityManager(), false, customLevel);
         }
 
         int beginY = 400;

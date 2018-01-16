@@ -238,6 +238,9 @@
     <ClInclude Include="scenes\WinScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="entities\CameraEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -442,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="scenes\WinScene.cpp">
       <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\CameraEntity.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
