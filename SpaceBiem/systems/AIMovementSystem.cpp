@@ -2,8 +2,11 @@
 
 using biemgine::Vector;
 using biemgine::RandomGenerator;
+using biemgine::Math;
+using biemgine::TextureFlip;
 
 #include "stdafx.h"
+#include <math.h>
 
 #include "../components/GravityComponent.h"
 
@@ -17,7 +20,7 @@ namespace spacebiem
                 entity.getComponent<PositionComponent>("position"),
                 entity.getComponent<GroundedComponent>("grounded"),
                 entity.getComponent<AffectedByGravityComponent>("affectedByGravity"),
-                entity.getComponent<AnimatedTextureComponent>("animatedTexture"),
+                entity.getComponent<AnimatedTextureComponent>("texture"),
                 entity.getComponent<PhysicsComponent>("physics"),
                 entity.getComponent<AIComponent>("ai"),
             };
@@ -46,7 +49,7 @@ namespace spacebiem
             constexpr float escapeVelocity = 140.f;
 
             if (!grounded->isGrounded() || !affected->getIsAffected())
-                return;
+                continue;
 
             auto ai = aiEntry.ai;
             auto position = aiEntry.position;
@@ -68,9 +71,13 @@ namespace spacebiem
                     playerInRange = true;
 
                     auto pc = player->getComponent<PositionComponent>("position");
-                    ai->setDirection(Direction::LEFT);
 
                     diff += position->getLocation() - pc->getLocation();
+
+                    float angle = atan2(pc->getY() - position->getY(), pc->getX() - position->getX( ));
+                    angle = Math::radiansToDegrees(angle);
+
+                    ai->setDirection(angle > 0 ? Direction::RIGHT : Direction::LEFT);
                 }
             }
 
@@ -95,6 +102,8 @@ namespace spacebiem
                     physics->addForce("right", right.x, right.y);
                 }
             }
+
+            texture->setFlip(ai->isDirection(Direction::RIGHT) ? TextureFlip::NONE : TextureFlip::HORIZONTAL);
         }
     }
 

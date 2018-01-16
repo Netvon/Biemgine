@@ -80,6 +80,21 @@ namespace biemgine
         RotMatrix(double angle);
     };
 
+    const float PI = 3.14159265358979323846f;
+
+    struct BIEMGINE Math
+    {
+        static float radiansToDegrees(float radians)
+        {
+            return radians * 180.f / getPI();
+        };
+
+        static float getPI()
+        {
+            return PI;
+        }
+    };
+
     struct BIEMGINE Rect {
         Point topLeft;
         Point topRight;

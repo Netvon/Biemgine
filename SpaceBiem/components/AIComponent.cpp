@@ -33,20 +33,9 @@ namespace spacebiem
 
     Direction AIComponent::getDirection()
     {
-        auto currentTime = time(0);
+        if (directionEndTime != 0 && directionEndTime < time(0)) return direction;
 
-        if (directionEndTime != 0 && directionEndTime < currentTime) return direction;
-
-        if (direction == Direction::IDLE) {
-            if (getCanWander() || getCanFollow()) {
-                RandomGenerator & generator = RandomGenerator::getInstance();
-
-                direction = generator.generate(0.f, 1.f) > 0.5 ? Direction::LEFT : Direction::RIGHT;
-            }
-
-            directionEndTime = time(0) + 5;
-        }
-        else {
+        if (direction != Direction::IDLE) {
             direction = Direction::IDLE;
             directionEndTime = time(0) + 2;
         }
@@ -61,7 +50,7 @@ namespace spacebiem
 
     bool AIComponent::isDirection(Direction pDirection)
     {
-        return getDirection() == pDirection;
+        return direction == pDirection;
     }
 
     int AIComponent::getDirectionEndTime() const
