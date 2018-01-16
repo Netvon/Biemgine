@@ -14,6 +14,7 @@ namespace spacebiem {
 
         std::string saveLocation() const;
         std::string resourceLocation() const;
+        std::string progressLocation() const;
         std::string resolvePath(const std::string& filename);
 
         static constexpr char* playerOneName()

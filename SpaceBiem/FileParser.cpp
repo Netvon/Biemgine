@@ -89,6 +89,7 @@ namespace spacebiem
 
         return resourceM;
     }
+
     map<string, int> FileParser::resourcesContent()
     {
         return resourcesContent(Player::current());
@@ -201,6 +202,39 @@ namespace spacebiem
         }
 
         return beltM;
+    }
+
+    map<Difficulty, bool> FileParser::progressContent()
+    {
+        map<Difficulty, bool> progress;
+
+        FileHandler file(Player::current().progressLocation());
+        for (auto v : file.getValues())
+        {
+            if (v[1] == "1") {
+                progress[(Difficulty)stoi(v[0])] = true;
+            }
+            else {
+                progress[(Difficulty)stoi(v[0])] = false;
+            }
+        }
+
+        return progress;
+    }
+
+
+    void FileParser::writeProgress(map<Difficulty, bool> resources)
+    {
+        map<Difficulty, bool> content = progressContent();
+        for (auto r : resources) {
+            content[r.first] += r.second;
+        }
+
+        FileHandler file(Player::current().progressLocation(), true);
+        for (auto r : content) {
+            file.writeLine(vector<string>({ to_string(static_cast<unsigned int>(r.first)), to_string(r.second) }));
+        }
+
     }
 
 }

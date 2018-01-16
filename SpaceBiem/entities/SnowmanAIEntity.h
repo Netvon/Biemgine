@@ -5,6 +5,7 @@
 using biemgine::Color;
 
 #include "AIEntity.h"
+#include "../components/AIComponent.h"
 
 namespace spacebiem
 {

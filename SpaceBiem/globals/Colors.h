@@ -30,5 +30,8 @@ namespace spacebiem
         static Color LavaAtmosphere() {
             return Color{ 163, 33, 7, 255 };
         }
+        static Color WormholeAtmosphere() {
+            return Color{ 34, 61, 91, 255 };
+        }
     };
 }

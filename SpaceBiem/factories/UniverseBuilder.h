@@ -24,6 +24,6 @@ namespace spacebiem
     {
     public:
         UniverseBuilder();
-        void build(std::shared_ptr<EntityManager> entityManager, bool newGame = true);
+        void build(std::shared_ptr<EntityManager> entityManager, bool newGame = true, string fileName = "data/savegame.csv", bool focused = true);
     };
 }

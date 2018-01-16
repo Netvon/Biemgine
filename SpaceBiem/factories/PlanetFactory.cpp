@@ -30,6 +30,9 @@ namespace spacebiem
             entityManager->addEntity<PlanetLavaEntity>(pX, pY, Colors::LavaAtmosphere(), width, height, scoreBonus["lava"], atmosphereM["lava"], nameGenerator.getName());
             resourceFactory.generatePlanetResources(pX + (width / 2), pY + (height / 2), height / 2, "lava", entityManager);
         }
+        else if (type == "wormhole") {
+            entityManager->addEntity<WormholeEntity>(pX, pY, Colors::WormholeAtmosphere(), width, height);
+        }
     }
 
     void PlanetFactory::load(const string& type, int pX, int pY, int width, int height, std::shared_ptr<EntityManager> entityManager, string name, map<string, float> atmosphereM, int planetScore, bool isDiscovered, vector<float> flagComponent)
@@ -53,6 +56,9 @@ namespace spacebiem
         }
         else if (type == "lava") {
             id = entityManager->addEntity<PlanetLavaEntity>(pX, pY, Colors::LavaAtmosphere(), width, height, planetScore, atmosphereM["lava"], name);
+        }
+        else if (type == "wormhole") {
+            entityManager->addEntity<WormholeEntity>(pX, pY, Colors::WormholeAtmosphere(), width, height);
         }
 
         auto planet = entityManager->getEntity(id);

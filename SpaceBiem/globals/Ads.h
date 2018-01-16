@@ -13,7 +13,7 @@ public:
 
     void initialize(filesystem::path pDirectoryContainingAds = "ads", std::string allowedExtension = ".jpg");
     std::string random();
-
+    
     void close();
 private:
     Ads() {};
@@ -21,5 +21,6 @@ private:
     void shuffle();
     filesystem::path directoryContainingAds;
     std::vector<std::string> files;
-
+    std::vector<std::string> unUsedFiles;
+ 
 };

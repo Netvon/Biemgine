@@ -42,6 +42,11 @@ namespace spacebiem
         return "data/" + name + "/resources.csv";
     }
 
+	std::string Player::progressLocation() const
+	{
+        return "data/" + name + "/progress.csv";
+	}
+
     std::string Player::resolvePath(const std::string & filename)
     {
         return "data/" + name + "/" + filename;

@@ -211,6 +211,9 @@
     <ClInclude Include="scenes\LevelEditorScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
+    <ClInclude Include="systems\DragDropSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
     <ClInclude Include="globals\Ads.h">
       <Filter>globals</Filter>
     </ClInclude>
@@ -221,6 +224,18 @@
       <Filter>globals</Filter>
     </ClInclude>
     <ClInclude Include="scenes\ProfileScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\WormholeEntity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\WinSystem.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\StoryScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\WinScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -401,6 +416,9 @@
     <ClCompile Include="scenes\LevelEditorScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
+    <ClCompile Include="systems\DragDropSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
     <ClCompile Include="globals\Ads.cpp">
       <Filter>globals</Filter>
     </ClCompile>
@@ -411,6 +429,18 @@
       <Filter>globals</Filter>
     </ClCompile>
     <ClCompile Include="scenes\ProfileScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\WormholeEntity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\WinSystem.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\StoryScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\WinScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
