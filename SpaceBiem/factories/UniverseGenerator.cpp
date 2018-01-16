@@ -159,14 +159,14 @@ namespace spacebiem
                 to_string(pRadius)
             );
 
-            if (pType == "sand") {
-                pId = getNextId();
+            Vector v = UniverseGenerator::getRandomSpawnPosition(minimumR, maximumR, pRadius);
 
+            if (pType == "sand") {
                 handler->writeLine(
                     to_string(pId) + "_aimummie," +
                     "position_component," +
-                    to_string(pX - (pRadius / 2) - 50) + "," +
-                    to_string(pY - (pRadius / 2) - 50) + "," +
+                    to_string(pX - v.x) + "," +
+                    to_string(pY - v.y) + "," +
                     "50,50"
                 );
             }
@@ -174,8 +174,8 @@ namespace spacebiem
                 handler->writeLine(
                     to_string(pId) + "_aisnowman," +
                     "position_component," +
-                    to_string(pX - (pRadius / 2) - 50) + "," +
-                    to_string(pY - (pRadius / 2) - 50) + "," +
+                    to_string(pX - v.x) + "," +
+                    to_string(pY - v.y) + "," +
                     "50,50"
                 );
             }
