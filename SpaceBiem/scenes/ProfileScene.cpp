@@ -48,7 +48,8 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150 * 2, 50 * 2 };
 
-        float offset = 170.f;
+        float offset_max = 150.f;
+        float offset = offset_max;
 
         
 
@@ -75,7 +76,7 @@ namespace spacebiem
             addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p1_resources["anti-matter"], font);
 
             text = "Select 'biem'";
-            offset = 170.f;
+            offset = offset_max;
         }
         else {
             text = "Start profile 'biem'";
@@ -98,7 +99,7 @@ namespace spacebiem
             addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p2_resources["anti-matter"], font);
 
             text = "Select 'Mummy'";
-            offset = 170.f;
+            offset = offset_max;
         }
         else {
             text = "Start profile 'Mummy'";
@@ -121,7 +122,7 @@ namespace spacebiem
             addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p3_resources["anti-matter"], font);
 
             text = "Select 'Snowman'";
-            offset = 170.f;
+            offset = offset_max;
         }
         else {
             text = "Start profile 'Snowman'";
