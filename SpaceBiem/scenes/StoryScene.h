@@ -17,13 +17,15 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
 
-        StoryScene(StateManager& manager, Difficulty pNextDifficulty, bool pFromLevel = false)
+        StoryScene(StateManager& manager, Difficulty pNextDifficulty, bool pFromLevel = false, map<string, int> resources = map<string, int>())
             : Scene(manager), nextDifficulty(pNextDifficulty), fromLevel(pFromLevel){};
         ~StoryScene() {};
 
     private:
         Difficulty nextDifficulty;
         bool fromLevel;
+
+        map<string, int> resources;
     };
 }
 
