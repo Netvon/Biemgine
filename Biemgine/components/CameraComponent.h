@@ -11,7 +11,7 @@ namespace biemgine
         public Component
     {
     public:
-        CameraComponent();
+        CameraComponent(std::string onlyWithSuffix = "");
         ~CameraComponent() {};
 
         float getDeltaX() const;
@@ -20,6 +20,7 @@ namespace biemgine
         int getWindowHeight() const;
         float getOriginX() const;
         float getOriginY() const;
+        std::string getOnlyWithSuffix() const;
 
         void setDeltaX(float x);
         void setDeltaY(float y);
@@ -37,5 +38,7 @@ namespace biemgine
 
         float originX;
         float originY;
+
+        std::string onlyWithSuffix = "";
     };
 }

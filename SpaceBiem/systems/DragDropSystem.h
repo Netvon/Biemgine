@@ -6,6 +6,7 @@ using biemgine::System;
 using biemgine::Entity;
 using biemgine::PositionComponent;
 using biemgine::TextureComponent;
+using biemgine::CameraComponent;
 
 namespace spacebiem
 {
@@ -39,11 +40,19 @@ namespace spacebiem
         float lastX;
         float lastY;
 
+        float dCameraX = 0.f;
+        float dCameraY = 0.f;
+
         // if the dragged entity is a copy from the menu or not
         bool lastCopy = false;
 
-        DragDropEntry menuEntity;
+        DragDropEntry cameraEntity;
         DragDropEntry trashEntity;
+
+
+        bool checkResourcePickup(DragDropEntry& entry, float mouseX, float mouseY);
+        bool checkElsePickup(DragDropEntry& entry, float mouseX, float mouseY);
+
 
     };
 }

@@ -22,6 +22,8 @@
 
 #include "../entities/PlayerEntity.h"
 
+#include "../entities/CameraEntity.h"
+
 #include "../systems/DragDropSystem.h"
 #include "../systems/GravitySystem.h"
 
@@ -77,6 +79,10 @@ namespace spacebiem
         {
             manager->navigateTo<LevelLoadScene>();
         });
+
+        addEntity<SpriteEntity>("textures/kliko.png", wW - menuSize + 30, wH - buttonSize.height - 50, Color::White(), 80, 80, 200u, "kliko");
+
+        addEntity<CameraEntity>(wW/2, wH/2, "_placed");
 
     }
 

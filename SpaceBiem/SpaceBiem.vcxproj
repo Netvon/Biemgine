@@ -161,6 +161,7 @@
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\AIEntity.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
+    <ClInclude Include="entities\CameraEntity.h" />
     <ClInclude Include="entities\MummieAIEntity.h" />
     <ClInclude Include="entities\PlanetEntity.h" />
     <ClInclude Include="entities\PlanetIceEntity.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\AIEntity.cpp" />
     <ClCompile Include="entities\ButtonUIEntity.cpp" />
+    <ClCompile Include="entities\CameraEntity.cpp" />
     <ClCompile Include="entities\MummieAIEntity.cpp" />
     <ClCompile Include="entities\PlanetEntity.cpp" />
     <ClCompile Include="entities\PlanetIceEntity.cpp" />
