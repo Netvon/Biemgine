@@ -71,12 +71,12 @@ namespace biemgine
 
     void Scene::enableUI()
     {
-        addSystem<UISystem>(2);
+        addSystem<UISystem>();
     }
 
     void Scene::enableScripts()
     {
-        addSystem<ScriptSystem>(2);
+        addSystem<ScriptSystem>();
     }
 
     void Scene::enableCamera()
@@ -107,7 +107,7 @@ namespace biemgine
 
     void Scene::firstFrame()
     {
-        entityManager->addEntitiesToSystems();
+        //entityManager->addEntitiesToSystems();
     }
     
     Entity * Scene::getEntity(int id) const

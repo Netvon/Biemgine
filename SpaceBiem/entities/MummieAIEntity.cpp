@@ -18,5 +18,7 @@ namespace spacebiem
                 false
             }
         })
-    {}
+    {
+		getComponent<AIComponent>("ai")->setName("mummie");
+	}
 }

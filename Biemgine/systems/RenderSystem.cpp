@@ -112,17 +112,19 @@ namespace biemgine
 
                 deltaX = 0;
                 deltaY = 0;
+                string onlyWithSuffix = "";
 
                 if (cameraComponent != nullptr && !texture->isUI)
                 {
                     deltaX = cameraComponent->getDeltaX();
                     deltaY = cameraComponent->getDeltaY();
+                    onlyWithSuffix = cameraComponent->getOnlyWithSuffix();
                 }
 
                 graphicsDevice->drawTexture(
                     texture->textureComponent->getPath(),
-                    texture->textureComponent->getOffsetX() + texture->positionComponent->getOriginX() + deltaX,
-                    texture->textureComponent->getOffsetY() + texture->positionComponent->getOriginY() + deltaY,
+                    texture->textureComponent->getOffsetX() + texture->positionComponent->getOriginX() + ((drawable->entity->getTag().find(onlyWithSuffix) != std::string::npos || onlyWithSuffix == "") ? deltaX : 0.f),
+                    texture->textureComponent->getOffsetY() + texture->positionComponent->getOriginY() + ((drawable->entity->getTag().find(onlyWithSuffix) != std::string::npos || onlyWithSuffix == "") ? deltaY : 0.f),
                     texture->textureComponent->getWidth(),
                     texture->textureComponent->getHeight(),
                     texture->textureComponent->getRotation() + texture->positionComponent->getRotation(),

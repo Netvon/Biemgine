@@ -68,6 +68,8 @@ namespace biemgine
 
         float distance(const Entity & entity) const;
 
+        void scaleSize(float scalair = 1.f);
+
     private:
         int id;
         std::multimap<string, std::shared_ptr<Component>> componentHashmap;

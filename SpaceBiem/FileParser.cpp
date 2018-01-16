@@ -89,11 +89,17 @@ namespace spacebiem
 
         return resourceM;
     }
+
     map<string, int> FileParser::resourcesContent()
+    {
+        return resourcesContent(Player::current());
+    }
+
+    map<string, int> FileParser::resourcesContent(const Player& forPlayer)
     {
         map<string, int> resourceM;
 
-        FileHandler file("data/resources.csv");
+        FileHandler file(forPlayer.resourceLocation());
         for each (auto v in file.getValues())
         {
             resourceM[v[0]] = stoi(v[1]);
@@ -101,6 +107,7 @@ namespace spacebiem
 
         return resourceM;
     }
+
     void FileParser::writeNewResources(map<string, int> resources)
     {
         map<string, int> content = resourcesContent();
@@ -108,7 +115,7 @@ namespace spacebiem
             content[r.first] += r.second;
         }
 
-        FileHandler file("data/resources.csv", true);
+        FileHandler file(Player::current().resourceLocation(), true);
         for (auto r : content) {
             file.writeLine(vector<string>({ r.first, to_string(r.second) }));
         }
@@ -195,6 +202,39 @@ namespace spacebiem
         }
 
         return beltM;
+    }
+
+    map<Difficulty, bool> FileParser::progressContent()
+    {
+        map<Difficulty, bool> progress;
+
+        FileHandler file(Player::current().progressLocation());
+        for (auto v : file.getValues())
+        {
+            if (v[1] == "1") {
+                progress[(Difficulty)stoi(v[0])] = true;
+            }
+            else {
+                progress[(Difficulty)stoi(v[0])] = false;
+            }
+        }
+
+        return progress;
+    }
+
+
+    void FileParser::writeProgress(map<Difficulty, bool> resources)
+    {
+        map<Difficulty, bool> content = progressContent();
+        for (auto r : resources) {
+            content[r.first] += r.second;
+        }
+
+        FileHandler file(Player::current().progressLocation(), true);
+        for (auto r : content) {
+            file.writeLine(vector<string>({ to_string(static_cast<unsigned int>(r.first)), to_string(r.second) }));
+        }
+
     }
 
 }

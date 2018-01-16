@@ -62,15 +62,15 @@ namespace spacebiem
                     int smallH = (buttonH / 3);
 
                     addEntity<ButtonUIEntity>(xMargin + ((x - 1) * (buttonW + buttonMargin)), yMargin + (y * (buttonH + buttonMargin)) + (0 * (smallH + betweenButtonMargin)), Color{ 22, 94, 22 }, buttonTextColor, Size{ buttonW, smallH }, "Play level", buttonTexture,
-                        [this](StateManager* manager)
+                        [slotN](StateManager* manager)
                     {
-                        manager->navigateTo<LevelScene>();
+                        manager->navigateTo<LevelScene>(false, Difficulty::NORMAL, "data/level_slot_" + to_string(slotN) + ".csv");
                     });
 
                     addEntity<ButtonUIEntity>(xMargin + ((x - 1) * (buttonW + buttonMargin)), yMargin + (y * (buttonH + buttonMargin)) + (1 * (smallH + betweenButtonMargin)), Color{ 188, 103, 0 }, buttonTextColor, Size{ buttonW, smallH }, "Edit level", buttonTexture,
-                        [this](StateManager* manager)
+                        [slotN](StateManager* manager)
                     {
-                        manager->navigateTo<LevelEditorScene>();
+                        manager->navigateTo<LevelEditorScene>("data/level_slot_" + to_string(slotN) + ".csv");
                     });
 
                     addEntity<ButtonUIEntity>(xMargin + ((x - 1) * (buttonW + buttonMargin)), yMargin + (y * (buttonH + buttonMargin)) + (2 * (smallH + betweenButtonMargin)), Color{ 135, 25, 25 }, buttonTextColor, Size{ buttonW, smallH }, "Delete level", buttonTexture,

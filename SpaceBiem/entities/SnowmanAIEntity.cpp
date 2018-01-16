@@ -13,5 +13,7 @@ namespace spacebiem
                 TextureColumnDef{ 8llu, 256 }, TextureRowDef{ 1llu, 256 }
             }
         })
-    {}
+    {
+        getComponent<AIComponent>("ai")->setName("snowman");
+    }
 }

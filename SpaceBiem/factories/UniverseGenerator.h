@@ -2,6 +2,7 @@
 #include "Biemgine.h"
 
 #include "../globals/Difficulty.h"
+#include "../globals/Player.h"
 #include "../FileParser.h"
 #include <sstream>
 
@@ -20,13 +21,14 @@ namespace spacebiem
         void generate(Difficulty difficulty = Difficulty::NORMAL);
 
         // the system with belts
-        void addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW);
+		void addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW, bool withWormHole);
         void addBelt(int middleX, int middleY, int minR, int maxR, float minPR, float maxPR, float minPMargin, vector<string> planetProbability);
 
         static Vector getRandomSpawnPosition(int pMin, int pMax, int pRadius)
         {
             auto b = RandomGenerator::getInstance().generate(0, 100);
             auto c = RandomGenerator::getInstance().generate(pMin, pMax);
+        
 
             float a = static_cast<float>(b) / c * Math::getPI() * 2;
 
@@ -34,7 +36,7 @@ namespace spacebiem
         }
 
     private:
-        FileHandler* handler;
+        FileHandler handler;
         map<string, vector<int>> difficultySystem;
         map<string, map<string, vector<string>>> difficultyBelt;
         string currentDifficulty;

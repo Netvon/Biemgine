@@ -16,7 +16,7 @@ namespace spacebiem
         }
 
 
-        if (entity.hasComponent("resourcebonus") && entity.hasComponent("color") && entity.hasComponent("text"))
+        if (entity.hasComponent("resourcebonus") && entity.hasComponent("color") && entity.hasComponent("text") && entity.getTag() == "" )
         {
             ResourceTextEntry resourceTextEntry;
             resourceTextEntry.entity = &entity;

@@ -42,13 +42,16 @@ namespace biemgine
         Entity * getEntity(int id) const;
 
     protected:
-        template<class TSystem>
-        void addSystem(int timeout = 0);
+        template<class TSystem, typename ...TArgs>
+        void addSystem(TArgs && ...arguments);
 
         int addEntity(Entity* entity);
 
         template<class TEntity, typename... TArgs>
         int addEntity(TArgs&&... arguments);
+
+        template<class TEntity, typename... TArgs>
+        int addEntityExtra(std::function<void(Entity*)> onAdd, TArgs&&... arguments);
 
     private:
         std::shared_ptr<SystemManager> systemManager = nullptr;
@@ -63,19 +66,25 @@ namespace biemgine
         virtual void created() = 0;
     };
 
-    template<class TSystem>
-    void Scene::addSystem(int timeout)
+    template<class TSystem, typename ...TArgs>
+    void Scene::addSystem(TArgs && ...arguments)
     {
-        auto system = new TSystem();
+        auto system = new TSystem(std::forward<TArgs>(arguments)...);
         systemManager->addSystem(system);
 
         system->setStateManager(stateManager);
-        system->setTimeout(timeout);
+        system->setTimeout(0);
     }
 
     template<class TEntity, typename ...TArgs>
     int Scene::addEntity(TArgs && ...arguments)
     {
         return entityManager->addEntity<TEntity>(std::forward<TArgs>(arguments)...);
+    }
+
+    template<class TEntity, typename ...TArgs>
+    int Scene::addEntityExtra(std::function<void(Entity*)> onAdd, TArgs && ...arguments)
+    {
+        return entityManager->addEntityExtra<TEntity>(onAdd, std::forward<TArgs>(arguments)...);
     }
 }

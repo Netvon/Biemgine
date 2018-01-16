@@ -2,6 +2,8 @@
 
 #include "Biemgine.h"
 
+#include "..\globals\Difficulty.h";
+
 using biemgine::Scene;
 using biemgine::StateManager;
 
@@ -22,7 +24,7 @@ namespace spacebiem
         ~DifficultyScene() {};
 
     private:
-
+        map<Difficulty, bool> progress;
 
     };
 }

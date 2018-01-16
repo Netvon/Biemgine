@@ -1,9 +1,6 @@
 #include "stdafx.h"
-#include <windows.h>
-#include <Lmcons.h>
+#include "..\globals\Player.h"
 #include "ScoreUISystem.h"
-
-
 
 namespace spacebiem
 {
@@ -38,16 +35,8 @@ namespace spacebiem
         {
             for (const ScoreUIEntry& score : scoreUIEntries)
             {
-                TCHAR user[UNLEN + 1];
-                DWORD size = UNLEN + 1;
-                string name = "Mr. NoName";
-
-                if (GetUserName((TCHAR*)user, &size))
-                {
-                    wstring test(&user[0]);
-                    string stringName(test.begin(), test.end());
-                    name = stringName;
-                }
+               
+                string name = Player::current().getName();
 
                 Color highlightColor{255, 255, 255};
 
