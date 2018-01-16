@@ -35,9 +35,15 @@ namespace spacebiem
             false
         };
 
+        AnimationDef dying{
+            "die",
+            TextureColumnDef{ 8llu, 128 }, TextureRowDef{ 1llu, 256, 512 },
+            false
+        };
+
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("texture", new AnimatedTextureComponent("textures/PlayerSpriteSheet2.png", 0, 0, { walking, jumping }, "jump", 7.5f / 2.0f, w, h, 5u, true, "background"));
+        addComponent("texture", new AnimatedTextureComponent("textures/PlayerSpriteSheet3.png", 0, 0, { walking, jumping, dying }, "jump", 7.5f / 2.0f, w, h, 5u, true, "background"));
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);
