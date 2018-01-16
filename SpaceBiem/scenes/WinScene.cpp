@@ -60,7 +60,7 @@ namespace spacebiem
         int pRadius = 500;
         int planetX = x - pRadius / 2;
         int planetY = 550;
-        addEntity<PlanetEarthEntity>(planetX, planetY, Colors::EarthAtmosphere(), pRadius, pRadius, 0, 0, "Type: Earth");
+        addEntity<PlanetEarthEntity>(planetX, planetY, Colors::EarthAtmosphere(), pRadius, pRadius, 0, 0, "Type: Earth", false, "textures/earth-TypeB.png");
         addEntity<PlayerEntity>(planetX + (pRadius / 2), planetY - 50, Color::White(), 25.f, 50.f, 1.0f, false);
 
         if (!getTransitionManager().getAudioDevice().isPlayingMusic("audio/menu.mp3"))
