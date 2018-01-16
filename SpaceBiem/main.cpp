@@ -11,6 +11,8 @@ using spacebiem::MenuScene;
 
 int main()
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     try
     {
         Ads::instance().initialize("ads", ".jpg");
@@ -26,5 +28,5 @@ int main()
 
     Ads::instance().close();
 
-    return _CrtDumpMemoryLeaks();
+    return 0;
 }
