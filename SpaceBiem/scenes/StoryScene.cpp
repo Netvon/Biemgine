@@ -109,7 +109,9 @@ namespace spacebiem
 
     void StoryScene::input()
     {
-       
+        if (im.isKeyDown("Q")) {
+            signalQuit();
+        }
     }
 
     void StoryScene::update()

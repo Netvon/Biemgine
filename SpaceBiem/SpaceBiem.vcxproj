@@ -224,6 +224,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="entities\WormholeEntity.h" />
     <ClInclude Include="systems\WinSystem.h" />
+    <ClInclude Include="scenes\WinScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entities\AdEntity.cpp" />
@@ -294,6 +295,7 @@
     <ClCompile Include="factories\UniverseBuilder.cpp" />
     <ClCompile Include="entities\WormholeEntity.cpp" />
     <ClCompile Include="systems\WinSystem.cpp" />
+    <ClCompile Include="scenes\WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">
