@@ -3,6 +3,7 @@
 using biemgine::Vector;
 using biemgine::RandomGenerator;
 using biemgine::Math;
+using biemgine::TextureFlip;
 
 #include "stdafx.h"
 #include <math.h>
@@ -19,7 +20,7 @@ namespace spacebiem
                 entity.getComponent<PositionComponent>("position"),
                 entity.getComponent<GroundedComponent>("grounded"),
                 entity.getComponent<AffectedByGravityComponent>("affectedByGravity"),
-                entity.getComponent<AnimatedTextureComponent>("animatedTexture"),
+                entity.getComponent<AnimatedTextureComponent>("texture"),
                 entity.getComponent<PhysicsComponent>("physics"),
                 entity.getComponent<AIComponent>("ai"),
             };
@@ -101,6 +102,8 @@ namespace spacebiem
                     physics->addForce("right", right.x, right.y);
                 }
             }
+
+            texture->setFlip(ai->isDirection(Direction::RIGHT) ? TextureFlip::NONE : TextureFlip::HORIZONTAL);
         }
     }
 
