@@ -20,9 +20,9 @@ namespace spacebiem
         while (!playerSpawned) {
 
             
-            handler = new FileHandler{ Player::current().saveLocation(), true };
+            handler = FileHandler{ Player::current().saveLocation(), true };
 
-            handler->writeLine("entity_id_type,component_type,value_1,value_2,value_3,value_4");
+            handler.writeLine("entity_id_type,component_type,value_1,value_2,value_3,value_4");
 
             int beltMargin = difficultySystem[currentDifficulty][0];
             int beltW = difficultySystem[currentDifficulty][1];
@@ -39,7 +39,7 @@ namespace spacebiem
             int middleY = 0;
 
             // level 0 system (middle)
-            addPlanetarySystem(0, beltCount, middleX, middleY, sunR, beltMargin, beltW);
+            addPlanetarySystem(0, beltCount, middleX, middleY, sunR, beltMargin, beltW, false);
 
 
             // level 1 systems (neighbouring middle)
@@ -48,7 +48,9 @@ namespace spacebiem
             float startAngle = static_cast<float>(RandomGenerator::getInstance().generate(1, 100));
             float newAngle = startAngle;
 
-            int count = 0;
+            int count = 3;
+            int systemWithWormHole = RandomGenerator::getInstance().generate(1, count);
+
             while (count > 0) {
 
                 float angle = newAngle / 100 * 3.1415926535897f * 2;
@@ -57,25 +59,25 @@ namespace spacebiem
                 int pX = middleX + static_cast<int>(cos(angle)*r);
                 int pY = middleY + static_cast<int>(sin(angle)*r);
 
-                addPlanetarySystem(0, beltCount, pX, pY, sunR, beltMargin, beltW);
+                addPlanetarySystem(0, beltCount, pX, pY, ((count != systemWithWormHole)? sunR : 450), beltMargin, beltW, (count == systemWithWormHole));
 
                 newAngle += RandomGenerator::getInstance().generate(angleMinIncr, angleMaxIncr);
                 count--;
             }
 
 
-            delete handler;
+            handler.close();
         }
 
     }
 
-    void UniverseGenerator::addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW)
+    void UniverseGenerator::addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW, bool withWormHole)
     {
 
         int sunId = getNextId();
-        string sunType = "lava";
+        string sunType = ((withWormHole)?"wormhole":"lava");
 
-        handler->writeLine(
+        handler.writeLine(
             to_string(sunId)+"_"+sunType + "," +
             "position_component," +
             to_string(middleX - (sunR / 2)) + "," +
@@ -151,7 +153,7 @@ namespace spacebiem
 
             if (pType == "earth") spawnPlayer(pX, pY - pRadius + 50);
 
-            handler->writeLine(
+            handler.writeLine(
                 to_string(pId) + "_" + pType + "," +
                 "position_component," +
                 to_string(pX - (pRadius / 2)) + "," +
@@ -163,7 +165,7 @@ namespace spacebiem
             if (pType == "sand") {
                 pId = getNextId();
 
-                handler->writeLine(
+                handler.writeLine(
                     to_string(pId) + "_aimummie," +
                     "position_component," +
                     to_string(pX - (pRadius / 2) - 50) + "," +
@@ -172,7 +174,7 @@ namespace spacebiem
                 );
             }
             else if (pType == "ice") {
-                handler->writeLine(
+                handler.writeLine(
                     to_string(pId) + "_aisnowman," +
                     "position_component," +
                     to_string(pX - (pRadius / 2) - 50) + "," +
@@ -195,9 +197,9 @@ namespace spacebiem
 
         if (playerSpawned) return;
 
-        handler->writeLine("2_player,position_component,"+ to_string(x) +","+ to_string(y) +",25,50");
-        handler->writeLine("2_player,score_component,0");
-        handler->writeLine("2_player,oxygen_component,500");
+        handler.writeLine("2_player,position_component,"+ to_string(x) +","+ to_string(y) +",25,50");
+        handler.writeLine("2_player,score_component,0");
+        handler.writeLine("2_player,oxygen_component,500");
 
         playerSpawned = true;
     }

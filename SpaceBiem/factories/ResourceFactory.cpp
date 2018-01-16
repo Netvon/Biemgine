@@ -18,7 +18,7 @@ namespace spacebiem
 
         map<string, vector<float>> spawnResources = spawnRates[planet];
         for (auto& sr : spawnResources) {
-            for (int i = RandomGenerator::getInstance().generate(sr.second[0], sr.second[1]); i > 0; i--) {
+            for (int i = RandomGenerator::getInstance().generate(sr.second[0], sr.second[1]+1); i > 0; i--) {
 
                 if (RandomGenerator::getInstance().generate(0, 100) > sr.second[2] * 100) continue;
 

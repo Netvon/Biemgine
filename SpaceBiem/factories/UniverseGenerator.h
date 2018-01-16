@@ -23,13 +23,13 @@ namespace spacebiem
 
 
         // the system with belts
-        void addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW);
+        void addPlanetarySystem(int level, int beltCount, int middleX, int middleY, int sunR, int beltMargin, int beltW, bool withWormHole);
 
         void addBelt(int middleX, int middleY, int minR, int maxR, float minPR, float maxPR, float minPMargin, vector<string> planetProbability);
 
 
     private:
-        FileHandler* handler;
+        FileHandler handler;
         map<string, vector<int>> difficultySystem;
         map<string, map<string, vector<string>>> difficultyBelt;
         string currentDifficulty;
