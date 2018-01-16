@@ -12,6 +12,8 @@
 #include "..\globals\Fonts.h"
 #include "..\globals\Colors.h"
 
+#include "..\FileParser.h"
+
 using biemgine::AnimationComponent;
 using biemgine::TextureComponent;
 using biemgine::TextUIEntity;
@@ -49,6 +51,12 @@ namespace spacebiem
         auto buttonColor = Color{ 35, 65, 112 };
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150, 50 };
+
+        if (fromLevel)
+        {
+            FileParser parser;
+            parser.writeNewResources(resources);
+        }
 
         if (nextDifficulty != Difficulty::DONE)
         {
@@ -101,7 +109,9 @@ namespace spacebiem
 
     void StoryScene::input()
     {
-       
+        if (im.isKeyDown("Q")) {
+            signalQuit();
+        }
     }
 
     void StoryScene::update()

@@ -2,8 +2,10 @@
 
 #include "WinSystem.h"
 #include "../scenes/StoryScene.h"
+#include "../scenes/WinScene.h"
 
 using biemgine::FileHandler;
+using biemgine::Color;
 
 namespace spacebiem
 {
@@ -71,6 +73,9 @@ namespace spacebiem
 
                     if (metal <= 0 && diamond <= 0 && uranium <= 0 && antimatter <= 0)
                     {
+                        FileHandler fileHandler{ "" };
+                        fileHandler.remove("data/savegame.csv");
+
                         Difficulty diff = static_cast<Difficulty>(static_cast<int>(difficulty) + 1);
 
                         FileParser fp;
@@ -79,6 +84,14 @@ namespace spacebiem
                         fp.writeProgress(progress);
 
                         getStateManager()->navigateTo<StoryScene>(diff, true);
+                        if (diff == Difficulty::DONE)
+                        {
+                            getStateManager()->navigateTo<WinScene>(resources);
+                        }
+                        else
+                        {
+                            getStateManager()->navigateTo<StoryScene>(diff, true, resources);
+                        }                    
                     }
                     else
                     {
@@ -89,7 +102,13 @@ namespace spacebiem
                                 if (x.first == resourceTextEntry.resourceBonusComponent->getName())
                                 {
                                     resourceTextEntry.entity->rise();
-                                    resourceTextEntry.textComponent->setText(std::to_string(x.second), resourceTextEntry.textComponent->getColor());
+                                    Color color = Color{ 0, 255, 0, 255 };
+                                    if (x.second > 0)
+                                    {
+                                        color = Color{ 255, 255, 255, 255 };
+                                    }
+
+                                    resourceTextEntry.textComponent->setText(std::to_string(x.second), color);
                                 }
                             }
                         }

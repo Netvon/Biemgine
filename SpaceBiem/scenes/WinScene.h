@@ -8,7 +8,7 @@ using biemgine::StateManager;
 
 namespace spacebiem
 {
-    class StoryScene :
+    class WinScene :
         public Scene
     {
     public:
@@ -17,14 +17,10 @@ namespace spacebiem
         void render(const float deltaTime) override;
         void created() override;
 
-        StoryScene(StateManager& manager, Difficulty pNextDifficulty, bool pFromLevel = false, map<string, int> resources = map<string, int>())
-            : Scene(manager), nextDifficulty(pNextDifficulty), fromLevel(pFromLevel), resources(resources){};
-        ~StoryScene() {};
+        WinScene(StateManager& manager, map<string, int> resources = map<string, int>()) : Scene(manager), resources(resources) {};
+        ~WinScene() {};
 
     private:
-        Difficulty nextDifficulty;
-        bool fromLevel;
-
         map<string, int> resources;
     };
 }
