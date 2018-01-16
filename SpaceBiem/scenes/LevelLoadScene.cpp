@@ -49,13 +49,13 @@ namespace spacebiem
         int buttonW = (wW - (xMargin * 2) - (buttonMargin * (xButtons - 1))) / xButtons;
         int buttonH = (wH - (yMargin * 2) - (buttonMargin * (yButtons - 1))) / yButtons;
 
-        FileHandler fh {""};
+        FileHandler fh{ "" };
 
         int betweenButtonMargin = 5;
 
         for (int y = 0; y < yButtons; y++) {
             for (int x = 1; x <= xButtons; x++) {
-                int slotN = ((y) * xButtons) + x;
+                int slotN = ((y)* xButtons) + x;
 
                 if (fh.exists("data/level_slot_" + to_string(slotN) + ".csv")) {
 
@@ -94,7 +94,7 @@ namespace spacebiem
             }
         }
 
-        addEntity<ButtonUIEntity>((wW/2) - (buttonSize.width/2), wH - 250, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture,
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2), wH - 250, buttonColor, buttonTextColor, buttonSize, "Menu", buttonTexture,
             [this](StateManager* manager)
         {
             manager->navigateTo<MenuScene>();

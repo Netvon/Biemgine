@@ -36,7 +36,7 @@ namespace biemgine
            
         auto txs = entity.getComponents<TextComponent>("text");
 
-        for (const auto& tx : txs)
+        for (auto tx : txs)
         {
             OptDrawText opt;
             opt.entity = &entity;
@@ -50,7 +50,6 @@ namespace biemgine
         }
 
         auto tc = entity.getComponents<TextureComponent>("texture");
-
 
         for (const auto& tex : tc)
         {
@@ -139,8 +138,6 @@ namespace biemgine
 
            
         }
-
-
     }
 
     void RenderSystem::onSceneSwitch()

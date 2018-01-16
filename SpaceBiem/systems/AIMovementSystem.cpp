@@ -2,8 +2,10 @@
 
 using biemgine::Vector;
 using biemgine::RandomGenerator;
+using biemgine::Math;
 
 #include "stdafx.h"
+#include <math.h>
 
 #include "../components/GravityComponent.h"
 
@@ -68,9 +70,13 @@ namespace spacebiem
                     playerInRange = true;
 
                     auto pc = player->getComponent<PositionComponent>("position");
-                    ai->setDirection(Direction::LEFT);
 
                     diff += position->getLocation() - pc->getLocation();
+
+                    float angle = atan2(pc->getY() - position->getY(), pc->getX() - position->getX( ));
+                    angle = Math::radiansToDegrees(angle);
+
+                    ai->setDirection(angle > 0 ? Direction::RIGHT : Direction::LEFT);
                 }
             }
 
