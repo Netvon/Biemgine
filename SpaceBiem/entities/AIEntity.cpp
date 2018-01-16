@@ -12,19 +12,17 @@ using biemgine::TextureRowDef;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
 using biemgine::AnimatedTextureComponent;
-using biemgine::TextureColumnDef;
-using biemgine::TextureRowDef;
 
 #include "../components/AIComponent.h"
 #include "../globals/Functions.h"
 
 namespace spacebiem
 {
-    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount, bool pCanIdle, bool pCanWander, bool pCanFollow)
+    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount, bool pCanIdle, bool pCanWander, bool pCanFollow, std::initializer_list<AnimationDef> pAnimationDefs)
     {
         addComponent<PositionComponent>("position", x, y);
         addComponent<ColorComponent>("color", color);
-        addComponent<AnimatedTextureComponent>("texture", animatedTexture, 0, 0, TextureColumnDef{ textureCount, 256 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background");
+        addComponent<AnimatedTextureComponent>("texture", animatedTexture, 0, 0, pAnimationDefs, "walk", 7.5f / 2.0f, w, h, 5u, true, "background");
         addComponent<PhysicsComponent>("physics", w, h, false, PhysicsComponentShape::RECTANGLE, mass);
         addComponent<GroundedComponent>("grounded");
         addComponent<AffectedByGravityComponent>("affectedByGravity", true);

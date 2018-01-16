@@ -162,7 +162,7 @@ namespace spacebiem
             float a = RandomGenerator::getInstance().generate(0.f, 1.f);
             a = a * Math::getPI() * 2;
 
-            auto radius = pRadius - 10;
+            auto radius = pRadius - 50;
 
             auto x = radius * cos(a);
             auto y = radius * sin(a);

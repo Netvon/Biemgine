@@ -21,8 +21,7 @@ namespace spacebiem
 
     void MovementSystem::update()
     {
-        for (MoveEntry entry : moveEntries)
-        {
+        for (MoveEntry entry : moveEntries) {
             if (getStateManager()->getInputManager()->isKeyDown("Left") && entry.animatedTextureComponent)
                 entry.animatedTextureComponent->setFlip(TextureFlip::HORIZONTAL);
             if (getStateManager()->getInputManager()->isKeyDown("Right") && entry.animatedTextureComponent)
@@ -49,31 +48,27 @@ namespace spacebiem
             if (entry.physicsComponent->getVelocity().length() > escapeVelocity)
                 return; 
 
-            if (getStateManager()->getInputManager()->isKeyDown("Left"))
-            {
+            if (getStateManager()->getInputManager()->isKeyDown("Left")) {
                 Vector left = {-diff.y, diff.x};
                 left = left.normalize() * movementForce;
 
                 entry.physicsComponent->addForce("left", left.x, left.y);
             }
 
-            if (getStateManager()->getInputManager()->isKeyDown("Right"))
-            {
+            if (getStateManager()->getInputManager()->isKeyDown("Right")) {
                 Vector right = {diff.y, -diff.x};
                 right = right.normalize() * movementForce;
 
                 entry.physicsComponent->addForce("right", right.x, right.y);
             }
 
-            for (const auto & collideInfo : entry.collidableComponent->getCollisions())
-            {
-                if (collideInfo.entity->isTag("ai") && !Cheat::Instance().isEnabled("ai_bounce"))
-                {
+            for (const auto & collideInfo : entry.collidableComponent->getCollisions()) {
+                if (collideInfo.entity->isTag("ai") && !Cheat::Instance().isEnabled("ai_bounce")) {
                     auto force = -entry.physicsComponent->getForceX() * 1.1;
                     auto forceY = -entry.physicsComponent->getForceY() * 1.1;
 
-                    force = max<int>(force, 20);
-                    forceY = max<int>(forceY, 20);
+                    force = max<int>(force, 15);
+                    forceY = max<int>(forceY, 15);
 
                     entry.physicsComponent->addImpulse("bounceback", force, forceY);
                 }

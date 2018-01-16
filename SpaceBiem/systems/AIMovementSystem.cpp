@@ -64,6 +64,8 @@ namespace spacebiem
 
             bool playerInRange = false;
 
+            texture->setCurrentAnimation("walk");
+
             if (ai->getCanFollow()) {
                 const Entity * player = findPlayerInRange(aiEntry.entity);
 
@@ -78,6 +80,7 @@ namespace spacebiem
                     angle = Math::radiansToDegrees(angle);
 
                     ai->setDirection(angle > 0 ? Direction::RIGHT : Direction::LEFT);
+                    texture->setCurrentAnimation("follow");
                 }
             }
 
