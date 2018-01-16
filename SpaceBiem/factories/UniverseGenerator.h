@@ -12,7 +12,6 @@ using biemgine::Math;
 
 namespace spacebiem
 {
-
     class UniverseGenerator
     {
     public:
