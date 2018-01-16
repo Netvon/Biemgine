@@ -206,7 +206,7 @@ namespace spacebiem
         FileHandler file("data/progress.csv");
         for each (auto v in file.getValues())
         {
-            if (v[0] == "true") {
+            if (v[1] == "true") {
                 progress[(Difficulty)stoi(v[0])] = true;
             }
             else {
