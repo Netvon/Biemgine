@@ -76,7 +76,7 @@ namespace spacebiem
 
                     diff += position->getLocation() - pc->getLocation();
 
-                    float angle = atan2(pc->getY() - position->getY(), pc->getX() - position->getX( ));
+                    float angle = atan2(pc->getY() - position->getY(), pc->getX() - position->getX());
                     angle = Math::radiansToDegrees(angle);
 
                     ai->setDirection(angle > 0 ? Direction::RIGHT : Direction::LEFT);
