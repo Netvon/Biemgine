@@ -124,13 +124,15 @@ namespace spacebiem
             updateMenu();
         }, nullptr, "pause_menu");
 
-        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
-            [this](StateManager* e) {
-            fadeAnimation->setOnFinished([this, e] { saveGame();  e->navigateTo<HelpScene>(true, true); });
-            fadeAnimation->playReversed();
-           
-        }, nullptr, "pause_menu");
+        if (customLevel == "") {
+            addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
+                [this](StateManager* e) {
+                fadeAnimation->setOnFinished([this, e] { saveGame();  e->navigateTo<HelpScene>(true, true); });
+                fadeAnimation->playReversed();
 
+            }, nullptr, "pause_menu");
+        }
+        
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png",
             [this](StateManager* e) {
             fadeAnimation->setOnFinished([this, e] { saveGame(); e->navigateTo<MenuScene>(true); });
@@ -162,7 +164,7 @@ namespace spacebiem
 
     void LevelScene::saveScore()
     {
-        if (customLevel == "") return;
+        if (customLevel != "") return;
 
         ScoreUIFactory sf;
         sf.sceneEnd(getEntityManager());
@@ -170,7 +172,7 @@ namespace spacebiem
 
     void LevelScene::saveGame()
     {
-        if (customLevel == "") return;
+        if (customLevel != "") return;
 
         SaveBlobFactory saveBlobFactory;
         vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
