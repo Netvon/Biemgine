@@ -66,8 +66,8 @@ namespace spacebiem
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
         addSystem<AIMovementSystem>();
-        addSystem<GameoverSystem>();
         addSystem<CheatSystem>();
+        addSystem<GameoverSystem>();
 
         float width = 15 * 2;
         float height = 25 * 2;
