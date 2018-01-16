@@ -101,13 +101,11 @@ namespace spacebiem
         
         beginY += 20;
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, highscoreClick, nullptr);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, helpClick, nullptr);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, helpClick, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 8), buttonColor, buttonTextColor, buttonSize, "Change profile", buttonTexture, [this](auto b) { b->navigateTo<ProfileScene>(); }, nullptr);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 9), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Change profile", buttonTexture, [this](auto b) { b->navigateTo<ProfileScene>(); }, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
 
         FileParser parser;
         map<string, int> resources = parser.resourcesContent();
