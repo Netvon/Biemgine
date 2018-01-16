@@ -77,6 +77,13 @@ namespace spacebiem
                         fileHandler.remove("data/savegame.csv");
 
                         Difficulty diff = static_cast<Difficulty>(static_cast<int>(difficulty) + 1);
+
+                        FileParser fp;
+                        map<Difficulty, bool> progress = fp.progressContent();
+                        progress[diff] = true;
+                        fp.writeProgress(progress);
+
+                        getStateManager()->navigateTo<StoryScene>(diff, true);
                         if (diff == Difficulty::DONE)
                         {
                             getStateManager()->navigateTo<WinScene>(resources);

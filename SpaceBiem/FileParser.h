@@ -2,6 +2,8 @@
 
 #include "Biemgine.h"
 
+#include "globals\Difficulty.h"
+
 #include <string>
 #include <map>
 #include <iostream>
@@ -34,6 +36,9 @@ namespace spacebiem
 
         map<string, vector<int>> DifficultySystemContent();
         map<string, map<string, vector<string>>> DifficultyBeltContent();
+
+        map<Difficulty, bool> progressContent();
+        void writeProgress(map<Difficulty, bool> resources);
 
 
     private:
