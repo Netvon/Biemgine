@@ -43,11 +43,6 @@ namespace spacebiem
                 int uranium = resources["uranium"] - winConditions[difficulty]["uranium"];
                 int antimatter = resources["anti-matter"] - winConditions[difficulty]["anti-matter"];
 
-
-                cout <<  difficulty << endl;
-
-                cout << "Metal: " + std::to_string(metal) + " Diamond: " + std::to_string(diamond) + " Uranium: " + std::to_string(uranium) + " Anti-Matter: " + std::to_string(antimatter) << endl;
-
                 if (metal >= 0 && diamond >= 0 && uranium >= 0 && antimatter >= 0) {
                     win = true;
                 }
