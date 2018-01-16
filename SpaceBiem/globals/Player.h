@@ -16,20 +16,36 @@ namespace spacebiem {
         std::string resourceLocation() const;
         std::string resolvePath(const std::string& filename);
 
-        static constexpr char* playerOne()
+        static constexpr char* playerOneName()
         {
             return "biem";
         }
-        static constexpr char* playerTwo()
+
+        static constexpr char* playerTwoName()
         {
             return "mummy";
         }
-        static constexpr char* playerThree()
+
+        static constexpr char* playerThreeName()
         {
             return "snowman";
         }
+
+        static Player playerOne() {
+            return Player(playerOneName());
+        }
+
+        static Player playerTwo() {
+            return Player(playerTwoName());
+        }
+
+        static Player playerThree() {
+            return Player(playerThreeName());
+        }
+
     private:
         Player();
+        Player(const std::string& name);
         std::string name;
     };
 }

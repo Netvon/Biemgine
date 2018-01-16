@@ -28,7 +28,7 @@ namespace biemgine
         std::map<Font, TTF_Font*> fonts;
 
         std::map<std::string, SDL_Texture*> textures;
-        std::map<std::string, TextureAndUsage> textTextures;
+        std::map<std::pair<Font,std::string>, TextureAndUsage> textTextures;
 
         SDL_Texture* getTexture(std::string path);
     };

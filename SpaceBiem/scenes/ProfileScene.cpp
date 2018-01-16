@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "ProfileScene.h"
 #include "MenuScene.h"
+#include "../FileParser.h"
+#include "../entities/ResourceUIEntity.h"
+#include "../systems/ResourceUISystem.h"
 
 namespace spacebiem
 {
@@ -10,6 +13,8 @@ namespace spacebiem
         enableUI();
         enableScripts();
         enableAnimations();
+
+        addSystem<ResourceUISystem>();
 
         getTransitionManager().getAudioDevice().stopSoundEffect("");
 
@@ -43,29 +48,93 @@ namespace spacebiem
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150 * 2, 50 * 2 };
 
+        float offset = 170.f;
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2), wH - 650, buttonColor, buttonTextColor, buttonSize, "Select 'Biem'", buttonTexture,
+        
+
+        addEntity<SpriteEntity>("textures/choose_profile.png", (wW / 2) - 192, wH - 750, Color::White(), -1, -1);
+
+        FileParser parser;
+        map<string, int> p1_resources = parser.resourcesContent(Player::playerOne());
+        map<string, int> p2_resources = parser.resourcesContent(Player::playerTwo());
+        map<string, int> p3_resources = parser.resourcesContent(Player::playerThree());
+
+        float scale = 1.5f;
+        int font = static_cast<int>(20.f / scale);
+        float rY = wH - 582.f;
+        float rX = wW / scale - 240.f;
+        float rIncr = 91.f / scale;
+
+        std::string text;
+
+        if (!p1_resources.empty()) {
+            addEntity<SpriteEntity>("textures/resources-hud.png", rX - 40.f, rY - (401.f / scale) / 2.f + 55.f, Color::White(), 401 / scale, 169 / scale, 100u);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 0), rY, Color::White(), "uranium", p1_resources["uranium"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 1), rY, Color::White(), "diamond", p1_resources["diamond"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 2), rY, Color::White(), "metal", p1_resources["metal"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p1_resources["anti-matter"], font);
+
+            text = "Select 'biem'";
+            offset = 170.f;
+        }
+        else {
+            text = "Start profile 'biem'";
+            offset = 0.f;
+        }
+
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 650, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
             [this](StateManager* manager)
         {
-            Player::current().setName(Player::playerOne());
+            Player::current().setName(Player::playerOneName());
             manager->navigateTo<MenuScene>();;
         });
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2), wH - 500, buttonColor, buttonTextColor, buttonSize, "Select 'Mummy'", buttonTexture,
+        rY += 150.f;
+        if (!p2_resources.empty()) {
+            addEntity<SpriteEntity>("textures/resources-hud.png", rX - 40.f, rY - (401.f / scale) / 2.f + 55.f, Color::White(), 401 / scale, 169 / scale, 100u);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 0), rY, Color::White(), "uranium", p2_resources["uranium"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 1), rY, Color::White(), "diamond", p2_resources["diamond"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 2), rY, Color::White(), "metal", p2_resources["metal"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p2_resources["anti-matter"], font);
+
+            text = "Select 'Mummy'";
+            offset = 170.f;
+        }
+        else {
+            text = "Start profile 'Mummy'";
+            offset = 0.f;
+        }
+
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 500, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
             [this](StateManager* manager)
         {
-            Player::current().setName(Player::playerTwo());
+            Player::current().setName(Player::playerTwoName());
+            manager->navigateTo<MenuScene>();;
+        });
+
+        rY += 150.f;
+        if (!p3_resources.empty()) {
+            addEntity<SpriteEntity>("textures/resources-hud.png", rX - 40.f, rY - (401.f / scale) / 2.f + 55.f, Color::White(), 401 / scale, 169 / scale, 100u);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 0), rY, Color::White(), "uranium", p3_resources["uranium"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 1), rY, Color::White(), "diamond", p3_resources["diamond"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 2), rY, Color::White(), "metal", p3_resources["metal"], font);
+            addEntity<ResourceUIEntity>(rX + (rIncr * 3), rY, Color::White(), "anti-matter", p3_resources["anti-matter"], font);
+
+            text = "Select 'Snowman'";
+            offset = 170.f;
+        }
+        else {
+            text = "Start profile 'Snowman'";
+            offset = 0.f;
+        }
+
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 350, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
+            [this](StateManager* manager)
+        {
+            Player::current().setName(Player::playerThreeName());
             manager->navigateTo<MenuScene>();
         });
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2), wH - 350, buttonColor, buttonTextColor, buttonSize, "Select 'Snowman'", buttonTexture,
-            [this](StateManager* manager)
-        {
-            Player::current().setName(Player::playerThree());
-            manager->navigateTo<MenuScene>();
-        });
-
-        addEntity<SpriteEntity>("textures/choose_profile.png", (wW / 2) - 192, wH - 750, Color::White(), -1, -1);
     }
 
     void ProfileScene::update()

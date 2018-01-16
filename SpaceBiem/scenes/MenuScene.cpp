@@ -18,6 +18,7 @@
 #include "..\globals\Functions.h"
 #include "..\globals\Ads.h"
 #include "..\globals\Player.h"
+#include ".\ProfileScene.h"
 
 using biemgine::AnimationComponent;
 using biemgine::TextureComponent;
@@ -104,7 +105,8 @@ namespace spacebiem
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 8), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 8), buttonColor, buttonTextColor, buttonSize, "Change profile", buttonTexture, [this](auto b) { b->navigateTo<ProfileScene>(); }, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 9), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
 
         FileParser parser;
         map<string, int> resources = parser.resourcesContent();
@@ -112,10 +114,10 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
         float rX = 66.f;
         float rIncr = 91.f;
-        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 145.f, Color::White(), "uranium", resources["uranium"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 145.f, Color::White(), "diamond", resources["diamond"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 145.f, Color::White(), "uranium", resources["uranium"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 145.f, Color::White(), "diamond", resources["diamond"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"], 20);
 
         if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/menu.mp3"))
             getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);  

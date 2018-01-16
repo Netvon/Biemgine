@@ -10,7 +10,12 @@ namespace spacebiem
     }
 
     Player::Player()
-        : name{playerOne()}
+        : name{playerOneName()}
+    {
+    }
+
+    Player::Player(const std::string & name)
+        : name{ name }
     {
     }
 

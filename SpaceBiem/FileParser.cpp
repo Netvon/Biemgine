@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "FileParser.h"
-#include "globals\Player.h"
 
 using std::ifstream;
 using std::ofstream;
@@ -92,9 +91,14 @@ namespace spacebiem
     }
     map<string, int> FileParser::resourcesContent()
     {
+        return resourcesContent(Player::current());
+    }
+
+    map<string, int> FileParser::resourcesContent(const Player& forPlayer)
+    {
         map<string, int> resourceM;
 
-        FileHandler file(Player::current().resourceLocation());
+        FileHandler file(forPlayer.resourceLocation());
         for each (auto v in file.getValues())
         {
             resourceM[v[0]] = stoi(v[1]);
@@ -102,6 +106,7 @@ namespace spacebiem
 
         return resourceM;
     }
+
     void FileParser::writeNewResources(map<string, int> resources)
     {
         map<string, int> content = resourcesContent();

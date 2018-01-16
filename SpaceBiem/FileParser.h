@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include "globals\Player.h"
 
 using std::string;
 using std::vector;
@@ -28,6 +29,7 @@ namespace spacebiem
         map<string, int> resourceScoreContent();
         map<string, map<string, vector<float>>> resourceSpawnRateContent();
         map<string, int> resourcesContent();
+        map<string, int> resourcesContent(const Player& forPlayer);
         void writeNewResources(map<string, int> resources); 
 
         map<string, map<string, vector<string>>> levelContent(string fileName);
