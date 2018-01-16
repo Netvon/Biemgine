@@ -72,8 +72,8 @@ namespace spacebiem
                     auto force = -entry.physicsComponent->getForceX() * 1.1;
                     auto forceY = -entry.physicsComponent->getForceY() * 1.1;
 
-                    force = max<int>(force, 100);
-                    forceY = max<int>(forceY, 100);
+                    force = max<int>(force, 20);
+                    forceY = max<int>(forceY, 20);
 
                     entry.physicsComponent->addImpulse("bounceback", force, forceY);
                 }
