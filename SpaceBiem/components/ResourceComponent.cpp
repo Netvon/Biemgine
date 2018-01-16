@@ -24,5 +24,10 @@ namespace spacebiem
     {
         return allResources;
     }
+
+    map<string, int>& ResourceComponent::getNeededResources()
+    {
+        return neededResources;
+    }
     
 }

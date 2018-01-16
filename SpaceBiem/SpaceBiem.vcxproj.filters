@@ -226,6 +226,9 @@
     <ClInclude Include="systems\WinSystem.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="scenes\StoryScene.h">
+      <Filter>scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scenes\LevelScene.cpp">
@@ -418,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="systems\WinSystem.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\StoryScene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

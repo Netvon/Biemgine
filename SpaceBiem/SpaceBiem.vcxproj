@@ -202,6 +202,7 @@
     <ClInclude Include="scenes\HelpScene.h" />
     <ClInclude Include="scenes\LevelEditorScene.h" />
     <ClInclude Include="scenes\LevelLoadScene.h" />
+    <ClInclude Include="scenes\StoryScene.h" />
     <ClInclude Include="systems\AIMovementSystem.h" />
     <ClInclude Include="systems\DragDropSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="scenes\HelpScene.cpp" />
     <ClCompile Include="scenes\LevelEditorScene.cpp" />
     <ClCompile Include="scenes\LevelLoadScene.cpp" />
+    <ClCompile Include="scenes\StoryScene.cpp" />
     <ClCompile Include="systems\AIMovementSystem.cpp" />
     <ClCompile Include="systems\DragDropSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />

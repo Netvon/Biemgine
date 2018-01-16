@@ -5,6 +5,7 @@
 #include "..\components\ResourceComponent.h"
 #include "..\components\ScoreComponent.h"
 #include "..\components\ScoreBonusComponent.h"
+#include "..\components\ResourceBonusComponent.h"
 
 #include "..\globals\Difficulty.h"
 
@@ -16,6 +17,8 @@ using biemgine::Entity;
 using biemgine::CollidableComponent;
 using biemgine::GroundedComponent;
 using biemgine::PositionComponent;
+using biemgine::ColorComponent;
+using biemgine::TextComponent;
 
 namespace spacebiem
 {
@@ -30,6 +33,19 @@ namespace spacebiem
             std::shared_ptr<GroundedComponent> groundedComponent;
             std::shared_ptr<ResourceComponent> resourceComponent;
             std::shared_ptr<CollidableComponent> collidableComponent;
+        };
+
+        struct ResourceTextEntry
+        {
+            Entity* entity;
+            std::shared_ptr<ResourceBonusComponent> resourceBonusComponent;
+            std::shared_ptr<ColorComponent> colorComponent;
+            std::shared_ptr<TextComponent> textComponent;
+        };
+
+        struct ResourceTextureEntry
+        {
+            Entity* entity;
         };
 
         WinSystem(Difficulty pDifficulty) :
@@ -65,6 +81,8 @@ namespace spacebiem
 
     private:
         vector<PlayerEntry> playerEntries;
+        vector<ResourceTextEntry> resourceTextEntries;
+        vector<ResourceTextureEntry> resourceTextureEntries;
 
         map<Difficulty ,map<string, int>> winConditions;
 
