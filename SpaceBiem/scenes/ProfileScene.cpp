@@ -44,9 +44,11 @@ namespace spacebiem
         addEntity<PlanetMoonEntity>(static_cast<float>(wW - 250), static_cast<float>(wH - 250), Color::White(), planetWidth, planetHeight, 0);
 
         auto buttonTexture = "textures/button_white.png";
+        auto buttonLongTexture = "textures/button_white_long.png";
         auto buttonColor = Color{ 35, 65, 112 };
         auto buttonTextColor = Color::White();
         auto buttonSize = Size{ 150 * 2, 50 * 2 };
+        auto buttonDeleteSize = Size{ 150 * 2, 50 };
 
         float offset_max = 150.f;
         float offset = offset_max;
@@ -67,6 +69,8 @@ namespace spacebiem
         float rIncr = 91.f / scale;
 
         std::string text;
+        Size use_size;
+        std::string use_texture;
 
         if (!p1_resources.empty()) {
             addEntity<SpriteEntity>("textures/resources-hud.png", rX - 40.f, rY - (401.f / scale) / 2.f + 55.f, Color::White(), 401 / scale, 169 / scale, 100u);
@@ -77,13 +81,28 @@ namespace spacebiem
 
             text = "Select 'biem'";
             offset = offset_max;
+
+            addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 595, Color{ 135, 25, 25 }, buttonTextColor, buttonDeleteSize, "Delete", buttonLongTexture,
+                [this](StateManager* manager)
+            {
+                FileHandler fh{ "" };
+                fh.remove((Player::playerOne().resourceLocation()));
+                fh.remove((Player::playerOne().saveLocation()));
+                manager->navigateTo<ProfileScene>();
+            });
+
+            use_size = buttonDeleteSize;
+            use_texture = buttonLongTexture;
         }
         else {
-            text = "Start profile 'biem'";
+            text = "Start profile 'Biem'";
             offset = 0.f;
+
+            use_size = buttonSize;
+            use_texture = buttonTexture;
         }
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 650, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 650, buttonColor, buttonTextColor, use_size, text, use_texture,
             [this](StateManager* manager)
         {
             Player::current().setName(Player::playerOneName());
@@ -100,13 +119,28 @@ namespace spacebiem
 
             text = "Select 'Mummy'";
             offset = offset_max;
+
+            addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 445, Color{ 135, 25, 25 }, buttonTextColor, buttonDeleteSize, "Delete", buttonLongTexture,
+                [this](StateManager* manager)
+            {
+                FileHandler fh{ "" };
+                fh.remove((Player::playerTwo().resourceLocation()));
+                fh.remove((Player::playerTwo().saveLocation()));
+                manager->navigateTo<ProfileScene>();
+            });
+
+            use_size = buttonDeleteSize;
+            use_texture = buttonLongTexture;
         }
         else {
             text = "Start profile 'Mummy'";
             offset = 0.f;
+
+            use_size = buttonSize;
+            use_texture = buttonTexture;
         }
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 500, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 500, buttonColor, buttonTextColor, use_size, text, use_texture,
             [this](StateManager* manager)
         {
             Player::current().setName(Player::playerTwoName());
@@ -123,13 +157,29 @@ namespace spacebiem
 
             text = "Select 'Snowman'";
             offset = offset_max;
+
+            addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 295, Color{ 135, 25, 25 }, buttonTextColor, buttonDeleteSize, "Delete", buttonLongTexture,
+                [this](StateManager* manager)
+            {
+                FileHandler fh{""};
+                fh.remove((Player::playerThree().resourceLocation()));
+                fh.remove((Player::playerThree().saveLocation()));
+
+                manager->navigateTo<ProfileScene>();
+            });
+
+            use_size = buttonDeleteSize;
+            use_texture = buttonLongTexture;
         }
         else {
             text = "Start profile 'Snowman'";
             offset = 0.f;
+
+            use_size = buttonSize;
+            use_texture = buttonTexture;
         }
 
-        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 350, buttonColor, buttonTextColor, buttonSize, text, buttonTexture,
+        addEntity<ButtonUIEntity>((wW / 2) - (buttonSize.width / 2) - offset, wH - 350, buttonColor, buttonTextColor, use_size, text, use_texture,
             [this](StateManager* manager)
         {
             Player::current().setName(Player::playerThreeName());
