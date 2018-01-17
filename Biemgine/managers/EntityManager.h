@@ -15,8 +15,12 @@ namespace biemgine
     class BIEMGINE EntityManager
     {
     public:
+        EntityManager(std::shared_ptr<SystemManager> manager);
         ~EntityManager();
         int addEntity(Entity* entity);
+
+        template<class TEntity, typename...TArgs>
+        int addEntityExtra(std::function<void(Entity*)> onAdd, TArgs&&... arguments);
 
         template<class TEntity, typename...TArgs>
         int addEntity(TArgs&&... arguments);
@@ -32,31 +36,41 @@ namespace biemgine
             return entities.end();
         }
 
+        void addEntitiesToSystems();
+
         Entity* getEntity(int id) const;
         Entity* getEntity(string tag) const;
 
     private:
         std::vector<Entity*> entities;
-        std::shared_ptr<CameraComponent> camera;
-
-        bool canUpdate(const Entity& e);
-
+        std::shared_ptr<SystemManager> systemManager;
     };
+
+    template<class TEntity, typename ...TArgs>
+    int EntityManager::addEntityExtra(std::function<void(Entity*)> onAdd, TArgs && ...arguments)
+    {
+        entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
+
+        if (onAdd != nullptr) {
+            onAdd(entities.back());
+        }
+
+        entities.back()->calculateBounds();
+        entities.back()->checkOCCheckable();
+        systemManager->onAddEntity(*entities.back());
+
+        return entities.back()->getId();
+    }
 
     template<class TEntity, typename ...TArgs>
     int EntityManager::addEntity(TArgs && ...arguments)
     {
         entities.emplace_back(new TEntity(std::forward<TArgs>(arguments)...));
 
-        Entity* entity = entities.back();
+        entities.back()->calculateBounds();
+        entities.back()->checkOCCheckable();
+        systemManager->onAddEntity(*entities.back());
 
-        entity->calculateBounds();
-        entity->checkOCCheckable();
-
-        if (!camera && entity->hasComponent("camera")) {
-             camera = entity->getComponent<CameraComponent>("camera");
-        }
-
-        return entity->getId();
+        return entities.back()->getId();
     }
 }

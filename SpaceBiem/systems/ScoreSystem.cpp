@@ -4,57 +4,63 @@
 #include "ScoreSystem.h"
 #include "..\entities\PlanetEntity.h"
 
-using biemgine::GroundedComponent;
-using biemgine::CollidableComponent;
-using biemgine::TextureComponent;
-using biemgine::TextComponent;
-using biemgine::PositionComponent;
+
 
 namespace spacebiem
 {
-    void ScoreSystem::update(const Entity& entity)
+    void ScoreSystem::onAddEntity(Entity & entity)
     {
-        if (!entity.hasComponent("score")
-            || entity.hasComponent("ui")
-            || !entity.hasComponent("grounded")) return;
+        if (!entity.hasComponent("score") || entity.hasComponent("ui") || !entity.hasComponent("grounded")) return;
 
-        auto gc = entity.getComponent<GroundedComponent>("grounded");
-        auto pc = entity.getComponent<PositionComponent>("position");
+        PlayerEntry playerEntry;
+        playerEntry.entity = &entity;
+        playerEntry.positionComponent = entity.getComponent<PositionComponent>("position");
+        playerEntry.groundedComponent = entity.getComponent<GroundedComponent>("grounded");
+        playerEntry.scoreComponent = entity.getComponent<ScoreComponent>("score");
 
-        if (gc->isGrounded()) {
-            auto ground = gc->getGroundedOn();
-            if (!ground->hasComponent("scorebonus")) return;
+        playerEntries.push_back(std::move(playerEntry));
+    }
 
-            auto sbc = ground->getComponent<ScoreBonusComponent>("scorebonus");
-            if (sbc->isScoreGiven()) return;
-
-            auto sc = entity.getComponent<ScoreComponent>("score");
-            sc->addScore(sbc->getScoreBonus());
-
-            sbc->setScoreGiven(true);
-            auto texts = ground->getComponents<TextComponent>("text");
-
-            for (auto text : texts) {
-                text->setVisible(true);
-            }
-
-
-            auto components = ground->getComponents<TextureComponent>("texture");
-
-            for (auto it = components.begin(); it != components.end(); ++it)
+    void ScoreSystem::update()
+    {
+        for (const PlayerEntry& player : playerEntries)
+        {
+            if (player.groundedComponent->isGrounded())
             {
-                auto component = (*it);
-                if (component->getTag() != "flag") continue;
-                if (component->isVisible()) break;
+                auto ground = player.groundedComponent->getGroundedOn();
+                if (!ground->hasComponent("scorebonus")) return;
 
-                auto planetP = ground->getComponent<PositionComponent>("position");
+                auto sbc = ground->getComponent<ScoreBonusComponent>("scorebonus");
+                if (sbc->isScoreGiven()) return;
 
-                component->setOffsetX(pc->getX() - planetP->getX());
-                component->setOffsetY(pc->getY() - planetP->getY());
-                component->setRotation(pc->getRotation());
-                component->setVisible(true);
+                auto sc = player.scoreComponent;
+                sc->addScore(sbc->getScoreBonus());
 
-                getStateManager()->getAudioDevice().playSoundEffect("audio/flag.mp3");
+                sbc->setScoreGiven(true);
+                auto texts = ground->getComponents<TextComponent>("text");
+
+                for (auto text : texts)
+                {
+                    text->setVisible(true);
+                }
+
+                auto components = ground->getComponents<TextureComponent>("texture");
+
+                for (auto it = components.begin(); it != components.end(); ++it)
+                {
+                    auto component = (*it);
+                    if (component->getTag() != "flag") continue;
+                    if (component->isVisible()) break;
+
+                    auto planetP = ground->getComponent<PositionComponent>("position");
+
+                    component->setOffsetX(player.positionComponent->getX() - planetP->getX());
+                    component->setOffsetY(player.positionComponent->getY() - planetP->getY());
+                    component->setRotation(player.positionComponent->getRotation());
+                    component->setVisible(true);
+
+                    getStateManager()->getAudioDevice().playSoundEffect("audio/flag.mp3");
+                }
             }
         }
     }

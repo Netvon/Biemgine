@@ -27,9 +27,12 @@
 #include "..\systems\ResourceUISystem.h"
 #include "..\systems\ResourceCollectingSystem.h"
 #include "..\systems\GameoverSystem.h"
+#include "..\systems\CheatSystem.h"
+#include "..\systems\WinSystem.h"
 #include "..\systems\AIMovementSystem.h"
 
 #include "..\globals\Fonts.h"
+#include "..\globals\\Player.h"
 
 #include <functional>
 #include <chrono>
@@ -37,6 +40,7 @@
 #include "..\globals\Functions.h"
 
 using biemgine::TextComponent;
+using biemgine::TextureComponent;
 using biemgine::TextEntity;
 using biemgine::TextUIEntity;
 using biemgine::ScriptComponent;
@@ -52,6 +56,7 @@ namespace spacebiem
         enablePhysics();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         addSystem<GravitySystem>();
         addSystem<MovementSystem>();
@@ -62,39 +67,67 @@ namespace spacebiem
         addSystem<ScoreUISystem>();
         addSystem<ResourceUISystem>();
         addSystem<ResourceCollectingSystem>();
-        //addSystem<AIMovementSystem>();
-        addSystem<GameoverSystem>();
+        addSystem<AIMovementSystem>();
+        addSystem<WinSystem>(difficulty);
+        addSystem<CheatSystem>();
+        addSystem<GameoverSystem>((customLevel != ""));
 
         float width = 15 * 2;
         float height = 25 * 2;
                  
         addEntity<OxygenUIEntity>();
         addEntity<ScoreUIEntity>(25.f, 280.f);
-        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401.f, 169.f, 100u);
-        addEntity<ResourceUIEntity>(66.f, 145.f, Color::White(), "uranium");
-        addEntity<ResourceUIEntity>(157.f, 145.f, Color::White(), "diamond");
-        addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal");
-        addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter");
+        addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401.f, 169.f, 101u);
+        addEntity<ResourceUIEntity>(66.f, 145.f, Color::White(), "uranium", 0, 20);
+        addEntity<ResourceUIEntity>(157.f, 145.f, Color::White(), "diamond", 0, 20);
+        addEntity<ResourceUIEntity>(248.f, 145.f, Color::White(), "metal", 0, 20);
+        addEntity<ResourceUIEntity>(339.f, 145.f, Color::White(), "anti-matter", 0, 20);
 
         timeout = 0;
         FPSId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 40, Color{ 66, 143, 244 }, "");
         speedId = addEntity<TextUIEntity>(Fonts::Consolas(), getTransitionManager().getWindowWidth() - 220, 10, Color{ 66, 143, 244 }, "");
+        cheatId = addEntityExtra<TextUIEntity>([](Entity* entity)
+        {
+            entity->setTag("cheat");
+        }, Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 70, Color{ 66, 143, 244 }, "");
+        godModeId = addEntityExtra<TextUIEntity>([](Entity* entity)
+        {
+            entity->setTag("godmode");
+        }, Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 10, Color{ 66, 143, 244 }, "");
+        aibounceId = addEntityExtra<TextUIEntity>([](Entity* entity)
+        {
+            entity->setTag("ai_bounce");
+        }, Fonts::Consolas(), getTransitionManager().getWindowWidth() - 400, 40, Color{ 66, 143, 244 }, "");
 
         fpsEntity = getEntity(FPSId);
         speedEntity = getEntity(speedId);
+        cheatEntity = getEntity(cheatId);
+        godModeEntity = getEntity(godModeId);
+        aibounceEntity = getEntity(aibounceId);
  
         int wW = getTransitionManager().getWindowWidth();
         int wH = getTransitionManager().getWindowHeight();
+
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(255, 0, 200.0f,[sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr));
+        }, "textures/rectangle.png", 0, 0, Color{0, 0, 0, 255}, wW, wH, 9999);
+        auto overlayEntity = getEntity(overlayId);
+
+        fadeAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
 
         UniverseBuilder uB;
         if (newGame) {
             UniverseGenerator uG;
             uG.generate(difficulty);
 
-            uB.build(getEntityManager(), true);
+            uB.build(getEntityManager(), true, Player::current().saveLocation());
         }
         else {
-            uB.build(getEntityManager(), false);
+            if (customLevel == "")
+                uB.build(getEntityManager(), false, Player::current().saveLocation());
+            else
+                uB.build(getEntityManager(), false, customLevel);
         }
 
         int beginY = 400;
@@ -102,7 +135,7 @@ namespace spacebiem
         int bH = 60;
         int incr = bH + 15;
         
-        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0,60}, wW, wH, 300u, "pause_menu");
+        addEntity<SpriteEntity>("textures/rectangle.png", 0.f, 0.f, Color{0,0,0, 128}, wW, wH, 280u, "pause_menu");
         addEntity<SpriteEntity>("textures/pause.png", (wW / 2) - (bW / 2) - 50, 325, Color{ 230, 230, 230, 255 }, 300, 330, 290u, "pause_menu");
 
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 0), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Resume game", "textures/button_white.png",
@@ -111,21 +144,35 @@ namespace spacebiem
             updateMenu();
         }, nullptr, "pause_menu");
 
-        addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
-            [this](StateManager* e) {
-            saveGame();
-            e->navigateTo<HelpScene>(true);
-        }, nullptr, "pause_menu");
+        if (customLevel == "") {
+            addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 1), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Help", "textures/button_white.png",
+                [this](StateManager* e) {
+                fadeAnimation->setOnFinished([this, e] { saveGame();  e->navigateTo<HelpScene>(true, true); });
+                fadeAnimation->playReversed();
 
+            }, nullptr, "pause_menu");
+        }
+        
         addEntity<ButtonUIEntity>((wW / 2) - (bW / 2), beginY + (incr * 2), Color{ 35, 65, 112 }, Color::White(), Size{ bW,bH }, "Return to menu", "textures/button_white.png",
             [this](StateManager* e) {
-            saveGame();
-            e->navigateTo<MenuScene>();
+            fadeAnimation->setOnFinished([this, e] { saveGame(); e->navigateTo<MenuScene>(true); });
+            fadeAnimation->playReversed();
         }, nullptr, "pause_menu");
+
+        addEntity<SpriteEntity>("textures/resources-need.png", wW - 250 - 25.f, 70.f, Color::White(), 250, 382, 100u, "resource-needed-background");
+        float rX = 66.f;
+        float rIncr = 91.f;
+        addEntity<ResourceUIEntity>(wW - 234.f, 143.f, Color::White(), "uranium", 0, 20, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 143.f + 78.f, Color::White(), "diamond", 0, 20, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 145.f + 78.f * 2.f, Color::White(), "metal", 0, 20, "resource-needed");
+        addEntity<ResourceUIEntity>(wW - 234.f, 145.f + 78.f * 3.f, Color::White(), "anti-matter", 0, 20, "resource-needed");
 
         updateMenu();
 
         getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
+
+        if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/spacemusic1.mp3"))
+            getTransitionManager().getAudioDevice().playMusic("audio/spacemusic1.mp3", -1);
     }
 
     void LevelScene::sceneEnd() {
@@ -139,16 +186,20 @@ namespace spacebiem
 
     void LevelScene::saveScore()
     {
+        if (customLevel != "") return;
+
         ScoreUIFactory sf;
         sf.sceneEnd(getEntityManager());
     }
 
     void LevelScene::saveGame()
     {
+        if (customLevel != "") return;
+
         SaveBlobFactory saveBlobFactory;
         vector<string> saveBlob = saveBlobFactory.createFromEntities(getEntityManager());
 
-        FileHandler fileHandler("data/savegame.csv", true);
+        FileHandler fileHandler(Player::current().saveLocation(), true);
 
         for (auto it = saveBlob.begin(); it != saveBlob.end(); it++) {
             fileHandler.writeLine(*it);
@@ -157,14 +208,15 @@ namespace spacebiem
 
     void LevelScene::input()
     {
-        if (im.isKeyDown("Q")) {
+        if (im.isKeyDown("Q"))
+        {
             saveGame();
             signalQuit();
         }
 
         if (im.isKeyDown("Escape")) {
-            saveGame();
-            getTransitionManager().navigateTo<MenuScene>();
+            fadeAnimation->setOnFinished([this] { saveGame(); getTransitionManager().navigateTo<MenuScene>(true); });
+            fadeAnimation->playReversed();
         }
 
         if (im.isKeyDown("F")) {
@@ -259,25 +311,20 @@ namespace spacebiem
         auto tc = speedEntity->getComponent<TextComponent>("text");
         tc->setText("Playback speed: " + std::to_string(getFPSModifier()) + "x", Color{ 255, 255, 255 });
 
-        totalDeltaTime += static_cast<int>(1.f / (deltaTime / 1000.f));
+        totalDeltaTime += deltaTime;
         counter++;
+       
         if (timeout >= 500.f) {
             auto tc = fpsEntity->getComponent<TextComponent>("text");
-            tc->setText("FPS: " + std::to_string(totalDeltaTime / counter), Color{ 255, 255, 255 });
+
+            
+            tc->setText("FPS: " + std::to_string(static_cast<int>(counter / totalDeltaTime * 1000)), Color{ 255, 255, 255 });
             resetFPScounters();
         }
 
         timeout += deltaTime;
-
-        
-
         getTransitionManager().drawBackground("textures/space.png");
-
-       
-      
         updateEntities(deltaTime);
-
-        
     }
 
 

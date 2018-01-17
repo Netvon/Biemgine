@@ -5,12 +5,6 @@
 
 namespace biemgine
 {
-    //const int Loop::BM_GAMELOOP_FPS = 60;
-    //const float Loop::BM_GAMELOOP_UPDATE_MS = 1000.0f / BM_GAMELOOP_FPS;
-
-    Loop::Loop() :
-        previousTime(static_cast<float>(SDL_GetTicks())) {}
-
     void Loop::start(const Window* pWindow)
     {
         window = pWindow;
@@ -28,6 +22,9 @@ namespace biemgine
 
     void Loop::startLoop()
     {
+        firstFrame();
+        previousTime = static_cast<float>(SDL_GetTicks());
+
         while (!quit) {
 
             float currentTime = static_cast<float>(SDL_GetTicks());    // Actuele tijd.
@@ -46,7 +43,6 @@ namespace biemgine
 
             // globalRender(lagTime / BM_GAMELOOP_UPDATE_MS);
             globalRender(elapsedTime);
-
         }
 
         globalEnd();

@@ -1,65 +1,58 @@
 #include "AIMovementSystem.h"
 
-using biemgine::PhysicsComponent;
-using biemgine::GroundedComponent;
-using biemgine::PositionComponent;
-using biemgine::AffectedByGravityComponent;
 using biemgine::Vector;
 using biemgine::RandomGenerator;
-using biemgine::AnimatedTextureComponent;
+using biemgine::Math;
+using biemgine::TextureFlip;
 
 #include "stdafx.h"
-
-using std::cout;
+#include <math.h>
 
 #include "../components/GravityComponent.h"
-#include "../components/AIComponent.h"
 
 namespace spacebiem
 {
-    void AIMovementSystem::update(const Entity & entity)
+    void AIMovementSystem::onAddEntity(Entity & entity)
     {
         if (entity.isTag("ai")) {
-            ais.push_back(&entity);
+            auto aiEntry = AIEntry{
+                &entity,
+                entity.getComponent<PositionComponent>("position"),
+                entity.getComponent<GroundedComponent>("grounded"),
+                entity.getComponent<AffectedByGravityComponent>("affectedByGravity"),
+                entity.getComponent<AnimatedTextureComponent>("texture"),
+                entity.getComponent<PhysicsComponent>("physics"),
+                entity.getComponent<AIComponent>("ai"),
+            };
+
+            aiEntries.push_back(std::move(aiEntry));
         }
-        else if (entity.isTag("player")) {
-            players.push_back(&entity);
+
+        if (entity.isTag("player")) {
+            auto playerEntry = PlayerEntry{
+                &entity,
+                entity.getComponent<PositionComponent>("position")
+            };
+
+            playerEntries.push_back(std::move(playerEntry));
         }
     }
 
-    void AIMovementSystem::after()
+    void AIMovementSystem::update()
     {
-        for (const Entity * entity : ais) {
-            auto grounded = entity->getComponent<GroundedComponent>("grounded");
-            auto affected = entity->getComponent<AffectedByGravityComponent>("affectedByGravity");
-            auto texture = entity->getComponent<AnimatedTextureComponent>("texture");
-            auto physics = entity->getComponent<PhysicsComponent>("physics");
+        for (const AIEntry & aiEntry : aiEntries) {
+            auto grounded = aiEntry.grounded;
+            auto affected = aiEntry.affectedByGravity;
+            auto texture = aiEntry.animatedTexture;
+            auto physics = aiEntry.physics;
 
             constexpr float escapeVelocity = 140.f;
 
-            /*if (grounded->isGrounded()) {
-                if (texture->isPausedOrStopped()) {
-                    texture->play();
-                }
-
-                if (physics->getVelocity().length() > 1.0f) {
-                    auto veloPercentage = escapeVelocity / physics->getVelocity().length();
-                    auto maxSpeed = 32.0f;
-                    texture->setPlaybackSpeed(maxSpeed * veloPercentage);
-                }
-                else {
-                    texture->stop();
-                }
-            }
-            else {
-                texture->stop();
-            }*/
-
             if (!grounded->isGrounded() || !affected->getIsAffected())
-                return;
+                continue;
 
-            auto ai = entity->getComponent<AIComponent>("ai");
-            auto position = entity->getComponent<PositionComponent>("position");
+            auto ai = aiEntry.ai;
+            auto position = aiEntry.position;
 
             Vector centerOfSatellite = {
                 position->getX() + physics->getColliderW() / 2.0f,
@@ -71,16 +64,23 @@ namespace spacebiem
 
             bool playerInRange = false;
 
+            texture->setCurrentAnimation("walk");
+
             if (ai->getCanFollow()) {
-                const Entity * player = findPlayerInRange(entity);
+                const Entity * player = findPlayerInRange(aiEntry.entity);
 
                 if (player != nullptr) {
                     playerInRange = true;
 
                     auto pc = player->getComponent<PositionComponent>("position");
-                    ai->setDirection(Direction::LEFT);
 
                     diff += position->getLocation() - pc->getLocation();
+
+                    float angle = atan2(pc->getY() - position->getY(), pc->getX() - position->getX());
+                    angle = Math::radiansToDegrees(angle);
+
+                    ai->setDirection(angle > 0 ? Direction::RIGHT : Direction::LEFT);
+                    texture->setCurrentAnimation("follow");
                 }
             }
 
@@ -105,17 +105,16 @@ namespace spacebiem
                     physics->addForce("right", right.x, right.y);
                 }
             }
-        }
 
-        ais.clear();
-        players.clear();
+            texture->setFlip(ai->isDirection(Direction::RIGHT) ? TextureFlip::NONE : TextureFlip::HORIZONTAL);
+        }
     }
 
     const Entity * AIMovementSystem::findPlayerInRange(const Entity * entity) const
     {
-        for (auto & player : players) {
-            if (entity->distance(*player) < 500.f) {
-                return player;
+        for (const auto & playerEntry : playerEntries) {
+            if (entity->distance(*playerEntry.entity) < 500.f) {
+                return playerEntry.entity;
             }
         }
 

@@ -2,6 +2,7 @@
 #include "HighScoreScene.h"
 #include "MenuScene.h"
 #include "..\entities\PlanetEarthEntity.h"
+#include "..\entities\AdEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\entities\ScoreUIEntity.h"
@@ -25,6 +26,7 @@ namespace spacebiem
     }
 
     void HighScoreScene::created() {
+        enableAnimations();
         enableRendering();
         enableUI();
         enableScripts();
@@ -37,6 +39,8 @@ namespace spacebiem
         float planetHeight = 500;
         int w = 50;
         int x = wW / 2 - w;
+
+        addEntity<AdEntity>();
 
         addEntity<SpriteEntity>("textures/highscores.png", static_cast<float>(x - 50.f), 100.f, Color::White(), -1, -1, 100u);
 

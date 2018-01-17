@@ -47,6 +47,8 @@ namespace biemgine
         virtual void die() const;
         virtual void rise() const;
         bool isAlive() const;
+        void setIsOnScreen(bool onScreen);
+        bool getIsOnScreen() const;
 
         bool hasTag() const;
         void setTag(string pTag);
@@ -66,6 +68,8 @@ namespace biemgine
 
         float distance(const Entity & entity) const;
 
+        void scaleSize(float scalair = 1.f);
+
     private:
         int id;
         std::multimap<string, std::shared_ptr<Component>> componentHashmap;
@@ -73,6 +77,7 @@ namespace biemgine
 
         string tag;
         bool isOCCheckable;
+        bool isOnScreen;
     };
 
     template<typename TComponent>

@@ -20,6 +20,7 @@ namespace biemgine
     {
     public:
         FileHandler(string filePath, bool overwrite = false);
+        FileHandler() {};
 
         vector<vector<string>> getValues();
         void writeLine(vector<string> values);
@@ -27,6 +28,8 @@ namespace biemgine
 
         bool remove(string filePath);
         static bool exists(string filePath);
+
+        void close();
 
     private:
         fstream currentFile;

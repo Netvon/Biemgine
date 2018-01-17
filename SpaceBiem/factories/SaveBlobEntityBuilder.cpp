@@ -11,6 +11,9 @@
 #include "..\entities\PlanetSandEntity.h"
 #include "..\entities\PlanetIceEntity.h"
 #include "..\entities\PlanetLavaEntity.h"
+
+#include "..\entities\WormholeEntity.h"
+
 #include "..\entities\ResourceEntity.h"
 
 #include "..\entities\MummieAIEntity.h"
@@ -33,6 +36,7 @@ namespace spacebiem
             { type_index(typeid(PlanetSandEntity)), "sand" },
             { type_index(typeid(PlanetIceEntity)), "ice" },
             { type_index(typeid(PlanetLavaEntity)), "lava" },
+            { type_index(typeid(WormholeEntity)), "wormhole" },
             { type_index(typeid(ResourceEntity)), "resource" },
             { type_index(typeid(MummieAIEntity)), "aimummie" },
             { type_index(typeid(SnowmanAIEntity)), "aisnowman" }

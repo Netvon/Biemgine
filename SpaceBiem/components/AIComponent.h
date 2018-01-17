@@ -38,6 +38,9 @@ namespace spacebiem
         bool getCanWander() const;
         bool getCanFollow() const;
 
+        void setName(string pName) { name = pName; };
+        string getName() const { return name; };
+
     private:
         Direction direction = Direction::LEFT;
         int directionEndTime = 0;
@@ -49,5 +52,8 @@ namespace spacebiem
         bool canIdle = true;
         bool canWander = true;
         bool canFollow = true;
+
+        string name = "";
+
     };
 }

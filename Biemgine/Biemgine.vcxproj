@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="systems\AnimateSystem.h" />
+    <ClInclude Include="components\AnimationComponent.h" />
     <ClInclude Include="components\AudioComponent.h" />
     <ClInclude Include="devices\audio\AudioDevice.h" />
     <ClInclude Include="Biemgine.h" />
@@ -36,7 +38,6 @@
     <ClInclude Include="components\ScriptComponent.h" />
     <ClInclude Include="components\TextComponent.h" />
     <ClInclude Include="components\TextureComponent.h" />
-    <ClInclude Include="components\TransformComponent.h" />
     <ClInclude Include="components\UIComponent.h" />
     <ClInclude Include="components\PhysicsComponentShape.h" />
     <ClInclude Include="core\Engine.h" />
@@ -72,6 +73,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="systems\AnimateSystem.cpp" />
+    <ClCompile Include="components\AnimationComponent.cpp" />
     <ClCompile Include="components\CameraComponent.cpp" />
     <ClCompile Include="components\AudioComponent.cpp" />
     <ClCompile Include="devices\audio\SDLAudioDevice.cpp" />
@@ -96,7 +99,6 @@
     <ClCompile Include="components\RectangleComponent.cpp" />
     <ClCompile Include="components\TextComponent.cpp" />
     <ClCompile Include="components\TextureComponent.cpp" />
-    <ClCompile Include="components\TransformComponent.cpp" />
     <ClCompile Include="core\Engine.cpp" />
     <ClCompile Include="core\Loop.cpp" />
     <ClCompile Include="core\Window.cpp" />
@@ -213,7 +215,8 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SolutionDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>
+      </LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>

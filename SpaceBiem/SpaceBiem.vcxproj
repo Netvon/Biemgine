@@ -95,6 +95,8 @@
       <PrecompiledHeaderOutputFile>$(ProjectDir)$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,11 +155,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="entities\AdEntity.h" />
     <ClInclude Include="components\AIComponent.h" />
     <ClInclude Include="components\MovementComponent.h" />
     <ClInclude Include="components\ScoreBonusComponent.h" />
     <ClInclude Include="entities\AIEntity.h" />
     <ClInclude Include="entities\ButtonUIEntity.h" />
+    <ClInclude Include="entities\CameraEntity.h" />
     <ClInclude Include="entities\MummieAIEntity.h" />
     <ClInclude Include="entities\PlanetEntity.h" />
     <ClInclude Include="entities\PlanetIceEntity.h" />
@@ -188,15 +192,24 @@
     <ClInclude Include="factories\EntityFactory.h" />
     <ClInclude Include="factories\ScoreUIFactory.h" />
     <ClInclude Include="entities\ResourceUIEntity.h" />
+    <ClInclude Include="globals\Ads.h" />
+    <ClInclude Include="globals\Cheat.h" />
     <ClInclude Include="globals\Colors.h" />
     <ClInclude Include="globals\Difficulty.h" />
     <ClInclude Include="globals\Fonts.h" />
+    <ClInclude Include="globals\Player.h" />
+    <ClInclude Include="scenes\ProfileScene.h" />
     <ClInclude Include="scenes\CreditsScene.h" />
     <ClInclude Include="globals\Functions.h" />
     <ClInclude Include="scenes\DifficultyScene.h" />
     <ClInclude Include="scenes\GameoverScene.h" />
     <ClInclude Include="scenes\HelpScene.h" />
+    <ClInclude Include="scenes\LevelEditorScene.h" />
+    <ClInclude Include="scenes\LevelLoadScene.h" />
+    <ClInclude Include="scenes\StoryScene.h" />
     <ClInclude Include="systems\AIMovementSystem.h" />
+    <ClInclude Include="systems\CheatSystem.h" />
+    <ClInclude Include="systems\DragDropSystem.h" />
     <ClInclude Include="systems\GameoverSystem.h" />
     <ClInclude Include="systems\ResourceUISystem.h" />
     <ClInclude Include="components\ResourceBonusComponent.h" />
@@ -214,13 +227,18 @@
     <ClInclude Include="systems\ScoreSystem.h" />
     <ClInclude Include="systems\ScoreUISystem.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="entities\WormholeEntity.h" />
+    <ClInclude Include="systems\WinSystem.h" />
+    <ClInclude Include="scenes\WinScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="entities\AdEntity.cpp" />
     <ClCompile Include="components\AIComponent.cpp" />
     <ClCompile Include="components\MovementComponent.cpp" />
     <ClCompile Include="components\ScoreBonusComponent.cpp" />
     <ClCompile Include="entities\AIEntity.cpp" />
     <ClCompile Include="entities\ButtonUIEntity.cpp" />
+    <ClCompile Include="entities\CameraEntity.cpp" />
     <ClCompile Include="entities\MummieAIEntity.cpp" />
     <ClCompile Include="entities\PlanetEntity.cpp" />
     <ClCompile Include="entities\PlanetIceEntity.cpp" />
@@ -247,11 +265,19 @@
     <ClCompile Include="entities\SurfaceEntity.cpp" />
     <ClCompile Include="factories\ScoreUIFactory.cpp" />
     <ClCompile Include="factories\NameGenerator.cpp" />
+    <ClCompile Include="globals\Ads.cpp" />
+    <ClCompile Include="globals\Player.cpp" />
+    <ClCompile Include="scenes\ProfileScene.cpp" />
     <ClCompile Include="scenes\CreditsScene.cpp" />
     <ClCompile Include="scenes\DifficultyScene.cpp" />
     <ClCompile Include="scenes\GameoverScene.cpp" />
     <ClCompile Include="scenes\HelpScene.cpp" />
+    <ClCompile Include="scenes\LevelEditorScene.cpp" />
+    <ClCompile Include="scenes\LevelLoadScene.cpp" />
+    <ClCompile Include="scenes\StoryScene.cpp" />
     <ClCompile Include="systems\AIMovementSystem.cpp" />
+    <ClCompile Include="systems\CheatSystem.cpp" />
+    <ClCompile Include="systems\DragDropSystem.cpp" />
     <ClCompile Include="systems\GameoverSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\ResourceUIEntity.cpp" />
@@ -276,11 +302,17 @@
     <ClCompile Include="systems\ScoreSystem.cpp" />
     <ClCompile Include="systems\ScoreUISystem.cpp" />
     <ClCompile Include="factories\UniverseBuilder.cpp" />
+    <ClCompile Include="entities\WormholeEntity.cpp" />
+    <ClCompile Include="systems\WinSystem.cpp" />
+    <ClCompile Include="scenes\WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biemgine\Biemgine.vcxproj">
       <Project>{e83a57d4-482a-420a-a132-4d44a04827d5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ads\.gitkeep" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

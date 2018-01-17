@@ -10,6 +10,7 @@ using biemgine::AffectedByGravityComponent;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
 using biemgine::TextureColumnDef;
+using biemgine::AnimationDef;
 using biemgine::TextureRowDef;
 using biemgine::CameraComponent;
 
@@ -23,9 +24,20 @@ namespace spacebiem
 {
     PlayerEntity::PlayerEntity(float x, float y, Color color, float w, float h, float mass, bool focused)
     {
+        AnimationDef walking {
+            "walk",
+            TextureColumnDef{ 8llu, 128 }, TextureRowDef{ 1llu, 256 }
+        };
+
+        AnimationDef jumping {
+            "jump",
+            TextureColumnDef{ 4llu, 128 }, TextureRowDef{ 1llu, 256, 256 },
+            false
+        };
+
         addComponent("position", new PositionComponent(x, y));
         addComponent("color", new ColorComponent(color));
-        addComponent("texture", new AnimatedTextureComponent("textures/PlayerSpriteSheet2.png", 0, 0, TextureColumnDef{ 8llu, 128 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background"));
+        addComponent("texture", new AnimatedTextureComponent("textures/PlayerSpriteSheet2.png", 0, 0, { walking, jumping }, "jump", 7.5f / 2.0f, w, h, 5u, true, "background", Color::White(), 0.f, true));
         addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
         addComponent("oxygen", new OxygenComponent);
         addComponent("grounded", new GroundedComponent);
@@ -36,11 +48,7 @@ namespace spacebiem
         addComponent("movement", new MovementComponent);
         if(focused) addComponent("camera", new CameraComponent);
 
-        auto grounded = getComponent<GroundedComponent>("grounded");
-        auto texture = getComponent<AnimatedTextureComponent>("texture");
-        auto physics = getComponent<PhysicsComponent>("physics");
-
-        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
+        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(getComponent<GroundedComponent>("grounded"), getComponent<AnimatedTextureComponent>("texture"), getComponent<PhysicsComponent>("physics")));
 
         setTag("player");
     }

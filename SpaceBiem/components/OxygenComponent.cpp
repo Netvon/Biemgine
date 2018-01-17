@@ -2,36 +2,41 @@
 
 namespace spacebiem
 {
-	float OxygenComponent::getOxygenAmount() const
-	{
-		return oxygenAmount;
-	}
+    float OxygenComponent::getOxygenAmount() const
+    {
+        return oxygenAmount;
+    }
 
-	void OxygenComponent::setOxygenAmount(float pOxygen)
-	{
-		if (pOxygen >= 0 && pOxygen <= oxygenMax) {
-			oxygenAmount = pOxygen;
-		}
-	}
+    void OxygenComponent::setOxygenAmount(float pOxygen)
+    {
+        if (!Cheat::Instance().isEnabled("god")) {
+            if (pOxygen >= 0.0f && pOxygen <= oxygenMax) {
+                oxygenAmount = pOxygen;
+            }
+            else if (pOxygen <= 0.0f) {
+                oxygenAmount = 0.0f;
+            }
+        }
+    }
 
-	void OxygenComponent::setAtmosphereEntity(std::shared_ptr<Entity> atmosphere)
-	{
-		currentAtmosphereEntity = atmosphere;
-	}
+    void OxygenComponent::setAtmosphereEntity(std::shared_ptr<Entity> atmosphere)
+    {
+        currentAtmosphereEntity = atmosphere;
+    }
 
-	std::shared_ptr<Entity> OxygenComponent::getAtmosphereEntity() const
-	{
-		return currentAtmosphereEntity;
-	}
+    std::shared_ptr<Entity> OxygenComponent::getAtmosphereEntity() const
+    {
+        return currentAtmosphereEntity;
+    }
 
-	int OxygenComponent::getOxygenMax() const
-	{
-		return oxygenMax;
-	}
+    int OxygenComponent::getOxygenMax() const
+    {
+        return oxygenMax;
+    }
 
-	int OxygenComponent::getOxygenScale() const
-	{
-		return oxygenScale;
-	}
+    int OxygenComponent::getOxygenScale() const
+    {
+        return oxygenScale;
+    }
 
 }

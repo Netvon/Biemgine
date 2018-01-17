@@ -33,7 +33,7 @@ namespace biemgine {
 
     SDLGraphicsDevice::~SDLGraphicsDevice()
     {
-        for (std::pair<std::string, TextureAndUsage> pair : textTextures) {
+        for (std::pair<std::pair<Font,std::string>, TextureAndUsage> pair : textTextures) {
             SDL_DestroyTexture(pair.second.texture);
         }
 
@@ -74,7 +74,9 @@ namespace biemgine {
             f = fonts.at(pFont);
         }
 
-        if (textTextures.find(text) == textTextures.end()) {
+        auto pair = std::make_pair(pFont, text);
+
+        if (textTextures.find(pair) == textTextures.end()) {
             SDL_Color convertedColor = { color.r, color.g, color.b, color.a };
             SDL_Surface *textSurface = TTF_RenderText_Blended(f, text.c_str(), convertedColor);
             SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
@@ -82,10 +84,10 @@ namespace biemgine {
             SDL_FreeSurface(textSurface);
 
             TextureAndUsage textureAndUsage = { textTexture, 0 };
-            textTextures.insert_or_assign(text, textureAndUsage);
+            textTextures.insert_or_assign(pair, textureAndUsage);
         }
 
-        TextureAndUsage &textFromKey = textTextures.at(text);
+        TextureAndUsage &textFromKey = textTextures.at(pair);
         textFromKey.usageCount++;
 
         SDL_Rect textRect = { x, y };
@@ -109,7 +111,7 @@ namespace biemgine {
         return { textRect.w, textRect.h };
     }
 
-    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip, bool useCenterAsOrigin, SizeRect source)
+    void SDLGraphicsDevice::drawTexture(const std::string& path, int x, int y, int w, int h, float angle, Color color, TextureFlip flip, bool useCenterAsOrigin, SizeRect source, TextureComponent::BLEND_MODE blend)
     {
         auto texture = getTexture(path);
 
@@ -125,7 +127,7 @@ namespace biemgine {
                 destRect.y += h / 2;
             }
 
-            SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+            SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blend));
             SDL_SetTextureAlphaMod(texture, color.a);
 
             SDL_SetTextureColorMod(texture, color.r, color.g, color.b);

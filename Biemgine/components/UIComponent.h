@@ -5,7 +5,6 @@
 #include "Component.h"
 #include "..\managers\StateManager.h"
 #include "..\primitives\Primitives.h"
-#include "..\systems\UISystem.h"
 
 using std::function;
 
@@ -17,7 +16,7 @@ namespace biemgine
     public:
 
         UIComponent(bool pEnabled = true);
-        UIComponent(const Size& pSize, function<void (StateManager*)> onClick = nullptr, function<void(StateManager*)> onEnter = nullptr, bool pEnabled = true);
+        UIComponent(const SizeRect& pSize, function<void (StateManager*)> onClick = nullptr, function<void(StateManager*)> onEnter = nullptr, bool pEnabled = true);
         ~UIComponent();
 
         template <typename TComponent>
@@ -28,24 +27,21 @@ namespace biemgine
         bool getIsMouseDown() const;
         bool getIsMouseOver() const;
 
-        const Size& getSize() const;
+        const SizeRect& getSize() const;
 
         function<void(StateManager*)> getIsClicked() const;
         function<void(StateManager*)> getIsEntered() const;
         bool isEnabled() const;
 
-    protected:
         void setIsMouseOver(bool pIsMouseOver);
         void setIsMouseDown(bool pIsMouseDown);
-
-        friend void UISystem::update(const Entity & entity, const float deltaTime);
 
     private:
         std::shared_ptr<Component> componentReference = nullptr;
 
         bool isMouseDown = false;
         bool isMouseOver = false;
-        Size size;
+        SizeRect size;
         function<void(StateManager*)> onClick;
         function<void(StateManager*)> onEnter;
         bool enabled;

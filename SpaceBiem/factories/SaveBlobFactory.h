@@ -20,7 +20,7 @@ namespace spacebiem
     class SaveBlobFactory
     {
     public:
-        vector<string> createFromEntities(shared_ptr<EntityManager> entities);
+        vector<string> createFromEntities(shared_ptr<EntityManager> entities, string withTag = "");
         string createFromEntity(const Entity & entity);
 
     private:

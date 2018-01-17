@@ -5,6 +5,7 @@ namespace spacebiem
     enum Difficulty {
         NORMAL,
         CHALLENING,
-        EXPERT
+        EXPERT,
+        DONE,
     };
 }

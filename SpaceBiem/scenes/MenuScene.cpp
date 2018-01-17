@@ -8,13 +8,20 @@
 #include "CreditsScene.h"
 #include "DifficultyScene.h"
 #include "..\entities\PlanetEarthEntity.h"
+#include "..\entities\AdEntity.h"
 #include "..\entities\PlanetMoonEntity.h"
 #include "..\entities\ButtonUIEntity.h"
 #include "..\systems\ScoreUISystem.h"
 #include "..\systems\ResourceUISystem.h"
 #include "..\entities\ResourceUIEntity.h"
 #include "..\globals\Functions.h"
+#include "..\globals\Ads.h"
+#include "..\globals\Player.h"
+#include ".\ProfileScene.h"
+#include "LevelLoadScene.h"
 
+using biemgine::AnimationComponent;
+using biemgine::TextureComponent;
 using biemgine::SpriteEntity;
 using biemgine::Size;
 using biemgine::FileHandler;
@@ -26,6 +33,7 @@ namespace spacebiem
         enableRendering();
         enableUI();
         enableScripts();
+        enableAnimations();
 
         getTransitionManager().getAudioDevice().stopSoundEffect("");
 
@@ -40,6 +48,18 @@ namespace spacebiem
         int w = 50;
         int x = wW / 2 - 175;
 
+        int overlayId = addEntityExtra<SpriteEntity>([](Entity* entity)
+        {
+            entity->addComponent("animation", new AnimationComponent(255, 0, 300.f, [sprite = entity->getComponent<TextureComponent>("texture")](float newValue) { sprite->setColor(sprite->getColor().WithAlpha(newValue)); }, nullptr, false));
+        },"textures/rectangle.png", 0, 0, Color{ 0, 0, 0, 0 }, wW, wH, 9999);
+        auto overlayEntity = getEntity(overlayId);
+        auto overlayAnimation = overlayEntity->getComponent<AnimationComponent>("animation");
+
+        if (fadeIn)
+        {
+            overlayAnimation->play();
+        }
+
         addEntity<SpriteEntity>("textures/spacebiem.png", x, 100, Color::White(), -1, -1);
         addEntity<SpriteEntity>("textures/player-standing.png", x + 260, 115, Color::White(), playerWidth, playerHeight);
         addEntity<PlanetEarthEntity>(-250.f, static_cast<float>(wH - 250), Color({ 71, 166, 245, 255 }), planetWidth, planetHeight, 0, 10.f);
@@ -53,30 +73,38 @@ namespace spacebiem
         int beginY = 330;
         int incr = 65;
 
+        addEntity<AdEntity>();
+
         auto newGameClick = [](StateManager* e) { e->navigateTo<DifficultyScene>(); };
-        auto continueClick = [](StateManager* e) { e->navigateTo<LevelScene>(false); };
+        auto continueClick = [overlayAnimation](StateManager* e)
+        {
+            overlayAnimation->setOnFinished([e] { e->navigateTo<LevelScene>(false); });
+            overlayAnimation->playReversed();
+        };
+
         auto highscoreClick =[](StateManager* e) { e->navigateTo<HighScoreScene>(); };
         auto helpClick = [](StateManager* e) { e->navigateTo<HelpScene>(); };
         auto CreditsButtonClicked = [](StateManager* e) { e->navigateTo<CreditsScene>(); };
+        auto LevelEditorButtonClicked = [](StateManager* e) { e->navigateTo<LevelLoadScene>(); };
 
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 0), buttonColor, buttonTextColor, buttonSize, "New game", buttonTexture, newGameClick, nullptr);
 
         std::function<void(StateManager*)> continueEventHandler = nullptr;
-        bool saveBlobExists = FileHandler::exists("data/savegame.csv");
+        bool saveBlobExists = FileHandler::exists(Player::current().saveLocation());
 
         if (saveBlobExists) {
             continueEventHandler = continueClick;
         }
 
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 1), buttonColor, buttonTextColor, buttonSize, "Continue", buttonTexture, continueEventHandler, nullptr);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Level editor", buttonTexture, LevelEditorButtonClicked, nullptr);
         
         beginY += 20;
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 2), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, highscoreClick, nullptr);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Upgrades", buttonTexture);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 3), buttonColor, buttonTextColor, buttonSize, "Highscores", buttonTexture, highscoreClick, nullptr);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 4), buttonColor, buttonTextColor, buttonSize, "Help", buttonTexture, helpClick, nullptr);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Settings", buttonTexture);
-        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 5), buttonColor, buttonTextColor, buttonSize, "Credits", buttonTexture, CreditsButtonClicked);
         beginY += 20;
+        addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 6), buttonColor, buttonTextColor, buttonSize, "Change profile", buttonTexture, [this](auto b) { b->navigateTo<ProfileScene>(); }, nullptr);
         addEntity<ButtonUIEntity>(x + 100, beginY + (incr * 7), buttonColor, buttonTextColor, buttonSize, "Quit", buttonTexture, [this](auto b) { signalQuit(); }, nullptr);
 
         FileParser parser;
@@ -85,10 +113,10 @@ namespace spacebiem
         addEntity<SpriteEntity>("textures/resources-hud.png", 25.f, 25.f, Color::White(), 401, 169, 100u);
         float rX = 66.f;
         float rIncr = 91.f;
-        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 145.f, Color::White(), "uranium", resources["uranium"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 145.f, Color::White(), "diamond", resources["diamond"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"]);
-        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"]);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 0), 145.f, Color::White(), "uranium", resources["uranium"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 1), 145.f, Color::White(), "diamond", resources["diamond"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 2), 145.f, Color::White(), "metal", resources["metal"], 20);
+        addEntity<ResourceUIEntity>(rX + (rIncr * 3), 145.f, Color::White(), "anti-matter", resources["anti-matter"], 20);
 
         if(!getTransitionManager().getAudioDevice().isPlayingMusic("audio/menu.mp3"))
             getTransitionManager().getAudioDevice().playMusic("audio/menu.mp3", -1);  

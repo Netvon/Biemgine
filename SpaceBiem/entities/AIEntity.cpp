@@ -12,26 +12,28 @@ using biemgine::TextureRowDef;
 using biemgine::PhysicsComponentShape;
 using biemgine::CollidableComponent;
 using biemgine::AnimatedTextureComponent;
-using biemgine::TextureColumnDef;
-using biemgine::TextureRowDef;
 
 #include "../components/AIComponent.h"
 #include "../globals/Functions.h"
 
 namespace spacebiem
 {
-    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount, bool pCanIdle, bool pCanWander, bool pCanFollow)
+    AIEntity::AIEntity(float x, float y, Color color, float w, float h, float mass, const std::string animatedTexture, size_t textureCount, bool pCanIdle, bool pCanWander, bool pCanFollow, std::initializer_list<AnimationDef> pAnimationDefs)
     {
-        addComponent("position", new PositionComponent(x, y));
-        addComponent("color", new ColorComponent(color));
-        addComponent("texture", new AnimatedTextureComponent(animatedTexture, 0, 0, TextureColumnDef{ textureCount, 256 }, TextureRowDef{ 1llu, 256 }, 7.5f / 2.0f, w, h, 5u, true, "background"));
-        addComponent("physics", new PhysicsComponent(w, h, false, PhysicsComponentShape::RECTANGLE, mass));
-        addComponent("grounded", new GroundedComponent);
-        addComponent("affectedByGravity", new AffectedByGravityComponent(true));
-        addComponent("collidable", new CollidableComponent(CollisionCategory::AI, CollisionCategory::PLAYER | CollisionCategory::PLANET));
-        addComponent("ai", new AIComponent(pCanIdle, pCanWander, pCanFollow));
+        addComponent<PositionComponent>("position", x, y);
+        addComponent<ColorComponent>("color", color);
+        addComponent<AnimatedTextureComponent>("texture", animatedTexture, 0, 0, pAnimationDefs, "walk", 7.5f / 2.0f, w, h, 5u, true, "background");
+        addComponent<PhysicsComponent>("physics", w, h, false, PhysicsComponentShape::RECTANGLE, mass);
+        addComponent<GroundedComponent>("grounded");
+        addComponent<AffectedByGravityComponent>("affectedByGravity", true);
+        addComponent<CollidableComponent>("collidable", CollisionCategory::AI, CollisionCategory::PLAYER | CollisionCategory::PLANET);
+        addComponent<AIComponent>("ai", pCanIdle, pCanWander, pCanFollow);
 
-        addComponent<biemgine::ScriptComponent>("script", Functions::updateAnimatedBasesOnSpeed(this));
+        addComponent<biemgine::ScriptComponent>("script",
+            Functions::updateAnimatedBasesOnSpeed(
+                getComponent<GroundedComponent>("grounded"),
+                getComponent<AnimatedTextureComponent>("texture"),
+                getComponent<PhysicsComponent>("physics")));
 
         setTag("ai");
     }

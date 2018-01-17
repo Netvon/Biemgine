@@ -1,12 +1,23 @@
 #include "UISystem.h"
-#include "..\components\UIComponent.h"
-#include "..\components\PositionComponent.h"
 
 namespace biemgine
 {
-    UISystem::UISystem()
+    UISystem::UISystem() : sceneWasSwitched(true) {}
+
+    void UISystem::onAddEntity(Entity & entity)
     {
-        sceneWasSwitched = true;
+        auto ui = entity.getComponent<UIComponent>("ui");
+        auto position = entity.getComponent<PositionComponent>("position");
+
+        if (ui != nullptr && position != nullptr)
+        {
+            Entry entry;
+            entry.entity = &entity;
+            entry.positionComponent = position;
+            entry.uiComponent = ui;
+
+            entries.push_back(std::move(entry));
+        } 
     }
 
     void UISystem::before(const float deltaTime)
@@ -28,44 +39,46 @@ namespace biemgine
         }
     }
 
-    void UISystem::update(const Entity & entity, const float deltaTime)
+    void UISystem::update(const float deltaTime)
     {
-        if (!entity.hasComponent("ui") || !entity.hasComponent("position"))
-            return;
-
         if (sceneWasSwitched)
             return;
 
-        auto ui = entity.getComponent<UIComponent>("ui");
-        auto position = entity.getComponent<PositionComponent>("position");
+        for (const Entry& entry : entries)
+        {
+            if (!entry.entity->isAlive()) continue;
 
-        auto size = ui->getSize();
+            auto sizeRect = entry.uiComponent->getSize();
 
-        auto X1 = position->getX();
-        auto X2 = X1 + size.width;
+            auto X1 = entry.positionComponent->getX() + sizeRect.point.x;
+            auto X2 = X1 + sizeRect.size.width;
 
-        auto Y1 = position->getY();
-        auto Y2 = Y1 + size.height;
+            auto Y1 = entry.positionComponent->getY() + sizeRect.point.y;
+            auto Y2 = Y1 + sizeRect.size.height;
 
-        if (currentMouseLocation.x >= X1
-            && currentMouseLocation.x <= X2
-            && currentMouseLocation.y >= Y1
-            && currentMouseLocation.y <= Y2) {
+            if (currentMouseLocation.x >= X1
+                && currentMouseLocation.x <= X2
+                && currentMouseLocation.y >= Y1
+                && currentMouseLocation.y <= Y2) {
 
-            if (!ui->getIsMouseOver() && ui->getIsEntered())
-                ui->getIsEntered()(getStateManager());
+                if (!entry.uiComponent->getIsMouseOver() && entry.uiComponent->getIsEntered())
+                    entry.uiComponent->getIsEntered()(getStateManager());
 
-            ui->setIsMouseOver(true);
-            ui->setIsMouseDown(isLeftMouseDown);
+                if (isLeftMouseDown && !entry.uiComponent->getIsMouseDown())
+                {
+                    if (entry.uiComponent->getIsClicked())
+                        entry.uiComponent->getIsClicked()(getStateManager());
+                }
 
-            if (isLeftMouseDown) {
-                if(ui->getIsClicked())
-                    ui->getIsClicked()(getStateManager());
+                entry.uiComponent->setIsMouseOver(true);
+                entry.uiComponent->setIsMouseDown(isLeftMouseDown);
+
+                
             }
-        }
-        else {
-            ui->setIsMouseOver(false);
-            ui->setIsMouseDown(false);
+            else {
+                entry.uiComponent->setIsMouseOver(false);
+                entry.uiComponent->setIsMouseDown(false);
+            }
         }
     }
 }

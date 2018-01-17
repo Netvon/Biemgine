@@ -14,8 +14,8 @@ using biemgine::PhysicsComponentShape;
 
 namespace spacebiem
 {
-    PlanetEarthEntity::PlanetEarthEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName, bool scoreGiven) :
-        PlanetEntity(x, y, color, w, h, "textures/earth-plain.png", "textures/earth-TypeA.png", pScoreBonus, pName, scoreGiven)
+    PlanetEarthEntity::PlanetEarthEntity(float x, float y, Color color, float w, float h, int pScoreBonus, float atmosphere, const string& pName, bool scoreGiven, const string& border) :
+        PlanetEntity(x, y, color, w, h, "textures/earth-plain.png", border, pScoreBonus, pName, scoreGiven)
     {
         setTag("earth");
         createAtmosphere(x, y, w, h, atmosphere, true, color);

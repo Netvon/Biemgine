@@ -6,6 +6,7 @@
 #include "..\systems\UISystem.h"
 #include "..\systems\ScriptSystem.h"
 #include "..\systems\CameraSystem.h"
+#include "..\systems\AnimateSystem.h"
 
 //#include "..\systems\gravitysystem.h"
 //#include "..\systems\physicssystem.h"
@@ -18,7 +19,10 @@
 namespace biemgine
 {
     Scene::Scene(StateManager & manager)
-        : stateManager(&manager) {}
+        : stateManager(&manager), systemManager(std::make_shared<SystemManager>())
+    {
+        entityManager = std::make_shared<EntityManager>(systemManager);
+    }
 
     Scene::~Scene()
     {
@@ -54,6 +58,7 @@ namespace biemgine
 
     int Scene::addEntity(Entity * entity)
     {
+        
         return entityManager->addEntity(entity);
     }
     
@@ -66,17 +71,22 @@ namespace biemgine
 
     void Scene::enableUI()
     {
-        addSystem<UISystem>(2);
+        addSystem<UISystem>();
     }
 
     void Scene::enableScripts()
     {
-        addSystem<ScriptSystem>(2);
+        addSystem<ScriptSystem>();
     }
 
     void Scene::enableCamera()
     {
         addSystem<CameraSystem>();
+    }
+
+    void Scene::enableAnimations()
+    {
+        addSystem<AnimateSystem>();
     }
 
     void Scene::enableRendering()
@@ -95,6 +105,11 @@ namespace biemgine
 
     void Scene::render(float deltaTime) { }
 
+    void Scene::firstFrame()
+    {
+        //entityManager->addEntitiesToSystems();
+    }
+    
     Entity * Scene::getEntity(int id) const
     {
         return entityManager->getEntity(id);

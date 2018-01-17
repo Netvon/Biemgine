@@ -58,4 +58,8 @@ namespace biemgine
         struct stat buffer;
         return (stat(filePath.c_str(), &buffer) == 0);
     }
+	void FileHandler::close()
+	{
+        currentFile.close();
+	}
 }

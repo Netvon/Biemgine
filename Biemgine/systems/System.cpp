@@ -5,10 +5,11 @@
 namespace biemgine
 {
     System::~System() {}
+    inline void System::onAddEntity(Entity & entity) {}
     inline void System::before() {}
     inline void System::before(const float deltaTime) {}
-    inline void System::update(const Entity & entity) {}
-    inline void System::update(const Entity & entity, const float deltaTime) {}
+    inline void System::update() {}
+    inline void System::update(const float deltaTime) {}
     inline void System::after() {}
     inline void System::after(const float deltaTime) {}
 

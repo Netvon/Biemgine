@@ -19,7 +19,7 @@ namespace spacebiem
     {
     }
 
-    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame)
+    void UniverseBuilder::build(std::shared_ptr<EntityManager> entityManager, bool newGame, string fileName, bool focused)
     {
         FileParser fileParser;
         PlanetFactory planetFactory;
@@ -28,12 +28,8 @@ namespace spacebiem
 
         map<string, map<string, vector<string>>> levelMap;
 
-        if (newGame) {
-            levelMap = fileParser.levelContent("data/savegame.csv");
-        }
-        else {
-            levelMap = fileParser.levelContent("data/savegame.csv");
-        }
+        levelMap = fileParser.levelContent(fileName);
+       
 
         map<string, float> atmosphereM = fileParser.atmosphereContent();
         map<string, int> scoreBonus = fileParser.planetScoreContent();
@@ -88,10 +84,10 @@ namespace spacebiem
                     flagComponent.push_back(stod(i.second[2].c_str()));
                 }
                 else if (component == "resource_component") {
-                    resources.push_back(stod(i.second[0].c_str()));
-                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[2].c_str()));
+                    resources.push_back(stod(i.second[1].c_str()));
                     resources.push_back(stod(i.second[3].c_str()));
+                    resources.push_back(stod(i.second[0].c_str()));
                 }
                 else if (component == "physics_component") {
                     physics.push_back(stod(i.second[0]));
@@ -107,7 +103,7 @@ namespace spacebiem
             }
 
             if (type == "player") {
-                int id = entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
+                int id = entityManager->addEntity<PlayerEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height), 1.f, focused);
 
                 if (!newGame) {
                     auto player = entityManager->getEntity(id);
@@ -129,12 +125,12 @@ namespace spacebiem
                     positionComponent->setRotation(physics[2]);
                 }
             }
-            /*else if (type == "aimummie") {
+            else if (type == "aimummie") {
                 entityManager->addEntity<MummieAIEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
             }
             else if (type == "aisnowman") {
                 entityManager->addEntity<SnowmanAIEntity>(stoi(xPos), stoi(yPos), Color::White(), stoi(width), stoi(height));
-            }*/
+            }
             else if (type == "resource") {
                 // name & score moeten nog uitgelezen worden
                 resourceFactory.createPlanetResources(stod(xPos), stod(yPos), stoi(width), stoi(height), resourceName, entityManager);
@@ -155,17 +151,19 @@ namespace spacebiem
 
         Entity* player = nullptr;
         for (auto it = entityManager->begin(); it != entityManager->end(); it++) {
-            if ((*it)->isTag("player")) player = (*it);
+            if ((*it)->isTag("player")) {
+                player = (*it);
+                break;
+            }
         }
+
         if (player != nullptr) {
             for (auto it = entityManager->begin(); it != entityManager->end(); it++) {
                 if ((*it)->hasComponent("collidable")) {
                     auto cc = player->getComponent<CollidableComponent>("collidable");
                     cc->add((**it), false);
                 }
-
             }
         }
-
     }
 }

@@ -1,67 +1,70 @@
 #include "JumpSystem.h"
-#include "..\scenes\LevelScene.h"
-#include "..\components\GravityComponent.h"
-
-using biemgine::GroundedComponent;
-using biemgine::AffectedByGravityComponent;
-using biemgine::PositionComponent;
-using biemgine::PhysicsComponent;
-using biemgine::Vector;
-
-#include <functional>
 
 namespace spacebiem
 {
-    void JumpSystem::update(const Entity & entity)
+    void JumpSystem::onAddEntity(Entity & entity)
     {
-        if (!entity.hasComponent("movement"))
-            return;
-
-        if (!getStateManager()->getInputManager()->isKeyDown("Space"))
-            return;
-
-        if (entity.hasComponent("affectedByGravity")
+        if (entity.hasComponent("movement")
+            && entity.hasComponent("affectedByGravity")
             && entity.hasComponent("grounded")
             && entity.hasComponent("physics"))
         {
-            auto grounded = entity.getComponent<GroundedComponent>("grounded");
-            auto affected = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
+            PlayerEntry playerEntry;
+            playerEntry.entity = &entity;
+            playerEntry.positionComponent = entity.getComponent<PositionComponent>("position");
+            playerEntry.groundedComponent = entity.getComponent<GroundedComponent>("grounded");
+            playerEntry.affectedByGravityComponent = entity.getComponent<AffectedByGravityComponent>("affectedByGravity");
+            playerEntry.physicsComponent = entity.getComponent<PhysicsComponent>("physics");
+            playerEntry.movementComponent = entity.getComponent<MovementComponent>("movement");
+            playerEntry.animatedComponent = entity.getComponent<AnimatedTextureComponent>("texture");
+            playerEntries.push_back(std::move(playerEntry));
+        }	
+    }
 
-            if (!grounded->isGrounded() || !affected->getIsAffected())
+    void JumpSystem::update()
+    {
+        if (!getStateManager()->getInputManager()->isKeyDown("Space"))
+            return;
+
+        for (const PlayerEntry& player : playerEntries)
+        {
+            if (!player.groundedComponent->isGrounded() || !player.affectedByGravityComponent->getIsAffected())
                 return;
 
-            auto position = entity.getComponent<PositionComponent>("position");
-            auto physics = entity.getComponent<PhysicsComponent>("physics");
+            player.animatedComponent->setCurrentAnimation("jump");
+            player.animatedComponent->play();
+            player.animatedComponent->setPlaybackSpeed(70.0f);
 
-            Vector centerOfSatellite {
-                position->getX() + physics->getColliderW() / 2.0f,
-                position->getY() + physics->getColliderH() / 2.0f
+            Vector centerOfSatellite{
+                player.positionComponent->getX() + player.physicsComponent->getColliderW() / 2.0f,
+                player.positionComponent->getY() + player.physicsComponent->getColliderH() / 2.0f
             };
 
-            Vector centerOfGravity { affected->getFallingTowardsX(), affected->getFallingTowardsY() };
+            Vector centerOfGravity{player.affectedByGravityComponent->getFallingTowardsX(), player.affectedByGravityComponent->getFallingTowardsY()};
 
-            Vector diff = (centerOfGravity - centerOfSatellite) * - 1;
+            Vector diff = (centerOfGravity - centerOfSatellite) * -1.0f;
             diff = diff.normalize();
 
-            if (physics->getVelocity().length() > 0) {
-                diff += physics->getVelocity().normalize();
+            if (player.physicsComponent->getVelocity().length() > 0.0f)
+            {
+                diff += player.physicsComponent->getVelocity().normalize();
                 diff = diff.normalize();
             }
 
-             auto multiplier = physics->getVelocity().normalize().length() * 2.0f;
+            auto multiplier = player.physicsComponent->getVelocity().normalize().length() * 2.0f;
 
-             if (multiplier < 1.0f)
-                 multiplier = 1.0f;
+			constexpr auto gravityConstant = GravityComponent::getGravityConstant();
+			auto movementForce = (player.physicsComponent->getMass() * gravityConstant) * (player.movementComponent->getJumpForce() * multiplier);
 
-            constexpr auto gravityConstant = GravityComponent::getGravityConstant();
-            auto movementForce = (physics->getMass() * gravityConstant) * (10.0f * multiplier);
-            
+            if (multiplier < 1.0f)
+                multiplier = 1.0f;
+
             diff *= movementForce;
 
             if (!getStateManager()->getAudioDevice().isPlayingSoundEffect("audio/jump.mp3"))
-                getStateManager()->getAudioDevice().playSoundEffect("audio/jump.mp3",0, -1, 64);
+                getStateManager()->getAudioDevice().playSoundEffect("audio/jump.mp3", 0, -1, 64);
 
-            physics->addForce("jump", diff.x, diff.y);
+            player.physicsComponent->addForce("jump", diff.x, diff.y);
         }
     }
 }

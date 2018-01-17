@@ -13,10 +13,20 @@ using std::list;
 
 namespace biemgine
 {
+
     class ScriptSystem
         : public System
     {
     public:
-        void update(const Entity& entity, const float deltaTime);
+        struct Entry {
+            Entity* entity;
+            std::shared_ptr<ScriptComponent> scriptComponent;
+        };
+
+        void onAddEntity(Entity & entity);
+        void update(const float deltaTime);
+
+    private:
+        vector<Entry> entries;
     };
 }
